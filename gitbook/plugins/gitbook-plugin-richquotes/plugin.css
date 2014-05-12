@@ -1,0 +1,24 @@
+blockquote.alert strong
+{
+	display      : inline-block;
+	text-align   : center;
+	float        : left;
+	width        : 60px;
+  height       : 80px;
+	margin-right : 10px;
+  padding-top  : 14px;
+}
+
+blockquote.alert
+{
+	border-radius     : 5px;
+}
+
+.book .book-body .page-wrapper .page-inner section.normal blockquote>:last-child {
+  margin-bottom     : inherit;
+}
+
+.alert-quote
+{
+	background-color : white;
+}
