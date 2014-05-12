@@ -1,0 +1,10 @@
+{
+  "name": "package",
+  "version": "0.0.0",
+  "dependencies": {
+    "gitbook-plugin-richquotes": "0.0.3",
+    "grunt": "~0.4.4",
+    "grunt-gh-pages": "~0.9.1",
+    "grunt-gitbook": "~0.4.2"
+  }
+}
