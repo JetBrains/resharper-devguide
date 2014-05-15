@@ -20,3 +20,7 @@ I want to see:
 In other words, an experiment in starting the devguide from scratch.
 
 Issues and Pull Requests can be raised on [GitHub](https://github.com/citizenmatt/resharper-devguide).
+
+## Conventions ##
+
+In the [chapter list](summary.md), I'm assuming that the top level node will have an introduction to the topic, e.g. Extensions would discuss the different types of extensions and provide links to more information, or code completion would show bare bones example of how to add items into the list. The next level down would provide a set of pages that provide more detail, e.g. extension packaging, double completion, overriding completion items, etc.
