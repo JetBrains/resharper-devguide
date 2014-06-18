@@ -1,9 +1,16 @@
 CACHE MANIFEST
-# Revision 1402662020231
+# Revision 1403091314409
 
 CACHE:
+Platform/Lifetime/Advanced.html
+Platform/Lifetime/CaseStudy.html
+Platform/Lifetime/LifetimeDefinition.html
+Platform/Lifetime/ComponentModel.html
+Platform/Lifetime.html
+Platform/Lifetime/Usage.html
 HowDoI.html
 index.html
+wip.html
 gitbook/app.js
 gitbook/fonts/fontawesome/FontAwesome.otf
 gitbook/fonts/fontawesome/fontawesome-webfont.eot
