@@ -1,6 +1,10 @@
 # Case Study
 
-`Lifetime` is a very powerful concept. Let's take a deeper look at an example of a more complex use case. Consider the Extension Manager. Extensions can be installed and uninstalled at any time. They can also be disabled and enabled, and there are also thread affinity concerns. `Lifetime` really helps keep the code manageable.
+`Lifetime` is a very powerful concept. Normal usage is very straight forward, either by adding a simple callback, or passing it to an API. Generally speaking, this is how it will be used day to day.
+
+However, it can also be used to help manage more complex scenarios.
+
+Let's take a deeper look at one such example. Consider ReSharper's Extension Manager. Extensions can be installed and uninstalled at any time. They can also be disabled and enabled, and there are also thread affinity concerns. `Lifetime` really helps keep the code manageable.
 
 ## Loading Extensions
 
@@ -12,7 +16,7 @@ When an extension is first loaded, the `ExtensionSettingsLoader` class looks to 
 
 > **Note** Note that there is no code to explicitly remove settings files. It is automatically handled by nested `Lifetime`s and the settings subsystem adding cleanup code to the given `Lifetime`.
 
-However, we also want to remove settings files when the extension is disabled. So, instead of calling the Settings subsystem with the extension's own `Lifetime`, `ExtensionSettingsLoader` maintains an instance of the `SequentialLifetimes` class.
+However, we also want to remove settings files when the extension is disabled. So, instead of calling the Settings subsystem with the extension's own `Lifetime`, `ExtensionSettingsLoader` creates a new `Lifetime` that is valid for the duration that an extension is enabled. Since this is a consecutive, non-overlapping duration, the settings loader uses an instance of `SequentialLifetimes` to manage this.
 
 When the extension is enabled, `SequentialLifetimes.Next` is called to create a new `Lifetime`, and this can be passed to the Settings subsystem when loading the files. When the extension is disabled, `SequentialLifetimes.TerminateCurrent` causes this settings file `Lifetime` to be terminated, running the Settings subsystem's callback, which removes the files. 
 
@@ -30,14 +34,13 @@ Fortunately, we can use a `Lifetime` when enqueuing the add action to the UI thr
 
 Removing the settings files is also complicated by the thread affinity issue.
 
-`Lifetime` instances are single threaded. That is, their callbacks are executed on the same thread that terminated the `Lifetime`. If there are nested `Lifetime` instances, then they are all terminated on the same thread. All callbacks happen on the same thread.
+`Lifetime` instances are not multi-threaded. That is, their callbacks are executed on the same thread that terminated the `Lifetime`. If there are nested `Lifetime` instances, then all callbacks of both the parent and the children are are executed on the same thread.
 
 So, we can't add the settings files with a `Lifetime` that is a child of either the extension's own `Lifetime`, or the `SequentialLifetimes` class; if either of these terminate, then the callback is executed on the same thread that terminated it. This means the Settings subsystem will try to remove the settings on the same thread that either uninstalled or disabled the extension, and this is not necessarily the UI thread.
 
 `Lifetime` doesn't provide any threading facilities, so we need to manage this ourselves. The answer is fairly straightforward though - create a new, unnested `Lifetime` (it's parent is `EternalLifetime.Instance`) and use it to load the settings file. This `Lifetime` is later explicitly terminated on the UI thread, by registering a callback with the `SequentialLifetimes` instance that calls `LifetimeDefinition.Terminate`.
 
-The final thing to consider is the `Lifetime` used to enqueue the terminate action to the UI thread. Since this only happens when a `Lifetime` is terminated, we can't use any existing `Lifetime` instances (they've been terminated - the action wouldn't happen!), so in this case, we use `EternalLifetime.Instance` - we always want this to happen, because no-one else can terminate that unnested `Lifetime`.
-
+The final thing to consider is the `Lifetime` used to enqueue the terminate action to the UI thread. Since this only happens when a `Lifetime` is terminated, we can't use any existing `Lifetime` instances (they've been terminated - the action wouldn't happen!), so in this case, we use `EternalLifetime.Instance` - we always want this to happen, because no-one else can terminate that unnested `Lifetime`. We also know that the action will be executed, and removed from the `EternalLifetime` instance, so there's no memory leak.
 
 ## Summary
 

@@ -40,7 +40,7 @@ Lifetimes.Define(Lifetime lifetime, string id,
 
 This method takes in a `Lifetime` to act as a parent; the new `Lifetime` is a "nested" lifetime. Terminating the parent `Lifetime` will also terminate this new child `Lifetime`. Of course, if the child terminates first, it removes itself from the parent's cleanup. 
 
-> **Note** If you don't have a parent `Lifetime` available, you can use `EternalLifetime.Instance`. Generally speaking, `EternalLifetime` should be avoided, as it is never terminated. Items scheduled against `EternalLifetime` will not run, and will not get garbage collected, effectively resulting in a memory leak. The only accepted use case for `EternalLifetime` is to act as a parent for another `Lifetime`.
+> **Note** If you don't have a parent `Lifetime` available, you can use `EternalLifetime.Instance`. Generally speaking, `EternalLifetime` should be avoided, as it is never terminated. Items scheduled against `EternalLifetime` will not run, and will not get garbage collected, effectively resulting in a memory leak. The preferred use case for `EternalLifetime` is to act as a parent for another `Lifetime`.
 
 The `Define` method has a number of optional parameters, firstly an id, which is only used for diagnostic purposes. Secondly, an action that is called as soon as the `LifetimeDefinition` has been created. And finally, an optional instance of `ILogger`. If no logger is passed in, the default logger instance from `Logger.Interface` is used (see the Logging section for more details on logging).
 
