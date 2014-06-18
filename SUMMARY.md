@@ -1,7 +1,7 @@
 # Summary
 
 ## Part I
-* Work in progress
+* [Work in progress](wip.md)
 * Getting Started
    * Tools
    * Internal mode
@@ -36,6 +36,7 @@
 * DataContext
 * TextControl
 * Documents
+* Threading
 * Locks
 * Transactions
 * IL Metadata
@@ -59,6 +60,7 @@
    * Defaults
    * Layers
    * File format
+* Util
 
 ## Part IV - PSI
 * Syntax trees
