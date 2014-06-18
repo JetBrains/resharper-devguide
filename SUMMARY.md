@@ -30,8 +30,14 @@
 * Features
 
 ## Part III - Platform
-* Lifetime
+* Logging
 * DataFlow
+* [Lifetime](Platform/Lifetime.md)
+   * [Usage](Platform/Lifetime/Usage.md)
+   * [Lifetime Management](Platform/Lifetime/LifetimeDefinition.md)
+   * [Advanced Lifetime Management](Platform/Lifetime/Advanced.md)
+   * [Component Lifetime](Platform/Lifetime/ComponentModel.md)
+   * [Case Study](Platform/Lifetime/CaseStudy.md)
 * Component Model
 * DataContext
 * TextControl
