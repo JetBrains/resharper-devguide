@@ -1,14 +1,15 @@
 CACHE MANIFEST
-# Revision 1403091314409
+# Revision 1403194751634
 
 CACHE:
 Platform/Lifetime/Advanced.html
 Platform/Lifetime/CaseStudy.html
-Platform/Lifetime/LifetimeDefinition.html
 Platform/Lifetime/ComponentModel.html
-Platform/Lifetime.html
+Platform/Lifetime/LifetimeDefinition.html
 Platform/Lifetime/Usage.html
+Platform/Lifetime.html
 HowDoI.html
+Intro/KnownIssues.html
 index.html
 wip.html
 gitbook/app.js
