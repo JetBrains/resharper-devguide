@@ -16,6 +16,8 @@
    * Packaging and Distribution
 * [How do I?](HowDoI.md)
 * Plugins and SDK
+   * Debugging
+   * [Known Issues](Intro/KnownIssues.md)
    * Plugin testing
       * Base classes
       * Quick links
