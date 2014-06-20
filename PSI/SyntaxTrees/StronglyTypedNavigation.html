@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Case Study | resharper-devguide</title>
+        <title>Strongly typed navigation | resharper-devguide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.5.2">
@@ -20,8 +20,6 @@
     
     
     
-    <link rel="prev" href="../../Platform/Lifetime/ComponentModel.html" />
-    
 
         
     </head>
@@ -36,7 +34,7 @@
 
 
         
-    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="3.3.5" data-basepath="../.." data-revision="1403274206027">
+    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="4.2.2" data-basepath="../.." data-revision="1403274206027">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -122,7 +120,7 @@
         
         
         <li>
-            <a href="https://github.com/citizenmatt/resharper-devguide/edit/master/Platform/Lifetime/CaseStudy.md" target="blank" class="contribute-link">Edit and Contribute</a>
+            <a href="https://github.com/citizenmatt/resharper-devguide/edit/master/PSI/SyntaxTrees/StronglyTypedNavigation.md" target="blank" class="contribute-link">Edit and Contribute</a>
         </li>
         
 
@@ -528,7 +526,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="3.3.5" data-path="Platform/Lifetime/CaseStudy.html">
+        <li class="chapter " data-level="3.3.5" data-path="Platform/Lifetime/CaseStudy.html">
             
                 
                     <a href="../../Platform/Lifetime/CaseStudy.html">
@@ -840,7 +838,7 @@
         </li>
     
         
-        <li class="chapter " data-level="4.2.2" data-path="PSI/SyntaxTrees/StronglyTypedNavigation.html">
+        <li class="chapter active" data-level="4.2.2" data-path="PSI/SyntaxTrees/StronglyTypedNavigation.html">
             
                 
                     <a href="../../PSI/SyntaxTrees/StronglyTypedNavigation.html">
@@ -1908,7 +1906,7 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 83.33333333333333%;min-width: 75%;"></div>
+        <div class="inner" style="width: 100%;min-width: 91.66666666666667%;"></div>
     </div>
     <div class="chapters">
     
@@ -1934,57 +1932,75 @@
     
         <a href="../../Platform/Lifetime/CaseStudy.html" title="Case Study" class="chapter done " data-progress="3.3.5" style="left: 83.33333333333333%;"></a>
     
-        <a href="../../PSI/NavigatingSyntaxTrees.html" title="Navigating syntax trees" class="chapter  " data-progress="4.2" style="left: 91.66666666666667%;"></a>
+        <a href="../../PSI/NavigatingSyntaxTrees.html" title="Navigating syntax trees" class="chapter done " data-progress="4.2" style="left: 91.66666666666667%;"></a>
     
-        <a href="../../PSI/SyntaxTrees/StronglyTypedNavigation.html" title="Strongly typed navigation" class="chapter  " data-progress="4.2.2" style="left: 100%;"></a>
+        <a href="../../PSI/SyntaxTrees/StronglyTypedNavigation.html" title="Strongly typed navigation" class="chapter done " data-progress="4.2.2" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_7">
+                    <section class="normal" id="section-gitbook_2">
                     
-                        <h1 id="case-study">Case Study</h1>
-<p><code>Lifetime</code> is a very powerful concept. Normal usage is very straight forward, either by adding a simple callback, or passing it to an API. Generally speaking, this is how it will be used day to day.</p>
-<p>However, it can also be used to help manage more complex scenarios.</p>
-<p>Let&#39;s take a deeper look at one such example. Consider ReSharper&#39;s Extension Manager. Extensions can be installed and uninstalled at any time. They can also be disabled and enabled, and there are also thread affinity concerns. <code>Lifetime</code> really helps keep the code manageable.</p>
-<h2 id="loading-extensions">Loading Extensions</h2>
-<p>Since extensions can be uninstalled at any time, it makes sense that they have a <code>Lifetime</code>. If an extension is uninstalled, its <code>Lifetime</code> is terminated. Any registered actions will be run and any nested <code>Lifetimes</code> will also be terminated.</p>
-<h2 id="settings-files">Settings Files</h2>
-<p>When an extension is first loaded, the <code>ExtensionSettingsLoader</code> class looks to see if it contains any settings files. If so, it calls into the Settings subsystem to load the files. The files are loaded with a <code>Lifetime</code> instance, and the Settings subsystem will register a callback that removes the settings file when that <code>Lifetime</code> terminates.</p>
+                        <h1 id="strongly-typed-navigation">Strongly Typed Navigation</h1>
+<p>While it&#39;s possible to navigate a syntax tree using just the parent, sibling and child nodes, it&#39;s a rather low level approach to the problem. If your current node is a class declaration, it&#39;s a lot of leg work to get at all of the method declarations. Similarly, from a method declaration, it&#39;s not convenient to walk the <code>Parent</code> nodes looking for the class declaration.</p>
+<p>Fortunately, ReSharper provides strongly typed navigation to make this a lot more convenient and intuitive.</p>
+<h2 id="navigating-down-the-tree">Navigating down the tree</h2>
+<p>Navigating down to child nodes is made very easy by derived interfaces of <code>ITreeNode</code>. All nodes in the tree implement <code>ITreeNode</code>, and also derive from it to provide a strongly typed API. For example, C# method declarations implement <code>IMethodDeclaration</code>, which itself derives from <code>ITreeNode</code>. If we take a look at some of the members:</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IMethodDeclaration : ITreeNode
+{
+  IAttributeSectionList AttributeSectionList { <span class="hljs-keyword">get</span>; }
+  ICSharpIdentifier NameIdentifier { <span class="hljs-keyword">get</span>; }
+  ITypeParameterOfMethodList TypeParameterList { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-comment">// [...snip...]</span>
+}
+</code></pre>
 <blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
-<p> Note that there is no code to explicitly remove settings files. It is automatically handled by nested <code>Lifetime</code>s and the settings subsystem adding cleanup code to the given <code>Lifetime</code>.</p>
+<p> This example over-simplifies the real implementation of <code>IMethodDeclaration</code>. The real definition applies the Interface Segregation Principle and splits out more interfaces that can be reused, such as <code>ICSharpParametersOwnerDeclaration</code> and <code>ICSharpModifiersOwnerDeclaration</code> to allow other nodes that can also have parameters, or modifiers, or attributes, etc., to share interfaces. The intent here is to discuss the strongly typed accessors, rather than document <code>IMethodDeclaration</code>.</p>
 </blockquote>
-<p>However, we also want to remove settings files when the extension is disabled. So, instead of calling the Settings subsystem with the extension&#39;s own <code>Lifetime</code>, <code>ExtensionSettingsLoader</code> creates a new <code>Lifetime</code> that is valid for the duration that an extension is enabled. Since this is a consecutive, non-overlapping duration, the settings loader uses an instance of <code>SequentialLifetimes</code> to manage this.</p>
-<p>When the extension is enabled, <code>SequentialLifetimes.Next</code> is called to create a new <code>Lifetime</code>, and this can be passed to the Settings subsystem when loading the files. When the extension is disabled, <code>SequentialLifetimes.TerminateCurrent</code> causes this settings file <code>Lifetime</code> to be terminated, running the Settings subsystem&#39;s callback, which removes the files. </p>
-<p>Since <code>SequentialLifetimes</code> creates a nested <code>Lifetime</code> with the extension&#39;s own <code>Lifetime</code> as the parent, when the extension is uninstalled, this parent <code>Lifetime</code> terminates, which terminates the nested <code>Lifetime</code>, and the settings files are automatically removed.</p>
-<h2 id="enforcing-thread-affinity">Enforcing Thread Affinity</h2>
-<p>To further complicate matters, there is a thread affinity issue here. When adding a settings file, it must be done on the main thread, since the list of settings layers are used as-is for binding to WPF (a design flaw, admittedly) and if they&#39;re not added on the main thread, WPF throws an exception. This requires the call into the <code>Settings</code> subsystem to be enqueued to run on the main thread.</p>
-<p>However, we now run the risk of a race condition - if we enqueue an action to add the settings file on the main thread, it&#39;s possible that the extension is disabled or even uninstalled before the settings files can be loaded. </p>
-<p>Fortunately, we can use a <code>Lifetime</code> when enqueuing the add action to the UI thread. We can use the <code>Lifetime</code> created by the <code>SequentialLifetimes</code> for this. If the extension is disabled, or uninstalled, the <code>SequentialLifetimes</code> class will terminate the <code>Lifetime</code> and the queued action is not executed.</p>
-<h2 id="removing-settings-files">Removing Settings Files</h2>
-<p>Removing the settings files is also complicated by the thread affinity issue.</p>
-<p><code>Lifetime</code> instances are not multi-threaded. That is, their callbacks are executed on the same thread that terminated the <code>Lifetime</code>. If there are nested <code>Lifetime</code> instances, then all callbacks of both the parent and the children are are executed on the same thread.</p>
-<p>So, we can&#39;t add the settings files with a <code>Lifetime</code> that is a child of either the extension&#39;s own <code>Lifetime</code>, or the <code>SequentialLifetimes</code> class; if either of these terminate, then the callback is executed on the same thread that terminated it. This means the Settings subsystem will try to remove the settings on the same thread that either uninstalled or disabled the extension, and this is not necessarily the UI thread.</p>
-<p><code>Lifetime</code> doesn&#39;t provide any threading facilities, so we need to manage this ourselves. The answer is fairly straightforward though - create a new, unnested <code>Lifetime</code> (it&#39;s parent is <code>EternalLifetime.Instance</code>) and use it to load the settings file. This <code>Lifetime</code> is later explicitly terminated on the UI thread, by registering a callback with the <code>SequentialLifetimes</code> instance that calls <code>LifetimeDefinition.Terminate</code>.</p>
-<p>The final thing to consider is the <code>Lifetime</code> used to enqueue the terminate action to the UI thread. Since this only happens when a <code>Lifetime</code> is terminated, we can&#39;t use any existing <code>Lifetime</code> instances (they&#39;ve been terminated - the action wouldn&#39;t happen!), so in this case, we use <code>EternalLifetime.Instance</code> - we always want this to happen, because no-one else can terminate that unnested <code>Lifetime</code>. We also know that the action will be executed, and removed from the <code>EternalLifetime</code> instance, so there&#39;s no memory leak.</p>
-<h2 id="summary">Summary</h2>
-<p>This means we have three <code>Lifetime</code> objects on the go. </p>
-<ul>
-<li>Firstly, the extension&#39;s own <code>Lifetime</code>. This is the main parent <code>Lifetime</code>. If it&#39;s terminated, all other <code>Lifetime</code> objects are also terminated. </li>
-<li>Secondly, we have a <code>Lifetime</code> created by the <code>SequentialLifetimes</code> object every time the extension is enabled, and terminated when it&#39;s disabled. This is used to enqueue a call to the main thread, and also used to register a callback to explicitly terminate the third <code>Lifetime</code>.</li>
-<li>The third <code>Lifetime</code> is an un-nested <code>Lifetime</code> that is passed to the <code>Settings</code> subsystem. Terminating this is what causes the settings files to be unloaded. This <code>Lifetime</code> is explicitly terminated on the UI thread. The terminate action is enqeued to the UI thread with the <code>EternalLifetime</code> to ensure it actually happens.</li>
-</ul>
-<p>We now have a system of adding and removing the settings files when the extension&#39;s <code>Enabled</code> property changes. We also add and remove the settings files on the main thread, and don&#39;t add the settings files if the extension has been disabled before the main thread was available to run the command. Finally, everything is removed when the extension is uninstalled.</p>
-<p>Consider implementing these same requirements with <code>IDisposable</code>.</p>
-<ul>
-<li>Firstly, we would need to know when the extension was being uninstalled, which <code>IDisposable</code> wouldn&#39;t give us. (We would need to register with some event, presumably exposed by the extension itself)</li>
-<li>Secondly, we would have to manage state to know if the files were currently loaded or not in the Settings subsystem and update this when the extension&#39;s enabled state changed.</li>
-<li>Thirdly, we would have to manage enqueuing to the main thread, and work around the race condition of disabling the extension before adding the files.</li>
-<li>Finally, we would have to explicitly tell the Settings subsystem to unload the settings files when either the extension was removed, or made disabled.</li>
-</ul>
-<p><code>Lifetime</code> manages a lot of state for us in this situation. </p>
+<p>Each of these properties is a strongly typed accessor to get to the <code>ITreeNode</code> that represents the attributes on the method, or the node that represents the method&#39;s name. Internally, the nodes are found by walking down the tree, looking for nodes of a particular type. They are then downcast to the strongly typed, <code>ITreeNode</code> derived interfaces.</p>
+<p>Similarly, collections can be represented. Let&#39;s take a look at a simplified class declaration:</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IClassDeclaration : ITreeNode
+{
+  TreeNodeCollection&lt;IMethodDeclaration&gt; MethodDeclarations {<span class="hljs-keyword">get</span>;}
+  TreeNodeEnumerable&lt;IMethodDeclaration&gt; MethodDeclarationsEnumerable {<span class="hljs-keyword">get</span>;}
+  <span class="hljs-comment">// [...snip...]</span>
+}
+</code></pre>
+<p>Here we can see that a class has a collection of method declarations. It is represented in two ways, firstly as an instance of <code>TreeNodeCollection&lt;T&gt;</code> and secondly as a <code>TreeNodeEnumerable&lt;T&gt;</code>. Both can be iterated over using foreach, or LINQ queries. The major difference is that <code>TreeNodeCollection&lt;T&gt;</code> implements <code>IList&lt;T&gt;</code>, while <code>TreeNodeEnumerable&lt;T&gt;</code> only implements <code>IEnumerable&lt;T&gt;</code>. This means that the <code>MethodDeclarationsEnumerable</code> property is more lightweight that the <code>MethodDeclarations</code> property, but at the cost of flexibility.</p>
+<p>The <code>MethodDeclarations</code> property creates a new instance of <code>TreeNodeCollection&lt;T&gt;</code> each time it&#39;s accessed. The child nodes are iterated up-front, and passed to the collection as an array. The collection provides all the features of an implementation of <code>IList&lt;T&gt;</code> (although it is a read-only list), so it can be iterated sequentially or randomly. It also provides a number of optimised LINQ queries, such as <code>Any</code>, <code>Reverse</code> and <code>ToList</code>.</p>
+<p>The <code>MethodDeclarationsEnumerable</code> property, however, simply creates an instance of <code>TreeNodeEnumerable&lt;T&gt;</code> (again, each time it&#39;s accessed), but the nodes are not collected until the enumerable is enumerated - it is lazily evaluated, and does not store the whole list. This makes it more efficient than <code>TreeNodeCollection&lt;T&gt;</code>.</p>
+<blockquote class="clearfix alert alert-success"><strong class="fa fa-4x fa-lightbulb-o"></strong>
+<p> You should favour the enumerable version of a property unless you require the extra features that <code>IList&lt;T&gt;</code> gives you.</p>
+</blockquote>
+<h2 id="navigating-up-the-tree">Navigating up the tree</h2>
+<p>ReSharper also provides a strongly typed means of navigating <em>up</em> the tree, which is preferable to manually walking up the chain of <code>Parent</code> properties. Generally speaking, if a node exposes strongly typed accessors, there will be a complementary navigator class.</p>
+<p>For example, the <code>IXmlTag</code> node exposes a <code>Header</code> property of type <code>IXmlTagHeader</code>, providing us strongly typed navigation <em>down</em> the tree (from a node representing a complete xml tag to the node representing the opening part of the tag). The <code>XmlTagNavigator</code> static class gives us the opposite - strongly typed navigation <em>up</em> to an <code>IXmlTag</code> from various child nodes.</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> XmlTagNavigator
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByTag</span>(IXmlTag tag) { <span class="hljs-comment">/* … */</span> }
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByTagHeader</span>(IXmlTagHeader header) { <span class="hljs-comment">/* … */</span> }
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByTagFooter</span>(IXmlTagFooter footer) { <span class="hljs-comment">/* … */</span> }
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByAttribute</span>(IXmlAttribute attribute) { <span class="hljs-comment">/* … */</span> }
+}
+</code></pre>
+<p>The classes follow a simple naming pattern. The navigator class is named after the node you&#39;re trying to navigate <em>to</em>, and the name ends in the word <code>Navigator</code>, e.g. <code>XmlTagNavigator</code> is trying to navigate to an instance of <code>IXmlTag</code>. The methods all being with <code>GetBy</code> and finish with the type of the node that should be passed in. So, <code>XmlTagNavigator.GetByAttribute</code> is trying to navigate to an <code>IXmlTag</code>, from an <code>IXmlAttribute</code>.</p>
+<blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
+<p> Navigating up the tree is not as simple as casting <code>Parent</code> to the appropriate type. The navigator methods have specific knowledge of parent/child relationships, and can walk several nodes up the hierarchy to find the appropriate node. For example, C#&#39;s <code>ClassDeclarationNavigator</code> can navigate to the class declaration node from an <code>IAttribute</code> node, skipping the attribute list, attribute section and section list nodes before reaching the class declaration node.</p>
+<p>Since ReSharper knows these relationships, it is recommended that you use navigator classes where possible, instead of walking the <code>Parent</code> properties manually.</p>
+</blockquote>
+<p>It should also be pointed out that you can use the navigator classes in combination. For example, to get to a class declaration from an <code>if</code> statement in a C# file:</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> IClassDeclaration <span class="hljs-title">GetByIfStatement</span>(IIfStatement ifStatement)
+{
+  <span class="hljs-keyword">var</span> methodBody = BlockNavigator.GetByStatement(ifStatement);
+  <span class="hljs-keyword">var</span> methodDeclaration = MethodDeclaratioNavigator
+    .GetByBody(methodBody);
+  <span class="hljs-keyword">return</span> ClassDeclarationNavigator
+    .GetByMethodDeclaration(methodDeclaration);
+}
+</code></pre>
+<p>It isn&#39;t necessary to check for null before passing a node into the navigator classes - they explicitly allow null to be passed in, and will return null if it can&#39;t find the appropriate parent.</p>
 
                     
                     </section>
@@ -1993,8 +2009,6 @@
             </div>
         </div>
 
-        
-        <a href="../../Platform/Lifetime/ComponentModel.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Component Lifetime"><i class="fa fa-angle-left"></i></a>
         
         
     </div>
