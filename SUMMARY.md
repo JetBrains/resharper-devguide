@@ -24,6 +24,7 @@
       * Testing code completion
       * Testing unit test support
       * Testing new language support
+* [Glossary](Intro/Glossary.md)
 
 ## Part II - Architectural Overview
 * Platform
@@ -72,8 +73,12 @@
 
 ## Part IV - PSI
 * Syntax trees
+* [Navigating syntax trees](PSI/NavigatingSyntaxTrees.md)
+    * Helper methods
+    * [Strongly typed navigation](PSI/SyntaxTrees/StronglyTypedNavigation.md)
+    * Recursive navigation
+    * Finding nodes
 * Manipulating syntax trees
-* Navigating syntax trees
 * References
 * Generating code
 * Semantic models
