@@ -20,6 +20,7 @@
    * [Known Issues](Intro/KnownIssues.md)
    * Plugin testing
       * Base classes
+      * [Temporary Settings](Plugins/TemporarySettings.md)
       * Quick links
       * Testing code completion
       * Testing unit test support
