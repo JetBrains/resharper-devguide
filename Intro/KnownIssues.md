@@ -47,3 +47,13 @@ XML files return `false` to `ProvidesCodeModel`. This flag will be changed for R
 It might seem more intuitive to simply check `IsICachePartipant` rather than checking three properties. The requirements for participating in `ICache` is the ability to parse a file and that the file contributes to the code model. The `IsICacheParticipant` property is actually an *opt out* mechanism, allowing files that satisfy the base requirements to opt out of `ICache`. It is required for C++ support.
 
 The workaround is to implement `IPsiSourceFilePropertiesProvider`. The implementation should have an arbitrarily high value for `Order`, so that it executes after the default implementation which provides a standard implementation of `IPsiSourceFileProperties`. In its implementation of `GetPsiProperties`, it should check to see if the file is appropriate - that is, it's an XML file (`psiSourceFile.LanguageType.Is<Xml>()`) and if necessary, that the project is also appropriate (for example, if you're adding caching just for web projects, check the project is a web project before continuing). The method should then return an instance of `IPsiSourceFileProperties` that returns `true` for `ProvidesCodeModel`, and defers everything to the original `IPsiSourceFileProperties` passed in. If its not a file that you're interested in, simply return the original properties untouched.
+
+## "Browser not found by alias 'C'" message when parsing web files in tests
+
+**Problem:** When trying to run a test that needs to parse a web file, such as `.css`, `.html` or `.aspx`, the test fails with a message like "Browser not found by alias 'C'". The CSS inspection configuration data is missing, and this causes the CSS daemon to throw exceptions, failing the test.
+
+**Solution:** Copy the `CSS` folder from the ReSharper install directory to the `bin\Debug` folder of your tests. It will be properly addressed in ReSharper 9.0
+
+**YouTrack:** [RSRP-416928](http://youtrack.jetbrains.com/issue/RSRP-416928)
+
+**Details:** The `CSS` folder in the product installation folder contains various configuration files defining supported browsers, and CSS properties. The CSS daemon requires these files in order to properly inspect CSS files. If they're missing, the daemon throws an exception, causing the tests to fail. Ensure the CSS folder is copied from the ReSharper install directory to the `bin\Debug` folder of your tests and the CSS daemon will start working properly again. A pre- or post-build step can accomplish this
