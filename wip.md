@@ -8,3 +8,6 @@ Notes to self.
 * Where do docs for plugins for other .net products (dotPeek, dotTrace, dotCover, dotMemory) live?
     * Products share Platform, PSI and a subset of Features
     * Products have own unique features (e.g. CLT's loggers)
+* Generate grammar files from .psi files? Or ITreeNodes?
+* Error handling, e.g. errors in actions (tooltip?)
+* Project flavours
