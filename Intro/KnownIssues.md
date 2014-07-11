@@ -57,3 +57,11 @@ The workaround is to implement `IPsiSourceFilePropertiesProvider`. The implement
 **YouTrack:** [RSRP-416928](http://youtrack.jetbrains.com/issue/RSRP-416928)
 
 **Details:** The `CSS` folder in the product installation folder contains various configuration files defining supported browsers, and CSS properties. The CSS daemon requires these files in order to properly inspect CSS files. If they're missing, the daemon throws an exception, causing the tests to fail. Ensure the CSS folder is copied from the ReSharper install directory to the `bin\Debug` folder of your tests and the CSS daemon will start working properly again. A pre- or post-build step can accomplish this
+
+## Project files are not handled by daemon stages
+
+**Problem:** It is not possible to process `.csproj` or `.vbproj` project files in an instance of `IDaemonStageProcess`. They are not processed by the visible document daemon process (because they're not visible documents!) and are explicitly excluded from Solution Wide Error Analysis.
+
+**Solution:** There is no workaround at present
+
+**YouTrack:** [RSRP-418226](http://youtrack.jetbrains.com/issue/RSRP-418226)
