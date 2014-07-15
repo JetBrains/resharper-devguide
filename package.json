@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "dependencies": {
     "gitbook-plugin-anchors": "^0.3.0",
-    "gitbook-plugin-multipart": "0.1.0",
+    "gitbook-plugin-multipart": "0.2.0",
     "gitbook-plugin-richquotes": "0.0.3",
     "gitbook-plugin-toc": "0.0.1",
     "grunt": "~0.4.5",
