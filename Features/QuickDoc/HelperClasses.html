@@ -7,7 +7,7 @@
         <title>Helper classes | resharper-devguide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 0.5.6">
+        <meta name="generator" content="GitBook 0.6.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -46,7 +46,7 @@
 
 
         
-    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.5.1.3" data-basepath="../.." data-revision="1405444411278">
+    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.5.1.3" data-basepath="../.." data-revision="1405447719075">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -133,6 +133,8 @@
             <a href="https://github.com/citizenmatt/resharper-devguide/edit/master/Features/QuickDoc/HelperClasses.md" target="blank" class="contribute-link">Edit and Contribute</a>
         </li>
         
+
+	
 
         
         <li class="divider"></li>
@@ -848,16 +850,16 @@
             
         </li>
     
-
-            </ul>
+        
+        <li class="chapter " data-level="3.14.5">
+            
+            <span><b>14.5.</b> Util</span>
+            
             
         </li>
     
-        
-        <li class="chapter " data-level="3.15">
-            
-            <span><b>15.</b> Util</span>
-            
+
+            </ul>
             
         </li>
     
@@ -1456,7 +1458,7 @@
         </li>
     
         
-        <li class="chapter " data-level="5.5.1.3" data-path="Features/QuickDoc/HelperClasses.html">
+        <li class="chapter active" data-level="5.5.1.3" data-path="Features/QuickDoc/HelperClasses.html">
             
                 
                     <a href="../../Features/QuickDoc/HelperClasses.html">
@@ -2204,7 +2206,7 @@
 </ul>
 <p>If a top-level element (i.e. a direct child of the root node, or the <code>member</code> node) is not one of the elements in the above list, a new section is created for it. The element name is capitalised to make a section name, and the child nodes of the element are processed as above. This means an unknown element can contain known elements such as <code>code</code> and <code>seealso</code>.</p>
 <p>If the unknown element is not top-level, then the XML is added to the text of the description. It is not rendered as HTML, but as plain text, with all tags and attributes being encoded to display as-is.</p>
-<h4 id="-ixmldocheaderpresenter-"><a name="-ixmldocheaderpresenter-" class="plugin-anchor" href="#-ixmldocheaderpresenter-"><span class="fa fa-link"></span></a><code>IXmlDocHeaderPresenter</code></h4>
+<h4 id="ixmldocheaderpresenter"><a name="ixmldocheaderpresenter" class="plugin-anchor" href="#ixmldocheaderpresenter"><span class="fa fa-link"></span></a><code>IXmlDocHeaderPresenter</code></h4>
 <p>If an <code>IDeclaredElement</code> is passed in, and the member header is to be rendered, the rendering is deferred to a per-language implementation of <code>IXmlDocHeaderPresenter</code>. ReSharper provides per-language implementations for C#, VB and CSS. All other languages share the <code>CommonXmlDocHeaderPresenter</code>.</p>
 <p>If you are implementing your own language, and you do not wish to use the <code>CommonXmlDocHeaderPresenter</code>, you should also implement <code>IXmlDocHeaderPresenter</code>. The interface is simple:</p>
 <pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlDocHeaderPresenter

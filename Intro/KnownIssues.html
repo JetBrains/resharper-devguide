@@ -7,7 +7,7 @@
         <title>Known Issues | resharper-devguide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 0.5.6">
+        <meta name="generator" content="GitBook 0.6.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="1.5.2" data-basepath=".." data-revision="1405444411278">
+    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="1.5.2" data-basepath=".." data-revision="1405447719075">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -129,6 +129,8 @@
             <a href="https://github.com/citizenmatt/resharper-devguide/edit/master/Intro/KnownIssues.md" target="blank" class="contribute-link">Edit and Contribute</a>
         </li>
         
+
+	
 
         
         <li class="divider"></li>
@@ -323,7 +325,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.5.2" data-path="Intro/KnownIssues.html">
+        <li class="chapter active" data-level="1.5.2" data-path="Intro/KnownIssues.html">
             
                 
                     <a href="../Intro/KnownIssues.html">
@@ -844,16 +846,16 @@
             
         </li>
     
-
-            </ul>
+        
+        <li class="chapter " data-level="3.14.5">
+            
+            <span><b>14.5.</b> Util</span>
+            
             
         </li>
     
-        
-        <li class="chapter " data-level="3.15">
-            
-            <span><b>15.</b> Util</span>
-            
+
+            </ul>
             
         </li>
     
@@ -2133,7 +2135,7 @@
 <!-- toc stop -->
 
 
-<h2 id="plugin-keyboard-shortcuts-don-t-work"><a name="plugin-keyboard-shortcuts-don-t-work" class="plugin-anchor" href="#plugin-keyboard-shortcuts-don-t-work"><span class="fa fa-link"></span></a>Plugin keyboard shortcuts don&apos;t work</h2>
+<h2 id="plugin-keyboard-shortcuts-dont-work"><a name="plugin-keyboard-shortcuts-dont-work" class="plugin-anchor" href="#plugin-keyboard-shortcuts-dont-work"><span class="fa fa-link"></span></a>Plugin keyboard shortcuts don&apos;t work</h2>
 <p><strong>Problem:</strong> If a plugin defines actions that include keyboard shortcuts, the shortcut is only valid the first time Visual Studio is loaded. The next time Visual Studio restarts, the shortcut is gone. Any customisation of the keyboard shortcut in Visual Studio&apos;s options dialog is also lost on restart.</p>
 <p><strong>Solution:</strong> There is no workaround for this issue. It will be addressed in ReSharper 9.0.</p>
 <p><strong>YouTrack:</strong> <a href="http://youtrack.jetbrains.com/issue/RSRP-246461" target="_blank">RSRP-246461</a>, <a href="http://youtrack.jetbrains.com/issue/RSRP-337038" target="_blank">RSRP-337038</a></p>
@@ -2155,7 +2157,7 @@
 <p>XML files return <code>false</code> to <code>ProvidesCodeModel</code>. This flag will be changed for ReSharper 9.0.</p>
 <p>It might seem more intuitive to simply check <code>IsICachePartipant</code> rather than checking three properties. The requirements for participating in <code>ICache</code> is the ability to parse a file and that the file contributes to the code model. The <code>IsICacheParticipant</code> property is actually an <em>opt out</em> mechanism, allowing files that satisfy the base requirements to opt out of <code>ICache</code>. It is required for C++ support.</p>
 <p>The workaround is to implement <code>IPsiSourceFilePropertiesProvider</code>. The implementation should have an arbitrarily high value for <code>Order</code>, so that it executes after the default implementation which provides a standard implementation of <code>IPsiSourceFileProperties</code>. In its implementation of <code>GetPsiProperties</code>, it should check to see if the file is appropriate - that is, it&apos;s an XML file (<code>psiSourceFile.LanguageType.Is&lt;Xml&gt;()</code>) and if necessary, that the project is also appropriate (for example, if you&apos;re adding caching just for web projects, check the project is a web project before continuing). The method should then return an instance of <code>IPsiSourceFileProperties</code> that returns <code>true</code> for <code>ProvidesCodeModel</code>, and defers everything to the original <code>IPsiSourceFileProperties</code> passed in. If its not a file that you&apos;re interested in, simply return the original properties untouched.</p>
-<h2 id="-browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests"><a name="-browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests" class="plugin-anchor" href="#-browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests"><span class="fa fa-link"></span></a>&quot;Browser not found by alias &apos;C&apos;&quot; message when parsing web files in tests</h2>
+<h2 id="browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests"><a name="browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests" class="plugin-anchor" href="#browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests"><span class="fa fa-link"></span></a>&quot;Browser not found by alias &apos;C&apos;&quot; message when parsing web files in tests</h2>
 <p><strong>Problem:</strong> When trying to run a test that needs to parse a web file, such as <code>.css</code>, <code>.html</code> or <code>.aspx</code>, the test fails with a message like &quot;Browser not found by alias &apos;C&apos;&quot;. The CSS inspection configuration data is missing, and this causes the CSS daemon to throw exceptions, failing the test.</p>
 <p><strong>Solution:</strong> Copy the <code>CSS</code> folder from the ReSharper install directory to the <code>bin\Debug</code> folder of your tests. It will be properly addressed in ReSharper 9.0</p>
 <p><strong>YouTrack:</strong> <a href="http://youtrack.jetbrains.com/issue/RSRP-416928" target="_blank">RSRP-416928</a></p>

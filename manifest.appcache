@@ -1,20 +1,20 @@
 CACHE MANIFEST
-# Revision 1405444411278
+# Revision 1405447719075
 
 CACHE:
 Intro/Glossary.html
 Intro/KnownIssues.html
 Features/QuickDoc/ExistingProviders.html
 Features/QuickDoc/HelperClasses.html
-Features/QuickDoc/ImplementingPresenter.html
 Features/QuickDoc/ImplementingProvider.html
+Features/QuickDoc/ImplementingPresenter.html
 Features/QuickDoc/Overview.html
 Features/QuickDoc/Testing.html
 HowDoI.html
 PSI/NavigatingSyntaxTrees.html
 PSI/SyntaxTrees/StronglyTypedNavigation.html
-Platform/Lifetime/CaseStudy.html
 Platform/Lifetime/Advanced.html
+Platform/Lifetime/CaseStudy.html
 Platform/Lifetime/ComponentModel.html
 Platform/Lifetime/LifetimeDefinition.html
 Platform/Lifetime/Usage.html
