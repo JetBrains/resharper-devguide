@@ -1,18 +1,25 @@
 CACHE MANIFEST
-# Revision 1403274206027
+# Revision 1405444411278
 
 CACHE:
-PSI/NavigatingSyntaxTrees.html
-PSI/SyntaxTrees/StronglyTypedNavigation.html
-HowDoI.html
 Intro/Glossary.html
 Intro/KnownIssues.html
-Platform/Lifetime/Advanced.html
+Features/QuickDoc/ExistingProviders.html
+Features/QuickDoc/HelperClasses.html
+Features/QuickDoc/ImplementingPresenter.html
+Features/QuickDoc/ImplementingProvider.html
+Features/QuickDoc/Overview.html
+Features/QuickDoc/Testing.html
+HowDoI.html
+PSI/NavigatingSyntaxTrees.html
+PSI/SyntaxTrees/StronglyTypedNavigation.html
 Platform/Lifetime/CaseStudy.html
+Platform/Lifetime/Advanced.html
 Platform/Lifetime/ComponentModel.html
 Platform/Lifetime/LifetimeDefinition.html
 Platform/Lifetime/Usage.html
 Platform/Lifetime.html
+Plugins/TemporarySettings.html
 index.html
 wip.html
 gitbook/app.js
@@ -46,6 +53,15 @@ gitbook/jsrepl/sandbox.js
 gitbook/print.css
 gitbook/style.css
 gitbook/plugins/gitbook-plugin-richquotes/plugin.css
+gitbook/plugins/gitbook-plugin-multipart/multipart.css
+gitbook/plugins/gitbook-plugin-anchors/.npmignore
+gitbook/plugins/gitbook-plugin-anchors/LICENSE
+gitbook/plugins/gitbook-plugin-anchors/README.md
+gitbook/plugins/gitbook-plugin-anchors/index.js
+gitbook/plugins/gitbook-plugin-anchors/package.json
+gitbook/plugins/gitbook-plugin-anchors/plugin.css
+gitbook/plugins/gitbook-plugin-anchors/plugin.js
+gitbook/plugins/gitbook-plugin-anchors/plugin.js~
 
 NETWORK:
 *

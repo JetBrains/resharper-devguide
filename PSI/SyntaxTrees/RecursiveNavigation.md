@@ -1,5 +1,0 @@
-# Recursive Navigation
-
-* `TreeNodeVisitor`
-* `IRecursiveElementProcessor`
-

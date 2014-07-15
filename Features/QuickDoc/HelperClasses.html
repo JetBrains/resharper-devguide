@@ -1,0 +1,2250 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="../../manifest.appcache">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Helper classes | resharper-devguide</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 0.5.6">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <meta name="author" content="citizenmatt">
+    
+    
+    <link rel="next" href="../../Features/QuickDoc/ExistingProviders.html">
+    
+    
+    <link rel="prev" href="../../Features/QuickDoc/ImplementingPresenter.html">
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../../gitbook/style.css">
+
+    
+    <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-richquotes/plugin.css">
+    
+
+    
+    <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    
+
+    
+    <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-multipart/multipart.css">
+    
+
+
+        
+    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.5.1.3" data-basepath="../.." data-revision="1405444411278">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    
+    <a href="https://github.com/citizenmatt/resharper-devguide" target="_blank" class="btn pull-left home-bookmark" aria-label="GitHub home"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="btn-group btn-block">
+        <button id="reduce-font-size" class="btn btn-default">A</button>
+        <button id="enlarge-font-size" class="btn btn-default">A</button>
+    </div>
+
+    <ul class="list-group font-family-list">
+        <li class="list-group-item" data-font="0">Serif</li>
+        <li class="list-group-item" data-font="1">Sans</li>
+    </ul>
+
+    <div class="btn-group btn-group-xs btn-block color-theme-list">
+        <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+
+    
+    <a href="https://github.com/citizenmatt/resharper-devguide/stargazers" target="_blank" class="btn pull-right count-star hidden-xs"><i class="fa fa-star-o"></i> Star (<span>-</span>)</a>
+    <a href="https://github.com/citizenmatt/resharper-devguide/watchers" target="_blank" class="btn pull-right count-watch hidden-xs"><i class="fa fa-eye"></i> Watch (<span>-</span>)</a>
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="../../">resharper-devguide</a>
+    </h1>
+</div>
+
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control">
+    </div>
+    <ul class="summary">
+        
+        
+        
+        <li>
+            <a href="https://github.com/citizenmatt" target="blank" class="author-link">About the author</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/citizenmatt/resharper-devguide/issues" target="blank" class="issues-link">Questions and Issues</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/citizenmatt/resharper-devguide/edit/master/Features/QuickDoc/HelperClasses.md" target="blank" class="contribute-link">Edit and Contribute</a>
+        </li>
+        
+
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        
+        <li class="part" data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="part" data-level="1">
+            
+            <span> Part I</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" data-path="wip.html">
+            
+                
+                    <a href="../../wip.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Work in progress
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2">
+            
+            <span><b>2.</b> Getting Started</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.2.1">
+            
+            <span><b>2.1.</b> Tools</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.2">
+            
+            <span><b>2.2.</b> Internal mode</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2.3">
+            
+            <span><b>2.3.</b> Platform Versioning</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3">
+            
+            <span><b>3.</b> Extensions Overview</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.3.1">
+            
+            <span><b>3.1.</b> Live Templates</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3.2">
+            
+            <span><b>3.2.</b> Structural Search and Replace Patterns</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3.3">
+            
+            <span><b>3.3.</b> External Annotations</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.3.3.1">
+            
+            <span><b>3.3.1.</b> Attribute Reference</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3.3.2">
+            
+            <span><b>3.3.2.</b> Annotator Tool</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3.4">
+            
+            <span><b>3.4.</b> Plugins and SDK</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.3.5">
+            
+            <span><b>3.5.</b> Packaging and Distribution</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.4" data-path="HowDoI.html">
+            
+                
+                    <a href="../../HowDoI.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         How do I?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5">
+            
+            <span><b>5.</b> Plugins and SDK</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.5.1">
+            
+            <span><b>5.1.</b> Debugging</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.2" data-path="Intro/KnownIssues.html">
+            
+                
+                    <a href="../../Intro/KnownIssues.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.2.</b>
+                        
+                         Known Issues
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.3">
+            
+            <span><b>5.3.</b> Plugin testing</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.5.3.1">
+            
+            <span><b>5.3.1.</b> Base classes</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.3.2" data-path="Plugins/TemporarySettings.html">
+            
+                
+                    <a href="../../Plugins/TemporarySettings.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.3.2.</b>
+                        
+                         Temporary Settings
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.3.3">
+            
+            <span><b>5.3.3.</b> Quick links</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.3.4">
+            
+            <span><b>5.3.4.</b> Testing code completion</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.3.5">
+            
+            <span><b>5.3.5.</b> Testing unit test support</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.5.3.6">
+            
+            <span><b>5.3.6.</b> Testing new language support</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.6" data-path="Intro/Glossary.html">
+            
+                
+                    <a href="../../Intro/Glossary.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         Glossary
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="2">
+            
+            <span> Part II - Architectural Overview</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1">
+            
+            <span><b>1.</b> Platform</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2">
+            
+            <span><b>2.</b> Project Model</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.3">
+            
+            <span><b>3.</b> PSI</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4">
+            
+            <span><b>4.</b> Features</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="3">
+            
+            <span> Part III - Platform</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1">
+            
+            <span><b>1.</b> Logging</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2">
+            
+            <span><b>2.</b> DataFlow</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3" data-path="Platform/Lifetime.html">
+            
+                
+                    <a href="../../Platform/Lifetime.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         Lifetime
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.3.1" data-path="Platform/Lifetime/Usage.html">
+            
+                
+                    <a href="../../Platform/Lifetime/Usage.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Usage
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3.2" data-path="Platform/Lifetime/LifetimeDefinition.html">
+            
+                
+                    <a href="../../Platform/Lifetime/LifetimeDefinition.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         Lifetime Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3.3" data-path="Platform/Lifetime/Advanced.html">
+            
+                
+                    <a href="../../Platform/Lifetime/Advanced.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         Advanced Lifetime Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3.4" data-path="Platform/Lifetime/ComponentModel.html">
+            
+                
+                    <a href="../../Platform/Lifetime/ComponentModel.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                         Component Lifetime
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3.5" data-path="Platform/Lifetime/CaseStudy.html">
+            
+                
+                    <a href="../../Platform/Lifetime/CaseStudy.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                         Case Study
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.4">
+            
+            <span><b>4.</b> Component Model</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.5">
+            
+            <span><b>5.</b> DataContext</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.6">
+            
+            <span><b>6.</b> TextControl</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.7">
+            
+            <span><b>7.</b> Documents</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.8">
+            
+            <span><b>8.</b> Threading</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.9">
+            
+            <span><b>9.</b> Locks</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.10">
+            
+            <span><b>10.</b> Transactions</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.11">
+            
+            <span><b>11.</b> IL Metadata</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.12">
+            
+            <span><b>12.</b> Shell</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.12.1">
+            
+            <span><b>12.1.</b> Visual Studio integration</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.12.2">
+            
+            <span><b>12.2.</b> Command line</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.12.3">
+            
+            <span><b>12.3.</b> Tool windows</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.12.4">
+            
+            <span><b>12.4.</b> Icons</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.12.5">
+            
+            <span><b>12.5.</b> Tooltips</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.12.6">
+            
+            <span><b>12.6.</b> TreeView</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.12.7">
+            
+            <span><b>12.7.</b> Progress reporting</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.12.8">
+            
+            <span><b>12.8.</b> Popup menus</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.12.9">
+            
+            <span><b>12.9.</b> Extensions</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.12.10">
+            
+            <span><b>12.10.</b> Theming</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13">
+            
+            <span><b>13.</b> Project Model</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.13.1">
+            
+            <span><b>13.1.</b> Change management</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13.2">
+            
+            <span><b>13.2.</b> MSBuild integration</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.13.3">
+            
+            <span><b>13.3.</b> Project files</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14">
+            
+            <span><b>14.</b> Settings</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.14.1">
+            
+            <span><b>14.1.</b> Reading and writing</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14.2">
+            
+            <span><b>14.2.</b> Defaults</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14.3">
+            
+            <span><b>14.3.</b> Layers</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.14.4">
+            
+            <span><b>14.4.</b> File format</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.15">
+            
+            <span><b>15.</b> Util</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="4">
+            
+            <span> Part IV - PSI</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1">
+            
+            <span><b>1.</b> Syntax trees</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.2" data-path="PSI/NavigatingSyntaxTrees.html">
+            
+                
+                    <a href="../../PSI/NavigatingSyntaxTrees.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Navigating syntax trees
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.2.1">
+            
+            <span><b>2.1.</b> Helper methods</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.2.2" data-path="PSI/SyntaxTrees/StronglyTypedNavigation.html">
+            
+                
+                    <a href="../../PSI/SyntaxTrees/StronglyTypedNavigation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         Strongly typed navigation
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.2.3">
+            
+            <span><b>2.3.</b> Recursive navigation</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.2.4">
+            
+            <span><b>2.4.</b> Finding nodes</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.3">
+            
+            <span><b>3.</b> Manipulating syntax trees</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.4">
+            
+            <span><b>4.</b> References</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.5">
+            
+            <span><b>5.</b> Generating code</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.6">
+            
+            <span><b>6.</b> Semantic models</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.7">
+            
+            <span><b>7.</b> Path and color references</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.8">
+            
+            <span><b>8.</b> Control flow</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.9">
+            
+            <span><b>9.</b> Caches</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10">
+            
+            <span><b>10.</b> PSI Implementations Reference</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.10.1">
+            
+            <span><b>10.1.</b> C#</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.2">
+            
+            <span><b>10.2.</b> Visual Basic</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.3">
+            
+            <span><b>10.3.</b> JavaScript</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.4">
+            
+            <span><b>10.4.</b> TypeScript</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.5">
+            
+            <span><b>10.5.</b> JSON</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.6">
+            
+            <span><b>10.6.</b> HTML</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.7">
+            
+            <span><b>10.7.</b> CSS</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.8">
+            
+            <span><b>10.8.</b> Razor</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.9">
+            
+            <span><b>10.9.</b> ASP.net</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.10">
+            
+            <span><b>10.10.</b> XML</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.11">
+            
+            <span><b>10.11.</b> Build scripts</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.12">
+            
+            <span><b>10.12.</b> XAML</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10.13">
+            
+            <span><b>10.13.</b> XML Doc</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="5">
+            
+            <span> Part V - Features</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.1">
+            
+            <span><b>1.</b> Analysis</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.1.1">
+            
+            <span><b>1.1.</b> Highlights</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.1.2">
+            
+            <span><b>1.2.</b> Custom highlights</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.1.3">
+            
+            <span><b>1.3.</b> Suppressing highlights</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.1.4">
+            
+            <span><b>1.4.</b> Daemons</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.1.5">
+            
+            <span><b>1.5.</b> Element problem analysers</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.1.6">
+            
+            <span><b>1.6.</b> Xml and Html analysers</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.1.7">
+            
+            <span><b>1.7.</b> Solution Wide Analysis</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.1.8">
+            
+            <span><b>1.8.</b> Error Stripe</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.1.9">
+            
+            <span><b>1.9.</b> Syntax Highlighting</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.1.10">
+            
+            <span><b>1.10.</b> Caches again</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.1.11">
+            
+            <span><b>1.11.</b> Value analysis</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.1.12">
+            
+            <span><b>1.12.</b> Call hierarchy</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2">
+            
+            <span><b>2.</b> Actions</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.2.1">
+            
+            <span><b>2.1.</b> Menu items</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2.2">
+            
+            <span><b>2.2.</b> Quick fixes</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2.3">
+            
+            <span><b>2.3.</b> Context actions</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2.4">
+            
+            <span><b>2.4.</b> Bulk actions</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2.5">
+            
+            <span><b>2.5.</b> Overriding</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2.6">
+            
+            <span><b>2.6.</b> Temporary editor actions</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2.7">
+            
+            <span><b>2.7.</b> Action ID reference</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.3">
+            
+            <span><b>3.</b> Code Completion</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.3.1">
+            
+            <span><b>3.1.</b> Basic, smart and import</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.3.2">
+            
+            <span><b>3.2.</b> Dynamic completion</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.3.3">
+            
+            <span><b>3.3.</b> Double completion</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.3.4">
+            
+            <span><b>3.4.</b> Lookup items</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.4">
+            
+            <span><b>4.</b> Contextual highlighting</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.4.1">
+            
+            <span><b>4.1.</b> Brace matching</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.4.2">
+            
+            <span><b>4.2.</b> string.Format style highlighting</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.4.3">
+            
+            <span><b>4.3.</b> Find usages in file style highlighting</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.5">
+            
+            <span><b>5.</b> Popup docs</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.5.1" data-path="Features/QuickDoc/Overview.html">
+            
+                
+                    <a href="../../Features/QuickDoc/Overview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                         Quick Doc
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.5.1.1" data-path="Features/QuickDoc/ImplementingProvider.html">
+            
+                
+                    <a href="../../Features/QuickDoc/ImplementingProvider.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.1.</b>
+                        
+                         IQuickDocProvider
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.5.1.2" data-path="Features/QuickDoc/ImplementingPresenter.html">
+            
+                
+                    <a href="../../Features/QuickDoc/ImplementingPresenter.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.2.</b>
+                        
+                         IQuickDocPresenter
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.5.1.3" data-path="Features/QuickDoc/HelperClasses.html">
+            
+                
+                    <a href="../../Features/QuickDoc/HelperClasses.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.3.</b>
+                        
+                         Helper classes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.5.1.4" data-path="Features/QuickDoc/ExistingProviders.html">
+            
+                
+                    <a href="../../Features/QuickDoc/ExistingProviders.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.4.</b>
+                        
+                         Existing providers
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.5.1.5" data-path="Features/QuickDoc/Testing.html">
+            
+                
+                    <a href="../../Features/QuickDoc/Testing.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.5.</b>
+                        
+                         Testing
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.5.2">
+            
+            <span><b>5.2.</b> Parameter Info</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6">
+            
+            <span><b>6.</b> Refactoring</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.6.1">
+            
+            <span><b>6.1.</b> Workflow</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.2">
+            
+            <span><b>6.2.</b> Integrating</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.3">
+            
+            <span><b>6.3.</b> Renaming</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.4">
+            
+            <span><b>6.4.</b> Unused references</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.7">
+            
+            <span><b>7.</b> Generate This</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.8">
+            
+            <span><b>8.</b> Navigation</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.8.1">
+            
+            <span><b>8.1.</b> Go to everything</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.8.2">
+            
+            <span><b>8.2.</b> Go to related</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.8.3">
+            
+            <span><b>8.3.</b> Go to next/prev</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.8.4">
+            
+            <span><b>8.4.</b> Contextual - find exits</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.8.5">
+            
+            <span><b>8.5.</b> Navigate from here</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.8.6">
+            
+            <span><b>8.6.</b> Occurrences</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.9">
+            
+            <span><b>9.</b> Tools</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.9.1">
+            
+            <span><b>9.1.</b> Code cleanup</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.9.2">
+            
+            <span><b>9.2.</b> Code structure</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.9.3">
+            
+            <span><b>9.3.</b> Todo items</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.9.4">
+            
+            <span><b>9.4.</b> Bookmarks</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.9.5">
+            
+            <span><b>9.5.</b> Assembly explorer</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10">
+            
+            <span><b>10.</b> Naming</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.10.1">
+            
+            <span><b>10.1.</b> Suggestions</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.2">
+            
+            <span><b>10.2.</b> Policy</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.11">
+            
+            <span><b>11.</b> Editing</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.11.1">
+            
+            <span><b>11.1.</b> Formatting</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.11.2">
+            
+            <span><b>11.2.</b> Typing assist</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.11.3">
+            
+            <span><b>11.3.</b> Complete statement</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.11.4">
+            
+            <span><b>11.4.</b> Extend selection</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.11.5">
+            
+            <span><b>11.5.</b> Rearrange code</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.11.6">
+            
+            <span><b>11.6.</b> Comments</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.12">
+            
+            <span><b>12.</b> Structural Search and Replace</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.12.1">
+            
+            <span><b>12.1.</b> C# vs HTML and CSS</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.12.2">
+            
+            <span><b>12.2.</b> Progammatic usage</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.13">
+            
+            <span><b>13.</b> Live Templates</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.13.1">
+            
+            <span><b>13.1.</b> Macros</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.13.2">
+            
+            <span><b>13.2.</b> Scopes and categories</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.13.3">
+            
+            <span><b>13.3.</b> Hotspots</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.13.4">
+            
+            <span><b>13.4.</b> Programmatic usage</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.14">
+            
+            <span><b>14.</b> Unit Test</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.14.1">
+            
+            <span><b>14.1.</b> Test discovery</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.14.2">
+            
+            <span><b>14.2.</b> Test execution</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.14.3">
+            
+            <span><b>14.3.</b> Non-CLR tests</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.15">
+            
+            <span><b>15.</b> Diagramming</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.15.1">
+            
+            <span><b>15.1.</b> Architecture diagrams</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.16">
+            
+            <span><b>16.</b> External sources</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.16.1">
+            
+            <span><b>16.1.</b> PDB symbols</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.16.2">
+            
+            <span><b>16.2.</b> Decompiling</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.16.3">
+            
+            <span><b>16.3.</b> Source servers</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.17">
+            
+            <span><b>17.</b> Asp.net MVC</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.18">
+            
+            <span><b>18.</b> Internationalisation</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="6">
+            
+            <span> Part VI - Custom languages</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.1">
+            
+            <span><b>1.</b> Disabling language support</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2">
+            
+            <span><b>2.</b> Project model language support</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.3">
+            
+            <span><b>3.</b> PSI language support</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.4">
+            
+            <span><b>4.</b> Secondary PSI</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.5">
+            
+            <span><b>5.</b> Injected PSI</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.6">
+            
+            <span><b>6.</b> Lexing and parsing</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.7">
+            
+            <span><b>7.</b> psi files</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.8">
+            
+            <span><b>8.</b> PsiGen</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 89.47368421052632%;min-width: 84.21052631578948%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../../wip.html" title="Work in progress" class="chapter done " data-progress="1.1" style="left: 5.2631578947368425%;"></a>
+    
+        <a href="../../HowDoI.html" title="How do I?" class="chapter done " data-progress="1.4" style="left: 10.526315789473685%;"></a>
+    
+        <a href="../../Intro/KnownIssues.html" title="Known Issues" class="chapter done " data-progress="1.5.2" style="left: 15.789473684210526%;"></a>
+    
+        <a href="../../Plugins/TemporarySettings.html" title="Temporary Settings" class="chapter done " data-progress="1.5.3.2" style="left: 21.05263157894737%;"></a>
+    
+        <a href="../../Intro/Glossary.html" title="Glossary" class="chapter done " data-progress="1.6" style="left: 26.31578947368421%;"></a>
+    
+        <a href="../../Platform/Lifetime.html" title="Lifetime" class="chapter done " data-progress="3.3" style="left: 31.57894736842105%;"></a>
+    
+        <a href="../../Platform/Lifetime/Usage.html" title="Usage" class="chapter done " data-progress="3.3.1" style="left: 36.8421052631579%;"></a>
+    
+        <a href="../../Platform/Lifetime/LifetimeDefinition.html" title="Lifetime Management" class="chapter done " data-progress="3.3.2" style="left: 42.10526315789474%;"></a>
+    
+        <a href="../../Platform/Lifetime/Advanced.html" title="Advanced Lifetime Management" class="chapter done " data-progress="3.3.3" style="left: 47.36842105263158%;"></a>
+    
+        <a href="../../Platform/Lifetime/ComponentModel.html" title="Component Lifetime" class="chapter done " data-progress="3.3.4" style="left: 52.63157894736842%;"></a>
+    
+        <a href="../../Platform/Lifetime/CaseStudy.html" title="Case Study" class="chapter done " data-progress="3.3.5" style="left: 57.89473684210526%;"></a>
+    
+        <a href="../../PSI/NavigatingSyntaxTrees.html" title="Navigating syntax trees" class="chapter done " data-progress="4.2" style="left: 63.1578947368421%;"></a>
+    
+        <a href="../../PSI/SyntaxTrees/StronglyTypedNavigation.html" title="Strongly typed navigation" class="chapter done " data-progress="4.2.2" style="left: 68.42105263157895%;"></a>
+    
+        <a href="../../Features/QuickDoc/Overview.html" title="Quick Doc" class="chapter done " data-progress="5.5.1" style="left: 73.6842105263158%;"></a>
+    
+        <a href="../../Features/QuickDoc/ImplementingProvider.html" title="IQuickDocProvider" class="chapter done " data-progress="5.5.1.1" style="left: 78.94736842105263%;"></a>
+    
+        <a href="../../Features/QuickDoc/ImplementingPresenter.html" title="IQuickDocPresenter" class="chapter done " data-progress="5.5.1.2" style="left: 84.21052631578948%;"></a>
+    
+        <a href="../../Features/QuickDoc/HelperClasses.html" title="Helper classes" class="chapter done " data-progress="5.5.1.3" style="left: 89.47368421052632%;"></a>
+    
+        <a href="../../Features/QuickDoc/ExistingProviders.html" title="Existing providers" class="chapter  " data-progress="5.5.1.4" style="left: 94.73684210526316%;"></a>
+    
+        <a href="../../Features/QuickDoc/Testing.html" title="Testing" class="chapter  " data-progress="5.5.1.5" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_4">
+                    
+                        <h1 id="presenter-helper-classes"><a name="presenter-helper-classes" class="plugin-anchor" href="#presenter-helper-classes"><span class="fa fa-link"></span></a>Presenter helper classes</h1>
+<p>ReSharper provides a couple of classes to help build the HTML - <strong><code>XmlDocHtmlUtil</code></strong> and <strong><code>XmlDocHtmlPresenter</code></strong>. Typically, the presenter will generate the HTML by calling <code>XmlDocHtmlPresenter.Run</code> which in turn calls methods on <code>XmlDocHtmlUtil</code>, such as <code>XmlDocHtmlUtil.BuildHtml</code>, although the presenter is free to call <code>XmlDocHtmlUtil</code> directly, or create the HTML itself. It is, however, recommended to use the helper classes).</p>
+<h3 id="xmldochtmlutil"><a name="xmldochtmlutil" class="plugin-anchor" href="#xmldochtmlutil"><span class="fa fa-link"></span></a>XmlDocHtmlUtil</h3>
+<p>Since the presenter has to create the entire HTML that is displayed, it should at the very least use the standard HTML style template that is defined as a public constant in <code>XmlDocHtmlUtil.QUICK_DOC_HTML_STYLE</code>:</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">return</span> <span class="hljs-string">&quot;&lt;html&gt;&lt;head&gt;\n&quot;</span> +
+  <span class="hljs-string">&quot;&lt;META http-equiv=\&quot;Content-Type\&quot; content=\&quot;text/html; charset=utf-8\&quot;&gt;\n&quot;</span> +
+  XmlDocHtmlUtil.QUICK_DOC_HTML_STYLE +
+  <span class="hljs-string">&quot;  &lt;/head&gt;&lt;body&gt;\n&quot;</span> +
+  body +
+  <span class="hljs-string">&quot;&lt;/body&gt;&lt;/html&gt;&quot;</span>;
+</code></pre>
+<p>However, doing this doesn&apos;t include the standard scripts for showing and hiding sections, or the content for the &quot;go to&quot; and &quot;read more&quot; links. To get this, call <code>XmlDocHtmlUtil.BuildHtml</code>, passing in a function that will insert the HTML body into a given <code>StringBuilder</code>, and also a <code>NavigationStyle</code> enum to state if you want &quot;go to&quot;, &quot;read more&quot;, both or none:</p>
+<pre><code class="lang-cs">BuildHtml(sb =&gt; sb.Append(body), NavigationStyle.All);
+</code></pre>
+<p>There are a number of other helper methods:</p>
+<ul>
+<li><p><code>Hyperlink</code> adds an <code>&lt;a&gt;</code> tag to link to the passed in code element ID (not just XML Doc Comment ID - this ID is passed to <code>IQuickDocPresenter.Resolve</code> when the link is clicked). The hyperlink is created in the form <code>cref:ID</code>, which explains the mention of <code>cref</code> elsewhere in the API.</p>
+<p>  There are two overloads, one take a simple tooltip parameter, which is frequently set to the fully qualified typename of the code element, and the other takes a class whose properties are used to add attributes to the <code>&lt;a&gt;</code> tag.</p>
+<p>  This can be used with anonymous types. For example, CLR attributes get the &quot;ext&quot; class added to indicate external annotation attributes:</p>
+<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> htmlFragment = Hyperlink(name, id, <span class="hljs-keyword">new</span> {
+    @class = <span class="hljs-string">&quot;ext&quot;</span>,
+    title = fullyQualifiedName
+  })
+</code></pre>
+</li>
+<li><p><code>ProcessCRef</code> will also create a hyperlink, by calling <code>Hyperlink</code>. It will use the <code>linktext</code> parameter passed in as the text, if available. If not, it will try to use the <code>cref</code> parameter as an XML Doc Comment ID to resolve a CLR <code>IDeclaredElement</code>, and use the name as the link text and fully qualified name as a tooltip. Failing that, it strips any colon-delimited prefix (e.g. &quot;M:&quot;) from the <code>cref</code> parameter to use as the link text.</p>
+</li>
+<li><code>OpenCollapsedRegion</code> creates a new region (by inserting a <code>&lt;div&gt;</code>) that is collapsed by default. More content can be added to the <code>StringBuilder</code> to populate the region, and <code>CloseCollapsedRegion</code> will close the <code>div</code>. It is used to include collapsed region in the documentation summary.</li>
+<li><code>OpenAttributesRegion</code>/<code>CloseAttributesRegion</code> is very similar to <code>OpenCollapsedRegion</code>/<code>CloseCollapsedRegion</code> except it has different styling, and shows up in the top left of the QuickDoc window. It is used to show the attributes for CLR types and type members.</li>
+</ul>
+<h3 id="xmldochtmlpresenter"><a name="xmldochtmlpresenter" class="plugin-anchor" href="#xmldochtmlpresenter"><span class="fa fa-link"></span></a>XmlDocHtmlPresenter</h3>
+<p><code>XmlDocHtmlPresenter</code> is a higher-level API for generating HTML QuickDoc content. It expects an XML node based on the CLR XML Doc Comment format. However, the API is not restricted to CLR XML Doc Comments. The XML is used to create structured HTML, and can be used to generate JavaScript function or CSS type property documentation just as easily as C# type member documentation. Several of the default providers create a new xml node in order to generate documentation.</p>
+<p>The entry point to the API is the <code>Run</code> method:</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> html = XmlDocHtmlPresenter.Run(node, module, element,
+  language, navigationStyle, processCRef)
+</code></pre>
+<p>The parameters are:</p>
+<ul>
+<li><code>node</code> - the XML node representing the documentation.</li>
+<li><code>module</code> - an instance of <code>IPsiModule</code> that is passed through untouched to the <code>processCRef</code> delegate.</li>
+<li><code>element</code> - the <code>IDeclaredElement</code> instance that the documentation is for. If specified, it&apos;s used to create the code element name header information. If null or empty, the name of the code element comes from the XML node.</li>
+<li><code>language</code> - the <code>PsiLanguageType</code> used to format the <code>IDeclaredElement</code> name.</li>
+<li><code>navigationStyle</code> - &quot;go to&quot;, &quot;read more&quot;, both or none</li>
+<li><code>processCRef</code> - a delegate to handle what happens when references to other code elements should be rendered. Usually defers to <code>XmlDocHtmlUtil.ProcessCRef</code> to create a hyperlink.</li>
+</ul>
+<p><code>Run</code> calls <code>XmlDocHtmlUtil.BuildHtml</code> to create the skeleton HTML, and provides its own implementation of the <code>appendTextBody</code> delegate to populate the HTML body content. This implementation processes the XML node, and formats the HTML appropriately.</p>
+<h4 id="xml-node-format"><a name="xml-node-format" class="plugin-anchor" href="#xml-node-format"><span class="fa fa-link"></span></a>XML node format</h4>
+<p>The <code>Run</code> methods understands the standard CLR XML Doc Comment format, and can also handle unknown elements. </p>
+<p>Generally, the root node is the <code>member</code> node, and is used to generate a name heading for the documentation.</p>
+<p>All child nodes of the <code>member</code> node are converted into sections in the generated HTML. Each section has a title, such as &quot;Remarks&quot; or &quot;See Also&quot;, and the content of each XML node is converted and displayed in the section.</p>
+<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
+<p> the root node of the XML will only be processed if an <code>IDeclaredElement</code> is passed in, otherwise the child nodes are immediately processed instead. While it is assumed that the root node is the <code>member</code> node, this is not a requirement.</p>
+</blockquote>
+<p>The following elements are recognised:</p>
+<ul>
+<li><p><code>member</code> - if an <code>IDeclaredElement</code> is specified, the per-language <code>IXmlDocHeaderPresenter</code> interface is used to format the name of the <code>IDeclaredElement</code>. If no element is passed in, the <code>name</code> attribute of the <code>member</code> tag is passed to the <code>processCRef</code> delegate (which typically defers to <code>XmlDocHtmlUtil.ProcessCRef</code>, which creates a hyperlink in the form <code>cref:id</code>). As such, the <code>name</code> attribute should be the CLR XML Doc Comment ID of the element, or a similar ID understood by the QuickDoc presenter.</p>
+<p>  After processing the <code>member</code> name, the node&apos;s children are processed, and converted into top level &quot;sections&quot; in the HTML document.</p>
+</li>
+<li><code>include</code> will include the content of another file.<ul>
+<li>The <code>file</code> attribute provides either the fully qualified path name of the file, or a filename relative to the source file containing the declaration of the <code>IDeclaredElement</code>. </li>
+<li>Once the file has been read, the <code>path</code> attribute is used as an XPath statement to retrieve XML nodes which are in turn processed into HTML</li>
+</ul>
+</li>
+<li><code>example</code>, <code>summary</code>, <code>value</code>, <code>remarks</code>, and <code>return</code> are simply converted into top level HTML sections, with their child nodes processed as content.</li>
+<li><code>exception</code> and <code>permission</code> are formatted as a table in the HTML, with the child nodes providing the content, and the <code>cref</code> attribute formatted into a hyperlink with the <code>processCRef</code> delegate. The <code>cref</code> attribute should be an ID understood by the presenter.</li>
+<li><code>param</code> and <code>typeparam</code> are also formatted into a HTML table, but the <code>name</code> attribute is passed to <code>processCRef</code> for the name.</li>
+<li><code>br</code> inserts a <code>&lt;br&gt;</code> HTML element.</li>
+<li><code>c</code> inserts the content of the XML node verbatim into a <code>&lt;code&gt;</code> HTML block. The inner text of the XML node is escaped with <code>XmlDocPresenterUtil.EscapeHtmlString</code> first</li>
+<li><code>code</code> also inserts the content of the XML node as a pre-formatted <code>&lt;pre&gt;</code> element. Some cleansing is applied to the pre-formatted text, to normalise indenting, newlines and escape HTML strings.</li>
+<li><code>para</code> processes its child nodes, and wraps the resulting content in a <code>&lt;p&gt;</code> element.</li>
+<li><code>paramref</code> and <code>typeparamref</code> format the <code>name</code> attribute in a HTML <code>&lt;var&gt;</code> element.</li>
+<li><code>seealso</code> passes the <code>cref</code> attribute to <code>processCRef</code>, and the resulting hyperlink is added to the HTML. <code>cref</code> should be an ID understood by the presenter.</li>
+<li><code>see</code> also passes the <code>cref</code> attribute to <code>processCRef</code> and appends the output hyperlink. It also supports the <code>langword</code> and <code>title</code> attributes.</li>
+<li><code>list</code> looks for the <code>type</code> attribute to see what kind of list is to be created. Accepted values are <code>bullet</code> and <code>number</code>. If no value is specified, the list is formatted as a table.<ul>
+<li>if the <code>listheader</code> child element is specified, its <code>term</code> and <code>description</code> elements are processed (to handle links, code or <code>seealso</code>, etc.) and added to a <code>&lt;tr&gt;</code>, <code>&lt;ul&gt;</code> or <code>&lt;ol&gt;</code> element, depending on the type of the list.</li>
+<li>Each <code>item</code> node&apos;s <code>term</code> and <code>description</code> elements are added to the list, as either <code>&lt;tr&gt;</code> or <code>&lt;li&gt;</code> elements.</li>
+</ul>
+</li>
+</ul>
+<p>If a top-level element (i.e. a direct child of the root node, or the <code>member</code> node) is not one of the elements in the above list, a new section is created for it. The element name is capitalised to make a section name, and the child nodes of the element are processed as above. This means an unknown element can contain known elements such as <code>code</code> and <code>seealso</code>.</p>
+<p>If the unknown element is not top-level, then the XML is added to the text of the description. It is not rendered as HTML, but as plain text, with all tags and attributes being encoded to display as-is.</p>
+<h4 id="-ixmldocheaderpresenter-"><a name="-ixmldocheaderpresenter-" class="plugin-anchor" href="#-ixmldocheaderpresenter-"><span class="fa fa-link"></span></a><code>IXmlDocHeaderPresenter</code></h4>
+<p>If an <code>IDeclaredElement</code> is passed in, and the member header is to be rendered, the rendering is deferred to a per-language implementation of <code>IXmlDocHeaderPresenter</code>. ReSharper provides per-language implementations for C#, VB and CSS. All other languages share the <code>CommonXmlDocHeaderPresenter</code>.</p>
+<p>If you are implementing your own language, and you do not wish to use the <code>CommonXmlDocHeaderPresenter</code>, you should also implement <code>IXmlDocHeaderPresenter</code>. The interface is simple:</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlDocHeaderPresenter
+{
+  <span class="hljs-keyword">void</span> Present(StringBuilder header, IDeclaredElement declaredElement, IPsiModule module);
+}
+</code></pre>
+<p>Calling <code>Present</code> will format the <code>declaredElement</code> into the given <code>StringBuilder</code>.</p>
+<p>The default implementation in <code>CommonXmlDocHeaderPresenter</code> will use <code>DeclaredElementPresenter.Format</code> to format the name (this defers to the language&apos;s <code>IDeclaredElementPresnter</code>, another extension point for implementing your own language). It then wraps the name in <code>&lt;dl&gt;</code> and <code>&lt;dt&gt;</code> HTML tags.</p>
+<p>The C# implementation overrides this default, and while it too calls <code>DeclaredElementPresenter.Format</code>, it also adds formatting for type parameters, method parameters and attributes on the type, type member or parameters, as well as annotations for where the element is declared (&quot;in class&quot;, &quot;in assembly&quot;, etc.)</p>
+<p>If you wish to implement support for your own language that uses CLR attributes, you can provide a per-language implementation of <code>IHtmlAttribtuePresenter</code>, and use the <code>HtmlAttributesPresenterBase</code> class to provide a standard formatting of CLR attributes that are initially hidden and expand only when the user clicks on them.</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../Features/QuickDoc/ImplementingPresenter.html" class="navigation navigation-prev " aria-label="Previous page: IQuickDocPresenter"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../Features/QuickDoc/ExistingProviders.html" class="navigation navigation-next " aria-label="Next page: Existing providers"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="../../gitbook/app.js"></script>
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
