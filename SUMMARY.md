@@ -130,7 +130,9 @@
         * Find usages in file style highlighting
     * Popup docs
         * [Quick Doc](Features/QuickDoc/Overview.md)
-            * [Implmenting QuickDoc support](Features/QuickDoc/Implementing.md)
+            * [IQuickDocProvider](Features/QuickDoc/ImplementingProvider.md)
+            * [IQuickDocPresenter](Features/QuickDoc/ImplementingPresenter.md)
+            * [Helper classes](Features/QuickDoc/HelperClasses.md)
             * [Existing providers](Features/QuickDoc/ExistingProviders.md)
             * [Testing](Features/QuickDoc/Testing.md)
         * Parameter Info

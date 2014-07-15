@@ -12,6 +12,6 @@ ReSharper ships with full support for C# and VB, compiled CLR types, JavaScript,
 
 ## Read more
 
-1. [Implement your own support](Implementing.md)
+1. Implement your own support, by implementing [IQuickDocProvider](ImplementingProvider.md) and [IQuickDocPresenter](ImplementingPresenter.md), using the [helper classes](HelperClasses.md)
 2. [Extend the existing providers](ExistingProviders.md)
-3. [Test your QuickDoc providers](Testing.md)
+3. [Test QuickDoc providers](Testing.md)

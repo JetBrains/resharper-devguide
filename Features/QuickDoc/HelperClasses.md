@@ -1,14 +1,4 @@
-# Implementing QuickDoc support
-
-The QuickDoc feature is extensible, and new content can be added for new languages or code elements that aren't supported out of the box. To add support for QuickDoc, you need to implement `IQuickDocProvider` and `IQuickDocPresenter` (also note that the [existing providers](ExistingProviders.md) can also be extended).
-
-The `QuickDocManager` component is responsible for maintaining a live, prioritised list of `IQuickDocProvider` implementations (see `IViewable`), and providing a facade to defer calls to the appropriate provider. There should be no need to call this component directly - the `ShowQuickDocAction` will do that in response to the appropriate keyboard shortcut or menu item.
-
-## Implementing `IQuickDocProvider`
-
-
-## Implementing `IQuickDocPresenter`
-
+# Presenter helper classes
 
 ReSharper provides a couple of classes to help build the HTML - **`XmlDocHtmlUtil`** and **`XmlDocHtmlPresenter`**. Typically, the presenter will generate the HTML by calling `XmlDocHtmlPresenter.Run` which in turn calls methods on `XmlDocHtmlUtil`, such as `XmlDocHtmlUtil.BuildHtml`, although the presenter is free to call `XmlDocHtmlUtil` directly, or create the HTML itself. It is, however, recommended to use the helper classes).
 
