@@ -3,28 +3,28 @@
 * Part I
     * [Work in progress](wip.md)
     * Getting Started
-      * Tools
-      * Internal mode
-      * Platform Versioning
+        * Tools
+        * Internal mode
+        * Platform Versioning
     * Extensions Overview
-      * Live Templates
-      * Structural Search and Replace Patterns
-      * External Annotations
-          * Attribute Reference
-          * Annotator Tool
-      * Plugins and SDK
-      * Packaging and Distribution
+        * Live Templates
+        * Structural Search and Replace Patterns
+        * External Annotations
+            * Attribute Reference
+            * Annotator Tool
+        * Plugins and SDK
+        * Packaging and Distribution
     * [How do I?](HowDoI.md)
     * Plugins and SDK
-    * Debugging
-    * [Known Issues](Intro/KnownIssues.md)
-    * Plugin testing
-        * Base classes
-        * [Temporary Settings](Plugins/TemporarySettings.md)
-        * Quick links
-        * Testing code completion
-        * Testing unit test support
-        * Testing new language support
+        * Debugging
+        * [Known Issues](Intro/KnownIssues.md)
+        * Plugin testing
+            * Base classes
+            * [Temporary Settings](Plugins/TemporarySettings.md)
+            * Quick links
+            * Testing code completion
+            * Testing unit test support
+            * Testing new language support
     * [Glossary](Intro/Glossary.md)
 * Part II - Architectural Overview
     * Platform
