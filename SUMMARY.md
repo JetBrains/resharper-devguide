@@ -129,7 +129,10 @@
         * string.Format style highlighting
         * Find usages in file style highlighting
     * Popup docs
-        * Quick Doc
+        * [Quick Doc](Features/QuickDoc/Overview.md)
+            * [Implmenting QuickDoc support](Features/QuickDoc/Implementing.md)
+            * [Existing providers](Features/QuickDoc/ExistingProviders.md)
+            * [Testing](Features/QuickDoc/Testing.md)
         * Parameter Info
     * Refactoring
         * Workflow
