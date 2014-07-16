@@ -154,7 +154,7 @@
     * Navigate from here
     * Occurrences
 * Tools
-    * Code cleanup
+    * [Code cleanup](Features/Tools/CodeCleanup.md)
     * Code structure
     * Todo items
     * Bookmarks
