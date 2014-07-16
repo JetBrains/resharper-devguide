@@ -36,5 +36,5 @@ Generally speaking, especially when writing plugins, you are more likely to pass
 
 For example, the `JetBrains.Util.CollectionUtil` class provides several extension methods for `ICollection<T>`. These methods simply call `Lifetime.AddBracket` to immediately add the item, and will remove the item when the `Lifetime` is terminated. This means the items only exist in the collection for the duration of the `Lifetime`.
 
-Similarly, the `Threading` subsystem's `JetDispatcher` class, which can be used to dispatch actions to the main thread has an overload to the `BeginInvoke` method which take a `Lifetime`. This queues the given action to execute on the main thread, at some point in the near future. If you terminate the `Lifetime`, the action is (effectively) removed from the queue, and the action isn't executed. This is an easy way to prevent race conditions. 
+Similarly, the `Threading` subsystem's `JetDispatcher` class, which can be used to dispatch actions to the main thread has an overload to the `BeginInvoke` method which take a `Lifetime`. This queues the given action to execute on the main thread, at some point in the near future. If you terminate the `Lifetime`, the action is (effectively) removed from the queue, and the action isn't executed. This is an easy way to prevent race conditions.
 

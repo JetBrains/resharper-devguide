@@ -6,8 +6,7 @@ The `IQuickDocProvider` interface provides two methods:
 public interface IQuickDocProvider
 {
   bool CanNavigate(IDataContext context);
-  void Resolve(IDataContext context, 
-    Action<IQuickDocPresenter, PsiLanguageType> resolved);
+  void Resolve(IDataContext context, Action<IQuickDocPresenter, PsiLanguageType> resolved);
 }
 ```
 

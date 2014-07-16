@@ -32,7 +32,8 @@ There are a number of other helper methods:
     ```cs
     var htmlFragment = Hyperlink(name, id, new {
       @class = "ext",
-      title = fullyQualifiedName    })
+      title = fullyQualifiedName
+    });
     ```
         
 * `ProcessCRef` will also create a hyperlink, by calling `Hyperlink`. It will use the `linktext` parameter passed in as the text, if available. If not, it will try to use the `cref` parameter as an XML Doc Comment ID to resolve a CLR `IDeclaredElement`, and use the name as the link text and fully qualified name as a tooltip. Failing that, it strips any colon-delimited prefix (e.g. "M:") from the `cref` parameter to use as the link text.
@@ -46,8 +47,7 @@ There are a number of other helper methods:
 The entry point to the API is the `Run` method:
 
 ```cs
-var html = XmlDocHtmlPresenter.Run(node, module, element,
-  language, navigationStyle, processCRef)
+var html = XmlDocHtmlPresenter.Run(node, module, element, language, navigationStyle, processCRef);
 ```
 
 The parameters are:
@@ -104,7 +104,10 @@ If an `IDeclaredElement` is passed in, and the member header is to be rendered, 
 If you are implementing your own language, and you do not wish to use the `CommonXmlDocHeaderPresenter`, you should also implement `IXmlDocHeaderPresenter`. The interface is simple:
 
 ```cs
-public interface IXmlDocHeaderPresenter{  void Present(StringBuilder header, IDeclaredElement declaredElement, IPsiModule module);}
+public interface IXmlDocHeaderPresenter
+{
+  void Present(StringBuilder header, IDeclaredElement declaredElement, IPsiModule module);
+}
 ```
 
 Calling `Present` will format the `declaredElement` into the given `StringBuilder`.
