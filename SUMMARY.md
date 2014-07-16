@@ -81,9 +81,14 @@
     * Finding nodes
 * Manipulating syntax trees
 * References
+    * [Reference providers](PSI/References/ReferenceProviders.md)
+    * [Code Completion](PSI/References/CodeCompletion.md)
+    * [References within elements](PSI/References/Substrings.md)
+    * [Managing reference providers](PSI/References/IReferenceProvider.md)
+    * [Path references](PSI/References/PathReferences.md)
+    * Colour references
 * Generating code
 * Semantic models
-* Path and color references
 * Control flow
 * Caches
 * PSI Implementations Reference
