@@ -172,8 +172,8 @@
 * Structural Search and Replace
     * C# vs HTML and CSS
     * Progammatic usage
-* Live Templates
-    * Macros
+* [Live Templates](Features/LiveTemplates/Overview.md)
+    * [Macros](Features/LiveTemplates/Macros.md)
     * Scopes and categories
     * Hotspots
     * Programmatic usage
