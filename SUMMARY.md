@@ -44,7 +44,7 @@
     * [Case Study](Platform/Lifetime/CaseStudy.md)
 * Component Model
 * DataContext
-* TextControl
+* [TextControl](Platform/TextControl.md)
 * Documents
 * Threading
 * Locks
