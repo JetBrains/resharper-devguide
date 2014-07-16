@@ -7,11 +7,8 @@ The `BaseTest` class provides two methods to help with this:
 ```cs
 public class BaseTest : BaseTestNoShell
 {
-  public void ExecuteWithinSettingsTransaction(
-    Action<IContextBoundSettingsStore> action);
-
-  public ChangeSettingsTemporarilyCore 
-    ChangeSettingsTemporarily(Lifetime lifetime);
+  public void ExecuteWithinSettingsTransaction( Action<IContextBoundSettingsStore> action);
+  public ChangeSettingsTemporarilyCore ChangeSettingsTemporarily(Lifetime lifetime);
 
   // […snip…]
 }

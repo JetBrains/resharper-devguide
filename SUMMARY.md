@@ -44,7 +44,7 @@
     * [Case Study](Platform/Lifetime/CaseStudy.md)
 * Component Model
 * DataContext
-* TextControl
+* [TextControl](Platform/TextControl.md)
 * Documents
 * Threading
 * Locks
@@ -81,9 +81,14 @@
     * Finding nodes
 * Manipulating syntax trees
 * References
+    * [Reference providers](PSI/References/ReferenceProviders.md)
+    * [Code Completion](PSI/References/CodeCompletion.md)
+    * [References within elements](PSI/References/Substrings.md)
+    * [Managing reference providers](PSI/References/IReferenceProvider.md)
+    * [Path references](PSI/References/PathReferences.md)
+    * Colour references
 * Generating code
 * Semantic models
-* Path and color references
 * Control flow
 * Caches
 * PSI Implementations Reference
@@ -154,7 +159,7 @@
     * Navigate from here
     * Occurrences
 * Tools
-    * Code cleanup
+    * [Code cleanup](Features/Tools/CodeCleanup.md)
     * Code structure
     * Todo items
     * Bookmarks
@@ -172,8 +177,8 @@
 * Structural Search and Replace
     * C# vs HTML and CSS
     * Progammatic usage
-* Live Templates
-    * Macros
+* [Live Templates](Features/LiveTemplates/Overview.md)
+    * [Macros](Features/LiveTemplates/Macros.md)
     * Scopes and categories
     * Hotspots
     * Programmatic usage

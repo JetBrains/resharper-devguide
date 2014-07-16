@@ -1,6 +1,6 @@
 # Lifetime Management
 
-A lifetime is made up of two parts, the `Lifetime` instance, which is passed around and used to register callbacks, and a `LifetimeDefinition` which is used to manage the lifetime. 
+A lifetime is made up of two parts, the `Lifetime` instance, which is passed around and used to register callbacks, and a `LifetimeDefinition` which is used to manage the lifetime.
 
 ## LifetimeDefinition
 
@@ -34,11 +34,10 @@ If you only need a `Lifetime` for a short period of time, the `Lifetimes.Using(A
 If you want a longer-lived `Lifetime`, you can call `Lifetimes.Define`:
 
 ```cs
-Lifetimes.Define(Lifetime lifetime, string id, 
-    Action<LifetimeDefinition, Lifetime> action, ILogger logger);
+Lifetimes.Define(Lifetime lifetime, string id, Action<LifetimeDefinition, Lifetime> action, ILogger logger);
 ```
 
-This method takes in a `Lifetime` to act as a parent; the new `Lifetime` is a "nested" lifetime. Terminating the parent `Lifetime` will also terminate this new child `Lifetime`. Of course, if the child terminates first, it removes itself from the parent's cleanup. 
+This method takes in a `Lifetime` to act as a parent; the new `Lifetime` is a "nested" lifetime. Terminating the parent `Lifetime` will also terminate this new child `Lifetime`. Of course, if the child terminates first, it removes itself from the parent's cleanup.
 
 > **Note** If you don't have a parent `Lifetime` available, you can use `EternalLifetime.Instance`. Generally speaking, `EternalLifetime` should be avoided, as it is never terminated. Items scheduled against `EternalLifetime` will not run, and will not get garbage collected, effectively resulting in a memory leak. The preferred use case for `EternalLifetime` is to act as a parent for another `Lifetime`.
 

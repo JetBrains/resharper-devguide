@@ -69,10 +69,8 @@ It should also be pointed out that you can use the navigator classes in combinat
 public IClassDeclaration GetByIfStatement(IIfStatement ifStatement)
 {
   var methodBody = BlockNavigator.GetByStatement(ifStatement);
-  var methodDeclaration = MethodDeclaratioNavigator
-    .GetByBody(methodBody);
-  return ClassDeclarationNavigator
-    .GetByMethodDeclaration(methodDeclaration);
+  var methodDeclaration = MethodDeclaratioNavigator.GetByBody(methodBody);
+  return ClassDeclarationNavigator.GetByMethodDeclaration(methodDeclaration);
 }
 ```
 
