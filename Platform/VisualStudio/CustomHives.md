@@ -18,9 +18,9 @@ ReSharper will handle moving the registration from per-machine to per-user autom
 
 >**Note** The command line for the other products is the same, replacing `ReSharper.Internal` with `dotCover.Internal`, `dotMemory.Internal` or `dotTrace.Internal`.
 
-<!-- Pic of moving to per-user -->
+![Dialog offering to relocate to a per-user registration](relocate_to_per_user.png)
 
-If you click OK, ReSharper will restart Visual Studio as admin, and move the registration files from the Visual Studio `Common7\IDE\Extensions` folder in `Program Files` to `%LOCALAPPDATA%\Microsoft\VisualStudio\X.X\Extensions`, where `X.X` is the version of Visual Studio (this is supported for Visual Studio 2010+). ReSharper will also update the `HKCU\Software\Microsoft\VisualStudio\X.X\ExtensionManager\EnabledExtensions` registry key to add the new location as an enabled extension.
+If you click "Yes, make the extension run in this hive only", ReSharper will restart Visual Studio as admin, and move the registration files from the Visual Studio `Common7\IDE\Extensions` folder in `Program Files` to `%LOCALAPPDATA%\Microsoft\VisualStudio\X.X\Extensions`, where `X.X` is the version of Visual Studio (this is supported for Visual Studio 2010+). ReSharper will also update the `HKCU\Software\Microsoft\VisualStudio\X.X\ExtensionManager\EnabledExtensions` registry key to add the new location as an enabled extension.
 
 >**Warning** Moving the registration from per-machine to per-user means that only the current user will be able to run ReSharper. All other users will not see ReSharper in their Visual Studio. They will also need to go through this process, by first resetting ReSharper to a per-machine install, which won't affect the existing user's per-user registration. To reset the per-machine install, repair the install.
 
@@ -31,6 +31,8 @@ Moving to an experimental instance is the same process as moving to a per-user i
     devenv.exe /RootSuffix MyExpInstance /ReSharper.Internal
 
 The same dialog will be displayed, and the per-machine registration moved to the experimental instance. ReSharper will now only load in the experimental instance.
+
+![Dialog offering to relocate to an experimental instance](relocate_to_custom_hive.png)
 
 If you have already moved the per-machine registration to be per-user, this technique won't work, as the per-user install only loads in the default Visual Studio instance. You need to repair the ReSharper install first, in order to restore the per-machine registration. This won't affect the per-user registration.
 
