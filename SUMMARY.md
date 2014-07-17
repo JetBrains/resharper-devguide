@@ -52,6 +52,7 @@
 * IL Metadata
 * Shell
     * Visual Studio integration
+        * [Experimental Instances](Platform/VisualStudio/CustomHives.md)
     * Command line
     * Tool windows
     * Icons
@@ -81,6 +82,7 @@
     * Finding nodes
 * Manipulating syntax trees
 * References
+    * Resolving references
     * [Reference providers](PSI/References/ReferenceProviders.md)
     * [Code Completion](PSI/References/CodeCompletion.md)
     * [References within elements](PSI/References/Substrings.md)
