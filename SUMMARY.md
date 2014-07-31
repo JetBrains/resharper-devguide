@@ -45,7 +45,7 @@
     * [Advanced Lifetime Management](Platform/Lifetime/Advanced.md)
     * [Component Lifetime](Platform/Lifetime/ComponentModel.md)
     * [Case Study](Platform/Lifetime/CaseStudy.md)
-* Component Model
+* [Component Model](Platform/ComponentModel.md)
 * DataContext
 * [TextControl](Platform/TextControl.md)
 * Documents
