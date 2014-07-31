@@ -82,7 +82,39 @@ It also deploys external annotations that are applicable to _all_ versions of Re
 
 Further information about the NuSpec format can be found at [http://docs.nuget.org/docs/reference/nuspec-reference].
 
-## Visual Studio 2003 - 2008
+## Manual install
 
-The NuGet based extension manager is only available for Visual Studio 2010 and later, because the NuGet.Core assembly and the user interface is only supported in Visual Studio 2010 and above. To support older Visual Studio versions, you need to make a download available that will copy the plugin dlls to the appropriate places, such as `%LOCALAPPDATA%\JetBrains\ReSharper\v8.0\plugins`. Remember that as long as the plugin is compiled as .net 3.5, and unless specific Visual Studio interfaces are used, ReSharper plugins are compatible with all versions of Visual Studio.
+The NuGet based Extension Manager is only available for Visual Studio 2010 and later, because the `NuGet.Core` assembly and the user interface is only supported in Visual Studio 2010 and above. To support older Visual Studio versions, you would need to make available a download that will copy the plugin dlls to the appropriate locations for manual installation. This is also how plugins were supported prior to ReSharper 8. Note that settings files and external annotations are not supported as part of manual installation.
+
+> **Warning** This method of installation is deprecated, as the new extension infrastructure provides more benefits, such as per-user install, automated update checks and easier discovery of new plugins.
+
+ReSharper checks several locations for plugins. You can see these by going to ReSharper -> Options -> Plugins and clicking "Show developer information". The locations are searched for plugins recursively, so you can create a folder that contains your plugin files.
+
+> **Info** In the following list, `vX.X` refers to the version of ReSharper, e.g. `v8.1`, and `vsY.Y` is a Visual Studio version number, e.g. `vs12.0`.
+>
+> `%LOCALAPPDATA%` and `%APPDATA%` are not defined on Windows XP. They equate to the local and roaming user profile directories, respectively. For Windows XP, the values are `%USERPROFILE%\Local Settings\Application Data` and `%USERPROFILE%\Application Data` respectively.
+>
+> Also, `%ProgramFiles%` will be `%ProgramFiles(x86)%` on a 64 bit machine.
+
+1. `%ProgramFiles%\JetBrains\ReSharper\vX.X\bin\plugins` - (`%ProgramFiles(x86)%` on a 64 bit machine). This folder doesn't exist by default, and requires administrative priveleges to write to, but plugins installed here are available to 
+1. `%LOCALAPPDATA%\JetBrains\ReSharper\vX.X\vsY.Y\plugins` - Visual Studio specific plugin install
+1. `%LOCALAPPDATA%\JetBrains\ReSharper\vX.X\plugins` - **recommended install location**. Per-user, not roamed
+1. `%LOCALAPPDATA%\JetBrains\ReSharper\vAny\plugins` - **not recommended**. Plugins need to be recompiled per-version, so can't work cross-version
+1. `%LOCALAPPDATA%\JetBrains\DotNet\v1.0\plugins` - **not recommended** (see below)
+1. `%LOCALAPPDATA%\JetBrains\DotNet\vAny\plugins` - **not recommended** (see below)
+1. `%APPDATA%\JetBrains\ReSharper\vX.X\vsY.Y\plugins` - roamed (see below)
+1. `%APPDATA%\JetBrains\ReSharper\vX.X\plugins` - roamed (see below)
+1. `%APPDATA%\JetBrains\ReSharper\vAny\plugins` - **not recommended**. Plugins need to be recompiled per-version, so can't work cross-version
+1. `%APPDATA%\JetBrains\DotNet\v1.0\plugins` - **not recommended** (see below)
+1. `%APPDATA%\JetBrains\DotNet\vAny\plugins` - **not recommended** (see below)
+
+> **Note** Plugins installed into `%APPDATA%` will be roamed with the Windows profile for domain-joined PCs. As such, file size plays an important part - the larger files are, the longer profile roaming (and login) will take. It is not recommended to install plugins here.
+>
+> The `DotNet` folders were intended to support plugins common to all JetBrains .net tools. However, the .net tools do not currently share a common binary platform (though they do share a common source platform). Therefore, plugins are not compatible between .net tools. Also, the version number hasn't been incremented to reflect changes in the platform. Therefore, these locations are not a good place to install plugins.
+
+## Command line
+
+It is also possible to load plugins specified on the command line, e.g.
+
+    devenv.exe /ReSharper.Plugin foo.dll
 

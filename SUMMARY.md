@@ -17,6 +17,7 @@
         * Annotator Tool
     * Plugins and SDK
     * [Packaging and Distribution](Extensions/Packaging.md)
+    * Troubleshooting
 * [How do I?](HowDoI.md)
 * Plugins and SDK
     * Debugging
