@@ -97,7 +97,7 @@
 * Generating code
 * Semantic models
 * Control flow
-* Caches
+* [Caches](PSI/Caches.md)
 * PSI Implementations Reference
     * C#
     * Visual Basic
