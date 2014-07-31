@@ -204,6 +204,7 @@
 * Internationalisation
 
 ## Part VI - Custom languages
+* [Overview](CustomLanguages/Overview.md)
 * Disabling language support
 * Project model language support
 * PSI language support
