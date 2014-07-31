@@ -71,7 +71,7 @@
     * Change management
     * MSBuild integration
     * Project files
-* Settings
+* [Settings](Platform/Settings.md)
     * Reading and writing
     * Defaults
     * Layers
