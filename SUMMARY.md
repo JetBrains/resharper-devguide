@@ -95,6 +95,7 @@
     * [Path references](PSI/References/PathReferences.md)
     * Colour references
 * Generating code
+    * [Generating comments](PSI/Generating/Comments.md)
 * Semantic models
 * Control flow
 * [Caches](PSI/Caches.md)
