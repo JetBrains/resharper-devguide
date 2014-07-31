@@ -153,7 +153,7 @@
         * [Existing providers](Features/QuickDoc/ExistingProviders.md)
         * [Testing](Features/QuickDoc/Testing.md)
     * Parameter Info
-* Refactoring
+* [Refactoring](Features/Refactoring.md)
     * Workflow
     * Integrating
     * Renaming
