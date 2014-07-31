@@ -46,6 +46,7 @@
     * [Component Lifetime](Platform/Lifetime/ComponentModel.md)
     * [Case Study](Platform/Lifetime/CaseStudy.md)
 * [Component Model](Platform/ComponentModel.md)
+    * [Visual Studio interfaces](Platform/VisualStudio/ComponentModel.md)
 * DataContext
 * [TextControl](Platform/TextControl.md)
 * Documents
