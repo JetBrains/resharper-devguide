@@ -158,7 +158,7 @@
     * Integrating
     * Renaming
     * Unused references
-* Generate This
+* [Generate Menu](Features/GenerateMenu.md)
 * Navigation
     * Go to everything
     * Go to related
