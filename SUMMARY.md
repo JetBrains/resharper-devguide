@@ -60,7 +60,7 @@
         * [Experimental Instances](Platform/VisualStudio/CustomHives.md)
     * Command line
     * Tool windows
-    * Icons
+    * [Icons](Platform/Shell/Icons.md)
     * Tooltips
     * TreeView
     * Progress reporting
