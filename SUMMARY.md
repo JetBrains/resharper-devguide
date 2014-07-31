@@ -136,7 +136,7 @@
     * Overriding
     * Temporary editor actions
     * Action ID reference
-* Code Completion
+* [Code Completion](Features/Completion.md)
     * Basic, smart and import
     * Dynamic completion
     * Double completion
