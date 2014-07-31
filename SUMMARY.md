@@ -1,7 +1,10 @@
 # Summary
 
-## Part I
+## Prefix
+* [Style guide](StyleGuide.md)
 * [Work in progress](wip.md)
+
+## Part I
 * Getting Started
     * Tools
     * Internal mode
