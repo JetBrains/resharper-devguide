@@ -159,7 +159,7 @@
     * Renaming
     * Unused references
 * [Generate Menu](Features/GenerateMenu.md)
-* Navigation
+* [Navigation](Features/Navigation.md)
     * Go to everything
     * Go to related
     * Go to next/prev
