@@ -59,7 +59,7 @@
     * Visual Studio integration
         * [Experimental Instances](Platform/VisualStudio/CustomHives.md)
     * Command line
-    * Tool windows
+    * [Tool windows](Platform/Shell/ToolWindows.md)
     * [Icons](Platform/Shell/Icons.md)
     * Tooltips
     * TreeView
