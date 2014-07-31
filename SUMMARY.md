@@ -22,7 +22,7 @@
 * Plugins and SDK
     * Debugging
     * [Known Issues](Intro/KnownIssues.md)
-    * Plugin testing
+    * [Plugin testing](Plugins/Testing.md)
         * Base classes
         * [Temporary Settings](Plugins/TemporarySettings.md)
         * Quick links
