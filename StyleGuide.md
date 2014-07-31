@@ -16,6 +16,7 @@ Not normally capitalised. Perhaps capitalise the first occurrence?
 * Context Action
 * Quick-Fix
 * Code Cleanup
+* plugin
 
 ## Code examples
 

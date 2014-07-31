@@ -16,7 +16,7 @@
         * Attribute Reference
         * Annotator Tool
     * Plugins and SDK
-    * Packaging and Distribution
+    * [Packaging and Distribution](Extensions/Packaging.md)
 * [How do I?](HowDoI.md)
 * Plugins and SDK
     * Debugging
