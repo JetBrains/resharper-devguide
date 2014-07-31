@@ -119,7 +119,7 @@
     * Highlights
     * Custom highlights
     * Suppressing highlights
-    * Daemons
+    * [Daemons](Features/Analysis/Daemons.md)
     * Element problem analysers
     * Xml and Html analysers
     * Solution Wide Analysis
