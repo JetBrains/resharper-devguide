@@ -94,7 +94,7 @@
     * [Managing reference providers](PSI/References/IReferenceProvider.md)
     * [Path references](PSI/References/PathReferences.md)
     * Colour references
-* Generating code
+* [Generating code](PSI/Generating/Code.md)
     * [Generating comments](PSI/Generating/Comments.md)
 * Semantic models
 * Control flow
