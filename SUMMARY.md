@@ -129,7 +129,7 @@
     * Menu items
     * Quick fixes
     * Context actions
-    * Bulk actions
+    * [Bulk actions](Features/Actions/Bulk.md)
     * Overriding
     * Temporary editor actions
     * Action ID reference
