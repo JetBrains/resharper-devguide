@@ -168,6 +168,7 @@
     * Contextual - find exits
     * Navigate from here
     * Occurrences
+* [Options Pages](Features/OptionsPages.md)
 * Tools
     * [Code cleanup](Features/Tools/CodeCleanup.md)
     * Code structure
