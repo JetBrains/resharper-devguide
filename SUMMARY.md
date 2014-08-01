@@ -6,7 +6,7 @@
 
 ## Part I
 * Getting Started
-    * Tools
+    * [Tools](Intro/Tools.md)
     * Internal mode
     * Platform Versioning
 * Extensions Overview
