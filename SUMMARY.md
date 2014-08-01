@@ -20,6 +20,7 @@
     * Troubleshooting
 * [How do I?](HowDoI.md)
 * Plugins and SDK
+    * [SDK Reference](Plugins/SDK.md)
     * Debugging
     * [Known Issues](Intro/KnownIssues.md)
     * [Plugin testing](Plugins/Testing.md)
