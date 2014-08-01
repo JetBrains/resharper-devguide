@@ -130,7 +130,7 @@
     * Caches again
     * Value analysis
     * Call hierarchy
-* Actions
+* [Actions](Features/Actions.md)
     * Menu items
     * Quick fixes
     * Context actions
