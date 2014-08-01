@@ -9,10 +9,7 @@ module.exports = function (grunt) {
         'gitbook': {
             development: {
                 output: path.join(__dirname, ".grunt/gitbook"),
-                input: "./",
-                title: "resharper-devguide",
-                description: "development-guide-for-resharper",
-                github: "citizenmatt/resharper-devguide"
+                input: "./"
             }
         },
         'gh-pages': {
