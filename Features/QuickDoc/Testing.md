@@ -4,7 +4,7 @@ You can test your QuickDoc providers by creating a test class that derives from 
 
 ## Invoking the test
 
-The test can be invoked by calling `DoNamedTest()` which will load a source file based on the name of the test method (minus any "Test" prefix or suffix). Alternatively, the test can call `DoOneTest()` and explicitly pass the name of the file in.
+The test can be invoked by calling `DoNamedTest2()` which will load a source file based on the name of the test method (minus any "Test" prefix or suffix, `DoNamedTest` will use the given name). Alternatively, the test can call `DoOneTest()` and explicitly pass the name of the file in.
 
 In both cases, the file extension is added by the base class, which can be declaratively set by applying the `TestFileExtensionAttribute` to the test class, or by overriding the `Extension` property.
 
@@ -28,7 +28,7 @@ public class CSharpQuickDocTest : QuickDocTestBase
   [Test]
   public void TestQuickDoc01()
   {
-    DoNamedTest();
+    DoNamedTest2();
   }
 
   [Test]
