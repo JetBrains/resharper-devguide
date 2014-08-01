@@ -207,6 +207,7 @@
     * Source servers
 * Asp.net MVC
 * Internationalisation
+* [Working with XML-like files](Features/XmlLike.md)
 
 ## Part VI - Product Specific
 * [dotPeek](Products/dotPeek.md)
