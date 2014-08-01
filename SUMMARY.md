@@ -209,7 +209,7 @@
 * Project model language support
 * PSI language support
 * Secondary PSI
-* Injected PSI
+* [Injected PSI](CustomLanguages/InjectedPsi.md)
 * Lexing and parsing
 * psi files
 * PsiGen
