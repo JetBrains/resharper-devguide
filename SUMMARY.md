@@ -208,7 +208,7 @@
 
 ## Part VI - Product Specific
 * [dotPeek](Products/dotPeek.md)
-* InspectCode
+* [InspectCode](Products/InspectCode.md)
 
 ## Part VII - Custom languages
 * [Overview](CustomLanguages/Overview.md)
