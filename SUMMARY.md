@@ -97,6 +97,7 @@
 * [Generating code](PSI/Generating/Code.md)
     * [Generating comments](PSI/Generating/Comments.md)
 * Semantic models
+    * [Type system](PSI/TypeSystem.md)
 * Control flow
 * [Caches](PSI/Caches.md)
 * PSI Implementations Reference
