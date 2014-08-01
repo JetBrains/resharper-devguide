@@ -206,7 +206,11 @@
 * Asp.net MVC
 * Internationalisation
 
-## Part VI - Custom languages
+## Part VI - Product Specific
+* [dotPeek](Products/dotPeek.md)
+* InspectCode
+
+## Part VII - Custom languages
 * [Overview](CustomLanguages/Overview.md)
 * Disabling language support
 * Project model language support
