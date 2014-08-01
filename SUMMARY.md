@@ -132,7 +132,7 @@
     * Call hierarchy
 * [Actions](Features/Actions.md)
     * Menu items
-    * Quick fixes
+    * [Quick fixes](Features/Actions/QuickFixes.md)
     * Context actions
     * [Bulk actions](Features/Actions/Bulk.md)
     * Overriding
