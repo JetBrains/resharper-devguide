@@ -21,6 +21,7 @@
 * [How do I?](HowDoI.md)
 * Plugins and SDK
     * [SDK Reference](Plugins/SDK.md)
+    * [Project Setup](Plugins/ProjectSetup.md)
     * Debugging
     * [Known Issues](Intro/KnownIssues.md)
     * [Plugin testing](Plugins/Testing.md)
