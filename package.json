@@ -1,0 +1,19 @@
+{
+  "name": "package",
+  "version": "0.0.0",
+  "dependencies": {
+    "gitbook": "0.6.1",
+    "gitbook-plugin-anchors": "^0.3.0",
+    "gitbook-plugin-multipart": "0.2.0",
+    "gitbook-plugin-richquotes": "0.0.3",
+    "gitbook-plugin-scrollablecode": "0.1.0",
+    "gitbook-plugin-toc": "0.0.1",
+    "grunt": "~0.4.5",
+    "grunt-contrib-clean": "~0.5.0",
+    "grunt-gh-pages": "~0.9.1",
+    "grunt-gitbook": "git://github.com/citizenmatt/grunt-gitbook.git#060"
+  },
+  "scripts": {
+      "start": "gitbook serve"
+  }
+}
