@@ -103,6 +103,8 @@
     * [Type system](PSI/TypeSystem.md)
 * Control flow
 * [Caches](PSI/Caches.md)
+* External Annotations
+    * [Testing](PSI/ExternalAnnotations/Testing.md)
 * PSI Implementations Reference
     * C#
     * Visual Basic
