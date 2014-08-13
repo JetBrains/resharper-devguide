@@ -115,7 +115,9 @@
     * CSS
     * Razor
     * ASP.net
-    * XML
+    * [XML and DTD](PSI/Reference/Xml/Overview.md)
+        * [Index](PSI/Reference/Xml/Index.md)
+        * [Index (DTD)](PSI/Reference/Xml/IndexDTD.md)
     * Build scripts
     * XAML
     * XML Doc
