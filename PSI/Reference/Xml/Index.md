@@ -696,7 +696,7 @@ public interface IXmlTagContainer :
 
 <!-- End IXmlTagContainer -->
 
-Represents a node that can contain tags. Mostly inherited by [`IXmlTag`](#ixmltag), but also inherited by [`IXmlFile`](#ixmlfile). 
+Represents a node that can contain tags. Mostly inherited by [`IXmlTag`](#ixmltag), but also inherited by [`IXmlFile`](#ixmlfile).
 
 This interface provides several means of retrieving child tags. Unless otherwise stated, all tags are immediate children of the current tag. When a method is declared as generic, it will filter the child tags so that they match the type passed in. This type must implement [`IXmlTag`](#ixmltag), and is mostly useful for finding a specific tag when working with XML-derived languages, such as web.config files or build scripts.
 
@@ -846,7 +846,7 @@ public interface IXmlToken :
   ITokenNode,
   ITreeNode
 {
-  XmlTokenNodeType GetTokenType();
+  new XmlTokenNodeType GetTokenType();
 }
 ```
 
