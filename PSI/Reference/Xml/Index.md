@@ -651,6 +651,7 @@ public interface IXmlTag :
 
   TXmlAttribute AddAttributeAfter<TXmlAttribute>(TXmlAttribute attribute, IXmlAttribute anchor);
   TXmlAttribute AddAttributeBefore<TXmlAttribute>(TXmlAttribute attribute, IXmlAttribute anchor);
+
   void RemoveAttribute(IXmlAttribute attribute);
 }
 ```
@@ -683,10 +684,12 @@ public interface IXmlTagContainer :
 
   TXmlTag AddTagAfter<TXmlTag>(TXmlTag tag, IXmlTag anchor);
   TXmlTag AddTagBefore<TXmlTag>(TXmlTag tag, IXmlTag anchor);
+
   IList<T> GetNestedTags<T>(String xpath);
   IXmlTag GetTag(Predicate<IXmlTag> predicate);
   TreeNodeEnumerable<T> GetTags<T>();
   TreeNodeCollection<T> GetTags2<T>();
+
   void RemoveTag(IXmlTag tag);
 }
 ```
