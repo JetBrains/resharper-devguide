@@ -60,7 +60,6 @@ public interface IXmlAttribute :
   String AttributeName { get; }
   IXmlToken Eq { get; }
   IXmlIdentifier Identifier { get; }
-  IXmlIdentifier NameNode { get; }
   String UnquotedValue { get; }
   IXmlAttributeValue Value { get; }
   String XmlName { get; }
@@ -650,8 +649,8 @@ public interface IXmlTag :
   ITreeRange InnerXml { get; }
   bool IsEmptyTag { get; }
 
-  TXmlAttribute AddAttributeAfter(TXmlAttribute attribute, IXmlAttribute anchor);
-  TXmlAttribute AddAttributeBefore(TXmlAttribute attribute, IXmlAttribute anchor);
+  TXmlAttribute AddAttributeAfter<TXmlAttribute>(TXmlAttribute attribute, IXmlAttribute anchor);
+  TXmlAttribute AddAttributeBefore<TXmlAttribute>(TXmlAttribute attribute, IXmlAttribute anchor);
   void RemoveAttribute(IXmlAttribute attribute);
 }
 ```
@@ -682,8 +681,8 @@ public interface IXmlTagContainer :
 {
   TreeNodeCollection<IXmlTag> InnerTags { get; }
 
-  TXmlTag AddTagAfter(TXmlTag tag, IXmlTag anchor);
-  TXmlTag AddTagBefore(TXmlTag tag, IXmlTag anchor);
+  TXmlTag AddTagAfter<TXmlTag>(TXmlTag tag, IXmlTag anchor);
+  TXmlTag AddTagBefore<TXmlTag>(TXmlTag tag, IXmlTag anchor);
   IList<T> GetNestedTags<T>(String xpath);
   IXmlTag GetTag(Predicate<IXmlTag> predicate);
   TreeNodeEnumerable<T> GetTags<T>();
@@ -870,7 +869,7 @@ public interface IXmlTreeNode :
 {
   XmlTokenTypes XmlTokenTypes { get; }
 
-  TReturn AcceptVisitor(IXmlTreeVisitor<TContext, TReturn> visitor, TContext context);
+  TReturn AcceptVisitor<TContext, TReturn>(IXmlTreeVisitor<TContext, TReturn> visitor, TContext context);
 }
 ```
 
