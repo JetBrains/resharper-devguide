@@ -28,7 +28,7 @@ public interface IAttDef :
   ITreeNode
 {
   IAttType AttributeType { get; }
-  String Name { get; }
+  string Name { get; }
 }
 ```
 
@@ -45,7 +45,7 @@ public interface IAttType :
   AttType AttType { get; }
   IXmlLparenthTokenNode LPar { get; }
   IXmlRparenthTokenNode RPar { get; }
-  IEnumerable<String> Types { get; }
+  IEnumerable<string> Types { get; }
 }
 ```
 
@@ -79,7 +79,7 @@ public interface IDTDAttListDecl :
   ITreeNode
 {
   TreeNodeCollection<IAttDef> AttDefs { get; }
-  String ElementName { get; }
+  string ElementName { get; }
   IXmlTagEndTokenNode End { get; }
   IXmlAttlistStartTokenNode Start { get; }
 }
@@ -112,7 +112,7 @@ public interface IDTDElementDecl :
 {
   IElementContent ContentSpec { get; }
   IXmlTagEndTokenNode End { get; }
-  String Name { get; }
+  string Name { get; }
   IXmlElementStartTokenNode Start { get; }
 }
 ```
@@ -128,9 +128,9 @@ public interface IDTDEntityDecl :
   ITreeNode
 {
   IXmlTagEndTokenNode End { get; }
-  String Name { get; }
+  string Name { get; }
   IXmlEntityStartTokenNode Start { get; }
-  String Value { get; }
+  string Value { get; }
 }
 ```
 
@@ -165,7 +165,7 @@ Represents a Document Type Definition file, which is a means of describing the f
 public interface IDTDNDataDecl :
   ITreeNode
 {
-  String Name { get; }
+  string Name { get; }
 }
 ```
 
@@ -180,7 +180,7 @@ public interface IDTDNotationDecl :
   ITreeNode
 {
   IXmlTagEndTokenNode End { get; }
-  String Name { get; }
+  string Name { get; }
   IXmlNotationStartTokenNode Start { get; }
 }
 ```

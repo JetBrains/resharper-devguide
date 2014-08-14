@@ -16,7 +16,7 @@ public interface IProcessingInstruction :
 {
   IXmlToken Body { get; }
   IXmlToken End { get; }
-  String InstructionTarget { get; }
+  string InstructionTarget { get; }
   IXmlIdentifier InstructionTargetNode { get; }
   IXmlToken Start { get; }
 }
@@ -57,14 +57,14 @@ public interface IXmlAttribute :
   IXmlTreeNode,
   ITreeNode
 {
-  String AttributeName { get; }
+  string AttributeName { get; }
   IXmlToken Eq { get; }
   IXmlIdentifier Identifier { get; }
-  String UnquotedValue { get; }
+  string UnquotedValue { get; }
   IXmlAttributeValue Value { get; }
-  String XmlName { get; }
+  string XmlName { get; }
   TreeTextRange XmlNameRange { get; }
-  String XmlNamespace { get; }
+  string XmlNamespace { get; }
   TreeTextRange XmlNamespaceRange { get; }
 }
 ```
@@ -92,7 +92,7 @@ public interface IXmlAttributeContainer :
 {
   TreeNodeCollection<IXmlAttribute> Attributes { get; }
   TreeNodeEnumerable<IXmlAttribute> AttributesEnumerable { get; }
-  String ContainerName { get; }
+  string ContainerName { get; }
 }
 ```
 
@@ -111,7 +111,7 @@ public interface IXmlAttributeValue :
   IXmlTreeNode,
   ITreeNode
 {
-  String UnquotedValue { get; }
+  string UnquotedValue { get; }
   IXmlValueToken ValueToken { get; }
 }
 ```
@@ -130,7 +130,7 @@ public interface IXmlCData :
   ITreeNode
 {
   IXmlToken Body { get; }
-  String CData { get; }
+  string CData { get; }
   IXmlToken End { get; }
   IXmlToken Start { get; }
 }
@@ -241,7 +241,7 @@ public interface IXmlCommentNode :
   IXmlToken CommentBody { get; }
   IXmlToken CommentEnd { get; }
   IXmlToken CommentStart { get; }
-  String CommentText { get; }
+  string CommentText { get; }
 }
 ```
 
@@ -313,7 +313,7 @@ public interface IXmlEntityTokenNode :
   ITreeNode
 {
   bool IsNumericEntity { get; }
-  String Name { get; }
+  string Name { get; }
 }
 ```
 
@@ -391,9 +391,9 @@ public interface IXmlIdentifier :
   ITokenNode,
   ITreeNode
 {
-  String XmlName { get; }
+  string XmlName { get; }
   TreeTextRange XmlNameRange { get; }
-  String XmlNamespace { get; }
+  string XmlNamespace { get; }
   TreeTextRange XmlNamespaceRange { get; }
 }
 ```
@@ -622,7 +622,7 @@ Marker interface for a token representing the right parenthesis character (`)`).
 public interface IXmlSyntaxErrorElement :
   ITreeNode
 {
-  String ErrorDescription { get; }
+  string ErrorDescription { get; }
   XmlSyntaxErrorType ErrorType { get; }
 }
 ```
@@ -643,9 +643,9 @@ public interface IXmlTag :
 {
   IXmlTagFooter Footer { get; }
   IXmlTagHeader Header { get; }
-  String InnerText { get; }
+  string InnerText { get; }
   TreeNodeCollection<IXmlToken> InnerTextTokens { get; }
-  String InnerValue { get; }
+  string InnerValue { get; }
   ITreeRange InnerXml { get; }
   bool IsEmptyTag { get; }
 
@@ -685,7 +685,7 @@ public interface IXmlTagContainer :
   TXmlTag AddTagAfter<TXmlTag>(TXmlTag tag, IXmlTag anchor);
   TXmlTag AddTagBefore<TXmlTag>(TXmlTag tag, IXmlTag anchor);
 
-  IList<T> GetNestedTags<T>(String xpath);
+  IList<T> GetNestedTags<T>(string xpath);
   IXmlTag GetTag(Predicate<IXmlTag> predicate);
   TreeNodeEnumerable<T> GetTags<T>();
   TreeNodeCollection<T> GetTags2<T>();
@@ -893,7 +893,7 @@ public interface IXmlValueToken :
   ITokenNode,
   ITreeNode
 {
-  String UnquotedValue { get; }
+  string UnquotedValue { get; }
   TreeTextRange UnquotedValueRange { get; }
 }
 ```
