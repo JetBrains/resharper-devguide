@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1408111735720
+# Revision 1408112563850
 
 CACHE:
 HowDoI.html
@@ -28,8 +28,8 @@ Features/Refactoring.html
 Features/Tools/CodeCleanup.html
 Features/UnitTest.html
 Features/XmlLike.html
-Intro/KnownIssues.html
 Intro/Glossary.html
+Intro/KnownIssues.html
 Intro/Tools.html
 PSI/Caches.html
 PSI/ExternalAnnotations/Testing.html

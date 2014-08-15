@@ -48,7 +48,7 @@
 
 
         
-    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.10.10" data-basepath="../../.." data-revision="1408111735719">
+    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.10.10" data-basepath="../../.." data-revision="1408112563850">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2911,7 +2911,7 @@
 </li>
 <li><a href="#dtd">DTD</a></li>
 <li><a href="#derived-xml-languages">Derived XML languages</a></li>
-<li><a href="#manipulation">Manipulation</a></li>
+<li><a href="#manipulating-the-tree">Manipulating the tree</a></li>
 <li><a href="#navigation">Navigation</a></li>
 <li><a href="#utilities">Utilities</a></li>
 </ul>
@@ -2936,6 +2936,14 @@
 <h3 id="tokens"><a name="tokens" class="plugin-anchor" href="#tokens"><span class="fa fa-link"></span></a>Tokens</h3>
 <p>All tokens in the tree derive from <a href="TreeNodes.html#ixmltoken"><code>IXmlToken</code></a>, which in turn derives from <a href="TreeNodes.html#ixmltreenode"><code>IXmlTreeNode</code></a>. Remember that a token is a leaf element in the tree - it doesn&apos;t have any children, and is used to build the higher level tree nodes (e.g. an xml tag contains the tokens for <code>&lt;</code>, the tag name identifier, <code>&gt;</code> and so on).</p>
 <!-- Begin IXmlToken -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlToken :
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+  <span class="hljs-keyword">new</span> XmlTokenNodeType GetTokenType();
+}
+</code></pre>
 <!-- End IXmlToken -->
 <p>The <code>ITokenNode.GetTokenType</code> method is hidden by a new method of the same name, but that returns an instance of <code>XmlTokenNodeType</code>, rather than <code>TokenNodeType</code>. <code>XmlTokenNodeType</code> derives from the <code>TokenNodeType</code> abstract class and adds a single property, that returns the <code>XmlTokenTypes</code> class that lists all the known token node types. This class can be a derived instance for some XML languages, such as XAML.</p>
 <pre><code class="lang-cs"><span class="hljs-keyword">public</span> XmlTokenTypes XmlTokenTypes { <span class="hljs-keyword">get</span>; }
@@ -2967,18 +2975,54 @@
 <p>The footer is the closing element (<code>&lt;/foo&gt;</code>), which may not be included in the tree if the XML element is self-closed (<code>&lt;foo /&gt;</code>).</p>
 <p>The inner child nodes are either text (<a href="TreeNodes.html#ixmlfloatingtexttokennode"><code>IXmlFloatingTextTokenNode</code></a>, which also includes whitespace), or other nodes such as <a href="TreeNodes.html#ixmlcdata"><code>IXmlCData</code></a>, <a href="TreeNodes.html#ixmlentitytokennode"><code>IXmlEntityTokenNode</code></a> or <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a>.</p>
 <!-- Begin IXmlTag -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlTag :
+  IXmlTreeNode,
+  IXmlTagContainer,
+  ITreeNode
+{
+  IXmlTagFooter Footer { <span class="hljs-keyword">get</span>; }
+  IXmlTagHeader Header { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> InnerText { <span class="hljs-keyword">get</span>; }
+  TreeNodeCollection&lt;IXmlToken&gt; InnerTextTokens { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> InnerValue { <span class="hljs-keyword">get</span>; }
+  ITreeRange InnerXml { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">bool</span> IsEmptyTag { <span class="hljs-keyword">get</span>; }
+
+  TXmlAttribute AddAttributeAfter&lt;TXmlAttribute&gt;(TXmlAttribute attribute, IXmlAttribute anchor);
+  TXmlAttribute AddAttributeBefore&lt;TXmlAttribute&gt;(TXmlAttribute attribute, IXmlAttribute anchor);
+
+  <span class="hljs-keyword">void</span> RemoveAttribute(IXmlAttribute attribute);
+}
+</code></pre>
 <!-- End IXmlTag -->
 <h3 id="xml-attributes"><a name="xml-attributes" class="plugin-anchor" href="#xml-attributes"><span class="fa fa-link"></span></a>XML attributes</h3>
 <p>Attributes are accessible via the <a href="TreeNodes.html#ixmlattributecontainer"><code>IXmlAttributeContainer</code></a> interface, mostly implemented by <a href="TreeNodes.html#ixmltagheader"><code>IXmlTagHeader</code></a>, but also by the XML declaration <a href="TreeNodes.html#ixmlprocessinginstruction"><code>IXmlProcessingInstruction</code></a>.</p>
 <!-- Begin IXmlAttributeContainer -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlAttributeContainer :
+  IXmlTreeNode,
+  ITreeNode
+{
+  TreeNodeCollection&lt;IXmlAttribute&gt; Attributes { <span class="hljs-keyword">get</span>; }
+  TreeNodeEnumerable&lt;IXmlAttribute&gt; AttributesEnumerable { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> ContainerName { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
 <!-- End IXmlAttributeContainer -->
 <p>Methods to add and remove attributes are available on <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a>.</p>
 <h3 id="processing-instructions"><a name="processing-instructions" class="plugin-anchor" href="#processing-instructions"><span class="fa fa-link"></span></a>Processing Instructions</h3>
 <p>Processing instructions are represented with the <a href="TreeNodes.html#iprocessinginstruction"><code>IProcessingInstruction</code></a> interface. This is a simple interface, providing access to the target name, and a string representing the unparsed content.</p>
 <h2 id="dtd"><a name="dtd" class="plugin-anchor" href="#dtd"><span class="fa fa-link"></span></a>DTD</h2>
+<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-bookmark"></strong>
+<p> Write about DTD, inline and standalone</p>
+</blockquote>
 <h2 id="derived-xml-languages"><a name="derived-xml-languages" class="plugin-anchor" href="#derived-xml-languages"><span class="fa fa-link"></span></a>Derived XML languages</h2>
-<h2 id="manipulation"><a name="manipulation" class="plugin-anchor" href="#manipulation"><span class="fa fa-link"></span></a>Manipulation</h2>
-<p>Manipulating the content - replacing attribute values, etc. No setters, so it&apos;s tree manipulation?</p>
+<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-bookmark"></strong>
+<p> Write about derived XML languages. How does this relate to the other PSI reference sections?</p>
+</blockquote>
+<h2 id="manipulating-the-tree"><a name="manipulating-the-tree" class="plugin-anchor" href="#manipulating-the-tree"><span class="fa fa-link"></span></a>Manipulating the tree</h2>
+<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-bookmark"></strong>
+<p> Write about manipulating the tree. Push this to own page? E.g. element factories</p>
+</blockquote>
 <h2 id="navigation"><a name="navigation" class="plugin-anchor" href="#navigation"><span class="fa fa-link"></span></a>Navigation</h2>
 <p>The XML PSI implementation includes several <a href="Navigators.html">navigator classes</a>. As usual, the naming follows a convention - the classes are named after the tree node you are trying to <strong>navigate to</strong>, to find, suffixed with &apos;Navigator&apos;, for example, <code>XmlTagNavigator</code>. And the methods are named after the tree node you are <strong>navigating from</strong>, e.g. <code>XmlTagNavigator.GetByTagHeader</code>.</p>
 <h2 id="utilities"><a name="utilities" class="plugin-anchor" href="#utilities"><span class="fa fa-link"></span></a>Utilities</h2>
@@ -3004,7 +3048,7 @@
 
 <script>
 require(["gitbook"], function(gitbook) {
-    var config = {};
+    var config = {"richquotes":{"todos":true}};
     gitbook.start(config);
 });
 </script>
