@@ -198,7 +198,9 @@
     * Progammatic usage
 * [Live Templates](Features/LiveTemplates/Overview.md)
     * [Macros](Features/LiveTemplates/Macros.md)
-    * Scopes and categories
+    * [Scopes](Features/LiveTemplates/Scopes.md)
+    * Categories
+    * Quick lists
     * Hotspots
     * Programmatic usage
 * [Unit Test](Features/UnitTest.md)
