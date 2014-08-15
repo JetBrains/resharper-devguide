@@ -22,6 +22,8 @@ public interface IMethodDeclaration : ITreeNode
 
 Each of these properties is a strongly typed accessor to get to the `ITreeNode` that represents the attributes on the method, or the node that represents the method's name. Internally, the nodes are found by walking down the tree, looking for nodes of a particular type. They are then downcast to the strongly typed, `ITreeNode` derived interfaces.
 
+### Collections
+
 Similarly, collections can be represented. Let's take a look at a simplified class declaration:
 
 ```cs
@@ -33,7 +35,7 @@ public interface IClassDeclaration : ITreeNode
 }
 ```
 
-Here we can see that a class has a collection of method declarations. It is represented in two ways, firstly as an instance of `TreeNodeCollection<T>` and secondly as a `TreeNodeEnumerable<T>`. Both can be iterated over using foreach, or LINQ queries. The major difference is that `TreeNodeCollection<T>` implements `IList<T>`, while `TreeNodeEnumerable<T>` only implements `IEnumerable<T>`. This means that the `MethodDeclarationsEnumerable` property is more lightweight that the `MethodDeclarations` property, but at the cost of flexibility.
+Here we can see that a class has a collection of method declarations. It is represented in two ways, firstly as an instance of `TreeNodeCollection<T>` and secondly as a `TreeNodeEnumerable<T>`. Both can be iterated over using `foreach`, or LINQ queries. The major difference is that `TreeNodeCollection<T>` implements `IList<T>`, while `TreeNodeEnumerable<T>` only implements `IEnumerable<T>`. This means that the `MethodDeclarationsEnumerable` property is more lightweight that the `MethodDeclarations` property, but at the cost of flexibility.
 
 The `MethodDeclarations` property creates a new instance of `TreeNodeCollection<T>` each time it's accessed. The child nodes are iterated up-front, and passed to the collection as an array. The collection provides all the features of an implementation of `IList<T>` (although it is a read-only list), so it can be iterated sequentially or randomly. It also provides a number of optimised LINQ queries, such as `Any`, `Reverse` and `ToList`.
 
