@@ -1,4 +1,9 @@
 {
     "output": "./.grunt/gitbook",
-    "plugins": [ "richquotes", "toc", "anchors", "multipart", "scrollablecode", "-mathjax" ]
+    "plugins": [ "richquotes", "toc", "anchors", "multipart", "scrollablecode", "-mathjax" ],
+    "pluginsConfig": {
+        "richquotes": {
+            "todos": true
+        }
+    }
 }

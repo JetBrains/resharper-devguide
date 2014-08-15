@@ -35,6 +35,17 @@ The `AcceptVisitor` method implements the [Visitor pattern](http://en.wikipedia.
 All tokens in the tree derive from [`IXmlToken`](TreeNodes.md#ixmltoken), which in turn derives from [`IXmlTreeNode`](TreeNodes.md#ixmltreenode). Remember that a token is a leaf element in the tree - it doesn't have any children, and is used to build the higher level tree nodes (e.g. an xml tag contains the tokens for `<`, the tag name identifier, `>` and so on).
 
 <!-- Begin IXmlToken -->
+
+```cs
+public interface IXmlToken :
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+  new XmlTokenNodeType GetTokenType();
+}
+```
+
 <!-- End IXmlToken -->
 
 The `ITokenNode.GetTokenType` method is hidden by a new method of the same name, but that returns an instance of `XmlTokenNodeType`, rather than `TokenNodeType`. `XmlTokenNodeType` derives from the `TokenNodeType` abstract class and adds a single property, that returns the `XmlTokenTypes` class that lists all the known token node types. This class can be a derived instance for some XML languages, such as XAML.
@@ -87,6 +98,28 @@ The footer is the closing element (`</foo>`), which may not be included in the t
 The inner child nodes are either text ([`IXmlFloatingTextTokenNode`](TreeNodes.md#ixmlfloatingtexttokennode), which also includes whitespace), or other nodes such as [`IXmlCData`](TreeNodes.md#ixmlcdata), [`IXmlEntityTokenNode`](TreeNodes.md#ixmlentitytokennode) or [`IXmlTag`](TreeNodes.md#ixmltag).
 
 <!-- Begin IXmlTag -->
+
+```cs
+public interface IXmlTag :
+  IXmlTreeNode,
+  IXmlTagContainer,
+  ITreeNode
+{
+  IXmlTagFooter Footer { get; }
+  IXmlTagHeader Header { get; }
+  string InnerText { get; }
+  TreeNodeCollection<IXmlToken> InnerTextTokens { get; }
+  string InnerValue { get; }
+  ITreeRange InnerXml { get; }
+  bool IsEmptyTag { get; }
+
+  TXmlAttribute AddAttributeAfter<TXmlAttribute>(TXmlAttribute attribute, IXmlAttribute anchor);
+  TXmlAttribute AddAttributeBefore<TXmlAttribute>(TXmlAttribute attribute, IXmlAttribute anchor);
+
+  void RemoveAttribute(IXmlAttribute attribute);
+}
+```
+
 <!-- End IXmlTag -->
 
 ### XML attributes
@@ -94,6 +127,18 @@ The inner child nodes are either text ([`IXmlFloatingTextTokenNode`](TreeNodes.m
 Attributes are accessible via the [`IXmlAttributeContainer`](TreeNodes.md#ixmlattributecontainer) interface, mostly implemented by [`IXmlTagHeader`](TreeNodes.md#ixmltagheader), but also by the XML declaration [`IXmlProcessingInstruction`](TreeNodes.md#ixmlprocessinginstruction).
 
 <!-- Begin IXmlAttributeContainer -->
+
+```cs
+public interface IXmlAttributeContainer :
+  IXmlTreeNode,
+  ITreeNode
+{
+  TreeNodeCollection<IXmlAttribute> Attributes { get; }
+  TreeNodeEnumerable<IXmlAttribute> AttributesEnumerable { get; }
+  string ContainerName { get; }
+}
+```
+
 <!-- End IXmlAttributeContainer -->
 
 Methods to add and remove attributes are available on [`IXmlTag`](TreeNodes.md#ixmltag).
@@ -104,11 +149,15 @@ Processing instructions are represented with the [`IProcessingInstruction`](Tree
 
 ## DTD
 
+> **TODO** Write about DTD, inline and standalone
+
 ## Derived XML languages
 
-## Manipulation
+> **TODO** Write about derived XML languages. How does this relate to the other PSI reference sections?
 
-Manipulating the content - replacing attribute values, etc. No setters, so it's tree manipulation?
+## Manipulating the tree
+
+> **TODO** Write about manipulating the tree. Push this to own page? E.g. element factories
 
 ## Navigation
 
