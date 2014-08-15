@@ -2,7 +2,7 @@
   "name": "package",
   "version": "0.0.0",
   "dependencies": {
-    "gitbook": "0.6.1",
+    "gitbook": "0.7.1",
     "gitbook-plugin-anchors": "^0.3.0",
     "gitbook-plugin-multipart": "0.2.0",
     "gitbook-plugin-richquotes": "0.0.3",
@@ -14,6 +14,7 @@
     "grunt-gitbook": "git://github.com/citizenmatt/grunt-gitbook.git#060"
   },
   "scripts": {
-      "start": "gitbook serve"
+      "start": "gitbook serve",
+      "start2": "gitbook serve --no-watch"
   }
 }

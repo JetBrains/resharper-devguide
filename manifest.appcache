@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1407182682116
+# Revision 1408111735720
 
 CACHE:
 HowDoI.html
@@ -13,8 +13,9 @@ Features/Actions/QuickFixes.html
 Features/Analysis/Daemons.html
 Features/Completion.html
 Features/GenerateMenu.html
-Features/LiveTemplates/Overview.html
 Features/LiveTemplates/Macros.html
+Features/LiveTemplates/Overview.html
+Features/LiveTemplates/Scopes.html
 Features/Navigation.html
 Features/Actions.html
 Features/QuickDoc/ExistingProviders.html
@@ -27,14 +28,19 @@ Features/Refactoring.html
 Features/Tools/CodeCleanup.html
 Features/UnitTest.html
 Features/XmlLike.html
-Intro/Glossary.html
 Intro/KnownIssues.html
+Intro/Glossary.html
 Intro/Tools.html
 PSI/Caches.html
 PSI/ExternalAnnotations/Testing.html
 PSI/Generating/Code.html
 PSI/Generating/Comments.html
 PSI/NavigatingSyntaxTrees.html
+PSI/Reference/Xml/Navigators.html
+PSI/Reference/Xml/Overview.html
+PSI/Reference/Xml/TreeNodes.html
+PSI/Reference/Xml/TreeNodesDTD.html
+PSI/Reference/Xml/Utils.html
 PSI/References/CodeCompletion.html
 PSI/References/IReferenceProvider.html
 PSI/References/PathReferences.html

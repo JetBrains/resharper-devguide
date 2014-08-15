@@ -1,0 +1,3597 @@
+<!DOCTYPE HTML>
+<html lang="en-US" manifest="../../../manifest.appcache">
+    
+    <head>
+        
+        <meta charset="UTF-8">
+        <title>Tree Nodes | ReSharper DevGuide</title>
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 0.7.1">
+        <meta name="HandheldFriendly" content="true">
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
+    
+    
+    <meta name="author" content="citizenmatt">
+    
+    
+    <link rel="next" href="../../../PSI/Reference/Xml/TreeNodesDTD.html">
+    
+    
+    <link rel="prev" href="../../../PSI/Reference/Xml/Utils.html">
+    
+
+        
+    </head>
+    <body>
+        
+        
+<link rel="stylesheet" href="../../../gitbook/style.css">
+
+    
+    <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-richquotes/plugin.css">
+    
+
+    
+    <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    
+
+    
+    <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-multipart/multipart.css">
+    
+
+    
+    <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-scrollablecode/scrollablecode.css">
+    
+
+
+        
+    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.10.10.3" data-basepath="../../.." data-revision="1408111735719">
+    <div class="book-header">
+    <!-- Actions Left -->
+    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
+    
+    <a href="https://github.com/citizenmatt/resharper-devguide" target="_blank" class="btn pull-left home-bookmark" aria-label="GitHub home"><i class="fa fa-bookmark-o"></i></a>
+    
+    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
+    <span id="font-settings-wrapper">
+        <a href="#" class="btn pull-left toggle-font-settings" aria-label="Toggle font settings"><i class="fa fa-font"></i>
+        </a>
+        <div class="dropdown-menu font-settings">
+    <div class="dropdown-caret">
+        <span class="caret-outer"></span>
+        <span class="caret-inner"></span>
+    </div>
+
+    <div class="btn-group btn-block">
+        <button id="reduce-font-size" class="btn btn-default">A</button>
+        <button id="enlarge-font-size" class="btn btn-default">A</button>
+    </div>
+
+    <ul class="list-group font-family-list">
+        <li class="list-group-item" data-font="0">Serif</li>
+        <li class="list-group-item" data-font="1">Sans</li>
+    </ul>
+
+    <div class="btn-group btn-group-xs btn-block color-theme-list">
+        <button type="button" class="btn btn-default" id="color-theme-preview-0" data-theme="0">White</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-1" data-theme="1">Sepia</button>
+        <button type="button" class="btn btn-default" id="color-theme-preview-2" data-theme="2">Night</button>
+    </div>
+</div>
+
+    </span>
+
+    <!-- Actions Right -->
+    
+    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
+    
+    
+    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
+    
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-spinner fa-spin"></i>
+        <a href="../../../">ReSharper DevGuide</a>
+    </h1>
+</div>
+
+    
+
+<div class="book-summary">
+    <div class="book-search">
+        <input type="text" placeholder="Search" class="form-control">
+    </div>
+    <ul class="summary">
+        
+        
+        
+        <li>
+            <a href="https://github.com/citizenmatt" target="blank" class="author-link">About the author</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/citizenmatt/resharper-devguide/issues" target="blank" class="issues-link">Questions and Issues</a>
+        </li>
+        
+
+        
+        
+        <li>
+            <a href="https://github.com/citizenmatt/resharper-devguide/edit/master/PSI/Reference/Xml/TreeNodes.md" target="blank" class="contribute-link">Edit and Contribute</a>
+        </li>
+        
+
+	
+
+        
+        <li class="divider"></li>
+        
+
+        
+    
+        
+        <li class="part" data-level="0" data-path="index.html">
+            
+                
+                    <a href="../../../index.html">
+                        <i class="fa fa-check"></i>
+                        
+                         Introduction
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="part" data-level="1">
+            
+            <span> Prefix</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="1.1" data-path="StyleGuide.html">
+            
+                
+                    <a href="../../../StyleGuide.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Style guide
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="1.2" data-path="wip.html">
+            
+                
+                    <a href="../../../wip.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Work in progress
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="2">
+            
+            <span> Part I</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1">
+            
+            <span><b>1.</b> Getting Started</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.1.1" data-path="Intro/Tools.html">
+            
+                
+                    <a href="../../../Intro/Tools.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.1.</b>
+                        
+                         Tools
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.1.2">
+            
+            <span><b>1.2.</b> Internal mode</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.1.3">
+            
+            <span><b>1.3.</b> Platform Versioning</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2">
+            
+            <span><b>2.</b> Extensions Overview</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.2.1">
+            
+            <span><b>2.1.</b> Live Templates</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2.2">
+            
+            <span><b>2.2.</b> Structural Search and Replace Patterns</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2.3">
+            
+            <span><b>2.3.</b> External Annotations</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.2.3.1">
+            
+            <span><b>2.3.1.</b> Attribute Reference</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2.3.2">
+            
+            <span><b>2.3.2.</b> Annotator Tool</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2.4">
+            
+            <span><b>2.4.</b> Plugins and SDK</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2.5" data-path="Extensions/Packaging.html">
+            
+                
+                    <a href="../../../Extensions/Packaging.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.5.</b>
+                        
+                         Packaging and Distribution
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.2.6">
+            
+            <span><b>2.6.</b> Troubleshooting</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.3" data-path="HowDoI.html">
+            
+                
+                    <a href="../../../HowDoI.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         How do I?
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4">
+            
+            <span><b>4.</b> Plugins and SDK</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.4.1" data-path="Plugins/SDK.html">
+            
+                
+                    <a href="../../../Plugins/SDK.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         SDK Reference
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4.2" data-path="Plugins/ProjectSetup.html">
+            
+                
+                    <a href="../../../Plugins/ProjectSetup.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                         Project Setup
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4.3">
+            
+            <span><b>4.3.</b> Debugging</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4.4" data-path="Intro/KnownIssues.html">
+            
+                
+                    <a href="../../../Intro/KnownIssues.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                         Known Issues
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4.5" data-path="Plugins/Testing.html">
+            
+                
+                    <a href="../../../Plugins/Testing.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                         Plugin testing
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="2.4.5.1">
+            
+            <span><b>4.5.1.</b> Base classes</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4.5.2" data-path="Plugins/TemporarySettings.html">
+            
+                
+                    <a href="../../../Plugins/TemporarySettings.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.2.</b>
+                        
+                         Temporary Settings
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4.5.3">
+            
+            <span><b>4.5.3.</b> Quick links</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4.5.4">
+            
+            <span><b>4.5.4.</b> Testing code completion</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4.5.5">
+            
+            <span><b>4.5.5.</b> Testing unit test support</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.4.5.6">
+            
+            <span><b>4.5.6.</b> Testing new language support</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="2.5" data-path="Intro/Glossary.html">
+            
+                
+                    <a href="../../../Intro/Glossary.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         Glossary
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="3">
+            
+            <span> Part II - Architectural Overview</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="3.1" data-path="Architecture/Overview.html">
+            
+                
+                    <a href="../../../Architecture/Overview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Overview
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.2">
+            
+            <span><b>2.</b> Platform</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.3">
+            
+            <span><b>3.</b> Project Model</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.4">
+            
+            <span><b>4.</b> PSI</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="3.5">
+            
+            <span><b>5.</b> Features</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="4">
+            
+            <span> Part III - Platform</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.1">
+            
+            <span><b>1.</b> Logging</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.2">
+            
+            <span><b>2.</b> DataFlow</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.3" data-path="Platform/Lifetime.html">
+            
+                
+                    <a href="../../../Platform/Lifetime.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         Lifetime
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.3.1" data-path="Platform/Lifetime/Usage.html">
+            
+                
+                    <a href="../../../Platform/Lifetime/Usage.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.1.</b>
+                        
+                         Usage
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.3.2" data-path="Platform/Lifetime/LifetimeDefinition.html">
+            
+                
+                    <a href="../../../Platform/Lifetime/LifetimeDefinition.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.2.</b>
+                        
+                         Lifetime Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.3.3" data-path="Platform/Lifetime/Advanced.html">
+            
+                
+                    <a href="../../../Platform/Lifetime/Advanced.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.3.</b>
+                        
+                         Advanced Lifetime Management
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.3.4" data-path="Platform/Lifetime/ComponentModel.html">
+            
+                
+                    <a href="../../../Platform/Lifetime/ComponentModel.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.4.</b>
+                        
+                         Component Lifetime
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.3.5" data-path="Platform/Lifetime/CaseStudy.html">
+            
+                
+                    <a href="../../../Platform/Lifetime/CaseStudy.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.5.</b>
+                        
+                         Case Study
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.4" data-path="Platform/ComponentModel.html">
+            
+                
+                    <a href="../../../Platform/ComponentModel.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.</b>
+                        
+                         Component Model
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.4.1" data-path="Platform/VisualStudio/ComponentModel.html">
+            
+                
+                    <a href="../../../Platform/VisualStudio/ComponentModel.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.1.</b>
+                        
+                         Visual Studio interfaces
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.5">
+            
+            <span><b>5.</b> DataContext</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.6" data-path="Platform/TextControl.html">
+            
+                
+                    <a href="../../../Platform/TextControl.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         TextControl
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.7">
+            
+            <span><b>7.</b> Documents</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.8">
+            
+            <span><b>8.</b> Threading</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.9">
+            
+            <span><b>9.</b> Locks</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.10">
+            
+            <span><b>10.</b> Transactions</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.11">
+            
+            <span><b>11.</b> IL Metadata</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.12">
+            
+            <span><b>12.</b> Shell</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.12.1">
+            
+            <span><b>12.1.</b> Visual Studio integration</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.12.1.1" data-path="Platform/VisualStudio/CustomHives.html">
+            
+                
+                    <a href="../../../Platform/VisualStudio/CustomHives.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.1.1.</b>
+                        
+                         Experimental Instances
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.12.2">
+            
+            <span><b>12.2.</b> Command line</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.12.3" data-path="Platform/Shell/ToolWindows.html">
+            
+                
+                    <a href="../../../Platform/Shell/ToolWindows.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.3.</b>
+                        
+                         Tool windows
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.12.4" data-path="Platform/Shell/Icons.html">
+            
+                
+                    <a href="../../../Platform/Shell/Icons.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>12.4.</b>
+                        
+                         Icons
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.12.5">
+            
+            <span><b>12.5.</b> Tooltips</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.12.6">
+            
+            <span><b>12.6.</b> TreeView</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.12.7">
+            
+            <span><b>12.7.</b> Progress reporting</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.12.8">
+            
+            <span><b>12.8.</b> Popup menus</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.12.9">
+            
+            <span><b>12.9.</b> Extensions</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.12.10">
+            
+            <span><b>12.10.</b> Theming</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.13">
+            
+            <span><b>13.</b> Project Model</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.13.1">
+            
+            <span><b>13.1.</b> Change management</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.13.2">
+            
+            <span><b>13.2.</b> MSBuild integration</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.13.3">
+            
+            <span><b>13.3.</b> Project files</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.14" data-path="Platform/Settings.html">
+            
+                
+                    <a href="../../../Platform/Settings.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                         Settings
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="4.14.1">
+            
+            <span><b>14.1.</b> Reading and writing</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.14.2">
+            
+            <span><b>14.2.</b> Defaults</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.14.3">
+            
+            <span><b>14.3.</b> Layers</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.14.4">
+            
+            <span><b>14.4.</b> File format</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="4.14.5">
+            
+            <span><b>14.5.</b> Util</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="5">
+            
+            <span> Part IV - PSI</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.1">
+            
+            <span><b>1.</b> Syntax trees</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2" data-path="PSI/NavigatingSyntaxTrees.html">
+            
+                
+                    <a href="../../../PSI/NavigatingSyntaxTrees.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Navigating syntax trees
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.2.1">
+            
+            <span><b>2.1.</b> Helper methods</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2.2" data-path="PSI/SyntaxTrees/StronglyTypedNavigation.html">
+            
+                
+                    <a href="../../../PSI/SyntaxTrees/StronglyTypedNavigation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         Strongly typed navigation
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2.3">
+            
+            <span><b>2.3.</b> Recursive navigation</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.2.4">
+            
+            <span><b>2.4.</b> Finding nodes</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.3">
+            
+            <span><b>3.</b> Manipulating syntax trees</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.4">
+            
+            <span><b>4.</b> References</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.4.1">
+            
+            <span><b>4.1.</b> Resolving references</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.4.2" data-path="PSI/References/ReferenceProviders.html">
+            
+                
+                    <a href="../../../PSI/References/ReferenceProviders.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.2.</b>
+                        
+                         Reference providers
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.4.3" data-path="PSI/References/CodeCompletion.html">
+            
+                
+                    <a href="../../../PSI/References/CodeCompletion.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.3.</b>
+                        
+                         Code Completion
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.4.4" data-path="PSI/References/Substrings.html">
+            
+                
+                    <a href="../../../PSI/References/Substrings.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.4.</b>
+                        
+                         References within elements
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.4.5" data-path="PSI/References/IReferenceProvider.html">
+            
+                
+                    <a href="../../../PSI/References/IReferenceProvider.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.5.</b>
+                        
+                         Managing reference providers
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.4.6" data-path="PSI/References/PathReferences.html">
+            
+                
+                    <a href="../../../PSI/References/PathReferences.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>4.6.</b>
+                        
+                         Path references
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.4.7">
+            
+            <span><b>4.7.</b> Colour references</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.5" data-path="PSI/Generating/Code.html">
+            
+                
+                    <a href="../../../PSI/Generating/Code.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.</b>
+                        
+                         Generating code
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.5.1" data-path="PSI/Generating/Comments.html">
+            
+                
+                    <a href="../../../PSI/Generating/Comments.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                         Generating comments
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6">
+            
+            <span><b>6.</b> Semantic models</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.6.1" data-path="PSI/TypeSystem.html">
+            
+                
+                    <a href="../../../PSI/TypeSystem.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         Type system
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.7">
+            
+            <span><b>7.</b> Control flow</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.8" data-path="PSI/Caches.html">
+            
+                
+                    <a href="../../../PSI/Caches.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                         Caches
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.9">
+            
+            <span><b>9.</b> External Annotations</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.9.1" data-path="PSI/ExternalAnnotations/Testing.html">
+            
+                
+                    <a href="../../../PSI/ExternalAnnotations/Testing.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.1.</b>
+                        
+                         Testing
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10">
+            
+            <span><b>10.</b> PSI Implementations Reference</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.10.1">
+            
+            <span><b>10.1.</b> C#</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.2">
+            
+            <span><b>10.2.</b> Visual Basic</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.3">
+            
+            <span><b>10.3.</b> JavaScript</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.4">
+            
+            <span><b>10.4.</b> TypeScript</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.5">
+            
+            <span><b>10.5.</b> JSON</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.6">
+            
+            <span><b>10.6.</b> HTML</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.7">
+            
+            <span><b>10.7.</b> CSS</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.8">
+            
+            <span><b>10.8.</b> Razor</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.9">
+            
+            <span><b>10.9.</b> ASP.net</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.10" data-path="PSI/Reference/Xml/Overview.html">
+            
+                
+                    <a href="../../../PSI/Reference/Xml/Overview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.10.</b>
+                        
+                         XML and DTD
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.10.10.1" data-path="PSI/Reference/Xml/Navigators.html">
+            
+                
+                    <a href="../../../PSI/Reference/Xml/Navigators.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.10.1.</b>
+                        
+                         Navigators
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.10.2" data-path="PSI/Reference/Xml/Utils.html">
+            
+                
+                    <a href="../../../PSI/Reference/Xml/Utils.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.10.2.</b>
+                        
+                         Utils
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="5.10.10.3" data-path="PSI/Reference/Xml/TreeNodes.html">
+            
+                
+                    <a href="../../../PSI/Reference/Xml/TreeNodes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.10.3.</b>
+                        
+                         Tree Nodes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.10.4" data-path="PSI/Reference/Xml/TreeNodesDTD.html">
+            
+                
+                    <a href="../../../PSI/Reference/Xml/TreeNodesDTD.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.10.4.</b>
+                        
+                         Tree Nodes (DTD)
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.11">
+            
+            <span><b>10.11.</b> Build scripts</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.12">
+            
+            <span><b>10.12.</b> XAML</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.10.13">
+            
+            <span><b>10.13.</b> XML Doc</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="6">
+            
+            <span> Part V - Features</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.1">
+            
+            <span><b>1.</b> Analysis</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.1.1">
+            
+            <span><b>1.1.</b> Highlights</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.1.2">
+            
+            <span><b>1.2.</b> Custom highlights</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.1.3">
+            
+            <span><b>1.3.</b> Suppressing highlights</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.1.4" data-path="Features/Analysis/Daemons.html">
+            
+                
+                    <a href="../../../Features/Analysis/Daemons.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.4.</b>
+                        
+                         Daemons
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.1.5">
+            
+            <span><b>1.5.</b> Element problem analysers</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.1.6">
+            
+            <span><b>1.6.</b> Xml and Html analysers</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.1.7">
+            
+            <span><b>1.7.</b> Solution Wide Analysis</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.1.8">
+            
+            <span><b>1.8.</b> Error Stripe</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.1.9">
+            
+            <span><b>1.9.</b> Syntax Highlighting</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.1.10">
+            
+            <span><b>1.10.</b> Caches again</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.1.11">
+            
+            <span><b>1.11.</b> Value analysis</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.1.12">
+            
+            <span><b>1.12.</b> Call hierarchy</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2" data-path="Features/Actions.html">
+            
+                
+                    <a href="../../../Features/Actions.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         Actions
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.2.1">
+            
+            <span><b>2.1.</b> Menu items</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2.2" data-path="Features/Actions/QuickFixes.html">
+            
+                
+                    <a href="../../../Features/Actions/QuickFixes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.2.</b>
+                        
+                         Quick fixes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2.3">
+            
+            <span><b>2.3.</b> Context actions</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2.4" data-path="Features/Actions/Bulk.html">
+            
+                
+                    <a href="../../../Features/Actions/Bulk.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.4.</b>
+                        
+                         Bulk actions
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2.5">
+            
+            <span><b>2.5.</b> Overriding</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2.6">
+            
+            <span><b>2.6.</b> Temporary editor actions</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.2.7">
+            
+            <span><b>2.7.</b> Action ID reference</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.3" data-path="Features/Completion.html">
+            
+                
+                    <a href="../../../Features/Completion.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>3.</b>
+                        
+                         Code Completion
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.3.1">
+            
+            <span><b>3.1.</b> Basic, smart and import</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.3.2">
+            
+            <span><b>3.2.</b> Dynamic completion</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.3.3">
+            
+            <span><b>3.3.</b> Double completion</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.3.4">
+            
+            <span><b>3.4.</b> Lookup items</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.4">
+            
+            <span><b>4.</b> Contextual highlighting</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.4.1">
+            
+            <span><b>4.1.</b> Brace matching</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.4.2">
+            
+            <span><b>4.2.</b> string.Format style highlighting</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.4.3">
+            
+            <span><b>4.3.</b> Find usages in file style highlighting</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.5">
+            
+            <span><b>5.</b> Popup docs</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.5.1" data-path="Features/QuickDoc/Overview.html">
+            
+                
+                    <a href="../../../Features/QuickDoc/Overview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.</b>
+                        
+                         Quick Doc
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.5.1.1" data-path="Features/QuickDoc/ImplementingProvider.html">
+            
+                
+                    <a href="../../../Features/QuickDoc/ImplementingProvider.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.1.</b>
+                        
+                         IQuickDocProvider
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.5.1.2" data-path="Features/QuickDoc/ImplementingPresenter.html">
+            
+                
+                    <a href="../../../Features/QuickDoc/ImplementingPresenter.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.2.</b>
+                        
+                         IQuickDocPresenter
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.5.1.3" data-path="Features/QuickDoc/HelperClasses.html">
+            
+                
+                    <a href="../../../Features/QuickDoc/HelperClasses.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.3.</b>
+                        
+                         Helper classes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.5.1.4" data-path="Features/QuickDoc/ExistingProviders.html">
+            
+                
+                    <a href="../../../Features/QuickDoc/ExistingProviders.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.4.</b>
+                        
+                         Existing providers
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.5.1.5" data-path="Features/QuickDoc/Testing.html">
+            
+                
+                    <a href="../../../Features/QuickDoc/Testing.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>5.1.5.</b>
+                        
+                         Testing
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.5.2">
+            
+            <span><b>5.2.</b> Parameter Info</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.6" data-path="Features/Refactoring.html">
+            
+                
+                    <a href="../../../Features/Refactoring.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         Refactoring
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.6.1">
+            
+            <span><b>6.1.</b> Workflow</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.6.2">
+            
+            <span><b>6.2.</b> Integrating</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.6.3">
+            
+            <span><b>6.3.</b> Renaming</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.6.4">
+            
+            <span><b>6.4.</b> Unused references</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.7" data-path="Features/GenerateMenu.html">
+            
+                
+                    <a href="../../../Features/GenerateMenu.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>7.</b>
+                        
+                         Generate Menu
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.8" data-path="Features/Navigation.html">
+            
+                
+                    <a href="../../../Features/Navigation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>8.</b>
+                        
+                         Navigation
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.8.1">
+            
+            <span><b>8.1.</b> Go to everything</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.8.2">
+            
+            <span><b>8.2.</b> Go to related</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.8.3">
+            
+            <span><b>8.3.</b> Go to next/prev</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.8.4">
+            
+            <span><b>8.4.</b> Contextual - find exits</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.8.5">
+            
+            <span><b>8.5.</b> Navigate from here</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.8.6">
+            
+            <span><b>8.6.</b> Occurrences</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.9" data-path="Features/OptionsPages.html">
+            
+                
+                    <a href="../../../Features/OptionsPages.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>9.</b>
+                        
+                         Options Pages
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.10">
+            
+            <span><b>10.</b> Tools</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.10.1" data-path="Features/Tools/CodeCleanup.html">
+            
+                
+                    <a href="../../../Features/Tools/CodeCleanup.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>10.1.</b>
+                        
+                         Code cleanup
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.10.2">
+            
+            <span><b>10.2.</b> Code structure</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.10.3">
+            
+            <span><b>10.3.</b> Todo items</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.10.4">
+            
+            <span><b>10.4.</b> Bookmarks</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.10.5">
+            
+            <span><b>10.5.</b> Assembly explorer</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.11">
+            
+            <span><b>11.</b> Naming</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.11.1">
+            
+            <span><b>11.1.</b> Suggestions</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.11.2">
+            
+            <span><b>11.2.</b> Policy</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.12">
+            
+            <span><b>12.</b> Editing</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.12.1">
+            
+            <span><b>12.1.</b> Formatting</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.12.2">
+            
+            <span><b>12.2.</b> Typing assist</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.12.3">
+            
+            <span><b>12.3.</b> Complete statement</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.12.4">
+            
+            <span><b>12.4.</b> Extend selection</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.12.5">
+            
+            <span><b>12.5.</b> Rearrange code</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.12.6">
+            
+            <span><b>12.6.</b> Comments</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.13">
+            
+            <span><b>13.</b> Structural Search and Replace</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.13.1">
+            
+            <span><b>13.1.</b> C# vs HTML and CSS</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.13.2">
+            
+            <span><b>13.2.</b> Progammatic usage</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.14" data-path="Features/LiveTemplates/Overview.html">
+            
+                
+                    <a href="../../../Features/LiveTemplates/Overview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.</b>
+                        
+                         Live Templates
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.14.1" data-path="Features/LiveTemplates/Macros.html">
+            
+                
+                    <a href="../../../Features/LiveTemplates/Macros.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.1.</b>
+                        
+                         Macros
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.14.2" data-path="Features/LiveTemplates/Scopes.html">
+            
+                
+                    <a href="../../../Features/LiveTemplates/Scopes.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>14.2.</b>
+                        
+                         Scopes
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.14.3">
+            
+            <span><b>14.3.</b> Categories</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.14.4">
+            
+            <span><b>14.4.</b> Quick lists</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.14.5">
+            
+            <span><b>14.5.</b> Hotspots</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.14.6">
+            
+            <span><b>14.6.</b> Programmatic usage</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.15" data-path="Features/UnitTest.html">
+            
+                
+                    <a href="../../../Features/UnitTest.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>15.</b>
+                        
+                         Unit Test
+                    </a>
+                
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.15.1">
+            
+            <span><b>15.1.</b> Test discovery</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.15.2">
+            
+            <span><b>15.2.</b> Test execution</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.15.3">
+            
+            <span><b>15.3.</b> Non-CLR tests</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.16">
+            
+            <span><b>16.</b> Diagramming</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.16.1">
+            
+            <span><b>16.1.</b> Architecture diagrams</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.17">
+            
+            <span><b>17.</b> External sources</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="6.17.1">
+            
+            <span><b>17.1.</b> PDB symbols</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.17.2">
+            
+            <span><b>17.2.</b> Decompiling</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.17.3">
+            
+            <span><b>17.3.</b> Source servers</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.18">
+            
+            <span><b>18.</b> Asp.net MVC</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.19">
+            
+            <span><b>19.</b> Internationalisation</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="6.20" data-path="Features/XmlLike.html">
+            
+                
+                    <a href="../../../Features/XmlLike.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>20.</b>
+                        
+                         Working with XML-like files
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="7">
+            
+            <span> Part VI - Product Specific</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1" data-path="Products/dotPeek.html">
+            
+                
+                    <a href="../../../Products/dotPeek.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         dotPeek
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.2" data-path="Products/InspectCode.html">
+            
+                
+                    <a href="../../../Products/InspectCode.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>2.</b>
+                        
+                         InspectCode
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+        
+        <li class="part" data-level="8">
+            
+            <span> Part VII - Custom languages</span>
+            
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="8.1" data-path="CustomLanguages/Overview.html">
+            
+                
+                    <a href="../../../CustomLanguages/Overview.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Overview
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.2">
+            
+            <span><b>2.</b> Disabling language support</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.3">
+            
+            <span><b>3.</b> Project model language support</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.4">
+            
+            <span><b>4.</b> PSI language support</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.5">
+            
+            <span><b>5.</b> Secondary PSI</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.6" data-path="CustomLanguages/InjectedPsi.html">
+            
+                
+                    <a href="../../../CustomLanguages/InjectedPsi.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.</b>
+                        
+                         Injected PSI
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.7">
+            
+            <span><b>7.</b> Lexing and parsing</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.8">
+            
+            <span><b>8.</b> psi files</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="8.9">
+            
+            <span><b>9.</b> PsiGen</span>
+            
+            
+        </li>
+    
+
+            </ul>
+            
+        </li>
+    
+
+
+        
+        <li class="divider"></li>
+        <li>
+            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Generated using GitBook</a>
+        </li>
+        
+    </ul>
+</div>
+
+    <div class="book-body">
+        <div class="body-inner">
+            <div class="page-wrapper" tabindex="-1">
+                <div class="book-progress">
+    <div class="bar">
+        <div class="inner" style="width: 61.19402985074627%;min-width: 59.701492537313435%;"></div>
+    </div>
+    <div class="chapters">
+    
+        <a href="../../../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+    
+        <a href="../../../StyleGuide.html" title="Style guide" class="chapter done " data-progress="1.1" style="left: 1.492537313432836%;"></a>
+    
+        <a href="../../../wip.html" title="Work in progress" class="chapter done " data-progress="1.2" style="left: 2.985074626865672%;"></a>
+    
+        <a href="../../../Intro/Tools.html" title="Tools" class="chapter done " data-progress="2.1.1" style="left: 4.477611940298507%;"></a>
+    
+        <a href="../../../Extensions/Packaging.html" title="Packaging and Distribution" class="chapter done " data-progress="2.2.5" style="left: 5.970149253731344%;"></a>
+    
+        <a href="../../../HowDoI.html" title="How do I?" class="chapter done " data-progress="2.3" style="left: 7.462686567164179%;"></a>
+    
+        <a href="../../../Plugins/SDK.html" title="SDK Reference" class="chapter done " data-progress="2.4.1" style="left: 8.955223880597014%;"></a>
+    
+        <a href="../../../Plugins/ProjectSetup.html" title="Project Setup" class="chapter done " data-progress="2.4.2" style="left: 10.447761194029852%;"></a>
+    
+        <a href="../../../Intro/KnownIssues.html" title="Known Issues" class="chapter done " data-progress="2.4.4" style="left: 11.940298507462687%;"></a>
+    
+        <a href="../../../Plugins/Testing.html" title="Plugin testing" class="chapter done " data-progress="2.4.5" style="left: 13.432835820895523%;"></a>
+    
+        <a href="../../../Plugins/TemporarySettings.html" title="Temporary Settings" class="chapter done " data-progress="2.4.5.2" style="left: 14.925373134328359%;"></a>
+    
+        <a href="../../../Intro/Glossary.html" title="Glossary" class="chapter done " data-progress="2.5" style="left: 16.417910447761194%;"></a>
+    
+        <a href="../../../Architecture/Overview.html" title="Overview" class="chapter done " data-progress="3.1" style="left: 17.91044776119403%;"></a>
+    
+        <a href="../../../Platform/Lifetime.html" title="Lifetime" class="chapter done " data-progress="4.3" style="left: 19.402985074626866%;"></a>
+    
+        <a href="../../../Platform/Lifetime/Usage.html" title="Usage" class="chapter done " data-progress="4.3.1" style="left: 20.895522388059703%;"></a>
+    
+        <a href="../../../Platform/Lifetime/LifetimeDefinition.html" title="Lifetime Management" class="chapter done " data-progress="4.3.2" style="left: 22.388059701492537%;"></a>
+    
+        <a href="../../../Platform/Lifetime/Advanced.html" title="Advanced Lifetime Management" class="chapter done " data-progress="4.3.3" style="left: 23.880597014925375%;"></a>
+    
+        <a href="../../../Platform/Lifetime/ComponentModel.html" title="Component Lifetime" class="chapter done " data-progress="4.3.4" style="left: 25.37313432835821%;"></a>
+    
+        <a href="../../../Platform/Lifetime/CaseStudy.html" title="Case Study" class="chapter done " data-progress="4.3.5" style="left: 26.865671641791046%;"></a>
+    
+        <a href="../../../Platform/ComponentModel.html" title="Component Model" class="chapter done " data-progress="4.4" style="left: 28.35820895522388%;"></a>
+    
+        <a href="../../../Platform/VisualStudio/ComponentModel.html" title="Visual Studio interfaces" class="chapter done " data-progress="4.4.1" style="left: 29.850746268656717%;"></a>
+    
+        <a href="../../../Platform/TextControl.html" title="TextControl" class="chapter done " data-progress="4.6" style="left: 31.34328358208955%;"></a>
+    
+        <a href="../../../Platform/VisualStudio/CustomHives.html" title="Experimental Instances" class="chapter done " data-progress="4.12.1.1" style="left: 32.83582089552239%;"></a>
+    
+        <a href="../../../Platform/Shell/ToolWindows.html" title="Tool windows" class="chapter done " data-progress="4.12.3" style="left: 34.32835820895522%;"></a>
+    
+        <a href="../../../Platform/Shell/Icons.html" title="Icons" class="chapter done " data-progress="4.12.4" style="left: 35.82089552238806%;"></a>
+    
+        <a href="../../../Platform/Settings.html" title="Settings" class="chapter done " data-progress="4.14" style="left: 37.3134328358209%;"></a>
+    
+        <a href="../../../PSI/NavigatingSyntaxTrees.html" title="Navigating syntax trees" class="chapter done " data-progress="5.2" style="left: 38.80597014925373%;"></a>
+    
+        <a href="../../../PSI/SyntaxTrees/StronglyTypedNavigation.html" title="Strongly typed navigation" class="chapter done " data-progress="5.2.2" style="left: 40.298507462686565%;"></a>
+    
+        <a href="../../../PSI/References/ReferenceProviders.html" title="Reference providers" class="chapter done " data-progress="5.4.2" style="left: 41.791044776119406%;"></a>
+    
+        <a href="../../../PSI/References/CodeCompletion.html" title="Code Completion" class="chapter done " data-progress="5.4.3" style="left: 43.28358208955224%;"></a>
+    
+        <a href="../../../PSI/References/Substrings.html" title="References within elements" class="chapter done " data-progress="5.4.4" style="left: 44.776119402985074%;"></a>
+    
+        <a href="../../../PSI/References/IReferenceProvider.html" title="Managing reference providers" class="chapter done " data-progress="5.4.5" style="left: 46.26865671641791%;"></a>
+    
+        <a href="../../../PSI/References/PathReferences.html" title="Path references" class="chapter done " data-progress="5.4.6" style="left: 47.76119402985075%;"></a>
+    
+        <a href="../../../PSI/Generating/Code.html" title="Generating code" class="chapter done " data-progress="5.5" style="left: 49.25373134328358%;"></a>
+    
+        <a href="../../../PSI/Generating/Comments.html" title="Generating comments" class="chapter done " data-progress="5.5.1" style="left: 50.74626865671642%;"></a>
+    
+        <a href="../../../PSI/TypeSystem.html" title="Type system" class="chapter done " data-progress="5.6.1" style="left: 52.23880597014925%;"></a>
+    
+        <a href="../../../PSI/Caches.html" title="Caches" class="chapter done " data-progress="5.8" style="left: 53.73134328358209%;"></a>
+    
+        <a href="../../../PSI/ExternalAnnotations/Testing.html" title="Testing" class="chapter done " data-progress="5.9.1" style="left: 55.223880597014926%;"></a>
+    
+        <a href="../../../PSI/Reference/Xml/Overview.html" title="XML and DTD" class="chapter done " data-progress="5.10.10" style="left: 56.71641791044776%;"></a>
+    
+        <a href="../../../PSI/Reference/Xml/Navigators.html" title="Navigators" class="chapter done " data-progress="5.10.10.1" style="left: 58.208955223880594%;"></a>
+    
+        <a href="../../../PSI/Reference/Xml/Utils.html" title="Utils" class="chapter done " data-progress="5.10.10.2" style="left: 59.701492537313435%;"></a>
+    
+        <a href="../../../PSI/Reference/Xml/TreeNodes.html" title="Tree Nodes" class="chapter done " data-progress="5.10.10.3" style="left: 61.19402985074627%;"></a>
+    
+        <a href="../../../PSI/Reference/Xml/TreeNodesDTD.html" title="Tree Nodes (DTD)" class="chapter  " data-progress="5.10.10.4" style="left: 62.6865671641791%;"></a>
+    
+        <a href="../../../Features/Analysis/Daemons.html" title="Daemons" class="chapter  " data-progress="6.1.4" style="left: 64.17910447761194%;"></a>
+    
+        <a href="../../../Features/Actions.html" title="Actions" class="chapter  " data-progress="6.2" style="left: 65.67164179104478%;"></a>
+    
+        <a href="../../../Features/Actions/QuickFixes.html" title="Quick fixes" class="chapter  " data-progress="6.2.2" style="left: 67.16417910447761%;"></a>
+    
+        <a href="../../../Features/Actions/Bulk.html" title="Bulk actions" class="chapter  " data-progress="6.2.4" style="left: 68.65671641791045%;"></a>
+    
+        <a href="../../../Features/Completion.html" title="Code Completion" class="chapter  " data-progress="6.3" style="left: 70.14925373134328%;"></a>
+    
+        <a href="../../../Features/QuickDoc/Overview.html" title="Quick Doc" class="chapter  " data-progress="6.5.1" style="left: 71.64179104477611%;"></a>
+    
+        <a href="../../../Features/QuickDoc/ImplementingProvider.html" title="IQuickDocProvider" class="chapter  " data-progress="6.5.1.1" style="left: 73.13432835820896%;"></a>
+    
+        <a href="../../../Features/QuickDoc/ImplementingPresenter.html" title="IQuickDocPresenter" class="chapter  " data-progress="6.5.1.2" style="left: 74.6268656716418%;"></a>
+    
+        <a href="../../../Features/QuickDoc/HelperClasses.html" title="Helper classes" class="chapter  " data-progress="6.5.1.3" style="left: 76.11940298507463%;"></a>
+    
+        <a href="../../../Features/QuickDoc/ExistingProviders.html" title="Existing providers" class="chapter  " data-progress="6.5.1.4" style="left: 77.61194029850746%;"></a>
+    
+        <a href="../../../Features/QuickDoc/Testing.html" title="Testing" class="chapter  " data-progress="6.5.1.5" style="left: 79.1044776119403%;"></a>
+    
+        <a href="../../../Features/Refactoring.html" title="Refactoring" class="chapter  " data-progress="6.6" style="left: 80.59701492537313%;"></a>
+    
+        <a href="../../../Features/GenerateMenu.html" title="Generate Menu" class="chapter  " data-progress="6.7" style="left: 82.08955223880596%;"></a>
+    
+        <a href="../../../Features/Navigation.html" title="Navigation" class="chapter  " data-progress="6.8" style="left: 83.58208955223881%;"></a>
+    
+        <a href="../../../Features/OptionsPages.html" title="Options Pages" class="chapter  " data-progress="6.9" style="left: 85.07462686567165%;"></a>
+    
+        <a href="../../../Features/Tools/CodeCleanup.html" title="Code cleanup" class="chapter  " data-progress="6.10.1" style="left: 86.56716417910448%;"></a>
+    
+        <a href="../../../Features/LiveTemplates/Overview.html" title="Live Templates" class="chapter  " data-progress="6.14" style="left: 88.05970149253731%;"></a>
+    
+        <a href="../../../Features/LiveTemplates/Macros.html" title="Macros" class="chapter  " data-progress="6.14.1" style="left: 89.55223880597015%;"></a>
+    
+        <a href="../../../Features/LiveTemplates/Scopes.html" title="Scopes" class="chapter  " data-progress="6.14.2" style="left: 91.04477611940298%;"></a>
+    
+        <a href="../../../Features/UnitTest.html" title="Unit Test" class="chapter  " data-progress="6.15" style="left: 92.53731343283582%;"></a>
+    
+        <a href="../../../Features/XmlLike.html" title="Working with XML-like files" class="chapter  " data-progress="6.20" style="left: 94.02985074626865%;"></a>
+    
+        <a href="../../../Products/dotPeek.html" title="dotPeek" class="chapter  " data-progress="7.1" style="left: 95.5223880597015%;"></a>
+    
+        <a href="../../../Products/InspectCode.html" title="InspectCode" class="chapter  " data-progress="7.2" style="left: 97.01492537313433%;"></a>
+    
+        <a href="../../../CustomLanguages/Overview.html" title="Overview" class="chapter  " data-progress="8.1" style="left: 98.50746268656717%;"></a>
+    
+        <a href="../../../CustomLanguages/InjectedPsi.html" title="Injected PSI" class="chapter  " data-progress="8.6" style="left: 100%;"></a>
+    
+    </div>
+</div>
+
+                <div class="page-inner">
+                
+                    <section class="normal" id="section-gitbook_37">
+                    
+                        <h1 id="index-xml"><a name="index-xml" class="plugin-anchor" href="#index-xml"><span class="fa fa-link"></span></a>Index (XML)</h1>
+<!-- toc -->
+<ul>
+<li><a href="#p">P</a><ul>
+<li><a href="#iprocessinginstruction">IProcessingInstruction</a></li>
+</ul>
+</li>
+<li><a href="#x">X</a><ul>
+<li><a href="#ixmlasterisktokennode">IXmlAsteriskTokenNode</a></li>
+<li><a href="#ixmlattribute">IXmlAttribute</a></li>
+<li><a href="#ixmlattributecontainer">IXmlAttributeContainer</a></li>
+<li><a href="#ixmlattributevalue">IXmlAttributeValue</a></li>
+<li><a href="#ixmlcdata">IXmlCData</a></li>
+<li><a href="#ixmlcdataendtokennode">IXmlCdataEndTokenNode</a></li>
+<li><a href="#ixmlcdatastarttokennode">IXmlCdataStartTokenNode</a></li>
+<li><a href="#ixmlcommatokennode">IXmlCommaTokenNode</a></li>
+<li><a href="#ixmlcomment">IXmlComment</a></li>
+<li><a href="#ixmlcommentendtokennode">IXmlCommentEndTokenNode</a></li>
+<li><a href="#ixmlcommentnode">IXmlCommentNode</a></li>
+<li><a href="#ixmlcommentstarttokennode">IXmlCommentStartTokenNode</a></li>
+<li><a href="#ixmldocumentnode">IXmlDocumentNode</a></li>
+<li><a href="#ixmldtdstarttokennode">IXmlDtdStartTokenNode</a></li>
+<li><a href="#ixmlentitytokennode">IXmlEntityTokenNode</a></li>
+<li><a href="#ixmleqtokennode">IXmlEqTokenNode</a></li>
+<li><a href="#ixmlfile">IXmlFile</a></li>
+<li><a href="#ixmlfloatingtexttokennode">IXmlFloatingTextTokenNode</a></li>
+<li><a href="#ixmlidentifier">IXmlIdentifier</a></li>
+<li><a href="#ixmllbrackettokennode">IXmlLbracketTokenNode</a></li>
+<li><a href="#ixmllparenthtokennode">IXmlLparenthTokenNode</a></li>
+<li><a href="#ixmlortokennode">IXmlOrTokenNode</a></li>
+<li><a href="#ixmlpercenttokennode">IXmlPercentTokenNode</a></li>
+<li><a href="#ixmlpiendtokennode">IXmlPiendTokenNode</a></li>
+<li><a href="#ixmlpistarttokennode">IXmlPistartTokenNode</a></li>
+<li><a href="#ixmlplustokennode">IXmlPlusTokenNode</a></li>
+<li><a href="#ixmlprocessinginstruction">IXmlProcessingInstruction</a></li>
+<li><a href="#ixmlquestiontokennode">IXmlQuestionTokenNode</a></li>
+<li><a href="#ixmlrbrackettokennode">IXmlRbracketTokenNode</a></li>
+<li><a href="#ixmlrparenthtokennode">IXmlRparenthTokenNode</a></li>
+<li><a href="#ixmlsyntaxerrorelement">IXmlSyntaxErrorElement</a></li>
+<li><a href="#ixmltag">IXmlTag</a></li>
+<li><a href="#ixmltagcontainer">IXmlTagContainer</a></li>
+<li><a href="#ixmltagend1tokennode">IXmlTagEnd1TokenNode</a></li>
+<li><a href="#ixmltagendtokennode">IXmlTagEndTokenNode</a></li>
+<li><a href="#ixmltagfooter">IXmlTagFooter</a></li>
+<li><a href="#ixmltagheader">IXmlTagHeader</a></li>
+<li><a href="#ixmltagstart1tokennode">IXmlTagStart1TokenNode</a></li>
+<li><a href="#ixmltagstarttokennode">IXmlTagStartTokenNode</a></li>
+<li><a href="#ixmltoken">IXmlToken</a></li>
+<li><a href="#ixmltreenode">IXmlTreeNode</a></li>
+<li><a href="#ixmlvaluetoken">IXmlValueToken</a></li>
+</ul>
+</li>
+</ul>
+<!-- toc stop -->
+<h2 id="p"><a name="p" class="plugin-anchor" href="#p"><span class="fa fa-link"></span></a>P</h2>
+<h3 id="iprocessinginstruction"><a name="iprocessinginstruction" class="plugin-anchor" href="#iprocessinginstruction"><span class="fa fa-link"></span></a>IProcessingInstruction</h3>
+<!-- Begin IProcessingInstruction -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IProcessingInstruction :
+  IXmlTreeNode,
+  ITreeNode
+{
+  IXmlToken Body { <span class="hljs-keyword">get</span>; }
+  IXmlToken End { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> InstructionTarget { <span class="hljs-keyword">get</span>; }
+  IXmlIdentifier InstructionTargetNode { <span class="hljs-keyword">get</span>; }
+  IXmlToken Start { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IProcessingInstruction -->
+<p>Represents a <a href="http://en.wikipedia.org/wiki/Processing_Instruction" target="_blank">processing instruction</a>. The <code>Start</code> and <code>End</code> properties give access to the tokens that represent the start and end of the processing instruction, namely the <code>&lt;?</code> and <code>?&gt;</code> tokens respectively. The <code>InstructionTargetNode</code> property is an <a href="#ixmlidentifier"><code>IXmlIdentifier</code></a> that represents the target of the processing instruction, that is, the identifier immediately following the start token. As a convenience, you can get at the text of the target using the <code>InstructionTarget</code> property, which simply calls <code>GetText()</code> on the <a href="#ixmlidentifier"><code>IXmlIdentifier</code></a>. Finally, the <code>Body</code> property is a token that contains the content of the processing instruction, if any. This is a simple <code>XmlToken</code> containing the text after the target, unparsed. If the instruction contains text that looks like attributes, they are not parsed - the <code>Body</code> property will contain the full text.</p>
+<p>While the <code>&lt;?xml ... ?&gt;</code> declaration at the start of an XML document shares similar syntax to processing instructions, it is not a processing instruction, and is instead represented using the <a href="#ixmlprocessinginstruction"><code>IXmlProcessingInstruction</code></a> interface.</p>
+<h2 id="x"><a name="x" class="plugin-anchor" href="#x"><span class="fa fa-link"></span></a>X</h2>
+<h3 id="ixmlasterisktokennode"><a name="ixmlasterisktokennode" class="plugin-anchor" href="#ixmlasterisktokennode"><span class="fa fa-link"></span></a>IXmlAsteriskTokenNode</h3>
+<!-- Begin IXmlAsteriskTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlAsteriskTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlAsteriskTokenNode -->
+<p>Marker interface for a token representing the asterisk character (<code>*</code>).</p>
+<h3 id="ixmlattribute"><a name="ixmlattribute" class="plugin-anchor" href="#ixmlattribute"><span class="fa fa-link"></span></a>IXmlAttribute</h3>
+<!-- Begin IXmlAttribute -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlAttribute :
+  IXmlTreeNode,
+  ITreeNode
+{
+  <span class="hljs-keyword">string</span> AttributeName { <span class="hljs-keyword">get</span>; }
+  IXmlToken Eq { <span class="hljs-keyword">get</span>; }
+  IXmlIdentifier Identifier { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> UnquotedValue { <span class="hljs-keyword">get</span>; }
+  IXmlAttributeValue Value { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> XmlName { <span class="hljs-keyword">get</span>; }
+  TreeTextRange XmlNameRange { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> XmlNamespace { <span class="hljs-keyword">get</span>; }
+  TreeTextRange XmlNamespaceRange { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlAttribute -->
+<p>Represents an attribute. The <code>Identifier</code> property returns the tree node that contains the name of the attribute, and the <code>AttributeName</code> convenience property will retrieve the full text of the attribute name, including namespace prefix, if applicable.</p>
+<p>The <code>XmlName</code> and <code>XmlNamespace</code> properties will retrieve the text of the attribute name split into local name and namespace prefix, respectively. E.g. <code>foo:bar=&quot;quux&quot;</code> will return <code>&quot;bar&quot;</code> for <code>XmlName</code> and <code>&quot;foo&quot;</code> for <code>XmlNamespace</code>. If there is no namespace prefix, an empty string is returned (the <code>XmlNamespace</code> property is annotated with <code>[NotNull]</code>).</p>
+<p>The <code>XmlNameRange</code> and <code>XmlNamespaceRange</code> properties return the ranges of the <code>XmlName</code> and <code>XmlNamespace</code> strings relative to the <code>Identifier</code> node. That is, they are the offsets into <code>AttributeName</code>.</p>
+<p>The <code>Value</code> property will return the <a href="#ixmlattributevalue"><code>IXmlAttributeValue</code></a> node representing the value, while the <code>UnquotedValue</code> property will return the string value of the attribute, without surround quotes.</p>
+<p>Finally, the <code>Eq</code> property is the token representing the equals sign in the attribute declaration, e.g. <code>name=&quot;value&quot;</code>.</p>
+<h3 id="ixmlattributecontainer"><a name="ixmlattributecontainer" class="plugin-anchor" href="#ixmlattributecontainer"><span class="fa fa-link"></span></a>IXmlAttributeContainer</h3>
+<!-- Begin IXmlAttributeContainer -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlAttributeContainer :
+  IXmlTreeNode,
+  ITreeNode
+{
+  TreeNodeCollection&lt;IXmlAttribute&gt; Attributes { <span class="hljs-keyword">get</span>; }
+  TreeNodeEnumerable&lt;IXmlAttribute&gt; AttributesEnumerable { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> ContainerName { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlAttributeContainer -->
+<p>Represents a node that can contain attributes. This is typically mostly inherited by <a href="#ixmltagheader"><code>IXmlTagHeader</code></a>, but also by <a href="#ixmlprocessinginstruction"><code>IXmlProcessingInstruction</code></a> in order to expose the attributes defined in the XML declaration. The <code>Attributes</code> collection is pre-iterated and backed by an array, while the <code>AttributesEnumerable</code> is lazily evaluated.</p>
+<p>The <code>ContainerName</code> property returns the text of the child <a href="#ixmlidentifier"><code>IXmlIdentifier</code></a> node of the container. In other words, for an XML tag, it will return the name of the tag. For an XML declaration, it will return the &quot;xml&quot; part of the <code>&lt;?xml ... ?&gt;</code> declaration.</p>
+<h3 id="ixmlattributevalue"><a name="ixmlattributevalue" class="plugin-anchor" href="#ixmlattributevalue"><span class="fa fa-link"></span></a>IXmlAttributeValue</h3>
+<!-- Begin IXmlAttributeValue -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlAttributeValue :
+  IXmlTreeNode,
+  ITreeNode
+{
+  <span class="hljs-keyword">string</span> UnquotedValue { <span class="hljs-keyword">get</span>; }
+  IXmlValueToken ValueToken { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlAttributeValue -->
+<p>Represents the value in an attribute. It is implemented by the <code>XmlValueToken</code> type, and represents the quoted part of the value in an XML attribute <code>name=&quot;value&quot;</code>. The <code>ValueToken</code> property provides access to an instance of <a href="#ixmlvaluetoken"><code>IXmlValueToken</code></a> token that essentially represents the same information (indeed, the <code>XmlValueToken</code> implementation simply returns <code>this</code>).</p>
+<h3 id="ixmlcdata"><a name="ixmlcdata" class="plugin-anchor" href="#ixmlcdata"><span class="fa fa-link"></span></a>IXmlCData</h3>
+<!-- Begin IXmlCData -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlCData :
+  IXmlTreeNode,
+  ITreeNode
+{
+  IXmlToken Body { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> CData { <span class="hljs-keyword">get</span>; }
+  IXmlToken End { <span class="hljs-keyword">get</span>; }
+  IXmlToken Start { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlCData -->
+<p>An XML <a href="http://en.wikipedia.org/wiki/CDATA" target="_blank">CDATA</a> node. The <code>Start</code> property is the <code>&lt;![CDATA[</code> token, and <code>End</code> is the <code>]]&gt;</code> token. While they are listed as <a href="#ixmltoken"><code>IXmlToken</code></a> instances, they are in fact, instances of the <a href="#ixmlcdatastarttokennode"><code>IXmlCdataStartTokenNode</code></a> and <a href="#ixmlcdataendtokennode"><code>IXmlCdataEndTokenNode</code></a> marker interfaces. <code>Body</code> is a token representing the content of the CDATA node, while the <code>CData</code> property is the content as a plain string.</p>
+<h3 id="ixmlcdataendtokennode"><a name="ixmlcdataendtokennode" class="plugin-anchor" href="#ixmlcdataendtokennode"><span class="fa fa-link"></span></a>IXmlCdataEndTokenNode</h3>
+<!-- Begin IXmlCdataEndTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlCdataEndTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlCdataEndTokenNode -->
+<p>Marker interface for the CDATA end token <code>]]&gt;</code>.</p>
+<h3 id="ixmlcdatastarttokennode"><a name="ixmlcdatastarttokennode" class="plugin-anchor" href="#ixmlcdatastarttokennode"><span class="fa fa-link"></span></a>IXmlCdataStartTokenNode</h3>
+<!-- Begin IXmlCdataStartTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlCdataStartTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlCdataStartTokenNode -->
+<p>Marker interface for the CDATA start token <code>&lt;![CDATA[</code>.</p>
+<h3 id="ixmlcommatokennode"><a name="ixmlcommatokennode" class="plugin-anchor" href="#ixmlcommatokennode"><span class="fa fa-link"></span></a>IXmlCommaTokenNode</h3>
+<!-- Begin IXmlCommaTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlCommaTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlCommaTokenNode -->
+<p>Marker interface for a token representing the comma character (<code>,</code>).</p>
+<h3 id="ixmlcomment"><a name="ixmlcomment" class="plugin-anchor" href="#ixmlcomment"><span class="fa fa-link"></span></a>IXmlComment</h3>
+<!-- Begin IXmlComment -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlComment :
+  IXmlCommentNode,
+  IXmlTreeNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlComment -->
+<p>Represents an XML comment. See <a href="#ixmlcommentnode"><code>IXmlCommentNode</code></a>.</p>
+<h3 id="ixmlcommentendtokennode"><a name="ixmlcommentendtokennode" class="plugin-anchor" href="#ixmlcommentendtokennode"><span class="fa fa-link"></span></a>IXmlCommentEndTokenNode</h3>
+<!-- Begin IXmlCommentEndTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlCommentEndTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlCommentEndTokenNode -->
+<p>Marker interface for the XML comment close token <code>--&gt;</code>.</p>
+<h3 id="ixmlcommentnode"><a name="ixmlcommentnode" class="plugin-anchor" href="#ixmlcommentnode"><span class="fa fa-link"></span></a>IXmlCommentNode</h3>
+<!-- Begin IXmlCommentNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlCommentNode :
+  IXmlTreeNode,
+  ITreeNode
+{
+  IXmlToken CommentBody { <span class="hljs-keyword">get</span>; }
+  IXmlToken CommentEnd { <span class="hljs-keyword">get</span>; }
+  IXmlToken CommentStart { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> CommentText { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlCommentNode -->
+<p>Represents and XML comment. The <code>CommentStart</code> and <code>CommentEnd</code> properties are the start (<code>&lt;!--</code>) and end (<code>--&gt;</code>) tokens of the comment. Although listed here as <a href="#ixmltoken"><code>IXmlToken</code></a>, they are in fact instances of the <a href="#ixmlcommentstarttokennode"><code>IXmlCommentStartTokenNode</code></a> and <a href="#ixmlcommentendtokennode"><code>IXmlCommentEndTokenNode</code></a> marker interfaces. The comment text is held in the <code>CommentBody</code> node, and exposed as a string with the <code>CommentText</code> property.</p>
+<h3 id="ixmlcommentstarttokennode"><a name="ixmlcommentstarttokennode" class="plugin-anchor" href="#ixmlcommentstarttokennode"><span class="fa fa-link"></span></a>IXmlCommentStartTokenNode</h3>
+<!-- Begin IXmlCommentStartTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlCommentStartTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlCommentStartTokenNode -->
+<p>Marker interface for the XML comment start token <code>&lt;!--</code>.</p>
+<h3 id="ixmldocumentnode"><a name="ixmldocumentnode" class="plugin-anchor" href="#ixmldocumentnode"><span class="fa fa-link"></span></a>IXmlDocumentNode</h3>
+<!-- Begin IXmlDocumentNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlDocumentNode :
+  IXmlTreeNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlDocumentNode -->
+<p>Marker interface representing the document node of an XML file. Inherited by <a href="#ixmlfile"><code>IXmlFile</code></a>.</p>
+<h3 id="ixmldtdstarttokennode"><a name="ixmldtdstarttokennode" class="plugin-anchor" href="#ixmldtdstarttokennode"><span class="fa fa-link"></span></a>IXmlDtdStartTokenNode</h3>
+<!-- Begin IXmlDtdStartTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlDtdStartTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlDtdStartTokenNode -->
+<p>Marker interface for the start token (<code>&lt;!DOCTYPE</code>) of an inline DTD declaration.</p>
+<h3 id="ixmlentitytokennode"><a name="ixmlentitytokennode" class="plugin-anchor" href="#ixmlentitytokennode"><span class="fa fa-link"></span></a>IXmlEntityTokenNode</h3>
+<!-- Begin IXmlEntityTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlEntityTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+  <span class="hljs-keyword">bool</span> IsNumericEntity { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> Name { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlEntityTokenNode -->
+<p>An XML <a href="http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references" target="_blank">entity reference token</a> representing content such as <code>&amp;#8226;</code> or <code>&amp;copy;</code>. The <code>IsNumericEntity</code> property is true if the entity begins with the string <code>&amp;#</code>. The <code>Name</code> property is the name of the entity, with the ampersand and semi-colon removed, or <code>null</code> for numeric entities. That is, <code>&amp;copy;</code> will return <code>&quot;copy&quot;</code> and <code>&amp;#8226;</code> will return <code>null</code> for <code>Name</code>.</p>
+<h3 id="ixmleqtokennode"><a name="ixmleqtokennode" class="plugin-anchor" href="#ixmleqtokennode"><span class="fa fa-link"></span></a>IXmlEqTokenNode</h3>
+<!-- Begin IXmlEqTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlEqTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlEqTokenNode -->
+<p>Marker interface for a token representing the equals character (<code>=</code>).</p>
+<h3 id="ixmlfile"><a name="ixmlfile" class="plugin-anchor" href="#ixmlfile"><span class="fa fa-link"></span></a>IXmlFile</h3>
+<!-- Begin IXmlFile -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlFile :
+  IFile,
+  IXmlTagContainer,
+  IXmlDocumentNode,
+  IXmlTreeNode,
+  ITreeNode
+{
+  TreeNodeCollection&lt;IProcessingInstruction&gt; ProcessingInstructions { <span class="hljs-keyword">get</span>; }
+  XmlElementTypes XmlElementTypes { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlFile -->
+<p>The root interface for an XML file. Derives from both <code>IFile</code> and <a href="#ixmltreenode"><code>IXmlTreeNode</code></a>. Also derives from <a href="#ixmltagcontainer"><code>IXmlTagContainer</code></a> showing that it can have child tags.</p>
+<p>Exposes a collection of processing instructions and the collection of element types used by this flavour of XML. See the <a href="Overview.html">overview</a> for more information about the element types.</p>
+<h3 id="ixmlfloatingtexttokennode"><a name="ixmlfloatingtexttokennode" class="plugin-anchor" href="#ixmlfloatingtexttokennode"><span class="fa fa-link"></span></a>IXmlFloatingTextTokenNode</h3>
+<!-- Begin IXmlFloatingTextTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlFloatingTextTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlFloatingTextTokenNode -->
+<p>Marker interface for a non-fixed length token, e.g. entity references or whitespace.</p>
+<h3 id="ixmlidentifier"><a name="ixmlidentifier" class="plugin-anchor" href="#ixmlidentifier"><span class="fa fa-link"></span></a>IXmlIdentifier</h3>
+<!-- Begin IXmlIdentifier -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlIdentifier :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+  <span class="hljs-keyword">string</span> XmlName { <span class="hljs-keyword">get</span>; }
+  TreeTextRange XmlNameRange { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> XmlNamespace { <span class="hljs-keyword">get</span>; }
+  TreeTextRange XmlNamespaceRange { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlIdentifier -->
+<p>An XML identifier, with optional namespace prefix. The <code>XmlName</code> property returns the text of the identifier without the namespace prefix, while the <code>XmlNamespace</code> property returns the prefix, if any. E.g. <code>&quot;foo:bar&quot;</code> will return <code>&quot;bar&quot;</code> for <code>XmlName</code> and <code>&quot;foo&quot;</code> for <code>XmlNamespace</code>. If there is no namespace prefix, <code>XmlNamespace</code> returns an empty string (the property is marked with the <code>[NotNull]</code> annotation attribute).</p>
+<p>The <code>XmlNameRange</code> and <code>XmlNamespaceRange</code> properties return the ranges of the namespace and local name, relative to the start of the identifier node. If there is no namespace prefix, the range returned by <code>XmlNamespaceRange</code> is empty.</p>
+<h3 id="ixmllbrackettokennode"><a name="ixmllbrackettokennode" class="plugin-anchor" href="#ixmllbrackettokennode"><span class="fa fa-link"></span></a>IXmlLbracketTokenNode</h3>
+<!-- Begin IXmlLbracketTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlLbracketTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlLbracketTokenNode -->
+<p>Marker interface for a token representing the left bracket character (<code>[</code>).</p>
+<h3 id="ixmllparenthtokennode"><a name="ixmllparenthtokennode" class="plugin-anchor" href="#ixmllparenthtokennode"><span class="fa fa-link"></span></a>IXmlLparenthTokenNode</h3>
+<!-- Begin IXmlLparenthTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlLparenthTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlLparenthTokenNode -->
+<p>Marker interface for a token representing the left parenthesis character (<code>(</code>).</p>
+<h3 id="ixmlortokennode"><a name="ixmlortokennode" class="plugin-anchor" href="#ixmlortokennode"><span class="fa fa-link"></span></a>IXmlOrTokenNode</h3>
+<!-- Begin IXmlOrTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlOrTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlOrTokenNode -->
+<p>Marker interface for a token representing the &quot;or&quot; or &quot;pipe&quot; character (<code>|</code>).</p>
+<h3 id="ixmlpercenttokennode"><a name="ixmlpercenttokennode" class="plugin-anchor" href="#ixmlpercenttokennode"><span class="fa fa-link"></span></a>IXmlPercentTokenNode</h3>
+<!-- Begin IXmlPercentTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlPercentTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlPercentTokenNode -->
+<p>Marker interface for a token representing the percent character (<code>%</code>).</p>
+<h3 id="ixmlpiendtokennode"><a name="ixmlpiendtokennode" class="plugin-anchor" href="#ixmlpiendtokennode"><span class="fa fa-link"></span></a>IXmlPiendTokenNode</h3>
+<!-- Begin IXmlPiendTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlPiendTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlPiendTokenNode -->
+<p>Marker interface for the processing instruction end token <code>?&gt;</code>.</p>
+<h3 id="ixmlpistarttokennode"><a name="ixmlpistarttokennode" class="plugin-anchor" href="#ixmlpistarttokennode"><span class="fa fa-link"></span></a>IXmlPistartTokenNode</h3>
+<!-- Begin IXmlPistartTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlPistartTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlPistartTokenNode -->
+<p>Marker interface for the processing instruction start token <code>&lt;?</code>.</p>
+<h3 id="ixmlplustokennode"><a name="ixmlplustokennode" class="plugin-anchor" href="#ixmlplustokennode"><span class="fa fa-link"></span></a>IXmlPlusTokenNode</h3>
+<!-- Begin IXmlPlusTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlPlusTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlPlusTokenNode -->
+<p>Marker interface for a token representing the plus character (<code>+</code>).</p>
+<h3 id="ixmlprocessinginstruction"><a name="ixmlprocessinginstruction" class="plugin-anchor" href="#ixmlprocessinginstruction"><span class="fa fa-link"></span></a>IXmlProcessingInstruction</h3>
+<!-- Begin IXmlProcessingInstruction -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlProcessingInstruction :
+  IXmlAttributeContainer,
+  IXmlTreeNode,
+  ITreeNode
+{
+  IXmlToken EndNode { <span class="hljs-keyword">get</span>; }
+  IXmlIdentifier Name { <span class="hljs-keyword">get</span>; }
+  IXmlToken StartNode { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlProcessingInstruction -->
+<p>Represents the XML declaration at the start of an XML file, usually of the form:</p>
+<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot; ?&gt;</span>
+</code></pre>
+<p>The <code>StartNode</code> and <code>EndNode</code> properties provide the <a href="#ixmlpistarttokennode"><code>IXmlPistartTokenNode</code></a> and <a href="#ixmlpiendtokennode"><code>IXmlPiendTokenNode</code></a> tokens. The <code>Name</code> property gets the <a href="#ixmlidentifier"><code>IXmlIdentifier</code></a> node that represents the <code>xml</code> in the declaration.</p>
+<p>Access to the attributes is available via the derived <a href="#ixmlattributecontainer"><code>IXmlAttributeContainer</code></a> interface members.</p>
+<h3 id="ixmlquestiontokennode"><a name="ixmlquestiontokennode" class="plugin-anchor" href="#ixmlquestiontokennode"><span class="fa fa-link"></span></a>IXmlQuestionTokenNode</h3>
+<!-- Begin IXmlQuestionTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlQuestionTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlQuestionTokenNode -->
+<p>Marker interface for a token representing the question mark character (<code>?</code>).</p>
+<h3 id="ixmlrbrackettokennode"><a name="ixmlrbrackettokennode" class="plugin-anchor" href="#ixmlrbrackettokennode"><span class="fa fa-link"></span></a>IXmlRbracketTokenNode</h3>
+<!-- Begin IXmlRbracketTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlRbracketTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlRbracketTokenNode -->
+<p>Marker interface for a token representing the right bracket character (<code>]</code>).</p>
+<h3 id="ixmlrparenthtokennode"><a name="ixmlrparenthtokennode" class="plugin-anchor" href="#ixmlrparenthtokennode"><span class="fa fa-link"></span></a>IXmlRparenthTokenNode</h3>
+<!-- Begin IXmlRparenthTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlRparenthTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlRparenthTokenNode -->
+<p>Marker interface for a token representing the right parenthesis character (<code>)</code>).</p>
+<!--` (keeps vim's syntax highlighting happy after the chars above -->
+<h3 id="ixmlsyntaxerrorelement"><a name="ixmlsyntaxerrorelement" class="plugin-anchor" href="#ixmlsyntaxerrorelement"><span class="fa fa-link"></span></a>IXmlSyntaxErrorElement</h3>
+<!-- Begin IXmlSyntaxErrorElement -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlSyntaxErrorElement :
+  ITreeNode
+{
+  <span class="hljs-keyword">string</span> ErrorDescription { <span class="hljs-keyword">get</span>; }
+  XmlSyntaxErrorType ErrorType { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlSyntaxErrorElement -->
+<p>Represents a syntax error in the tree. Does not derive from <a href="#ixmltreenode"><code>IXmlTreeNode</code></a>. The <code>ErrorDescription</code> property provides textual representation of the error, which can be displayed to the user, e.g. as a tooltip. The <code>ErrorType</code> property is an instance of <code>XmlSyntaxErrorType</code>, which can be compared against the static field instances available on the <code>XmlSyntaxErrorType</code> class.</p>
+<h3 id="ixmltag"><a name="ixmltag" class="plugin-anchor" href="#ixmltag"><span class="fa fa-link"></span></a>IXmlTag</h3>
+<!-- Begin IXmlTag -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlTag :
+  IXmlTreeNode,
+  IXmlTagContainer,
+  ITreeNode
+{
+  IXmlTagFooter Footer { <span class="hljs-keyword">get</span>; }
+  IXmlTagHeader Header { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> InnerText { <span class="hljs-keyword">get</span>; }
+  TreeNodeCollection&lt;IXmlToken&gt; InnerTextTokens { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> InnerValue { <span class="hljs-keyword">get</span>; }
+  ITreeRange InnerXml { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">bool</span> IsEmptyTag { <span class="hljs-keyword">get</span>; }
+
+  TXmlAttribute AddAttributeAfter&lt;TXmlAttribute&gt;(TXmlAttribute attribute, IXmlAttribute anchor);
+  TXmlAttribute AddAttributeBefore&lt;TXmlAttribute&gt;(TXmlAttribute attribute, IXmlAttribute anchor);
+
+  <span class="hljs-keyword">void</span> RemoveAttribute(IXmlAttribute attribute);
+}
+</code></pre>
+<!-- End IXmlTag -->
+<p>Represents a complete XML element. The <code>Header</code> and <code>Footer</code> properties represent the opening and closing tags of the element. Attributes can be retrieved via the <code>Header</code> property (see <a href="#ixmltagheader"><code>IXmlTagHeader</code></a>).</p>
+<p>The inner content can be retrieved in several ways:</p>
+<ul>
+<li><code>InnerXml</code> provides a tree range (relative to the tree) of all nodes after the header, and before the footer, including whitespace. This span will encompass all immediate child nodes (and therefore all descendant nodes, too).</li>
+<li><code>InnerText</code> will return the text from the range returned by <code>InnerXml</code>. The text will therefore include all child and descendant tags and content.</li>
+<li><code>InnerTextTokens</code> will return all token nodes (see <a href="#ixmltoken"><code>IXmlToken</code></a>) that are deemed to be &quot;text&quot; tokens. It does this by calling <code>IXmlToken.GetTokenType()</code> and looking that type up in the <code>tag.XmlTokenTypes.TEXT_NODES</code> set. This set is initialised to <code>XmlTokenTypes.TEXT</code>, <code>XmlTokenTypes.ENTITY_REF</code> and <code>XmlTokenTypes.CHAR_REF</code>. This means, it will include all instances of <a href="#ixmlfloatingtexttokennode"><code>IXmlFloatingTextTokenNode</code></a> and <a href="#ixmlentitytokennode"><code>IXmlEntityTokenNode</code></a>.</li>
+</ul>
+<p>The <code>IsEmptyTag</code> property will return true if <code>Header.IsClosed</code> returns true. That is, if the tag is of the form <code>&lt;foo /&gt;</code>.</p>
+<p>The <code>AddAttributeAfter</code>, <code>AddAttributeBefore</code> and <code>RemoveAttribute</code> methods will add or remove attributes from the tag header. Passing <code>null</code> as the anchor parameter will insert the attribute before the first attribute for <code>AddAttributeAfter</code> and after the last attribute for <code>AddAttributeBefore</code>. The attribute must have been created beforehand, using the <code>XmlElementFactory</code> class. If the tag is part of a physical tree (that is, associated with a file, and not created as part of a sandbox), then the implementations must take the write lock before adding or removing attributes. The modifications can be performed using <code>ModificationUtil.AddChildAfter</code>, <code>ModificationUtil.AddChildBefore</code> and <code>ModificationUtil.DeleteRange</code>.</p>
+<p>Child tags can be retrieved and modified using the <a href="#ixmltagcontainer"><code>IXmlTagContainer</code></a> derived interface.</p>
+<h3 id="ixmltagcontainer"><a name="ixmltagcontainer" class="plugin-anchor" href="#ixmltagcontainer"><span class="fa fa-link"></span></a>IXmlTagContainer</h3>
+<!-- Begin IXmlTagContainer -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlTagContainer :
+  ITreeNode
+{
+  TreeNodeCollection&lt;IXmlTag&gt; InnerTags { <span class="hljs-keyword">get</span>; }
+
+  TXmlTag AddTagAfter&lt;TXmlTag&gt;(TXmlTag tag, IXmlTag anchor);
+  TXmlTag AddTagBefore&lt;TXmlTag&gt;(TXmlTag tag, IXmlTag anchor);
+
+  IList&lt;T&gt; GetNestedTags&lt;T&gt;(<span class="hljs-keyword">string</span> xpath);
+  IXmlTag GetTag(Predicate&lt;IXmlTag&gt; predicate);
+  TreeNodeEnumerable&lt;T&gt; GetTags&lt;T&gt;();
+  TreeNodeCollection&lt;T&gt; GetTags2&lt;T&gt;();
+
+  <span class="hljs-keyword">void</span> RemoveTag(IXmlTag tag);
+}
+</code></pre>
+<!-- End IXmlTagContainer -->
+<p>Represents a node that can contain tags. Mostly inherited by <a href="#ixmltag"><code>IXmlTag</code></a>, but also inherited by <a href="#ixmlfile"><code>IXmlFile</code></a>.</p>
+<p>This interface provides several means of retrieving child tags. Unless otherwise stated, all tags are immediate children of the current tag. When a method is declared as generic, it will filter the child tags so that they match the type passed in. This type must implement <a href="#ixmltag"><code>IXmlTag</code></a>, and is mostly useful for finding a specific tag when working with XML-derived languages, such as web.config files or build scripts.</p>
+<ul>
+<li>The <code>InnerTags</code> property provides a (pre-iterated) collection of child <a href="#ixmltag"><code>IXmlTag</code></a> instances.</li>
+<li><code>GetTag(Predicate&lt;IXmlTag&gt; predicate)</code> will return the first child tag that matches the given predicate.</li>
+<li><code>GetTags&lt;T&gt;()</code> will return a lazily-evaluated enumerable of child tags, filtered to instances of the generic type <code>T</code> passed to the method.</li>
+<li><code>GetTags2&lt;T&gt;()</code> will return a pre-iterated collection of child tags. It is similar to <code>InnerTags</code>, except it will filter all instances to the type passed in as <code>T</code>.</li>
+<li><code>GetNestedTags&lt;T&gt;(string xpath)</code> will return a list of <a href="#ixmltag"><code>IXmlTag</code></a> instances that match a very simple XPath-like expression. The expression only supports <code>&quot;*&quot;</code> and <code>&quot;/&quot;</code>, and must start with a tag name. The implementation (<code>XPathUtil.GetNestedTags&lt;T&gt;()</code>) will split the path on the <code>&quot;/&quot;</code> char, and match each path segment. If the path segment is <code>&quot;*&quot;</code> it will match any tag at that level. It does not provide support for matching attributes or skipping path segments with <code>&quot;//&quot;</code>. Again, the found tags must also match the type of <code>T</code> passed to the method.</li>
+</ul>
+<p>The <code>AddTagAfter</code>, <code>AddTagBefore</code> and <code>RemoveTag</code> methods provide means of adding and removing already created tags to the tag container. Implementations will ensure that tag container is not a self-closed tag (using <code>XmlTagUtil.MakeCompound</code>) and will then use methods in <code>XmlContainerUtil</code> to add or remove the tags. Implementations will also ensure that the write lock is taken, if the tag container is part of a physical tree (that is, associated with a file, and not a sandbox). Tags can be created using the <code>XmlElementFactory</code> derived classes.</p>
+<h3 id="ixmltagend1tokennode"><a name="ixmltagend1tokennode" class="plugin-anchor" href="#ixmltagend1tokennode"><span class="fa fa-link"></span></a>IXmlTagEnd1TokenNode</h3>
+<!-- Begin IXmlTagEnd1TokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlTagEnd1TokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlTagEnd1TokenNode -->
+<p>Marker interface for a self-closing XML tag end token <code>/&gt;</code>.</p>
+<h3 id="ixmltagendtokennode"><a name="ixmltagendtokennode" class="plugin-anchor" href="#ixmltagendtokennode"><span class="fa fa-link"></span></a>IXmlTagEndTokenNode</h3>
+<!-- Begin IXmlTagEndTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlTagEndTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlTagEndTokenNode -->
+<p>Marker interface for an XML tag end token <code>&gt;</code>.</p>
+<h3 id="ixmltagfooter"><a name="ixmltagfooter" class="plugin-anchor" href="#ixmltagfooter"><span class="fa fa-link"></span></a>IXmlTagFooter</h3>
+<!-- Begin IXmlTagFooter -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlTagFooter :
+  IXmlTreeNode,
+  ITreeNode
+{
+  IXmlToken EndNode { <span class="hljs-keyword">get</span>; }
+  IXmlIdentifier Name { <span class="hljs-keyword">get</span>; }
+  IXmlToken StartNode { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlTagFooter -->
+<p>Represents the closing tag of an XML element. Not present if the XML tag is self-closing/empty. The <code>StartNode</code> is an instance of <a href="#ixmltagstart1tokennode"><code>IXmlTagStart1TokenNode</code></a> representing the <code>&lt;/</code> and <code>EndNode</code> is the closing <code>&gt;</code> <a href="#ixmltagendtokennode"><code>IXmlTagEndTokenNode</code></a> token.</p>
+<p>The <code>Name</code> property is the identifier representing the name of the element being closed.</p>
+<h3 id="ixmltagheader"><a name="ixmltagheader" class="plugin-anchor" href="#ixmltagheader"><span class="fa fa-link"></span></a>IXmlTagHeader</h3>
+<!-- Begin IXmlTagHeader -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlTagHeader :
+  IXmlAttributeContainer,
+  IXmlTreeNode,
+  ITreeNode
+{
+  IXmlToken EndNode { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">bool</span> IsClosed { <span class="hljs-keyword">get</span>; }
+  IXmlIdentifier Name { <span class="hljs-keyword">get</span>; }
+  IXmlToken StartNode { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlTagHeader -->
+<p>Represents the opening tag of an XML element. I.e. given the following XML:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">foo</span> <span class="hljs-attribute">baz</span>=<span class="hljs-value">&quot;quux&quot;</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">foo</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">bar</span> <span class="hljs-attribute">baz</span>=<span class="hljs-value">&quot;quux&quot;</span> /&gt;</span>
+</code></pre>
+<p>The text <code>&lt;foo baz=&quot;quux&quot;&gt;</code> will be an instance of <code>IXmlTagHeader</code>. The <code>StartNode</code> and <code>EndNode</code> properties represent the <code>&lt;</code> and <code>&gt;</code> characters, and will be instances of the <a href="#ixmltagstarttokennode"><code>IXmlTagStartTokenNode</code></a> and <a href="#ixmltagendtokennode"><code>IXmlTagEndTokenNode</code></a> marker interfaces.</p>
+<p>The text <code>&lt;bar baz=&quot;quux&quot; /&gt;</code> will also be an instance of <code>IXmlTagHeader</code>, but will return an instance of <a href="#ixmltagend1tokennode"><code>IXmlTagEnd1TokenNode</code></a> to represent the closing <code>/&gt;</code>. It will also return <code>true</code> to the <code>IsClosed</code> property.</p>
+<p>The <code>Name</code> property retrieves the <a href="#ixmlidentifier"><code>IXmlIdentifier</code></a> token that represents the name of the tag. The text for the name can then be retrieved using <code>Name.XmlName</code> and <code>Name.XmlNamespace</code> properties.</p>
+<p>Attributes are accessible via the inherited <a href="#ixmlattributecontainer"><code>IXmlAttributeContainer</code></a> interface.</p>
+<h3 id="ixmltagstart1tokennode"><a name="ixmltagstart1tokennode" class="plugin-anchor" href="#ixmltagstart1tokennode"><span class="fa fa-link"></span></a>IXmlTagStart1TokenNode</h3>
+<!-- Begin IXmlTagStart1TokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlTagStart1TokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlTagStart1TokenNode -->
+<p>Marker interface for the start token of a closing XML tag (<code>&lt;/</code>).</p>
+<h3 id="ixmltagstarttokennode"><a name="ixmltagstarttokennode" class="plugin-anchor" href="#ixmltagstarttokennode"><span class="fa fa-link"></span></a>IXmlTagStartTokenNode</h3>
+<!-- Begin IXmlTagStartTokenNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlTagStartTokenNode :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+}
+</code></pre>
+<!-- End IXmlTagStartTokenNode -->
+<p>Marker interface for the start token of an opening XML tag (<code>&lt;/</code>).</p>
+<h3 id="ixmltoken"><a name="ixmltoken" class="plugin-anchor" href="#ixmltoken"><span class="fa fa-link"></span></a>IXmlToken</h3>
+<!-- Begin IXmlToken -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlToken :
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+  <span class="hljs-keyword">new</span> XmlTokenNodeType GetTokenType();
+}
+</code></pre>
+<!-- End IXmlToken -->
+<p>Represents a token in the XML PSI tree. A token is a leaf node in the tree, and cannot be split into smaller nodes. It is the smallest building block node used when creating the tree. For example:</p>
+<pre><code class="lang-xml"><span class="hljs-tag">&lt;<span class="hljs-title">foo</span> <span class="hljs-attribute">baz</span>=<span class="hljs-value">&quot;quux&quot;</span> /&gt;</span>
+</code></pre>
+<p>When parsed, this is split into the following tokens: <code>&lt;</code>, <code>foo</code>, <code>baz</code>, <code>=</code>, <code>&quot;</code>, <code>quux</code>, <code>&quot;</code> and <code>/&gt;</code>. These tokens are then used to build higher level constructs in the PSI tree - a tag, with a start token, identifier, attributes (which themselves are composed of tokens) and a close tag token.</p>
+<p>The <code>GetTokenType</code> method returns the <code>XmlTokenNodeType</code> of the particular token. It will be equal to one of the properties set on <code>XmlTokenTypes</code>. Note that this method overrides and hides the <code>ITokenNode.GetTokenType</code> method, however, the returned <code>XmlTokenNodeType</code> derives from <code>TokenNodeType</code> and also implements <code>ITokenNodeType</code>. One useful method for the returned token type is to check if the node is a whitespace node - <code>node.GetTokenType().IsWhitespace()</code>.</p>
+<h3 id="ixmltreenode"><a name="ixmltreenode" class="plugin-anchor" href="#ixmltreenode"><span class="fa fa-link"></span></a>IXmlTreeNode</h3>
+<!-- Begin IXmlTreeNode -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlTreeNode :
+  ITreeNode
+{
+  XmlTokenTypes XmlTokenTypes { <span class="hljs-keyword">get</span>; }
+
+  TReturn AcceptVisitor&lt;TContext, TReturn&gt;(IXmlTreeVisitor&lt;TContext, TReturn&gt; visitor, TContext context);
+}
+</code></pre>
+<!-- End IXmlTreeNode -->
+<p>Root interface for all XML tree nodes, from tokens to other non-leaf nodes. The <code>XmlTokenTypes</code> property retrieves the instance of <code>XmlTokenTypes</code> used to construct the tree. This might be a derived instance in the cases that the XML dialect defines new constructs (e.g. XAML).</p>
+<p>The <code>AcceptVisitor</code> method implements the <a href="http://en.wikipedia.org/wiki/Visitor_pattern" target="_blank">Visitor pattern</a>. It will call the strongly typed <code>Visit</code> method of the <code>IXmlTreeVisitor</code> instance passed in.</p>
+<h3 id="ixmlvaluetoken"><a name="ixmlvaluetoken" class="plugin-anchor" href="#ixmlvaluetoken"><span class="fa fa-link"></span></a>IXmlValueToken</h3>
+<!-- Begin IXmlValueToken -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlValueToken :
+  IXmlToken,
+  IXmlTreeNode,
+  ITokenNode,
+  ITreeNode
+{
+  <span class="hljs-keyword">string</span> UnquotedValue { <span class="hljs-keyword">get</span>; }
+  TreeTextRange UnquotedValueRange { <span class="hljs-keyword">get</span>; }
+}
+</code></pre>
+<!-- End IXmlValueToken -->
+<p>Represents a token that is a quoted value. Mostly used to represent the value in an attribute. The <code>UnquotedValue</code> property provides the content of the token without the surrounding quotes, while the <code>UnquotedValueRange</code> property provides the offsets to the unquoted value, relative to the start of the node.</p>
+
+                    
+                    </section>
+                
+                </div>
+            </div>
+        </div>
+
+        
+        <a href="../../../PSI/Reference/Xml/Utils.html" class="navigation navigation-prev " aria-label="Previous page: Utils"><i class="fa fa-angle-left"></i></a>
+        
+        
+        <a href="../../../PSI/Reference/Xml/TreeNodesDTD.html" class="navigation navigation-next " aria-label="Next page: Tree Nodes (DTD)"><i class="fa fa-angle-right"></i></a>
+        
+    </div>
+</div>
+
+        
+<script src="../../../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="../../../gitbook/app.js"></script>
+
+<script>
+require(["gitbook"], function(gitbook) {
+    var config = {};
+    gitbook.start(config);
+});
+</script>
+
+        
+    </body>
+    
+</html>
