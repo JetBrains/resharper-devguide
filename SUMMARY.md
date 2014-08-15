@@ -118,8 +118,8 @@
     * [XML and DTD](PSI/Reference/Xml/Overview.md)
         * [Navigators](PSI/Reference/Xml/Navigators.md)
         * [Utils](PSI/Reference/Xml/Utils.md)
-        * [Tree Nodes](PSI/Reference/Xml/Index.md)
-        * [Tree Nodes (DTD)](PSI/Reference/Xml/IndexDTD.md)
+        * [Tree Nodes](PSI/Reference/Xml/TreeNodes.md)
+        * [Tree Nodes (DTD)](PSI/Reference/Xml/TreeNodesDTD.md)
     * Build scripts
     * XAML
     * XML Doc
