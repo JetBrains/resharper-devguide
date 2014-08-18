@@ -62,6 +62,54 @@ Helper methods for handling references within a token node. The methods defer to
 
 ## X
 
+### XmlAttributeContainerExtensions
+
+<!-- Begin XmlAttributeContainerExtensions -->
+
+```cs
+public static class XmlAttributeContainerExtensions
+{
+  public static TAttribute GetAttribute<TAttribute>(IXmlAttributeContainer container);
+  public static IXmlAttribute GetAttribute(IXmlAttributeContainer container, Predicate<IXmlAttribute> predicate);
+  public static IXmlAttribute GetAttribute(IXmlAttributeContainer container, string fullName);
+}
+```
+
+<!-- End XmlAttributeContainerExtensions -->
+
+Gets an attribute from an instance of [`IXmlAttributeContainer`](TreeNodes.md#ixmlattributecontainer) either of a specific derived type, or matching a predicate, or based on name (including namespace prefix, if specified).
+
+### XmlAttributeExtension
+
+<!-- Begin XmlAttributeExtension -->
+
+```cs
+public static class XmlAttributeExtension
+{
+  public static string GetUnquotedText(IXmlAttribute attribute, out TreeTextRange range);
+  public static DocumentRange GetUnquotedValueRange(IXmlAttribute attribute);
+}
+```
+
+<!-- End XmlAttributeExtension -->
+
+Helper methods to get information about the unquoted text of an instance of [`IXmlAttribute`](TreeNodes.md#ixmlattribute). `GetUnquotedText` will return the unquoted text, as well as the tree range of the value. It is better to use the properties on [`IXmlValueToken`](TreeNodes.md#ixmlvaluetoken), as that implementation will cache the values for repeated calls. `GetUnquotedValueRange` returns the range of the unquoted value, relative to the document the XML PSI is hosted inside (this might be an XML file, or an XML island inside another doucment).
+
+### XmlAttributeExtensions
+
+<!-- Begin XmlAttributeExtensions -->
+
+```cs
+public static class XmlAttributeExtensions
+{
+  public static void Remove(IXmlAttribute xmlAttribute);
+}
+```
+
+<!-- End XmlAttributeExtensions -->
+
+Convenience method. Will remove the given attribute from it's parent tag via `IXmlTag.RemoveAttribute()`, or directly removes it from the tree if it's not a child of a tag.
+
 ### XmlAttributeUtil
 
 <!-- Begin XmlAttributeUtil -->
@@ -80,6 +128,22 @@ public static class XmlAttributeUtil
 
 Helper methods for working with XML attributes. `SetValue` replaces an attributes value by creating a new instance of `IXmlAttributeValue` and modifying the tree (it takes the write lock, so the caller doesn't have to). The other methods return the range of the unquoted value of the attribute, relative to the tree, and relative to the document. These may be different if the XML `IFile` is not the primary PSI tree in the file.
 
+### XmlElementFactoryExtensions
+
+<!-- Begin XmlElementFactoryExtensions -->
+
+```cs
+public static class XmlElementFactoryExtensions
+{
+  public static IXmlAttribute CreateAttributeRaw(IXmlElementFactory factory, string attributeText);
+  public static IXmlFile CreateFileRaw(IXmlElementFactory factory, string xmlText);
+}
+```
+
+<!-- End XmlElementFactoryExtensions -->
+
+Creates an instance of [`IXmlFile`](TreeNodes.md#ixmlfile) or [`IXmlAttribute`](TreeNodes.md#ixmlattribute) using the passed in `IXmlElementFactory` without putting the created file into a sandbox. The resulting node is essentially not fully initialised - it is not part of a file, and not part of a sandbox, either.
+
 ### XmlReferenceUtil
 
 <!-- Begin XmlReferenceUtil -->
@@ -94,6 +158,30 @@ public static class XmlReferenceUtil
 <!-- End XmlReferenceUtil -->
 
 Helper method that will recursively walk down the PSI tree starting at `element`, looking for a particular reference, as decided by `predicate`.
+
+### XmlTagExtensions
+
+<!-- Begin XmlTagExtensions -->
+
+```cs
+public static class XmlTagExtensions
+{
+  public static IXmlAttribute GetAttribute(IXmlTag tag, Predicate<IXmlAttribute> predicate);
+  public static IXmlAttribute GetAttribute(IXmlTag tag, string fullName);
+  public static TreeNodeEnumerable<IXmlAttribute> GetAttributes(IXmlTag tag);
+  public static string GetFullTagName(IXmlTag tag);
+  public static IXmlIdentifier GetName(IXmlTag tag);
+  public static IXmlIdentifier GetNameNode(IXmlTag tag);
+  public static string GetTagName(IXmlTag tag);
+  public static string GetTagNamespace(IXmlTag tag);
+
+  public static void Remove(IXmlTag xmlTag);
+}
+```
+
+<!-- End XmlTagExtensions -->
+
+Convenience methods that call into properties and methods on [`IXmlTag`](TreeNodes.md#ixmltag) and child nodes. E.g. `GetTagName` returns `tag.Header.Name.XmlName`, and `Remove` finds the tag's parent [`IXmlTagContainer`](TreeNodes.md#ixmltagcontainer) and calls `IXmlTagContainer.RemoveTag`.
 
 ### XmlTagUtil
 
