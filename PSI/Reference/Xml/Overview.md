@@ -6,7 +6,11 @@
 
 Thanks to the simple and regular structure of XML, the XML PSI tree is fairly small, and pretty easy to understand. However, the PSI tree should not be confused with a DOM. The PSI tree is an abstract syntax tree, and models all of the syntax in an XML file, while an XML DOM is a (light) abstraction on top of the file. A DOM lists elements and attributes, while an abstract syntax tree will also list whitespace, and the constructs used to create an element (e.g. the opening and closing tags).
 
+A good example here is that the text contents of an XML element is split into text tokens and whitespace nodes. Even if the owning XML element has the `xml:space="preserve"` attribute set, the tree doesn't change, and the whitespace nodes are still added. In other words, the semantic nature of the `xml:space` attribute isn't reflected in the abstract syntax tree.
+
 Since XML is a hierarchical structure, care should also be taken not to confuse child nodes in the tree with children in the XML DOM. For example, the children of an XML element in the PSI tree include the nodes used to construct the opening and closing tags, as well as the inner nodes of the elements (whitespace, child tags, etc).
+
+See the [Tree Nodes reference section](TreeNodes.md) for more details of the XML tree nodes.
 
 ### Tree nodes
 

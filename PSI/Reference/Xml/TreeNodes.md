@@ -378,7 +378,7 @@ public interface IXmlFloatingTextTokenNode :
 
 <!-- End IXmlFloatingTextTokenNode -->
 
-Marker interface for a non-fixed length token, e.g. entity references or whitespace.
+Marker interface for a non-fixed length token, e.g. identifiers, text, entity references or whitespace. Note that the default implementation (`XmlFloatingTextToken`) is used for text, while the derived `XmlWhitespaceToken`, `XmlEntityToken` and `XmlIdentifier` are used for the other node types. This is so that they can implement other interfaces, such as [`IXmlEntityTokenNode`](#ixmlentitytokennode) and [`IXmlIdentifier`](#ixmlidentifier). Or in the case of `XmlWhitespaceToken`, to override `ITreeNode.IsFiltered()` to return `true`.
 
 ### IXmlIdentifier
 
@@ -665,6 +665,7 @@ The inner content can be retrieved in several ways:
 * `InnerXml` provides a tree range (relative to the tree) of all nodes after the header, and before the footer, including whitespace. This span will encompass all immediate child nodes (and therefore all descendant nodes, too).
 * `InnerText` will return the text from the range returned by `InnerXml`. The text will therefore include all child and descendant tags and content.
 * `InnerTextTokens` will return all token nodes (see [`IXmlToken`](#ixmltoken)) that are deemed to be "text" tokens. It does this by calling `IXmlToken.GetTokenType()` and looking that type up in the `tag.XmlTokenTypes.TEXT_NODES` set. This set is initialised to `XmlTokenTypes.TEXT`, `XmlTokenTypes.ENTITY_REF` and `XmlTokenTypes.CHAR_REF`. This means, it will include all instances of [`IXmlFloatingTextTokenNode`](#ixmlfloatingtexttokennode) and [`IXmlEntityTokenNode`](#ixmlentitytokennode).
+* `InnerValue` returns a string containing the content of the child text nodes, including text, entity references, whitespace and CDATA nodes. This property will also check to see if whitespace should be preserved, by using the `XmlLangaugeSupport.IsSpacePreserved` method to look for `xml:space="preserved"` on parent tags.
 
 The `IsEmptyTag` property will return true if `Header.IsClosed` returns true. That is, if the tag is of the form `<foo />`.
 
