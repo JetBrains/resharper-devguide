@@ -50,7 +50,7 @@
 
 
         
-    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.10.10.2" data-basepath="../../.." data-revision="1408112563850">
+    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.10.10.2" data-basepath="../../.." data-revision="1408378376096">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2912,8 +2912,13 @@
 </ul>
 </li>
 <li><a href="#x">X</a><ul>
+<li><a href="#xmlattributecontainerextensions">XmlAttributeContainerExtensions</a></li>
+<li><a href="#xmlattributeextension">XmlAttributeExtension</a></li>
+<li><a href="#xmlattributeextensions">XmlAttributeExtensions</a></li>
 <li><a href="#xmlattributeutil">XmlAttributeUtil</a></li>
+<li><a href="#xmlelementfactoryextensions">XmlElementFactoryExtensions</a></li>
 <li><a href="#xmlreferenceutil">XmlReferenceUtil</a></li>
+<li><a href="#xmltagextensions">XmlTagExtensions</a></li>
 <li><a href="#xmltagutil">XmlTagUtil</a></li>
 <li><a href="#xpathutil">XPathUtil</a></li>
 </ul>
@@ -2963,6 +2968,36 @@
 <!-- End ReferenceWithTokenUtil -->
 <p>Helper methods for handling references within a token node. The methods defer to <code>ReferenceWithinElementUtil&lt;IXmlToken&gt;</code>. The <code>SetText</code> methods provide a factory method to create an appropriate token to replace the existing element.</p>
 <h2 id="x"><a name="x" class="plugin-anchor" href="#x"><span class="fa fa-link"></span></a>X</h2>
+<h3 id="xmlattributecontainerextensions"><a name="xmlattributecontainerextensions" class="plugin-anchor" href="#xmlattributecontainerextensions"><span class="fa fa-link"></span></a>XmlAttributeContainerExtensions</h3>
+<!-- Begin XmlAttributeContainerExtensions -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> XmlAttributeContainerExtensions
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> TAttribute GetAttribute&lt;TAttribute&gt;(IXmlAttributeContainer container);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlAttribute <span class="hljs-title">GetAttribute</span>(IXmlAttributeContainer container, Predicate&lt;IXmlAttribute&gt; predicate);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlAttribute <span class="hljs-title">GetAttribute</span>(IXmlAttributeContainer container, <span class="hljs-keyword">string</span> fullName);
+}
+</code></pre>
+<!-- End XmlAttributeContainerExtensions -->
+<p>Gets an attribute from an instance of <a href="TreeNodes.html#ixmlattributecontainer"><code>IXmlAttributeContainer</code></a> either of a specific derived type, or matching a predicate, or based on name (including namespace prefix, if specified).</p>
+<h3 id="xmlattributeextension"><a name="xmlattributeextension" class="plugin-anchor" href="#xmlattributeextension"><span class="fa fa-link"></span></a>XmlAttributeExtension</h3>
+<!-- Begin XmlAttributeExtension -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> XmlAttributeExtension
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> <span class="hljs-title">GetUnquotedText</span>(IXmlAttribute attribute, <span class="hljs-keyword">out</span> TreeTextRange range);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DocumentRange <span class="hljs-title">GetUnquotedValueRange</span>(IXmlAttribute attribute);
+}
+</code></pre>
+<!-- End XmlAttributeExtension -->
+<p>Helper methods to get information about the unquoted text of an instance of <a href="TreeNodes.html#ixmlattribute"><code>IXmlAttribute</code></a>. <code>GetUnquotedText</code> will return the unquoted text, as well as the tree range of the value. It is better to use the properties on <a href="TreeNodes.html#ixmlvaluetoken"><code>IXmlValueToken</code></a>, as that implementation will cache the values for repeated calls. <code>GetUnquotedValueRange</code> returns the range of the unquoted value, relative to the document the XML PSI is hosted inside (this might be an XML file, or an XML island inside another doucment).</p>
+<h3 id="xmlattributeextensions"><a name="xmlattributeextensions" class="plugin-anchor" href="#xmlattributeextensions"><span class="fa fa-link"></span></a>XmlAttributeExtensions</h3>
+<!-- Begin XmlAttributeExtensions -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> XmlAttributeExtensions
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Remove</span>(IXmlAttribute xmlAttribute);
+}
+</code></pre>
+<!-- End XmlAttributeExtensions -->
+<p>Convenience method. Will remove the given attribute from it&apos;s parent tag via <code>IXmlTag.RemoveAttribute()</code>, or directly removes it from the tree if it&apos;s not a child of a tag.</p>
 <h3 id="xmlattributeutil"><a name="xmlattributeutil" class="plugin-anchor" href="#xmlattributeutil"><span class="fa fa-link"></span></a>XmlAttributeUtil</h3>
 <!-- Begin XmlAttributeUtil -->
 <pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> XmlAttributeUtil
@@ -2975,6 +3010,16 @@
 </code></pre>
 <!-- End XmlAttributeUtil -->
 <p>Helper methods for working with XML attributes. <code>SetValue</code> replaces an attributes value by creating a new instance of <code>IXmlAttributeValue</code> and modifying the tree (it takes the write lock, so the caller doesn&apos;t have to). The other methods return the range of the unquoted value of the attribute, relative to the tree, and relative to the document. These may be different if the XML <code>IFile</code> is not the primary PSI tree in the file.</p>
+<h3 id="xmlelementfactoryextensions"><a name="xmlelementfactoryextensions" class="plugin-anchor" href="#xmlelementfactoryextensions"><span class="fa fa-link"></span></a>XmlElementFactoryExtensions</h3>
+<!-- Begin XmlElementFactoryExtensions -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> XmlElementFactoryExtensions
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlAttribute <span class="hljs-title">CreateAttributeRaw</span>(IXmlElementFactory factory, <span class="hljs-keyword">string</span> attributeText);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlFile <span class="hljs-title">CreateFileRaw</span>(IXmlElementFactory factory, <span class="hljs-keyword">string</span> xmlText);
+}
+</code></pre>
+<!-- End XmlElementFactoryExtensions -->
+<p>Creates an instance of <a href="TreeNodes.html#ixmlfile"><code>IXmlFile</code></a> or <a href="TreeNodes.html#ixmlattribute"><code>IXmlAttribute</code></a> using the passed in <code>IXmlElementFactory</code> without putting the created file into a sandbox. The resulting node is essentially not fully initialised - it is not part of a file, and not part of a sandbox, either.</p>
 <h3 id="xmlreferenceutil"><a name="xmlreferenceutil" class="plugin-anchor" href="#xmlreferenceutil"><span class="fa fa-link"></span></a>XmlReferenceUtil</h3>
 <!-- Begin XmlReferenceUtil -->
 <pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> XmlReferenceUtil
@@ -2984,6 +3029,24 @@
 </code></pre>
 <!-- End XmlReferenceUtil -->
 <p>Helper method that will recursively walk down the PSI tree starting at <code>element</code>, looking for a particular reference, as decided by <code>predicate</code>.</p>
+<h3 id="xmltagextensions"><a name="xmltagextensions" class="plugin-anchor" href="#xmltagextensions"><span class="fa fa-link"></span></a>XmlTagExtensions</h3>
+<!-- Begin XmlTagExtensions -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> XmlTagExtensions
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlAttribute <span class="hljs-title">GetAttribute</span>(IXmlTag tag, Predicate&lt;IXmlAttribute&gt; predicate);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlAttribute <span class="hljs-title">GetAttribute</span>(IXmlTag tag, <span class="hljs-keyword">string</span> fullName);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> TreeNodeEnumerable&lt;IXmlAttribute&gt; <span class="hljs-title">GetAttributes</span>(IXmlTag tag);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> <span class="hljs-title">GetFullTagName</span>(IXmlTag tag);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlIdentifier <span class="hljs-title">GetName</span>(IXmlTag tag);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlIdentifier <span class="hljs-title">GetNameNode</span>(IXmlTag tag);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> <span class="hljs-title">GetTagName</span>(IXmlTag tag);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> <span class="hljs-title">GetTagNamespace</span>(IXmlTag tag);
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Remove</span>(IXmlTag xmlTag);
+}
+</code></pre>
+<!-- End XmlTagExtensions -->
+<p>Convenience methods that call into properties and methods on <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a> and child nodes. E.g. <code>GetTagName</code> returns <code>tag.Header.Name.XmlName</code>, and <code>Remove</code> finds the tag&apos;s parent <a href="TreeNodes.html#ixmltagcontainer"><code>IXmlTagContainer</code></a> and calls <code>IXmlTagContainer.RemoveTag</code>.</p>
 <h3 id="xmltagutil"><a name="xmltagutil" class="plugin-anchor" href="#xmltagutil"><span class="fa fa-link"></span></a>XmlTagUtil</h3>
 <!-- Begin XmlTagUtil -->
 <pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> XmlTagUtil

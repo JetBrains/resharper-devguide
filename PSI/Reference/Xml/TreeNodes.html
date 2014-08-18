@@ -50,7 +50,7 @@
 
 
         
-    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.10.10.3" data-basepath="../../.." data-revision="1408112563850">
+    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.10.10.3" data-basepath="../../.." data-revision="1408378376096">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3206,7 +3206,7 @@
 }
 </code></pre>
 <!-- End IXmlFloatingTextTokenNode -->
-<p>Marker interface for a non-fixed length token, e.g. entity references or whitespace.</p>
+<p>Marker interface for a non-fixed length token, e.g. identifiers, text, entity references or whitespace. Note that the default implementation (<code>XmlFloatingTextToken</code>) is used for text, while the derived <code>XmlWhitespaceToken</code>, <code>XmlEntityToken</code> and <code>XmlIdentifier</code> are used for the other node types. This is so that they can implement other interfaces, such as <a href="#ixmlentitytokennode"><code>IXmlEntityTokenNode</code></a> and <a href="#ixmlidentifier"><code>IXmlIdentifier</code></a>. Or in the case of <code>XmlWhitespaceToken</code>, to override <code>ITreeNode.IsFiltered()</code> to return <code>true</code>.</p>
 <h3 id="ixmlidentifier"><a name="ixmlidentifier" class="plugin-anchor" href="#ixmlidentifier"><span class="fa fa-link"></span></a>IXmlIdentifier</h3>
 <!-- Begin IXmlIdentifier -->
 <pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlIdentifier :
@@ -3402,6 +3402,7 @@
 <li><code>InnerXml</code> provides a tree range (relative to the tree) of all nodes after the header, and before the footer, including whitespace. This span will encompass all immediate child nodes (and therefore all descendant nodes, too).</li>
 <li><code>InnerText</code> will return the text from the range returned by <code>InnerXml</code>. The text will therefore include all child and descendant tags and content.</li>
 <li><code>InnerTextTokens</code> will return all token nodes (see <a href="#ixmltoken"><code>IXmlToken</code></a>) that are deemed to be &quot;text&quot; tokens. It does this by calling <code>IXmlToken.GetTokenType()</code> and looking that type up in the <code>tag.XmlTokenTypes.TEXT_NODES</code> set. This set is initialised to <code>XmlTokenTypes.TEXT</code>, <code>XmlTokenTypes.ENTITY_REF</code> and <code>XmlTokenTypes.CHAR_REF</code>. This means, it will include all instances of <a href="#ixmlfloatingtexttokennode"><code>IXmlFloatingTextTokenNode</code></a> and <a href="#ixmlentitytokennode"><code>IXmlEntityTokenNode</code></a>.</li>
+<li><code>InnerValue</code> returns a string containing the content of the child text nodes, including text, entity references, whitespace and CDATA nodes. This property will also check to see if whitespace should be preserved, by using the <code>XmlLangaugeSupport.IsSpacePreserved</code> method to look for <code>xml:space=&quot;preserved&quot;</code> on parent tags.</li>
 </ul>
 <p>The <code>IsEmptyTag</code> property will return true if <code>Header.IsClosed</code> returns true. That is, if the tag is of the form <code>&lt;foo /&gt;</code>.</p>
 <p>The <code>AddAttributeAfter</code>, <code>AddAttributeBefore</code> and <code>RemoveAttribute</code> methods will add or remove attributes from the tag header. Passing <code>null</code> as the anchor parameter will insert the attribute before the first attribute for <code>AddAttributeAfter</code> and after the last attribute for <code>AddAttributeBefore</code>. The attribute must have been created beforehand, using the <code>XmlElementFactory</code> class. If the tag is part of a physical tree (that is, associated with a file, and not created as part of a sandbox), then the implementations must take the write lock before adding or removing attributes. The modifications can be performed using <code>ModificationUtil.AddChildAfter</code>, <code>ModificationUtil.AddChildBefore</code> and <code>ModificationUtil.DeleteRange</code>.</p>

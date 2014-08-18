@@ -48,7 +48,7 @@
 
 
         
-    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.10.10" data-basepath="../../.." data-revision="1408112563850">
+    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.10.10" data-basepath="../../.." data-revision="1408378376096">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -2918,7 +2918,9 @@
 <!-- toc stop -->
 <h2 id="tree-structure"><a name="tree-structure" class="plugin-anchor" href="#tree-structure"><span class="fa fa-link"></span></a>Tree structure</h2>
 <p>Thanks to the simple and regular structure of XML, the XML PSI tree is fairly small, and pretty easy to understand. However, the PSI tree should not be confused with a DOM. The PSI tree is an abstract syntax tree, and models all of the syntax in an XML file, while an XML DOM is a (light) abstraction on top of the file. A DOM lists elements and attributes, while an abstract syntax tree will also list whitespace, and the constructs used to create an element (e.g. the opening and closing tags).</p>
+<p>A good example here is that the text contents of an XML element is split into text tokens and whitespace nodes. Even if the owning XML element has the <code>xml:space=&quot;preserve&quot;</code> attribute set, the tree doesn&apos;t change, and the whitespace nodes are still added. In other words, the semantic nature of the <code>xml:space</code> attribute isn&apos;t reflected in the abstract syntax tree.</p>
 <p>Since XML is a hierarchical structure, care should also be taken not to confuse child nodes in the tree with children in the XML DOM. For example, the children of an XML element in the PSI tree include the nodes used to construct the opening and closing tags, as well as the inner nodes of the elements (whitespace, child tags, etc).</p>
+<p>See the <a href="TreeNodes.html">Tree Nodes reference section</a> for more details of the XML tree nodes.</p>
 <h3 id="tree-nodes"><a name="tree-nodes" class="plugin-anchor" href="#tree-nodes"><span class="fa fa-link"></span></a>Tree nodes</h3>
 <p>Each node in the XML tree derives from <a href="TreeNodes.html#ixmltreenode"><code>IXmlTreeNode</code></a>:</p>
 <!-- Begin IXmlTreeNode -->

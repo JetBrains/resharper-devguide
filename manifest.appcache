@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1408112563850
+# Revision 1408378376097
 
 CACHE:
 HowDoI.html
@@ -32,8 +32,8 @@ Intro/Glossary.html
 Intro/KnownIssues.html
 Intro/Tools.html
 PSI/Caches.html
-PSI/ExternalAnnotations/Testing.html
 PSI/Generating/Code.html
+PSI/ExternalAnnotations/Testing.html
 PSI/Generating/Comments.html
 PSI/NavigatingSyntaxTrees.html
 PSI/Reference/Xml/Navigators.html
