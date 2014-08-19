@@ -116,7 +116,9 @@
     * Razor
     * ASP.net
     * [XML and DTD](PSI/Reference/Xml/Overview.md)
+        * [Manipulating the Tree](PSI/Reference/Xml/Manipulation.md)
         * [Navigators](PSI/Reference/Xml/Navigators.md)
+        * [Element Factories](PSI/Reference/Xml/ElementFactories.md)
         * [Utils](PSI/Reference/Xml/Utils.md)
         * [Tree Nodes](PSI/Reference/Xml/TreeNodes.md)
         * [Tree Nodes (DTD)](PSI/Reference/Xml/TreeNodesDTD.md)
