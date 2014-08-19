@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
-<html lang="en-US" manifest="../../manifest.appcache">
+<html lang="en-US" manifest="../../../manifest.appcache">
     
     <head>
         
         <meta charset="UTF-8">
-        <title>Managing reference providers | ReSharper DevGuide</title>
+        <title>Element Factories | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 0.7.1">
@@ -12,17 +12,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
         
     
     
     <meta name="author" content="citizenmatt">
     
     
-    <link rel="next" href="../../PSI/References/PathReferences.html">
+    <link rel="next" href="../../../PSI/Reference/Xml/Utils.html">
     
     
-    <link rel="prev" href="../../PSI/References/Substrings.html">
+    <link rel="prev" href="../../../PSI/Reference/Xml/Navigators.html">
     
 
         
@@ -30,27 +30,27 @@
     <body>
         
         
-<link rel="stylesheet" href="../../gitbook/style.css">
+<link rel="stylesheet" href="../../../gitbook/style.css">
 
     
-    <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-richquotes/plugin.css">
-    
-
-    
-    <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
+    <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-richquotes/plugin.css">
     
 
     
-    <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-multipart/multipart.css">
+    <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
     
 
     
-    <link rel="stylesheet" href="../../gitbook/plugins/gitbook-plugin-scrollablecode/scrollablecode.css">
+    <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-multipart/multipart.css">
+    
+
+    
+    <link rel="stylesheet" href="../../../gitbook/plugins/gitbook-plugin-scrollablecode/scrollablecode.css">
     
 
 
         
-    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.4.5" data-basepath="../.." data-revision="1408477847883">
+    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="5.10.10.3" data-basepath="../../.." data-revision="1408477847883">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -101,7 +101,7 @@
     <!-- Title -->
     <h1>
         <i class="fa fa-spinner fa-spin"></i>
-        <a href="../../">ReSharper DevGuide</a>
+        <a href="../../../">ReSharper DevGuide</a>
     </h1>
 </div>
 
@@ -130,7 +130,7 @@
         
         
         <li>
-            <a href="https://github.com/citizenmatt/resharper-devguide/edit/master/PSI/References/IReferenceProvider.md" target="blank" class="contribute-link">Edit and Contribute</a>
+            <a href="https://github.com/citizenmatt/resharper-devguide/edit/master/PSI/Reference/Xml/ElementFactories.md" target="blank" class="contribute-link">Edit and Contribute</a>
         </li>
         
 
@@ -146,7 +146,7 @@
         <li class="part" data-level="0" data-path="index.html">
             
                 
-                    <a href="../../index.html">
+                    <a href="../../../index.html">
                         <i class="fa fa-check"></i>
                         
                          Introduction
@@ -169,7 +169,7 @@
         <li class="chapter " data-level="1.1" data-path="StyleGuide.html">
             
                 
-                    <a href="../../StyleGuide.html">
+                    <a href="../../../StyleGuide.html">
                         <i class="fa fa-check"></i>
                         
                             <b>1.</b>
@@ -185,7 +185,7 @@
         <li class="chapter " data-level="1.2" data-path="wip.html">
             
                 
-                    <a href="../../wip.html">
+                    <a href="../../../wip.html">
                         <i class="fa fa-check"></i>
                         
                             <b>2.</b>
@@ -224,7 +224,7 @@
         <li class="chapter " data-level="2.1.1" data-path="Intro/Tools.html">
             
                 
-                    <a href="../../Intro/Tools.html">
+                    <a href="../../../Intro/Tools.html">
                         <i class="fa fa-check"></i>
                         
                             <b>1.1.</b>
@@ -324,7 +324,7 @@
         <li class="chapter " data-level="2.2.5" data-path="Extensions/Packaging.html">
             
                 
-                    <a href="../../Extensions/Packaging.html">
+                    <a href="../../../Extensions/Packaging.html">
                         <i class="fa fa-check"></i>
                         
                             <b>2.5.</b>
@@ -353,7 +353,7 @@
         <li class="chapter " data-level="2.3" data-path="HowDoI.html">
             
                 
-                    <a href="../../HowDoI.html">
+                    <a href="../../../HowDoI.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.</b>
@@ -378,7 +378,7 @@
         <li class="chapter " data-level="2.4.1" data-path="Plugins/SDK.html">
             
                 
-                    <a href="../../Plugins/SDK.html">
+                    <a href="../../../Plugins/SDK.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.1.</b>
@@ -394,7 +394,7 @@
         <li class="chapter " data-level="2.4.2" data-path="Plugins/ProjectSetup.html">
             
                 
-                    <a href="../../Plugins/ProjectSetup.html">
+                    <a href="../../../Plugins/ProjectSetup.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.2.</b>
@@ -418,7 +418,7 @@
         <li class="chapter " data-level="2.4.4" data-path="Intro/KnownIssues.html">
             
                 
-                    <a href="../../Intro/KnownIssues.html">
+                    <a href="../../../Intro/KnownIssues.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.4.</b>
@@ -434,7 +434,7 @@
         <li class="chapter " data-level="2.4.5" data-path="Plugins/Testing.html">
             
                 
-                    <a href="../../Plugins/Testing.html">
+                    <a href="../../../Plugins/Testing.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.5.</b>
@@ -459,7 +459,7 @@
         <li class="chapter " data-level="2.4.5.2" data-path="Plugins/TemporarySettings.html">
             
                 
-                    <a href="../../Plugins/TemporarySettings.html">
+                    <a href="../../../Plugins/TemporarySettings.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.5.2.</b>
@@ -517,7 +517,7 @@
         <li class="chapter " data-level="2.5" data-path="Intro/Glossary.html">
             
                 
-                    <a href="../../Intro/Glossary.html">
+                    <a href="../../../Intro/Glossary.html">
                         <i class="fa fa-check"></i>
                         
                             <b>5.</b>
@@ -547,7 +547,7 @@
         <li class="chapter " data-level="3.1" data-path="Architecture/Overview.html">
             
                 
-                    <a href="../../Architecture/Overview.html">
+                    <a href="../../../Architecture/Overview.html">
                         <i class="fa fa-check"></i>
                         
                             <b>1.</b>
@@ -625,7 +625,7 @@
         <li class="chapter " data-level="4.3" data-path="Platform/Lifetime.html">
             
                 
-                    <a href="../../Platform/Lifetime.html">
+                    <a href="../../../Platform/Lifetime.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.</b>
@@ -642,7 +642,7 @@
         <li class="chapter " data-level="4.3.1" data-path="Platform/Lifetime/Usage.html">
             
                 
-                    <a href="../../Platform/Lifetime/Usage.html">
+                    <a href="../../../Platform/Lifetime/Usage.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.1.</b>
@@ -658,7 +658,7 @@
         <li class="chapter " data-level="4.3.2" data-path="Platform/Lifetime/LifetimeDefinition.html">
             
                 
-                    <a href="../../Platform/Lifetime/LifetimeDefinition.html">
+                    <a href="../../../Platform/Lifetime/LifetimeDefinition.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.2.</b>
@@ -674,7 +674,7 @@
         <li class="chapter " data-level="4.3.3" data-path="Platform/Lifetime/Advanced.html">
             
                 
-                    <a href="../../Platform/Lifetime/Advanced.html">
+                    <a href="../../../Platform/Lifetime/Advanced.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.3.</b>
@@ -690,7 +690,7 @@
         <li class="chapter " data-level="4.3.4" data-path="Platform/Lifetime/ComponentModel.html">
             
                 
-                    <a href="../../Platform/Lifetime/ComponentModel.html">
+                    <a href="../../../Platform/Lifetime/ComponentModel.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.4.</b>
@@ -706,7 +706,7 @@
         <li class="chapter " data-level="4.3.5" data-path="Platform/Lifetime/CaseStudy.html">
             
                 
-                    <a href="../../Platform/Lifetime/CaseStudy.html">
+                    <a href="../../../Platform/Lifetime/CaseStudy.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.5.</b>
@@ -727,7 +727,7 @@
         <li class="chapter " data-level="4.4" data-path="Platform/ComponentModel.html">
             
                 
-                    <a href="../../Platform/ComponentModel.html">
+                    <a href="../../../Platform/ComponentModel.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.</b>
@@ -744,7 +744,7 @@
         <li class="chapter " data-level="4.4.1" data-path="Platform/VisualStudio/ComponentModel.html">
             
                 
-                    <a href="../../Platform/VisualStudio/ComponentModel.html">
+                    <a href="../../../Platform/VisualStudio/ComponentModel.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.1.</b>
@@ -773,7 +773,7 @@
         <li class="chapter " data-level="4.6" data-path="Platform/TextControl.html">
             
                 
-                    <a href="../../Platform/TextControl.html">
+                    <a href="../../../Platform/TextControl.html">
                         <i class="fa fa-check"></i>
                         
                             <b>6.</b>
@@ -847,7 +847,7 @@
         <li class="chapter " data-level="4.12.1.1" data-path="Platform/VisualStudio/CustomHives.html">
             
                 
-                    <a href="../../Platform/VisualStudio/CustomHives.html">
+                    <a href="../../../Platform/VisualStudio/CustomHives.html">
                         <i class="fa fa-check"></i>
                         
                             <b>12.1.1.</b>
@@ -876,7 +876,7 @@
         <li class="chapter " data-level="4.12.3" data-path="Platform/Shell/ToolWindows.html">
             
                 
-                    <a href="../../Platform/Shell/ToolWindows.html">
+                    <a href="../../../Platform/Shell/ToolWindows.html">
                         <i class="fa fa-check"></i>
                         
                             <b>12.3.</b>
@@ -892,7 +892,7 @@
         <li class="chapter " data-level="4.12.4" data-path="Platform/Shell/Icons.html">
             
                 
-                    <a href="../../Platform/Shell/Icons.html">
+                    <a href="../../../Platform/Shell/Icons.html">
                         <i class="fa fa-check"></i>
                         
                             <b>12.4.</b>
@@ -999,7 +999,7 @@
         <li class="chapter " data-level="4.14" data-path="Platform/Settings.html">
             
                 
-                    <a href="../../Platform/Settings.html">
+                    <a href="../../../Platform/Settings.html">
                         <i class="fa fa-check"></i>
                         
                             <b>14.</b>
@@ -1083,7 +1083,7 @@
         <li class="chapter " data-level="5.2" data-path="PSI/NavigatingSyntaxTrees.html">
             
                 
-                    <a href="../../PSI/NavigatingSyntaxTrees.html">
+                    <a href="../../../PSI/NavigatingSyntaxTrees.html">
                         <i class="fa fa-check"></i>
                         
                             <b>2.</b>
@@ -1108,7 +1108,7 @@
         <li class="chapter " data-level="5.2.2" data-path="PSI/SyntaxTrees/StronglyTypedNavigation.html">
             
                 
-                    <a href="../../PSI/SyntaxTrees/StronglyTypedNavigation.html">
+                    <a href="../../../PSI/SyntaxTrees/StronglyTypedNavigation.html">
                         <i class="fa fa-check"></i>
                         
                             <b>2.2.</b>
@@ -1170,7 +1170,7 @@
         <li class="chapter " data-level="5.4.2" data-path="PSI/References/ReferenceProviders.html">
             
                 
-                    <a href="../../PSI/References/ReferenceProviders.html">
+                    <a href="../../../PSI/References/ReferenceProviders.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.2.</b>
@@ -1186,7 +1186,7 @@
         <li class="chapter " data-level="5.4.3" data-path="PSI/References/CodeCompletion.html">
             
                 
-                    <a href="../../PSI/References/CodeCompletion.html">
+                    <a href="../../../PSI/References/CodeCompletion.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.3.</b>
@@ -1202,7 +1202,7 @@
         <li class="chapter " data-level="5.4.4" data-path="PSI/References/Substrings.html">
             
                 
-                    <a href="../../PSI/References/Substrings.html">
+                    <a href="../../../PSI/References/Substrings.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.4.</b>
@@ -1215,10 +1215,10 @@
         </li>
     
         
-        <li class="chapter active" data-level="5.4.5" data-path="PSI/References/IReferenceProvider.html">
+        <li class="chapter " data-level="5.4.5" data-path="PSI/References/IReferenceProvider.html">
             
                 
-                    <a href="../../PSI/References/IReferenceProvider.html">
+                    <a href="../../../PSI/References/IReferenceProvider.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.5.</b>
@@ -1234,7 +1234,7 @@
         <li class="chapter " data-level="5.4.6" data-path="PSI/References/PathReferences.html">
             
                 
-                    <a href="../../PSI/References/PathReferences.html">
+                    <a href="../../../PSI/References/PathReferences.html">
                         <i class="fa fa-check"></i>
                         
                             <b>4.6.</b>
@@ -1263,7 +1263,7 @@
         <li class="chapter " data-level="5.5" data-path="PSI/Generating/Code.html">
             
                 
-                    <a href="../../PSI/Generating/Code.html">
+                    <a href="../../../PSI/Generating/Code.html">
                         <i class="fa fa-check"></i>
                         
                             <b>5.</b>
@@ -1280,7 +1280,7 @@
         <li class="chapter " data-level="5.5.1" data-path="PSI/Generating/Comments.html">
             
                 
-                    <a href="../../PSI/Generating/Comments.html">
+                    <a href="../../../PSI/Generating/Comments.html">
                         <i class="fa fa-check"></i>
                         
                             <b>5.1.</b>
@@ -1310,7 +1310,7 @@
         <li class="chapter " data-level="5.6.1" data-path="PSI/TypeSystem.html">
             
                 
-                    <a href="../../PSI/TypeSystem.html">
+                    <a href="../../../PSI/TypeSystem.html">
                         <i class="fa fa-check"></i>
                         
                             <b>6.1.</b>
@@ -1339,7 +1339,7 @@
         <li class="chapter " data-level="5.8" data-path="PSI/Caches.html">
             
                 
-                    <a href="../../PSI/Caches.html">
+                    <a href="../../../PSI/Caches.html">
                         <i class="fa fa-check"></i>
                         
                             <b>8.</b>
@@ -1364,7 +1364,7 @@
         <li class="chapter " data-level="5.9.1" data-path="PSI/ExternalAnnotations/Testing.html">
             
                 
-                    <a href="../../PSI/ExternalAnnotations/Testing.html">
+                    <a href="../../../PSI/ExternalAnnotations/Testing.html">
                         <i class="fa fa-check"></i>
                         
                             <b>9.1.</b>
@@ -1466,7 +1466,7 @@
         <li class="chapter " data-level="5.10.10" data-path="PSI/Reference/Xml/Overview.html">
             
                 
-                    <a href="../../PSI/Reference/Xml/Overview.html">
+                    <a href="../../../PSI/Reference/Xml/Overview.html">
                         <i class="fa fa-check"></i>
                         
                             <b>10.10.</b>
@@ -1483,7 +1483,7 @@
         <li class="chapter " data-level="5.10.10.1" data-path="PSI/Reference/Xml/Manipulation.html">
             
                 
-                    <a href="../../PSI/Reference/Xml/Manipulation.html">
+                    <a href="../../../PSI/Reference/Xml/Manipulation.html">
                         <i class="fa fa-check"></i>
                         
                             <b>10.10.1.</b>
@@ -1499,7 +1499,7 @@
         <li class="chapter " data-level="5.10.10.2" data-path="PSI/Reference/Xml/Navigators.html">
             
                 
-                    <a href="../../PSI/Reference/Xml/Navigators.html">
+                    <a href="../../../PSI/Reference/Xml/Navigators.html">
                         <i class="fa fa-check"></i>
                         
                             <b>10.10.2.</b>
@@ -1512,10 +1512,10 @@
         </li>
     
         
-        <li class="chapter " data-level="5.10.10.3" data-path="PSI/Reference/Xml/ElementFactories.html">
+        <li class="chapter active" data-level="5.10.10.3" data-path="PSI/Reference/Xml/ElementFactories.html">
             
                 
-                    <a href="../../PSI/Reference/Xml/ElementFactories.html">
+                    <a href="../../../PSI/Reference/Xml/ElementFactories.html">
                         <i class="fa fa-check"></i>
                         
                             <b>10.10.3.</b>
@@ -1531,7 +1531,7 @@
         <li class="chapter " data-level="5.10.10.4" data-path="PSI/Reference/Xml/Utils.html">
             
                 
-                    <a href="../../PSI/Reference/Xml/Utils.html">
+                    <a href="../../../PSI/Reference/Xml/Utils.html">
                         <i class="fa fa-check"></i>
                         
                             <b>10.10.4.</b>
@@ -1547,7 +1547,7 @@
         <li class="chapter " data-level="5.10.10.5" data-path="PSI/Reference/Xml/TreeNodes.html">
             
                 
-                    <a href="../../PSI/Reference/Xml/TreeNodes.html">
+                    <a href="../../../PSI/Reference/Xml/TreeNodes.html">
                         <i class="fa fa-check"></i>
                         
                             <b>10.10.5.</b>
@@ -1563,7 +1563,7 @@
         <li class="chapter " data-level="5.10.10.6" data-path="PSI/Reference/Xml/TreeNodesDTD.html">
             
                 
-                    <a href="../../PSI/Reference/Xml/TreeNodesDTD.html">
+                    <a href="../../../PSI/Reference/Xml/TreeNodesDTD.html">
                         <i class="fa fa-check"></i>
                         
                             <b>10.10.6.</b>
@@ -1660,7 +1660,7 @@
         <li class="chapter " data-level="6.1.4" data-path="Features/Analysis/Daemons.html">
             
                 
-                    <a href="../../Features/Analysis/Daemons.html">
+                    <a href="../../../Features/Analysis/Daemons.html">
                         <i class="fa fa-check"></i>
                         
                             <b>1.4.</b>
@@ -1745,7 +1745,7 @@
         <li class="chapter " data-level="6.2" data-path="Features/Actions.html">
             
                 
-                    <a href="../../Features/Actions.html">
+                    <a href="../../../Features/Actions.html">
                         <i class="fa fa-check"></i>
                         
                             <b>2.</b>
@@ -1770,7 +1770,7 @@
         <li class="chapter " data-level="6.2.2" data-path="Features/Actions/QuickFixes.html">
             
                 
-                    <a href="../../Features/Actions/QuickFixes.html">
+                    <a href="../../../Features/Actions/QuickFixes.html">
                         <i class="fa fa-check"></i>
                         
                             <b>2.2.</b>
@@ -1794,7 +1794,7 @@
         <li class="chapter " data-level="6.2.4" data-path="Features/Actions/Bulk.html">
             
                 
-                    <a href="../../Features/Actions/Bulk.html">
+                    <a href="../../../Features/Actions/Bulk.html">
                         <i class="fa fa-check"></i>
                         
                             <b>2.4.</b>
@@ -1839,7 +1839,7 @@
         <li class="chapter " data-level="6.3" data-path="Features/Completion.html">
             
                 
-                    <a href="../../Features/Completion.html">
+                    <a href="../../../Features/Completion.html">
                         <i class="fa fa-check"></i>
                         
                             <b>3.</b>
@@ -1940,7 +1940,7 @@
         <li class="chapter " data-level="6.5.1" data-path="Features/QuickDoc/Overview.html">
             
                 
-                    <a href="../../Features/QuickDoc/Overview.html">
+                    <a href="../../../Features/QuickDoc/Overview.html">
                         <i class="fa fa-check"></i>
                         
                             <b>5.1.</b>
@@ -1957,7 +1957,7 @@
         <li class="chapter " data-level="6.5.1.1" data-path="Features/QuickDoc/ImplementingProvider.html">
             
                 
-                    <a href="../../Features/QuickDoc/ImplementingProvider.html">
+                    <a href="../../../Features/QuickDoc/ImplementingProvider.html">
                         <i class="fa fa-check"></i>
                         
                             <b>5.1.1.</b>
@@ -1973,7 +1973,7 @@
         <li class="chapter " data-level="6.5.1.2" data-path="Features/QuickDoc/ImplementingPresenter.html">
             
                 
-                    <a href="../../Features/QuickDoc/ImplementingPresenter.html">
+                    <a href="../../../Features/QuickDoc/ImplementingPresenter.html">
                         <i class="fa fa-check"></i>
                         
                             <b>5.1.2.</b>
@@ -1989,7 +1989,7 @@
         <li class="chapter " data-level="6.5.1.3" data-path="Features/QuickDoc/HelperClasses.html">
             
                 
-                    <a href="../../Features/QuickDoc/HelperClasses.html">
+                    <a href="../../../Features/QuickDoc/HelperClasses.html">
                         <i class="fa fa-check"></i>
                         
                             <b>5.1.3.</b>
@@ -2005,7 +2005,7 @@
         <li class="chapter " data-level="6.5.1.4" data-path="Features/QuickDoc/ExistingProviders.html">
             
                 
-                    <a href="../../Features/QuickDoc/ExistingProviders.html">
+                    <a href="../../../Features/QuickDoc/ExistingProviders.html">
                         <i class="fa fa-check"></i>
                         
                             <b>5.1.4.</b>
@@ -2021,7 +2021,7 @@
         <li class="chapter " data-level="6.5.1.5" data-path="Features/QuickDoc/Testing.html">
             
                 
-                    <a href="../../Features/QuickDoc/Testing.html">
+                    <a href="../../../Features/QuickDoc/Testing.html">
                         <i class="fa fa-check"></i>
                         
                             <b>5.1.5.</b>
@@ -2055,7 +2055,7 @@
         <li class="chapter " data-level="6.6" data-path="Features/Refactoring.html">
             
                 
-                    <a href="../../Features/Refactoring.html">
+                    <a href="../../../Features/Refactoring.html">
                         <i class="fa fa-check"></i>
                         
                             <b>6.</b>
@@ -2109,7 +2109,7 @@
         <li class="chapter " data-level="6.7" data-path="Features/GenerateMenu.html">
             
                 
-                    <a href="../../Features/GenerateMenu.html">
+                    <a href="../../../Features/GenerateMenu.html">
                         <i class="fa fa-check"></i>
                         
                             <b>7.</b>
@@ -2125,7 +2125,7 @@
         <li class="chapter " data-level="6.8" data-path="Features/Navigation.html">
             
                 
-                    <a href="../../Features/Navigation.html">
+                    <a href="../../../Features/Navigation.html">
                         <i class="fa fa-check"></i>
                         
                             <b>8.</b>
@@ -2195,7 +2195,7 @@
         <li class="chapter " data-level="6.9" data-path="Features/OptionsPages.html">
             
                 
-                    <a href="../../Features/OptionsPages.html">
+                    <a href="../../../Features/OptionsPages.html">
                         <i class="fa fa-check"></i>
                         
                             <b>9.</b>
@@ -2220,7 +2220,7 @@
         <li class="chapter " data-level="6.10.1" data-path="Features/Tools/CodeCleanup.html">
             
                 
-                    <a href="../../Features/Tools/CodeCleanup.html">
+                    <a href="../../../Features/Tools/CodeCleanup.html">
                         <i class="fa fa-check"></i>
                         
                             <b>10.1.</b>
@@ -2395,7 +2395,7 @@
         <li class="chapter " data-level="6.14" data-path="Features/LiveTemplates/Overview.html">
             
                 
-                    <a href="../../Features/LiveTemplates/Overview.html">
+                    <a href="../../../Features/LiveTemplates/Overview.html">
                         <i class="fa fa-check"></i>
                         
                             <b>14.</b>
@@ -2412,7 +2412,7 @@
         <li class="chapter " data-level="6.14.1" data-path="Features/LiveTemplates/Macros.html">
             
                 
-                    <a href="../../Features/LiveTemplates/Macros.html">
+                    <a href="../../../Features/LiveTemplates/Macros.html">
                         <i class="fa fa-check"></i>
                         
                             <b>14.1.</b>
@@ -2428,7 +2428,7 @@
         <li class="chapter " data-level="6.14.2" data-path="Features/LiveTemplates/Scopes.html">
             
                 
-                    <a href="../../Features/LiveTemplates/Scopes.html">
+                    <a href="../../../Features/LiveTemplates/Scopes.html">
                         <i class="fa fa-check"></i>
                         
                             <b>14.2.</b>
@@ -2481,7 +2481,7 @@
         <li class="chapter " data-level="6.15" data-path="Features/UnitTest.html">
             
                 
-                    <a href="../../Features/UnitTest.html">
+                    <a href="../../../Features/UnitTest.html">
                         <i class="fa fa-check"></i>
                         
                             <b>15.</b>
@@ -2603,7 +2603,7 @@
         <li class="chapter " data-level="6.20" data-path="Features/XmlLike.html">
             
                 
-                    <a href="../../Features/XmlLike.html">
+                    <a href="../../../Features/XmlLike.html">
                         <i class="fa fa-check"></i>
                         
                             <b>20.</b>
@@ -2633,7 +2633,7 @@
         <li class="chapter " data-level="7.1" data-path="Products/dotPeek.html">
             
                 
-                    <a href="../../Products/dotPeek.html">
+                    <a href="../../../Products/dotPeek.html">
                         <i class="fa fa-check"></i>
                         
                             <b>1.</b>
@@ -2649,7 +2649,7 @@
         <li class="chapter " data-level="7.2" data-path="Products/InspectCode.html">
             
                 
-                    <a href="../../Products/InspectCode.html">
+                    <a href="../../../Products/InspectCode.html">
                         <i class="fa fa-check"></i>
                         
                             <b>2.</b>
@@ -2679,7 +2679,7 @@
         <li class="chapter " data-level="8.1" data-path="CustomLanguages/Overview.html">
             
                 
-                    <a href="../../CustomLanguages/Overview.html">
+                    <a href="../../../CustomLanguages/Overview.html">
                         <i class="fa fa-check"></i>
                         
                             <b>1.</b>
@@ -2727,7 +2727,7 @@
         <li class="chapter " data-level="8.6" data-path="CustomLanguages/InjectedPsi.html">
             
                 
-                    <a href="../../CustomLanguages/InjectedPsi.html">
+                    <a href="../../../CustomLanguages/InjectedPsi.html">
                         <i class="fa fa-check"></i>
                         
                             <b>6.</b>
@@ -2784,182 +2784,450 @@
             <div class="page-wrapper" tabindex="-1">
                 <div class="book-progress">
     <div class="bar">
-        <div class="inner" style="width: 44.927536231884055%;min-width: 43.47826086956522%;"></div>
+        <div class="inner" style="width: 59.42028985507246%;min-width: 57.971014492753625%;"></div>
     </div>
     <div class="chapters">
     
-        <a href="../../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
+        <a href="../../../index.html" title="Introduction" class="chapter done new-chapter" data-progress="0" style="left: 0%;"></a>
     
-        <a href="../../StyleGuide.html" title="Style guide" class="chapter done " data-progress="1.1" style="left: 1.4492753623188406%;"></a>
+        <a href="../../../StyleGuide.html" title="Style guide" class="chapter done " data-progress="1.1" style="left: 1.4492753623188406%;"></a>
     
-        <a href="../../wip.html" title="Work in progress" class="chapter done " data-progress="1.2" style="left: 2.898550724637681%;"></a>
+        <a href="../../../wip.html" title="Work in progress" class="chapter done " data-progress="1.2" style="left: 2.898550724637681%;"></a>
     
-        <a href="../../Intro/Tools.html" title="Tools" class="chapter done " data-progress="2.1.1" style="left: 4.3478260869565215%;"></a>
+        <a href="../../../Intro/Tools.html" title="Tools" class="chapter done " data-progress="2.1.1" style="left: 4.3478260869565215%;"></a>
     
-        <a href="../../Extensions/Packaging.html" title="Packaging and Distribution" class="chapter done " data-progress="2.2.5" style="left: 5.797101449275362%;"></a>
+        <a href="../../../Extensions/Packaging.html" title="Packaging and Distribution" class="chapter done " data-progress="2.2.5" style="left: 5.797101449275362%;"></a>
     
-        <a href="../../HowDoI.html" title="How do I?" class="chapter done " data-progress="2.3" style="left: 7.246376811594203%;"></a>
+        <a href="../../../HowDoI.html" title="How do I?" class="chapter done " data-progress="2.3" style="left: 7.246376811594203%;"></a>
     
-        <a href="../../Plugins/SDK.html" title="SDK Reference" class="chapter done " data-progress="2.4.1" style="left: 8.695652173913043%;"></a>
+        <a href="../../../Plugins/SDK.html" title="SDK Reference" class="chapter done " data-progress="2.4.1" style="left: 8.695652173913043%;"></a>
     
-        <a href="../../Plugins/ProjectSetup.html" title="Project Setup" class="chapter done " data-progress="2.4.2" style="left: 10.144927536231885%;"></a>
+        <a href="../../../Plugins/ProjectSetup.html" title="Project Setup" class="chapter done " data-progress="2.4.2" style="left: 10.144927536231885%;"></a>
     
-        <a href="../../Intro/KnownIssues.html" title="Known Issues" class="chapter done " data-progress="2.4.4" style="left: 11.594202898550725%;"></a>
+        <a href="../../../Intro/KnownIssues.html" title="Known Issues" class="chapter done " data-progress="2.4.4" style="left: 11.594202898550725%;"></a>
     
-        <a href="../../Plugins/Testing.html" title="Plugin testing" class="chapter done " data-progress="2.4.5" style="left: 13.043478260869565%;"></a>
+        <a href="../../../Plugins/Testing.html" title="Plugin testing" class="chapter done " data-progress="2.4.5" style="left: 13.043478260869565%;"></a>
     
-        <a href="../../Plugins/TemporarySettings.html" title="Temporary Settings" class="chapter done " data-progress="2.4.5.2" style="left: 14.492753623188406%;"></a>
+        <a href="../../../Plugins/TemporarySettings.html" title="Temporary Settings" class="chapter done " data-progress="2.4.5.2" style="left: 14.492753623188406%;"></a>
     
-        <a href="../../Intro/Glossary.html" title="Glossary" class="chapter done " data-progress="2.5" style="left: 15.942028985507246%;"></a>
+        <a href="../../../Intro/Glossary.html" title="Glossary" class="chapter done " data-progress="2.5" style="left: 15.942028985507246%;"></a>
     
-        <a href="../../Architecture/Overview.html" title="Overview" class="chapter done " data-progress="3.1" style="left: 17.391304347826086%;"></a>
+        <a href="../../../Architecture/Overview.html" title="Overview" class="chapter done " data-progress="3.1" style="left: 17.391304347826086%;"></a>
     
-        <a href="../../Platform/Lifetime.html" title="Lifetime" class="chapter done " data-progress="4.3" style="left: 18.840579710144926%;"></a>
+        <a href="../../../Platform/Lifetime.html" title="Lifetime" class="chapter done " data-progress="4.3" style="left: 18.840579710144926%;"></a>
     
-        <a href="../../Platform/Lifetime/Usage.html" title="Usage" class="chapter done " data-progress="4.3.1" style="left: 20.28985507246377%;"></a>
+        <a href="../../../Platform/Lifetime/Usage.html" title="Usage" class="chapter done " data-progress="4.3.1" style="left: 20.28985507246377%;"></a>
     
-        <a href="../../Platform/Lifetime/LifetimeDefinition.html" title="Lifetime Management" class="chapter done " data-progress="4.3.2" style="left: 21.73913043478261%;"></a>
+        <a href="../../../Platform/Lifetime/LifetimeDefinition.html" title="Lifetime Management" class="chapter done " data-progress="4.3.2" style="left: 21.73913043478261%;"></a>
     
-        <a href="../../Platform/Lifetime/Advanced.html" title="Advanced Lifetime Management" class="chapter done " data-progress="4.3.3" style="left: 23.18840579710145%;"></a>
+        <a href="../../../Platform/Lifetime/Advanced.html" title="Advanced Lifetime Management" class="chapter done " data-progress="4.3.3" style="left: 23.18840579710145%;"></a>
     
-        <a href="../../Platform/Lifetime/ComponentModel.html" title="Component Lifetime" class="chapter done " data-progress="4.3.4" style="left: 24.63768115942029%;"></a>
+        <a href="../../../Platform/Lifetime/ComponentModel.html" title="Component Lifetime" class="chapter done " data-progress="4.3.4" style="left: 24.63768115942029%;"></a>
     
-        <a href="../../Platform/Lifetime/CaseStudy.html" title="Case Study" class="chapter done " data-progress="4.3.5" style="left: 26.08695652173913%;"></a>
+        <a href="../../../Platform/Lifetime/CaseStudy.html" title="Case Study" class="chapter done " data-progress="4.3.5" style="left: 26.08695652173913%;"></a>
     
-        <a href="../../Platform/ComponentModel.html" title="Component Model" class="chapter done " data-progress="4.4" style="left: 27.536231884057973%;"></a>
+        <a href="../../../Platform/ComponentModel.html" title="Component Model" class="chapter done " data-progress="4.4" style="left: 27.536231884057973%;"></a>
     
-        <a href="../../Platform/VisualStudio/ComponentModel.html" title="Visual Studio interfaces" class="chapter done " data-progress="4.4.1" style="left: 28.985507246376812%;"></a>
+        <a href="../../../Platform/VisualStudio/ComponentModel.html" title="Visual Studio interfaces" class="chapter done " data-progress="4.4.1" style="left: 28.985507246376812%;"></a>
     
-        <a href="../../Platform/TextControl.html" title="TextControl" class="chapter done " data-progress="4.6" style="left: 30.434782608695652%;"></a>
+        <a href="../../../Platform/TextControl.html" title="TextControl" class="chapter done " data-progress="4.6" style="left: 30.434782608695652%;"></a>
     
-        <a href="../../Platform/VisualStudio/CustomHives.html" title="Experimental Instances" class="chapter done " data-progress="4.12.1.1" style="left: 31.884057971014492%;"></a>
+        <a href="../../../Platform/VisualStudio/CustomHives.html" title="Experimental Instances" class="chapter done " data-progress="4.12.1.1" style="left: 31.884057971014492%;"></a>
     
-        <a href="../../Platform/Shell/ToolWindows.html" title="Tool windows" class="chapter done " data-progress="4.12.3" style="left: 33.333333333333336%;"></a>
+        <a href="../../../Platform/Shell/ToolWindows.html" title="Tool windows" class="chapter done " data-progress="4.12.3" style="left: 33.333333333333336%;"></a>
     
-        <a href="../../Platform/Shell/Icons.html" title="Icons" class="chapter done " data-progress="4.12.4" style="left: 34.78260869565217%;"></a>
+        <a href="../../../Platform/Shell/Icons.html" title="Icons" class="chapter done " data-progress="4.12.4" style="left: 34.78260869565217%;"></a>
     
-        <a href="../../Platform/Settings.html" title="Settings" class="chapter done " data-progress="4.14" style="left: 36.231884057971016%;"></a>
+        <a href="../../../Platform/Settings.html" title="Settings" class="chapter done " data-progress="4.14" style="left: 36.231884057971016%;"></a>
     
-        <a href="../../PSI/NavigatingSyntaxTrees.html" title="Navigating syntax trees" class="chapter done " data-progress="5.2" style="left: 37.68115942028985%;"></a>
+        <a href="../../../PSI/NavigatingSyntaxTrees.html" title="Navigating syntax trees" class="chapter done " data-progress="5.2" style="left: 37.68115942028985%;"></a>
     
-        <a href="../../PSI/SyntaxTrees/StronglyTypedNavigation.html" title="Strongly typed navigation" class="chapter done " data-progress="5.2.2" style="left: 39.130434782608695%;"></a>
+        <a href="../../../PSI/SyntaxTrees/StronglyTypedNavigation.html" title="Strongly typed navigation" class="chapter done " data-progress="5.2.2" style="left: 39.130434782608695%;"></a>
     
-        <a href="../../PSI/References/ReferenceProviders.html" title="Reference providers" class="chapter done " data-progress="5.4.2" style="left: 40.57971014492754%;"></a>
+        <a href="../../../PSI/References/ReferenceProviders.html" title="Reference providers" class="chapter done " data-progress="5.4.2" style="left: 40.57971014492754%;"></a>
     
-        <a href="../../PSI/References/CodeCompletion.html" title="Code Completion" class="chapter done " data-progress="5.4.3" style="left: 42.028985507246375%;"></a>
+        <a href="../../../PSI/References/CodeCompletion.html" title="Code Completion" class="chapter done " data-progress="5.4.3" style="left: 42.028985507246375%;"></a>
     
-        <a href="../../PSI/References/Substrings.html" title="References within elements" class="chapter done " data-progress="5.4.4" style="left: 43.47826086956522%;"></a>
+        <a href="../../../PSI/References/Substrings.html" title="References within elements" class="chapter done " data-progress="5.4.4" style="left: 43.47826086956522%;"></a>
     
-        <a href="../../PSI/References/IReferenceProvider.html" title="Managing reference providers" class="chapter done " data-progress="5.4.5" style="left: 44.927536231884055%;"></a>
+        <a href="../../../PSI/References/IReferenceProvider.html" title="Managing reference providers" class="chapter done " data-progress="5.4.5" style="left: 44.927536231884055%;"></a>
     
-        <a href="../../PSI/References/PathReferences.html" title="Path references" class="chapter  " data-progress="5.4.6" style="left: 46.3768115942029%;"></a>
+        <a href="../../../PSI/References/PathReferences.html" title="Path references" class="chapter done " data-progress="5.4.6" style="left: 46.3768115942029%;"></a>
     
-        <a href="../../PSI/Generating/Code.html" title="Generating code" class="chapter  " data-progress="5.5" style="left: 47.82608695652174%;"></a>
+        <a href="../../../PSI/Generating/Code.html" title="Generating code" class="chapter done " data-progress="5.5" style="left: 47.82608695652174%;"></a>
     
-        <a href="../../PSI/Generating/Comments.html" title="Generating comments" class="chapter  " data-progress="5.5.1" style="left: 49.27536231884058%;"></a>
+        <a href="../../../PSI/Generating/Comments.html" title="Generating comments" class="chapter done " data-progress="5.5.1" style="left: 49.27536231884058%;"></a>
     
-        <a href="../../PSI/TypeSystem.html" title="Type system" class="chapter  " data-progress="5.6.1" style="left: 50.72463768115942%;"></a>
+        <a href="../../../PSI/TypeSystem.html" title="Type system" class="chapter done " data-progress="5.6.1" style="left: 50.72463768115942%;"></a>
     
-        <a href="../../PSI/Caches.html" title="Caches" class="chapter  " data-progress="5.8" style="left: 52.17391304347826%;"></a>
+        <a href="../../../PSI/Caches.html" title="Caches" class="chapter done " data-progress="5.8" style="left: 52.17391304347826%;"></a>
     
-        <a href="../../PSI/ExternalAnnotations/Testing.html" title="Testing" class="chapter  " data-progress="5.9.1" style="left: 53.6231884057971%;"></a>
+        <a href="../../../PSI/ExternalAnnotations/Testing.html" title="Testing" class="chapter done " data-progress="5.9.1" style="left: 53.6231884057971%;"></a>
     
-        <a href="../../PSI/Reference/Xml/Overview.html" title="XML and DTD" class="chapter  " data-progress="5.10.10" style="left: 55.072463768115945%;"></a>
+        <a href="../../../PSI/Reference/Xml/Overview.html" title="XML and DTD" class="chapter done " data-progress="5.10.10" style="left: 55.072463768115945%;"></a>
     
-        <a href="../../PSI/Reference/Xml/Manipulation.html" title="Manipulating the Tree" class="chapter  " data-progress="5.10.10.1" style="left: 56.52173913043478%;"></a>
+        <a href="../../../PSI/Reference/Xml/Manipulation.html" title="Manipulating the Tree" class="chapter done " data-progress="5.10.10.1" style="left: 56.52173913043478%;"></a>
     
-        <a href="../../PSI/Reference/Xml/Navigators.html" title="Navigators" class="chapter  " data-progress="5.10.10.2" style="left: 57.971014492753625%;"></a>
+        <a href="../../../PSI/Reference/Xml/Navigators.html" title="Navigators" class="chapter done " data-progress="5.10.10.2" style="left: 57.971014492753625%;"></a>
     
-        <a href="../../PSI/Reference/Xml/ElementFactories.html" title="Element Factories" class="chapter  " data-progress="5.10.10.3" style="left: 59.42028985507246%;"></a>
+        <a href="../../../PSI/Reference/Xml/ElementFactories.html" title="Element Factories" class="chapter done " data-progress="5.10.10.3" style="left: 59.42028985507246%;"></a>
     
-        <a href="../../PSI/Reference/Xml/Utils.html" title="Utils" class="chapter  " data-progress="5.10.10.4" style="left: 60.869565217391305%;"></a>
+        <a href="../../../PSI/Reference/Xml/Utils.html" title="Utils" class="chapter  " data-progress="5.10.10.4" style="left: 60.869565217391305%;"></a>
     
-        <a href="../../PSI/Reference/Xml/TreeNodes.html" title="Tree Nodes" class="chapter  " data-progress="5.10.10.5" style="left: 62.31884057971015%;"></a>
+        <a href="../../../PSI/Reference/Xml/TreeNodes.html" title="Tree Nodes" class="chapter  " data-progress="5.10.10.5" style="left: 62.31884057971015%;"></a>
     
-        <a href="../../PSI/Reference/Xml/TreeNodesDTD.html" title="Tree Nodes (DTD)" class="chapter  " data-progress="5.10.10.6" style="left: 63.768115942028984%;"></a>
+        <a href="../../../PSI/Reference/Xml/TreeNodesDTD.html" title="Tree Nodes (DTD)" class="chapter  " data-progress="5.10.10.6" style="left: 63.768115942028984%;"></a>
     
-        <a href="../../Features/Analysis/Daemons.html" title="Daemons" class="chapter  " data-progress="6.1.4" style="left: 65.21739130434783%;"></a>
+        <a href="../../../Features/Analysis/Daemons.html" title="Daemons" class="chapter  " data-progress="6.1.4" style="left: 65.21739130434783%;"></a>
     
-        <a href="../../Features/Actions.html" title="Actions" class="chapter  " data-progress="6.2" style="left: 66.66666666666667%;"></a>
+        <a href="../../../Features/Actions.html" title="Actions" class="chapter  " data-progress="6.2" style="left: 66.66666666666667%;"></a>
     
-        <a href="../../Features/Actions/QuickFixes.html" title="Quick fixes" class="chapter  " data-progress="6.2.2" style="left: 68.1159420289855%;"></a>
+        <a href="../../../Features/Actions/QuickFixes.html" title="Quick fixes" class="chapter  " data-progress="6.2.2" style="left: 68.1159420289855%;"></a>
     
-        <a href="../../Features/Actions/Bulk.html" title="Bulk actions" class="chapter  " data-progress="6.2.4" style="left: 69.56521739130434%;"></a>
+        <a href="../../../Features/Actions/Bulk.html" title="Bulk actions" class="chapter  " data-progress="6.2.4" style="left: 69.56521739130434%;"></a>
     
-        <a href="../../Features/Completion.html" title="Code Completion" class="chapter  " data-progress="6.3" style="left: 71.01449275362319%;"></a>
+        <a href="../../../Features/Completion.html" title="Code Completion" class="chapter  " data-progress="6.3" style="left: 71.01449275362319%;"></a>
     
-        <a href="../../Features/QuickDoc/Overview.html" title="Quick Doc" class="chapter  " data-progress="6.5.1" style="left: 72.46376811594203%;"></a>
+        <a href="../../../Features/QuickDoc/Overview.html" title="Quick Doc" class="chapter  " data-progress="6.5.1" style="left: 72.46376811594203%;"></a>
     
-        <a href="../../Features/QuickDoc/ImplementingProvider.html" title="IQuickDocProvider" class="chapter  " data-progress="6.5.1.1" style="left: 73.91304347826087%;"></a>
+        <a href="../../../Features/QuickDoc/ImplementingProvider.html" title="IQuickDocProvider" class="chapter  " data-progress="6.5.1.1" style="left: 73.91304347826087%;"></a>
     
-        <a href="../../Features/QuickDoc/ImplementingPresenter.html" title="IQuickDocPresenter" class="chapter  " data-progress="6.5.1.2" style="left: 75.3623188405797%;"></a>
+        <a href="../../../Features/QuickDoc/ImplementingPresenter.html" title="IQuickDocPresenter" class="chapter  " data-progress="6.5.1.2" style="left: 75.3623188405797%;"></a>
     
-        <a href="../../Features/QuickDoc/HelperClasses.html" title="Helper classes" class="chapter  " data-progress="6.5.1.3" style="left: 76.81159420289855%;"></a>
+        <a href="../../../Features/QuickDoc/HelperClasses.html" title="Helper classes" class="chapter  " data-progress="6.5.1.3" style="left: 76.81159420289855%;"></a>
     
-        <a href="../../Features/QuickDoc/ExistingProviders.html" title="Existing providers" class="chapter  " data-progress="6.5.1.4" style="left: 78.26086956521739%;"></a>
+        <a href="../../../Features/QuickDoc/ExistingProviders.html" title="Existing providers" class="chapter  " data-progress="6.5.1.4" style="left: 78.26086956521739%;"></a>
     
-        <a href="../../Features/QuickDoc/Testing.html" title="Testing" class="chapter  " data-progress="6.5.1.5" style="left: 79.71014492753623%;"></a>
+        <a href="../../../Features/QuickDoc/Testing.html" title="Testing" class="chapter  " data-progress="6.5.1.5" style="left: 79.71014492753623%;"></a>
     
-        <a href="../../Features/Refactoring.html" title="Refactoring" class="chapter  " data-progress="6.6" style="left: 81.15942028985508%;"></a>
+        <a href="../../../Features/Refactoring.html" title="Refactoring" class="chapter  " data-progress="6.6" style="left: 81.15942028985508%;"></a>
     
-        <a href="../../Features/GenerateMenu.html" title="Generate Menu" class="chapter  " data-progress="6.7" style="left: 82.6086956521739%;"></a>
+        <a href="../../../Features/GenerateMenu.html" title="Generate Menu" class="chapter  " data-progress="6.7" style="left: 82.6086956521739%;"></a>
     
-        <a href="../../Features/Navigation.html" title="Navigation" class="chapter  " data-progress="6.8" style="left: 84.05797101449275%;"></a>
+        <a href="../../../Features/Navigation.html" title="Navigation" class="chapter  " data-progress="6.8" style="left: 84.05797101449275%;"></a>
     
-        <a href="../../Features/OptionsPages.html" title="Options Pages" class="chapter  " data-progress="6.9" style="left: 85.5072463768116%;"></a>
+        <a href="../../../Features/OptionsPages.html" title="Options Pages" class="chapter  " data-progress="6.9" style="left: 85.5072463768116%;"></a>
     
-        <a href="../../Features/Tools/CodeCleanup.html" title="Code cleanup" class="chapter  " data-progress="6.10.1" style="left: 86.95652173913044%;"></a>
+        <a href="../../../Features/Tools/CodeCleanup.html" title="Code cleanup" class="chapter  " data-progress="6.10.1" style="left: 86.95652173913044%;"></a>
     
-        <a href="../../Features/LiveTemplates/Overview.html" title="Live Templates" class="chapter  " data-progress="6.14" style="left: 88.40579710144928%;"></a>
+        <a href="../../../Features/LiveTemplates/Overview.html" title="Live Templates" class="chapter  " data-progress="6.14" style="left: 88.40579710144928%;"></a>
     
-        <a href="../../Features/LiveTemplates/Macros.html" title="Macros" class="chapter  " data-progress="6.14.1" style="left: 89.85507246376811%;"></a>
+        <a href="../../../Features/LiveTemplates/Macros.html" title="Macros" class="chapter  " data-progress="6.14.1" style="left: 89.85507246376811%;"></a>
     
-        <a href="../../Features/LiveTemplates/Scopes.html" title="Scopes" class="chapter  " data-progress="6.14.2" style="left: 91.30434782608695%;"></a>
+        <a href="../../../Features/LiveTemplates/Scopes.html" title="Scopes" class="chapter  " data-progress="6.14.2" style="left: 91.30434782608695%;"></a>
     
-        <a href="../../Features/UnitTest.html" title="Unit Test" class="chapter  " data-progress="6.15" style="left: 92.7536231884058%;"></a>
+        <a href="../../../Features/UnitTest.html" title="Unit Test" class="chapter  " data-progress="6.15" style="left: 92.7536231884058%;"></a>
     
-        <a href="../../Features/XmlLike.html" title="Working with XML-like files" class="chapter  " data-progress="6.20" style="left: 94.20289855072464%;"></a>
+        <a href="../../../Features/XmlLike.html" title="Working with XML-like files" class="chapter  " data-progress="6.20" style="left: 94.20289855072464%;"></a>
     
-        <a href="../../Products/dotPeek.html" title="dotPeek" class="chapter  " data-progress="7.1" style="left: 95.65217391304348%;"></a>
+        <a href="../../../Products/dotPeek.html" title="dotPeek" class="chapter  " data-progress="7.1" style="left: 95.65217391304348%;"></a>
     
-        <a href="../../Products/InspectCode.html" title="InspectCode" class="chapter  " data-progress="7.2" style="left: 97.10144927536231%;"></a>
+        <a href="../../../Products/InspectCode.html" title="InspectCode" class="chapter  " data-progress="7.2" style="left: 97.10144927536231%;"></a>
     
-        <a href="../../CustomLanguages/Overview.html" title="Overview" class="chapter  " data-progress="8.1" style="left: 98.55072463768116%;"></a>
+        <a href="../../../CustomLanguages/Overview.html" title="Overview" class="chapter  " data-progress="8.1" style="left: 98.55072463768116%;"></a>
     
-        <a href="../../CustomLanguages/InjectedPsi.html" title="Injected PSI" class="chapter  " data-progress="8.6" style="left: 100%;"></a>
+        <a href="../../../CustomLanguages/InjectedPsi.html" title="Injected PSI" class="chapter  " data-progress="8.6" style="left: 100%;"></a>
     
     </div>
 </div>
 
                 <div class="page-inner">
                 
-                    <section class="normal" id="section-gitbook_41">
+                    <section class="normal" id="section-gitbook_35">
                     
-                        <h1 id="managing-reference-providers"><a name="managing-reference-providers" class="plugin-anchor" href="#managing-reference-providers"><span class="fa fa-link"></span></a>Managing reference providers</h1>
-<p>To build a reference provider, you implement <code>IReferenceProviderFactory</code>, <code>IReferenceFactory</code> and <code>IReference</code>. It is very easy to get these mixed up with the <code>ReferenceProviderFactory</code> class and the <code>IReferenceProvider</code> interface, however, they serve different purposes. <code>ReferenceProviderFactory</code> and <code>IReferenceProvider</code> are facades that manage the responsibility of delegating and aggregating the creation of custom references to multiple custom reference providers.</p>
-<p>The <code>ReferenceProviderFactory</code> class hides the complexity of maintaining a large collection of custom reference providers. It is a <code>[PsiComponent]</code> that maintains an <code>IViewable&lt;IReferenceProviderFactory&gt;</code>. It has one public method:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> ReferenceProviderFactory
+                        <h1 id="elementfactories"><a name="elementfactories" class="plugin-anchor" href="#elementfactories"><span class="fa fa-link"></span></a>ElementFactories</h1>
+<p>The XML PSI has several classes related to element factories, that is, for creating <a href="TreeNodes.html#ixmltreenode"><code>IXmlTreeNode</code></a> derived instances. Some of the classes are for internal use, or implementation details. They are documented here for completeness, and to avoid confusion when spelunking around the code in dotPeek.</p>
+<p>The <a href="#xmlelementfactory"><code>XmlElementFactory</code></a> class is the class to use for creating tags, attributes or an entire <a href="#ixmlfile"><code>IXmlFile</code></a> instance. Use the <code>XmlElementFactory.GetInstance</code> method to get a copy of the class. The <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> interface is a lower level API which can create any <a href="TreeNodes.html#ixmltreenode"><code>IXmlTreeNode</code></a> instance. The default implementation is <a href="#xmltreenodefactory"><code>XmlTreeNodeFactory</code></a> and can be retrieved using the <code>XmlTreeNodeFactory.GetInstance</code> method.</p>
+<p>All other classes and interfaces are used internally, and will probably not be used from client code.</p>
+<!-- toc -->
+<ul>
+<li><a href="#d">D</a><ul>
+<li><a href="#defaultxmlelementfactorycontext">DefaultXmlElementFactoryContext</a></li>
+<li><a href="#delegatingxmlelementfactory">DelegatingXmlElementFactory</a></li>
+</ul>
+</li>
+<li><a href="#i">I</a><ul>
+<li><a href="#ixmlelementfactory">IXmlElementFactory</a></li>
+<li><a href="#ixmlelementfactorycontext">IXmlElementFactoryContext</a></li>
+</ul>
+</li>
+<li><a href="#r">R</a><ul>
+<li><a href="#resyncxmlelementfactory">ResyncXmlElementFactory</a></li>
+<li><a href="#resyncxmlelementfactorycontext">ResyncXmlElementFactoryContext</a></li>
+</ul>
+</li>
+<li><a href="#x">X</a><ul>
+<li><a href="#xmlelementfactory">XmlElementFactory</a></li>
+<li><a href="#xmlelementfactorylttxmllanguagegt">XmlElementFactory&lt;TXmlLanguage&gt;</a></li>
+<li><a href="#xmlelementfactoryforcreateattribute">XmlElementFactoryForCreateAttribute</a></li>
+<li><a href="#xmlelementfactoryforcreatetag">XmlElementFactoryForCreateTag</a></li>
+<li><a href="#xmltreenodefactory">XmlTreeNodeFactory</a></li>
+</ul>
+</li>
+</ul>
+<!-- toc stop -->
+<h2 id="d"><a name="d" class="plugin-anchor" href="#d"><span class="fa fa-link"></span></a>D</h2>
+<h3 id="defaultxmlelementfactorycontext"><a name="defaultxmlelementfactorycontext" class="plugin-anchor" href="#defaultxmlelementfactorycontext"><span class="fa fa-link"></span></a>DefaultXmlElementFactoryContext</h3>
+<!-- Begin DefaultXmlElementFactoryContext -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> DefaultXmlElementFactoryContext :
+  IXmlElementFactoryContext
 {
-  <span class="hljs-keyword">public</span> IReferenceProvider <span class="hljs-title">Create</span>(IPsiSourceFile sourceFile, IFile file);
-}
-</code></pre>
-<p>This method iterates over the collection of custom reference providers and calls <code>IReferenceProviderFactory.CreateFactory</code> on each, maintaining a list of the returned <code>IReferenceFactory</code> instances. It then returns a custom instance of <code>IReferenceProvider</code> that is based on this list of custom reference factories.</p>
-<p>The <code>IReferenceProvider</code> interface is very similar to the <code>IReferenceFactory</code> interface:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IReferenceProvider
-{
-  ReferenceCollection GetReferences(ITreeNode element, ICollection&lt;<span class="hljs-keyword">string</span>&gt; names);
-  <span class="hljs-keyword">bool</span> ContainsReference(ITreeNode element, IReference reference);
-}
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DefaultXmlElementFactoryContext Instance;
 
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IReferenceFactory
-{
-  IReference[] GetReferences(ITreeNode element, IReference[] oldReferences);
-  <span class="hljs-keyword">bool</span> HasReference(ITreeNode element, ICollection&lt;<span class="hljs-keyword">string</span>&gt; names);
+  <span class="hljs-keyword">public</span> T GetContainingNode&lt;T&gt;(ITreeNode currentNode, <span class="hljs-keyword">bool</span> returnCurrent);
+  <span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">GetParentTag</span>(IXmlTag currentTag);
 }
 </code></pre>
-<p><code>IReferenceProvider</code> also acts as a fa&#xE7;ade, this time over the collection of <code>IReferenceFactory</code> instances, and in fact has a slightly different signature, more aimed at consuming references than creating them.</p>
-<p>It is responsible for caching the references, and keeping them up to date when the PSI changes. If there is no data cached, or it is not up to date, it calls each of the <code>IReferenceFactory.GetReferences</code> implementations in turn, passing in the old references, if applicable. The returned new references are then cached and returned on demand. It will short circuit the cache update when possible by calling <code>IReferenceFactory.HasReferences</code>. If no reference factory has references here, the cache isn&apos;t consulted or updated. It also includes an optimisation that restores the previously known references if the current PSI transaction is rolled back.</p>
-<p>There should be no reason to use <code>ReferenceProviderFactory</code> or <code>IReferenceProvider</code> directly, and is documented to prevent confusion between similarly named classes and interfaces.</p>
+<!-- End DefaultXmlElementFactoryContext -->
+<p>Default implementation of <a href="#ixmlelementfactorycontext"><code>IXmlElementFactoryContext</code></a> that defers to <code>ITreeNode.GetContainingNode&lt;T&gt;()</code> and <code>XmlTagNavigator.GetByTag()</code>.</p>
+<h3 id="delegatingxmlelementfactory"><a name="delegatingxmlelementfactory" class="plugin-anchor" href="#delegatingxmlelementfactory"><span class="fa fa-link"></span></a>DelegatingXmlElementFactory</h3>
+<!-- Begin DelegatingXmlElementFactory -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> DelegatingXmlElementFactory :
+  IXmlElementFactory
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-title">DelegatingXmlElementFactory</span>(IXmlElementFactory factory);
+
+  IXmlElementFactory Factory { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+  PsiLanguageType LanguageType { <span class="hljs-keyword">get</span>; }
+  XmlElementTypes XmlElementType { <span class="hljs-keyword">get</span>; }
+  XmlTokenTypes XmlTokenTypes { <span class="hljs-keyword">get</span>; }
+
+  <span class="hljs-keyword">public</span> IAnyContent <span class="hljs-title">CreateAnyContent</span>();
+  <span class="hljs-keyword">public</span> IAttDef <span class="hljs-title">CreateAttDef</span>();
+  <span class="hljs-keyword">public</span> IXmlAttribute <span class="hljs-title">CreateAttribute</span>(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> IXmlAttributeValue <span class="hljs-title">CreateAttributeValue</span>(XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset);
+  <span class="hljs-keyword">public</span> IAttType <span class="hljs-title">CreateAttType</span>();
+  <span class="hljs-keyword">public</span> IXmlCData <span class="hljs-title">CreateCData</span>();
+  <span class="hljs-keyword">public</span> IXmlComment <span class="hljs-title">CreateComment</span>();
+  <span class="hljs-keyword">public</span> IDocTypeDeclaration <span class="hljs-title">CreateDocTypeDeclaration</span>();
+  <span class="hljs-keyword">public</span> IDTDAttListDecl <span class="hljs-title">CreateDTDAttListDecl</span>();
+  <span class="hljs-keyword">public</span> IDTDElementDecl <span class="hljs-title">CreateDTDElementDecl</span>();
+  <span class="hljs-keyword">public</span> IDTDEntityDecl <span class="hljs-title">CreateDTDEntityDecl</span>();
+  <span class="hljs-keyword">public</span> IDTDNotationDecl <span class="hljs-title">CreateDTDNotationDecl</span>();
+  <span class="hljs-keyword">public</span> IEmptyContent <span class="hljs-title">CreateEmptyContent</span>();
+  <span class="hljs-keyword">public</span> IXmlSyntaxErrorElement <span class="hljs-title">CreateError</span>(XmlSyntaxErrorType errorType);
+  <span class="hljs-keyword">public</span> IXmlFile <span class="hljs-title">CreateFile</span>();
+  <span class="hljs-keyword">public</span> IGrouppedContent <span class="hljs-title">CreateGrouppedContent</span>();
+  <span class="hljs-keyword">public</span> IXmlIdentifier <span class="hljs-title">CreateIdentifier</span>(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset);
+  <span class="hljs-keyword">public</span> IDTDBody <span class="hljs-title">CreateIntSubset</span>();
+  <span class="hljs-keyword">public</span> IDTDNDataDecl <span class="hljs-title">CreateNDataDecl</span>();
+  <span class="hljs-keyword">public</span> IProcessingInstruction <span class="hljs-title">CreatePI</span>();
+  <span class="hljs-keyword">public</span> IXmlProcessingInstruction <span class="hljs-title">CreatePIXml</span>();
+  <span class="hljs-keyword">public</span> IExternalId <span class="hljs-title">CreatePublicExternalID</span>();
+  <span class="hljs-keyword">public</span> IRepetitionContent <span class="hljs-title">CreateRepetionContent</span>();
+  <span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateRootTag</span>(IXmlTagHeader header, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> IElementContent <span class="hljs-title">CreateSimpleContent</span>();
+  <span class="hljs-keyword">public</span> IExternalId <span class="hljs-title">CreateSystemExternalID</span>();
+  <span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateTag</span>(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> IXmlTagFooter <span class="hljs-title">CreateTagFooter</span>(IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> IXmlTagHeader <span class="hljs-title">CreateTagHeader</span>(IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> IXmlToken <span class="hljs-title">CreateToken</span>(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset);
+}
+</code></pre>
+<!-- End DelegatingXmlElementFactory -->
+<h2 id="i"><a name="i" class="plugin-anchor" href="#i"><span class="fa fa-link"></span></a>I</h2>
+<h3 id="ixmlelementfactory"><a name="ixmlelementfactory" class="plugin-anchor" href="#ixmlelementfactory"><span class="fa fa-link"></span></a>IXmlElementFactory</h3>
+<!-- Begin IXmlElementFactory -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlElementFactory
+{
+  PsiLanguageType LanguageType { <span class="hljs-keyword">get</span>; }
+  XmlElementTypes XmlElementType { <span class="hljs-keyword">get</span>; }
+  XmlTokenTypes XmlTokenTypes { <span class="hljs-keyword">get</span>; }
+
+  IAnyContent CreateAnyContent();
+  IAttDef CreateAttDef();
+  IXmlAttribute CreateAttribute(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  IXmlAttributeValue CreateAttributeValue(XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset);
+  IAttType CreateAttType();
+  IXmlCData CreateCData();
+  IXmlComment CreateComment();
+  IDocTypeDeclaration CreateDocTypeDeclaration();
+  IDTDAttListDecl CreateDTDAttListDecl();
+  IDTDElementDecl CreateDTDElementDecl();
+  IDTDEntityDecl CreateDTDEntityDecl();
+  IDTDNotationDecl CreateDTDNotationDecl();
+  IEmptyContent CreateEmptyContent();
+  IXmlSyntaxErrorElement CreateError(XmlSyntaxErrorType errorType);
+  IXmlFile CreateFile();
+  IGrouppedContent CreateGrouppedContent();
+  IXmlIdentifier CreateIdentifier(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset);
+  IDTDBody CreateIntSubset();
+  IDTDNDataDecl CreateNDataDecl();
+  IProcessingInstruction CreatePI();
+  IXmlProcessingInstruction CreatePIXml();
+  IExternalId CreatePublicExternalID();
+  IRepetitionContent CreateRepetionContent();
+  IXmlTag CreateRootTag(IXmlTagHeader header, IXmlElementFactoryContext context);
+  IElementContent CreateSimpleContent();
+  IExternalId CreateSystemExternalID();
+  IXmlTag CreateTag(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context);
+  IXmlTagFooter CreateTagFooter(IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  IXmlTagHeader CreateTagHeader(IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  IXmlToken CreateToken(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset);
+}
+</code></pre>
+<!-- End IXmlElementFactory -->
+<h3 id="ixmlelementfactorycontext"><a name="ixmlelementfactorycontext" class="plugin-anchor" href="#ixmlelementfactorycontext"><span class="fa fa-link"></span></a>IXmlElementFactoryContext</h3>
+<!-- Begin IXmlElementFactoryContext -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IXmlElementFactoryContext
+{
+  T GetContainingNode&lt;T&gt;(ITreeNode currentNode, <span class="hljs-keyword">bool</span> returnCurrent);
+  IXmlTag GetParentTag(IXmlTag currentTag);
+}
+</code></pre>
+<!-- End IXmlElementFactoryContext -->
+<p>Helper methods used while parsing XML into <a href="TreeNodes.html#ixmltreenode"><code>IXmlTreeNode</code></a> instances. Allows treating a node as though it has a different parent or containing node while parsing.</p>
+<h2 id="r"><a name="r" class="plugin-anchor" href="#r"><span class="fa fa-link"></span></a>R</h2>
+<h3 id="resyncxmlelementfactory"><a name="resyncxmlelementfactory" class="plugin-anchor" href="#resyncxmlelementfactory"><span class="fa fa-link"></span></a>ResyncXmlElementFactory</h3>
+<!-- Begin ResyncXmlElementFactory -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> ResyncXmlElementFactory :
+  DelegatingXmlElementFactory
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-title">ResyncXmlElementFactory</span>(IXmlTagContainer xmlTagContainer, IXmlElementFactory factory = <span class="hljs-keyword">null</span>);
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlAttribute <span class="hljs-title">CreateAttribute</span>(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlTag <span class="hljs-title">CreateRootTag</span>(IXmlTagHeader header, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlTag <span class="hljs-title">CreateTag</span>(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlTagFooter <span class="hljs-title">CreateTagFooter</span>(IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlTagHeader <span class="hljs-title">CreateTagHeader</span>(IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+}
+</code></pre>
+<!-- End ResyncXmlElementFactory -->
+<p>Implementation detail for incremental reparsing. When a change is made to a file which is encapsulated by an <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a>, the tag&apos;s <code>IChameleonNode.Resync</code> method is called, and the node tries to reparse just its contents, rather than have to parse the whole file on each change.</p>
+<p>The changed range is re-parsed, as a whole file. However, the element factory used by the parser is <a href="#resyncxmlelementfactory"><code>ResyncXmlElementFactory</code></a>, which is passed the original parent tag in its constructor. When creating tags, headers, footers and attributes where the passed <code>parentTag</code> is the root <a href="TreeNodes.html#ixmlfile"><code>IXmlFile</code></a>, the <a href="#resyncxmlelementfactory"><code>ResyncXmlElementFactory</code></a> replaces the <code>parentTag</code> parameter with the original parent tag passed to the constructor. This keeps the context of the original parent tag when parsing the changed child content.</p>
+<h3 id="resyncxmlelementfactorycontext"><a name="resyncxmlelementfactorycontext" class="plugin-anchor" href="#resyncxmlelementfactorycontext"><span class="fa fa-link"></span></a>ResyncXmlElementFactoryContext</h3>
+<!-- Begin ResyncXmlElementFactoryContext -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> ResyncXmlElementFactoryContext :
+  IXmlElementFactoryContext
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-title">ResyncXmlElementFactoryContext</span>(ITreeNode physicalNode);
+
+  <span class="hljs-keyword">public</span> T GetContainingNode&lt;T&gt;(ITreeNode currentNode, <span class="hljs-keyword">bool</span> returnCurrent);
+  <span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">GetParentTag</span>(IXmlTag currentTag);
+}
+</code></pre>
+<!-- End ResyncXmlElementFactoryContext -->
+<p>Defers to <a href="#defaultxmlelementfactorycontext"><code>DefaultXmlElementFactoryContext</code></a>. If the returned value is <code>null</code>, the original node passed to the constructor is checked.</p>
+<h2 id="x"><a name="x" class="plugin-anchor" href="#x"><span class="fa fa-link"></span></a>X</h2>
+<h3 id="xmlelementfactory"><a name="xmlelementfactory" class="plugin-anchor" href="#xmlelementfactory"><span class="fa fa-link"></span></a>XmlElementFactory</h3>
+<!-- Begin XmlElementFactory -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> XmlElementFactory
+{
+  <span class="hljs-keyword">protected</span> <span class="hljs-title">XmlElementFactory</span>(IPsiModule module, IXmlElementFactory factory, IXmlLanguageSupport support, <span class="hljs-keyword">bool</span> applyFormatter);
+
+  <span class="hljs-keyword">protected</span> <span class="hljs-keyword">bool</span> ApplyFormatter;
+  <span class="hljs-keyword">protected</span> IXmlElementFactory Factory;
+  <span class="hljs-keyword">protected</span> IPsiModule Module;
+  <span class="hljs-keyword">protected</span> IXmlLanguageSupport Support;
+
+  <span class="hljs-keyword">public</span> IXmlAttribute <span class="hljs-title">CreateAttributeForTag</span>(IXmlTag contextTag, <span class="hljs-keyword">string</span> attributeText);
+  <span class="hljs-keyword">public</span> IXmlFile <span class="hljs-title">CreateFile</span>(<span class="hljs-keyword">string</span> xmlText);
+  <span class="hljs-keyword">public</span> IXmlAttribute <span class="hljs-title">CreateRootAttribute</span>(<span class="hljs-keyword">string</span> attributeText);
+  <span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateRootTag</span>(<span class="hljs-keyword">string</span> tagText);
+  <span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateTagForTag</span>(IXmlTag contextTag, <span class="hljs-keyword">string</span> tagText, <span class="hljs-keyword">string</span> rootTagText = <span class="hljs-keyword">null</span>);
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> XmlElementFactory <span class="hljs-title">GetInstance</span>(ITreeNode context, <span class="hljs-keyword">bool</span> applyFormatter = <span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<!-- End XmlElementFactory -->
+<p>Methods for creating instances of <a href="TreeNodes.html#ixmlfile"><code>IXmlFile</code></a>, <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a> and <a href="#ixmlattribute"><code>IXmlAttribute</code></a>. It is intended for use by code client. Note that it does not implement the similarly named <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> interface (in fact, internally, it uses this interface). Clients can get an instance of the class via the <code>GetInstance</code> static method. Passing in an <code>ITreeNode</code> allows for getting the language specific implementations of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> and <code>XmlLanguageSupport</code>.</p>
+<ul>
+<li><code>CreateFile</code> will parse a string containing XML into a complete XML file, represented by <a href="TreeNodes.html#ixmlfile"><code>IXmlFile</code></a>.</li>
+<li><code>CreateRootTag</code> creates an instance of <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a> based on the given XML string. It is a &quot;root&quot; tag in that it treats the given string as a complete XML file, and returns the first tag found in that &quot;file&quot;.</li>
+<li><code>CreateRootAttribute</code> creates an instance of <a href="TreeNodes.html#ixmlattribute"><code>IXmlAttribute</code></a> given an XML string that represents an attribute, e.g. <code>name=&quot;value&quot;</code>. It is a &quot;root&quot; attribute in that the attribute is added to a &quot;root&quot; tag in a parsed file.</li>
+<li><code>CreateTagForTag</code> creates an instance of <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a>, as though it were parsed with a parent tag of <code>contextTag</code>. It does this by creating an instance of the <a href="#xmlelementfactoryforcreatetag"><code>XmlElementFactoryForCreateTag</code></a> element factory, passing in <code>contextTag</code> (and the language specific implementation of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a>). When this factory gets called to create a new tag, it substitutes the <code>contextTag</code> as the parent, and passes the call to the inner implementation to create the tag. This allows per-language implementations of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> to have more context when creating a tag - it knows the parent tag and can create an appropriate child tag. For example, the XAML implementation of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> creates an instance of <code>StaticResourceElement</code> (that implements <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a> if <code>textTag</code> is <code>&lt;x:Static&gt;...&lt;/x:Static&gt;</code> and the parent <code>contextTag</code> is a resource dictionary. The <code>rootTagText</code> parameter is used to create the root tag, if that is required for special processing. Leaving it null will use a sensible default value.</li>
+<li><code>CreateAttributeForTag</code> is similar to <code>CreateTagForTag</code>, except it uses the <a href="#xmlelementfactoryforcreateattribute"><code>XmlElementFactoryForCreateAttribute</code></a> element factory to use the given <code>contextTag</code> when creating an attribute.</li>
+</ul>
+<p>Once a node has been created, it can be passed to <code>ModificationUtil</code> to be added to a new tree.</p>
+<p>Generally speaking, callers should use <code>CreateTagForTag</code> and <code>CreateTagForAttribute</code> when wishing to create a tag or an attribute. Only use the &quot;root&quot; variants when the tag or attribute actually is at the root level.</p>
+<h3 id="xmlelementfactorylttxmllanguagegt"><a name="xmlelementfactorylttxmllanguagegt" class="plugin-anchor" href="#xmlelementfactorylttxmllanguagegt"><span class="fa fa-link"></span></a>XmlElementFactory&lt;TXmlLanguage&gt;</h3>
+<!-- Begin XmlElementFactory`1 -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> XmlElementFactory&lt;TXmlLanguage&gt; :
+  XmlElementFactory
+{
+  <span class="hljs-keyword">protected</span> XmlElementFactory&lt;TXmlLanguage&gt;(IPsiModule module, <span class="hljs-keyword">bool</span> applyFormatter);
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> XmlElementFactory&lt;TXmlLanguage&gt; <span class="hljs-title">GetInstance</span>(IPsiModule module, <span class="hljs-keyword">bool</span> applyFormatter = <span class="hljs-keyword">true</span>);
+}
+</code></pre>
+<!-- End XmlElementFactory`1 -->
+<p>A derived instance of <a href="#xmlelementfactory"><code>XmlElementFactory</code></a> which allows creating calling <code>GetInstance</code> for a specific language without requiring an instance of <code>ITreeNode</code>. Also derived by some XML languages to provide additional functionality for the factory, e.g. <code>ResxElementFactory</code> and <code>XamlElementFactory</code>.</p>
+<h3 id="xmlelementfactoryforcreateattribute"><a name="xmlelementfactoryforcreateattribute" class="plugin-anchor" href="#xmlelementfactoryforcreateattribute"><span class="fa fa-link"></span></a>XmlElementFactoryForCreateAttribute</h3>
+<!-- Begin XmlElementFactoryForCreateAttribute -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> XmlElementFactoryForCreateAttribute :
+  DelegatingXmlElementFactory
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-title">XmlElementFactoryForCreateAttribute</span>(IXmlElementFactory factory, IXmlTag tag);
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlAttribute <span class="hljs-title">CreateAttribute</span>(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+}
+</code></pre>
+<!-- End XmlElementFactoryForCreateAttribute -->
+<p>Instance of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> that changes the context when creating an attribute to instead of using the passed in <code>parentTag</code> as the parent tag of the newly created attribute, uses an instance of <code>IXmlTag</code> passed to the constructor. This is used as an implementation detail of <a href="#xmlelementfactory"><code>XmlElementFactory.CreateAttributeForTag()</code></a> to make sure the new attribute is created with the correct parent tag as context. See <a href="#xmlelementfactory"><code>XmlElementFactory</code></a> for more details.</p>
+<h3 id="xmlelementfactoryforcreatetag"><a name="xmlelementfactoryforcreatetag" class="plugin-anchor" href="#xmlelementfactoryforcreatetag"><span class="fa fa-link"></span></a>XmlElementFactoryForCreateTag</h3>
+<!-- Begin XmlElementFactoryForCreateTag -->
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> XmlElementFactoryForCreateTag :
+  DelegatingXmlElementFactory
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-title">XmlElementFactoryForCreateTag</span>(IXmlElementFactory factory, IXmlTag tag);
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlAttribute <span class="hljs-title">CreateAttribute</span>(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlTag <span class="hljs-title">CreateTag</span>(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context);
+}
+</code></pre>
+<!-- End XmlElementFactoryForCreateTag -->
+<p>Instance of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> that changes the context when creating a tag to ignore the passed <code>parentTag</code> when creating the tree node, and use the tag passed to the constructor as the parent instead. This class is used as an implementation detail of <a href="#xmlelementfactory"><code>XmlElementFactory.CreateTagForTag()</code></a> to make sure the new attribute is created with the correct parent tag as context. See <a href="#xmlelementfactory"><code>XmlElementFactory</code></a> for more details.</p>
+<h3 id="xmltreenodefactory"><a name="xmltreenodefactory" class="plugin-anchor" href="#xmltreenodefactory"><span class="fa fa-link"></span></a>XmlTreeNodeFactory</h3>
+<!-- Begin XmlTreeNodeFactory -->
+<pre><code class="lang-cs">[Language(<span class="hljs-keyword">typeof</span>(XmlLanguage))]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> XmlTreeNodeFactory :
+  IXmlElementFactory
+{
+  <span class="hljs-keyword">public</span> <span class="hljs-title">XmlTreeNodeFactory</span>(XmlLanguage languageType, XmlTokenTypes tokenTypes, XmlElementTypes elementTypes);
+
+  PsiLanguageType LanguageType { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+  XmlElementTypes XmlElementType { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+  XmlTokenTypes XmlTokenTypes { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+
+  <span class="hljs-keyword">public</span> IAnyContent <span class="hljs-title">CreateAnyContent</span>();
+  <span class="hljs-keyword">public</span> IAttDef <span class="hljs-title">CreateAttDef</span>();
+  <span class="hljs-keyword">public</span> IXmlAttribute <span class="hljs-title">CreateAttribute</span>(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> IXmlAttributeValue <span class="hljs-title">CreateAttributeValue</span>(XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset);
+  <span class="hljs-keyword">public</span> IAttType <span class="hljs-title">CreateAttType</span>();
+  <span class="hljs-keyword">public</span> IXmlCData <span class="hljs-title">CreateCData</span>();
+  <span class="hljs-keyword">public</span> IXmlComment <span class="hljs-title">CreateComment</span>();
+  <span class="hljs-keyword">public</span> IDocTypeDeclaration <span class="hljs-title">CreateDocTypeDeclaration</span>();
+  <span class="hljs-keyword">public</span> IDTDAttListDecl <span class="hljs-title">CreateDTDAttListDecl</span>();
+  <span class="hljs-keyword">public</span> IDTDElementDecl <span class="hljs-title">CreateDTDElementDecl</span>();
+  <span class="hljs-keyword">public</span> IDTDEntityDecl <span class="hljs-title">CreateDTDEntityDecl</span>();
+  <span class="hljs-keyword">public</span> IDTDNotationDecl <span class="hljs-title">CreateDTDNotationDecl</span>();
+  <span class="hljs-keyword">public</span> IEmptyContent <span class="hljs-title">CreateEmptyContent</span>();
+  <span class="hljs-keyword">public</span> IXmlSyntaxErrorElement <span class="hljs-title">CreateError</span>(XmlSyntaxErrorType errorType);
+  <span class="hljs-keyword">public</span> IXmlFile <span class="hljs-title">CreateFile</span>();
+  <span class="hljs-keyword">public</span> IGrouppedContent <span class="hljs-title">CreateGrouppedContent</span>();
+  <span class="hljs-keyword">public</span> IXmlIdentifier <span class="hljs-title">CreateIdentifier</span>(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset);
+  <span class="hljs-keyword">public</span> IDTDBody <span class="hljs-title">CreateIntSubset</span>();
+  <span class="hljs-keyword">public</span> IDTDNDataDecl <span class="hljs-title">CreateNDataDecl</span>();
+  <span class="hljs-keyword">public</span> IProcessingInstruction <span class="hljs-title">CreatePI</span>();
+  <span class="hljs-keyword">public</span> IXmlProcessingInstruction <span class="hljs-title">CreatePIXml</span>();
+  <span class="hljs-keyword">public</span> IExternalId <span class="hljs-title">CreatePublicExternalID</span>();
+  <span class="hljs-keyword">public</span> IRepetitionContent <span class="hljs-title">CreateRepetionContent</span>();
+  <span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateRootTag</span>(IXmlTagHeader header, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> IElementContent <span class="hljs-title">CreateSimpleContent</span>();
+  <span class="hljs-keyword">public</span> IExternalId <span class="hljs-title">CreateSystemExternalID</span>();
+  <span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateTag</span>(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> IXmlTagFooter <span class="hljs-title">CreateTagFooter</span>(IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> IXmlTagHeader <span class="hljs-title">CreateTagHeader</span>(IXmlTagContainer parentTag, IXmlElementFactoryContext context);
+  <span class="hljs-keyword">public</span> IXmlToken <span class="hljs-title">CreateToken</span>(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset);
+
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlElementFactory GetInstance&lt;TLanguage&gt;();
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlElementFactory <span class="hljs-title">GetInstance</span>(ITreeNode element);
+}
+</code></pre>
+<!-- End XmlTreeNodeFactory -->
+<p>Default implementation of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a>. This is used by the parser and lexer to create <a href="TreeNode.html#ixmltreenode"><code>IXmlTreeNode</code></a> instances when building the PSI tree. It is a per-language class, as indicated by the <code>[Language(typeof(XmlLanguage))]</code> attribute. This means it will be used for all XML derived languages when calling <code>LanguageManager.Instance.GetService&lt;IXmlElementFactory&gt;(language)</code>, unless the derived language implements its own <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a>.</p>
+<p>Call one of the <code>GetInstance</code> methods to get an instance of the class (internally, this calls <code>LanguageManager.GetService</code>, using the language from the passed in <code>ITreeNode</code> or the <code>TLanguage</code> generic parameter.</p>
+<p>Use this class to create low-level tree nodes. Use the [<code>XmlElementFactory</code>] class to create a whole <a href="TreeNodes.html#ixmlfile"><code>IXmlFile</code></a> or tags and attributes.</p>
 
                     
                     </section>
@@ -2969,17 +3237,17 @@
         </div>
 
         
-        <a href="../../PSI/References/Substrings.html" class="navigation navigation-prev " aria-label="Previous page: References within elements"><i class="fa fa-angle-left"></i></a>
+        <a href="../../../PSI/Reference/Xml/Navigators.html" class="navigation navigation-prev " aria-label="Previous page: Navigators"><i class="fa fa-angle-left"></i></a>
         
         
-        <a href="../../PSI/References/PathReferences.html" class="navigation navigation-next " aria-label="Next page: Path references"><i class="fa fa-angle-right"></i></a>
+        <a href="../../../PSI/Reference/Xml/Utils.html" class="navigation navigation-next " aria-label="Next page: Utils"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
 
         
-<script src="../../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
-<script src="../../gitbook/app.js"></script>
+<script src="../../../gitbook/jsrepl/jsrepl.js" id="jsrepl-script"></script>
+<script src="../../../gitbook/app.js"></script>
 
 <script>
 require(["gitbook"], function(gitbook) {

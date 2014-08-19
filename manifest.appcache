@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1408378376097
+# Revision 1408477847884
 
 CACHE:
 HowDoI.html
@@ -28,21 +28,23 @@ Features/Refactoring.html
 Features/Tools/CodeCleanup.html
 Features/UnitTest.html
 Features/XmlLike.html
-Intro/Glossary.html
 Intro/KnownIssues.html
+Intro/Glossary.html
 Intro/Tools.html
+PSI/ExternalAnnotations/Testing.html
 PSI/Caches.html
 PSI/Generating/Code.html
-PSI/ExternalAnnotations/Testing.html
 PSI/Generating/Comments.html
 PSI/NavigatingSyntaxTrees.html
+PSI/Reference/Xml/ElementFactories.html
+PSI/Reference/Xml/Manipulation.html
 PSI/Reference/Xml/Navigators.html
 PSI/Reference/Xml/Overview.html
 PSI/Reference/Xml/TreeNodes.html
 PSI/Reference/Xml/TreeNodesDTD.html
-PSI/Reference/Xml/Utils.html
-PSI/References/CodeCompletion.html
 PSI/References/IReferenceProvider.html
+PSI/References/CodeCompletion.html
+PSI/Reference/Xml/Utils.html
 PSI/References/PathReferences.html
 PSI/References/ReferenceProviders.html
 PSI/References/Substrings.html
