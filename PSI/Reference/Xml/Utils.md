@@ -51,7 +51,7 @@ public static class ReferenceWithTokenUtil
 {
   public static void AddRestoreTransactionAction(IPsiServices psiServices, IReferenceWithToken referenceWithToken, ElementRange<IXmlToken> oldRange);
 
-  public static IXmlToken SetText(IXmlToken token, TreeTextRange oldRange, string newText, ITreeNode elementToDropReferences);
+  public static IXmlToken SetText(IXmlToken token, TreeTextRange oldRange, string newText, ITreeNode elementToDropReferences = null);
   public static IReferenceWithToken SetText(IReferenceWithToken reference, string newText);
 }
 ```
@@ -69,9 +69,9 @@ Helper methods for handling references within a token node. The methods defer to
 ```cs
 public static class XmlAttributeContainerExtensions
 {
-  public static TAttribute GetAttribute<TAttribute>(IXmlAttributeContainer container);
-  public static IXmlAttribute GetAttribute(IXmlAttributeContainer container, Predicate<IXmlAttribute> predicate);
-  public static IXmlAttribute GetAttribute(IXmlAttributeContainer container, string fullName);
+  public static TAttribute GetAttribute<TAttribute>(this IXmlAttributeContainer container);
+  public static IXmlAttribute GetAttribute(this IXmlAttributeContainer container, this Predicate<IXmlAttribute> predicate);
+  public static IXmlAttribute GetAttribute(this IXmlAttributeContainer container, this string fullName);
 }
 ```
 
@@ -87,7 +87,7 @@ Gets an attribute from an instance of [`IXmlAttributeContainer`](TreeNodes.md#ix
 public static class XmlAttributeExtension
 {
   public static string GetUnquotedText(IXmlAttribute attribute, out TreeTextRange range);
-  public static DocumentRange GetUnquotedValueRange(IXmlAttribute attribute);
+  public static DocumentRange GetUnquotedValueRange(this IXmlAttribute attribute);
 }
 ```
 
@@ -102,7 +102,7 @@ Helper methods to get information about the unquoted text of an instance of [`IX
 ```cs
 public static class XmlAttributeExtensions
 {
-  public static void Remove(IXmlAttribute xmlAttribute);
+  public static void Remove(this IXmlAttribute xmlAttribute);
 }
 ```
 
@@ -135,8 +135,8 @@ Helper methods for working with XML attributes. `SetValue` replaces an attribute
 ```cs
 public static class XmlElementFactoryExtensions
 {
-  public static IXmlAttribute CreateAttributeRaw(IXmlElementFactory factory, string attributeText);
-  public static IXmlFile CreateFileRaw(IXmlElementFactory factory, string xmlText);
+  public static IXmlAttribute CreateAttributeRaw(this IXmlElementFactory factory, this string attributeText);
+  public static IXmlFile CreateFileRaw(this IXmlElementFactory factory, this string xmlText);
 }
 ```
 
@@ -166,16 +166,16 @@ Helper method that will recursively walk down the PSI tree starting at `element`
 ```cs
 public static class XmlTagExtensions
 {
-  public static IXmlAttribute GetAttribute(IXmlTag tag, Predicate<IXmlAttribute> predicate);
-  public static IXmlAttribute GetAttribute(IXmlTag tag, string fullName);
-  public static TreeNodeEnumerable<IXmlAttribute> GetAttributes(IXmlTag tag);
-  public static string GetFullTagName(IXmlTag tag);
-  public static IXmlIdentifier GetName(IXmlTag tag);
-  public static IXmlIdentifier GetNameNode(IXmlTag tag);
-  public static string GetTagName(IXmlTag tag);
-  public static string GetTagNamespace(IXmlTag tag);
+  public static IXmlAttribute GetAttribute(this IXmlTag tag, this Predicate<IXmlAttribute> predicate);
+  public static IXmlAttribute GetAttribute(this IXmlTag tag, this string fullName);
+  public static TreeNodeEnumerable<IXmlAttribute> GetAttributes(this IXmlTag tag);
+  public static string GetFullTagName(this IXmlTag tag);
+  public static IXmlIdentifier GetName(this IXmlTag tag);
+  public static IXmlIdentifier GetNameNode(this IXmlTag tag);
+  public static string GetTagName(this IXmlTag tag);
+  public static string GetTagNamespace(this IXmlTag tag);
 
-  public static void Remove(IXmlTag xmlTag);
+  public static void Remove(this IXmlTag xmlTag);
 }
 ```
 
