@@ -21,8 +21,8 @@ public class DefaultXmlElementFactoryContext :
 {
   public static DefaultXmlElementFactoryContext Instance;
 
-  public sealed T GetContainingNode<T>(ITreeNode currentNode, bool returnCurrent);
-  public sealed IXmlTag GetParentTag(IXmlTag currentTag);
+  public T GetContainingNode<T>(ITreeNode currentNode, bool returnCurrent);
+  public IXmlTag GetParentTag(IXmlTag currentTag);
 }
 ```
 
@@ -38,6 +38,8 @@ Default implementation of [`IXmlElementFactoryContext`](#ixmlelementfactoryconte
 public class DelegatingXmlElementFactory :
   IXmlElementFactory
 {
+  public DelegatingXmlElementFactory(IXmlElementFactory factory);
+
   IXmlElementFactory Factory { get; set; }
   PsiLanguageType LanguageType { get; }
   XmlElementTypes XmlElementType { get; }
@@ -152,6 +154,8 @@ Helper methods used while parsing XML into [`IXmlTreeNode`](TreeNodes.md#ixmltre
 public class ResyncXmlElementFactory :
   DelegatingXmlElementFactory
 {
+  public ResyncXmlElementFactory(IXmlTagContainer xmlTagContainer, IXmlElementFactory factory = null);
+
   public override IXmlAttribute CreateAttribute(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context);
   public override IXmlTag CreateRootTag(IXmlTagHeader header, IXmlElementFactoryContext context);
   public override IXmlTag CreateTag(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context);
@@ -174,8 +178,10 @@ The changed range is re-parsed, as a whole file. However, the element factory us
 public class ResyncXmlElementFactoryContext :
   IXmlElementFactoryContext
 {
-  public sealed T GetContainingNode<T>(ITreeNode currentNode, bool returnCurrent);
-  public sealed IXmlTag GetParentTag(IXmlTag currentTag);
+  public ResyncXmlElementFactoryContext(ITreeNode physicalNode);
+
+  public T GetContainingNode<T>(ITreeNode currentNode, bool returnCurrent);
+  public IXmlTag GetParentTag(IXmlTag currentTag);
 }
 ```
 
@@ -192,16 +198,18 @@ Defers to [`DefaultXmlElementFactoryContext`](#defaultxmlelementfactorycontext).
 ```cs
 public class XmlElementFactory
 {
+  protected XmlElementFactory(IPsiModule module, IXmlElementFactory factory, IXmlLanguageSupport support, bool applyFormatter);
+
   protected bool ApplyFormatter;
   protected IXmlElementFactory Factory;
   protected IPsiModule Module;
   protected IXmlLanguageSupport Support;
 
-  public sealed IXmlAttribute CreateAttributeForTag(IXmlTag contextTag, string attributeText);
-  public sealed IXmlFile CreateFile(string xmlText);
-  public sealed IXmlAttribute CreateRootAttribute(string attributeText);
-  public sealed IXmlTag CreateRootTag(string tagText);
-  public sealed IXmlTag CreateTagForTag(IXmlTag contextTag, string tagText, string rootTagText = null);
+  public IXmlAttribute CreateAttributeForTag(IXmlTag contextTag, string attributeText);
+  public IXmlFile CreateFile(string xmlText);
+  public IXmlAttribute CreateRootAttribute(string attributeText);
+  public IXmlTag CreateRootTag(string tagText);
+  public IXmlTag CreateTagForTag(IXmlTag contextTag, string tagText, string rootTagText = null);
 
   public static XmlElementFactory GetInstance(ITreeNode context, bool applyFormatter = true);
 }
@@ -229,6 +237,8 @@ Generally speaking, callers should use `CreateTagForTag` and `CreateTagForAttrib
 public class XmlElementFactory<TXmlLanguage> :
   XmlElementFactory
 {
+  protected XmlElementFactory<TXmlLanguage>(IPsiModule module, bool applyFormatter);
+
   public static XmlElementFactory<TXmlLanguage> GetInstance(IPsiModule module, bool applyFormatter = true);
 }
 ```
@@ -245,6 +255,8 @@ A derived instance of [`XmlElementFactory`](#xmlelementfactory) which allows cre
 public class XmlElementFactoryForCreateAttribute :
   DelegatingXmlElementFactory
 {
+  public XmlElementFactoryForCreateAttribute(IXmlElementFactory factory, IXmlTag tag);
+
   public override IXmlAttribute CreateAttribute(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context);
 }
 ```
@@ -261,6 +273,8 @@ Instance of [`IXmlElementFactory`](#ixmlelementfactory) that changes the context
 public class XmlElementFactoryForCreateTag :
   DelegatingXmlElementFactory
 {
+  public XmlElementFactoryForCreateTag(IXmlElementFactory factory, IXmlTag tag);
+
   public override IXmlAttribute CreateAttribute(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context);
   public override IXmlTag CreateTag(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context);
 }
@@ -279,35 +293,37 @@ Instance of [`IXmlElementFactory`](#ixmlelementfactory) that changes the context
 public class XmlTreeNodeFactory :
   IXmlElementFactory
 {
+  public XmlTreeNodeFactory(XmlLanguage languageType, XmlTokenTypes tokenTypes, XmlElementTypes elementTypes);
+
   PsiLanguageType LanguageType { get; set; }
   XmlElementTypes XmlElementType { get; set; }
   XmlTokenTypes XmlTokenTypes { get; set; }
 
-  public sealed IAnyContent CreateAnyContent();
-  public sealed IAttDef CreateAttDef();
+  public IAnyContent CreateAnyContent();
+  public IAttDef CreateAttDef();
   public IXmlAttribute CreateAttribute(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context);
   public IXmlAttributeValue CreateAttributeValue(XmlTokenNodeType tokenType, IBuffer buffer, int startOffset, int endOffset);
-  public sealed IAttType CreateAttType();
+  public IAttType CreateAttType();
   public IXmlCData CreateCData();
   public IXmlComment CreateComment();
   public IDocTypeDeclaration CreateDocTypeDeclaration();
-  public sealed IDTDAttListDecl CreateDTDAttListDecl();
-  public sealed IDTDElementDecl CreateDTDElementDecl();
-  public sealed IDTDEntityDecl CreateDTDEntityDecl();
-  public sealed IDTDNotationDecl CreateDTDNotationDecl();
-  public sealed IEmptyContent CreateEmptyContent();
+  public IDTDAttListDecl CreateDTDAttListDecl();
+  public IDTDElementDecl CreateDTDElementDecl();
+  public IDTDEntityDecl CreateDTDEntityDecl();
+  public IDTDNotationDecl CreateDTDNotationDecl();
+  public IEmptyContent CreateEmptyContent();
   public IXmlSyntaxErrorElement CreateError(XmlSyntaxErrorType errorType);
   public IXmlFile CreateFile();
-  public sealed IGrouppedContent CreateGrouppedContent();
+  public IGrouppedContent CreateGrouppedContent();
   public IXmlIdentifier CreateIdentifier(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, int startOffset, int endOffset);
   public IDTDBody CreateIntSubset();
-  public sealed IDTDNDataDecl CreateNDataDecl();
+  public IDTDNDataDecl CreateNDataDecl();
   public IProcessingInstruction CreatePI();
-  public sealed IXmlProcessingInstruction CreatePIXml();
+  public IXmlProcessingInstruction CreatePIXml();
   public IExternalId CreatePublicExternalID();
-  public sealed IRepetitionContent CreateRepetionContent();
+  public IRepetitionContent CreateRepetionContent();
   public IXmlTag CreateRootTag(IXmlTagHeader header, IXmlElementFactoryContext context);
-  public sealed IElementContent CreateSimpleContent();
+  public IElementContent CreateSimpleContent();
   public IExternalId CreateSystemExternalID();
   public IXmlTag CreateTag(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context);
   public IXmlTagFooter CreateTagFooter(IXmlTagContainer parentTag, IXmlElementFactoryContext context);
