@@ -179,9 +179,9 @@ public class ResyncXmlElementFactoryContext :
 }
 ```
 
-Defers to [`DefaultXmlElementFactoryContext`](#defaultxmlelementfactorycontext). If the returned value is `null`, the original node passed to the constructor is checked.
-
 <!-- End ResyncXmlElementFactoryContext -->
+
+Defers to [`DefaultXmlElementFactoryContext`](#defaultxmlelementfactorycontext). If the returned value is `null`, the original node passed to the constructor is checked.
 
 ## X
 
