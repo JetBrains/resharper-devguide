@@ -225,11 +225,17 @@
 
 ## Part VII - Custom languages
 * [Overview](CustomLanguages/Overview.md)
-* Disabling language support
-* Project model language support
-* PSI language support
+* Registering a Custom Language
+    * Project Model
+    * PSI
 * Secondary PSI
 * [Injected PSI](CustomLanguages/InjectedPsi.md)
-* Lexing and parsing
-* psi files
-* PsiGen
+* Building the PSI tree
+    * Lexing
+    * Parsing
+        * PsiGen and .psi Files
+        * TreeBuilder
+    * Extending Existing Languages
+    * Incremental Parsing
+* Language Specific Features
+    * Disabling Intellisense
