@@ -1,37 +1,29 @@
 # Summary
 
-## Prefix
-* [Style guide](StyleGuide.md)
-* [Work in progress](wip.md)
-
-## Part I
+## Part I - Extending the ReSharper Platform
 * Getting Started
     * [Tools](Intro/Tools.md)
     * Internal mode
-    * Platform Versioning
-* Extensions Overview
+* Platform Versioning
+* What's New?
+* Declarative Extensions
     * Live Templates
     * Structural Search and Replace Patterns
     * External Annotations
         * Attribute Reference
         * Annotator Tool
-    * Plugins and SDK
-    * [Packaging and Distribution](Extensions/Packaging.md)
-    * Troubleshooting
-* [How do I?](HowDoI.md)
-* Plugins and SDK
+* Compiled Extensions (Plugins)
+    * Key Topics
     * [SDK Reference](Plugins/SDK.md)
     * [Project Setup](Plugins/ProjectSetup.md)
     * Debugging
-    * [Known Issues](Intro/KnownIssues.md)
     * [Plugin testing](Plugins/Testing.md)
-        * Base classes
+        * Test Framework
         * [Temporary Settings](Plugins/TemporarySettings.md)
-        * Quick links
-        * Testing code completion
-        * Testing unit test support
-        * Testing new language support
-* [Glossary](Intro/Glossary.md)
+    * [Known Issues](Intro/KnownIssues.md)
+* [Deployment](Extensions/Packaging.md)
+* Hints and Tips
+* Best Practices
 
 ## Part II - Architectural Overview
 * [Overview](Architecture/Overview.md)
@@ -39,6 +31,9 @@
 * Project Model
 * PSI
 * Features
+* Products
+    * Standalone
+    * Deployment
 
 ## Part III - Platform
 * Logging
@@ -50,6 +45,7 @@
     * [Component Lifetime](Platform/Lifetime/ComponentModel.md)
     * [Case Study](Platform/Lifetime/CaseStudy.md)
 * [Component Model](Platform/ComponentModel.md)
+    * Zones
     * [Visual Studio interfaces](Platform/VisualStudio/ComponentModel.md)
 * DataContext
 * [TextControl](Platform/TextControl.md)
@@ -70,10 +66,6 @@
     * Popup menus
     * Extensions
     * Theming
-* Project Model
-    * Change management
-    * MSBuild integration
-    * Project files
 * [Settings](Platform/Settings.md)
     * Reading and writing
     * Defaults
@@ -81,7 +73,13 @@
     * File format
     * Util
 
-## Part IV - PSI
+## Part IV - Project Model
+* Overview
+* Change Manager
+* MSBuild Integration
+* Project Files
+
+## Part V - PSI
 * Syntax trees
 * [Navigating syntax trees](PSI/NavigatingSyntaxTrees.md)
     * Helper methods
@@ -126,7 +124,7 @@
     * XAML
     * XML Doc
 
-## Part V - Features
+## Part VI - Features
 * Analysis
     * Highlights
     * Custom highlights
@@ -197,7 +195,7 @@
     * Comments
 * Structural Search and Replace
     * C# vs HTML and CSS
-    * Progammatic usage
+    * Programmatic usage
 * [Live Templates](Features/LiveTemplates/Overview.md)
     * [Macros](Features/LiveTemplates/Macros.md)
     * [Scopes](Features/LiveTemplates/Scopes.md)
@@ -219,11 +217,12 @@
 * Internationalisation
 * [Working with XML-like files](Features/XmlLike.md)
 
-## Part VI - Product Specific
+## Part VII - Products
 * [dotPeek](Products/dotPeek.md)
 * [InspectCode](Products/InspectCode.md)
+* Custom products
 
-## Part VII - Custom languages
+## Part VIII - Custom languages
 * [Overview](CustomLanguages/Overview.md)
 * Registering a Custom Language
     * Project Model
