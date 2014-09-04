@@ -5,5 +5,15 @@
         "richquotes": {
             "todos": true
         }
+    },
+
+    "_comment": "// Annoying that these have been removed from 1.0. Need to look for a hook for a plugin",
+
+    "links": {
+        "sidebar": {
+            "About the author": "https://github.com/citizenmatt",
+            "Questions and Issues": "https://github.com/citizenmatt/resharper-devguide/issues",
+            "Edit and Contribute": "https://github.com/citizenmatt/resharper-devguide"
+        }
     }
 }
