@@ -5,7 +5,7 @@
     * [Tools](Intro/Tools.md)
     * Internal mode
 * Platform Versioning
-* What's New?
+* [What's New?](Intro/WhatsNew.md)
 * Declarative Extensions
     * Live Templates
     * Structural Search and Replace Patterns
