@@ -46,6 +46,7 @@
     * [Case Study](Platform/Lifetime/CaseStudy.md)
 * [Component Model](Platform/ComponentModel.md)
     * Zones
+    * [Containers, Parts and Catalogues](Platform/ComponentModel/ContainersPartsCatalogues.md)
     * [Visual Studio interfaces](Platform/VisualStudio/ComponentModel.md)
 * DataContext
 * [TextControl](Platform/TextControl.md)
