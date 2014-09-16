@@ -101,7 +101,7 @@ Composition is simply handled by a simple call to `Compose`. The container will 
 Alternatively, when creating the container, you can pass in an instance of `DelayedInitializationStrategy`, which schedules each call to `IComponentDescriptor` to the current `Dispatcher`, as a background priority action. This means it will get called when the application's `Dispatcher` is next idle. Note that initialisation will still happen on the current thread.
 
 > **NOTE** This strategy is very useful for application start up, as it means the application no longer blocks during startup. However, it should be used with care! Using the default strategy, all objects are instantiated before the `Compose` method completes. With `DelaredInitializationStrategy`, the call to `Compose` completes before all objects are instantiated.
-> 
+>
 > However, trying to resolve a part that is still queued up for delayed initialisation simply creates and caches the object instance, resolving any dependencies as it does so. It is therefore safe to use components with delayed initialisation.
 
 A component can opt-out of delayed initialisation by setting the `Requirement` property on its attribute:
@@ -127,6 +127,57 @@ Once the container has been composed, object instances can be retrieved using th
 * `HasComponent<T>` looks to see if an instance of `T` exists in the container.
 
 These methods take some of the legwork out of managing an instance of `IValueResolveContext` when calling `ComponentContainer.Resolve` to get an instance of `IValueDescriptor`. If a descriptor is returned (the container will return `null` if a descriptor is not available), the `IValueDescriptor.GetValue` method is called, returning the value. Typically, the value was already been created when the container was composed, and the cached value is returned.
+
+The `T` passed to these methods can be any type in the type hierarchy of the required instance. It can be the most derived class, an abstract base class or an implemented interface.
+
+## Cardinality
+
+Typically, a container will be made up of only the most derived types of a hierarchy, thanks to the use of the `LeafsAndHides` parts selector. However, this does not dictate how many instances of a particular base type or interface are available in the container. For example, given the following:
+
+```cs
+public interface IFoo { }
+public class Foo1 : IFoo { }
+public class Foo2 : IFoo { }
+
+public class Base { }
+public class Derived { }
+public class MostDerived { }
+```
+
+The container will make available two instances of `IFoo` - `Foo1` and `Foo2`. However, there is only implementation of `Base` - the `MostDerived` class.
+
+It is important to get this right when consuming dependencies in the constructor. For example, the following constructor will fail, since there are multiple instances of `IFoo` that can satisfy the parameter:
+
+```cs
+[ShellComponent]
+public class MyComponent(IFoo foo)
+{
+}
+```
+
+Each component descriptor is assigned a "cardinality" - single or multiple. This cardinality is set the first time the component is resolved. If a single instance is being resolved, such as the use of `IFoo` in the example above, the cardinality is set to "single". If an `IEnumerable<T>` or `IViewable<T>` is being resolved, the cardinality of `T` is set to "multiple".
+
+When running a checked build, the cardinality is verified whenever a component is resolved, and if the cardinality of the request does not match the cardinality of the component, an error is logged, and an exception is thrown. When not running a checked build, this validation does not occur and the Component Model will try to resolve the component. This will succeed when requesting multiple instances of a component with single cardinality (it will return a collection of one item), however it will definitely fail when trying to resolve a single instance of a component with multiple cardinality (which should it return?).
+
+## Overriding and replacing components
+
+As seen above, only the most derived instance of a type is added to the container. This makes it possible for third party code to override types belonging to the ReSharper Platform. While this can be useful, it is discouraged, as only one third party can override a component - if a second third party tries to override the same component, then multiple leaf instances are introduced to the component, and resolution will fail.
+
+It is also possible to replace a component completely, without deriving from it. If a component implements `IHideImplementation<T>`, then the `LeafsAndHides` selector will replace the existing implementation `T` in the container with the current component.
+
+```cs
+[ShellComponent]
+public void AnotherComponent : IFoo
+{
+}
+
+[ShellComponent]
+public void MyComponent : IFoo, IHideImplementation<AnotherComponent>
+{
+}
+```
+
+While both `AnotherComponent` and `MyComponent` implement `IFoo`, only `MyComponent` is added to the container, since it explicitly declares that it hides the implementation `AnotherComponent`. Note that it hides a specific implementation class, and it does not hide all implementations of `T`.
 
 ## Catalogue sets
 
