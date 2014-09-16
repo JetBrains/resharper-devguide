@@ -113,7 +113,7 @@ public void ReplaceTextContents(IXmlTag tag, string text)
     ModificationUtil.DeleteChildRange(oldTextTokens.First(), oldTextTokens.Last());
 
     var newTextTokens = newTag.InnerTextTokens;
-    ModificationUtil.AddChildRange(newTextTokens.First(), newTextTokens.Last());
+    ModificationUtil.AddChildRangeAfter(tag.Header, newTextTokens);
   }
 }
 ```
