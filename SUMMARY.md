@@ -45,9 +45,15 @@
     * [Component Lifetime](Platform/Lifetime/ComponentModel.md)
     * [Case Study](Platform/Lifetime/CaseStudy.md)
 * [Component Model](Platform/ComponentModel.md)
-    * Zones
     * [Containers, Parts and Catalogues](Platform/ComponentModel/ContainersPartsCatalogues.md)
     * [Visual Studio interfaces](Platform/VisualStudio/ComponentModel.md)
+* [Zones](Platform/Zones.md)
+    * [Implementation](Platform/Zones/Implementation.md)
+    * [Usage](Platform/Zones/Usage.md)
+    * [Features and Products](Platform/Zones/FeaturesProducts.md)
+    * [Activation](Platform/Zones/Activation.md)
+    * [Licensing](Platform/Zones/Licensing.md)
+    * [Troubleshooting](Platform/Zones/Troubleshooting.md)
 * DataContext
 * [TextControl](Platform/TextControl.md)
 * Documents
