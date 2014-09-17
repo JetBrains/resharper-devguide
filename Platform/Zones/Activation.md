@@ -34,7 +34,7 @@ Typically, a zone activator aligns with a product, and unconditionally enables a
 
 ```cs
 [ZoneActivator]
-class DotPeekZoneActivator : 
+class DotPeekZoneActivator :
   IActivate<DotPeekProductZone>,
   IActivate<ExternalSourcesZone>,
   IActivate<NavigationZone>,
@@ -82,7 +82,7 @@ public interface IMyZone
 }
 ```
 
-This is essentially shorthand for a simple implementation of `IActivate<TZone>.ActivatorEnabled()` that always returns true, 
+This has the same effect as a simple implementation of `IActivate<TZone>.ActivatorEnabled()` that always returns true. However, it doesn't depend on any other zones being active, as activator classes do. This means it is always enabled.
 
 Also, components decorated with a zone marker that does not include any zone definitions are always available, bypassing the need to be enabled (there are no zones, so how do they get enabled?).
 
