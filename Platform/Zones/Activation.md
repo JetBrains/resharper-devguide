@@ -2,7 +2,23 @@
 
 Components are only included into the Component Model if the zones they belong to are "active". Zones are not activated by default, and must be activated by an activator class, decorated by the `[ZoneActivator]` attribute, and implementing `IActivate<TZone>` for each zone it activates.
 
-> **NOTE** Components that simply consume other zones do not need to handle activation. It is the responsibility of the required zones to handle their own activation. For example, a third party extension should not try to enable
+> **NOTE** Components that only consume other zones do not need to handle activation. It is the responsibility of the required zones to handle their own activation. For example, a third party extension does not need an activator - as long as all of the zones it depends on are active, the extension is also active.
+
+## Application startup
+
+Activator classes are used very early on in application startup, and are responsible for providing the list of active zones that are used to filter the available components in the Component Model. Understanding how they are used during application startup is important to understand what zones are available once the application has started.
+
+During application startup, the ReSharper Platform initially creates several default environment zones that are automatically activated. These zones are used to filter environment components, that is, components marked with the `[EnvironmentComponent]` attribute and used to populate the environment container used to bootstrap the application and create the shell container.
+
+Activator classes are environment components (`ZoneActivatorAttribute` derives from `EnvironmentComponentAttribute`), and are therefore filtered by the active host environment zones (see the section on activating the activator below).
+
+When creating the shell container, the list of active zones for the shell is calculated. This list begins with the default environment zones, and is added to by the list of zones being activated by each activator.
+
+The list of zones is then expanded to include the zones it both inherits from and requires via `IRequire<TZone>`. It is also expanded to include zones that inherit *from* the zone being activated. This means `ILanguageCSharpZone` would be activated when the base `IPsiLanguageZone` is activated. Note that zones that simply require the zone being activated are not automatically activated.
+
+Finally, the zones are filtered to remove any zones that violate licensing and that the user has explicitly disabled. This is now the final list of all zones that are active, and this is the list that is used to filter out shell and solution components.
+
+## Usage
 
 The `IActivate<TZone>` interface is defined as follows:
 
@@ -76,7 +92,7 @@ When declaring a zone definition, dependencies can be declared either by impleme
 
 The difference comes with activation. When a zone inherits from another zone definition, it is automatically activated when the base zone is activated. For example, the `ReSharperZonesActivator` class implements `IActivate<IPsiLanguageZone>.ActivatorEnabled()` and returns true. This activates the `IPsiLanguageZone` and all zone definitions that inherit from it, including `IClrPsiLanguageZone` and therefore `ILanguageCSharpZone`. Any new code that is added that implements a zone inheriting from `IPsiLanguageZone`, or `IClrPsiLanguageZone` will also get automatically enabled.
 
-Dependencies registered via `IRequire<TZone>` are NOT automatically enabled. These zones must be enabled via another activator, or via activation of their base zone definitions.
+Dependencies registered via `IRequire<TZone>` are **not** automatically enabled. These zones must be enabled via another activator, or via activation of their base zone definitions.
 
 ## Default activated zones
 

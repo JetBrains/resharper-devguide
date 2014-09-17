@@ -13,7 +13,7 @@ public interface ISimpleZone : IZone
 }
 ```
 
-Dependencies allow a component in one zone to use components belonging to other zones. All dependent zones must be active in order for the depending zone to also be active. If a component tries to use a component from another zone without declaring that zone as a dependency, component construction can fail, depending on installed products, user preferences or licensing.
+Zone definitions are hierarchical, and can specify dependencies on other zones that are required in order for that zone to work. For example, the `IPsiLanguageZone` requires the `PsiFeaturesImplZone` which in turn requires the `ITextControlsZone`, `IProjectModelZone` and `IDocumentModelZone`. Any component that requires the `IPsiLanguageZone` implicitly also requires all of its dependencies. All zone definitions in this dependency hierarchy must be active for the component to be added to the Component Model.
 
 The above example declares a zone with no dependencies - all components that belong to this zone can be instantiated without requiring any other zone to be active.
 

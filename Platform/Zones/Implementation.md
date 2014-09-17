@@ -8,7 +8,7 @@ For example, if one of the initial active zones when the application starts is "
 
 Similarly, zones can be licensed, so a zone may be installed, but unavailable due to an expired (or trial) license.
 
-Furthermore, zones are hierarchical, and can have dependencies. For example, the "ILanguageCharpZone" depends on the "IClrPsiLanguageZone" and all of its dependencies:
+Furthermore, zones are hierarchical, and can have dependencies. For example, the "ILanguageCSharpZone" depends on the "IClrPsiLanguageZone" and all of its dependencies:
 
 ```
 ILanguageCSharpZone
@@ -22,3 +22,4 @@ ILanguageCSharpZone
 ```
 
 When code is marked as belonging to the "ILanguageCSharpZone", it is automatically marked as also belonging to all of that zone's dependencies. All of these zones must be active before any of these components are added to the Component Model.
+
