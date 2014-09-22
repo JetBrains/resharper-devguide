@@ -87,6 +87,8 @@
 * Project Files
 
 ## Part V - PSI
+* PSI Languages
+    * [Per-language Components](PSI/PerLanguageComponents.md)
 * Syntax trees
 * [Navigating syntax trees](PSI/NavigatingSyntaxTrees.md)
     * Helper methods
