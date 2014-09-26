@@ -69,9 +69,18 @@ These interfaces are now exposed to ReSharper’s container, and can be injected
 
 You should use `Lazy<TInterface>` when consuming a Visual Studio interface, so that Visual Studio packages are not loaded until they are used. For example, accepting a parameter of `IEditorOperationsFactoryService` will cause the VS editor to be loaded into memory as soon as your plugin is loaded, which is at application startup, rather than when the editor is first needed, which might be after a solution has loaded.
 
-If you expect the interface to not be available, you can use `Optional<TInterface>` in your constructor. You can even combine the two `Lazy<Optional<T>>` which allows you to defer checking for a value until you need it, and then allow it to be missing.
+If you expect the interface to not be available, you can use `Optional<TInterface>` in your constructor. You can even combine the two `Lazy<Optional<T>>` which will defer resolving the underlying service until you need it, and allow it to be missing.
 
-The interface is being registered as `LazyOnly`, which means you can *only* get it if you request `Lazy<TMefInterface`. If there is a chance that the MEF interface is not available, you should request `IComponentModel` (which isn't exposed by default, see example above) and calling `IComponentModel.GetService<>` yourself, wrapped in a try/catch block.
+When using `map.QueryService`, you can enforce requiring these flags by using the `LazyOnly` and/or `Optional` methods. If a component tries to consume the service without `Lazy<T>` or `Optional<T>` respectively, the Component Model will throw an exception.
+
+```cs
+public void Register(VsServiceProviderComponentContainer.VsServiceMap map)
+{
+  map.QueryService<STextTemplating>.As<ITextTemplatingEngineHost>.LazyOnly().Optional();
+}
+```
+
+The `Mef` and `OptionalMef` methods register the interface as `LazyOnly`, so you can *only* get it if you request `Lazy<TMefInterface>`. If there is a chance that the MEF interface will not be available, you should register it with the `OptionalMef` method, and consume it as `Lazy<Optional<T>>`.
 
 ## Default list of exposed interfaces
 
