@@ -46,7 +46,7 @@
 
 
         
-    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="3.4.2" data-basepath="../.." data-revision="1411740346218">
+    <div class="book" data-github="citizenmatt/resharper-devguide" data-level="3.4.2" data-basepath="../.." data-revision="1411742136055">
     <div class="book-header">
     <!-- Actions Left -->
     <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
@@ -3186,8 +3186,14 @@
 </code></pre>
 <p>These interfaces are now exposed to ReSharper&#x2019;s container, and can be injected into the constructor, or retrieved via the Shell&#x2019;s <code>GetComponent</code> method.</p>
 <p>You should use <code>Lazy&lt;TInterface&gt;</code> when consuming a Visual Studio interface, so that Visual Studio packages are not loaded until they are used. For example, accepting a parameter of <code>IEditorOperationsFactoryService</code> will cause the VS editor to be loaded into memory as soon as your plugin is loaded, which is at application startup, rather than when the editor is first needed, which might be after a solution has loaded.</p>
-<p>If you expect the interface to not be available, you can use <code>Optional&lt;TInterface&gt;</code> in your constructor. You can even combine the two <code>Lazy&lt;Optional&lt;T&gt;&gt;</code> which allows you to defer checking for a value until you need it, and then allow it to be missing.</p>
-<p>The interface is being registered as <code>LazyOnly</code>, which means you can <em>only</em> get it if you request <code>Lazy&lt;TMefInterface</code>. If there is a chance that the MEF interface is not available, you should request <code>IComponentModel</code> (which isn&apos;t exposed by default, see example above) and calling <code>IComponentModel.GetService&lt;&gt;</code> yourself, wrapped in a try/catch block.</p>
+<p>If you expect the interface to not be available, you can use <code>Optional&lt;TInterface&gt;</code> in your constructor. You can even combine the two <code>Lazy&lt;Optional&lt;T&gt;&gt;</code> which will defer resolving the underlying service until you need it, and allow it to be missing.</p>
+<p>When using <code>map.QueryService</code>, you can enforce requiring these flags by using the <code>LazyOnly</code> and/or <code>Optional</code> methods. If a component tries to consume the service without <code>Lazy&lt;T&gt;</code> or <code>Optional&lt;T&gt;</code> respectively, the Component Model will throw an exception.</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Register</span>(VsServiceProviderComponentContainer.VsServiceMap map)
+{
+  map.QueryService&lt;STextTemplating&gt;.As&lt;ITextTemplatingEngineHost&gt;.LazyOnly().Optional();
+}
+</code></pre>
+<p>The <code>Mef</code> and <code>OptionalMef</code> methods register the interface as <code>LazyOnly</code>, so you can <em>only</em> get it if you request <code>Lazy&lt;TMefInterface&gt;</code>. If there is a chance that the MEF interface will not be available, you should register it with the <code>OptionalMef</code> method, and consume it as <code>Lazy&lt;Optional&lt;T&gt;&gt;</code>.</p>
 <h2 id="default-list-of-exposed-interfaces"><a name="default-list-of-exposed-interfaces" class="plugin-anchor" href="#default-list-of-exposed-interfaces"><span class="fa fa-link"></span></a>Default list of exposed interfaces</h2>
 <p>For ReSharper 8, the default whitelist of supported interfaces is as follows:</p>
 <ul>

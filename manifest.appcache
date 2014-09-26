@@ -1,5 +1,5 @@
 CACHE MANIFEST
-# Revision 1411740346219
+# Revision 1411742136055
 
 CACHE:
 Architecture/Overview.html
@@ -12,8 +12,8 @@ Features/Actions/QuickFixes.html
 Features/Analysis/Daemons.html
 Features/Completion.html
 Features/GenerateMenu.html
-Features/LiveTemplates/Macros.html
 Features/LiveTemplates/Overview.html
+Features/LiveTemplates/Macros.html
 Features/LiveTemplates/Scopes.html
 Features/Navigation.html
 Features/Actions.html
@@ -34,8 +34,8 @@ PSI/Reference/Xml/ElementFactories.html
 PSI/Reference/Xml/Manipulation.html
 PSI/Reference/Xml/Navigators.html
 PSI/Reference/Xml/Overview.html
-PSI/Reference/Xml/TreeNodesDTD.html
 PSI/Reference/Xml/TreeNodes.html
+PSI/Reference/Xml/TreeNodesDTD.html
 PSI/Reference/Xml/Utils.html
 PSI/Caches.html
 PSI/ExternalAnnotations/Testing.html
