@@ -67,12 +67,17 @@
     * Command line
     * [Tool windows](Platform/Shell/ToolWindows.md)
     * [Icons](Platform/Shell/Icons.md)
+        * [Consuming Icons](Platform/Shell/Icons/ConsumingIcons.md)
+        * [Creating Compiled Icons](Platform/Shell/Icons/CreatingCompiledIcons.md)
+        * [Icon Types](Platform/Shell/Icons/IconTypes.md)
+        * [Custom Icon Types](Platform/Shell/Icons/CustomIconTypes.md)
     * Tooltips
     * TreeView
     * Progress reporting
     * Popup menus
     * Extensions
     * Theming
+        * [Themed Icons](Platform/Shell/Theming/Icons.md)
 * [Settings](Platform/Settings.md)
     * Reading and writing
     * Defaults
