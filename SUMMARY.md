@@ -19,6 +19,7 @@
     * Debugging
     * [Plugin testing](Plugins/Testing.md)
         * Test Framework
+        * [Combinatorial Testing](Plugins/Testing/OptionsIterator.md)
         * [Temporary Settings](Plugins/TemporarySettings.md)
     * [Known Issues](Intro/KnownIssues.md)
 * [Deployment](Extensions/Packaging.md)
@@ -141,17 +142,21 @@
 ## Part VI - Features
 * Analysis
     * Highlights
-    * Custom highlights
-    * Suppressing highlights
+    * Custom Highlights
+    * Suppressing Highlights
     * [Daemons](Features/Analysis/Daemons.md)
     * Element problem analysers
     * Xml and Html analysers
     * Solution Wide Analysis
     * Error Stripe
+    * Gutter Marks
     * Syntax Highlighting
     * Caches again
     * Value analysis
     * Call hierarchy
+    * Value Analysis
+    * Call Hierarchy
+    * [Testing](Features/Analysis/Testing.md)
 * [Actions](Features/Actions.md)
     * Menu items
     * [Quick fixes](Features/Actions/QuickFixes.md)
