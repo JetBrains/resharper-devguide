@@ -2,8 +2,8 @@
   "name": "package",
   "version": "0.0.0",
   "dependencies": {
-    "gitbook": "^1.0.2",
-    "gitbook-plugin-anchors": "^0.3.0",
+    "gitbook": "^1.1.1",
+    "gitbook-plugin-anchors": "git://github.com/citizenmatt/gitbook-plugin-anchors#anchor_position",
     "gitbook-plugin-multipart": "^0.2.0",
     "gitbook-plugin-richquotes": "^0.0.5",
     "gitbook-plugin-toc": "^0.0.1",
