@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Strongly typed navigation | ReSharper DevGuide</title>
+        <title>Combinatorial Testing | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.0.2">
@@ -17,6 +17,8 @@
         
     
     
+    
+    <link rel="next" href="../../Plugins/TemporarySettings.html">
     
     
 
@@ -41,7 +43,7 @@
 
 
         
-    <div class="book" data-level="5.3.2" data-basepath="../.." data-revision="1413978156759">
+    <div class="book" data-level="1.5.5.2" data-basepath="../.." data-revision="1413978156759">
     
 
 <div class="book-summary">
@@ -303,7 +305,7 @@
         </li>
     
         
-        <li class="chapter " data-level="1.5.5.2" data-path="Plugins/Testing/OptionsIterator.html">
+        <li class="chapter active" data-level="1.5.5.2" data-path="Plugins/Testing/OptionsIterator.html">
             
                 
                     <a href="../../Plugins/Testing/OptionsIterator.html">
@@ -1262,7 +1264,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="5.3.2" data-path="PSI/SyntaxTrees/StronglyTypedNavigation.html">
+        <li class="chapter " data-level="5.3.2" data-path="PSI/SyntaxTrees/StronglyTypedNavigation.html">
             
                 
                     <a href="../../PSI/SyntaxTrees/StronglyTypedNavigation.html">
@@ -3126,65 +3128,211 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_49">
+                    <section class="normal" id="section-gitbook_80">
                     
-                        <h1 id="strongly-typed-navigation"><a name="strongly-typed-navigation" class="plugin-anchor" href="#strongly-typed-navigation"><span class="fa fa-link"></span></a>Strongly Typed Navigation</h1>
-<p>While it&apos;s possible to navigate a syntax tree using just the parent, sibling and child nodes, it&apos;s a rather low level approach to the problem. If your current node is a class declaration, it&apos;s a lot of leg work to get at all of the method declarations. Similarly, from a method declaration, it&apos;s not convenient to walk the <code>Parent</code> nodes looking for the class declaration.</p>
-<p>Fortunately, ReSharper provides strongly typed navigation to make this a lot more convenient and intuitive.</p>
-<h2 id="navigating-down-the-tree"><a name="navigating-down-the-tree" class="plugin-anchor" href="#navigating-down-the-tree"><span class="fa fa-link"></span></a>Navigating down the tree</h2>
-<p>Navigating down to child nodes is made very easy by derived interfaces of <code>ITreeNode</code>. All nodes in the tree implement <code>ITreeNode</code>, and also derive from it to provide a strongly typed API. For example, C# method declarations implement <code>IMethodDeclaration</code>, which itself derives from <code>ITreeNode</code>. If we take a look at some of the members:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IMethodDeclaration : ITreeNode
-{
-  IAttributeSectionList AttributeSectionList { <span class="hljs-keyword">get</span>; }
-  ICSharpIdentifier NameIdentifier { <span class="hljs-keyword">get</span>; }
-  ITypeParameterOfMethodList TypeParameterList { <span class="hljs-keyword">get</span>; }
-  <span class="hljs-comment">// [...snip...]</span>
-}
-</code></pre>
+                        <h1 id="combinatorial-testing"><a name="combinatorial-testing" class="plugin-anchor" href="#combinatorial-testing"><span class="fa fa-link"></span></a>Combinatorial Testing</h1>
+<p>The test framework supports running the same test multiple times with different combinations of settings. The settings can be specified in a text file, via an attribute, or via a parameter embedded in the test input file. The base class for the test must support this explicitly, it is not available to all tests by default.</p>
 <blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
-<p> This example over-simplifies the real implementation of <code>IMethodDeclaration</code>. The real definition applies the Interface Segregation Principle and splits out more interfaces that can be reused, such as <code>ICSharpParametersOwnerDeclaration</code> and <code>ICSharpModifiersOwnerDeclaration</code> to allow other nodes that can also have parameters, or modifiers, or attributes, etc., to share interfaces. The intent here is to discuss the strongly typed accessors, rather than document <code>IMethodDeclaration</code>.</p>
+<p> The combinatorial testing described here is in regard to running a piece of test code multiple times within the same test method run, with different settings applied for each run. It does not cause multiple NUnit test methods to run, and the standard NUnit <code>[TestCase]</code> and <code>[TestCaseSource]</code> attributes continue to work very nicely for row based, data driven testing.</p>
 </blockquote>
-<p>Each of these properties is a strongly typed accessor to get to the <code>ITreeNode</code> that represents the attributes on the method, or the node that represents the method&apos;s name. Internally, the nodes are found by walking down the tree, looking for nodes of a particular type. They are then downcast to the strongly typed, <code>ITreeNode</code> derived interfaces.</p>
-<h3 id="collections"><a name="collections" class="plugin-anchor" href="#collections"><span class="fa fa-link"></span></a>Collections</h3>
-<p>Similarly, collections can be represented. Let&apos;s take a look at a simplified class declaration:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> IClassDeclaration : ITreeNode
+<p>When running the test, the test base class needs to call the <code>Iterate</code> method on an instance of <code>TestOptionsIterator</code>:</p>
+<pre><code class="lang-cs">ExecuteWithGold(inputFile, writer =&gt;
+  myTestOptionsIterator.Iterate(writer, settingsStore, item, Solution, (data, writer1) =&gt;
+  {
+    <span class="hljs-comment">// Run the test, output to writer1</span>
+  })
+);
+</code></pre>
+<p>The instance of <code>TestOptionsIterator</code> is usually created in the constructor:</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-title">MyTest</span>()
 {
-  TreeNodeCollection&lt;IMethodDeclaration&gt; MethodDeclarations {<span class="hljs-keyword">get</span>;}
-  TreeNodeEnumerable&lt;IMethodDeclaration&gt; MethodDeclarationsEnumerable {<span class="hljs-keyword">get</span>;}
-  <span class="hljs-comment">// [...snip...]</span>
+  myTestOptionsIterator = <span class="hljs-keyword">new</span> TestOptionsIterator(<span class="hljs-keyword">this</span>)
+  {
+    ReportUnaffected = <span class="hljs-keyword">false</span>;
+  };
 }
 </code></pre>
-<p>Here we can see that a class has a collection of method declarations. It is represented in two ways, firstly as an instance of <code>TreeNodeCollection&lt;T&gt;</code> and secondly as a <code>TreeNodeEnumerable&lt;T&gt;</code>. Both can be iterated over using <code>foreach</code>, or LINQ queries. The major difference is that <code>TreeNodeCollection&lt;T&gt;</code> implements <code>IList&lt;T&gt;</code>, while <code>TreeNodeEnumerable&lt;T&gt;</code> only implements <code>IEnumerable&lt;T&gt;</code>. This means that the <code>MethodDeclarationsEnumerable</code> property is more lightweight that the <code>MethodDeclarations</code> property, but at the cost of flexibility.</p>
-<p>The <code>MethodDeclarations</code> property creates a new instance of <code>TreeNodeCollection&lt;T&gt;</code> each time it&apos;s accessed. The child nodes are iterated up-front, and passed to the collection as an array. The collection provides all the features of an implementation of <code>IList&lt;T&gt;</code> (although it is a read-only list), so it can be iterated sequentially or randomly. It also provides a number of optimised LINQ queries, such as <code>Any</code>, <code>Reverse</code> and <code>ToList</code>.</p>
-<p>The <code>MethodDeclarationsEnumerable</code> property, however, simply creates an instance of <code>TreeNodeEnumerable&lt;T&gt;</code> (again, each time it&apos;s accessed), but the nodes are not collected until the enumerable is enumerated - it is lazily evaluated, and does not store the whole list. This makes it more efficient than <code>TreeNodeCollection&lt;T&gt;</code>.</p>
-<blockquote class="clearfix alert alert-success"><strong class="fa fa-4x fa-lightbulb-o"></strong>
-<p> You should favour the enumerable version of a property unless you require the extra features that <code>IList&lt;T&gt;</code> gives you.</p>
-</blockquote>
-<h2 id="navigating-up-the-tree"><a name="navigating-up-the-tree" class="plugin-anchor" href="#navigating-up-the-tree"><span class="fa fa-link"></span></a>Navigating up the tree</h2>
-<p>ReSharper also provides a strongly typed means of navigating <em>up</em> the tree, which is preferable to manually walking up the chain of <code>Parent</code> properties. Generally speaking, if a node exposes strongly typed accessors, there will be a complementary navigator class.</p>
-<p>For example, the <code>IXmlTag</code> node exposes a <code>Header</code> property of type <code>IXmlTagHeader</code>, providing us strongly typed navigation <em>down</em> the tree (from a node representing a complete xml tag to the node representing the opening part of the tag). The <code>XmlTagNavigator</code> static class gives us the opposite - strongly typed navigation <em>up</em> to an <code>IXmlTag</code> from various child nodes.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> XmlTagNavigator
-{
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByTag</span>(IXmlTag tag) { <span class="hljs-comment">/* &#x2026; */</span> }
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByTagHeader</span>(IXmlTagHeader header) { <span class="hljs-comment">/* &#x2026; */</span> }
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByTagFooter</span>(IXmlTagFooter footer) { <span class="hljs-comment">/* &#x2026; */</span> }
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByAttribute</span>(IXmlAttribute attribute) { <span class="hljs-comment">/* &#x2026; */</span> }
+<p>When running, the options iterator will run the test multiple times, once for each combination of configured settings. The results are all written to the same <code>.tmp</code> file, separated by a marker line, and listing details of the settings that were valid for that run. Once the run is complete, the <code>.tmp</code> file is compared against the <code>.gold</code> file. If there are any differences, the test fails.</p>
+<p>The <code>ReportUnaffected</code> property controls how the runs are output. If the value is set to <code>true</code>, then each combination of settings is output. If set to <code>false</code>, only combinations of settings that produce a previously unseen value are output. This is normally handled by the base class of the item you&apos;re trying to test, and is not usually available to change.</p>
+<h2 id="describing-combinations"><a name="describing-combinations" class="plugin-anchor" href="#describing-combinations"><span class="fa fa-link"></span></a>Describing combinations</h2>
+<p>Combinations of options are specified with a JavaScript-like DSL. A JavaScript expression describes a set of options and how they are to be combined.</p>
+<p>At the simplest, an object literal is used as a collection of name/value pairs to set options and their values.</p>
+<pre><code class="lang-js">{
+  TagAttributesFormat: OnSingleLine,
+  MaxSingleLineTagLength: <span class="hljs-number">10</span>
 }
 </code></pre>
-<p>The classes follow a simple naming pattern. The navigator class is named after the node you&apos;re trying to navigate <em>to</em>, and the name ends in the word <code>Navigator</code>, e.g. <code>XmlTagNavigator</code> is trying to navigate to an instance of <code>IXmlTag</code>. The methods all being with <code>GetBy</code> and finish with the type of the node that should be passed in. So, <code>XmlTagNavigator.GetByAttribute</code> is trying to navigate to an <code>IXmlTag</code>, from an <code>IXmlAttribute</code>.</p>
-<blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
-<p> Navigating up the tree is not as simple as casting <code>Parent</code> to the appropriate type. The navigator methods have specific knowledge of parent/child relationships, and can walk several nodes up the hierarchy to find the appropriate node. For example, C#&apos;s <code>ClassDeclarationNavigator</code> can navigate to the class declaration node from an <code>IAttribute</code> node, skipping the attribute list, attribute section and section list nodes before reaching the class declaration node.</p>
-<p>Since ReSharper knows these relationships, it is recommended that you use navigator classes where possible, instead of walking the <code>Parent</code> properties manually.</p>
-</blockquote>
-<p>It should also be pointed out that you can use the navigator classes in combination. For example, to get to a class declaration from an <code>if</code> statement in a C# file:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> IClassDeclaration <span class="hljs-title">GetByIfStatement</span>(IIfStatement ifStatement)
-{
-  <span class="hljs-keyword">var</span> methodBody = BlockNavigator.GetByStatement(ifStatement);
-  <span class="hljs-keyword">var</span> methodDeclaration = MethodDeclaratioNavigator.GetByBody(methodBody);
-  <span class="hljs-keyword">return</span> ClassDeclarationNavigator.GetByMethodDeclaration(methodDeclaration);
+<p>Values in the object literal can be string literals, numerals, or unquoted values (this is JavaScript-like, not JSON). Enum values, booleans and numerals are automatically parsed and converted to the appropriate type.</p>
+<p>In order to support combinations of options, the value of the property can be an array literal. The array lists all of the values that should be applied to that property.</p>
+<pre><code class="lang-js">{
+  TagAttributesFormat: [OnSingleLine, OnDifferentLines],
+  MaxSingleLineTagLength: <span class="hljs-number">10</span>
 }
 </code></pre>
-<p>It isn&apos;t necessary to check for null before passing a node into the navigator classes - they explicitly allow null to be passed in, and will return null if it can&apos;t find the appropriate parent.</p>
+<p>Given this configuration, the test will run twice, once for <code>OnSingleLine, 10</code> and again for <code>OnDifferentLines, 10</code>. Given another property with an array literal, the test will be run for all combinations of all values. Adding more properties, with more options, can very quickly increase the number of times the test is run.</p>
+<p>Instead of creating an array literal with all enum values listed, the object literal property can use the special value <code>&quot;all&quot;</code> or the wildcard <code>&quot;*&quot;</code>, which when applied to an enum option will run a combination of all values for that option property.</p>
+<h3 id="property-names"><a name="property-names" class="plugin-anchor" href="#property-names"><span class="fa fa-link"></span></a>Property names</h3>
+<p>In order to know what options the property names map to, the test class and its base classes can use the <code>[TestSettingsKey]</code> attribute to specify one or more settings key, as used by ReSharper&apos;s settings system.</p>
+<pre><code class="lang-cs">[TestSettingsKey(<span class="hljs-keyword">typeof</span>(HtmlFormatterSettingsKey))]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> HtmlCodeFormatterTests : CodeFormatterWithExplicitSettingsTestBase
+{
+  <span class="hljs-comment">// ...</span>
+}
+
+[TestSettingsKey(<span class="hljs-keyword">typeof</span>(CommonFormatterSettingsKey))]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> CodeFormatterWithExplicitSettingsTestBase // : ...
+{
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>The <code>HtmlCodeFormatterTests</code> can now use properties from <code>HtmlFormatterSettingsKey</code> and <code>CommonFormatterSettingsKey</code> in the object literals of the DSL. It can use each property name unqualified, or disambiguate by using the friendly name of the settings key as a qualifier:</p>
+<pre><code class="lang-js">{
+  TagAttributesFormat: OnSingleLine, <span class="hljs-comment">// Sets HtmlCodeFormatterTests.TagAttributesFormat</span>
+  CommonFormatting$ALIGNMENT_TAB_FILL_STYLE: USE_SPACES <span class="hljs-comment">// Sets CommonFormatterSettingsKey.ALIGNMENT_TAB_FILL_STYLE</span>
+}
+</code></pre>
+<h3 id="special-property-names"><a name="special-property-names" class="plugin-anchor" href="#special-property-names"><span class="fa fa-link"></span></a>Special property names</h3>
+<p>The <code>TestOptionsIterator</code> recognises a couple of special property names for settings that are usually controlled by Visual Studio rather than ReSharper:</p>
+<ul>
+<li><code>USE_TABS</code> is a boolean value to use tabs rather than spaces.</li>
+<li><code>INDENT_SIZE</code> is an integer value to specify the size of an indent.</li>
+</ul>
+<p>Both of these values are language specific, so require a language prefix:</p>
+<pre><code class="lang-js">{
+  HTML$USE_TABS: all
+}
+</code></pre>
+<p>This example will run the test code multiple times, with the &quot;use tabs&quot; settings for HTML files set to <code>true</code> and <code>false</code>.</p>
+<p>The language name is the name of the language&apos;s <code>PsiLanguageType</code> instance, e.g. <code>HtmlLanguage.Name</code>, <code>CssLanguage.Name</code>, etc.</p>
+<h3 id="custom-property-names"><a name="custom-property-names" class="plugin-anchor" href="#custom-property-names"><span class="fa fa-link"></span></a>Custom property names</h3>
+<p>Tests can also iterate over values not stored in the settings subsystem. Rather than automatically setting the option in settings before running the test, the value is made available to the test in the <code>CustomValues</code> dictionary of the test data passed to the test function.</p>
+<pre><code class="lang-cs">ExecuteWithGold(inputFile, writer =&gt;
+  myTestOptionsIterator.Iterate(writer, settingsStore, item, Solution, (data, writer1) =&gt;
+  {
+    <span class="hljs-keyword">var</span> customValue = data[<span class="hljs-string">&quot;myCustomVariable&quot;</span>] <span class="hljs-keyword">as</span> CustomType;
+    <span class="hljs-comment">// Run the test using customValue, output to writer1</span>
+  })
+);
+</code></pre>
+<p>The test class needs to tell the <code>TestOptionsIterator</code> that a custom value can be used, by decorating the class (or base class) with the <code>[TestSettingsVariable]</code> attribute. It must pass in the name and <code>Type</code> of the variable, which can be either boolean or an enum.</p>
+<pre><code class="lang-cs">[TestSettingsVariable(<span class="hljs-string">&quot;FormatProfile&quot;</span>, <span class="hljs-keyword">typeof</span>(CodeFormatProfile))]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> CodeFormatterWithExplicitSettingsTestBase // : ...
+{
+  <span class="hljs-comment">// ...</span>
+}
+
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> CodeFormatProfile
+{
+  DEFAULT,
+  INDENT,
+  GENERATOR,
+  SOFT,
+}
+</code></pre>
+<p>The DSL can now use <code>&quot;FormatProfile&quot;</code> as a property name, and provide values either as a single value, array literal or the wildcard <code>&quot;*&quot;</code> (the <code>&quot;all&quot;</code> value doesn&apos;t work here). The current value will be available by calling <code>data.CustomValues[&quot;FormatProfile&quot;]</code>.</p>
+<h2 id="advanced-combinations"><a name="advanced-combinations" class="plugin-anchor" href="#advanced-combinations"><span class="fa fa-link"></span></a>Advanced combinations</h2>
+<p>The DSL can handle more constructs than just object literals. It supports:</p>
+<h3 id="object-literals"><a name="object-literals" class="plugin-anchor" href="#object-literals"><span class="fa fa-link"></span></a>Object literals</h3>
+<p>Used to provide name/value pairs to set options. The value can be a scalar value (such as an integer) or a collection of values.</p>
+<p>If the value is a scalar, it can be a string literal, numeral, boolean or unquoted reference, in which case it&apos;s treated as an unquoted string literal. The value is converted to the appropriate type for the setting - string, integer, boolean or enum. The magic values <code>&quot;all&quot;</code> or <code>&quot;*&quot;</code> are wildcards and create a combination of all of the values for the type - <code>true</code> and <code>false</code> for booleans, or all values for an enum.</p>
+<p>To represent a collection of items, the value can be either an array literal or a nested object literal. An array literal creates a combination of all of the simple (quoted/unquoted) string values in the array. An object literal is used to create string name/value pairs to be used for an indexed setting.</p>
+<pre><code class="lang-js">{
+  FileExtensions: [ <span class="hljs-string">&quot;*.html&quot;</span>, <span class="hljs-string">&quot;*.cshtml&quot;</span> ],
+  TemplateMimeTypes: {
+    <span class="hljs-string">&quot;text/html&quot;</span>: <span class="hljs-literal">true</span>,
+    <span class="hljs-string">&quot;text/plain&quot;</span>: <span class="hljs-literal">false</span>
+  }
+}
+</code></pre>
+<p>This will create a combination of tests for the two values in <code>FileExtensions</code>, and an indexed setting for <code>TemplateMimeTypes</code> with the two keys <code>&quot;text/html&quot;</code> and <code>&quot;text/plain&quot;</code> to <code>true</code> and <code>false</code>, respectively.</p>
+<p>If a property&apos;s value is an array literal, it can further contain either an object literal, or even another array literal. This allows for creating a combination of indexed settings. </p>
+<pre><code class="lang-js">{
+  FileExtensions: [ [ <span class="hljs-string">&quot;*.html&quot;</span>, <span class="hljs-string">&quot;*.cshtml&quot;</span> ], [ <span class="hljs-string">&quot;*.html&quot;</span>, <span class="hljs-string">&quot;*.vbhtml&quot;</span> ] ],
+  TemplateMimeTypes: [
+    { <span class="hljs-string">&quot;text/html&quot;</span>: <span class="hljs-literal">true</span>, <span class="hljs-string">&quot;text/plain&quot;</span>: <span class="hljs-literal">true</span> },
+    { <span class="hljs-string">&quot;text/html&quot;</span>: <span class="hljs-literal">false</span>, <span class="hljs-string">&quot;text/plain&quot;</span>: <span class="hljs-literal">false</span> }
+  ]
+}
+</code></pre>
+<p>This creates a set of combinations of indexed values:</p>
+<ul>
+<li><code>*.html</code> and <code>*.cshtml</code> is set, and the mime types are set to true</li>
+<li><code>*.html</code> and <code>*.cshtml</code> is set, and the mime types are set to false</li>
+<li><code>*.html</code> and <code>*.vbhtml</code> is set, and the mime types are set to true</li>
+<li><code>*.html</code> and <code>*.vbhtml</code> is set, and the mime types are set to false</li>
+</ul>
+<h3 id="array-literals"><a name="array-literals" class="plugin-anchor" href="#array-literals"><span class="fa fa-link"></span></a>Array literals</h3>
+<p>When used inside an object literal, the behaviour is as described above.</p>
+<p>Otherwise, array literals are used to create a sequential combination of its contents. That is, each item in the array literal is evaluated and the test is run. The item in the array literal must either be another array literal (which creates a new combination grouping), or an object literal, which describes the settings to apply, as above.</p>
+<pre><code class="lang-js">[
+  { Reformat: [ True, False ] },
+  { HTML$USE_TABS: [ True, False] }
+]
+</code></pre>
+<p>This runs the test four times, firstly with both boolean values for <code>Reformat</code> and secondly with both boolean values of &quot;use tabs&quot; for HTML files. Note that it doesn&apos;t combine between the two - the values of &quot;use tabs&quot; are not modified during the two runs when <code>Reformat</code> is modified.</p>
+<h3 id="binary-expressions"><a name="binary-expressions" class="plugin-anchor" href="#binary-expressions"><span class="fa fa-link"></span></a>Binary expressions</h3>
+<p>Binary expressions are used to combine combinations:</p>
+<pre><code class="lang-js">{ Reformat: all } * { HTML$USE_TABS: all }
+</code></pre>
+<p>This example will combine each value of the &quot;use tabs&quot; settings with each value of the <code>Reformat</code> setting.</p>
+<h3 id="reference-expressions-and-parentheses"><a name="reference-expressions-and-parentheses" class="plugin-anchor" href="#reference-expressions-and-parentheses"><span class="fa fa-link"></span></a>Reference expressions and parentheses</h3>
+<p>A simple JavaScript-like reference to a name is used to refer to common, shared combination definitions, as discussed below.</p>
+<p>The DSL understands parentheses, and safely strips them. E.g. <code>&quot;({SPACES: all} * {ALIGN: all})&quot;</code> is safely handled as a combination of setting <code>SPACES</code> and <code>ALIGN</code>.</p>
+<h2 id="using-combinations"><a name="using-combinations" class="plugin-anchor" href="#using-combinations"><span class="fa fa-link"></span></a>Using combinations</h2>
+<p>There are several ways to apply the combinations to a test. The simplest way is to use the <code>[TestSettings]</code> attribute to specify one or more combinations directly on the test class or base class. Alternatively, the combinations can come from a file that live side-by-side with the input path, or can be written, inline, into the input path.</p>
+<p>If more than one method is used, the combinations are combined (as a binary expression, see the advanced combinations section above).</p>
+<h3 id="combinations-as-attributes"><a name="combinations-as-attributes" class="plugin-anchor" href="#combinations-as-attributes"><span class="fa fa-link"></span></a>Combinations as attributes</h3>
+<p>The <code>[TestSettings]</code> attribute can be used multiple times on a method, class or base class to provide JavaScript-like expressions to represent combinations to apply to the test.</p>
+<pre><code class="lang-cs">[TestSettings(<span class="hljs-string">&quot;{ TagAttributeFormat: all }&quot;</span>)]
+[Test]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test001</span>()
+{
+  DoNamedTest();
+}
+</code></pre>
+<h3 id="jcnf-files"><a name="jcnf-files" class="plugin-anchor" href="#jcnf-files"><span class="fa fa-link"></span></a>JCNF files</h3>
+<p>The <code>TestOptionsIterator</code> will automatically load combinations specified in a <code>.jcnf</code> file named after the project file being tested. For example, if the test is being run on <code>test01.js</code>, the <code>TestOptionsIterator</code> will try to load a file called <code>test01.js.jcnf</code>.</p>
+<p>The file should contain a set of combinations as a single object literal:</p>
+<pre><code class="lang-js">{
+  TagAttributesFormat: OnSingleLine,
+  MaxSingleLineTagLength: <span class="hljs-number">10</span>
+}
+</code></pre>
+<p>If the <code>TestOptionsIterator</code> sees a <code>.dotSettings</code> file (e.g. <code>test01.js.dotSettings</code>) it will automatically convert it to a <code>.jcnf</code> file. The resulting file will not contain any combinations - each setting will only have one value - but it will give you a good place to start.</p>
+<h3 id="embedded-combinations"><a name="embedded-combinations" class="plugin-anchor" href="#embedded-combinations"><span class="fa fa-link"></span></a>Embedded combinations</h3>
+<p>Combinations can also be embedded directly in the input file, using the <code>SettingsIterator</code> variable:</p>
+<pre><code class="lang-js">${SettingsIterator: { TagAttributeFormat: all } }
+<span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">foo</span><span class="hljs-params">()</span> </span>{}
+</code></pre>
+<h3 id="sharing-combinations"><a name="sharing-combinations" class="plugin-anchor" href="#sharing-combinations"><span class="fa fa-link"></span></a>Sharing combinations</h3>
+<p>Common combinations can be described in separate files, and shared and included in multiple tests. The test class, or base class needs to use one or more <code>[TestSettingsInclude]</code> attributes to point to a file to be loaded.</p>
+<pre><code class="lang-cs">[TestSettingsInclude(<span class="hljs-string">@&quot;codeInsight\CodeFormatter\JavaScript\common.jcnf&quot;</span>)]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> JavaScriptCodeFormatterTestBase : CodeFormatterWithExplicitSettingsTestBase
+{
+  <span class="hljs-comment">// ...</span>
+}
+</code></pre>
+<p>The file is a <code>.jcnf</code> file as described above, however the format is slightly different. Instead of describing a single JavaScript-like object literal, the common <code>.jcnf</code> files contain JavaScript-like variable declarations that refer to array literals that describe a combination:</p>
+<pre><code class="lang-js"><span class="hljs-keyword">var</span> Align = [
+  <span class="hljs-string">&quot;Align&quot;</span>,
+  { ALIGN_MULTILINE_PARAMETER : all },
+  { ALIGN_MULTIPLE_DECLARATION : all },
+  { ALIGN_TERNARY : all }  
+];
+</code></pre>
+<p>The syntax used here is as described in the <a href="#advanced-combinations">advanced combinations</a> section above. The first element is the name of the combination, displayed when the combination needs to be output. This example will run multiple times, for every combination of each value of each property (two boolean properties plus an enum value with three values gives twelve combinations).</p>
+<p>The variable name is available to be used by the main DSL, as a simple reference to the name:</p>
+<pre><code class="lang-cs">[TestSettings(<span class="hljs-string">&quot;Align&quot;</span>)]
+[Test]
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test001</span>()
+{
+  DoNamedTest();
+}
+</code></pre>
+<p>Or it can be combined into a binary expression:</p>
+<pre><code class="lang-js">( Align * { SPACE_AROUND_BINARY_OPERATOR: all } )
+</code></pre>
+<p>Which will expand the combinations by also iterating over all values of <code>SPACE_AROUND_BINARY_OPERATOR</code> (which is a boolean).</p>
 
                     
                     </section>
@@ -3195,6 +3343,8 @@
         </div>
 
         
+        
+        <a href="../../Plugins/TemporarySettings.html" class="navigation navigation-next navigation-unique" aria-label="Next page: Temporary Settings"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
