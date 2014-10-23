@@ -4,7 +4,7 @@
   "dependencies": {
     "gitbook": "^1.1.1",
     "gitbook-plugin-anchors": "git://github.com/citizenmatt/gitbook-plugin-anchors#anchor_position",
-    "gitbook-plugin-multipart": "^0.2.0",
+    "gitbook-plugin-multipart": "^0.3.0",
     "gitbook-plugin-richquotes": "^0.0.5",
     "gitbook-plugin-toc": "^0.0.1",
     "grunt": "^0.4.5",
