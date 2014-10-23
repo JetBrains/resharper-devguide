@@ -2,7 +2,7 @@
   "name": "package",
   "version": "0.0.0",
   "dependencies": {
-    "gitbook": "^1.1.1",
+    "gitbook": "git://github.com/citizenmatt/gitbook#Nested_list_spacing",
     "gitbook-plugin-anchors": "git://github.com/citizenmatt/gitbook-plugin-anchors#anchor_position",
     "gitbook-plugin-multipart": "^0.3.0",
     "gitbook-plugin-richquotes": "^0.0.5",
