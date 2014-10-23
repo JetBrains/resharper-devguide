@@ -23,10 +23,10 @@
     "cheerio": "*",
     "underscore": "*"
   },
-  "readme": "Gitbook Anchors Plugin\n==============\n\nA plugin which adds Github style heading anchors to your book.\n\nInstall using\n\t \n```\n$ npm install -g gitbook-plugin-anchors\n```\n\nAdd the plugin to your `book.json`:\n    \n```\n{\n\t\"plugins\" : [ \"anchors\" ]\n}\t\t\n```\n\n",
+  "readme": "Gitbook Anchors Plugin\n==============\n\nAdd Github style heading anchors to your book.\n\n![](https://cloud.githubusercontent.com/assets/2666107/3465465/9fc9a502-0266-11e4-80ca-09a1dad1473e.png)\n\nInstall in your book using\n\t \n```\n$ npm install --save gitbook-plugin-anchors\n```\n\nAdd the plugin to your `book.json`:\n    \n```\n{\n\t\"plugins\" : [ \"anchors\" ]\n}\t\t\n```\n\n",
   "readmeFilename": "README.md",
   "_id": "gitbook-plugin-anchors@0.3.0",
-  "_shasum": "be455c6a292bce024013c68e01fbee58a7871259",
-  "_from": "gitbook-plugin-anchors@0.3.0",
-  "_resolved": "https://registry.npmjs.org/gitbook-plugin-anchors/-/gitbook-plugin-anchors-0.3.0.tgz"
+  "_shasum": "a356fe837b9552fade08781bb971b5dbb5178cd1",
+  "_resolved": "git://github.com/citizenmatt/gitbook-plugin-anchors#0a90e491ab4687d5319666780f05b2c455728900",
+  "_from": "git://github.com/citizenmatt/gitbook-plugin-anchors#anchor_position"
 }
