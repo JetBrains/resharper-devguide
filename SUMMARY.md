@@ -30,7 +30,7 @@
 * [Overview](Architecture/Overview.md)
 * Platform
 * Project Model
-* PSI
+* [PSI](Architecture/PSI.md)
 * Features
 * Products
     * Standalone
@@ -93,16 +93,23 @@
 * Project Files
 
 ## Part V - PSI
+* [Overview](Architecture/PSI.md)
 * PSI Languages
     * [Per-language Components](PSI/PerLanguageComponents.md)
-* Syntax trees
-* [Navigating syntax trees](PSI/NavigatingSyntaxTrees.md)
+* Files and Modules
+* [Syntax Trees](PSI/SyntaxTrees.md)
+* [Navigating Syntax Trees](PSI/NavigatingSyntaxTrees.md)
     * Helper methods
-    * [Strongly typed navigation](PSI/SyntaxTrees/StronglyTypedNavigation.md)
+    * [Strongly Typed Navigation](PSI/SyntaxTrees/StronglyTypedNavigation.md)
     * Recursive navigation
     * Finding nodes
 * Manipulating syntax trees
-* References
+    * Transactions
+* [Generating code](PSI/Generating/Code.md)
+    * [Generating comments](PSI/Generating/Comments.md)
+* [Declared Elements](PSI/DeclaredElements.md)
+    * Declared Element Types
+* [References](PSI/References.md)
     * Resolving references
     * [Reference providers](PSI/References/ReferenceProviders.md)
     * [Code Completion](PSI/References/CodeCompletion.md)
@@ -110,12 +117,19 @@
     * [Managing reference providers](PSI/References/IReferenceProvider.md)
     * [Path references](PSI/References/PathReferences.md)
     * Colour references
-* [Generating code](PSI/Generating/Code.md)
-    * [Generating comments](PSI/Generating/Comments.md)
-* Semantic models
-    * [Type system](PSI/TypeSystem.md)
-* Control flow
-* [Caches](PSI/Caches.md)
+* [Type Systems](PSI/TypeSystem.md)
+    * [Overview](PSI/TypeSystems2.md)
+* Symbols and Symbol Tables
+* Constant Evaluation
+* [Control Flow Graphs](PSI/ControlFlowGraphs.md)
+* [Caching](PSI/Caching.md)
+    * Persistent Caches
+        * Symbol Cache
+        * Word Index
+    * Persistent Indexes
+    * Transient Caches
+* Searching
+* Pointers
 * External Annotations
     * [Testing](PSI/ExternalAnnotations/Testing.md)
 * PSI Implementations Reference
@@ -152,8 +166,6 @@
     * Gutter Marks
     * Syntax Highlighting
     * Caches again
-    * Value analysis
-    * Call hierarchy
     * Value Analysis
     * Call Hierarchy
     * [Testing](Features/Analysis/Testing.md)
@@ -255,5 +267,6 @@
         * TreeBuilder
     * Extending Existing Languages
     * Incremental Parsing
+* Creating Declared Elements
 * Language Specific Features
     * Disabling Intellisense
