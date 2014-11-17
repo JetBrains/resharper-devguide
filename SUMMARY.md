@@ -208,6 +208,7 @@
     * Navigate from here
     * Occurrences
 * [Options Pages](Features/OptionsPages.md)
+    * Search in Options Pages
 * Tools
     * [Code cleanup](Features/Tools/CodeCleanup.md)
     * Code structure
