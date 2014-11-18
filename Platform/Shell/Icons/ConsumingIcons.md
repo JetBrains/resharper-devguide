@@ -52,7 +52,7 @@ If using compiled icons, ReSharper provides the `ThemedIcon` markup extension to
 
 ## Using compiled icons
 
-The most common icon type is the compiled icon, which is compiled as a resource and embedded in an assembly. Compiled icons are identified with an instance of the `CompiledIconId` type. Typically, this icon ID instances are automatically generated, and can be found as the `Id` static property of a class named after the icon, itself implemented as a nested class named after the icon group.
+The most common icon type is the compiled icon, which is compiled as a resource and embedded in an assembly. Compiled icons are identified with an instance of the `CompiledIconId` type. Typically, these icon ID instances are automatically generated, and can be found as the `Id` static property of a class named after the icon, itself implemented as a nested class named after the icon group.
 
 For example, you can get the icon ID for the To Do Explorer option page using:
 
@@ -78,8 +78,6 @@ public class TodoItemsPage : IOptionsPage
 }
 ```
 
-This does mean that options pages can only used compiled icons.
-
 The `OptionsPageAttribute` class converts the `Type` to an `IconId` using the `CompiledIconClassAttribute.TryGetCompiledIconClassId` static method:
 
 ```cs
@@ -91,3 +89,16 @@ Once the `IconId` is known, the standard icon loader API discussed above can be 
 ```cs
 IProperty<ImageSource> liveImage = themedIconManager.GetIcon<TodoItemsThemedIcons.ToDoItemsPage>().LiveImageSource;
 ```
+
+## Discovering compiled icons
+
+ReSharper ships with over 1000 compiled icons, so finding an icon to use can be tricky. A significant number of the icons are not intended to be used by extensions - they are icons for tool windows, actions or other UI elements that are not relevant to extensions. It is recommended to create your own icons where possible, but if you wish to reuse existing icons, make sure they are intended for the same purpose (for example, do not use the "unit test pass" icon to represent success in an extension).
+
+Should you wish to reuse existing icons, you can make use of an Internal feature that allows you to browse all of the icons registered with the `ThemedIconManager`. Start ReSharper in Internal mode, and use the ReSharper → Internal → Windows → Show Themed Icons menu option. The tool window that opens will show all available icons, either in a tile view, flat list, or grouped by owner. This grouped option is very useful, as it will group the icons by their owner - in the case of compiled icons, this will give an indication of the name of the compiled icon ID class (the name is actually the name of the "icon pack", or the XAML file that contains the definition of the icon, but that name is usually the same as, or very similar to the icon ID class name).
+
+When displaying as a flat or grouped list, the icons are searchable, and typing a value will filter out any icons that don't match the search text.
+
+## PSI symbols
+
+While it is possible to use the icon manager to get icons for PSI elements such as class, method or parameter, it is highly recommended to use the `PsiIconManager` class instead. See the section on [icons in the PSI](../../../PSI/Icons.md) for more details.
+

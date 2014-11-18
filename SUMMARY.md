@@ -132,6 +132,7 @@
 * Pointers
 * External Annotations
     * [Testing](PSI/ExternalAnnotations/Testing.md)
+* [PSI Icons](PSI/Icons.md)
 * PSI Implementations Reference
     * C#
     * Visual Basic

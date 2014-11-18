@@ -25,7 +25,15 @@ The `CompositeIconId` will combine other icons into a single image, useful for a
 
 ```cs
 var iconId1 = new ColorIconId(Color.Red);
-var iconId2 = ProjectModelThemedIcons.LayedSolutionShared.Id;
+var iconId2 = ProjectModelThemedIcons.LayerSolutionShared.Id;
+var compositeIconId = CompositeIconId.Compose(iconId1, iconId2);
+```
+
+A more realistic example shows how to create an icon that represents a private method (although this is unlikely to be required in user code, as the PSI can provide this icon automatically for a given declared element):
+
+```cs
+var iconId1 = PsiSymbolsThemedIcons.Method.Id;
+var iconId2 = PsiSymbolsThemedIcons.ModifiersPrivate.Id;
 var compositeIconId = CompositeIconId.Compose(iconId1, iconId2);
 ```
 
