@@ -85,5 +85,5 @@ public override bool IsAvailable(IDataContext dataContext)
   var generatorContextFactory = LanguageManager.Instance.TryGetService<IGeneratorContextFactory>(languageType);
   return generatorContextFactory != null;
 }
-```cs
+```
 
