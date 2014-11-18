@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Navigating Syntax Trees | ReSharper DevGuide</title>
+        <title>PSI Icons | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.3.1">
@@ -18,7 +18,7 @@
     
     
     
-    <link rel="prev" href="../PSI/SyntaxTrees.html">
+    <link rel="prev" href="../PSI/ExternalAnnotations/Testing.html">
     
 
         
@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-level="5.5" data-basepath=".." data-revision="1416309806974">
+    <div class="book" data-level="5.18" data-basepath=".." data-revision="1416309806974">
     
 
 <div class="book-summary">
@@ -1278,7 +1278,7 @@
         </li>
     
         
-        <li class="chapter active" data-level="5.5" data-path="PSI/NavigatingSyntaxTrees.html">
+        <li class="chapter " data-level="5.5" data-path="PSI/NavigatingSyntaxTrees.html">
             
                 
                     <a href="../PSI/NavigatingSyntaxTrees.html">
@@ -1732,7 +1732,7 @@
         </li>
     
         
-        <li class="chapter " data-level="5.18" data-path="PSI/Icons.html">
+        <li class="chapter active" data-level="5.18" data-path="PSI/Icons.html">
             
                 
                     <a href="../PSI/Icons.html">
@@ -3349,75 +3349,52 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_41">
+                    <section class="normal" id="section-gitbook_40">
                     
-                        <h1 id="navigating-syntax-trees"><a name="navigating-syntax-trees" class="plugin-anchor" href="#navigating-syntax-trees"><span class="fa fa-link"></span></a>Navigating syntax trees</h1>
-<p>Every node in the syntax tree implements <code>ITreeNode</code>. The interface includes members pertinent to navigating and processing the tree. These members are shown below (other members removed for brevity):</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ITreeNode</span>
+                        <h1 id="psi-icons"><a name="psi-icons" class="plugin-anchor" href="#psi-icons"><span class="fa fa-link"></span></a>PSI Icons</h1>
+<p>The PSI needs to be able to display icons to help identify code elements in completion, navigation or find usage result lists. The PSI can display different icons to distinguish between classes, constructors, methods, parameters, etc. It can also show specific icons for CSS class IDs, HTML elements and unit test elements.</p>
+<p>While the <a href="../Platform/Shell/Icons.html">Shell provides the <code>ThemedIconManager</code> class</a> in order to load and create icons, it is a low level API. It provides no means for getting the icon for a class, other than explicitly loading <code>PsiSymbolsThemedIcons.Class.Id</code>. The PSI provides the <code>PsiIconManager</code> to retrieve icons for a specific declared element.</p>
+<p>The <code>PsiIconManager</code> provides the following methods and properties:</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">PsiIconManager</span>
 {
-  ITreeNode Parent { <span class="hljs-keyword">get</span>; }
-  ITreeNode FirstChild { <span class="hljs-keyword">get</span>; }
-  ITreeNode LastChild  { <span class="hljs-keyword">get</span>; }
-  ITreeNode NextSibling { <span class="hljs-keyword">get</span>; }
-  ITreeNode PrevSibling { <span class="hljs-keyword">get</span>; }
-
-  <span class="hljs-comment">// [...snip...]</span>
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> IconId <span class="hljs-title">GetDummyImage</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> IconId <span class="hljs-title">GetImage</span><span class="hljs-params">(IDeclaredElement element, PsiLanguageType language, <span class="hljs-keyword">bool</span> drawExtensions)</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> IconId <span class="hljs-title">GetImage</span><span class="hljs-params">(DeclaredElementType elementType)</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> IconId <span class="hljs-title">GetImage</span><span class="hljs-params">(DeclaredElementType elementType, PsiIconExtension extensions)</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> IconId <span class="hljs-title">AttachExtensions</span><span class="hljs-params">(IconId image, PsiIconExtension extensions)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> IconId KeywordIcon { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-comment">// ...</span>
 }
 </code></pre>
-<p>There are several ways of navigating the tree.</p>
+<p>The <code>PsiIconExtension</code> type is a flags based enum, which provides the modifiers, such as public, private, internal, or abstract, virtual, static, etc. These modifiers are used to create a composite icon, with the base icon representing the element being overlayed with another icon that represents the modifier.</p>
 <ul>
-<li>Manually walking the tree, using the interface members shown above</li>
-<li>Use the helper methods to manually walk the tree</li>
-<li>Use <a href="SyntaxTrees/StronglyTypedNavigation.html">strongly typed navigation</a>, using accessors on derived <code>ITreeNode</code> implementations, and the strongly typed &quot;navigator&quot; classes</li>
-<li>Process the tree using the <a href="SyntaxTrees/RecursiveNavigation.html">visitor pattern or the <code>IRecursiveElementProcessor</code> set of classes</a></li>
-<li>Finding child or parent nodes of a specific type</li>
+<li><p><strong><code>GetDummyImage</code></strong> returns a dummy, placeholder image, which is to be used if the icon manager cannot return a more specific image. The pattern for usage is usually:</p>
+<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> iconId = manager.GetImage(CLRDeclaredElementType.CONSTRUCTOR) ?? manager.GetDummyImage();
+</code></pre>
+</li>
+<li><p><strong><code>GetImage</code></strong> provides several overloads. The first takes an instance of <code>IDeclaredElement</code>, and will return an icon specific to that element, for example, given an element for a class declaration, the method will return an <code>IconId</code> for the class icon. The <code>drawExtensions</code> parameter is true if the element&apos;s modifiers (public, private, abstract, etc.) are used to modify the icon.</p>
+<p>  The other overloads use an instance of <code>DeclaredElementType</code>, which is a metadata class that describes how various declared element types are presented, including presentable name and which icon to use. ReSharper ships with several classes that describe element types, such as <code>CSharpDeclaredElement</code>, <code>CssDeclaredElementType</code> or <code>WebConfigDeclaredElementType</code>. Each class has several static fields that provide instances of the element type, such as <code>WebConfigDeclaredElementType.WEB_CONFIG_TAG_NAME</code>.</p>
+</li>
+<li><p><strong><code>AttachExtensions</code></strong> will add the expected modifier overlays to the passed icon, marking it as private, protected, abstract, static, etc.</p>
+</li>
+<li><p><strong><code>KeywordIcon</code></strong> simply returns the <code>IconId</code> of the icon representing keywords.</p>
+</li>
 </ul>
-<h2 id="manually-navigating-the-tree"><a name="manually-navigating-the-tree" class="plugin-anchor" href="#manually-navigating-the-tree"><span class="fa fa-link"></span></a>Manually navigating the tree</h2>
-<p>Manually walking the tree is the lowest level means of navigation, and involves walking the nodes using the properties shown above.</p>
-<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
-<p> Generally speaking, you&apos;ll want to use one of the other, less low level, navigation techniques in this section to navigate around the tree. However, it is useful to know how to navigate the tree in order to understand how the tree is structured.</p>
-</blockquote>
-<h3 id="walking-up-the-tree"><a name="walking-up-the-tree" class="plugin-anchor" href="#walking-up-the-tree"><span class="fa fa-link"></span></a>Walking up the tree</h3>
-<p>You can walk up the tree using the <code>Parent</code> property. This is very useful for finding the context that the current node is in - for example, you can walk the <code>Parent</code> property of a method invocation to see if the invocation is happening inside a method declaration that is async or not.</p>
-<p>To walk the <code>Parent</code> property, you will want to write code like this:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">while</span>(currentNode != <span class="hljs-keyword">null</span>)
+<p>Typically, the icon manager will return an icon when <code>GetImage</code> is called. If it returns <code>null</code>, use the image returned by <code>GetDummyImage</code> instead.</p>
+<h2 id="extending-the-icon-manager"><a name="extending-the-icon-manager" class="plugin-anchor" href="#extending-the-icon-manager"><span class="fa fa-link"></span></a>Extending the icon manager</h2>
+<p>By default, the icon manager will try to return a specific icon for a given declared element. If it can&apos;t find one, it returns the icon from the element&apos;s <code>DeclaredElementType</code>. In order to find a specific icon, it asks an extensible collection of icon providers, which all implement the <code>IDeclaredElementIconProvider</code> interface:</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDeclaredElementIconProvider</span>
 {
-  <span class="hljs-comment">// Process node</span>
-  currentNode = currentNode.Parent;
+  <span class="hljs-function">IconId <span class="hljs-title">GetImageId</span><span class="hljs-params">(IDeclaredElement declaredElement, PsiLanguageType languageType, <span class="hljs-keyword">out</span> <span class="hljs-keyword">bool</span> canApplyExtensions)</span></span>;
 }
 </code></pre>
-<h3 id="walking-sibling-nodes"><a name="walking-sibling-nodes" class="plugin-anchor" href="#walking-sibling-nodes"><span class="fa fa-link"></span></a>Walking sibling nodes</h3>
-<p>Since a file is parsed into a tree structure, nodes have siblings as well as children. For example, a C# file can have a class declaration that contains multiple methods. Each method is represented by an <code>IMethodDeclaration</code> node. Intuitively, each method is a child of the class, and therefore are siblings, and no method is higher or lower in the tree than any other.</p>
-<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
-<p> Even though the method declarations will be siblings, they are not going to be direct siblings. The syntax tree is a full-fidelity representation of the C# file, which means the whitespace and comments between the method declarations are also added as nodes in the tree, and these will be siblings to the method declarations.</p>
-</blockquote>
-<p>You can walk the siblings with code like this:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">while</span>(currentNode != <span class="hljs-keyword">null</span>)
-{
-  <span class="hljs-comment">// Process node</span>
-  currentNode = currentNode.NextSibling;
-}
-</code></pre>
-<p>Obviously the code to walk the sibling chain in reverse is just the same, but using the <code>PrevSibling</code> property.</p>
-<h3 id="walking-down-the-tree"><a name="walking-down-the-tree" class="plugin-anchor" href="#walking-down-the-tree"><span class="fa fa-link"></span></a>Walking down the tree</h3>
-<p>Walking down the tree is very similar to walking the sibling chain. Again, since this is a tree structure a single node can have multiple children. For example, a C# file&apos;s list of <code>using</code> statements is represented by an <code>IUsingList</code> node, and this will have multiple children - multiple instances of <code>IUsingNamespaceDirective</code> (with each child again separated by whitespace nodes).</p>
-<p>To walk the immediate children of a node, you&apos;ll want to write code like this:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">WalkChildren</span><span class="hljs-params">(ITreeNode root)</span>
-</span>{
-  <span class="hljs-keyword">var</span> child = root.FirstChild;
-  <span class="hljs-keyword">while</span>(child != <span class="hljs-keyword">null</span>)
-  {
-    <span class="hljs-comment">// Process child node</span>
-    child = child.NextSibling;
-  }
-}
-</code></pre>
-<p>Note that we start with <code>FirstChild</code> but then walk that child&apos;s siblings. To walk the children in reverse order, start with <code>LastChild</code>, and walk <code>PrevSibling</code>.</p>
-<p>If you want to walk all descendants of a node, simply recursively walk a child node&apos;s children.</p>
-<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
-<p> Beware of recursively walking the descendants of a node. Recursion can run into problems with a very deeply nested syntax tree. It is better to iteratively walk the tree than to use recursion.</p>
-<p>You should avoid writing your own methods for walking the tree, and make use of the <a href="SyntaxTrees/RecursiveNavigation.html"><code>TreeNodeVisitor</code> or <code>IRecursiveElementProcessor</code></a> patterns that ReSharper implements.</p>
-</blockquote>
+<p>ReSharper ships with a number of language specific providers, such as the C# provider that checks to see if the declared element is a C# extension method, indexer property or finalizer (all of which would otherwise be classed as a simple method), and returns back a specific icon in each case. If the element isn&apos;t one of these, it returns null. It also returns <code>true</code> in the <code>canApplyExtensions</code> parameter to indicate that this element can have modifiers, based on <code>PsiIconExtension</code>.</p>
+<p>Furthermore, ReSharper ships with a colour icon provider, which recognises type members that are colour properties, and returns a <code>ColorIconId</code> to match. This provider returns <code>false</code> in <code>canApplyExtensions</code>. ReSharper also ships a unit test icon provider, which checks to see if the declared element is part of a unit test, and returns an appropriate unit test icon.</p>
+<p>The collection can be extended by creating a class that implements <code>IDeclaredElementIconProvider</code> and is decorated with the <code>[DeclaredElementIconProvider]</code> attribute. This scopes the class to PSI-shared component lifetime (that is, the same lifetime as a <code>ShellComponent</code>). Should the class need to have a narrower lifetime, such as <code>[SolutionComponent]</code>, it is possible to call <code>PsiIconManager.AddExtension</code> in the provider&apos;s constructor, passing in it&apos;s own <code>Lifetime</code> for cleanup. The unit test icon provider does this, as it depends on components that have solution lifetime scope.</p>
+<p>The <code>IDeclaredElementIconExtensionProvider</code> can be implemented to extend the process for deciding what modifiers should be applied to the icon (private, public, etc.). The class should be decorated with the <code>[DeclaredElementIconExtensionProvider]</code> attribute, or can also be registered by calling <code>PsiIconManager.AddExtension</code> if the component has different lifetime requirements. This provider is currently implemented for CLR and C++ elements.</p>
+<h2 id="loading-icons-manually"><a name="loading-icons-manually" class="plugin-anchor" href="#loading-icons-manually"><span class="fa fa-link"></span></a>Loading icons manually</h2>
+<p>It is not recommended to load icons directly, but they are available in the <a href="../Platform/Shell/Icons/ConsumingIcons.html"><code>ThemedIconManager</code></a>. Simply use the icon IDs defined in the <code>PsiSymbolsThemedIcons</code> class, and use <a href="../Platform/Shell/Icons/IconTypes.html#composite-icons"><code>CompositeIconId.Compose</code></a> method to apply modifiers. There are language specific icons in other classes, such <code>PsiCssThemedIcons</code> or <code>PsiBuildScriptsThemedIcons</code>.</p>
+<p>The <code>PsiIconManager</code> provides a more flexible and extensible way of getting the correct icon.</p>
 
                     
                     </section>
@@ -3428,7 +3405,7 @@
         </div>
 
         
-        <a href="../PSI/SyntaxTrees.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Syntax Trees"><i class="fa fa-angle-left"></i></a>
+        <a href="../PSI/ExternalAnnotations/Testing.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Testing"><i class="fa fa-angle-left"></i></a>
         
         
     </div>
