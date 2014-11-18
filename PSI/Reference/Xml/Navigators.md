@@ -53,4 +53,4 @@ public static class XmlTagNavigator
 
 <!-- End XmlTagNavigator -->
 
-Navigate up the tree to an instance of `IXmlTag`, given an instance of `IXmlAttribute`, `IXmlTag`, `IXmlTagFooter` or `IXmlTagHeader`. Returns `null` if it can't fin the `IXmlTag`.
+Navigate up the tree to an instance of `IXmlTag`, given an instance of `IXmlAttribute`, `IXmlTag`, `IXmlTagFooter` or `IXmlTagHeader`. Returns `null` if it can't find the `IXmlTag`.
