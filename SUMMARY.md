@@ -1,5 +1,10 @@
 # Summary
 
+* [The ReSharper Platform](Intro/ReSharperPlatform.md)
+* [About This Guide](Intro/About.md)
+* [Key Topics](Intro/KeyTopics.md)
+* [Getting Help](Intro/GettingHelp.md)
+
 ## Part I - Extending the ReSharper Platform
 * Getting Started
     * [Tools](Intro/Tools.md)
