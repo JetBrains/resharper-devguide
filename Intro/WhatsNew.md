@@ -79,9 +79,19 @@ TODO
 
 Options pages are now searchable. To implement in your own options page, either implement `ISearchablePage`, or derive from `SimpleOptionsPage`. Highlighting results is implemented automatically for XAML pages, as long as the page sets the attached property `SearchablePageBehavior.SearchFilter="True"` on the root control of the page, while also setting the `DataContext` of the root control to the implementation of `ISearchablePage`.
 
-## Unit test element ID changes
+## Unit test provider changes
+
+### Unit test element ID changes
 
 The ID for unit test elements is no longer a simple string ID. This change is to support multiple providers in the same project (e.g. mixing nunit and xunit tests), and also to allow for tests with the same fully qualified class or method name in the same solution. This is especially important for Shared Projects.
 
 Instead of the ID being a simple string, it is now a `UnitTestElementId` instance, which is a value type (multiple instances can be considered equal if the fields are all equal). It is comprised of three values - the test provider (e.g. nunit, xunit), a `PersistentProjectId`, which is usually a GUID in the `.csproj` file, and the old string ID of the element. The string ID of the element can be the fully qualified name of the class or method - taking all three values into account allows for uniqueness of IDs.
+
+The persistent project ID can be retrieved by calling `IProject.GetPersistentId()`.
+
+### File and metadata explorers
+
+The `IUnitTestMetadataExplorer`, `IUnitTestFileExplorer` and the `ExploreExternal` and `ExploreSolution` methods on the `IUnitTestProvider` interface have been merged into a single interface, `IUnitTestElementSource`. This should be implemented as a `[SolutionComponent]`. It provides a direct replacement for the above mentioned interfaces and methods, allowing for unit test discovery from PSI syntax trees or assembly IL metadata. The `IUnitTestElementSource.ExploreSolution` method allows for discovery of test elements via other, non-prescribed means, perhaps by examining the solution for non-project files, or looking for project files that don't have a PSI syntax tree.
+
+The implementation of the interface can defer to the existing implementations of `IUnitTestMetadataExplorer` or `IUnitTestFileExplorer`, with minor alterations. The `UnitTestElementConsumer` delegate has been replaced with a more flexible `IUnitTestElementsObserver`, and the `MetadataElementsSource` class provides infrastructure for loading assembly IL metadata and calling an `ExploreAssembly`-like method.
 
