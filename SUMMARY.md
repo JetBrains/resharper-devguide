@@ -8,7 +8,7 @@
 ## Part I - Extending the ReSharper Platform
 * Getting Started
     * [Tools](Intro/Tools.md)
-    * Internal mode
+    * [Internal mode](Intro/InternalMode.md)
 * Platform Versioning
 * [What's New?](Intro/WhatsNew.md)
 * Declarative Extensions
