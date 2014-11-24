@@ -9,7 +9,7 @@
 * Getting Started
     * [Tools](Intro/Tools.md)
     * [Internal mode](Intro/InternalMode.md)
-* Platform Versioning
+* [Platform Versioning](Intro/PlatformVersioning.md)
 * [What's New?](Intro/WhatsNew.md)
 * Declarative Extensions
     * Live Templates
