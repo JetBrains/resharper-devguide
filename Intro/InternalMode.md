@@ -39,5 +39,5 @@ Other items are available, these are just some of the more interesting ones for 
 As well as adding new menu items, enabling internal mode will add new options to the Options dialog. Again, some items are only interesting to the development team, but some are useful for extension developers. For example:
 
 * **Tools → Unit Testing** gets two new options, **Enable Debug** and **Enable Logging**. The "Enable Debug" option will cause the external test runner process to display a message box before running any tests, giving the developer time to attach a debugger.
-* The **Internal** page provides lots of interesting options, most of which are only interesting to the development team. However, one check box is very useful - **Enable Zones** will enable diagnostic analysers for working with [Zones](../Platform/Zones.md), highlighting when XXX
+* The **Internal** page provides lots of interesting options, most of which are only interesting to the development team. However, one check box is very useful - **Enable Zones** will enable diagnostic analysers for working with [Zones](../Platform/Zones.md).
 * The **Logging** page allows for creating and editing logging configuration files. The generated configuration file provides comments on how the file works.
