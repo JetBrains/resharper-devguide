@@ -13,7 +13,7 @@ To view the guide, please visit: http://jetbrains.github.io/resharper-devguide/i
 
 ## Open Source
 
-This guide is Open Source, licensed under Apache 2.0. The source (as Markdown) is hosted on GitHub, and built with GitBook. Please feel free to [raise issues](https://github.com/JetBrains/resharper-devguide/issues) or create pull requests to address incorrect or missing content.
+This guide is Open Source, licensed under Apache 2.0. The source (as Markdown) is [hosted on GitHub](https://github.com/JetBrains/resharper-devguide), and built with GitBook. Please feel free to [raise issues](https://github.com/JetBrains/resharper-devguide/issues) or create pull requests to address incorrect or missing content.
 
 The guide is very much a work in progress (the ReSharper Platform has a very large feature set and API surface), and is by no means a complete reference of the API. The table of contents provides a non-exhaustive list of available features, and shows missing content by greying out the page. Issues are a great way of prioritising what documentation needs to be addressed first. Please let us know what we should focus on!
 
