@@ -11,7 +11,7 @@
     * [Internal mode](Intro/InternalMode.md)
 * [Platform Versioning](Intro/PlatformVersioning.md)
 * [What's New?](Intro/WhatsNew.md)
-* Declarative Extensions
+* [Declarative Extensions](Intro/DeclarativeExtensions.md)
     * Live Templates
     * Structural Search and Replace Patterns
     * External Annotations
