@@ -17,8 +17,7 @@
     * External Annotations
         * Attribute Reference
         * Annotator Tool
-* Compiled Extensions (Plugins)
-    * Key Topics
+* [Compiled Extensions (Plugins)](Intro/CompiledExtensions.md)
     * [SDK Reference](Plugins/SDK.md)
     * [Project Setup](Plugins/ProjectSetup.md)
     * Debugging
