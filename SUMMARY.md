@@ -42,13 +42,16 @@
 
 ## Part III - Platform
 * Logging
-* DataFlow
 * [Lifetime](Platform/Lifetime.md)
     * [Usage](Platform/Lifetime/Usage.md)
     * [Lifetime Management](Platform/Lifetime/LifetimeDefinition.md)
     * [Advanced Lifetime Management](Platform/Lifetime/Advanced.md)
     * [Component Lifetime](Platform/Lifetime/ComponentModel.md)
     * [Case Study](Platform/Lifetime/CaseStudy.md)
+* DataFlow
+    * IViewable
+    * IProperty
+    * ISignal
 * [Component Model](Platform/ComponentModel.md)
     * [Containers, Parts and Catalogues](Platform/ComponentModel/ContainersPartsCatalogues.md)
     * [Visual Studio interfaces](Platform/VisualStudio/ComponentModel.md)
