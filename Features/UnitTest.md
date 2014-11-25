@@ -12,18 +12,18 @@ As a result, plugin writers need to support two separate test analysers - the me
 
 The metadata explorer is used to explore the metadata of compiled CLR assemblies to look for test elements. It is not applicable to non-CLR unit test frameworks such as QUnit.
 
-In order to support the metadata explorer, plugin writers need to create a class decorated by the `\[ReSharper:MetadataUnitTestExplorer\]` interface and implementing the `IUnitTestMetadataExplorer` interface. This interface has two members:
+In order to support the metadata explorer, plugin writers need to create a class decorated by the `[MetadataUnitTestExplorer]` interface and implementing the `IUnitTestMetadataExplorer` interface. This interface has two members:
 
 * The `Provider` property, which returns the unit test provider.
 * The `ExploreAssembly()` method, which is used to tell an explorer to explore the metadata for a particular assembly.
 
-h3. File Explorer
+### File Explorer
 
 The file explorer acts in a way similar to the metadata explorer, the only difference being that instead of an `ExploreAssembly()` method it has an `ExploreFile()` method which, predictably, takes an `IFile` to explore.
 
 A typical implementation of the `ExploreFile()` method is to simply take the file and call `ProcessDescendants()` on it, passing your own file explorer class which implements the `IRecursiveElementProcessor` interface. From then on, the idea is to traverse the PSI tree of the file (just like you would if you were writing an ordinary analyzer), identify the elements which constitute test fixtures, tests, and so on, and then construct appropriate `IUnitTestElement` entities.
 
-h3. IUnitTestElement
+### IUnitTestElement
 
 The `IUnitTestElement` interface is the core interface that is involved in unit testing. Essentially, this interface needs to be implemented by any class in your code that _represents_ a test.
 
@@ -33,23 +33,23 @@ Currently, ReSharper currently has several base classes for test elements, such 
 * A method
 * A row or test case
 
-
 Other elements can be created to suit your needs. For example, if your tests are defined in fields, you could create a `SomeFrameworkElementBase` that implements `IUnitTestElement` and subsequently derive from it your `SomeFrameworkFieldElement` class.
 
 If you look at the existing implementations of `XxxElementBase` classes, you will notice that each one of them takes a `XxxTestProvider` as a parameter to be injected in the constructor. (This provider is also returned in the `Provider` property.) This provider class is the class which actually explores the assembly and creates the tie-in between ReSharper and the unit testing framework of choice.
 
-h3. IUnitTestProvider
+### IUnitTestProvider
 
-The unit test provider is a class which implements the `IUnitTestProvider` interface and is decorated with the `[ReSharper:UnitTestProvider]` attribute. The actual binding of the provider to a particular element happens in the `IsElementOfKind()` method. This method is used to determine whether the particular element is, in fact, an element of a particular kind. The possible kinds, which are part of the `UnitTestElementKind` enumeration, are as follows:
+The unit test provider is a class which implements the `IUnitTestProvider` interface and is decorated with the `[UnitTestProvider]` attribute. The actual binding of the provider to a particular element happens in the `IsElementOfKind()` method. This method is used to determine whether the particular element is, in fact, an element of a particular kind. The possible kinds, which are part of the `UnitTestElementKind` enumeration, are as follows:
 
 * Unknown -- we don’t know what this is
-* Test -- the actual test which does does something. Here we mean something like a `[ReSharper:Test]` or a `[ReSharper:TestCase]` -- both count as tests.
-* TestContainer -- this represents a container of a set of tests. Typically, this matches a `[ReSharper:TestFixture]`, but if we have a test with several rows/test cases, then this would also cover a `[ReSharper:Test]`.
-* TestStuff -- this is any element which relates to tests, such as all of the aforementioned elements plus elements such as `[ReSharper:SetUpFixture]`
+* Test -- the actual test which does does something. Here we mean something like a `[Test]` or a `[TestCase]` -- both count as tests.
+* TestContainer -- this represents a container of a set of tests. Typically, this matches a `[TestFixture]`, but if we have a test with several rows/test cases, then this would also cover a `[Test]`.
+* TestStuff -- this is any element which relates to tests, such as all of the aforementioned elements plus elements such as `[SetUpFixture]`
 
 
 There are, in fact, two overloads of `IsElementKindOf()`. One takes an `IDeclaredElement`, whereas another atakes a `IUnitTestElement`. The overload that takes an `IUnitTestElement` is simple -- it simply implements a set of rules similar to the list above, for example:
-{code:none}
+
+```cs
 public bool IsElementOfKind(IUnitTestElement element, UnitTestElementKind elementKind)
 {
   switch (elementKind)
@@ -66,7 +66,8 @@ public bool IsElementOfKind(IUnitTestElement element, UnitTestElementKind elemen
       throw new ArgumentOutOfRangeException("elementKind");
   }
 }
-{code}
+```
+
 The overload taking an IDeclaredElement is a bit more complicated. Essentially, this overload checks for the `UnitTestElementKind` on the actual code element. As a result, it is the responsibility of the developer to check that this is indeed the case.
 
 Here’s an example. Let’s suppose that we want to determine whether something is a unit test. This would imply that our `IDeclaredElement` is:
@@ -79,12 +80,14 @@ Here’s an example. Let’s suppose that we want to determine whether something
 
 
 In order to determine whether a particular attribute has been applied to a method, we create declarations similar to the following
-{code:none}
+
+```cs
 IClrTypeName TestAttribute = new ClrTypeName("NUnit.Framework.TestAttribute");
-{code}
+```
+
 and we subsequently check that the attribute owner (i.e. our method) has this attribute using the `HasInstanceAttribute()` method. Determining _derived_ types is a bit more complicated -- take a look at the `UnitTestAttributeCache` class in ReSharper for an illustration of how this is handled.
 
-h3. RemoteRecursiveTaskRunner
+### RemoteRecursiveTaskRunner
 
 We now come to what is arguably the most complicated part of all: the task runner which actually runs the unit tests. This class typically inherits from `RecursiveRemoteTaskRunner` and is expected to implement several methods from its parent types. Let’s take a look at some of them.
 
