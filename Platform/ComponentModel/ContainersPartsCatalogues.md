@@ -1,5 +1,7 @@
 # Containers, Parts and Catalogues
 
+> **INFO** This is an advanced, deep dive into the implementation of the Component Model. It is not necessary to understand this in order to use the Component Model, or solution or shell components.
+
 <!-- toc -->
 
 The Component Model is designed to create loosely coupled, composable applications. Shell and solution components are just one example of doing this, and are implemented on top of infrastructure that allows for more flexibility and custom handling of component creation and lifetime. In other words, the Component Model is a complete [Inversion of Control](http://en.wikipedia.org/wiki/Inversion_of_control) framework.
@@ -107,8 +109,7 @@ Alternatively, when creating the container, you can pass in an instance of `Dela
 A component can opt-out of delayed initialisation by setting the `Requirement` property on its attribute:
 
 ```cs
-// Note the typo - this is likely to be fixed before RTM
-[ShellComponent(Requirement = InstanciationRequirement.Immediate)]
+[ShellComponent(Requirement = InstantiationRequirement.Immediate)]
 public class MyImmediateComponent
 {
 }
