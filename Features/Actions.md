@@ -1,5 +1,7 @@
 # Actions and Menu Items
 
+> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+
 While the bulk of ReSharper is concerned with presenting its own types of UI (popups, dialog windows, etc.), certain features can be implemented using traditional menu items that would be familiar to anyone who has done Visual Studio plugin development. A menu item subsequently triggers an _action_, i.e. a unit of work associated with this menu item.
 
 ## When to create Actions

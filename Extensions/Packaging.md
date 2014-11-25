@@ -1,5 +1,7 @@
 # Packaging and Distribution
 
+> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+
 Once you’re done writing your plugin, you probably want to deploy it to end users. Starting with ReSharper 8, we provide support for clean and easy deployment of your plugins with the new Extension Manager. For these purposes, your plugin must be prepared as a [NuGet package](http://docs.nuget.org/). Also, there is a central place, the ReSharper Gallery, that can be used to host your plugins - it can be found at <http://resharper-plugins.jetbrains.com>. But you can also use you own server to deploy plugins (e.g., within your company). Repositories can also be stored in a physical folder or a shared location on the network.
 
 

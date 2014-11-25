@@ -1,5 +1,7 @@
 # Case Study
 
+> **INFO** This topic refers to the implementation of the Extension Manager for ReSharper 8. This implementation has changed for ReSharper 9 and no longer matches this description. However, the described behaviour is still a very valid usage of the `Lifetime` classes.
+
 `Lifetime` is a very powerful concept. Normal usage is very straight forward, either by adding a simple callback, or passing it to an API. Generally speaking, this is how it will be used day to day.
 
 However, it can also be used to help manage more complex scenarios.

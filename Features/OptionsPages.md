@@ -1,5 +1,7 @@
 # Options Pages
 
+> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+
 An options page allows a plugin developer to add controls to the ReSharper Options dialog. This is typically used to let the user specify various plugin settings. The plugin writer can add an unlimited amount of option pages to the dialog, and the dialogs can be nested in any of the options groups.
 
 Let us now discuss the way in which option pages are defined.

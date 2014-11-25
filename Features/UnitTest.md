@@ -1,5 +1,7 @@
 # Unit Test Framework Support
 
+> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+
 Most of ReSharper plugins involve support for different unit test frameworks. This page describes ways in which you can add unit test support to your own framework.
 
 ## Overview

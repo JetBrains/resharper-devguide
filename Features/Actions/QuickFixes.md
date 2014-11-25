@@ -1,5 +1,7 @@
 # Quick-Fixes and Context Actions
 
+> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+
 One of the ways that ReSharper offers to correct or modify your code is by using a pop-up menu that shows up on the left-hand side of the screen:
 
 ![Showing the Context Action Alt+Enter menu](context_action.png)

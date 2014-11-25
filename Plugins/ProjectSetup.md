@@ -1,5 +1,7 @@
 # Project Setup
 
+> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+
 ReSharper can be extended in several ways. It supports declarative extensions, in the form of settings files that include content like Live Templates, Structural Search and Replace patterns, or just alternative formatting and inspection defaults. It also supports a more traditional, binary based plugin, using a standard .net assembly.
 
 ## NuGet References

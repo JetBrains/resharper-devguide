@@ -1,5 +1,7 @@
 # SDK Reference
 
+> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+
 The ReSharper SDK is a set of Visual Studio project and item templates designed to help you create and build ReSharper plugins. You can download it [here](http://www.jetbrains.com/resharper/download/).
 
 ## What’s in the SDK
