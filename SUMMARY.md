@@ -116,6 +116,7 @@
     * [Generating comments](PSI/Generating/Comments.md)
 * [Declared Elements](PSI/DeclaredElements.md)
     * Declared Element Types
+    * Declared Element Envoys
 * [References](PSI/References.md)
     * Resolving references
     * [Reference providers](PSI/References/ReferenceProviders.md)
