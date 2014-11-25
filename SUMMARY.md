@@ -6,7 +6,7 @@
 * [Getting Help](Intro/GettingHelp.md)
 
 ## Part I - Extending the ReSharper Platform
-* Getting Started
+* [Getting Started](Intro/GettingStarted.md)
     * [Tools](Intro/Tools.md)
     * [Internal mode](Intro/InternalMode.md)
 * [Platform Versioning](Intro/PlatformVersioning.md)
@@ -20,7 +20,7 @@
 * [Compiled Extensions (Plugins)](Intro/CompiledExtensions.md)
     * [SDK Reference](Plugins/SDK.md)
     * [Project Setup](Plugins/ProjectSetup.md)
-    * Debugging
+    * [Debugging](Plugins/Debugging.md)
     * [Plugin testing](Plugins/Testing.md)
         * Test Framework
         * [Combinatorial Testing](Plugins/Testing/OptionsIterator.md)

@@ -4,7 +4,7 @@ The ReSharper Platform is very large, and very capable, and its size can initial
 
 ## Basics
 
-* Getting Started with extensions and plugins
+* [Getting Started](GettingStarted.md) with extensions and plugins.
 * [Architectural overview](../Architecture/Overview.md) - a brief tour of the different layers of the ReSharper Platform.
 * [`Lifetime`](../Platform/Lifetime.md) - a key class used across the whole of the Platform. Provides lifetime management features.
 * [Component Model](../Platform/ComponentModel.md) - ReSharper is a highly component based application, importing and exporting services and components. To get the most out of it requires some understanding of how the component model works, and how it relates to lifetime management.
