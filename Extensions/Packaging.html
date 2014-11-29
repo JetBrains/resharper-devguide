@@ -17,6 +17,8 @@
         
     
     
+    <link rel="next" href="../Extensions/Packaging8.html">
+    
     
     <link rel="prev" href="../Intro/KnownIssues.html">
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="5.6" data-basepath=".." data-revision="1417279579377">
+    <div class="book" data-level="5.6" data-basepath=".." data-revision="1417282566480">
     
 
 <div class="book-summary">
@@ -478,6 +480,28 @@
                     </a>
                 
             
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="5.6.1" data-path="Extensions/Packaging8.html">
+            
+                
+                    <a href="../Extensions/Packaging8.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.1.</b>
+                        
+                         Supporting ReSharper 8
+                    </a>
+                
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -3499,102 +3523,27 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_16">
+                    <section class="normal" id="section-gitbook_17">
                     
                         <h1 id="packaging-and-distribution"><a name="packaging-and-distribution" class="plugin-anchor" href="#packaging-and-distribution"><span class="fa fa-link"></span></a>Packaging and Distribution</h1>
-<blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
-<p> This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.</p>
-</blockquote>
-<p>Once you&#x2019;re done writing your plugin, you probably want to deploy it to end users. Starting with ReSharper 8, we provide support for clean and easy deployment of your plugins with the new Extension Manager. For these purposes, your plugin must be prepared as a <a href="http://docs.nuget.org/" target="_blank">NuGet package</a>. Also, there is a central place, the ReSharper Gallery, that can be used to host your plugins - it can be found at <a href="http://resharper-plugins.jetbrains.com" target="_blank">http://resharper-plugins.jetbrains.com</a>. But you can also use you own server to deploy plugins (e.g., within your company). Repositories can also be stored in a physical folder or a shared location on the network.</p>
-<p>Creating a package happens in the same way as you create a package for NuGet, and requires you to use the <code>nuget.exe</code> Command-Line Utility, which you can download from <a href="http://nuget.codeplex.com/releases" target="_blank">http://nuget.codeplex.com/releases</a>. You create a <code>.nuspec</code> file and call <code>nuget pack</code> and push to the repository with:</p>
-<p><code>nuget push myextension.1.0.0.nupkg -ApiKey XXX -Source https://resharper-plugins.jetbrains.com</code></p>
+<p>Packaging for the ReSharper Platform is very similar to the way extensions were packaged for <a href="Packaging8.html">ReSharper 8</a> - it is recommended you familiarise yourself with that guide before continuing. An extension is distributed as a NuGet package, and hosted on a <a href="https://resharper-plugins.jetbrains.com" target="_blank">NuGet gallery</a>. However, because ReSharper extensions are runtime code, rather than compile time dependencies, the use case for ReSharper extension packages is very different to standard NuGet packages. Because of this, they have a different file layout internally.</p>
+<p>Instead of adding assembly references to the <code>lib</code> folder, ReSharper extensions should add all binaries to the <code>DotFiles</code> root folder inside the package. This is different to ReSharper 8, where the top level folder was <code>ReSharper</code>. This is because extensions are now extensions to the ReSharper Platform, rather than just to ReSharper. The top level folder name has changed to reflect this.</p>
+<p>Also unlike ReSharper 8 packages, ReSharper Platform extension packages do not provide a folder for previous versions (e.g. <code>ReSharper\v8.1</code>, <code>ReSharper\v8.2</code>, etc.). ReSharper 8.x packages tended to be updated in a timely manner for new versions of ReSharper, and maintaining previous versions in a package became unnecessary and a maintenance overhead for plugin authors, if they chose to do it at all. This means binaries should be copied to the <code>DotFiles</code> folder directly.</p>
 <blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
-<p> Calling <code>nuget pack</code> without specifying the <code>.nuspec</code> file causes Nuget to search for any project file (e.g., <code>.csproj</code>) or <code>.nuspec</code> file in the current directory and build the package file from the first one it finds. Of course, you can also specify the package file explicitly with <code>nuget pack myplugin.nuspec</code>.</p>
-<p>You can safely ignore the warning about the assembly being outside the lib folder. Alternatively, create your package with <code>nuget pack -NoPackageAnalysis</code>.</p>
+<p> When installing, all binary files in the package are copied to the main ReSharper Platform installation folder. This means that duplicate names should be avoided at all costs! The installer will refuse to install a package that introduces a duplicate file name.</p>
+<p>It is recommended that plugin assembly names use a prefix to ensure their assemblies are unique, e.g. CitizenMatt.Xunit.dll.</p>
 </blockquote>
-<h2 id="package-structure"><a name="package-structure" class="plugin-anchor" href="#package-structure"><span class="fa fa-link"></span></a>Package Structure</h2>
-<p>In order to locate plugins, ReSharper searches a number of predefined locations inside the package. These locations are searched <em>recursively</em>, so you can create nested folders for keeping your plugins. Several plugins for different versions of ReSharper can be deployed in one package.</p>
-<p>In terms of versioning, it&#x2019;s possible to constrain the deployment to a specific version of ReSharper (the recommended option), or to specific versions of both ReSharper and Visual Studio (for example, if you need to take advantage of specific Visual Studio interfaces):</p>
-<p>The general package structure should be</p>
-<pre><code>{Product}\{Version}\[VsVersion]\[&quot;plugins&quot;|&quot;settings&quot;|&quot;annotations&quot;]
-</code></pre><p>Where:</p>
-<ul>
-<li><strong><code>{Product}</code></strong> is the name of a product, e.g. &quot;ReSharper&quot;, &quot;dotTrace&quot;, &quot;dotCover&quot; or &quot;dotPeek&quot;</li>
-<li><strong><code>{Version}</code></strong> is the version of the target product in form of &quot;v8.0&quot;, &quot;v8.1.1&quot;, &quot;v8.2.3&quot; or &quot;vAny&quot;. This allows the package to contain mulitple files that are specific to different versions of a product. For example, a package can contain the plugin files for ReSharper 8.0 and 8.1. The special value &quot;vAny&quot; means the files are applicable to all versions of the product.</li>
-<li><strong><code>[VsVersion]</code></strong> is an optional folder to restrict your extension to a specific version of Visual Studio. This is in the form &quot;vsX.X&quot;, e.g. &quot;vs10.0&quot;, &quot;vs11.0&quot;, etc. If your plugin only works on a specific version of Visual Studio (for example, it enables ReSharper to use Visual Studio 2012&apos;s preview tab), then it should be packaged in the appropriate Visual Studio specific folder (e.g. Visual Studio S2012 is &quot;vs11.0&quot;)</li>
-<li><strong><code>[&quot;plugins&quot;]</code></strong> is an optional subfolder where the extension manager will look to load any plugin dlls. This folder is not required if there are no plugins. Plugins <strong>must</strong> be in a version specific folder, e.g. <code>v8.1</code></li>
-<li><strong><code>[&quot;settings&quot;]</code></strong> is an optional subfolder for settings to deploy in the form of a standard ReSharper .DotSettings format. These settings should not be default values for a plugin&apos;s settings - use <code>IHaveDefaultSettingsStream</code> for this. The settings can contain Live Templates or Structural Search and Replace patterns, or override other, existing settings. The package can contain only settings, and does not require a plugin. It is recommended that settings files are placed in the <code>vAny</code> folder.</li>
-<li><strong><code>[&quot;annotations&quot;]</code></strong> is an optional subfolder for external annotations that you may wish to deploy. Once again, there is no requirement for these annotations to be related to the plugin, and the package can contain only the external annotations, without any binary files. Note that annotations files must have a &quot;.xml&quot; file extension, and must be named after the assembly they&apos;re for, or live in a directory with that assembly&apos;s name. E.g. <code>annotations\myAssembly.xml</code> and <code>annotations\myAssembly\annotations.xml</code> are both valid. <code>annotations\myAssembly.ExternalAnnotations.xml</code> is not. Annotations should be placed in the <code>vAny</code> folder.</li>
-</ul>
-<h2 id="dependency-on-resharper-package"><a name="dependency-on-resharper-package" class="plugin-anchor" href="#dependency-on-resharper-package"><span class="fa fa-link"></span></a>Dependency on &quot;ReSharper&quot; package</h2>
-<p>The <code>.nuspec</code> file must declare a dependency on a package called &quot;ReSharper&quot;. This allows an extension to declare the version requirements of the host. So, if an extension requires ReSharper 8.0, it can create a dependency on ReSharper, with a minimum version of 8.0. If it also supports 8.1, it can have a dependency of 8.0 &lt;= ReSharper &lt; 8.1, or <code>[8.0, 8.1)</code> in the nuspec format.</p>
-<p>The &quot;ReSharper&quot; package doesn&apos;t exist as something you can download and install, but is created and managed by the Extension Manager. It refuses to install any packages that don&apos;t have this dependency, so we don&apos;t try to install NuGet packages that aren&apos;t extensions. It will also refuse to install any packages that don&apos;t satisfy the version requirements. The version used by Extension Manager is the file version of ReSharper, not the released product version. So, the 8.0 release is actually 8.0.14.856, and the 8.0.1 release is 8.0.1000.2286. These product and file versions are both displayed in the help -&gt; about dialog. When you specify that an extension requires at least &quot;8.0&quot;, that is actually treated as requiring at least &quot;8.0.0.0&quot;. You can be more specific in your requirements, e.g. &quot;8.0.1000&quot; to target just 8.0.1.</p>
-<h2 id="pre-release-packages"><a name="pre-release-packages" class="plugin-anchor" href="#pre-release-packages"><span class="fa fa-link"></span></a>Pre-release packages</h2>
-<p>The Extension Manager supports NuGet&apos;s concept of pre-release packages. A NuGet package version (mostly) follows the <a href="http://semver.org" target="_blank">semver</a> standard, which is Major.Minor.Patch, e.g. 2.0.12. If the patch includes a label, e.g. 2.0.12-beta1, then the package is considered a pre-release package, and is not shown by default. The Extension Manager and the Extension Gallery both have switches to show pre-release versions, and pre-releases are highlighted as such in the Extension Manager UI.</p>
-<p>This mechanism allows for pre-release versions of plugins, but also allows for supporting pre-release versions of a product. It is considered good practice to mark your packages as pre-release when targetting a version of a product that is in EAP. Since ReSharper&apos;s APIs evolve and can introduce breaking changes during development, it is best that your packages are pre-release to indicate that they might not be stable with the current build.</p>
-<p>Since a package can contain plugin files that target multiple versions of the product (e.g. ReSharper 8.0 and 8.1), you can support the EAP of 8.1 with the same package by making it pre-release. Those who want to test and use your plugin on the latest EAP version (e.g. 8.1) can opt-in to the pre-release version, and the users of 8.0 can continue using the stable version of the package, without being notified of updates. Once the product is released, you can update your package to remove the pre-release version label, and both 8.0 and 8.1 users will be prompted for update. When the 8.0 users upgrade to 8.1 of the product, they will already have the 8.1 version of the plugin installed, side by side with the 8.0 version.</p>
-<p>Similarly, if users upgrade to a new version of a product before the plugin is updated, the package remains installed, but is not loaded (because the files are in the 8.0 folder, not the 8.1 folder). Since the package is still installed, when a new version is available on the gallery, the user is prompted to update.</p>
-<h2 id="sample-package-definition"><a name="sample-package-definition" class="plugin-anchor" href="#sample-package-definition"><span class="fa fa-link"></span></a>Sample Package Definition</h2>
-<p>The following is a sample package nuspec definition for deploying a plugin.</p>
-<p>This example states that it is compatible with any ReSharper 8.1 version, any 8.2 version, but not ReSharper 8.3 (remember, this is <strong>file</strong> version, not product version, so it will match against e.g. 8.2.1000.4556).</p>
-<p>It deploys 4 different versions of the plugin, that target the combinations of ReSharper 8.1 and 8.2, and are also Visual Studio 2012 and Visual Studio 2013 specific.</p>
-<p>It also deploys external annotations that are applicable to <em>all</em> versions of ReSharper.</p>
-<pre><code class="lang-xml"><span class="hljs-pi">&lt;?xml version=&quot;1.0&quot;?&gt;</span>
-<span class="hljs-tag">&lt;<span class="hljs-title">package</span> &gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">metadata</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">id</span>&gt;</span>MyPlugin<span class="hljs-tag">&lt;/<span class="hljs-title">id</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">version</span>&gt;</span>1.0.0.0<span class="hljs-tag">&lt;/<span class="hljs-title">version</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">title</span>&gt;</span>MuPlugin Title<span class="hljs-tag">&lt;/<span class="hljs-title">title</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">authors</span>&gt;</span>JetBrains<span class="hljs-tag">&lt;/<span class="hljs-title">authors</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">description</span>&gt;</span>MyPlugin description.<span class="hljs-tag">&lt;/<span class="hljs-title">description</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">copyright</span>&gt;</span>Copyright &amp;#x00A9; 2013 JetBrains<span class="hljs-tag">&lt;/<span class="hljs-title">copyright</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">tags</span>&gt;</span>Cool Plugin<span class="hljs-tag">&lt;/<span class="hljs-title">tags</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">dependencies</span>&gt;</span>
-      <span class="hljs-tag">&lt;<span class="hljs-title">dependency</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">&quot;ReSharper&quot;</span> <span class="hljs-attribute">version</span>=<span class="hljs-value">&quot;[8.1, 8.3)&quot;</span> /&gt;</span>
-    <span class="hljs-tag">&lt;/<span class="hljs-title">dependencies</span>&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">metadata</span>&gt;</span>
-  <span class="hljs-tag">&lt;<span class="hljs-title">files</span>&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">file</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bin\MyPlugin\VS2012\rs81\foo.vs11.dll&quot;</span> <span class="hljs-attribute">target</span>=<span class="hljs-value">&quot;ReSharper\v8.1\vs11.0\plugins&quot;</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">file</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bin\MyPlugin\VS2012\rs81\foo.vs12.dll&quot;</span> <span class="hljs-attribute">target</span>=<span class="hljs-value">&quot;ReSharper\v8.1\vs12.0\plugins&quot;</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">file</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bin\MyPlugin\VS2012\rs82\foo.vs11.dll&quot;</span> <span class="hljs-attribute">target</span>=<span class="hljs-value">&quot;ReSharper\v8.2\vs11.0\plugins&quot;</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">file</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bin\MyPlugin\VS2012\rs82\foo.vs12.dll&quot;</span> <span class="hljs-attribute">target</span>=<span class="hljs-value">&quot;ReSharper\v8.2\vs12.0\plugins&quot;</span> /&gt;</span>
-    <span class="hljs-tag">&lt;<span class="hljs-title">file</span> <span class="hljs-attribute">src</span>=<span class="hljs-value">&quot;bin\annotations\**\*.*&quot;</span> <span class="hljs-attribute">target</span>=<span class="hljs-value">&quot;ReSharper\vAny\annotations\&quot;</span> /&gt;</span>
-  <span class="hljs-tag">&lt;/<span class="hljs-title">files</span>&gt;</span>
-<span class="hljs-tag">&lt;/<span class="hljs-title">package</span>&gt;</span>
-</code></pre>
-<p>Further information about the NuSpec format can be found at [<a href="http://docs.nuget.org/docs/reference/nuspec-reference" target="_blank">http://docs.nuget.org/docs/reference/nuspec-reference</a>].</p>
-<h2 id="manual-install"><a name="manual-install" class="plugin-anchor" href="#manual-install"><span class="fa fa-link"></span></a>Manual install</h2>
-<p>The NuGet based Extension Manager is only available for Visual Studio 2010 and later, because the <code>NuGet.Core</code> assembly and the user interface is only supported in Visual Studio 2010 and above. To support older Visual Studio versions, you would need to make available a download that will copy the plugin dlls to the appropriate locations for manual installation. This is also how plugins were supported prior to ReSharper 8. Note that settings files and external annotations are not supported as part of manual installation.</p>
+<p>This has an impact on dependencies - any dependent assemblies included in the extension package will be copied to the main installation directory, too, so it is easy to see how clashes can occur. Dependencies should either be ILMerge&apos;d into the main extension, or ideally, added as NuGet package dependencies. However, the installer cannot handle dependencies which have more than one copy of the same assembly - for example, if adding <code>xunit.dll</code> using the <code>xunit</code> NuGet package, the installer does not know which copy to take, the one in <code>lib\net45</code>, <code>lib\portable</code>, etc. JetBrains currently uses private dependency packages that only contain a single copy of the assembly to work around this limitation.</p>
+<p>The package must also add a dependency to the package called &quot;Wave&quot;. This is the package that represents the core version of the ReSharper Platform. For ReSharper 9.0, this is Wave 1.0, so the dependency should be added as <code>Wave [1.0]</code>. Without this dependency, when the package will not be added to the correct feed on the extensions gallery, and won&apos;t be visible in the Extension Manager.</p>
+<blockquote>
+<p><strong>NOTE</strong> Package dependencies are case sensitive, and the installer will (silently!) refuse to install a package that does not have the correct dependency on &quot;Wave&quot;.</p>
+<p><strong>NOTE</strong> The extension package needs to have a name that includes a &quot;.&quot; separator, or the installer will refuse to install it. This is used by the installer to produce &quot;Company name&quot; metadata. The package should be in the format &quot;Company.Package&quot;, e.g. &quot;JetBrains.Plugins&quot; or &quot;CitizenMatt.Xunit&quot;.</p>
+</blockquote>
+<p>Extensions can include settings and annotations files, by including the files in a folder in the format <code>Extensions\{packageId}\annotations\</code> or <code>Extensions\{packageId}\settings\</code>, where <code>{packageId}</code> is the full ID of the package, e.g. <code>Extensions\CitizenMatt.Xunit\annotations\xunit.xml</code> or <code>Extensions\CitizenMatt.Xunit\settings\template.dotSettings</code>. These files are copied directly, with the same folder structure into the main installation directory. This folder structure is intended to prevent name clashes. If the folder name under <code>Extensions</code> does not match the package ID directly (case insensitive), then the files will not be loaded.</p>
 <blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
-<p> This method of installation is deprecated, as the new extension infrastructure provides more benefits, such as per-user install, automated update checks and easier discovery of new plugins.</p>
+<p> Annotations and settings files are not loaded by default in Beta 1. This will be fixed before RTM.</p>
 </blockquote>
-<p>ReSharper checks several locations for plugins. You can see these by going to ReSharper -&gt; Options -&gt; Plugins and clicking &quot;Show developer information&quot;. The locations are searched for plugins recursively, so you can create a folder that contains your plugin files.</p>
-<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-info"></strong>
-<p> In the following list, <code>vX.X</code> refers to the version of ReSharper, e.g. <code>v8.1</code>, and <code>vsY.Y</code> is a Visual Studio version number, e.g. <code>vs12.0</code>.</p>
-<p><code>%LOCALAPPDATA%</code> and <code>%APPDATA%</code> are not defined on Windows XP. They equate to the local and roaming user profile directories, respectively. For Windows XP, the values are <code>%USERPROFILE%\Local Settings\Application Data</code> and <code>%USERPROFILE%\Application Data</code> respectively.</p>
-<p>Also, <code>%ProgramFiles%</code> will be <code>%ProgramFiles(x86)%</code> on a 64 bit machine.</p>
-</blockquote>
-<ol>
-<li><code>%ProgramFiles%\JetBrains\ReSharper\vX.X\bin\plugins</code> - (<code>%ProgramFiles(x86)%</code> on a 64 bit machine). This folder doesn&apos;t exist by default, and requires administrative priveleges to write to, but plugins installed here are available to </li>
-<li><code>%LOCALAPPDATA%\JetBrains\ReSharper\vX.X\vsY.Y\plugins</code> - Visual Studio specific plugin install</li>
-<li><code>%LOCALAPPDATA%\JetBrains\ReSharper\vX.X\plugins</code> - <strong>recommended install location</strong>. Per-user, not roamed</li>
-<li><code>%LOCALAPPDATA%\JetBrains\ReSharper\vAny\plugins</code> - <strong>not recommended</strong>. Plugins need to be recompiled per-version, so can&apos;t work cross-version</li>
-<li><code>%LOCALAPPDATA%\JetBrains\DotNet\v1.0\plugins</code> - <strong>not recommended</strong> (see below)</li>
-<li><code>%LOCALAPPDATA%\JetBrains\DotNet\vAny\plugins</code> - <strong>not recommended</strong> (see below)</li>
-<li><code>%APPDATA%\JetBrains\ReSharper\vX.X\vsY.Y\plugins</code> - roamed (see below)</li>
-<li><code>%APPDATA%\JetBrains\ReSharper\vX.X\plugins</code> - roamed (see below)</li>
-<li><code>%APPDATA%\JetBrains\ReSharper\vAny\plugins</code> - <strong>not recommended</strong>. Plugins need to be recompiled per-version, so can&apos;t work cross-version</li>
-<li><code>%APPDATA%\JetBrains\DotNet\v1.0\plugins</code> - <strong>not recommended</strong> (see below)</li>
-<li><code>%APPDATA%\JetBrains\DotNet\vAny\plugins</code> - <strong>not recommended</strong> (see below)</li>
-</ol>
-<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
-<p> Plugins installed into <code>%APPDATA%</code> will be roamed with the Windows profile for domain-joined PCs. As such, file size plays an important part - the larger files are, the longer profile roaming (and login) will take. It is not recommended to install plugins here.</p>
-<p>The <code>DotNet</code> folders were intended to support plugins common to all JetBrains .net tools. However, the .net tools do not currently share a common binary platform (though they do share a common source platform). Therefore, plugins are not compatible between .net tools. Also, the version number hasn&apos;t been incremented to reflect changes in the platform. Therefore, these locations are not a good place to install plugins.</p>
-</blockquote>
-<h2 id="command-line"><a name="command-line" class="plugin-anchor" href="#command-line"><span class="fa fa-link"></span></a>Command line</h2>
-<p>It is also possible to load plugins specified on the command line, e.g.</p>
-<pre><code>devenv.exe /ReSharper.Plugin foo.dll
-</code></pre>
+
                     
                     </section>
                 
@@ -3604,8 +3553,10 @@
         </div>
 
         
-        <a href="../Intro/KnownIssues.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Known Issues"><i class="fa fa-angle-left"></i></a>
+        <a href="../Intro/KnownIssues.html" class="navigation navigation-prev " aria-label="Previous page: Known Issues"><i class="fa fa-angle-left"></i></a>
         
+        
+        <a href="../Extensions/Packaging8.html" class="navigation navigation-next " aria-label="Next page: Supporting ReSharper 8"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
