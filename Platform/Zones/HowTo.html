@@ -4,7 +4,7 @@
     <head>
         
         <meta charset="UTF-8">
-        <title>Licensing | ReSharper DevGuide</title>
+        <title>How to Define a Zone Marker | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
         <meta name="generator" content="GitBook 1.3.1">
@@ -17,10 +17,6 @@
         
     
     
-    <link rel="next" href="../../Platform/Zones/Troubleshooting.html">
-    
-    
-    <link rel="prev" href="../../Platform/Zones/Activation.html">
     
 
         
@@ -44,7 +40,7 @@
 
 
         
-    <div class="book" data-level="7.5.5" data-basepath="../.." data-revision="1416928427307">
+    <div class="book" data-level="7.5.7" data-basepath="../.." data-revision="1417279579377">
     
 
 <div class="book-summary">
@@ -897,15 +893,31 @@
         </li>
     
         
-        <li class="chapter active" data-level="7.5.5" data-path="Platform/Zones/Licensing.html">
+        <li class="chapter " data-level="7.5.5">
+            
+            <span><b>5.5.</b> Licensing</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.5.6">
+            
+            <span><b>5.6.</b> Troubleshooting</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter active" data-level="7.5.7" data-path="Platform/Zones/HowTo.html">
             
                 
-                    <a href="../../Platform/Zones/Licensing.html">
+                    <a href="../../Platform/Zones/HowTo.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>5.5.</b>
+                            <b>5.7.</b>
                         
-                         Licensing
+                         How to Define a Zone Marker
                     </a>
                 
             
@@ -913,17 +925,9 @@
         </li>
     
         
-        <li class="chapter " data-level="7.5.6" data-path="Platform/Zones/Troubleshooting.html">
+        <li class="chapter " data-level="7.5.8">
             
-                
-                    <a href="../../Platform/Zones/Troubleshooting.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.6.</b>
-                        
-                         Troubleshooting
-                    </a>
-                
+            <span><b>5.8.</b> Reference</span>
             
             
         </li>
@@ -3495,9 +3499,16 @@
                 
                     <section class="normal" id="section-gitbook_87">
                     
-                        <h1 id="licensing"><a name="licensing" class="plugin-anchor" href="#licensing"><span class="fa fa-link"></span></a>Licensing</h1>
-<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-bookmark"></strong>
-<p> TBD</p>
+                        <h1 id="how-to-define-a-zone-marker"><a name="how-to-define-a-zone-marker" class="plugin-anchor" href="#how-to-define-a-zone-marker"><span class="fa fa-link"></span></a>How to Define a Zone Marker</h1>
+<p>When creating an extension, it is important to get the right dependencies for a <code>ZoneMarker</code>. Zones are used to be able to correctly load a product in the correct host. If the zone marker is incorrect, either the components in that namespace are not loaded and the extension is not available, or the extension is loaded when it shouldn&apos;t be, and can cause errors in hosts as expected dependencies are not available.</p>
+<p>ReSharper ships with diagnostics to help create accurate zone markers. <strong>Unfortunately</strong>, the diagnostics currently only work when all zones are defined in source (i.e. when you&apos;re building the ReSharper solution). When building an extension that references the ReSharper Platform via assembly references (i.e. through the SDK), the diagnostics <strong>do not work</strong>. An updated version of the diagnostics is being worked on, and will be available as a separate, SDK tools extension shortly.</p>
+<p>(The diagnostics check the zone of each component used in the project, e.g. type usages in component constructors. If the zone isn&apos;t explicitly or implicitly required by the current zone marker, the type is highlighted, and a quick fix is available to add the required zone to the zone marker.)</p>
+<p>Without diagnostics, it is very hard to work out what zones should be required. If you wish to use a component in your code, you need to discover which zone definitions it requires, and include those in your zone marker. This is done by finding the <code>ZoneMarker</code> class, and requiring the same zone definitions. This can be done by hand, by finding zone marker classes that live in the same namespace or higher as those used in your <code>using</code> statements, but this is tedious and prone to error.</p>
+<p>A temporary solution is to use an <a href="Usage.html#empty-zone-marker">empty zone marker</a>. This is usually reserved for infrastructure code that has no real dependencies and should always run. However, as calculating the proper requirements is currently prohibitive, it should be used (TEMPORARILY) for extensions.</p>
+<blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
+<p> This guidance is TEMPORARY! It is STRENUOUSLY RECOMMENDED to provide accurate and minimal zone information, in order that your extension is correctly loaded into the appropriate hosts, and does not cause issues for other hosts.</p>
+<p>Without proper dependency information, extensions CAN and WILL FAIL. E.g. an extension intended to extend ReSharper will cause problems when run in a host with only dotCover installed.</p>
+<p>This guidance will be updated when the appropriate tooling is available to help calculate the correct requirements for zone markers.</p>
 </blockquote>
 
                     
@@ -3509,10 +3520,6 @@
         </div>
 
         
-        <a href="../../Platform/Zones/Activation.html" class="navigation navigation-prev " aria-label="Previous page: Activation"><i class="fa fa-angle-left"></i></a>
-        
-        
-        <a href="../../Platform/Zones/Troubleshooting.html" class="navigation navigation-next " aria-label="Next page: Troubleshooting"><i class="fa fa-angle-right"></i></a>
         
     </div>
 </div>
