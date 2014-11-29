@@ -60,8 +60,10 @@
     * [Usage](Platform/Zones/Usage.md)
     * [Features and Products](Platform/Zones/FeaturesProducts.md)
     * [Activation](Platform/Zones/Activation.md)
-    * [Licensing](Platform/Zones/Licensing.md)
-    * [Troubleshooting](Platform/Zones/Troubleshooting.md)
+    * Licensing
+    * Troubleshooting
+    * [How to Define a Zone Marker](Platform/Zones/HowTo.md)
+    * Reference
 * DataContext
 * [TextControl](Platform/TextControl.md)
 * Documents
