@@ -132,7 +132,7 @@
     * [Overview](PSI/TypeSystems2.md)
 * Symbols and Symbol Tables
 * Constant Evaluation
-* [Control Flow Graphs](PSI/ControlFlowGraphs.md)
+* Control Flow Graphs
 * [Caching](PSI/Caching.md)
     * Persistent Caches
         * Symbol Cache
