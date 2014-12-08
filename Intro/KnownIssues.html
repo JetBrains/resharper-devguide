@@ -44,7 +44,7 @@
 
 
         
-    <div class="book" data-level="5.5.5" data-basepath=".." data-revision="1417434320213">
+    <div class="book" data-level="5.5.5" data-basepath=".." data-revision="1418059556304">
     
 
 <div class="book-summary">
@@ -3529,6 +3529,7 @@
 <li><a href="#xml-files-are-not-passed-to-icache-implementations">XML files are not passed to ICache implementations</a></li>
 <li><a href="#browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests">&quot;Browser not found by alias &apos;C&apos;&quot; message when parsing web files in tests</a></li>
 <li><a href="#project-files-are-not-handled-by-daemon-stages">Project files are not handled by daemon stages</a></li>
+<li><a href="#cannot-compile-project-that-includes-a-license">Cannot compile project that includes a license</a></li>
 </ul>
 <!-- toc stop -->
 <h2 id="plugin-keyboard-shortcuts-dont-work"><a name="plugin-keyboard-shortcuts-dont-work" class="plugin-anchor" href="#plugin-keyboard-shortcuts-dont-work"><span class="fa fa-link"></span></a>Plugin keyboard shortcuts don&apos;t work</h2>
@@ -3562,7 +3563,11 @@
 <p><strong>Problem:</strong> It is not possible to process <code>.csproj</code> or <code>.vbproj</code> project files in an instance of <code>IDaemonStageProcess</code>. They are not processed by the visible document daemon process (because they&apos;re not visible documents!) and are explicitly excluded from Solution Wide Error Analysis.</p>
 <p><strong>Solution:</strong> There is no workaround at present</p>
 <p><strong>YouTrack:</strong> <a href="http://youtrack.jetbrains.com/issue/RSRP-418226" target="_blank">RSRP-418226</a></p>
-
+<h2 id="cannot-compile-project-that-includes-a-license"><a name="cannot-compile-project-that-includes-a-license" class="plugin-anchor" href="#cannot-compile-project-that-includes-a-license"><span class="fa fa-link"></span></a>Cannot compile project that includes a license</h2>
+<p><em>This issue concerns plugin developers who use a license file (licenses.licx) in their plugin project.</em> Since the license compiler (<code>LC.EXE</code>) takes as parameters the full path of each assembly reference, you may run into an exception if the sum total of all reference paths exceeds 32000 characters. Possible workarounds for this issue are:</p>
+<pre><code>* Install the ReSharper SDK into a path that is as short as possible; or
+* Create your own `.Target` files, removing some of the entries that your plugin does not require.
+</code></pre>
                     
                     </section>
                 
