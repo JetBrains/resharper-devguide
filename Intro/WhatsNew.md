@@ -22,6 +22,16 @@ Extensions are now extensions to the ReSharper Platform, instead of extensions t
 
 See the [section on Deployment](../Extensions/Deployment.md) for more details.
 
+## Removal of plugin metadata attributes
+
+The `[PluginTitle]`, `[PluginVendor]` and `[PluginDescription]` attributes have been deprecated and removed. The Plugins Options page has also been removed, meaning the only place this information is displayed is in the Extension Manager, which uses similar information from the extension's package metadata instead. The attributes should be removed.
+
+The ReSharper Platform has changed the way it works with extensions and plugins. Previously, plugins had special treatment from ReSharper - plugins were loaded separately to product assemblies by the Component Model, and were listed in the Plugins Options page. The ReSharper Platform now treats extensions the same as product assemblies - or rather, products are treated the same as extensions. ReSharper, dotCover and dotPeek, etc. are all extensions to the ReSharper Platform. During installation, extensions (1st and 3rd party) are statically registered and are composed at runtime to create a single application. The Extension Manager retrieves extensions and invokes the installer to combine the new extension into the application.
+
+Both the Plugins Options page and the previous version of the Extension Manager allowed for disabling plugins or extensions. This functionality has been removed, in favour of disabling features at the zone level, providing richer control of what can be disabled - an entire product, or one of several features implemented by an extension, be that a 1st party extension like dotTrace, or a 3rd party extension such as a plugin.
+
+A major difference is that this is an opt-in mechanism. In order to allow for disabling a product or a feature, a plugin must advertise a zone as being a product or feature. This is described in the [Features and Products](../Platform/Zones/FeaturesProducts.md) section of the [Zones](../Platform/Zones.md) guide.
+
 ## Visual Studio integration
 
 The move to the shared ReSharper Platform means that Products can now be viewed as extensions of the ReSharper Platform. This changes how Visual Studio integration is handled. Previous versions would create a separate Visual Studio extension for each Product, e.g. ReSharper, dotCover and dotTrace would all be installed into Visual Studio separately, as individual extensions.
