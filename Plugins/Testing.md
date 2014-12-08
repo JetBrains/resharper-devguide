@@ -1,5 +1,7 @@
 # Testing
 
+> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+
 <!-- toc -->
 
 ReSharper's SDK provides infrastructure for testing your plugin.
