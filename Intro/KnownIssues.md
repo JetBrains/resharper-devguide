@@ -67,3 +67,10 @@ The workaround is to implement `IPsiSourceFilePropertiesProvider`. The implement
 **Solution:** There is no workaround at present
 
 **YouTrack:** [RSRP-418226](http://youtrack.jetbrains.com/issue/RSRP-418226)
+
+## Cannot compile project that includes a license
+
+*This issue concerns plugin developers who use a license file (licenses.licx) in their plugin project.* Since the license compiler (`LC.EXE`) takes as parameters the full path of each assembly reference, you may run into an exception if the sum total of all reference paths exceeds 32000 characters. Possible workarounds for this issue are:
+    * Install the ReSharper SDK into a path that is as short as possible; or
+    * Create your own `.Target` files, removing some of the entries that your plugin does not require.
+
