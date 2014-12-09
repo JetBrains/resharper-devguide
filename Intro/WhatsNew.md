@@ -32,6 +32,14 @@ Both the Plugins Options page and the previous version of the Extension Manager 
 
 A major difference is that this is an opt-in mechanism. In order to allow for disabling a product or a feature, a plugin must advertise a zone as being a product or feature. This is described in the [Features and Products](../Platform/Zones/FeaturesProducts.md) section of the [Zones](../Platform/Zones.md) guide.
 
+## Actions
+
+The Action subsystem has been rewritten for this release. The most obvious changes are:
+
+* `IActionHandler` is to be replaced by `IExecutableAction`.
+* Each action handler requires a unique ID.
+* Bulk actions have been rewritten.
+
 ## Visual Studio integration
 
 The move to the shared ReSharper Platform means that Products can now be viewed as extensions of the ReSharper Platform. This changes how Visual Studio integration is handled. Previous versions would create a separate Visual Studio extension for each Product, e.g. ReSharper, dotCover and dotTrace would all be installed into Visual Studio separately, as individual extensions.
@@ -80,10 +88,6 @@ Also, the language specific interfaces have been renamed:
 * `IJsControlFlowGraf` -> IJsControlFlowGraph` and `IJavaScriptControlFlowRib` -> `IJsControlFlowEdge`
 
 The `IControlFlowBuilder` and `ControlFlowBuilder` provide language agnostic methods to create a control flow graph.
-
-## Bulk actions
-
-TODO
 
 ## Search in options
 
