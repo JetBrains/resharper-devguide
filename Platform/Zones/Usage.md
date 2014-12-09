@@ -34,12 +34,12 @@ This example states that `IMyZone` has a dependency on `NavigationZone` (and tra
 
 Zone markers are used to declare that a component belongs to one or more zones. This means that the component can only be instantiated if all of those zones (and transitively, all dependent zones) are active in the product.
 
-A zone marker is typically implemented by creating a type called `ZoneMarker`, or with a name ending in `_ZoneMarker`, and decorating it with the `[Zone]` attribute. All dependencies are listed either by implementing the `IRequire<TZone>` interface, or by passing the zone definitions to the `ZoneAttribute` constructor. There is no difference in the approach.
+A zone marker is typically implemented by creating a type called `ZoneMarker`, or with a name ending in `_ZoneMarker`, and decorating it with the `[ZoneMarker]` attribute. All dependencies are listed either by implementing the `IRequire<TZone>` interface, or by passing the zone definitions to the `ZoneMarkerAttribute` constructor. There is no difference in the approach.
 
 ```cs
 namespace Foo.Bar
 {
-  [Zone]
+  [ZoneMarker]
   public class ZoneMarker : IRequire<IMyZone>
   {
   }
@@ -53,7 +53,7 @@ Multiple dependencies can be applied to the zone marker, meaning the components 
 ```cs
 namespace Foo.Bar.JavaScriptTestRunner
 {
-  [Zone]
+  [ZoneMarker]
   public class ZoneMarker : IRequire<IUnitTestingZone>, IRequire<ILanguageJavaScriptZone>
   {
   }
@@ -68,7 +68,7 @@ Put another way, consider the dependencies of a zone to be an implementation det
 
 ### Class zone marker
 
-The `ZoneMarker` class and `[Zone]` attribute apply to all types in a namespace. It is possible to apply a single class to a zone, using the `[ClassZoneMarker]` attribute. Usage is exactly the same, either specify dependencies as parameters to the `[ClassZoneMarker]` constructor, or implement `IRequire<TZone>` directly on the component for each dependency.
+The `ZoneMarker` class and `[ZoneMarker]` attribute apply to all types in a namespace. It is possible to apply a single class to a zone, using the `[ClassZoneMarker]` attribute. Usage is exactly the same, either specify dependencies as parameters to the `[ClassZoneMarker]` constructor, or implement `IRequire<TZone>` directly on the component for each dependency.
 
 Generally speaking, most registration will use `ZoneMarker` classes to apply a zone to all components in a namespace.
 
@@ -79,7 +79,7 @@ A namespace can be marked with an empty zone marker, meaning it is zone aware, b
 ```cs
 namespace Foo.Bar
 {
-  [Zone]
+  [ZoneMarker]
   public class ZoneMarker
   {
   }
@@ -101,7 +101,7 @@ public interface IMyZone : IDependentZone
 
 namespace Foo.Bar
 {
-  [Zone]
+  [ZoneMarker]
   public class ZoneMarker : IZone, IRequire<IMyZone>
   {
   }
