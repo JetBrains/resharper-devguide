@@ -44,7 +44,7 @@
 
 
         
-    <div class="book" data-level="5.3" data-basepath=".." data-revision="1418059556304">
+    <div class="book" data-level="5.3" data-basepath=".." data-revision="1418118898214">
     
 
 <div class="book-summary">
@@ -3524,10 +3524,10 @@
 <li><a href="#zones-and-namespace-refactorings">Zones and namespace refactorings</a></li>
 <li><a href="#extension-packages">Extension packages</a></li>
 <li><a href="#removal-of-plugin-metadata-attributes">Removal of plugin metadata attributes</a></li>
+<li><a href="#actions">Actions</a></li>
 <li><a href="#visual-studio-integration">Visual Studio integration</a></li>
 <li><a href="#background-component-instantiation">Background component instantiation</a></li>
 <li><a href="#control-flow-interface-renaming">Control Flow interface renaming</a></li>
-<li><a href="#bulk-actions">Bulk actions</a></li>
 <li><a href="#search-in-options">Search in options</a></li>
 <li><a href="#unit-test-provider-changes">Unit test provider changes</a><ul>
 <li><a href="#unit-test-element-id-changes">Unit test element ID changes</a></li>
@@ -3550,6 +3550,13 @@
 <p>The ReSharper Platform has changed the way it works with extensions and plugins. Previously, plugins had special treatment from ReSharper - plugins were loaded separately to product assemblies by the Component Model, and were listed in the Plugins Options page. The ReSharper Platform now treats extensions the same as product assemblies - or rather, products are treated the same as extensions. ReSharper, dotCover and dotPeek, etc. are all extensions to the ReSharper Platform. During installation, extensions (1st and 3rd party) are statically registered and are composed at runtime to create a single application. The Extension Manager retrieves extensions and invokes the installer to combine the new extension into the application.</p>
 <p>Both the Plugins Options page and the previous version of the Extension Manager allowed for disabling plugins or extensions. This functionality has been removed, in favour of disabling features at the zone level, providing richer control of what can be disabled - an entire product, or one of several features implemented by an extension, be that a 1st party extension like dotTrace, or a 3rd party extension such as a plugin.</p>
 <p>A major difference is that this is an opt-in mechanism. In order to allow for disabling a product or a feature, a plugin must advertise a zone as being a product or feature. This is described in the <a href="../Platform/Zones/FeaturesProducts.html">Features and Products</a> section of the <a href="../Platform/Zones.html">Zones</a> guide.</p>
+<h2 id="actions"><a name="actions" class="plugin-anchor" href="#actions"><span class="fa fa-link"></span></a>Actions</h2>
+<p>The Action subsystem has been rewritten for this release. The most obvious changes are:</p>
+<ul>
+<li><code>IActionHandler</code> is to be replaced by <code>IExecutableAction</code>.</li>
+<li>Each action handler requires a unique ID.</li>
+<li>Bulk actions have been rewritten.</li>
+</ul>
 <h2 id="visual-studio-integration"><a name="visual-studio-integration" class="plugin-anchor" href="#visual-studio-integration"><span class="fa fa-link"></span></a>Visual Studio integration</h2>
 <p>The move to the shared ReSharper Platform means that Products can now be viewed as extensions of the ReSharper Platform. This changes how Visual Studio integration is handled. Previous versions would create a separate Visual Studio extension for each Product, e.g. ReSharper, dotCover and dotTrace would all be installed into Visual Studio separately, as individual extensions.</p>
 <p>Starting with ReSharper 9, there is only one Visual Studio extension - the ReSharper Platform. Products are installed into the ReSharper Platform, and the Platform will update its registration with Visual Studio to make sure all new assemblies are registered with Visual Studio.</p>
@@ -3585,8 +3592,6 @@
 <li><code>IJsControlFlowGraf</code> -&gt; IJsControlFlowGraph<code>and</code>IJavaScriptControlFlowRib<code>-&gt;</code>IJsControlFlowEdge`</li>
 </ul>
 <p>The <code>IControlFlowBuilder</code> and <code>ControlFlowBuilder</code> provide language agnostic methods to create a control flow graph.</p>
-<h2 id="bulk-actions"><a name="bulk-actions" class="plugin-anchor" href="#bulk-actions"><span class="fa fa-link"></span></a>Bulk actions</h2>
-<p>TODO</p>
 <h2 id="search-in-options"><a name="search-in-options" class="plugin-anchor" href="#search-in-options"><span class="fa fa-link"></span></a>Search in options</h2>
 <p>Options pages are now searchable. To implement in your own options page, either implement <code>ISearchablePage</code>, or derive from <code>SimpleOptionsPage</code>. Highlighting results is implemented automatically for XAML pages, as long as the page sets the attached property <code>SearchablePageBehavior.SearchFilter=&quot;True&quot;</code> on the root control of the page, while also setting the <code>DataContext</code> of the root control to the implementation of <code>ISearchablePage</code>.</p>
 <h2 id="unit-test-provider-changes"><a name="unit-test-provider-changes" class="plugin-anchor" href="#unit-test-provider-changes"><span class="fa fa-link"></span></a>Unit test provider changes</h2>
