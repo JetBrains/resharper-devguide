@@ -27,6 +27,9 @@
         * [Temporary Settings](Plugins/TemporarySettings.md)
     * [Known Issues](Intro/KnownIssues.md)
 * [Deployment](Extensions/Packaging.md)
+    * Installing the ReSharper Platform
+    * Packaging Details
+    * [Installing Locally](Extensions/Deployment/LocalInstallation.md)
     * [Supporting ReSharper 8](Extensions/Packaging8.md)
 * Hints and Tips
 * Best Practices
