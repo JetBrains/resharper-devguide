@@ -4,6 +4,7 @@ Plugins for the ReSharper Platform are simply .net assemblies. In order to creat
 
 * Create a .net class library project.
 * Add a NuGet reference to the `JetBrains.ReSharper.SDK` package.
+* Compile and install the project for manual testing and debugging.
 
 ## Creating the project
 
