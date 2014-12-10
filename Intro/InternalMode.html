@@ -44,7 +44,7 @@
 
 
         
-    <div class="book" data-level="5.1.2" data-basepath=".." data-revision="1418118898214">
+    <div class="book" data-level="5.1.2" data-basepath=".." data-revision="1418218353318">
     
 
 <div class="book-summary">
@@ -485,13 +485,45 @@
                 
     
         
-        <li class="chapter " data-level="5.6.1" data-path="Extensions/Packaging8.html">
+        <li class="chapter " data-level="5.6.1">
+            
+            <span><b>6.1.</b> Installing the ReSharper Platform</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.2">
+            
+            <span><b>6.2.</b> Packaging Details</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.3" data-path="Extensions/Deployment/LocalInstallation.html">
+            
+                
+                    <a href="../Extensions/Deployment/LocalInstallation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                         Installing Locally
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.4" data-path="Extensions/Packaging8.html">
             
                 
                     <a href="../Extensions/Packaging8.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>6.1.</b>
+                            <b>6.4.</b>
                         
                          Supporting ReSharper 8
                     </a>
@@ -3542,7 +3574,7 @@
 <p>As well as adding new menu items, enabling internal mode will add new options to the Options dialog. Again, some items are only interesting to the development team, but some are useful for extension developers. For example:</p>
 <ul>
 <li><strong>Tools &#x2192; Unit Testing</strong> gets two new options, <strong>Enable Debug</strong> and <strong>Enable Logging</strong>. The &quot;Enable Debug&quot; option will cause the external test runner process to display a message box before running any tests, giving the developer time to attach a debugger.</li>
-<li>The <strong>Internal</strong> page provides lots of interesting options, most of which are only interesting to the development team. However, one check box is very useful - <strong>Enable Zones</strong> will enable diagnostic analysers for working with <a href="../Platform/Zones.html">Zones</a>.</li>
+<li>The <strong>Internal</strong> page provides lots of interesting options, most of which are only interesting to the development team (the &quot;Enable Zones&quot; check box falls into this category - it analyses your source code for correct <a href="../Platform/Zones.html">Zone</a> usage, however it doesn&apos;t analyse referenced code, so it&apos;s not useful for extension developers. This functionality will be added by a separate extension in the future).</li>
 <li>The <strong>Logging</strong> page allows for creating and editing logging configuration files. The generated configuration file provides comments on how the file works.</li>
 </ul>
 

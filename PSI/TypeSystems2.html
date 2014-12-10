@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-level="9.10.1" data-basepath=".." data-revision="1418118898214">
+    <div class="book" data-level="9.10.1" data-basepath=".." data-revision="1418218353318">
     
 
 <div class="book-summary">
@@ -483,13 +483,45 @@
                 
     
         
-        <li class="chapter " data-level="5.6.1" data-path="Extensions/Packaging8.html">
+        <li class="chapter " data-level="5.6.1">
+            
+            <span><b>6.1.</b> Installing the ReSharper Platform</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.2">
+            
+            <span><b>6.2.</b> Packaging Details</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.3" data-path="Extensions/Deployment/LocalInstallation.html">
+            
+                
+                    <a href="../Extensions/Deployment/LocalInstallation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                         Installing Locally
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.4" data-path="Extensions/Packaging8.html">
             
                 
                     <a href="../Extensions/Packaging8.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>6.1.</b>
+                            <b>6.4.</b>
                         
                          Supporting ReSharper 8
                     </a>
@@ -3513,7 +3545,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_65">
+                    <section class="normal" id="section-gitbook_66">
                     
                         <h1 id="type-systems"><a name="type-systems" class="plugin-anchor" href="#type-systems"><span class="fa fa-link"></span></a>Type systems</h1>
 <p>The <code>IDeclaredElement</code> interfaces provide a semantic view of something that has a declaration, but that doesn&apos;t necessarily allow for modelling <em>usages</em> of the element. Specifically, if we take a look at CLR types, a declared element is a declaration of a type, such as a class, but it can&apos;t represent all usages of the type, such as in an array, pointer or closed generic type. The <code>ITypeElement</code> interface can provide a semantic view of the declaration of <code>Foo</code> or <code>Bar&lt;T&gt;</code>, but it can&apos;t represent <code>Foo[]</code> or <code>Bar&lt;string&gt;</code>.</p>

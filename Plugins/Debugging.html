@@ -44,7 +44,7 @@
 
 
         
-    <div class="book" data-level="5.5.3" data-basepath=".." data-revision="1418118898214">
+    <div class="book" data-level="5.5.3" data-basepath=".." data-revision="1418218353318">
     
 
 <div class="book-summary">
@@ -485,13 +485,45 @@
                 
     
         
-        <li class="chapter " data-level="5.6.1" data-path="Extensions/Packaging8.html">
+        <li class="chapter " data-level="5.6.1">
+            
+            <span><b>6.1.</b> Installing the ReSharper Platform</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.2">
+            
+            <span><b>6.2.</b> Packaging Details</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.3" data-path="Extensions/Deployment/LocalInstallation.html">
+            
+                
+                    <a href="../Extensions/Deployment/LocalInstallation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                         Installing Locally
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.4" data-path="Extensions/Packaging8.html">
             
                 
                     <a href="../Extensions/Packaging8.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>6.1.</b>
+                            <b>6.4.</b>
                         
                          Supporting ReSharper 8
                     </a>
@@ -3515,29 +3547,41 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_91">
+                    <section class="normal" id="section-gitbook_92">
                     
-                        <h1 id="debugging"><a name="debugging" class="plugin-anchor" href="#debugging"><span class="fa fa-link"></span></a>Debugging</h1>
-<blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
-<p> This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.</p>
+                        <h1 id="running-and-debugging-an-extension"><a name="running-and-debugging-an-extension" class="plugin-anchor" href="#running-and-debugging-an-extension"><span class="fa fa-link"></span></a>Running and Debugging an Extension</h1>
+<p>In order to manual test or debug your plugin, it must be installed into an instance of ReSharper. Currently, this is a manual step, details of which can be found in the <a href="../Extensions/Deployment/LocalInstallation.html">Local Installation</a> guide (our intention is to make this easier in future versions of the SDK).</p>
+<p>It is <strong>strongly recommended</strong> to install your plugin into an <a href="../Extensions/Deployment/LocalInstallation.html#install-to-an-experimental-instance">experimental instance of Visual Studio</a>. This allows the assembly to be updated while compiling. If the plugin being tested/debugged is installed in the main instance of Visual Studio, all instances of VS need to be closed before the plugin can be updated. If the plugin is installed in a different instance of Visual Studio to the solution used to build the plugin, the plugin&apos;s assemblies can be updated without restarting all instances of Visual Studio.</p>
+<p>Once installed, the extension is loaded as part of ReSharper.</p>
+<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
+<p> Previous versions of ReSharper supported the <code>/ReSharper.Plugin</code> flag to dynamically load the plugin at runtime. This is no longer supported, and the plugin must be installed in order to be loaded.</p>
 </blockquote>
-<p>Debugging a plugin implies spinning up an additional instance of Visual Studio with the plugin loaded. It&#x2019;s important to note that you&#x2019;ll be unable to debug a plugin if another version of this plugin has already been loaded. If you need to debug a plugin while <em>using</em> that plugin for development, simply disable the original plugin in the <em>Options</em> dialog and restart the debugging session.</p>
-<p>Debugging a plugin is easy - there are two flags that you can pass to <code>devenv.exe</code>:</p>
-<ul>
-<li><code>/ReSharper.Internal</code> - this flag turns on ReSharper&#x2019;s internal menu, which provides many new menu items, used by the development team while building ReSharper. Several menu options are useful for plugin developers, especially the &apos;PSI Viewer&apos; menu item, which displays a view of the abstract syntax tree of the current file. This flag is so useful, it&apos;s worth adding it to your default VS shortcut.</li>
-<li><code>/ReSharper.Plugin &lt;path to your plugin DLL&gt;</code> - this tells ReSharper to load the specified DLL. You can specify the full path, but if you want to debug the plugin in your output directory, you can just specify the filename.</li>
-</ul>
-<h3 id="troubleshooting"><a name="troubleshooting" class="plugin-anchor" href="#troubleshooting"><span class="fa fa-link"></span></a>Troubleshooting</h3>
-<p>If you are debugging, and your plugin&apos;s breakpoints are not being triggered:</p>
+<h2 id="debugging"><a name="debugging" class="plugin-anchor" href="#debugging"><span class="fa fa-link"></span></a>Debugging</h2>
+<p>To debug an extension, simply attach a debugger to an instance of Visual Studio that will run the plugin.</p>
 <ol>
-<li>First check that the plugin has been loaded, by looking in the list of loaded plugins in ReSharper&apos;s Options dialog.</li>
-<li>Check for exceptions having been thrown while loading the plugin - check for the exclamation mark icon in the bottom right of the status bar. Note that you need to either have a <a href="../Intro/Tools.html">checked build</a>, or be in <a href="../Intro/InternalMode.html">Internal Mode</a> for exceptions to be reported.</li>
-<li>Make sure that there are no ReSharper assemblies copied to the output folder. When loading a plugin from a folder, the Component Model will try to load all assemblies in a folder, and it will fail if it tries to register a second set of ReSharper components (any component that was expecting a single instance will suddenly have two instances, and the Component Model will be unable to satisfy requests for components). Make sure the &quot;copy local&quot; settings are set to <code>false</code> for ReSharper assemblies, and <code>true</code> for the plugin.</li>
+<li>Set the properties of the plugin project to start Visual Studio (e.g. <code>C:\Program Files (x86)\Visual Studio 12.0\Common7\IDE\devenv.exe</code> for Visual Studio 2013). Also set the command line to run in the appropriate experimental instance, e.g. <code>/rootSuffix Plugins</code> will run Visual Studio in the &quot;Plugins&quot; experimental instance.</li>
+<li>Start Visual Studio with <code>F5</code> or <code>Ctrl+F5</code>. Using <code>F5</code> may have performance implications as .net disables optimisations for applications started under the debugger. With an application the size of Visual Studio, this can have a notable impact on performance. In this case, use <code>Ctrl+F5</code> - Visual Studio will start quicker, you can attach (look for the <code>devenv.exe</code> process) and debug as normal.</li>
 </ol>
-<h3 id="f5-debugging-not-working"><a name="f5-debugging-not-working" class="plugin-anchor" href="#f5-debugging-not-working"><span class="fa fa-link"></span></a>F5 debugging not working</h3>
-<p>If the plugin is a .net 3.5 assembly, and the host application is .net 4 (e.g. VS2010 or above), then breakpoints won&apos;t work when the application is started with F5, even though they appear &quot;healthy&quot;. The workaround is to use &quot;Attach to process&quot; to start debugging, rather than letting Visual Studio start the debug session with F5.</p>
-<h3 id="slow-debugging"><a name="slow-debugging" class="plugin-anchor" href="#slow-debugging"><span class="fa fa-link"></span></a>Slow debugging</h3>
-<p>Using F5 to start a debug session can sometimes result in very slow debugging. It is not clear why this is - perhaps because JIT optimisations are disabled when an application is launched under a debugger. In this circumstance, you should start Visual Studio without debugging (Ctrl+F5), and attach to the process later. Performance is much improved.</p>
+<p>If debugging a plugin installed into a standalone host such as dotPeek, simply change the startup executable to point to the host. The standalone applications are installed to <code>%LOCALAPPDATA%\JetBrains\Installations\{HostFullIdentifier}</code>, where <code>{HostFullIdentifier}</code> is the identifier of the host, such as <code>dotPeek01</code>, <code>dotTrace01</code>, etc. The <code>/rootSuffix</code> argument is not needed.</p>
+<h2 id="troubleshooting"><a name="troubleshooting" class="plugin-anchor" href="#troubleshooting"><span class="fa fa-link"></span></a>Troubleshooting</h2>
+<p>If the extension does not load, or you cannot debug your plugin, there are several things to check:</p>
+<ol>
+<li>Ensure the <a href="../Extensions/Packaging.html">package is in the correct format</a>.<ol>
+<li>Ensure the package has a &quot;.&quot; in the name, or it won&apos;t install correctly.</li>
+<li>Ensure the package depends on &quot;Wave&quot; &quot;[1.0]&quot; correctly. This value is case sensitive.</li>
+</ol>
+</li>
+<li>Ensure the <a href="../Extensions/Deployment/LocalInstallation.html#troubleshooting">package installed correctly</a>. The extension may have installed, and be listed in the Extension Manager as installed, but if the files are copied to an incorrect location, the extension isn&apos;t correctly installed.</li>
+<li>Ensure the plugin has a <a href="../Platform/Zones/HowTo.html">Zone marker</a> defined.</li>
+<li>Enable logging via the Logging options dialog page available in <a href="../Intro/InternalMode.html">Internal Mode</a>, and check the logs for errors.</li>
+<li>Run in <a href="../Intro/InternalMode.html">Internal Mode</a>, and look for reported exceptions (exceptions are suppressed when not in internal mode).</li>
+<li>Ensure the debugger has loaded the extension (look in the Debug &#xBB; Windows &#xBB; Modules tool window for the name of the plugin assembly).</li>
+<li>Ensure the debugger has loaded symbols for the extension (again, look in the Debug &#xBB; Windows &#xBB; Modules tool window for the name of the plugin, this row will include details for symbols). If the symbols are not loaded, you will not be able to set breakpoints for the plugin. <ol>
+<li>Copy the <code>.pdb</code> files for the plugin to the installation folder (<code>%LOCALAPPDATA%\JetBrains\Installations\{HostFullIdentifier}</code>).</li>
+<li>Add the symbol location to the Tools &#xBB; Options &#xBB; Debugging &#xBB; Symbols page in Visual Studio.</li>
+</ol>
+</li>
+</ol>
 
                     
                     </section>

@@ -44,7 +44,7 @@
 
 
         
-    <div class="book" data-level="5.5.2" data-basepath=".." data-revision="1418118898214">
+    <div class="book" data-level="5.5.2" data-basepath=".." data-revision="1418218353318">
     
 
 <div class="book-summary">
@@ -485,13 +485,45 @@
                 
     
         
-        <li class="chapter " data-level="5.6.1" data-path="Extensions/Packaging8.html">
+        <li class="chapter " data-level="5.6.1">
+            
+            <span><b>6.1.</b> Installing the ReSharper Platform</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.2">
+            
+            <span><b>6.2.</b> Packaging Details</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.3" data-path="Extensions/Deployment/LocalInstallation.html">
+            
+                
+                    <a href="../Extensions/Deployment/LocalInstallation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                         Installing Locally
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.4" data-path="Extensions/Packaging8.html">
             
                 
                     <a href="../Extensions/Packaging8.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>6.1.</b>
+                            <b>6.4.</b>
                         
                          Supporting ReSharper 8
                     </a>
@@ -3515,13 +3547,14 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_92">
+                    <section class="normal" id="section-gitbook_93">
                     
                         <h1 id="project-setup"><a name="project-setup" class="plugin-anchor" href="#project-setup"><span class="fa fa-link"></span></a>Project Setup</h1>
 <p>Plugins for the ReSharper Platform are simply .net assemblies. In order to create a plugin project, you need to:</p>
 <ul>
 <li>Create a .net class library project.</li>
 <li>Add a NuGet reference to the <code>JetBrains.ReSharper.SDK</code> package.</li>
+<li>Compile and install the project for manual testing and debugging.</li>
 </ul>
 <h2 id="creating-the-project"><a name="creating-the-project" class="plugin-anchor" href="#creating-the-project"><span class="fa fa-link"></span></a>Creating the project</h2>
 <p>Simply create a .net class library assembly. The project should be a .net 4.0 assembly, which allows the plugin to run on Visual Studio 2010, which is the oldest version of Visual Studio supported by the ReSharper Platform.</p>

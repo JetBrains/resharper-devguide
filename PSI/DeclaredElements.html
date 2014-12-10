@@ -42,7 +42,7 @@
 
 
         
-    <div class="book" data-level="9.8" data-basepath=".." data-revision="1418118898214">
+    <div class="book" data-level="9.8" data-basepath=".." data-revision="1418218353318">
     
 
 <div class="book-summary">
@@ -483,13 +483,45 @@
                 
     
         
-        <li class="chapter " data-level="5.6.1" data-path="Extensions/Packaging8.html">
+        <li class="chapter " data-level="5.6.1">
+            
+            <span><b>6.1.</b> Installing the ReSharper Platform</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.2">
+            
+            <span><b>6.2.</b> Packaging Details</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.3" data-path="Extensions/Deployment/LocalInstallation.html">
+            
+                
+                    <a href="../Extensions/Deployment/LocalInstallation.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>6.3.</b>
+                        
+                         Installing Locally
+                    </a>
+                
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="5.6.4" data-path="Extensions/Packaging8.html">
             
                 
                     <a href="../Extensions/Packaging8.html">
                         <i class="fa fa-check"></i>
                         
-                            <b>6.1.</b>
+                            <b>6.4.</b>
                         
                          Supporting ReSharper 8
                     </a>
@@ -3513,7 +3545,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_60">
+                    <section class="normal" id="section-gitbook_61">
                     
                         <h1 id="declared-elements"><a name="declared-elements" class="plugin-anchor" href="#declared-elements"><span class="fa fa-link"></span></a>Declared Elements</h1>
 <p>Declared elements are the backbone of ReSharper&apos;s semantic model, and provide a language-agnostic entry point into the semantic model of the codebase. While an AST provides a high-fidelity model of a code file, it is a representation only of the syntax - the typed text. It does little to help with the semantic view of the underlying code. For example, a definition of a C# class may be split across multiple files by using the <code>partial</code> keyword. Retrieving all type members from the AST now requires processing multiple ASTs, and the existing AST gives no indication of the location of the other part of the file. Similarly, if a C# class derives from the class <code>Foo</code>, the AST gives no indication which class <code>Foo</code> - what namespace does it belong to? A semantic model provides all of this information, for example, applying the type resolution rules to the <code>using</code> statements at the top of the file.</p>
