@@ -25,7 +25,7 @@ If the extension does not load, or you cannot debug your plugin, there are sever
     1. Ensure the package has a "." in the name, or it won't install correctly.
     2. Ensure the package depends on "Wave" "[1.0]" correctly. This value is case sensitive.
 2. Ensure the [package installed correctly](../Extensions/Deployment/LocalInstallation.md#troubleshooting). The extension may have installed, and be listed in the Extension Manager as installed, but if the files are copied to an incorrect location, the extension isn't correctly installed.
-3. Ensure the plugin has a [Zone marker](../Platform/Zones/HowTo.md) defined.
+3. Ensure the plugin has a [Zone marker](../Platform/Zones/HowTo.md) defined in the project's root namespace (e.g. if the project has code in the `Foo.Bar` and `Foo.Bar.Quux` namespaces, the zone marker should live in `Foo.Bar.ZoneMarker`).
 4. Enable logging via the Logging options dialog page available in [Internal Mode](../Intro/InternalMode.md), and check the logs for errors.
 5. Run in [Internal Mode](../Intro/InternalMode.md), and look for reported exceptions (exceptions are suppressed when not in internal mode).
 6. Ensure the debugger has loaded the extension (look in the Debug » Windows » Modules tool window for the name of the plugin assembly).
