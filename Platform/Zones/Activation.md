@@ -111,7 +111,7 @@ This means the zone activator is only available if it has been added to one of t
 ```cs
 namespace JetBrains.ReSharper.Product.Application
 {
-  [Zone]
+  [ZoneMarker]
   public class ZoneMarker : IRequire<IVisualStudioZone>
   {
   }

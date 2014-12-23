@@ -6,7 +6,7 @@ Since all components in the Component Model are now grouped into zones, it is po
 
 ReSharper supports this for specific zone definitions. The Features page on the options dialog lists products and features that can be disabled.
 
-<!-- TODO: Picture of the features options dialog page -->
+![Features in ReSharper's options](options_features.png)
 
 This list is populated by applying the `ZoneDefinitionConfigurableFeatureAttribute` to a zone definition. It takes three settings - the name of the feature, a short description, and a flag to state if the zone definition should be treated as a feature or a product.
 
