@@ -195,6 +195,8 @@ This has the same effect as a simple implementation of `IActivate<TZone>.Activat
 
 > **NOTE** A zone definition is not always necessary. It should only be used when the zone needs to be referred to externally, either by a consuming component (the zone represents a reusable API), or by the [Products and Features](FeaturesProducts.md) page (the zone represents a user-facing feature or product that can be disabled). If a zone definition is not required, zone markers will ensure that the components are created correctly, when all required zones are active, or with an [empty zone marker](Usage.md#empty-zone-marker) that is always active.
 
+&nbsp;
+
 > **WARNING** Currently (as of Wave01), auto-enabled zone definitions cannot be used for creating [Products or Features](FeaturesProducts.md). The options page to control enabling/disabling Products and Features does not take auto-enabled zones into account, and requires a zone to be activated by an explicit activator class. If it doesn't find an activator for a Product or Feature, the checkbox is greyed out and the Product or Feature cannot be disabled.
 >
 > (The code is checking the hierarchical nature of the Product and Feature zone definitions so that when a Feature is disabled, any dependent Features are also disabled. It is using the active zones from the activators to get this information. Because none of the activators activate the auto-enabled zone, it appears to be a deactivated zone, and so the dialog marks the checkbox as disabled, even though the Feature is still enabled.)
