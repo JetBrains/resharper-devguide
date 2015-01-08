@@ -17,7 +17,7 @@ Zone definitions are hierarchical, and can specify dependencies on other zones t
 
 The above example declares a zone with no dependencies - all components that belong to this zone can be instantiated without requiring any other zone to be active.
 
-Dependencies can be defined either by inheritance or by implementing the `IRequire<TZone>` interface. The two methods are essentially the same, except inheritance also implies that depending zones are automatically activated. This is discussed in more detail in the [Activation](Activation.md) section. Generally speaking, unless there is an "is-a" relationship between zones (e.g. "ILanguageCSharpZone" is-a "IPsiLanguageZone") dependencies should be implemented with the `IRequire<TZone>` marker interface. The two approaches can be mixed, as appropriate.
+Dependencies can be defined either by inheritance or by implementing the `IRequire<TZone>` interface. The two methods are essentially the same, except inheritance also implies that depending zones are automatically activated. This is discussed in more detail in the [Activation](Activation.md) section. Generally speaking, unless there is an "is-a" relationship between zones (e.g. `ILanguageCSharpZone` is-a `IPsiLanguageZone`) dependencies should be implemented with the `IRequire<TZone>` marker interface. The two approaches can be mixed, as appropriate.
 
 If a zone definition is expected to be inherited, it makes sense to implement it as an interface. In this way, the inheriting zone definition has the ability to inherit from multiple zones. If the base zone definition is a class, the inheriting zone definition can only inherit a single zone.
 
@@ -29,6 +29,8 @@ public interface IMyZone : IZone, IRequire<NavigationZone>
 ```
 
 This example states that `IMyZone` has a dependency on `NavigationZone` (and transitively, on anything that `NavigationZone` depends on, such as the PSI, results lists and options dialogs).
+
+A zone definition has to be activated before it can be used. Typically, the owning product will be responsible for activating all of the zones in the product. For example, the `ReSharperZonesActivator` activates all zones used by ReSharper. When creating an extension that just consumes zones, activation is not needed, as the consumed zones will already be activated (or not, in which case the extension should not, and will not be loaded). However, if the extension creates zone definitions, it must activate them. This can be done either with explicitly with an activator class, or via the `ZoneFlags.AutoEnable` parameter to the `ZoneDefinitionAttribute` constructor. More details, including the differences between the approaches, can be found in the [Activation](Activation.md) guide.
 
 ## Zone markers
 
@@ -43,6 +45,12 @@ namespace Foo.Bar
   public class ZoneMarker : IRequire<IMyZone>
   {
   }
+
+  // or...
+  // [ZoneMarker(typeof(IMyZone))]
+  // public class ZoneMarker
+  // {
+  // }
 }
 ```
 
@@ -68,7 +76,7 @@ Put another way, consider the dependencies of a zone to be an implementation det
 
 ### Class zone marker
 
-The `ZoneMarker` class and `[ZoneMarker]` attribute apply to all types in a namespace. It is possible to apply a single class to a zone, using the `[ClassZoneMarker]` attribute. Usage is exactly the same, either specify dependencies as parameters to the `[ClassZoneMarker]` constructor, or implement `IRequire<TZone>` directly on the component for each dependency.
+The `ZoneMarker` class and `[ZoneMarker]` attribute apply to all types in a namespace. It is possible to apply a single class to a zone, by applying the `[ZoneMarker]` attribute directly to a component class. Usage is exactly the same, either specify dependencies as parameters to the `[ZoneMarker]` constructor, or implement `IRequire<TZone>` directly on the component for each dependency.
 
 Generally speaking, most registration will use `ZoneMarker` classes to apply a zone to all components in a namespace.
 
