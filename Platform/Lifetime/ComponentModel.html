@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Component Lifetime | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="7.2.4" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="7.2.4" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3551,9 +3553,9 @@
                     
                         <h1 id="component-lifetime"><a name="component-lifetime" class="plugin-anchor" href="#component-lifetime"><span class="fa fa-link"></span></a>Component Lifetime</h1>
 <p>The simplest way to get a <code>Lifetime</code> instance is to let the Component Model inject it into your constructor:</p>
-<pre><code class="lang-cs">[ShellComponent]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ShellComponent</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span>
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyComponent</span><span class="hljs-params">(Lifetime lifetime)</span>
   </span>{
     <span class="hljs-comment">// ...</span>

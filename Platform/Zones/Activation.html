@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Activation | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="7.5.4" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="7.5.4" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3548,92 +3550,159 @@
                     <section class="normal" id="section-gitbook_86">
                     
                         <h1 id="activation"><a name="activation" class="plugin-anchor" href="#activation"><span class="fa fa-link"></span></a>Activation</h1>
-<p>Components are only included into the Component Model if the zones they belong to are &quot;active&quot;. Zones are not activated by default, and must be activated by an activator class, decorated by the <code>[ZoneActivator]</code> attribute, and implementing <code>IActivate&lt;TZone&gt;</code> for each zone it activates.</p>
+<p>Components are only included into the Component Model if the zones they belong to are &quot;active&quot;. Zones are not activated by default, and must be activated by an activator class, which is a component decorated by the <code>[ZoneActivator]</code> attribute, and implementing <code>IActivate&lt;TZone&gt;</code> for each zone it activates.</p>
+<p>If a zone is not activated, any components that require that zone will not be available in the application. It&apos;s worth noting that if none of the components in an assembly are available, then the assembly itself isn&apos;t even loaded into memory, as the catalogues that the Component Model use are based on caching and direct IL metadata reading, rather than Reflection.</p>
 <blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
-<p> Components that only consume other zones do not need to handle activation. It is the responsibility of the required zones to handle their own activation. For example, a third party extension does not need an activator - as long as all of the zones it depends on are active, the extension is also active.</p>
+<p> Components that only consume other zones do not need to handle activation. As long as the zones it requires are activated, the component will be created by the Component Model. It is the responsibility of the required zones to handle their own activation.</p>
+<p>For example, a third party extension typically does not need an activator - as long as all of the zones it depends on are active, the extension is also active. However, if the extension defines a zone (perhaps to declare a <a href="FeaturesProducts.html">Feature or Product</a>), then that zone must be activated, or none of the components that require this zone will be activated.</p>
 </blockquote>
-<h2 id="application-startup"><a name="application-startup" class="plugin-anchor" href="#application-startup"><span class="fa fa-link"></span></a>Application startup</h2>
-<p>Activator classes are used very early on in application startup, and are responsible for providing the list of active zones that are used to filter the available components in the Component Model. Understanding how they are used during application startup is important to understand what zones are available once the application has started.</p>
-<p>During application startup, the ReSharper Platform initially creates several default environment zones that are automatically activated. These zones are used to filter environment components, that is, components marked with the <code>[EnvironmentComponent]</code> attribute and used to populate the environment container used to bootstrap the application and create the shell container.</p>
-<p>Activator classes are environment components (<code>ZoneActivatorAttribute</code> derives from <code>EnvironmentComponentAttribute</code>), and are therefore filtered by the active host environment zones (see the section on activating the activator below).</p>
-<p>When creating the shell container, the list of active zones for the shell is calculated. This list begins with the default environment zones, and is added to by the list of zones being activated by each activator.</p>
-<p>The list of zones is then expanded to include the zones it both inherits from and requires via <code>IRequire&lt;TZone&gt;</code>. It is also expanded to include zones that inherit <em>from</em> the zone being activated. This means <code>ILanguageCSharpZone</code> would be activated when the base <code>IPsiLanguageZone</code> is activated. Note that zones that simply require the zone being activated are not automatically activated.</p>
-<p>Finally, the zones are filtered to remove any zones that violate licensing and that the user has explicitly disabled. This is now the final list of all zones that are active, and this is the list that is used to filter out shell and solution components.</p>
-<h2 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><span class="fa fa-link"></span></a>Usage</h2>
-<p>The <code>IActivate&lt;TZone&gt;</code> interface is defined as follows:</p>
-<pre><code class="lang-cs">public interface IActivate&lt;TZone&gt;
-  where TZone : IZone
-{
-  bool ActivatorEnabled();
+<h2 id="implementation"><a name="implementation" class="plugin-anchor" href="#implementation"><span class="fa fa-link"></span></a>Implementation</h2>
+<p>An activator class implements the <code>IActivate&lt;TZone&gt;</code> interface, which is defined as:</p>
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IActivate&lt;TZone&gt;</span>
+  <span class="hljs-keyword">where</span> TZone : IZone
+</span>{
+  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ActivatorEnabled</span><span class="hljs-params">()</span></span>;
 }
 </code></pre>
-<p>Typically, a zone activator aligns with a product, and unconditionally enables all zones that the product requires. This may seem counter intuitive, however, if a product is installed, it should be activated. Also, the zone activator itself must be activated (see below), allowing products to be disabled, or only enabled based on environmental conditions. The typical activator will implement several <code>IActivate&lt;TZone&gt;</code> interfaces with a single instance of <code>ActivatorEnabled</code> that just returns true.</p>
-<pre><code class="lang-cs">[ZoneActivator]
-class DotPeekZoneActivator :
-  IActivate&lt;DotPeekProductZone&gt;,
-  IActivate&lt;ExternalSourcesZone&gt;,
-  IActivate&lt;NavigationZone&gt;,
-  IActivate&lt;DaemonZone&gt;,
-  IActivate&lt;ILanguageCSharpZone&gt;
-{
-  public bool ActivatorEnabled()
-  {
-    return true;
+<p>The class can implement the interface multiple times, once for each zone it activates. During application startup, the ReSharper Platform will query the activator for each implementation of <code>IActivate&lt;TZone&gt;</code> and call the <code>ActivatorEnabled</code> method. If the class returns <code>true</code>, the zone is marked as active.</p>
+<p>When activating a zone, the ReSharper Platform activates that zone, and all zones that inherit from it. For example, if <code>IActivate&lt;IPsiLanguageZone&gt;.ActivatorEnabled()</code> returns true, the <code>IPsiLanguageZone</code> is now activated, as are all zone definitions that inherit from <code>IPsiLanguageZone</code>, such as <code>IClrPsiLanguageZone</code>, <code>ILanguageCSharpZone</code> and <code>ILanguageJavaScriptZone</code>.</p>
+<p>Typically, a zone activator aligns with a <a href="FeaturesProducts.html">Product or Feature</a>, and unconditionally enables the zone definition that declares the Product or Feature via the <code>[ZoneDefinitionProduct]</code> attribute. It should also activate the zones that the Product or Feature zone requires. It is not an error to activate the same zone from multiple activators. E.g. if both ReSharper and dotPeek need the <code>ExternalSourcesZone</code>, they should both activate it - if they don&apos;t, and they end up being the only product installed into the ReSharper Platform, the required zone won&apos;t be active and the Product or Feature&apos;s requiring zones won&apos;t be loaded.</p>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ZoneActivator</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">DotPeekZoneActivator</span> :
+  <span class="hljs-title">IActivate&lt;DotPeekProductZone&gt;</span>,
+  <span class="hljs-title">IActivate&lt;ExternalSourcesZone&gt;</span>,
+  <span class="hljs-title">IActivate&lt;NavigationZone&gt;</span>,
+  <span class="hljs-title">IActivate&lt;DaemonZone&gt;</span>,
+  <span class="hljs-title">IActivate&lt;ILanguageCSharpZone&gt;</span>
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ActivatorEnabled</span><span class="hljs-params">()</span>
+  </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
   }
+}
 </code></pre>
-<p>However, it is perfectly reasonable to perform operations in the <code>ActivatorEnabled</code> method. For example, the <code>InternalModeProductZoneActivator</code> class will activate the <code>IInternalVisibilityZone</code> only if the <code>/Internal</code> command line argument is supplied.</p>
-<p>Similarly, multiple implementations of <code>IActivate&lt;TZone&gt;</code> can be created with explicit interface implementation:</p>
-<pre><code class="lang-cs">[ZoneActivator]
-public class MyZone : IActivate&lt;IZone1&gt;, IActivate&lt;IZone2&gt;
-{
-  bool IActivate&lt;IZone1&gt;.ActivatorEnabled()
-  {
-    return ShouldActivateZone1();
+<p>There is usually little or no logic in the implementation of <code>ActivatorEnabled</code>. Generally speaking, if a product is installed, it should be activated. Activation is separate to licensing, trial versions and user disabling of a product or feature - this is handled separately by the ReSharper Platform. Unlicensed, expired, or disabled zones are removed from the list of activated zones before components are filtered into the container.</p>
+<p>However, it is perfectly reasonable to implement some logic in this method, for example, the <code>InternalModeProductZoneActivator</code> class will activate the <code>IInternalVisibilityZone</code> (for <a href="../../Intro/InternalMode.html">Internal Mode</a>) only if the <code>/Internal</code> command line argument is supplied.</p>
+<h3 id="explicit-implementation"><a name="explicit-implementation" class="plugin-anchor" href="#explicit-implementation"><span class="fa fa-link"></span></a>Explicit implementation</h3>
+<p>The activator can implement the <code>IActivate&lt;TZone&gt;</code> interfaces explicitly, to allow for different implementations for each zone:</p>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ZoneActivator</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyZone</span> : IActivate&lt;IZone1&gt;, IActivate&lt;IZone2&gt;
+</span>{
+  <span class="hljs-keyword">bool</span> IActivate&lt;IZone1&gt;.<span class="hljs-function"><span class="hljs-title">ActivatorEnabled</span><span class="hljs-params">()</span>
+  </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-title">ShouldActivateZone1</span><span class="hljs-params">()</span></span>;
   }
 
-  bool IActivate&lt;IZone2&gt;.ActivatorEnabled()
-  {
-    return ShouldActivateZone2();
+  <span class="hljs-keyword">bool</span> IActivate&lt;IZone2&gt;.<span class="hljs-function"><span class="hljs-title">ActivatorEnabled</span><span class="hljs-params">()</span>
+  </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-title">ShouldActivateZone2</span><span class="hljs-params">()</span></span>;
   }
 
-  // ...
+  <span class="hljs-comment">// ...</span>
 }
 </code></pre>
-<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
-<p> If a zone is not activated, components that require that zone will not be available in the application. If all of the components in an assembly are not available, that assembly isn&apos;t even loaded into memory, as the catalogues for the Component Model are based on caching and IL metadata, not Reflection.</p>
-</blockquote>
-<h2 id="automatically-enabled-zones"><a name="automatically-enabled-zones" class="plugin-anchor" href="#automatically-enabled-zones"><span class="fa fa-link"></span></a>Automatically enabled zones</h2>
-<p>A zone definition can be declared as auto-enabled, if it makes sense that the zone is always available, regardless of configuration, installed products, etc. This is handled with the <code>ZoneFlags</code> parameter to the <code>[ZoneDefinition]</code> attribute.</p>
-<pre><code class="lang-cs">[ZoneDefinition(ZoneFlags.AutoEnable)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IMyZone</span>
+<h3 id="activator-class-as-component"><a name="activator-class-as-component" class="plugin-anchor" href="#activator-class-as-component"><span class="fa fa-link"></span></a>Activator class as component</h3>
+<p>Similarly, zone activator classes are components (<code>ZoneActivatorAttribute</code> derives from <code>EnvironmentComponentAttribute</code>, so they are components that get created very early in the application lifecycle), which means they can accept dependencies in the constructor. For example, a Feature that is intended for use only in <a href="../../Intro/InternalMode.html">Internal Mode</a> can do something like:</p>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ZoneActivator</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyInternalModeFeatureZonesActivator</span> : IActivate&lt;IMyInternalModeFeatureZone&gt;
+</span>{
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> InternalModeProductZoneActivator internalModeActivator;
+
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyInternalModeFeatureZonesActivator</span><span class="hljs-params">(InternalModeProductZoneActivator internalModeActivator)</span>
+  </span>{
+    <span class="hljs-keyword">this</span>.internalModeActivator = internalModeActivator;
+  }
+
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ActivatorEnabled</span><span class="hljs-params">()</span>
+  </span>{
+    <span class="hljs-comment">// Only enable this zone if the internal zone is going to be enabled</span>
+    <span class="hljs-keyword">return</span> ((IActivate&lt;IInternalVisibilityZone&gt;)internalModeActivator).<span class="hljs-function"><span class="hljs-title">ActivatorEnabled</span><span class="hljs-params">()</span></span>;
+  }
+}
+</code></pre>
+<p>This is perhaps a contrived example - an internal only Feature would be better requiring <code>IInternalVisibilityZone</code> in its zone, rather than handling it in this manner. However, it is an example that serves as a reminder that a zone activator is a component, and follows normal Component Model rules.</p>
+<h3 id="component-model-considerations"><a name="component-model-considerations" class="plugin-anchor" href="#component-model-considerations"><span class="fa fa-link"></span></a>Component Model considerations</h3>
+<p>Since the activator class is a standard component, it naturally follows normal Component Model creation rules. This means that an activator class must itself belong to a zone that is already active!</p>
+<p>In other words, the zone activator is only available if it has a zone marker. The zone marker can be an <a href="Usage.html#empty-zone-marker">empty zone marker</a>, in which case the activator is always active, and always created. Or it can require one or more of the default active zones (see below), in which case the activator component will only be active if all of the required zones are active.</p>
+<p>For example, the <code>ReSharperZonesActivator</code> class, which lives in the <code>JetBrains.ReSharper.Product.Application.Product</code> namespace, has the following zone marker:</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">namespace</span> <span class="hljs-title">JetBrains.ReSharper.Product.Application</span>
 {
+  <span class="hljs-comment">// This zone is only active when IVisualStudioZone is active.</span>
+  <span class="hljs-comment">// So any activator class in this zone is also only created when</span>
+  <span class="hljs-comment">// running in Visual Studio.</span>
+  <span class="hljs-attribute">[<span class="hljs-title">ZoneMarker</span>]</span>
+  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ZoneMarker</span> : IRequire&lt;IVisualStudioZone&gt;
+  </span>{
+  }
 }
 </code></pre>
-<p>This has the same effect as a simple implementation of <code>IActivate&lt;TZone&gt;.ActivatorEnabled()</code> that always returns true. However, it doesn&apos;t depend on any other zones being active, as activator classes do. This means it is always enabled.</p>
-<p>Also, components decorated with a zone marker that does not include any zone definitions are always available, bypassing the need to be enabled (there are no zones, so how do they get enabled?).</p>
+<p>Note the namespace of the marker is above the namespace of the activator. This means that the activator class belongs to the zone definitions declared in the marker&apos;s dependencies, namely <code>IVisualStudioZone</code>. So, the ReSharper product zone activator is only active when the <code>IVisualStudioZone</code> zone is itself active. This zone is an environmental zone, and is created and activated before the environment container is composed.</p>
+<blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
+<p> If the activator class itself doesn&apos;t have belong to an active zone, it will not be created, and therefore not activate its zones. An activator class must have a <a href="Usage.html#zone-markers">zone marker</a>. This can be an <a href="Usage.html#empty-zone-marker">empty zone marker</a>, in which case it will be always created, or a zone marker that requires one of the default active zones (described below), in which case it will only be active if those required zones are active.</p>
+</blockquote>
+<h3 id="disabling-activators"><a name="disabling-activators" class="plugin-anchor" href="#disabling-activators"><span class="fa fa-link"></span></a>Disabling activators</h3>
+<p>A zone activator can take a dependency on a zone, using <code>IRequire&lt;TZone&gt;</code> in the same way zone markers do. This allows for a zone activator to be disabled if any of these required zones are disabled, for whatever reason - unlicensed, expired or explicitly disabled by the user.</p>
+<p>It is not immediately obvious why a zone activator would wish to be disabled.</p>
+<p>This happens naturally if an activator&apos;s zone marker&apos;s dependencies aren&apos;t satisfied. However, zone markers for zone activators are limited in that they can only require the bootstrap zones that are used when creating the environment component container (see the section on <a href="Activation.html#default-active-zones">default active zones</a>). It also happens if any of the zones being activated are no longer licensed.</p>
+<p>The main reason for wanting to disable a zone activator is so that supporting zones are not activated unnecessarily. A common pattern is for a zone activator to require a dependency on the main zone it is trying to activate. If that zone has been disabled, for whatever reason, the activator is also disabled, and supporting zones are not activated.</p>
+<p>For example, the ReSharper C++ activator requires the C++ product zone, but also activates code editing, daemon and navigation zones. If the C++ product zone feature is disabled, the C++ activator would still activate code editing, daemon and navigation. If no other Features or Products used those zones, they are unnecessarily activated (and probably unlicensed). By requiring the C++ product zone, the ReSharper Platform will disabled the C++ activator if the C++ product zone is disabled. And now, the code editing, daemon and navigation zones are only activated if another activator needs them.</p>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ZoneActivator</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CppProductZonesActivator</span> :
+  <span class="hljs-title">IActivate&lt;ILanguageCppZone&gt;</span>,
+  <span class="hljs-title">IActivate&lt;ICodeEditingZone&gt;</span>,
+  <span class="hljs-title">IActivate&lt;DaemonZone&gt;</span>,
+  <span class="hljs-title">IActivate&lt;NavigationZone&gt;</span>,
+  <span class="hljs-title">IActivate&lt;ICppProductZone&gt;</span>,
+  <span class="hljs-title">IRequire&lt;ICppProductZone&gt;</span>
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ActivatorEnabled</span><span class="hljs-params">()</span>
+  </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
+  }
+}
+</code></pre>
+<h2 id="default-active-zones"><a name="default-active-zones" class="plugin-anchor" href="#default-active-zones"><span class="fa fa-link"></span></a>Default active zones</h2>
+<p>The ReSharper Platform provides several default zones that are automatically activated based on the current host&apos;s environment. These zones are used to bootstrap the zone activators. An activator&apos;s zone marker can require one or more of these zones to allow for conditionally including and excluding zone activators based on the host environment.</p>
+<p>For example, if a zone needs to be run inside a particular version of Visual Studio, the zone activator&apos;s zone marker can require the Visual Studio zone. If the current host is an appropriate version of Visual Studio, the Visual Studio zone is activated, the zone marker&apos;s dependencies are satisfied, and the zone activator is created and finally activates the target zone.</p>
+<p>The default zones derive from <code>IHostSpecificZone</code> and are:</p>
+<ul>
+<li>An environment zone, representing the current running host environment. These zones derive from <code>IEnvironmentZone</code><ul>
+<li><code>IConsoleZone</code> when the host is a command line utility. Derived interfaces represent the different supported console applications, such as InspectCode and DuplicatesFinder.</li>
+<li><code>IStandaloneUIZone</code> for when the host is a standalone GUI application, such as dotPeek. Again, derived interfaces represent standalone applications.</li>
+<li><code>ITeamCityZone</code> for when the host is running inside TeamCity.</li>
+<li><code>IVisualStudioZone</code> for when the host is Visual Studio.</li>
+</ul>
+</li>
+<li>CLR version zone - <code>ISinceClr2Zone</code> or <code>ISinceClr4Zone</code>. Components that are built for .net 4 should require <code>ISinceClr4Zone</code>. Note that <code>ISinceClr4Zone</code> has a dependency on <code>ISinceClr2Zone</code>, so all CLR 2 components are also available for .net 4.</li>
+<li>CPU architecture zone, representing 32 and 64 bit - <code>IIntelCpuArchitectureZone</code> and <code>IAmd64CpuArchitectureZone</code>.</li>
+<li><code>ITestsZone</code> to indicate that the code is running under test.</li>
+</ul>
+<p>The Visual Studio zones make extensive use of zone inheritance to model different versions. Each version has two interfaces, a &quot;since&quot; zone and a &quot;just&quot; zone, e.g. <code>ISinceVs10Zone</code> and <code>IJustVS10Zone</code>.</p>
+<p>The &quot;since&quot; zones inherit from the previous version&apos;s &quot;since&quot; zone, so <code>ISinceVs12Zone</code> derives from <code>ISinceVs11Zone</code>, which derives from <code>ISinceVs10Zone</code>, etc. When running in VS12 (Visual Studio 2013), the <code>ISinceVs12Zone</code> is active, and so is <code>ISinceVs11Zone</code> and <code>ISinceVs10Zone</code>. If a component uses a Visual Studio feature that works across versions, it should require the zone at which the feature was introduced. For example, if the feature was introduced in Visual Studio 2012 (VS11), the component should require <code>ISinceVs11Zone</code>. When running in Visual Studio 2012 (VS11) or 2013 (VS12), the <code>ISinceVs11Zone</code> is active, and the component runs. If running in Visual Studio 2010 (VS10), the <code>ISinceVs11Zone</code> isn&apos;t active, and the component isn&apos;t loaded.</p>
+<p>The &quot;just&quot; zones inherit from the <strong>current</strong> version&apos;s &quot;since&quot; zone, so <code>IJustVs12Zone</code> derives from <code>ISinceVs12Zone</code>. If code is written that targets just a single version of Visual Studio, it should require the &quot;just&quot; zone. For example, if code targets just Visual Studio 2010 (VS10), it should require <code>IJustVs10Zone</code>. When run in Visual Studio 2012 (VS11), the <code>IJustVs10Zone</code> isn&apos;t active, and the component isn&apos;t loaded.</p>
 <h2 id="inheritance-and-activation"><a name="inheritance-and-activation" class="plugin-anchor" href="#inheritance-and-activation"><span class="fa fa-link"></span></a>Inheritance and activation</h2>
-<p>When declaring a zone definition, dependencies can be declared either by implementing the <code>IRequire&lt;TZone&gt;</code> interface, or by inheriting directly from an existing zone definition. There is no difference between the two with regard to dependencies - when applying a zone to a class or namespace, that zone and all of its dependencies must be active before the component is allowed.</p>
+<p>When declaring a zone definition using the <code>[ZoneDefinition]</code> attribute, dependencies can be declared either by implementing the <code>IRequire&lt;TZone&gt;</code> interface, or by inheriting directly from an existing zone definition. There is no difference between the two with regard to dependencies - when applying a zone to a class or namespace, that zone and all of its dependencies must be active before the component is allowed.</p>
 <p>The difference comes with activation. When a zone inherits from another zone definition, it is automatically activated when the base zone is activated. For example, the <code>ReSharperZonesActivator</code> class implements <code>IActivate&lt;IPsiLanguageZone&gt;.ActivatorEnabled()</code> and returns true. This activates the <code>IPsiLanguageZone</code> and all zone definitions that inherit from it, including <code>IClrPsiLanguageZone</code> and therefore <code>ILanguageCSharpZone</code>. Any new code that is added that implements a zone inheriting from <code>IPsiLanguageZone</code>, or <code>IClrPsiLanguageZone</code> will also get automatically enabled.</p>
 <p>Dependencies registered via <code>IRequire&lt;TZone&gt;</code> are <strong>not</strong> automatically enabled. These zones must be enabled via another activator, or via activation of their base zone definitions.</p>
-<h2 id="default-activated-zones"><a name="default-activated-zones" class="plugin-anchor" href="#default-activated-zones"><span class="fa fa-link"></span></a>Default activated zones</h2>
-<p>While most zones are not activated by default, the environment creates an initial set of active zones based on the current host environment. Code can use these zones to make components available or not depending on the hosting environment. The zones are:</p>
-<ul>
-<li>An environment zone, representing the currently running host environment, such as <code>IConsoleZone</code>, <code>ITeamCityZone</code>, or <code>IStandaloneUIZone</code>. When running in Visual Studio, the chosen zone derives from the <code>IVisualStudioZone</code> definition, depending on the version of the currently running instance. The hierarchy of zone definitions for Visual Studio allow specifying dependencies on just a single version, or anything since a specific version. E.g. <code>IJustVs12Zone</code> for Visual Studio 2013 (12.0) and <code>IJustVs11Zone</code> for Visual Studio 2012 (11.0), or <code>ISinceVs10Zone</code> for all versions since Visual Studio 2010 (10.0).</li>
-<li>A zone representing the currently running CLR version - <code>ISinceClr2Zone</code> or <code>ISinceClr4Zone</code>. Components can use this to make themselves only available for a particular version of the CLR.</li>
-<li>A zone representing the currently running CPU architecture. Either <code>IIntelCpuArchitectureZone</code> or <code>IAmd64CpuArchitectureZone</code>, which correspond to 32-bit and 64-bit respectively.</li>
-</ul>
-<h2 id="activating-the-zone-activator"><a name="activating-the-zone-activator" class="plugin-anchor" href="#activating-the-zone-activator"><span class="fa fa-link"></span></a>Activating the zone activator!</h2>
-<p>The <code>[ZoneActivator]</code> attribute derives from <code>[EnvironmentComponent]</code>, meaning the activator is loaded into the bootstrap environment container during application startup. However, the environment container is itself filtered on active zones!</p>
-<p>This means the zone activator is only available if it has been added to one of the default active environment zones (see above). In other words, there needs to be a zone marker either for the zone activator. For example, the <code>JetBrains.ReSharper.Product.Application.Product.ReSharperZonesActivator</code> class has the following zone marker:</p>
-<pre><code class="lang-cs">namespace JetBrains.ReSharper.Product.Application
-{
-  [Zone]
-  public class ZoneMarker : IRequire&lt;IVisualStudioZone&gt;
-  {
-  }
+<p>The Visual Studio zones are very hierarchical (see above). The &quot;just&quot; zones are the zones that are activated. Because the &quot;just&quot; zone derives from a chain of &quot;since&quot; zones, when a &quot;just&quot; zone is activated, the derived &quot;since&quot; zones are also enabled. So when <code>IJustVs12Zone</code> is activated, it&apos;s inherited <code>ISinceVs12Zone</code> is also activated, as are <code>ISinceVs11Zone</code>, <code>ISinceVs10Zone</code>, <code>IVisualStudioZone</code>, etc.</p>
+<h2 id="auto-enabled-zones"><a name="auto-enabled-zones" class="plugin-anchor" href="#auto-enabled-zones"><span class="fa fa-link"></span></a>Auto-enabled zones</h2>
+<p>A zone definition can be declared as auto-enabled, if it makes sense that the zone is always available, regardless of configuration, installed products, etc. This is handled with the <code>ZoneFlags</code> parameter to the <code>[ZoneDefinition]</code> attribute.</p>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ZoneDefinition</span><span class="hljs-params">(ZoneFlags.AutoEnable)</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IMyZone</span>
+</span>{
 }
 </code></pre>
-<p>Note the namespace of the marker is above the namespace of the activator. This means that the activator belongs to the zone definitions declared in the marker&apos;s dependencies, namely <code>IVisualStudioZone</code>. So, the ReSharper product zone activator is only active when the <code>IVisualStudioZone</code> zone is itself active. As we&apos;ve seen above, this zone is an environmental zone, and is created and activated before the environment container is composed.</p>
+<p>This has the same effect as a simple implementation of <code>IActivate&lt;TZone&gt;.ActivatorEnabled()</code> that always returns true. However, it doesn&apos;t allow for finer control, such as activating supporting zones - it will only activate <code>IMyZone</code>. If <code>IMyZone</code> requires other zones to be active, an activator class should be used.</p>
+<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
+<p> A zone definition is not always necessary. It should only be used when the zone needs to be referred to externally, either by a consuming component (the zone represents a reusable API), or by the <a href="FeaturesProducts.html">Products and Features</a> page (the zone represents a user-facing feature or product that can be disabled). If a zone definition is not required, zone markers will ensure that the components are created correctly, when all required zones are active, or with an <a href="Usage.html#empty-zone-marker">empty zone marker</a> that is always active.</p>
+</blockquote>
+<p>&#xA0;</p>
+<blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
+<p> Currently (as of Wave01), auto-enabled zone definitions cannot be used for creating <a href="FeaturesProducts.html">Products or Features</a>. The options page to control enabling/disabling Products and Features does not take auto-enabled zones into account, and requires a zone to be activated by an explicit activator class. If it doesn&apos;t find an activator for a Product or Feature, the checkbox is greyed out and the Product or Feature cannot be disabled.</p>
+<p>(The code is checking the hierarchical nature of the Product and Feature zone definitions so that when a Feature is disabled, any dependent Features are also disabled. It is using the active zones from the activators to get this information. Because none of the activators activate the auto-enabled zone, it appears to be a deactivated zone, and so the dialog marks the checkbox as disabled, even though the Feature is still enabled.)</p>
+<p>In order to successfully appear on the Products and Features page, a zone must be activated by a zone activator. Make sure to include a valid zone marker for the activator class!</p>
+<p>This will hopefully be fixed in a future wave.</p>
+</blockquote>
 
                     
                     </section>

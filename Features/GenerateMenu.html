@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Generate Menu | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="10.7" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="10.7" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3545,17 +3547,17 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_26">
+                    <section class="normal" id="section-gitbook_14">
                     
                         <h1 id="generate-menu"><a name="generate-menu" class="plugin-anchor" href="#generate-menu"><span class="fa fa-link"></span></a>Generate Menu</h1>
 <p>So you&#x2019;ve seen those fancy menu items in the <em>Generate</em> menu (Alt+Insert) and you want to write your own? Okay, we&#x2019;ll tell you how. But first, you have to realize that, really, those generator items are not specific to the <em>Generate</em> menu <em>per se</em>. For example, the <em>Generate Missing Members</em> item is mirrored as a Quick Fix. Still, we&#x2019;ll be talking about generator items here.</p>
 <h2 id="provider"><a name="provider" class="plugin-anchor" href="#provider"><span class="fa fa-link"></span></a>Provider</h2>
 <p>Right, let&#x2019;s get started with the <code>GenerateProvider</code> - a provider class that determines which generator workflows are provided to the user. This may sound confusing so let&#x2019;s go through it all one step at a time.</p>
 <p>First, we create the generate provider body and appropriate attribute:</p>
-<pre><code class="lang-cs">[GenerateProvider]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">GenerateDisposeItemProvider</span> : <span class="hljs-title">IGenerateActionProvider</span>
-{
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IEnumerable&lt;IGenerateActionWorkflow&gt; <span class="hljs-title">CreateWorkflow</span><span class="hljs-params">(IDataContext dataContext)</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">GenerateProvider</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">GenerateDisposeItemProvider</span> : IGenerateActionProvider
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IEnumerable&lt;IGenerateActionWorkflow&gt; <span class="hljs-title">CreateWorkflow</span><span class="hljs-params">(IDataContext dataContext)</span>
   </span>{
     ...
   }
@@ -3563,22 +3565,22 @@
 </code></pre>
 <p>The above method <code>yield return</code>s all the necessary workflows, even if they are unavailable or not enabled. The classes it yields are expected to implement <code>IGenerateActionWorkflow</code>, but typically inherit from <code>StandardGenerateItemWorkflow</code>.</p>
 <p>The workflow typically defines its own characteristic. However, we can pass an icon from the point where it is created:</p>
-<pre><code class="lang-cs">[GenerateProvider]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">GenerateDisposeItemProvider</span> : <span class="hljs-title">IGenerateActionProvider</span>
-{
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IEnumerable&lt;IGenerateActionWorkflow&gt; <span class="hljs-title">CreateWorkflow</span><span class="hljs-params">(IDataContext dataContext)</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">GenerateProvider</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">GenerateDisposeItemProvider</span> : IGenerateActionProvider
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IEnumerable&lt;IGenerateActionWorkflow&gt; <span class="hljs-title">CreateWorkflow</span><span class="hljs-params">(IDataContext dataContext)</span>
   </span>{
-    <span class="hljs-keyword">var</span> solution = dataContext.GetData(IDE.DataConstants.SOLUTION);
-    <span class="hljs-keyword">var</span> iconManager = solution.GetComponent&lt;PsiIconManager&gt;();
-    <span class="hljs-keyword">var</span> icon = iconManager.GetImage(CLRDeclaredElementType.METHOD);
-    <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">GenerateDisposeActionWorkflow</span><span class="hljs-params">(icon)</span></span>;
+    <span class="hljs-keyword">var</span> solution = dataContext.<span class="hljs-function"><span class="hljs-title">GetData</span><span class="hljs-params">(IDE.DataConstants.SOLUTION)</span></span>;
+    <span class="hljs-keyword">var</span> iconManager = solution.<span class="hljs-function"><span class="hljs-title">GetComponent&lt;PsiIconManager&gt;</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-keyword">var</span> icon = iconManager.<span class="hljs-function"><span class="hljs-title">GetImage</span><span class="hljs-params">(CLRDeclaredElementType.METHOD)</span></span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">GenerateDisposeActionWorkflow</span><span class="hljs-params">(icon)</span></span>;
   }
 }
 </code></pre>
 <h2 id="workflow"><a name="workflow" class="plugin-anchor" href="#workflow"><span class="fa fa-link"></span></a>Workflow</h2>
 <p>A workflow is simply a process defining how the action looks. Most of the <code>StandardGenerateActionWorkflow</code> that we&#x2019;ll be using is actually a call to its base class that configures the various properties that subsequently affect the way the menu item is displayed.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">GenerateDisposeActionWorkflow</span> : <span class="hljs-title">StandardGenerateActionWorkflow</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">GenerateDisposeActionWorkflow</span> : StandardGenerateActionWorkflow
+</span>{
   <span class="hljs-comment">// Using named parameters for clarification</span>
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">GenerateDisposeActionWorkflow</span><span class="hljs-params">(Image icon)</span>
     : <span class="hljs-title">base</span><span class="hljs-params">(kind: <span class="hljs-string">&quot;Dispose&quot;</span>, icon: icon, menuText: <span class="hljs-string">&quot;&amp;Dispose&quot;</span>,
@@ -3589,7 +3591,7 @@
   </span>{
   }
 
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">double</span> Order
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">double</span> <span class="hljs-title">Order</span>
   {
     <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> <span class="hljs-number">100</span>; }
   }
@@ -3598,22 +3600,22 @@
 <p>In the above declaration, we specify that we have a menu item with a <em>kind</em> of &#x201C;Dispose&#x201D;. Note that this parameter is the glue which connects it to the generator element provider (more on this later), so it&#x2019;s important to get it right.</p>
 <p>Another thing you need to define is the order in which the item appears in the <em>Generate</em> menu. It is recommended that you put in a suitably large value so that your menu item doesn&#x2019;t get mixed with existing ones.</p>
 <p>Now, all is good but the above won&#x2019;t work. The problem is that we&#x2019;ve defined our own item <em>kind</em>, which goes against ReSharper&#x2019;s policy of only enabling items of a well-known kind. As a result, we also redefine the <code>StandardGenerateActionWorkflow.IsAvailable()</code> method, taking ReSharper&#x2019;s own implementation and removing the <em>kind</em> check:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IDataContext dataContext)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IDataContext dataContext)</span>
 </span>{
-  <span class="hljs-keyword">var</span> solution = dataContext.GetData(IDE.DataConstants.SOLUTION);
-  <span class="hljs-keyword">if</span> (solution == <span class="hljs-keyword">null</span>)
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+  <span class="hljs-keyword">var</span> solution = dataContext.<span class="hljs-function"><span class="hljs-title">GetData</span><span class="hljs-params">(IDE.DataConstants.SOLUTION)</span></span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(solution == null)</span>
+    return false</span>;
 
-  <span class="hljs-keyword">var</span> generatorManager = GeneratorManager.GetInstance(solution);
-  <span class="hljs-keyword">if</span> (generatorManager == <span class="hljs-keyword">null</span>)
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+  <span class="hljs-keyword">var</span> generatorManager = GeneratorManager.<span class="hljs-function"><span class="hljs-title">GetInstance</span><span class="hljs-params">(solution)</span></span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(generatorManager == null)</span>
+    return false</span>;
 
-  <span class="hljs-keyword">var</span> languageType = generatorManager.GetPsiLanguageFromContext(dataContext);
-  <span class="hljs-keyword">if</span> (languageType == <span class="hljs-keyword">null</span>)
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+  <span class="hljs-keyword">var</span> languageType = generatorManager.<span class="hljs-function"><span class="hljs-title">GetPsiLanguageFromContext</span><span class="hljs-params">(dataContext)</span></span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(languageType == null)</span>
+    return false</span>;
 
-  <span class="hljs-keyword">var</span> generatorContextFactory = LanguageManager.Instance.TryGetService&lt;IGeneratorContextFactory&gt;(languageType);
-  <span class="hljs-keyword">return</span> generatorContextFactory != <span class="hljs-keyword">null</span>;
+  <span class="hljs-keyword">var</span> generatorContextFactory = LanguageManager.Instance.<span class="hljs-function"><span class="hljs-title">TryGetService&lt;IGeneratorContextFactory&gt;</span><span class="hljs-params">(languageType)</span></span>;
+  <span class="hljs-keyword">return</span> generatorContextFactory != <span class="hljs-literal">null</span>;
 }
 </code></pre>
 

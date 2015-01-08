@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Overview | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-level="12.1" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="12.1" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3543,7 +3545,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_16">
+                    <section class="normal" id="section-gitbook_4">
                     
                         <h1 id="custom-languages"><a name="custom-languages" class="plugin-anchor" href="#custom-languages"><span class="fa fa-link"></span></a>Custom Languages</h1>
 <p>In this part of the guide we&apos;ll look at developing ReSharper support for a new language. We shall take a look at the following:</p>
@@ -3620,18 +3622,18 @@
 <li><em>(Optional)</em> The <code>Edition</code> parameter specifies the ReSharper edition that this language supports. If you need to constrain the language to a particular R# edition, use an element of the <code>ReSharperEditions.Ids</code> enumeration here. Reminder: R# currently comes in three editions - C#, VB.NET and Full.</li>
 </ul>
 <p>Here is an example of a language definition for the C# language:</p>
-<pre><code class="lang-cs">[LanguageDefinition(Name, Edition = ReSharperEditions.Ids.Csharp)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CSharpLanguage</span> : <span class="hljs-title">KnownLanguage</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">LanguageDefinition</span><span class="hljs-params">(Name, Edition = ReSharperEditions.Ids.Csharp)</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CSharpLanguage</span> : KnownLanguage
+</span>{
   <span class="hljs-keyword">public</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> Name = <span class="hljs-string">&quot;CSHARP&quot;</span>;
 
-  [CanBeNull] <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> CSharpLanguage Instance;
+  <span class="hljs-attribute">[<span class="hljs-title">CanBeNull</span>]</span> <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> CSharpLanguage Instance;
 
   <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">CSharpLanguage</span><span class="hljs-params">()</span> : <span class="hljs-title">base</span><span class="hljs-params">(Name, <span class="hljs-string">&quot;C#&quot;</span>)</span> </span>{ }
 
-  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">CSharpLanguage</span><span class="hljs-params">([NotNull] <span class="hljs-keyword">string</span> name)</span> : <span class="hljs-title">base</span><span class="hljs-params">(name)</span> </span>{ }
+  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">CSharpLanguage</span><span class="hljs-params">(<span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> <span class="hljs-keyword">string</span> name)</span> : <span class="hljs-title">base</span><span class="hljs-params">(name)</span> </span>{ }
 
-  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">CSharpLanguage</span><span class="hljs-params">([NotNull] <span class="hljs-keyword">string</span> name, [NotNull] <span class="hljs-keyword">string</span> presentableName)</span> : <span class="hljs-title">base</span><span class="hljs-params">(name, presentableName)</span> </span>{ }
+  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">CSharpLanguage</span><span class="hljs-params">(<span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> <span class="hljs-keyword">string</span> name, <span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> <span class="hljs-keyword">string</span> presentableName)</span> : <span class="hljs-title">base</span><span class="hljs-params">(name, presentableName)</span> </span>{ }
 }
 </code></pre>
 <h2 id="project-file-type"><a name="project-file-type" class="plugin-anchor" href="#project-file-type"><span class="fa fa-link"></span></a>Project File Type</h2>
@@ -3649,13 +3651,13 @@
 <li><em>(Optional)</em> The <code>Internal</code> boolean parameter determines whether this project file type is only supported in internal mode. Plugin writers should not define this parameter.</li>
 </ul>
 <p>Here is an example of a project file type class for HTML files:</p>
-<pre><code class="lang-cs">[ProjectFileTypeDefinition(Name)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">HtmlProjectFileType</span> : <span class="hljs-title">KnownProjectFileType</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ProjectFileTypeDefinition</span><span class="hljs-params">(Name)</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">HtmlProjectFileType</span> : KnownProjectFileType
+</span>{
   <span class="hljs-keyword">public</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> Name = <span class="hljs-string">&quot;HTML&quot;</span>;
   <span class="hljs-keyword">public</span> <span class="hljs-keyword">new</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> HtmlProjectFileType Instance;
 
-  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">HtmlProjectFileType</span><span class="hljs-params">()</span> : <span class="hljs-title">base</span><span class="hljs-params">(Name, <span class="hljs-string">&quot;Html&quot;</span>, <span class="hljs-keyword">new</span>[] {HTML_EXTENSION, HTM_EXTENSION})</span>  </span>{  }
+  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-title">HtmlProjectFileType</span><span class="hljs-params">()</span> : <span class="hljs-title">base</span><span class="hljs-params">(Name, <span class="hljs-string">&quot;Html&quot;</span>, new[] {HTML_EXTENSION, HTM_EXTENSION})</span>  </span>{  }
 
   <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">HtmlProjectFileType</span><span class="hljs-params">(<span class="hljs-keyword">string</span> name)</span> : <span class="hljs-title">base</span><span class="hljs-params">(name)</span>  </span>{  }
 
@@ -3676,29 +3678,29 @@
 <li>The <code>LanguageType</code> property is precisely the location where we would typically return the above stored value.</li>
 <li>The <code>Icon</code> property needs to return the icon for this type of file. If you are storing the icon internally as an embedded resource, use <code>ImageLoader.GetImage(&quot;icon.resource.name&quot;, null)</code> to return the icon.</li>
 <li><p>The <code>GetPsiLanguageType()</code> method takes an <code>IProjectFile</code> parameter. If the <code>LanguageType</code> property of this parameter matches our language, then we return the <code>Instance</code> field of our language. Otherwise, we return <code>UnknownLanguage.Instance</code>. Here is an example:</p>
-<pre><code class="lang-cs">  <span class="hljs-function"><span class="hljs-keyword">public</span> PsiLanguageType <span class="hljs-title">GetPsiLanguageType</span><span class="hljs-params">(IProjectFile projectFile)</span>
+<pre><code class="lang-cs">  <span class="hljs-keyword">public</span> <span class="hljs-function">PsiLanguageType <span class="hljs-title">GetPsiLanguageType</span><span class="hljs-params">(IProjectFile projectFile)</span>
   </span>{
-    <span class="hljs-keyword">if</span> (projectFile.LanguageType.Is&lt;MyLanguageProjectFileType&gt;())
-      <span class="hljs-keyword">return</span> MyLanguage.Instance;
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(projectFile.LanguageType.Is&lt;MyLanguageProjectFileType&gt;()</span>)
+      return MyLanguage.Instance</span>;
     <span class="hljs-keyword">else</span>
       <span class="hljs-keyword">return</span> UnknownLanguage.Instance;
   }
 </code></pre>
 </li>
 <li><p>There is also an overload of the <code>GetPsiLanguageType()</code> method that takes a <code>ProjectFileType</code> as a parameter. The implementation of this method is similar to the one above:</p>
-<pre><code class="lang-cs">  <span class="hljs-function"><span class="hljs-keyword">public</span> PsiLanguageType <span class="hljs-title">GetPsiLanguageType</span><span class="hljs-params">(ProjectFileType languageType)</span>
+<pre><code class="lang-cs">  <span class="hljs-keyword">public</span> <span class="hljs-function">PsiLanguageType <span class="hljs-title">GetPsiLanguageType</span><span class="hljs-params">(ProjectFileType languageType)</span>
   </span>{
-    <span class="hljs-keyword">if</span> (languageType.Is&lt;MyLanguageProjectFileType&gt;())
-      <span class="hljs-keyword">return</span> MyLanguage.Instance;
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(languageType.Is&lt;MyLanguageProjectFileType&gt;()</span>)
+      return MyLanguage.Instance</span>;
     <span class="hljs-keyword">else</span>
       <span class="hljs-keyword">return</span> UnknownLanguage.Instance;
   }
 </code></pre>
 </li>
 <li><p>The <code>GetMixedLexerFactory()</code> method returns the mixed lexer factory. The mixed lexer (<em>mixed</em> refers to the possibility of having mixed languages in a file) is returned by the language service, which we haven&apos;t defined. The typical implementation of this method is as follows:</p>
-<pre><code class="lang-cs">  <span class="hljs-function"><span class="hljs-keyword">public</span> ILexerFactory <span class="hljs-title">GetMixedLexerFactory</span><span class="hljs-params">(IBuffer buffer, IPsiSourceFile sourceFile, PsiManager manager)</span>
+<pre><code class="lang-cs">  <span class="hljs-keyword">public</span> <span class="hljs-function">ILexerFactory <span class="hljs-title">GetMixedLexerFactory</span><span class="hljs-params">(IBuffer buffer, IPsiSourceFile sourceFile, PsiManager manager)</span>
   </span>{
-    <span class="hljs-keyword">return</span> MyLanguage.Instance.LanguageService().GetPrimaryLexerFactory();
+    <span class="hljs-keyword">return</span> MyLanguage.Instance.<span class="hljs-function"><span class="hljs-title">LanguageService</span><span class="hljs-params">()</span>.<span class="hljs-title">GetPrimaryLexerFactory</span><span class="hljs-params">()</span></span>;
   }
 </code></pre>
 </li>
@@ -3709,10 +3711,10 @@
 <ul>
 <li>The <code>GetPreprocessorDefines()</code> method is used to return a set of <code>PreProcessingDirective</code> definitions. If your language doesn&#x2019;t have preprocessing directives, in which case you can simply return <code>EmptyArray&lt;PreProcessingDirective&gt;.Instance</code>.</li>
 <li><p>The <code>GetPsiProperties()</code> method is used to return a new instance of the PSI properties type for this file as follows:</p>
-<pre><code class="lang-cs">  <span class="hljs-function"><span class="hljs-keyword">public</span> IPsiSourceFileProperties <span class="hljs-title">GetPsiProperties</span><span class="hljs-params">(IProjectFile projectFile, IPsiSourceFile sourceFile)</span>
-  </span>{
-    Assertion.Assert(projectFile.LanguageType.IsProjectFileType(LanguageType), <span class="hljs-string">&quot;projectFile.LanguageType == LanguageType&quot;</span>);
-    <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">MyLanguagePsiProperties</span><span class="hljs-params">(projectFile, sourceFile)</span></span>;
+<pre><code class="lang-cs">  public IPsiSourceFileProperties GetPsiProperties(IProjectFile projectFile, IPsiSourceFile sourceFile)
+  {
+    Assertion.Assert(projectFile.LanguageType.IsProjectFileType(LanguageType), &quot;projectFile.LanguageType == LanguageType&quot;);
+    return new MyLanguagePsiProperties(projectFile, sourceFile);
   }
 </code></pre>
 </li>
@@ -3726,8 +3728,8 @@
 </ul>
 <p>Thus, the PSI Properties entity is a kind of glue that manages takes as parameters both an <code>IProjectFile</code> and a <code>IPsiSourceFile</code> and manages to bind the two together.</p>
 <p>The PSI Properties class is a class deriving from <code>DefaultPsiProjectFileProperties</code>, and is often located as an inner class of the above language service type. This class takes two parameters - the project file and the PSI source file. Typically, its constructor simply passes them up to the parent:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">private</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyLanguageFileProperties</span> : <span class="hljs-title">DefaultPsiProjectFileProperties</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">private</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyLanguageFileProperties</span> : DefaultPsiProjectFileProperties
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyLanguageFileProperties</span><span class="hljs-params">(IProjectFile projectFile, IPsiSourceFile sourceFile)</span>
     : <span class="hljs-title">base</span><span class="hljs-params">(projectFile, sourceFile)</span>
   </span>{
@@ -3754,34 +3756,34 @@
 <p>The language service is where all the activity occurs. In particular, the language services exposes both the lexer and the parser, as well as a number of complementary services that may or may not be required for the particular language.</p>
 <p>We begin our language implementation with the lexer. The language service type has two members relating to the creation of lexers.</p>
 <p>The first is the <code>GetPrimaryLexerFactory()</code> method. This method returns a lexer factory, which is simply a class that implements the <code>ILexerFactory</code> interface and whose <code>CreateLexer()</code> method returns an instance of a lexer (which we&apos;ll define in a moment):</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">private</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyLanguageLexerFactory</span> : <span class="hljs-title">ILexerFactory</span>
-{
-  <span class="hljs-function"><span class="hljs-keyword">public</span> ILexer <span class="hljs-title">CreateLexer</span><span class="hljs-params">(IBuffer buffer)</span>
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">private</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyLanguageLexerFactory</span> : ILexerFactory
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-function">ILexer <span class="hljs-title">CreateLexer</span><span class="hljs-params">(IBuffer buffer)</span>
   </span>{
-    <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">MyLanguageLexer</span><span class="hljs-params">(buffer)</span></span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">MyLanguageLexer</span><span class="hljs-params">(buffer)</span></span>;
   }
 }
 </code></pre>
 <p>Thus, the implementation of <code>MyLanguageService.GetPrimaryLexerFactory()</code> reduces to:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> ILexerFactory <span class="hljs-title">GetPrimaryLexerFactory</span><span class="hljs-params">()</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">ILexerFactory <span class="hljs-title">GetPrimaryLexerFactory</span><span class="hljs-params">()</span>
 </span>{
-  <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">MyLanguageLexerFactory</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">MyLanguageLexerFactory</span><span class="hljs-params">()</span></span>;
 }
 </code></pre>
 <p>Of course, we have not yet mentioned the <code>ILexer</code>. Before we get on to actually making a lexer, it&apos;s also worth mentioning another <code>LanguageService</code> member - the <code>CreateFilteringLexer()</code> method. Now, just as the name suggests, a filtering lexer is a lexer that filters (i.e. ignores) certain token types. A filtering lexer inherits from the <code>FilteringLexer</code> class. Apart from having to have an <code>ILexer</code> as a constructor parameter passed up to its base class, it has a single method called <code>Skip()</code> that you need to override.</p>
 <p>The <code>Skip()</code> method is simple: it takes a <code>TokenNodeType</code> and determines whether this is the kind of token that needs to be skipped. Typical tokens to be skipped often include whitespace, line breaks, comments or code within certain preprocessor directives. Now, the simplest way to provide support for this is to create a <code>NodeTypeSet</code> of all the tokens that you intend to skip as follows:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">internal</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> NodeTypeSet TokensToSkip = <span class="hljs-keyword">new</span> NodeTypeSet(
-  <span class="hljs-keyword">new</span> NodeType[]
+<pre><code class="lang-cs"><span class="hljs-keyword">internal</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> NodeTypeSet TokensToSkip = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">NodeTypeSet</span><span class="hljs-params">(
+  new NodeType[]
     {
       MyLanguageTokenType.WHITE_SPACE,
       MyLanguageTokenType.NEW_LINE
     }
-  );
+  )</span></span>;
 </code></pre>
 <p>With this definition in place, the implementation of the <code>Skip()</code> method can be as follows:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">Skip</span><span class="hljs-params">(TokenNodeType tokenType)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Skip</span><span class="hljs-params">(TokenNodeType tokenType)</span>
 </span>{
-  <span class="hljs-keyword">return</span> MyLanguageService.TokensToSkip[tokenType];
+  <span class="hljs-keyword">return</span> MyLanguageService.TokensToSkip<span class="hljs-attribute">[<span class="hljs-title">tokenType</span>]</span>;
 }
 </code></pre>
 

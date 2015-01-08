@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Usage | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="7.5.2" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="7.5.2" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3553,39 +3555,46 @@
 <p>Each component must be marked as belonging to one or more zones before it will be added to the Component Model. Zones are declared with zone definition types, and zone markers are used to associate components with zone definitions.</p>
 <h2 id="zone-definitions"><a name="zone-definitions" class="plugin-anchor" href="#zone-definitions"><span class="fa fa-link"></span></a>Zone definitions</h2>
 <p>A zone is declared by a type implementing the empty <code>IZone</code> marker interface, and decorated with the <code>[ZoneDefinition]</code> attribute. The type can be a class or an interface, with no significance attached to the choice, although it has implications on inheritance. The simplest definition declares a zone with no dependencies:</p>
-<pre><code class="lang-cs">[ZoneDefinition]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ISimpleZone</span> : <span class="hljs-title">IZone</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ZoneDefinition</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ISimpleZone</span> : IZone
+</span>{
 }
 </code></pre>
 <p>Zone definitions are hierarchical, and can specify dependencies on other zones that are required in order for that zone to work. For example, the <code>IPsiLanguageZone</code> requires the <code>PsiFeaturesImplZone</code> which in turn requires the <code>ITextControlsZone</code>, <code>IProjectModelZone</code> and <code>IDocumentModelZone</code>. Any component that requires the <code>IPsiLanguageZone</code> implicitly also requires all of its dependencies. All zone definitions in this dependency hierarchy must be active for the component to be added to the Component Model.</p>
 <p>The above example declares a zone with no dependencies - all components that belong to this zone can be instantiated without requiring any other zone to be active.</p>
-<p>Dependencies can be defined either by inheritance or by implementing the <code>IRequire&lt;TZone&gt;</code> interface. The two methods are essentially the same, except inheritance also implies that depending zones are automatically activated. This is discussed in more detail in the <a href="Activation.html">Activation</a> section. Generally speaking, unless there is an &quot;is-a&quot; relationship between zones (e.g. &quot;ILanguageCSharpZone&quot; is-a &quot;IPsiLanguageZone&quot;) dependencies should be implemented with the <code>IRequire&lt;TZone&gt;</code> marker interface. The two approaches can be mixed, as appropriate.</p>
+<p>Dependencies can be defined either by inheritance or by implementing the <code>IRequire&lt;TZone&gt;</code> interface. The two methods are essentially the same, except inheritance also implies that depending zones are automatically activated. This is discussed in more detail in the <a href="Activation.html">Activation</a> section. Generally speaking, unless there is an &quot;is-a&quot; relationship between zones (e.g. <code>ILanguageCSharpZone</code> is-a <code>IPsiLanguageZone</code>) dependencies should be implemented with the <code>IRequire&lt;TZone&gt;</code> marker interface. The two approaches can be mixed, as appropriate.</p>
 <p>If a zone definition is expected to be inherited, it makes sense to implement it as an interface. In this way, the inheriting zone definition has the ability to inherit from multiple zones. If the base zone definition is a class, the inheriting zone definition can only inherit a single zone.</p>
-<pre><code class="lang-cs">[ZoneDefinition]
-public interface IMyZone : IZone, IRequire&lt;NavigationZone&gt;
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ZoneDefinition</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IMyZone</span> : IZone, IRequire&lt;NavigationZone&gt;
+</span>{
 }
 </code></pre>
 <p>This example states that <code>IMyZone</code> has a dependency on <code>NavigationZone</code> (and transitively, on anything that <code>NavigationZone</code> depends on, such as the PSI, results lists and options dialogs).</p>
+<p>A zone definition has to be activated before it can be used. Typically, the owning product will be responsible for activating all of the zones in the product. For example, the <code>ReSharperZonesActivator</code> activates all zones used by ReSharper. When creating an extension that just consumes zones, activation is not needed, as the consumed zones will already be activated (or not, in which case the extension should not, and will not be loaded). However, if the extension creates zone definitions, it must activate them. This can be done either with explicitly with an activator class, or via the <code>ZoneFlags.AutoEnable</code> parameter to the <code>ZoneDefinitionAttribute</code> constructor. More details, including the differences between the approaches, can be found in the <a href="Activation.html">Activation</a> guide.</p>
 <h2 id="zone-markers"><a name="zone-markers" class="plugin-anchor" href="#zone-markers"><span class="fa fa-link"></span></a>Zone markers</h2>
 <p>Zone markers are used to declare that a component belongs to one or more zones. This means that the component can only be instantiated if all of those zones (and transitively, all dependent zones) are active in the product.</p>
-<p>A zone marker is typically implemented by creating a type called <code>ZoneMarker</code>, or with a name ending in <code>_ZoneMarker</code>, and decorating it with the <code>[Zone]</code> attribute. All dependencies are listed either by implementing the <code>IRequire&lt;TZone&gt;</code> interface, or by passing the zone definitions to the <code>ZoneAttribute</code> constructor. There is no difference in the approach.</p>
-<pre><code class="lang-cs">namespace Foo.Bar
+<p>A zone marker is typically implemented by creating a type called <code>ZoneMarker</code>, or with a name ending in <code>_ZoneMarker</code>, and decorating it with the <code>[ZoneMarker]</code> attribute. All dependencies are listed either by implementing the <code>IRequire&lt;TZone&gt;</code> interface, or by passing the zone definitions to the <code>ZoneMarkerAttribute</code> constructor. There is no difference in the approach.</p>
+<pre><code class="lang-cs"><span class="hljs-keyword">namespace</span> <span class="hljs-title">Foo.Bar</span>
 {
-  [Zone]
-  public class ZoneMarker : IRequire&lt;IMyZone&gt;
-  {
+  <span class="hljs-attribute">[<span class="hljs-title">ZoneMarker</span>]</span>
+  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ZoneMarker</span> : IRequire&lt;IMyZone&gt;
+  </span>{
   }
+
+  <span class="hljs-comment">// or...</span>
+  <span class="hljs-comment">// [ZoneMarker(typeof(IMyZone))]</span>
+  <span class="hljs-comment">// public class ZoneMarker</span>
+  <span class="hljs-comment">// {</span>
+  <span class="hljs-comment">// }</span>
 }
 </code></pre>
 <p>This example declares that the <code>Foo.Bar</code> namespace belongs to the <code>IMyZone</code> zone. All components in the <code>Foo.Bar</code> namespace and below (e.g. both <code>Foo.Bar.ThisComponent</code> and <code>Foo.Bar.Baz.Quux.ThatComponent</code>) require the <code>IMyZone</code> zone, and all of its dependencies to be active, or they do not get added to the Component Model.</p>
 <p>Multiple dependencies can be applied to the zone marker, meaning the components in the zone require multiple zones for their implementation. For example, a JavaScript unit test runner will require both the <code>IUnitTestingZone</code> and the <code>ILanguageJavaScriptZone</code>.</p>
-<pre><code class="lang-cs">namespace Foo.Bar.JavaScriptTestRunner
+<pre><code class="lang-cs"><span class="hljs-keyword">namespace</span> <span class="hljs-title">Foo.Bar.JavaScriptTestRunner</span>
 {
-  [Zone]
-  public class ZoneMarker : IRequire&lt;IUnitTestingZone&gt;, IRequire&lt;ILanguageJavaScriptZone&gt;
-  {
+  <span class="hljs-attribute">[<span class="hljs-title">ZoneMarker</span>]</span>
+  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ZoneMarker</span> : IRequire&lt;IUnitTestingZone&gt;, IRequire&lt;ILanguageJavaScriptZone&gt;
+  </span>{
   }
 }
 </code></pre>
@@ -3593,40 +3602,40 @@ public interface IMyZone : IZone, IRequire&lt;NavigationZone&gt;
 <p>However, if the components are expected to be used by another zone (that is, the feature is an internal, code facing feature) then a zone definition should be created that encapsulates the dependencies. The zone marker should then only require this single, new zone definition, and no others. This gives depending code a zone definition it can require. Failure to do this means error prone repetition of zone dependencies in the dependent zones.</p>
 <p>Put another way, consider the dependencies of a zone to be an implementation detail. Do not require depending code to know your dependencies in order to consume your components - provide a zone definition.</p>
 <h3 id="class-zone-marker"><a name="class-zone-marker" class="plugin-anchor" href="#class-zone-marker"><span class="fa fa-link"></span></a>Class zone marker</h3>
-<p>The <code>ZoneMarker</code> class and <code>[Zone]</code> attribute apply to all types in a namespace. It is possible to apply a single class to a zone, using the <code>[ClassZoneMarker]</code> attribute. Usage is exactly the same, either specify dependencies as parameters to the <code>[ClassZoneMarker]</code> constructor, or implement <code>IRequire&lt;TZone&gt;</code> directly on the component for each dependency.</p>
+<p>The <code>ZoneMarker</code> class and <code>[ZoneMarker]</code> attribute apply to all types in a namespace. It is possible to apply a single class to a zone, by applying the <code>[ZoneMarker]</code> attribute directly to a component class. Usage is exactly the same, either specify dependencies as parameters to the <code>[ZoneMarker]</code> constructor, or implement <code>IRequire&lt;TZone&gt;</code> directly on the component for each dependency.</p>
 <p>Generally speaking, most registration will use <code>ZoneMarker</code> classes to apply a zone to all components in a namespace.</p>
 <h3 id="empty-zone-marker"><a name="empty-zone-marker" class="plugin-anchor" href="#empty-zone-marker"><span class="fa fa-link"></span></a>Empty zone marker</h3>
 <p>A namespace can be marked with an empty zone marker, meaning it is zone aware, but does not require any other zone.</p>
-<pre><code class="lang-cs">namespace Foo.Bar
+<pre><code class="lang-cs"><span class="hljs-keyword">namespace</span> <span class="hljs-title">Foo.Bar</span>
 {
-  [Zone]
-  public class ZoneMarker
-  {
+  <span class="hljs-attribute">[<span class="hljs-title">ZoneMarker</span>]</span>
+  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ZoneMarker</span>
+  </span>{
   }
 }
 </code></pre>
 <p>All components in the <code>Foo.Bar</code> namespace and below are now zone aware, but do not require any other zones to be active. The component model filter will always allow these components through the zone filter. They are assumed to be infrastructure components, that is, essential to the correct running of the product, and always required.</p>
 <h3 id="example"><a name="example" class="plugin-anchor" href="#example"><span class="fa fa-link"></span></a>Example</h3>
 <p>When creating the component containers, the Component Model applies the zone filter to every part, and checks that each part belongs to one or more active zone. It will walk the namespace segments of the type name of the part, and check for zones at each level. If there are any zones attached to that namespace, then all zones must be active, or the part is not included in the container. The filter will walk every segment in the namespace, and all zones in all namespace segments must be active, or the part is not included. If there are no zones specified for the part, it is not included.</p>
-<pre><code class="lang-cs">// The namespace of the zone definition is irrelevant
-[ZoneDefinition]
-public interface IMyZone : IDependentZone
-{
+<pre><code class="lang-cs"><span class="hljs-comment">// The namespace of the zone definition is irrelevant</span>
+<span class="hljs-attribute">[<span class="hljs-title">ZoneDefinition</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IMyZone</span> : IDependentZone
+</span>{
 }
 
-namespace Foo.Bar
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">Foo.Bar</span>
 {
-  [Zone]
-  public class ZoneMarker : IZone, IRequire&lt;IMyZone&gt;
-  {
+  <span class="hljs-attribute">[<span class="hljs-title">ZoneMarker</span>]</span>
+  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ZoneMarker</span> : IZone, IRequire&lt;IMyZone&gt;
+  </span>{
   }
 }
 
-namespace Foo.Bar.Baz
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">Foo.Bar.Baz</span>
 {
-  [ShellComponent]
-  public class MyComponent
-  {
+  <span class="hljs-attribute">[<span class="hljs-title">ShellComponent</span>]</span>
+  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyComponent</span>
+  </span>{
   }
 }
 </code></pre>

@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Actions | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="10.2" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="10.2" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3545,7 +3547,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_31">
+                    <section class="normal" id="section-gitbook_19">
                     
                         <h1 id="actions-and-menu-items"><a name="actions-and-menu-items" class="plugin-anchor" href="#actions-and-menu-items"><span class="fa fa-link"></span></a>Actions and Menu Items</h1>
 <blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
@@ -3568,7 +3570,7 @@
 <p>Let&apos;s take a look at these steps in turn.</p>
 <h2 id="actionsxml"><a name="actionsxml" class="plugin-anchor" href="#actionsxml"><span class="fa fa-link"></span></a>Actions.xml</h2>
 <p><code>Actions.xml</code> is an embedded resource you can keep in your project. ReSharper is able to locate the resource due to the ActionsXml attribute with which the assembly is decorated. For example:</p>
-<pre><code class="lang-cs">[assembly: ActionsXml(<span class="hljs-string">&quot;JetBrains.ReSharper.PowerToys.MenuItem.Actions.xml&quot;</span>)]
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-keyword">assembly</span>: <span class="hljs-title">ActionsXml</span><span class="hljs-params">(<span class="hljs-string">&quot;JetBrains.ReSharper.PowerToys.MenuItem.Actions.xml&quot;</span>)</span>]</span>
 </code></pre>
 <blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
 <p>: This attribute is no longer required in ReSharper 8. ReSharper will instead look for all embedded resources in an assembly to see if it matches the name <code>Actions.xml</code></p>
@@ -3596,26 +3598,26 @@
 <p>Now, you&apos;re probably wondering - how is the action handler bound to an action? Well, there are two ways to do this. One is to name the class file to match the action, such that an action of <code>AddMenuItem.ShowCurrentSolution</code> matches the class name of <code>AddMenuItem_ShowCurrentSolutionAction</code>. As you may have guessed, underscores get &apos;turned&apos; into dots, and suffixes such as <code>Action</code> or <code>ActionHandler</code> are removed.</p>
 <p>Concerning the <code>IActionHandler</code> interface, it requires that you implement two methods.</p>
 <p>The first - <code>Update()</code> - returns a boolean value indicating whether the menu item is enabled or disabled. For example, if your action needs a solution to work on, you could specify the following Update() method:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">Update</span><span class="hljs-params">(IDataContext context, ActionPresentation presentation, DelegateUpdate nextUpdate)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Update</span><span class="hljs-params">(IDataContext context, ActionPresentation presentation, DelegateUpdate nextUpdate)</span>
 </span>{
   <span class="hljs-comment">// fetch active solution from context</span>
-  ISolution solution = context.GetData(JetBrains.ProjectModel.DataContext.DataConstants.SOLUTION);
+  ISolution solution = context.<span class="hljs-function"><span class="hljs-title">GetData</span><span class="hljs-params">(JetBrains.ProjectModel.DataContext.DataConstants.SOLUTION)</span></span>;
 
   <span class="hljs-comment">// enable this action if there is an active solution, disable otherwise</span>
-  <span class="hljs-keyword">return</span> solution != <span class="hljs-keyword">null</span>;
+  <span class="hljs-keyword">return</span> solution != <span class="hljs-literal">null</span>;
 }
 </code></pre>
 <p>The second method is called <code>Execute()</code>. This is the method where the action is actually executed.</p>
 <h2 id="redefining-action-handlers"><a name="redefining-action-handlers" class="plugin-anchor" href="#redefining-action-handlers"><span class="fa fa-link"></span></a>Redefining Action Handlers</h2>
 <p>If you wish to override existing actions, you can create a custom shell component that finds an existing action and adds a different handler for it. For example, here is a custom action handler override for the <code>TypeHierarchy.ClassHierarchy</code> action:</p>
-<pre><code class="lang-cs">[ShellComponent]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CustomActionHandlerManager</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ShellComponent</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CustomActionHandlerManager</span>
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CustomActionHandlerManager</span><span class="hljs-params">(Lifetime lifetime, IActionManager actionManager)</span>
   </span>{
-    <span class="hljs-keyword">var</span> classHierarchy = actionManager.GetUpdatableAction(<span class="hljs-string">&quot;TypeHierarchy.ClassHierarchy&quot;</span>);
-    <span class="hljs-keyword">if</span> (classHierarchy != <span class="hljs-keyword">null</span>)
-      classHierarchy.AddHandler(lifetime, <span class="hljs-keyword">new</span> WholeMembersHierarchyActions());
+    <span class="hljs-class"><span class="hljs-keyword">var</span> <span class="hljs-keyword">class</span><span class="hljs-title">Hierarchy</span> </span>= actionManager.<span class="hljs-function"><span class="hljs-title">GetUpdatableAction</span><span class="hljs-params">(<span class="hljs-string">&quot;TypeHierarchy.ClassHierarchy&quot;</span>)</span></span>;
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(classHierarchy != null)</span>
+      classHierarchy.<span class="hljs-title">AddHandler</span><span class="hljs-params">(lifetime, new WholeMembersHierarchyActions()</span>)</span>;
   }
 }
 </code></pre>

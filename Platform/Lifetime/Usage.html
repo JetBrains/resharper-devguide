@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Usage | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="7.2.1" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="7.2.1" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3551,19 +3553,19 @@
                     
                         <h1 id="usage"><a name="usage" class="plugin-anchor" href="#usage"><span class="fa fa-link"></span></a>Usage</h1>
 <p>The <code>Lifetime</code> class looks like this:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Lifetime</span>
-{
-  <span class="hljs-function"><span class="hljs-keyword">public</span> Lifetime <span class="hljs-title">AddAction</span><span class="hljs-params">(Action f)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> Lifetime <span class="hljs-title">AddBracket</span><span class="hljs-params">(Action fOpening, Action fClosing)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> Lifetime <span class="hljs-title">AddDispose</span><span class="hljs-params">(IDisposable item)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> Lifetime <span class="hljs-title">AddRef</span><span class="hljs-params">(<span class="hljs-keyword">object</span> o)</span></span>;
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> IsTerminated { <span class="hljs-keyword">get</span>; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Lifetime</span>
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-function">Lifetime <span class="hljs-title">AddAction</span><span class="hljs-params">(Action f)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">Lifetime <span class="hljs-title">AddBracket</span><span class="hljs-params">(Action fOpening, Action fClosing)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">Lifetime <span class="hljs-title">AddDispose</span><span class="hljs-params">(IDisposable item)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">Lifetime <span class="hljs-title">AddRef</span><span class="hljs-params">(<span class="hljs-keyword">object</span> o)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsTerminated</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <p>Your code receives a <code>Lifetime</code> instance, and registers its cleanup callback using <code>AddAction</code>. It then doesn&apos;t need to do anything else. When the <code>Lifetime</code> is terminated, the callback is called, and the action is performed. Actions are called in reverse order to how they were added. If an exception is thrown by an action, it is logged, and the next action is called.</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">MyMethod</span><span class="hljs-params">(Lifetime lifetime)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">MyMethod</span><span class="hljs-params">(Lifetime lifetime)</span>
 </span>{
-  lifetime.AddAction(() =&gt; { <span class="hljs-comment">/* Do cleanup */</span> });
+  lifetime.<span class="hljs-function"><span class="hljs-title">AddAction</span><span class="hljs-params">(()</span> </span>=&gt; { <span class="hljs-comment">/* Do cleanup */</span> });
 }
 </code></pre>
 <ul>

@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>InspectCode | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="11.2" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="11.2" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3557,24 +3559,24 @@
 <li>Create a standard ReSharper plugin, using the NuGet packages (target .NET 4.0)</li>
 <li>Add additional reference to <code>JetBrains.CommandLine.InspectCode.Unattended.dll</code> library from CLT distribution.</li>
 <li><p>Implement your own logic for <code>IInspectCodeConsumer</code></p>
-<pre><code class="lang-cs">  <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">IssueLogger</span> : <span class="hljs-title">IInspectCodeConsumer</span>
-  {
-    <span class="hljs-keyword">void</span> IDisposable.Dispose() { }
+<pre><code class="lang-cs">  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">IssueLogger</span> : IInspectCodeConsumer
+  </span>{
+    <span class="hljs-keyword">void</span> IDisposable.<span class="hljs-function"><span class="hljs-title">Dispose</span><span class="hljs-params">()</span> </span>{ }
 
-    <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Consume</span><span class="hljs-params">(IIssue issue)</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Consume</span><span class="hljs-params">(IIssue issue)</span>
     </span>{
-      Console.WriteLine(<span class="hljs-string">&quot;{0}({1}) {2}&quot;</span>, issue.File, issue.Range, issue.Message);
+      Console.<span class="hljs-function"><span class="hljs-title">WriteLine</span><span class="hljs-params">(<span class="hljs-string">&quot;{0}({1}) {2}&quot;</span>, issue.File, issue.Range, issue.Message)</span></span>;
     }
   }
 </code></pre>
 </li>
 <li><p>Implement <code>IInspectCodeConsumerFactory</code> factory to return a new instance of your consumer</p>
-<pre><code class="lang-cs">  [SolutionComponent]
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">IssueLoggerFactory</span> : <span class="hljs-title">IInspectCodeConsumerFactory</span>
-  {
-    <span class="hljs-function"><span class="hljs-keyword">public</span> IInspectCodeConsumer <span class="hljs-title">CreateConsumer</span><span class="hljs-params">(IEnumerable&lt;IProjectModelElement&gt; inspectScope, FileSystemPath outputFile = <span class="hljs-keyword">null</span>)</span>
+<pre><code class="lang-cs">  <span class="hljs-attribute">[<span class="hljs-title">SolutionComponent</span>]</span>
+  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">IssueLoggerFactory</span> : IInspectCodeConsumerFactory
+  </span>{
+    <span class="hljs-keyword">public</span> <span class="hljs-function">IInspectCodeConsumer <span class="hljs-title">CreateConsumer</span><span class="hljs-params">(IEnumerable&lt;IProjectModelElement&gt; inspectScope, FileSystemPath outputFile = null)</span>
     </span>{
-      <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">IssueLogger</span><span class="hljs-params">()</span></span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">IssueLogger</span><span class="hljs-params">()</span></span>;
     }
   }
 </code></pre>

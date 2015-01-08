@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Strongly Typed Navigation | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-level="9.5.2" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="9.5.2" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3550,11 +3552,11 @@
 <p>Fortunately, ReSharper provides strongly typed navigation to make this a lot more convenient and intuitive.</p>
 <h2 id="navigating-down-the-tree"><a name="navigating-down-the-tree" class="plugin-anchor" href="#navigating-down-the-tree"><span class="fa fa-link"></span></a>Navigating down the tree</h2>
 <p>Navigating down to child nodes is made very easy by derived interfaces of <code>ITreeNode</code>. All nodes in the tree implement <code>ITreeNode</code>, and also derive from it to provide a strongly typed API. For example, C# method declarations implement <code>IMethodDeclaration</code>, which itself derives from <code>ITreeNode</code>. If we take a look at some of the members:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IMethodDeclaration</span> : <span class="hljs-title">ITreeNode</span>
-{
-  IAttributeSectionList AttributeSectionList { <span class="hljs-keyword">get</span>; }
-  ICSharpIdentifier NameIdentifier { <span class="hljs-keyword">get</span>; }
-  ITypeParameterOfMethodList TypeParameterList { <span class="hljs-keyword">get</span>; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IMethodDeclaration</span> : ITreeNode
+</span>{
+  IAttributeSectionList <span class="hljs-title">AttributeSectionList</span> { <span class="hljs-keyword">get</span>; }
+  ICSharpIdentifier <span class="hljs-title">NameIdentifier</span> { <span class="hljs-keyword">get</span>; }
+  ITypeParameterOfMethodList <span class="hljs-title">TypeParameterList</span> { <span class="hljs-keyword">get</span>; }
   <span class="hljs-comment">// [...snip...]</span>
 }
 </code></pre>
@@ -3564,10 +3566,10 @@
 <p>Each of these properties is a strongly typed accessor to get to the <code>ITreeNode</code> that represents the attributes on the method, or the node that represents the method&apos;s name. Internally, the nodes are found by walking down the tree, looking for nodes of a particular type. They are then downcast to the strongly typed, <code>ITreeNode</code> derived interfaces.</p>
 <h3 id="collections"><a name="collections" class="plugin-anchor" href="#collections"><span class="fa fa-link"></span></a>Collections</h3>
 <p>Similarly, collections can be represented. Let&apos;s take a look at a simplified class declaration:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IClassDeclaration</span> : <span class="hljs-title">ITreeNode</span>
-{
-  TreeNodeCollection&lt;IMethodDeclaration&gt; MethodDeclarations {<span class="hljs-keyword">get</span>;}
-  TreeNodeEnumerable&lt;IMethodDeclaration&gt; MethodDeclarationsEnumerable {<span class="hljs-keyword">get</span>;}
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IClassDeclaration</span> : ITreeNode
+</span>{
+  TreeNodeCollection&lt;IMethodDeclaration&gt; <span class="hljs-title">MethodDeclarations</span> {<span class="hljs-keyword">get</span>;}
+  TreeNodeEnumerable&lt;IMethodDeclaration&gt; <span class="hljs-title">MethodDeclarationsEnumerable</span> {<span class="hljs-keyword">get</span>;}
   <span class="hljs-comment">// [...snip...]</span>
 }
 </code></pre>
@@ -3580,12 +3582,12 @@
 <h2 id="navigating-up-the-tree"><a name="navigating-up-the-tree" class="plugin-anchor" href="#navigating-up-the-tree"><span class="fa fa-link"></span></a>Navigating up the tree</h2>
 <p>ReSharper also provides a strongly typed means of navigating <em>up</em> the tree, which is preferable to manually walking up the chain of <code>Parent</code> properties. Generally speaking, if a node exposes strongly typed accessors, there will be a complementary navigator class.</p>
 <p>For example, the <code>IXmlTag</code> node exposes a <code>Header</code> property of type <code>IXmlTagHeader</code>, providing us strongly typed navigation <em>down</em> the tree (from a node representing a complete xml tag to the node representing the opening part of the tag). The <code>XmlTagNavigator</code> static class gives us the opposite - strongly typed navigation <em>up</em> to an <code>IXmlTag</code> from various child nodes.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlTagNavigator</span>
-{
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByTag</span><span class="hljs-params">(IXmlTag tag)</span> </span>{ <span class="hljs-comment">/* &#x2026; */</span> }
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByTagHeader</span><span class="hljs-params">(IXmlTagHeader header)</span> </span>{ <span class="hljs-comment">/* &#x2026; */</span> }
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByTagFooter</span><span class="hljs-params">(IXmlTagFooter footer)</span> </span>{ <span class="hljs-comment">/* &#x2026; */</span> }
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlTag <span class="hljs-title">GetByAttribute</span><span class="hljs-params">(IXmlAttribute attribute)</span> </span>{ <span class="hljs-comment">/* &#x2026; */</span> }
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlTagNavigator</span>
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">IXmlTag <span class="hljs-title">GetByTag</span><span class="hljs-params">(IXmlTag tag)</span> </span>{ <span class="hljs-comment">/* &#x2026; */</span> }
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">IXmlTag <span class="hljs-title">GetByTagHeader</span><span class="hljs-params">(IXmlTagHeader header)</span> </span>{ <span class="hljs-comment">/* &#x2026; */</span> }
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">IXmlTag <span class="hljs-title">GetByTagFooter</span><span class="hljs-params">(IXmlTagFooter footer)</span> </span>{ <span class="hljs-comment">/* &#x2026; */</span> }
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">IXmlTag <span class="hljs-title">GetByAttribute</span><span class="hljs-params">(IXmlAttribute attribute)</span> </span>{ <span class="hljs-comment">/* &#x2026; */</span> }
 }
 </code></pre>
 <p>The classes follow a simple naming pattern. The navigator class is named after the node you&apos;re trying to navigate <em>to</em>, and the name ends in the word <code>Navigator</code>, e.g. <code>XmlTagNavigator</code> is trying to navigate to an instance of <code>IXmlTag</code>. The methods all being with <code>GetBy</code> and finish with the type of the node that should be passed in. So, <code>XmlTagNavigator.GetByAttribute</code> is trying to navigate to an <code>IXmlTag</code>, from an <code>IXmlAttribute</code>.</p>
@@ -3594,11 +3596,11 @@
 <p>Since ReSharper knows these relationships, it is recommended that you use navigator classes where possible, instead of walking the <code>Parent</code> properties manually.</p>
 </blockquote>
 <p>It should also be pointed out that you can use the navigator classes in combination. For example, to get to a class declaration from an <code>if</code> statement in a C# file:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> IClassDeclaration <span class="hljs-title">GetByIfStatement</span><span class="hljs-params">(IIfStatement ifStatement)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function">IClassDeclaration <span class="hljs-title">GetByIfStatement</span><span class="hljs-params">(IIfStatement ifStatement)</span>
 </span>{
-  <span class="hljs-keyword">var</span> methodBody = BlockNavigator.GetByStatement(ifStatement);
-  <span class="hljs-keyword">var</span> methodDeclaration = MethodDeclaratioNavigator.GetByBody(methodBody);
-  <span class="hljs-keyword">return</span> ClassDeclarationNavigator.GetByMethodDeclaration(methodDeclaration);
+  <span class="hljs-keyword">var</span> methodBody = BlockNavigator.<span class="hljs-function"><span class="hljs-title">GetByStatement</span><span class="hljs-params">(ifStatement)</span></span>;
+  <span class="hljs-keyword">var</span> methodDeclaration = MethodDeclaratioNavigator.<span class="hljs-function"><span class="hljs-title">GetByBody</span><span class="hljs-params">(methodBody)</span></span>;
+  <span class="hljs-keyword">return</span> ClassDeclarationNavigator.<span class="hljs-function"><span class="hljs-title">GetByMethodDeclaration</span><span class="hljs-params">(methodDeclaration)</span></span>;
 }
 </code></pre>
 <p>It isn&apos;t necessary to check for null before passing a node into the navigator classes - they explicitly allow null to be passed in, and will return null if it can&apos;t find the appropriate parent.</p>

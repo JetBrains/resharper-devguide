@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Features and Products | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="7.5.3" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="7.5.3" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3553,12 +3555,12 @@
 <h2 id="features"><a name="features" class="plugin-anchor" href="#features"><span class="fa fa-link"></span></a>Features</h2>
 <p>Since all components in the Component Model are now grouped into zones, it is possible to treat a zone as a feature, and allow the user to disable that feature, by removing the zone&apos;s components from the Component Model&apos;s container. However, not all zones should be features, some zones are clearly implementation details, while others are integral to the product and shouldn&apos;t be disabled.</p>
 <p>ReSharper supports this for specific zone definitions. The Features page on the options dialog lists products and features that can be disabled.</p>
-<!-- TODO: Picture of the features options dialog page -->
+<p><img src="options_features.png" alt="Features in ReSharper&apos;s options"></p>
 <p>This list is populated by applying the <code>ZoneDefinitionConfigurableFeatureAttribute</code> to a zone definition. It takes three settings - the name of the feature, a short description, and a flag to state if the zone definition should be treated as a feature or a product.</p>
-<pre><code class="lang-cs">[ZoneDefinition]
-[ZoneDefinitionConfigurableFeature(&quot;CSS Language&quot;, &quot;Support for CSS language in .css and HTML based files&quot;, false)]
-public interface ILanguageCssZone : IPsiLanguageZone, IRequire&lt;ILanguageHtmlZone&gt;
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ZoneDefinition</span>]</span>
+<span class="hljs-attribute">[<span class="hljs-title">ZoneDefinitionConfigurableFeature</span><span class="hljs-params">(<span class="hljs-string">&quot;CSS Language&quot;</span>, <span class="hljs-string">&quot;Support for CSS language in .css and HTML based files&quot;</span>, <span class="hljs-literals">false</span>)</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ILanguageCssZone</span> : IPsiLanguageZone, IRequire&lt;ILanguageHtmlZone&gt;
+</span>{
 }
 </code></pre>
 <p>These properties are only used by the UI. When the zone is disabled, the zone definition type&apos;s short name is saved to settings. If a feature zone has dependents (that is, other zones that depend on the feature zone), those dependent zones (and therefore features) are also disabled. For example, disabling the HTML zone will also disable the CSS zone. The dependent zone definition&apos;s short name is also written to settings.</p>
@@ -3567,13 +3569,13 @@ public interface ILanguageCssZone : IPsiLanguageZone, IRequire&lt;ILanguageHtmlZ
 <p>A zone definition can be treated as a product by passing <code>true</code> to the <code>isInProductSection</code> parameter of <code>ZoneDefinitionConfigurableFeatureAttribute</code>. The difference here is purely cosmetic. By setting this parameter to <code>true</code>, the options dialog page displays the zone in the &quot;Products&quot; section rather than the &quot;Features&quot; section. The intention of this flag is to allow the hierarchical nature of zones to be used to provide an obvious &quot;off switch&quot; to the user in order to disable all of the features in a product. By disabling a product zone, all dependent zones are also disabled.</p>
 <h3 id="product-information"><a name="product-information" class="plugin-anchor" href="#product-information"><span class="fa fa-link"></span></a>Product information</h3>
 <p>A product can also expose product information to the ReSharper Platform, by using the <code>ZoneDefinitionProductAttribute</code>. It is simply an informational attribute, used to inform the user of the name of the installed product, the company responsible and to provide links to product web pages.</p>
-<pre><code class="lang-cs">[ZoneDefinition]
-[ZoneDefinitionProduct(CompanyName = <span class="hljs-string">&quot;JetBrains&quot;</span>, CompanyNameLegal = <span class="hljs-string">&quot;JetBrains s.r.o.&quot;</span>, 
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ZoneDefinition</span>]</span>
+[<span class="hljs-function"><span class="hljs-title">ZoneDefinitionProduct</span><span class="hljs-params">(CompanyName = <span class="hljs-string">&quot;JetBrains&quot;</span>, CompanyNameLegal = <span class="hljs-string">&quot;JetBrains s.r.o.&quot;</span>, 
   ProductPresentableName = <span class="hljs-string">&quot;ReSharper&quot;</span>, ProductTechnicalName = <span class="hljs-string">&quot;ReSharper&quot;</span>,
   ProductUrl = <span class="hljs-string">&quot;http://www.jetbrains.com/resharper&quot;</span>,
-  ProductIcon = <span class="hljs-keyword">typeof</span>(ReSharperUIThemedIcons.ReSharper16x16))]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">IReSharperProductZone</span> : <span class="hljs-title">IZone</span>
-{
+  ProductIcon = typeof(ReSharperUIThemedIcons.ReSharper16x16)</span>)]
+<span class="hljs-keyword">public</span> class IReSharperProductZone : IZone
+</span>{
 }
 </code></pre>
 

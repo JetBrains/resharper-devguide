@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Bulk actions | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-level="10.2.4" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="10.2.4" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3543,7 +3545,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_21">
+                    <section class="normal" id="section-gitbook_9">
                     
                         <h1 id="bulk-actions"><a name="bulk-actions" class="plugin-anchor" href="#bulk-actions"><span class="fa fa-link"></span></a>Bulk Actions</h1>
 <blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
@@ -3554,30 +3556,30 @@
 <p>This mechanic is available for both quick-fix actions as well as context actions that are part of Code Cleanup.</p>
 <p>In the case of a context action (such as ReSharper&#x2019;s <code>VarToTypeAction</code>, which converts the C# <code>var</code> keyword to an explicit type), the implementation of additional items happens in the <code>CreateBulbItems()</code> method. A context action can, of course, create all the required bulb items directly, but it can also use elements from the <code>JetBrains.ReSharper.Intentions.Bulk</code> namespace to simplify the process.</p>
 <p>In the case of <code>VarToTypeAction</code>, ReSharper uses the <code>BulkCodeCleanupContextActionBuilder</code> class to construct all the items as follows:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> cleanupProfile = BulkCodeCleanupActionBuilderBase.CreateProfile(profile =&gt;
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> cleanupProfile = BulkCodeCleanupActionBuilderBase.<span class="hljs-function"><span class="hljs-title">CreateProfile</span><span class="hljs-params">(profile =&gt;
   {
     profile.SetSetting(ReplaceByVar.USE_VAR_DESCRIPTOR
-  }, <span class="hljs-keyword">new</span> ReplaceByVar.Options()
-  {
+  }, new ReplaceByVar.Options()</span>
+  </span>{
     BehavourStyle = ReplaceByVar.BehavourStyle.CAN_CHANGE_TO_EXPLICIT,
     ForeachVariableStyle = ReplaceByVar.ForeachVariableStyle.ALWAYS_EXPLICIT,
     LocalVariableStyle = ReplaceByVar.LocalVariableStyle.ALWAYS_EXPLICIT
   }));
 
-<span class="hljs-keyword">var</span> projectFile = myProvider.SourceFile.ToProjectFile();
-Assertion.AssertNotNull(projectFile, <span class="hljs-string">&quot;projectFile must not be null&quot;</span>);
+<span class="hljs-keyword">var</span> projectFile = myProvider.SourceFile.<span class="hljs-function"><span class="hljs-title">ToProjectFile</span><span class="hljs-params">()</span></span>;
+Assertion.<span class="hljs-function"><span class="hljs-title">AssertNotNull</span><span class="hljs-params">(projectFile, <span class="hljs-string">&quot;projectFile must not be null&quot;</span>)</span></span>;
 
-<span class="hljs-keyword">var</span> builder = BulkCodeCleanupContextActionBuilder.CreateByPsiLanguage&lt;CSharpLanguage&gt;(cleanupProfile,
-  <span class="hljs-string">&quot;Use explicit type everywhere&quot;</span>, projectFile.GetSolution(), <span class="hljs-keyword">this</span>);
-<span class="hljs-keyword">return</span> builder.CreateBulkActions(projectFile, IntentionsAnchors.ContextActionsAnchor,
-  IntentionsAnchors.ContextActionsAnchorPosition);
+<span class="hljs-keyword">var</span> builder = BulkCodeCleanupContextActionBuilder.<span class="hljs-function"><span class="hljs-title">CreateByPsiLanguage&lt;CSharpLanguage&gt;</span><span class="hljs-params">(cleanupProfile,
+  <span class="hljs-string">&quot;Use explicit type everywhere&quot;</span>, projectFile.GetSolution()</span>, <span class="hljs-keyword">this</span>)</span>;
+<span class="hljs-keyword">return</span> builder.<span class="hljs-function"><span class="hljs-title">CreateBulkActions</span><span class="hljs-params">(projectFile, IntentionsAnchors.ContextActionsAnchor,
+  IntentionsAnchors.ContextActionsAnchorPosition)</span></span>;
 </code></pre>
 <p>The exact mechanic of creating bulk context actions can be found in <code>BulkIntentionsBuilderEx.CreateBulkActions()</code>. It is a rather simple process that creates actions for the current caret position, then (if applicable) the current file, project folder, project or the whole solution.</p>
 <p>Quick-fixes have a similar workflow - create a builder and in your call <code>CreateBulbItems</code> method, return <code>builder.CreateBulkActions()</code>. The builder to use for quick-fixes is called <code>BulkQuickFixWithCommonTransactionBuilder</code>, and can be used in a couple of ways. As of ReSharper 8.2, it is internally used for quick-fixes such as <code>OptimizeImportsFix</code>, which removes all redundant C# &quot;using&quot; statements in a file, and optionally, folder, project and solution. In other words, the default implementation of the quick fix operates on the whole file, rather than the current text caret position.</p>
 <p>As such, it has a slightly awkward API, and requires a little extra work to support an action at the caret position as well as file, folder, project and solution scope. The constructor has two overloads. The first takes in a <code>QuickFixBase</code> that represents the &quot;in file&quot; scope, as well as a delegate to operate on files in folder, project and solution scope, and a predicate to see which file in scope it should apply to (e.g. just C# files). The second overload takes two <code>QuickFixBase</code> instances. One is for the caret position, and the second is for the &quot;in file&quot; scope. It also requires the delegate and predicate.</p>
 <p>The awkward part of this is that to support both &quot;at caret&quot; and &quot;in file&quot; scope, you need to implement two classes that derive from <code>QuickFixBase</code>. Fortunately, this is mostly boilerplate and can be implemented using the same delegate passed in for folder, project and solution scope. You need just one class that looks something like this:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BulkQuickFixInFileWithCommonPsiTransaction</span> : <span class="hljs-title">QuickFixBase</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BulkQuickFixInFileWithCommonPsiTransaction</span> : QuickFixBase
+</span>{
   <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> IProjectFile myProjectFile;
   <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> Action&lt;IDocument, IPsiSourceFile, IProgressIndicator&gt; myPsiTransactionAction;
 
@@ -3589,23 +3591,23 @@ Assertion.AssertNotNull(projectFile, <span class="hljs-string">&quot;projectFile
     Text = actionText + <span class="hljs-string">&quot; in file&quot;</span>;
   }
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IUserDataHolder cache)</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IUserDataHolder cache)</span>
   </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
   }
 
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">string</span> Text { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">private</span> <span class="hljs-keyword">set</span>; }
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">string</span> <span class="hljs-title">Text</span> { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">private</span> <span class="hljs-keyword">set</span>; }
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> Action&lt;ITextControl&gt; <span class="hljs-title">ExecutePsiTransaction</span><span class="hljs-params">(ISolution solution, IProgressIndicator progress)</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">Action&lt;ITextControl&gt; <span class="hljs-title">ExecutePsiTransaction</span><span class="hljs-params">(ISolution solution, IProgressIndicator progress)</span>
   </span>{
-    <span class="hljs-keyword">var</span> documentManager = solution.GetComponent&lt;DocumentManager&gt;();
-    <span class="hljs-keyword">var</span> document = documentManager.GetOrCreateDocument(myProjectFile);
-    <span class="hljs-keyword">var</span> psiSourceFile = projectFile.ToSourceFile();
-    <span class="hljs-keyword">if</span> (psiSourceFile == <span class="hljs-keyword">null</span>)
-      <span class="hljs-keyword">return</span>;
+    <span class="hljs-keyword">var</span> documentManager = solution.<span class="hljs-function"><span class="hljs-title">GetComponent&lt;DocumentManager&gt;</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-keyword">var</span> document = documentManager.<span class="hljs-function"><span class="hljs-title">GetOrCreateDocument</span><span class="hljs-params">(myProjectFile)</span></span>;
+    <span class="hljs-keyword">var</span> psiSourceFile = projectFile.<span class="hljs-function"><span class="hljs-title">ToSourceFile</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(psiSourceFile == null)</span>
+      return</span>;
 
-    myPsiTransactionAction(document, psiSourceFile, progress);
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+    <span class="hljs-function"><span class="hljs-title">myPsiTransactionAction</span><span class="hljs-params">(document, psiSourceFile, progress)</span></span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
   }
 }
 </code></pre>
@@ -3613,30 +3615,30 @@ Assertion.AssertNotNull(projectFile, <span class="hljs-string">&quot;projectFile
 <ul>
 <li>Implement the quick-fix. The <code>ExecutePsiTransaction()</code> method just fixes the issue at the text caret position</li>
 <li><p>Prepare an action that processes a single file with your chosen logic. Here&#x2019;s an example:</p>
-<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> solution = projectFile.GetSolution();
-  <span class="hljs-keyword">var</span> psiFiles = solution.GetComponent&lt;IPsiFiles&gt;();
+<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> solution = projectFile.<span class="hljs-function"><span class="hljs-title">GetSolution</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">var</span> psiFiles = solution.<span class="hljs-function"><span class="hljs-title">GetComponent&lt;IPsiFiles&gt;</span><span class="hljs-params">()</span></span>;
   Action&lt;IDocument, IPsiSourceFile, IProgressIndicator&gt; processFileAction =
     (document, psiSourceFile, indicator) =&gt;
   {
-    <span class="hljs-keyword">var</span> csharpFiles = psiFiles.GetPsiFiles&lt;CSharpLanguage&gt;(psiSourceFile).OfType&lt;ICSharpFile&gt;();
-    <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> csharpFile <span class="hljs-keyword">in</span> csharpFiles)
-    {
-      UsingUtil.RemoveUnusedImports(document, csharpFile);
+    <span class="hljs-keyword">var</span> csharpFiles = psiFiles.<span class="hljs-function"><span class="hljs-title">GetPsiFiles&lt;CSharpLanguage&gt;</span><span class="hljs-params">(psiSourceFile)</span>.<span class="hljs-title">OfType&lt;ICSharpFile&gt;</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-title">foreach</span> <span class="hljs-params">(var csharpFile in csharpFiles)</span>
+    </span>{
+      UsingUtil.<span class="hljs-function"><span class="hljs-title">RemoveUnusedImports</span><span class="hljs-params">(document, csharpFile)</span></span>;
     }
   };
 </code></pre>
 </li>
 <li><p>Create an instance of the <code>BulkQuickFixInFileWithCommonPsiTransaction</code> class defined above (make sure to add this class to your project), passing in an instance of the <code>processFileAction</code> delegate</p>
-<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> inFileFix = <span class="hljs-keyword">new</span> BulkQuickFixInFileWithCommonPsiTransaction(projectFile, RemoveUnusedDirectivesString, processFileAction);
+<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> inFileFix = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">BulkQuickFixInFileWithCommonPsiTransaction</span><span class="hljs-params">(projectFile, RemoveUnusedDirectivesString, processFileAction)</span></span>;
 </code></pre>
 </li>
 <li><p>Create a <code>BulkQuickFixWithCommonTransactionBuilder</code>, which also happens to accept a predicate that you can use to filter out files you do not want to process:</p>
-<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> acceptProjectFilePredicate = BulkItentionsBuilderEx.CreateAcceptFilePredicateByPsiLanaguage&lt;CSharpLanguage&gt;(solution);
-  <span class="hljs-keyword">var</span> builder = <span class="hljs-keyword">new</span> BulkQuickFixWithCommonTransactionBuilder(<span class="hljs-keyword">this</span>, inFileFix, solution, RemoveUnusedDirectivesString, processFileAction, acceptProjectFilePredicate);
+<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> acceptProjectFilePredicate = BulkItentionsBuilderEx.<span class="hljs-function"><span class="hljs-title">CreateAcceptFilePredicateByPsiLanaguage&lt;CSharpLanguage&gt;</span><span class="hljs-params">(solution)</span></span>;
+  <span class="hljs-keyword">var</span> builder = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">BulkQuickFixWithCommonTransactionBuilder</span><span class="hljs-params">(this, inFileFix, solution, RemoveUnusedDirectivesString, processFileAction, acceptProjectFilePredicate)</span></span>;
 </code></pre>
 </li>
 <li><p>Finally, use the builder to create all the actions in bulk:</p>
-<pre><code class="lang-cs">  <span class="hljs-keyword">return</span> builder.CreateBulkActions(projectFile, IntentionsAnchors.QuickFixesAnchor, IntentionsAnchors.QuickFixesAnchorPosition);
+<pre><code class="lang-cs">  <span class="hljs-keyword">return</span> builder.<span class="hljs-function"><span class="hljs-title">CreateBulkActions</span><span class="hljs-params">(projectFile, IntentionsAnchors.QuickFixesAnchor, IntentionsAnchors.QuickFixesAnchorPosition)</span></span>;
 </code></pre>
 </li>
 </ul>
@@ -3644,27 +3646,27 @@ Assertion.AssertNotNull(projectFile, <span class="hljs-string">&quot;projectFile
 <ul>
 <li>Implement the quick-fix. The <code>ExecutePsiTransaction()</code> method fixes the issue across the whole file</li>
 <li><p>Prepare an action that processes a single file with your chosen logic. The example here is the same as above:</p>
-<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> solution = projectFile.GetSolution();
-  <span class="hljs-keyword">var</span> psiFiles = solution.GetComponent&lt;IPsiFiles&gt;();
+<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> solution = projectFile.<span class="hljs-function"><span class="hljs-title">GetSolution</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">var</span> psiFiles = solution.<span class="hljs-function"><span class="hljs-title">GetComponent&lt;IPsiFiles&gt;</span><span class="hljs-params">()</span></span>;
   Action&lt;IDocument, IPsiSourceFile, IProgressIndicator&gt; processFileAction = (document, psiSourceFile, indicator) =&gt;
   {
-    <span class="hljs-keyword">var</span> csharpFiles = psiFiles.GetPsiFiles&lt;CSharpLanguage&gt;(psiSourceFile).OfType&lt;ICSharpFile&gt;();
-    <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> csharpFile <span class="hljs-keyword">in</span> csharpFiles)
-    {
-      UsingUtil.RemoveUnusedImports(document, csharpFile);
+    <span class="hljs-keyword">var</span> csharpFiles = psiFiles.<span class="hljs-function"><span class="hljs-title">GetPsiFiles&lt;CSharpLanguage&gt;</span><span class="hljs-params">(psiSourceFile)</span>.<span class="hljs-title">OfType&lt;ICSharpFile&gt;</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-title">foreach</span> <span class="hljs-params">(var csharpFile in csharpFiles)</span>
+    </span>{
+      UsingUtil.<span class="hljs-function"><span class="hljs-title">RemoveUnusedImports</span><span class="hljs-params">(document, csharpFile)</span></span>;
     }
   };
 </code></pre>
 </li>
 <li><p>Create a <code>BulkQuickFixWithCommonTransactionBuilder</code>, together with a predicate to indicate which files you want to process. Note that we call a different constructor here, and pass in <code>this</code> as the quick fix to operate by default. This overload treats this quick-fix as the &quot;in file&quot; scope quick fix, and assumes the &quot;at caret position&quot; quick-fix isn&apos;t required:</p>
-<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> acceptProjectFilePredicate = BulkItentionsBuilderEx.CreateAcceptFilePredicateByPsiLanaguage&lt;CSharpLanguage&gt;(solution);
-  <span class="hljs-keyword">var</span> builder = <span class="hljs-keyword">new</span> BulkQuickFixWithCommonTransactionBuilder(<span class="hljs-keyword">this</span>, solution, RemoveUnusedDirectivesString, processFileAction, acceptProjectFilePredicate);
+<pre><code class="lang-cs">  <span class="hljs-keyword">var</span> acceptProjectFilePredicate = BulkItentionsBuilderEx.<span class="hljs-function"><span class="hljs-title">CreateAcceptFilePredicateByPsiLanaguage&lt;CSharpLanguage&gt;</span><span class="hljs-params">(solution)</span></span>;
+  <span class="hljs-keyword">var</span> builder = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">BulkQuickFixWithCommonTransactionBuilder</span><span class="hljs-params">(this, solution, RemoveUnusedDirectivesString, processFileAction, acceptProjectFilePredicate)</span></span>;
 </code></pre>
 </li>
 <li><p>Finally, use the builder to create all the actions in bulk:</p>
 </li>
 </ul>
-<pre><code class="lang-cs"><span class="hljs-keyword">return</span> builder.CreateBulkActions(projectFile, IntentionsAnchors.QuickFixesAnchor, IntentionsAnchors.QuickFixesAnchorPosition);
+<pre><code class="lang-cs"><span class="hljs-keyword">return</span> builder.<span class="hljs-function"><span class="hljs-title">CreateBulkActions</span><span class="hljs-params">(projectFile, IntentionsAnchors.QuickFixesAnchor, IntentionsAnchors.QuickFixesAnchorPosition)</span></span>;
 </code></pre>
 
                     

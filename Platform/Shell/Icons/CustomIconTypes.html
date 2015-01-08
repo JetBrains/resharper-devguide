@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Custom Icon Types | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="7.13.4.4" data-basepath="../../.." data-revision="1418218353318">
+    <div class="book" data-level="7.13.4.4" data-basepath="../../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3551,9 +3553,9 @@
 <p>It is possible to create a custom icon type, if the existing item types do not meet requirements. For example, the image could be retrieved from the filesystem, rather than compiled into an assembly.</p>
 <p>To create a custom file type, you need to create a class that derives from <code>IconId</code>. This class identifies your image, and should provide enough information to be able to create an image. It should be a value type, and must override the various <code>Equals</code>, <code>CompareTo</code> and <code>GetHashCode</code> methods to be able to properly compare two instances as the same.</p>
 <p>Each <code>IconId</code> is associated with a class that implements <code>IIconIdOwner</code>, and is marked with the <code>[ShellComponent]</code> attribute. This class is responsible for taking the information in the <code>IconId</code> derived class and retrieving the icon.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IIconIdOwner</span>
-{
-    Type IconIdType { <span class="hljs-keyword">get</span>; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IIconIdOwner</span>
+</span>{
+    Type <span class="hljs-title">IconIdType</span> { <span class="hljs-keyword">get</span>; }
     <span class="hljs-function">ImageSource <span class="hljs-title">TryGetImage</span><span class="hljs-params">(IconId iconid, IconTheme theme, IThemedIconManagerPerThemeCache themedIconManagerPerThemeCache, OnError onerror)</span></span>;
 }
 </code></pre>
@@ -3562,11 +3564,11 @@
 <p>In the case of an error, the class should pass any exception to the <code>Handle</code> method on the <code>onerror</code> parameter, and return the placeholder image.</p>
 <h2 id="using-existing-icons"><a name="using-existing-icons" class="plugin-anchor" href="#using-existing-icons"><span class="fa fa-link"></span></a>Using existing icons</h2>
 <p>If the icon owner needs to use other icons, perhaps to apply an overlay (although the <code>CompositeIconId</code> should handle this), it can use the <code>IThemedIconManagerPerThemeCache</code> instance that gets passed in. This interface is a cache of existing icons for the current theme, and can be used to get an icon image, as a WPF <code>ImageSource</code> or a <code>System.Drawing.Bitmap</code> for a particular DPI.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IThemedIconManagerPerThemeCache</span>
-{
-    <span class="hljs-function">ImageSource <span class="hljs-title">GetIconImageSource</span><span class="hljs-params">([NotNull] IconId iconid)</span></span>;
-    <span class="hljs-function">Bitmap <span class="hljs-title">GetIconGdipBitmap</span><span class="hljs-params">([NotNull] IconId id, RasterizationResolution resolution)</span></span>;
-    <span class="hljs-function">ImageSource <span class="hljs-title">TryGetIconImageSource</span><span class="hljs-params">([NotNull] IconId id)</span></span>;
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IThemedIconManagerPerThemeCache</span>
+</span>{
+    <span class="hljs-function">ImageSource <span class="hljs-title">GetIconImageSource</span><span class="hljs-params">(<span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> IconId iconid)</span></span>;
+    <span class="hljs-function">Bitmap <span class="hljs-title">GetIconGdipBitmap</span><span class="hljs-params">(<span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> IconId id, RasterizationResolution resolution)</span></span>;
+    <span class="hljs-function">ImageSource <span class="hljs-title">TryGetIconImageSource</span><span class="hljs-params">(<span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> IconId id)</span></span>;
 }
 </code></pre>
 <p>The images are created on demand, or pulled from the in-memory cache. The <code>GetIconImageSource</code> will return the appropriate image, or will return the placeholder. The <code>TryGetIconImageSource</code> method will return <code>null</code> if it can&apos;t find the requested icon.</p>
@@ -3584,9 +3586,9 @@
 </ul>
 <p>When the <code>IIconIdOwner</code> class needs to return a themed icon, it should look at <code>IconTheme.Aspects</code> for aspects it recognises. The array is in priority order, and there may be more than one entry for each aspect kind, to allow for fallbacks. The icon owner should compare the aspect against the known static aspects listed above. When it recognises that aspect, it should provide the appropriate icon.</p>
 <p>How the icon owner chooses to get a theme aspect specific icon is up to the implementation of the icon owner. <code>CompiledIconId</code> icons embed several different versions of the icons into an assembly&apos;s resources, and the owner simply retrieves the version of the icon that matches the aspect. The <code>ShellFileIconIdOwner</code> on the other hand, retrieves a file type icon from the operating system, looks for the <code>GenericIconThemeAspect.Gray</code> theme aspect and makes the icon monochrome using <code>ColorManagement.MakeMonochrome</code>.</p>
-<pre><code class="lang-cs">BitmapSource bmp = GetFileIcon(iconid.ExtensionWithDot);
-<span class="hljs-keyword">if</span> (theme.Aspects.Contains(GenericIconThemeAspect.Gray))
-  <span class="hljs-keyword">return</span> ColorManagement.MakeMonochrome(bmp);
+<pre><code class="lang-cs">BitmapSource bmp = <span class="hljs-function"><span class="hljs-title">GetFileIcon</span><span class="hljs-params">(iconid.ExtensionWithDot)</span></span>;
+<span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(theme.Aspects.Contains(GenericIconThemeAspect.Gray)</span>)
+  return ColorManagement.<span class="hljs-title">MakeMonochrome</span><span class="hljs-params">(bmp)</span></span>;
 </code></pre>
 <p>Both the Light and Dark themes will contain the <code>Gray</code> aspect, but the priority ordering is different. This allows for fallback icons.</p>
 <blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>

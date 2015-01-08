@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Navigation | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="10.8" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="10.8" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3545,7 +3547,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_30">
+                    <section class="normal" id="section-gitbook_18">
                     
                         <h1 id="navigation"><a name="navigation" class="plugin-anchor" href="#navigation"><span class="fa fa-link"></span></a>Navigation</h1>
 <p>ReSharper navigation consists of two main parts:</p>
@@ -3575,9 +3577,9 @@
 <h2 id="feature-providers"><a name="feature-providers" class="plugin-anchor" href="#feature-providers"><span class="fa fa-link"></span></a>Feature Providers</h2>
 <p>Feature providers represent features themselves. That is, there is just one provider per navigation feature regardless of the number of languages and environments where this feature is supposed to work.</p>
 <p>Each context navigation provider implements either the <code>IContextSearchProvider</code> or the <code>INavigateFromHereProvider</code> interface. The <code>IContextSearchProvider</code> interface is defined as follows:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IContextSearchProvider</span>
-{
-  [CanBeNull]
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IContextSearchProvider</span>
+</span>{
+  <span class="hljs-attribute">[<span class="hljs-title">CanBeNull</span>]</span>
   <span class="hljs-function">Action <span class="hljs-title">GetSearchesExecution</span><span class="hljs-params">(IDataContext dataContext, INavigationExecutionHost host)</span></span>;
 }
 </code></pre>
@@ -3593,67 +3595,67 @@
 <p>If your navigation is not complicated, that&apos;s all you need to know about the context navigation framework.</p>
 <h2 id="example"><a name="example" class="plugin-anchor" href="#example"><span class="fa fa-link"></span></a>Example</h2>
 <p>Here is an example of simple navigation to the corresponding folder using Windows explorer.</p>
-<pre><code class="lang-cs">using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using JetBrains.Annotations;
-using JetBrains.Application.DataContext;
-using JetBrains.ProjectModel;
-using JetBrains.ReSharper.Feature.Services.ContextNavigation;
-using JetBrains.Util;
+<pre><code class="lang-cs"><span class="hljs-keyword">using</span> System;
+<span class="hljs-keyword">using</span> System.Collections.Generic;
+<span class="hljs-keyword">using</span> System.Diagnostics;
+<span class="hljs-keyword">using</span> JetBrains.Annotations;
+<span class="hljs-keyword">using</span> JetBrains.Application.DataContext;
+<span class="hljs-keyword">using</span> JetBrains.ProjectModel;
+<span class="hljs-keyword">using</span> JetBrains.ReSharper.Feature.Services.ContextNavigation;
+<span class="hljs-keyword">using</span> JetBrains.Util;
 
-using DataConstants = JetBrains.ProjectModel.DataContext.DataConstants;
+<span class="hljs-keyword">using</span> DataConstants = JetBrains.ProjectModel.DataContext.DataConstants;
 
-namespace ReSharperPlugIn6
+<span class="hljs-keyword">namespace</span> <span class="hljs-title">ReSharperPlugIn6</span>
 {
-  [ActionHandler]
-  public class SimpleNavigation : ContextNavigationActionBase&lt;SimpleNavigationProvider&gt;
-  {
+  <span class="hljs-attribute">[<span class="hljs-title">ActionHandler</span>]</span>
+  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SimpleNavigation</span> : ContextNavigationActionBase&lt;SimpleNavigationProvider&gt;
+  </span>{
   }
 
-  [ContextNavigationProvider]
-  public class SimpleNavigationProvider : INavigateFromHereProvider
-  {
-    [CanBeNull]
-    private static ProcessStartInfo GetProcessStartInfo([NotNull] FileSystemPath path)
-    {
-      return new ProcessStartInfo(&quot;explorer.exe&quot;,
-        path.ExistsFile ? string.Format(@&quot;/select,&quot;&quot;{0}&quot;&quot;&quot;, path) : string.Format(@&quot;&quot;&quot;{0}&quot;&quot;&quot;, path.Directory));
+  <span class="hljs-attribute">[<span class="hljs-title">ContextNavigationProvider</span>]</span>
+  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SimpleNavigationProvider</span> : INavigateFromHereProvider
+  </span>{
+    <span class="hljs-attribute">[<span class="hljs-title">CanBeNull</span>]</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-function">ProcessStartInfo <span class="hljs-title">GetProcessStartInfo</span><span class="hljs-params">(<span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> FileSystemPath path)</span>
+    </span>{
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">ProcessStartInfo</span><span class="hljs-params">(<span class="hljs-string">&quot;explorer.exe&quot;</span>,
+        path.ExistsFile ? <span class="hljs-keyword">string</span>.Format(@<span class="hljs-string">&quot;/select,&quot;</span><span class="hljs-string">&quot;{0}&quot;</span><span class="hljs-string">&quot;&quot;</span>, path)</span> : <span class="hljs-keyword">string</span>.<span class="hljs-title">Format</span><span class="hljs-params">(@<span class="hljs-string">&quot;&quot;</span><span class="hljs-string">&quot;{0}&quot;</span><span class="hljs-string">&quot;&quot;</span>, path.Directory)</span>)</span>;
     }
 
-    [CanBeNull]
-    private static FileSystemPath GetPathByContext([NotNull] IDataContext context)
-    {
-      var projectModelElement = context.GetData(DataConstants.PROJECT_MODEL_ELEMENT);
+    <span class="hljs-attribute">[<span class="hljs-title">CanBeNull</span>]</span>
+    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-function">FileSystemPath <span class="hljs-title">GetPathByContext</span><span class="hljs-params">(<span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> IDataContext context)</span>
+    </span>{
+      <span class="hljs-keyword">var</span> projectModelElement = context.<span class="hljs-function"><span class="hljs-title">GetData</span><span class="hljs-params">(DataConstants.PROJECT_MODEL_ELEMENT)</span></span>;
 
-      var projectItem = projectModelElement as IProjectItem;
-      if (projectItem == null)
-        return null;
+      <span class="hljs-keyword">var</span> projectItem = projectModelElement <span class="hljs-keyword">as</span> IProjectItem;
+      <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(projectItem == null)</span>
+        return null</span>;
 
-      if (!projectItem.Location.Directory.ExistsDirectory)
-        return null;
+      <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(!projectItem.Location.Directory.ExistsDirectory)</span>
+        return null</span>;
 
-      return projectItem.Location;
+      <span class="hljs-keyword">return</span> projectItem.Location;
     }
 
-    public IEnumerable&lt;ContextNavigation&gt; CreateWorkflow(IDataContext dataContext)
-    {
-      var path = GetPathByContext(dataContext);
-      if (path != null)
-      {
-        ProcessStartInfo processStartInfo = GetProcessStartInfo(path);
-        if (processStartInfo != null)
-        {
-          yield return new ContextNavigation( &quot;&amp;Windows Explorer&quot;, null, NavigationActionGroup.Other,
-            () =&gt;
+    <span class="hljs-keyword">public</span> <span class="hljs-function">IEnumerable&lt;ContextNavigation&gt; <span class="hljs-title">CreateWorkflow</span><span class="hljs-params">(IDataContext dataContext)</span>
+    </span>{
+      <span class="hljs-keyword">var</span> path = <span class="hljs-function"><span class="hljs-title">GetPathByContext</span><span class="hljs-params">(dataContext)</span></span>;
+      <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(path != null)</span>
+      </span>{
+        ProcessStartInfo processStartInfo = <span class="hljs-function"><span class="hljs-title">GetProcessStartInfo</span><span class="hljs-params">(path)</span></span>;
+        <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(processStartInfo != null)</span>
+        </span>{
+          <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">ContextNavigation</span><span class="hljs-params">( <span class="hljs-string">&quot;&amp;Windows Explorer&quot;</span>, null, NavigationActionGroup.Other,
+            ()</span> </span>=&gt;
             {
-              try
+              <span class="hljs-keyword">try</span>
               {
-                using (Process.Start(processStartInfo)) { }
+                <span class="hljs-function"><span class="hljs-title">using</span> <span class="hljs-params">(Process.Start(processStartInfo)</span>) </span>{ }
               }
-              catch (Exception e)
-              {
-                MessageBox.ShowError(e.Message);
+              <span class="hljs-function"><span class="hljs-title">catch</span> <span class="hljs-params">(Exception e)</span>
+              </span>{
+                MessageBox.<span class="hljs-function"><span class="hljs-title">ShowError</span><span class="hljs-params">(e.Message)</span></span>;
               }
             });
         }
@@ -3665,11 +3667,11 @@ namespace ReSharperPlugIn6
 <h2 id="context-searches"><a name="context-searches" class="plugin-anchor" href="#context-searches"><span class="fa fa-link"></span></a>Context Searches</h2>
 <p>If your navigation is complicated and works differently in differenent languages then you can use context searches to provide different search results for a specific language.</p>
 <p>In this case, your provider needs to be derived from <code>ContextSearchesCollector&lt;TContextSearch&gt;</code> class and all you need is to implement the <code>Execute()</code> method.</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span><span class="hljs-params">(IDataContext dataContext, IEnumerable&lt;TContextSearch&gt; searches, INavigationExecutionHost host)</span></span>;
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">abstract</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span><span class="hljs-params">(IDataContext dataContext, IEnumerable&lt;TContextSearch&gt; searches, INavigationExecutionHost host)</span></span>;
 </code></pre>
 <p><code>IContextSearch</code> is an interface for providers decorated with the <code>FeaturePart</code> attribute and providing specific navigation execution. There are just two methods in this interface, indicating applicability and availability of said context search.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IContextSearch</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IContextSearch</span>
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IDataContext dataContext)</span></span>;
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(IDataContext dataContext)</span></span>;
 }
@@ -3677,22 +3679,22 @@ namespace ReSharperPlugIn6
 <p>The applicability method is more global and implies that this context search can work for this data context and will <em>override</em> other components it is derived from.</p>
 <p>Availability means that for a specific data context this context search is enabled and will be fired.</p>
 <p>You can alter the behavior of existing ReSharper navigation features by providing your own context search components. Here is an example of a  context search that extends the &apos;Go To Implementation&apos; search for XAML:</p>
-<pre><code class="lang-cs">[FeaturePart]
-public class XamlImplementationContextSearch : ContextNavigation.ContextSearches.BaseSearches.ImplementationContextSearch
-{
-  protected override bool IsAvailable(IDataContext dataContext)
-  {
-    return true;
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">FeaturePart</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XamlImplementationContextSearch</span> : ContextNavigation.ContextSearches.BaseSearches.ImplementationContextSearch
+</span>{
+  <span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IDataContext dataContext)</span>
+  </span>{
+    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
   }
 
-  public override bool IsApplicable(IDataContext dataContext)
-  {
-    return ContextNavigationUtil.CheckDefaultApplicability&lt;XamlLanguage&gt;(dataContext);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(IDataContext dataContext)</span>
+  </span>{
+    <span class="hljs-keyword">return</span> ContextNavigationUtil.<span class="hljs-function"><span class="hljs-title">CheckDefaultApplicability&lt;XamlLanguage&gt;</span><span class="hljs-params">(dataContext)</span></span>;
   }
 
-  protected override SearchImplementationsRequest CreateSearchRequest(IDataContext dataContext, IDeclaredElement declaredElement)
-  {
-    // Your custom logic here...
+  <span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function">SearchImplementationsRequest <span class="hljs-title">CreateSearchRequest</span><span class="hljs-params">(IDataContext dataContext, IDeclaredElement declaredElement)</span>
+  </span>{
+    <span class="hljs-comment">// Your custom logic here...</span>
   }
 }
 </code></pre>
@@ -3703,8 +3705,8 @@ public class XamlImplementationContextSearch : ContextNavigation.ContextSearches
 <p><img src="navigation.png" alt="IOccurenceNavigationProvider hierarchy"></p>
 <p>As you can see, the four interface members are self-descriprive, and are further implemented by concrete classes based on language. For example, <code>IGotoSymbolProvider</code> has concrete implementations for the CLR, CSS, HTML and JavaScript. This interface is also implemented by the <code>ClrGotoTypeMemberProvider</code>, which illustrates a kind of inheritance mechanic - this makes sense because Go To Symbol actually includes information from Go To Type.</p>
 <p>The interface is fairly simple, and has only three members:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurenceNavigationProvider</span> : <span class="hljs-title">IApplicableGotoProvider</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurenceNavigationProvider</span> : IApplicableGotoProvider
+</span>{
   <span class="hljs-function">IEnumerable&lt;MatchingInfo&gt; <span class="hljs-title">FindMatchingInfos</span><span class="hljs-params">(IdentifierMatcher matcher, INavigationScope scope,
                                               CheckForInterrupt checkCancelled, GotoContext gotoContext)</span></span>;
   <span class="hljs-function">IEnumerable&lt;IOccurence&gt; <span class="hljs-title">GetOccurencesByMatchingInfo</span><span class="hljs-params">(MatchingInfo navigationInfo, INavigationScope scope, GotoContext gotoContext)</span></span>;
@@ -3713,37 +3715,37 @@ public class XamlImplementationContextSearch : ContextNavigation.ContextSearches
 <p>The first method, <code>FindMatchingInfos()</code>, find matched items and returns a corresponding list of <code>MatchingInfo</code> objects. A <code>MatchingInfo</code> is simply a data class that describes the necessary info used to store a matching item - its identifier, a set of <code>IdentifierMatch</code> objects (corresponding to the matches, as there can be many) and some other service information.</p>
 <p>The second method, <code>GetOccurencesByMatchingInfo</code>, returns a set of occurences given the matching information. An <em>occurence</em> is essentially a pointer to the location where something was found. Since the definition of &#x2018;something&#x2019; is quite vague, an occurence can be practically anything - a range in a text editor, a project reference, a while project or a file. For example, a project file is represented by a <code>ProjectItemOccurence</code>, which in turn references an <code>IProjectItem</code> it points to.</p>
 <p>In addition, you are required to implement an interface member inherited from <code>IApplicableGotoProvider</code>:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IApplicableGotoProvider</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IApplicableGotoProvider</span>
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(INavigationScope scope, GotoContext gotoContext, IdentifierMatcher matcher)</span></span>;
 }
 </code></pre>
 <p>The above method lets us determine if a particular provider should work in a given context. Providers can theoretically inherit from one another, and if you are overriding an existing provider, instead of working every single time (like a <code>SolutionComponent</code> would), it instead checks the <code>IsApplicable</code> result.</p>
 <p>The API now provides you an interface called <code>IGotoEverythingProvider</code>, which happens to inherit these two interfaces and in addition specifies a sorting function declared as</p>
-<pre><code class="lang-cs">Func&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; ItemsPriorityFunc { <span class="hljs-keyword">get</span>; }
+<pre><code class="lang-cs">Func&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ItemsPriorityFunc</span> { <span class="hljs-keyword">get</span>; }
 </code></pre>
 <p>This interface lets you calculate a priority of the displayed element, such that the lower the result gets returned, the higher is the priority of the element.</p>
 <p>Now, to create a provider, simply implement the interface and decorate the class with <code>[ShellFeaturePart]</code>:</p>
-<pre><code class="lang-cs">[ShellFeaturePart]
-<span class="hljs-keyword">class</span> <span class="hljs-title">GoToYouTrackIssueProvider</span> : <span class="hljs-title">IGotoEverythingProvider</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ShellFeaturePart</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GoToYouTrackIssueProvider</span> : IGotoEverythingProvider
+</span>{
   <span class="hljs-comment">// ...</span>
 }
 </code></pre>
 <h2 id="occurence-presenter"><a name="occurence-presenter" class="plugin-anchor" href="#occurence-presenter"><span class="fa fa-link"></span></a>Occurence Presenter</h2>
 <p>Having a set of occurences is great, but they&#x2019;re useless until presented on-screen. And this is where occurence presenters come in. An occurence presenter is, basically, a class that knows how to present a particular occurence as a menu item. In addition to being decorated by an <code>OccurencePresenter</code> attribute, it is embodied by the <code>IOccurencePresenter</code> interface defined below:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurencePresenter</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurencePresenter</span>
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Present</span><span class="hljs-params">(IMenuItemDescriptor descriptor, IOccurence occurence,
     OccurencePresentationOptions occurencePresentationOptions)</span></span>;
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(IOccurence occurence)</span></span>;
 }
 </code></pre>
 <p>First, there&#x2019;s the <code>IsApplicable()</code> method. This method determines whether this occurence presenter is applicable for the particular type of occurence. These typically go hand-in-hand, for example:</p>
-<pre><code class="lang-cs">[OccurencePresenter(Priority=<span class="hljs-number">0.0</span>)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">RangeOccurencePresenter</span> : <span class="hljs-title">IOccurencePresenter</span>
-{
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(IOccurence occurence)</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">OccurencePresenter</span><span class="hljs-params">(Priority=<span class="hljs-number">0.0</span>)</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">RangeOccurencePresenter</span> : IOccurencePresenter
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(IOccurence occurence)</span>
   </span>{
     <span class="hljs-keyword">return</span> occurence <span class="hljs-keyword">is</span> RangeOccurence;
   }
@@ -3752,23 +3754,23 @@ public class XamlImplementationContextSearch : ContextNavigation.ContextSearches
 </code></pre>
 <p>Then there&#x2019;s the <code>Present()</code> method, which is called when the <code>IOccurence</code> needs to be presented. The goal of this method is to make assignments to the <code>descriptor</code> parameter. The <code>IMenuItemDescriptor</code> interface is quite large, but the only property we need to concern ourselves with here is <code>Text</code> - this is a <code>RichText</code> definition that will be displayed as a menu item for this occurence.</p>
 <p>Here&apos;s a sample implementation. Note that <code>descriptor.Style</code> <em>must</em> be defined - otherwise, the item will be disabled.</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">Present</span><span class="hljs-params">(IMenuItemDescriptor descriptor, IOccurence occurence,
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Present</span><span class="hljs-params">(IMenuItemDescriptor descriptor, IOccurence occurence,
   OccurencePresentationOptions occurencePresentationOptions)</span>
 </span>{
   <span class="hljs-keyword">var</span> o = ((YouTrackIssueOccurence) occurence);
   descriptor.Text = o.IssueId;
-  descriptor.Text.Append(<span class="hljs-string">&quot; - &quot;</span>);
-  descriptor.Text.Append(o.IssueDescription);
+  descriptor.Text.<span class="hljs-function"><span class="hljs-title">Append</span><span class="hljs-params">(<span class="hljs-string">&quot; - &quot;</span>)</span></span>;
+  descriptor.Text.<span class="hljs-function"><span class="hljs-title">Append</span><span class="hljs-params">(o.IssueDescription)</span></span>;
   descriptor.Style = MenuItemStyle.Enabled;
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }
 </code></pre>
 <h2 id="occurence-kind-provider"><a name="occurence-kind-provider" class="plugin-anchor" href="#occurence-kind-provider"><span class="fa fa-link"></span></a>Occurence Kind Provider</h2>
 <p>When you open up, say, Find Usages, you&#x2019;ll find that you have an ability to filter information. Some examples are read usages, write usages, attribute references, and so on. Each has its own special icon and an ability to filter it out if necessary.</p>
 <p>The types of elements just mentioned are called <em>occurence kinds</em>. Many kinds of occurences can be found as static members of the <code>OccurenceKind</code> class, and new ones can be created. An occurence kind is simply an enum-like class, keeping only two bits of information: its name and whether it is primary or not. If the occurrence kind is set as primary, the Find Results window will always display this kind of occurrence regardless of what filter is set. Other occurrences are non-primary, i.e. they are only displayed when there are occurrences of this occurrence kind (e.g., unit tests).</p>
 <p>Now, we can talk about occurence type providers. These are typically solution components (i.e., decorated with the <code>SolutionComponent</code> attributes) that also implement the <code>IOccurenceKindProvider</code> interface. This interface is defined as follows:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurenceKindProvider</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurenceKindProvider</span>
+</span>{
   <span class="hljs-function">ICollection&lt;OccurenceKind&gt; <span class="hljs-title">GetOccurenceKinds</span><span class="hljs-params">(IOccurence occurence)</span></span>;
   <span class="hljs-function">IEnumerable&lt;OccurenceKind&gt; <span class="hljs-title">GetAllPossibleOccurenceKinds</span><span class="hljs-params">()</span></span>;
 }
@@ -3777,24 +3779,24 @@ public class XamlImplementationContextSearch : ContextNavigation.ContextSearches
 <p>The <code>GetOccurenceKinds()</code> method returns a collection of occurence kinds (or you can return an <code>EmptyList&lt;OccurenceKind&gt;.InstanceList</code> if there aren&#x2019;t any) that are applicable for a given occurence. Naturally, this typically assumes that you would try to cast the <code>IOccurence</code> to a concrete type (e.g., <code>ReferenceOccurence</code>) to investigate its contents and yield the occurence kinds accordingly.</p>
 <h2 id="occurence-section-provider"><a name="occurence-section-provider" class="plugin-anchor" href="#occurence-section-provider"><span class="fa fa-link"></span></a>Occurence Section Provider</h2>
 <p>When search results are presented in a dialogue window, they are typically split into sections via horizintal lines. The component that provides information about the different types of section is a <code>FeaturePart</code> that implements the <code>IOccurenceSectionProvider</code> interface. The interface is defined as follows:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurenceSectionProvider</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurenceSectionProvider</span>
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(OccurenceBrowserDescriptor descriptor)</span></span>;
   <span class="hljs-function">ICollection&lt;TreeSection&gt; <span class="hljs-title">GetTreeSections</span><span class="hljs-params">(OccurenceBrowserDescriptor descriptor)</span></span>;
   <span class="hljs-function">ICollection&lt;GroupingSectionId&gt; <span class="hljs-title">GetGroupSectionId</span><span class="hljs-params">(IOccurence occurence, OccurenceBrowserDescriptor descriptor)</span></span>;
 }
 </code></pre>
 <p>Let&#x2019;s go through the methods. Firstly, <code>IsApplicable()</code> checks whether this section provider is applicable given the type of the occurence browser we are working with. This is typically a simple <code>is</code> call, e.g.:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(OccurenceBrowserDescriptor descriptor)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(OccurenceBrowserDescriptor descriptor)</span>
 </span>{
   <span class="hljs-keyword">return</span> descriptor <span class="hljs-keyword">is</span> GotoDeclaredElementsBrowserDescriptor;
 }
 </code></pre>
 <p>The second method is <code>GetTreeSections()</code>, and it is this method that returns a set of <code>TreeSection</code> objects specific to this section provider. We&#x2019;ll discuss the <code>TreeSection</code> structure in a moment, but let&#x2019;s briefly discuss the third method first. <code>GetGroupSectionId</code> basically lets us determine the groups (there can be more than one) in which a particular <code>IOccurence</code> needs to appear. The default implementation as defined in the <code>OccurenceSectionProvider</code> class (you should inherit from this, rather than implementing the interface by hand) is to use a special method <code>GetSectionId()</code> to pick a known section given the type of the occurence:</p>
 <pre><code class="lang-cs"><span class="hljs-comment">// in OccurenceSectionProvider</span>
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> ICollection&lt;GroupingSectionId&gt; <span class="hljs-title">GetGroupSectionId</span><span class="hljs-params">(IOccurence occurence, OccurenceBrowserDescriptor descriptor)</span>
+<span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> <span class="hljs-function">ICollection&lt;GroupingSectionId&gt; <span class="hljs-title">GetGroupSectionId</span><span class="hljs-params">(IOccurence occurence, OccurenceBrowserDescriptor descriptor)</span>
 </span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span>[] {occurence.OccurenceType.GetSectionId()};
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span>[] {occurence.OccurenceType.<span class="hljs-function"><span class="hljs-title">GetSectionId</span><span class="hljs-params">()</span>}</span>;
 }
 </code></pre>
 <h2 id="tree-model"><a name="tree-model" class="plugin-anchor" href="#tree-model"><span class="fa fa-link"></span></a>Tree Model</h2>
@@ -3804,18 +3806,18 @@ public class XamlImplementationContextSearch : ContextNavigation.ContextSearches
 <p>It helps to remember that both <code>TreeModel</code> and <code>TreeModelNode</code> are abstract classes, and that you are more likely to be working with their descendants, the most basic of which is <code>TreeSimpleModel</code>.</p>
 <h2 id="occurence"><a name="occurence" class="plugin-anchor" href="#occurence"><span class="fa fa-link"></span></a>Occurence</h2>
 <p>The menu items themselves are simply items which implement the <code>IOccurence</code> interface. This interface defines a rather large number of elements:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurence</span>
-{
-  TextRange TextRange { <span class="hljs-keyword">get</span>; }
-  ProjectModelElementEnvoy ProjectModelElementEnvoy { <span class="hljs-keyword">get</span>; }
-  DeclaredElementEnvoy&lt;ITypeMember&gt; TypeMember { <span class="hljs-keyword">get</span>; }
-  DeclaredElementEnvoy&lt;ITypeElement&gt; TypeElement { <span class="hljs-keyword">get</span>; }
-  DeclaredElementEnvoy&lt;INamespace&gt; Namespace { <span class="hljs-keyword">get</span>; }
-  OccurenceType OccurenceType { <span class="hljs-keyword">get</span>; }
-  <span class="hljs-keyword">bool</span> IsValid { <span class="hljs-keyword">get</span>; }
-  <span class="hljs-keyword">object</span> MergeKey { <span class="hljs-keyword">get</span>; }
-  IList&lt;IOccurence&gt; MergedItems { <span class="hljs-keyword">get</span>; }
-  OccurencePresentationOptions PresentationOptions { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurence</span>
+</span>{
+  TextRange <span class="hljs-title">TextRange</span> { <span class="hljs-keyword">get</span>; }
+  ProjectModelElementEnvoy <span class="hljs-title">ProjectModelElementEnvoy</span> { <span class="hljs-keyword">get</span>; }
+  DeclaredElementEnvoy&lt;ITypeMember&gt; <span class="hljs-title">TypeMember</span> { <span class="hljs-keyword">get</span>; }
+  DeclaredElementEnvoy&lt;ITypeElement&gt; <span class="hljs-title">TypeElement</span> { <span class="hljs-keyword">get</span>; }
+  DeclaredElementEnvoy&lt;INamespace&gt; <span class="hljs-title">Namespace</span> { <span class="hljs-keyword">get</span>; }
+  OccurenceType <span class="hljs-title">OccurenceType</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">bool</span> <span class="hljs-title">IsValid</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">object</span> <span class="hljs-title">MergeKey</span> { <span class="hljs-keyword">get</span>; }
+  IList&lt;IOccurence&gt; <span class="hljs-title">MergedItems</span> { <span class="hljs-keyword">get</span>; }
+  OccurencePresentationOptions <span class="hljs-title">PresentationOptions</span> { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Navigate</span><span class="hljs-params">(ISolution solution, PopupWindowContextSource windowContext, <span class="hljs-keyword">bool</span> transferFocus, TabOptions tabOptions = TabOptions.Default)</span></span>;
   <span class="hljs-function"><span class="hljs-keyword">string</span> <span class="hljs-title">DumpToString</span><span class="hljs-params">()</span></span>;
 }

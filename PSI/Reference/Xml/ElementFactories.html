@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Element Factories | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="9.19.10.3" data-basepath="../../.." data-revision="1418218353318">
+    <div class="book" data-level="9.19.10.3" data-basepath="../../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3583,70 +3585,70 @@
 <h2 id="d"><a name="d" class="plugin-anchor" href="#d"><span class="fa fa-link"></span></a>D</h2>
 <h3 id="defaultxmlelementfactorycontext"><a name="defaultxmlelementfactorycontext" class="plugin-anchor" href="#defaultxmlelementfactorycontext"><span class="fa fa-link"></span></a>DefaultXmlElementFactoryContext</h3>
 <!-- Begin DefaultXmlElementFactoryContext -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">DefaultXmlElementFactoryContext</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">DefaultXmlElementFactoryContext</span> :
   <span class="hljs-title">IXmlElementFactoryContext</span>
-{
+</span>{
   <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> DefaultXmlElementFactoryContext Instance;
 
-  <span class="hljs-keyword">public</span> T GetContainingNode&lt;T&gt;(ITreeNode currentNode, <span class="hljs-keyword">bool</span> returnCurrent);
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">GetParentTag</span><span class="hljs-params">(IXmlTag currentTag)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">T <span class="hljs-title">GetContainingNode&lt;T&gt;</span><span class="hljs-params">(ITreeNode currentNode, <span class="hljs-keyword">bool</span> returnCurrent)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTag <span class="hljs-title">GetParentTag</span><span class="hljs-params">(IXmlTag currentTag)</span></span>;
 }
 </code></pre>
 <!-- End DefaultXmlElementFactoryContext -->
 <p>Default implementation of <a href="#ixmlelementfactorycontext"><code>IXmlElementFactoryContext</code></a> that defers to <code>ITreeNode.GetContainingNode&lt;T&gt;()</code> and <code>XmlTagNavigator.GetByTag()</code>.</p>
 <h3 id="delegatingxmlelementfactory"><a name="delegatingxmlelementfactory" class="plugin-anchor" href="#delegatingxmlelementfactory"><span class="fa fa-link"></span></a>DelegatingXmlElementFactory</h3>
 <!-- Begin DelegatingXmlElementFactory -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">DelegatingXmlElementFactory</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">DelegatingXmlElementFactory</span> :
   <span class="hljs-title">IXmlElementFactory</span>
-{
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">DelegatingXmlElementFactory</span><span class="hljs-params">(IXmlElementFactory factory)</span></span>;
 
-  IXmlElementFactory Factory { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
-  PsiLanguageType LanguageType { <span class="hljs-keyword">get</span>; }
-  XmlElementTypes XmlElementType { <span class="hljs-keyword">get</span>; }
-  XmlTokenTypes XmlTokenTypes { <span class="hljs-keyword">get</span>; }
+  IXmlElementFactory <span class="hljs-title">Factory</span> { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+  PsiLanguageType <span class="hljs-title">LanguageType</span> { <span class="hljs-keyword">get</span>; }
+  XmlElementTypes <span class="hljs-title">XmlElementType</span> { <span class="hljs-keyword">get</span>; }
+  XmlTokenTypes <span class="hljs-title">XmlTokenTypes</span> { <span class="hljs-keyword">get</span>; }
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IAnyContent <span class="hljs-title">CreateAnyContent</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IAttDef <span class="hljs-title">CreateAttDef</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlAttribute <span class="hljs-title">CreateAttribute</span><span class="hljs-params">(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlAttributeValue <span class="hljs-title">CreateAttributeValue</span><span class="hljs-params">(XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IAttType <span class="hljs-title">CreateAttType</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlCData <span class="hljs-title">CreateCData</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlComment <span class="hljs-title">CreateComment</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDocTypeDeclaration <span class="hljs-title">CreateDocTypeDeclaration</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDAttListDecl <span class="hljs-title">CreateDTDAttListDecl</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDElementDecl <span class="hljs-title">CreateDTDElementDecl</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDEntityDecl <span class="hljs-title">CreateDTDEntityDecl</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDNotationDecl <span class="hljs-title">CreateDTDNotationDecl</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IEmptyContent <span class="hljs-title">CreateEmptyContent</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlSyntaxErrorElement <span class="hljs-title">CreateError</span><span class="hljs-params">(XmlSyntaxErrorType errorType)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlFile <span class="hljs-title">CreateFile</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IGrouppedContent <span class="hljs-title">CreateGrouppedContent</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlIdentifier <span class="hljs-title">CreateIdentifier</span><span class="hljs-params">(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDBody <span class="hljs-title">CreateIntSubset</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDNDataDecl <span class="hljs-title">CreateNDataDecl</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IProcessingInstruction <span class="hljs-title">CreatePI</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlProcessingInstruction <span class="hljs-title">CreatePIXml</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IExternalId <span class="hljs-title">CreatePublicExternalID</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IRepetitionContent <span class="hljs-title">CreateRepetionContent</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateRootTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IElementContent <span class="hljs-title">CreateSimpleContent</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IExternalId <span class="hljs-title">CreateSystemExternalID</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTagFooter <span class="hljs-title">CreateTagFooter</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTagHeader <span class="hljs-title">CreateTagHeader</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlToken <span class="hljs-title">CreateToken</span><span class="hljs-params">(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IAnyContent <span class="hljs-title">CreateAnyContent</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IAttDef <span class="hljs-title">CreateAttDef</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlAttribute <span class="hljs-title">CreateAttribute</span><span class="hljs-params">(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlAttributeValue <span class="hljs-title">CreateAttributeValue</span><span class="hljs-params">(XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IAttType <span class="hljs-title">CreateAttType</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlCData <span class="hljs-title">CreateCData</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlComment <span class="hljs-title">CreateComment</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDocTypeDeclaration <span class="hljs-title">CreateDocTypeDeclaration</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDAttListDecl <span class="hljs-title">CreateDTDAttListDecl</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDElementDecl <span class="hljs-title">CreateDTDElementDecl</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDEntityDecl <span class="hljs-title">CreateDTDEntityDecl</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDNotationDecl <span class="hljs-title">CreateDTDNotationDecl</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IEmptyContent <span class="hljs-title">CreateEmptyContent</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlSyntaxErrorElement <span class="hljs-title">CreateError</span><span class="hljs-params">(XmlSyntaxErrorType errorType)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlFile <span class="hljs-title">CreateFile</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IGrouppedContent <span class="hljs-title">CreateGrouppedContent</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlIdentifier <span class="hljs-title">CreateIdentifier</span><span class="hljs-params">(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDBody <span class="hljs-title">CreateIntSubset</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDNDataDecl <span class="hljs-title">CreateNDataDecl</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IProcessingInstruction <span class="hljs-title">CreatePI</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlProcessingInstruction <span class="hljs-title">CreatePIXml</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IExternalId <span class="hljs-title">CreatePublicExternalID</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IRepetitionContent <span class="hljs-title">CreateRepetionContent</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTag <span class="hljs-title">CreateRootTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IElementContent <span class="hljs-title">CreateSimpleContent</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IExternalId <span class="hljs-title">CreateSystemExternalID</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTag <span class="hljs-title">CreateTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTagFooter <span class="hljs-title">CreateTagFooter</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTagHeader <span class="hljs-title">CreateTagHeader</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlToken <span class="hljs-title">CreateToken</span><span class="hljs-params">(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
 }
 </code></pre>
 <!-- End DelegatingXmlElementFactory -->
 <h2 id="i"><a name="i" class="plugin-anchor" href="#i"><span class="fa fa-link"></span></a>I</h2>
 <h3 id="ixmlelementfactory"><a name="ixmlelementfactory" class="plugin-anchor" href="#ixmlelementfactory"><span class="fa fa-link"></span></a>IXmlElementFactory</h3>
 <!-- Begin IXmlElementFactory -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlElementFactory</span>
-{
-  PsiLanguageType LanguageType { <span class="hljs-keyword">get</span>; }
-  XmlElementTypes XmlElementType { <span class="hljs-keyword">get</span>; }
-  XmlTokenTypes XmlTokenTypes { <span class="hljs-keyword">get</span>; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlElementFactory</span>
+</span>{
+  PsiLanguageType <span class="hljs-title">LanguageType</span> { <span class="hljs-keyword">get</span>; }
+  XmlElementTypes <span class="hljs-title">XmlElementType</span> { <span class="hljs-keyword">get</span>; }
+  XmlTokenTypes <span class="hljs-title">XmlTokenTypes</span> { <span class="hljs-keyword">get</span>; }
 
   <span class="hljs-function">IAnyContent <span class="hljs-title">CreateAnyContent</span><span class="hljs-params">()</span></span>;
   <span class="hljs-function">IAttDef <span class="hljs-title">CreateAttDef</span><span class="hljs-params">()</span></span>;
@@ -3683,9 +3685,9 @@
 <!-- End IXmlElementFactory -->
 <h3 id="ixmlelementfactorycontext"><a name="ixmlelementfactorycontext" class="plugin-anchor" href="#ixmlelementfactorycontext"><span class="fa fa-link"></span></a>IXmlElementFactoryContext</h3>
 <!-- Begin IXmlElementFactoryContext -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlElementFactoryContext</span>
-{
-  T GetContainingNode&lt;T&gt;(ITreeNode currentNode, <span class="hljs-keyword">bool</span> returnCurrent);
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlElementFactoryContext</span>
+</span>{
+  <span class="hljs-function">T <span class="hljs-title">GetContainingNode&lt;T&gt;</span><span class="hljs-params">(ITreeNode currentNode, <span class="hljs-keyword">bool</span> returnCurrent)</span></span>;
   <span class="hljs-function">IXmlTag <span class="hljs-title">GetParentTag</span><span class="hljs-params">(IXmlTag currentTag)</span></span>;
 }
 </code></pre>
@@ -3694,16 +3696,16 @@
 <h2 id="r"><a name="r" class="plugin-anchor" href="#r"><span class="fa fa-link"></span></a>R</h2>
 <h3 id="resyncxmlelementfactory"><a name="resyncxmlelementfactory" class="plugin-anchor" href="#resyncxmlelementfactory"><span class="fa fa-link"></span></a>ResyncXmlElementFactory</h3>
 <!-- Begin ResyncXmlElementFactory -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ResyncXmlElementFactory</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ResyncXmlElementFactory</span> :
   <span class="hljs-title">DelegatingXmlElementFactory</span>
-{
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ResyncXmlElementFactory</span><span class="hljs-params">(IXmlTagContainer xmlTagContainer, IXmlElementFactory factory = <span class="hljs-keyword">null</span>)</span></span>;
+</span>{
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ResyncXmlElementFactory</span><span class="hljs-params">(IXmlTagContainer xmlTagContainer, IXmlElementFactory factory = null)</span></span>;
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlAttribute <span class="hljs-title">CreateAttribute</span><span class="hljs-params">(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlTag <span class="hljs-title">CreateRootTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlTag <span class="hljs-title">CreateTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlTagFooter <span class="hljs-title">CreateTagFooter</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlTagHeader <span class="hljs-title">CreateTagHeader</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IXmlAttribute <span class="hljs-title">CreateAttribute</span><span class="hljs-params">(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IXmlTag <span class="hljs-title">CreateRootTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IXmlTag <span class="hljs-title">CreateTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IXmlTagFooter <span class="hljs-title">CreateTagFooter</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IXmlTagHeader <span class="hljs-title">CreateTagHeader</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
 }
 </code></pre>
 <!-- End ResyncXmlElementFactory -->
@@ -3711,13 +3713,13 @@
 <p>The changed range is re-parsed, as a whole file. However, the element factory used by the parser is <a href="#resyncxmlelementfactory"><code>ResyncXmlElementFactory</code></a>, which is passed the original parent tag in its constructor. When creating tags, headers, footers and attributes where the passed <code>parentTag</code> is the root <a href="TreeNodes.html#ixmlfile"><code>IXmlFile</code></a>, the <a href="#resyncxmlelementfactory"><code>ResyncXmlElementFactory</code></a> replaces the <code>parentTag</code> parameter with the original parent tag passed to the constructor. This keeps the context of the original parent tag when parsing the changed child content.</p>
 <h3 id="resyncxmlelementfactorycontext"><a name="resyncxmlelementfactorycontext" class="plugin-anchor" href="#resyncxmlelementfactorycontext"><span class="fa fa-link"></span></a>ResyncXmlElementFactoryContext</h3>
 <!-- Begin ResyncXmlElementFactoryContext -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ResyncXmlElementFactoryContext</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ResyncXmlElementFactoryContext</span> :
   <span class="hljs-title">IXmlElementFactoryContext</span>
-{
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ResyncXmlElementFactoryContext</span><span class="hljs-params">(ITreeNode physicalNode)</span></span>;
 
-  <span class="hljs-keyword">public</span> T GetContainingNode&lt;T&gt;(ITreeNode currentNode, <span class="hljs-keyword">bool</span> returnCurrent);
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">GetParentTag</span><span class="hljs-params">(IXmlTag currentTag)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">T <span class="hljs-title">GetContainingNode&lt;T&gt;</span><span class="hljs-params">(ITreeNode currentNode, <span class="hljs-keyword">bool</span> returnCurrent)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTag <span class="hljs-title">GetParentTag</span><span class="hljs-params">(IXmlTag currentTag)</span></span>;
 }
 </code></pre>
 <!-- End ResyncXmlElementFactoryContext -->
@@ -3725,8 +3727,8 @@
 <h2 id="x"><a name="x" class="plugin-anchor" href="#x"><span class="fa fa-link"></span></a>X</h2>
 <h3 id="xmlelementfactory"><a name="xmlelementfactory" class="plugin-anchor" href="#xmlelementfactory"><span class="fa fa-link"></span></a>XmlElementFactory</h3>
 <!-- Begin XmlElementFactory -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlElementFactory</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlElementFactory</span>
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">XmlElementFactory</span><span class="hljs-params">(IPsiModule module, IXmlElementFactory factory, IXmlLanguageSupport support, <span class="hljs-keyword">bool</span> applyFormatter)</span></span>;
 
   <span class="hljs-keyword">protected</span> <span class="hljs-keyword">bool</span> ApplyFormatter;
@@ -3734,13 +3736,13 @@
   <span class="hljs-keyword">protected</span> IPsiModule Module;
   <span class="hljs-keyword">protected</span> IXmlLanguageSupport Support;
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlAttribute <span class="hljs-title">CreateAttributeForTag</span><span class="hljs-params">(IXmlTag contextTag, <span class="hljs-keyword">string</span> attributeText)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlFile <span class="hljs-title">CreateFile</span><span class="hljs-params">(<span class="hljs-keyword">string</span> xmlText)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlAttribute <span class="hljs-title">CreateRootAttribute</span><span class="hljs-params">(<span class="hljs-keyword">string</span> attributeText)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateRootTag</span><span class="hljs-params">(<span class="hljs-keyword">string</span> tagText)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateTagForTag</span><span class="hljs-params">(IXmlTag contextTag, <span class="hljs-keyword">string</span> tagText, <span class="hljs-keyword">string</span> rootTagText = <span class="hljs-keyword">null</span>)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlAttribute <span class="hljs-title">CreateAttributeForTag</span><span class="hljs-params">(IXmlTag contextTag, <span class="hljs-keyword">string</span> attributeText)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlFile <span class="hljs-title">CreateFile</span><span class="hljs-params">(<span class="hljs-keyword">string</span> xmlText)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlAttribute <span class="hljs-title">CreateRootAttribute</span><span class="hljs-params">(<span class="hljs-keyword">string</span> attributeText)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTag <span class="hljs-title">CreateRootTag</span><span class="hljs-params">(<span class="hljs-keyword">string</span> tagText)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTag <span class="hljs-title">CreateTagForTag</span><span class="hljs-params">(IXmlTag contextTag, <span class="hljs-keyword">string</span> tagText, <span class="hljs-keyword">string</span> rootTagText = null)</span></span>;
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> XmlElementFactory <span class="hljs-title">GetInstance</span><span class="hljs-params">(ITreeNode context, <span class="hljs-keyword">bool</span> applyFormatter = <span class="hljs-keyword">true</span>)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">XmlElementFactory <span class="hljs-title">GetInstance</span><span class="hljs-params">(ITreeNode context, <span class="hljs-keyword">bool</span> applyFormatter = true)</span></span>;
 }
 </code></pre>
 <!-- End XmlElementFactory -->
@@ -3756,86 +3758,86 @@
 <p>Generally speaking, callers should use <code>CreateTagForTag</code> and <code>CreateTagForAttribute</code> when wishing to create a tag or an attribute. Only use the &quot;root&quot; variants when the tag or attribute actually is at the root level.</p>
 <h3 id="xmlelementfactorylttxmllanguagegt"><a name="xmlelementfactorylttxmllanguagegt" class="plugin-anchor" href="#xmlelementfactorylttxmllanguagegt"><span class="fa fa-link"></span></a>XmlElementFactory&lt;TXmlLanguage&gt;</h3>
 <!-- Begin XmlElementFactory`1 -->
-<pre><code class="lang-cs">public class XmlElementFactory&lt;TXmlLanguage&gt; :
-  XmlElementFactory
-{
-  protected XmlElementFactory&lt;TXmlLanguage&gt;(IPsiModule module, bool applyFormatter);
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlElementFactory&lt;TXmlLanguage&gt;</span> :
+  <span class="hljs-title">XmlElementFactory</span>
+</span>{
+  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-title">XmlElementFactory&lt;TXmlLanguage&gt;</span><span class="hljs-params">(IPsiModule module, <span class="hljs-keyword">bool</span> applyFormatter)</span></span>;
 
-  public static XmlElementFactory&lt;TXmlLanguage&gt; GetInstance(IPsiModule module, bool applyFormatter = true);
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">XmlElementFactory&lt;TXmlLanguage&gt; <span class="hljs-title">GetInstance</span><span class="hljs-params">(IPsiModule module, <span class="hljs-keyword">bool</span> applyFormatter = true)</span></span>;
 }
 </code></pre>
 <!-- End XmlElementFactory`1 -->
 <p>A derived instance of <a href="#xmlelementfactory"><code>XmlElementFactory</code></a> which allows creating calling <code>GetInstance</code> for a specific language without requiring an instance of <code>ITreeNode</code>. Also derived by some XML languages to provide additional functionality for the factory, e.g. <code>ResxElementFactory</code> and <code>XamlElementFactory</code>.</p>
 <h3 id="xmlelementfactoryforcreateattribute"><a name="xmlelementfactoryforcreateattribute" class="plugin-anchor" href="#xmlelementfactoryforcreateattribute"><span class="fa fa-link"></span></a>XmlElementFactoryForCreateAttribute</h3>
 <!-- Begin XmlElementFactoryForCreateAttribute -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlElementFactoryForCreateAttribute</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlElementFactoryForCreateAttribute</span> :
   <span class="hljs-title">DelegatingXmlElementFactory</span>
-{
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">XmlElementFactoryForCreateAttribute</span><span class="hljs-params">(IXmlElementFactory factory, IXmlTag tag)</span></span>;
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlAttribute <span class="hljs-title">CreateAttribute</span><span class="hljs-params">(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IXmlAttribute <span class="hljs-title">CreateAttribute</span><span class="hljs-params">(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
 }
 </code></pre>
 <!-- End XmlElementFactoryForCreateAttribute -->
 <p>Instance of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> that changes the context when creating an attribute to instead of using the passed in <code>parentTag</code> as the parent tag of the newly created attribute, uses an instance of <code>IXmlTag</code> passed to the constructor. This is used as an implementation detail of <a href="#xmlelementfactory"><code>XmlElementFactory.CreateAttributeForTag()</code></a> to make sure the new attribute is created with the correct parent tag as context. See <a href="#xmlelementfactory"><code>XmlElementFactory</code></a> for more details.</p>
 <h3 id="xmlelementfactoryforcreatetag"><a name="xmlelementfactoryforcreatetag" class="plugin-anchor" href="#xmlelementfactoryforcreatetag"><span class="fa fa-link"></span></a>XmlElementFactoryForCreateTag</h3>
 <!-- Begin XmlElementFactoryForCreateTag -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlElementFactoryForCreateTag</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlElementFactoryForCreateTag</span> :
   <span class="hljs-title">DelegatingXmlElementFactory</span>
-{
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">XmlElementFactoryForCreateTag</span><span class="hljs-params">(IXmlElementFactory factory, IXmlTag tag)</span></span>;
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlAttribute <span class="hljs-title">CreateAttribute</span><span class="hljs-params">(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IXmlTag <span class="hljs-title">CreateTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IXmlAttribute <span class="hljs-title">CreateAttribute</span><span class="hljs-params">(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IXmlTag <span class="hljs-title">CreateTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context)</span></span>;
 }
 </code></pre>
 <!-- End XmlElementFactoryForCreateTag -->
 <p>Instance of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> that changes the context when creating a tag to ignore the passed <code>parentTag</code> when creating the tree node, and use the tag passed to the constructor as the parent instead. This class is used as an implementation detail of <a href="#xmlelementfactory"><code>XmlElementFactory.CreateTagForTag()</code></a> to make sure the new attribute is created with the correct parent tag as context. See <a href="#xmlelementfactory"><code>XmlElementFactory</code></a> for more details.</p>
 <h3 id="xmltreenodefactory"><a name="xmltreenodefactory" class="plugin-anchor" href="#xmltreenodefactory"><span class="fa fa-link"></span></a>XmlTreeNodeFactory</h3>
 <!-- Begin XmlTreeNodeFactory -->
-<pre><code class="lang-cs">[Language(<span class="hljs-keyword">typeof</span>(XmlLanguage))]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlTreeNodeFactory</span> :
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">Language</span><span class="hljs-params">(<span class="hljs-keyword">typeof</span>(XmlLanguage)</span>)]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlTreeNodeFactory</span> :
   <span class="hljs-title">IXmlElementFactory</span>
-{
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">XmlTreeNodeFactory</span><span class="hljs-params">(XmlLanguage languageType, XmlTokenTypes tokenTypes, XmlElementTypes elementTypes)</span></span>;
 
-  PsiLanguageType LanguageType { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
-  XmlElementTypes XmlElementType { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
-  XmlTokenTypes XmlTokenTypes { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+  PsiLanguageType <span class="hljs-title">LanguageType</span> { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+  XmlElementTypes <span class="hljs-title">XmlElementType</span> { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+  XmlTokenTypes <span class="hljs-title">XmlTokenTypes</span> { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IAnyContent <span class="hljs-title">CreateAnyContent</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IAttDef <span class="hljs-title">CreateAttDef</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlAttribute <span class="hljs-title">CreateAttribute</span><span class="hljs-params">(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlAttributeValue <span class="hljs-title">CreateAttributeValue</span><span class="hljs-params">(XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IAttType <span class="hljs-title">CreateAttType</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlCData <span class="hljs-title">CreateCData</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlComment <span class="hljs-title">CreateComment</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDocTypeDeclaration <span class="hljs-title">CreateDocTypeDeclaration</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDAttListDecl <span class="hljs-title">CreateDTDAttListDecl</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDElementDecl <span class="hljs-title">CreateDTDElementDecl</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDEntityDecl <span class="hljs-title">CreateDTDEntityDecl</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDNotationDecl <span class="hljs-title">CreateDTDNotationDecl</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IEmptyContent <span class="hljs-title">CreateEmptyContent</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlSyntaxErrorElement <span class="hljs-title">CreateError</span><span class="hljs-params">(XmlSyntaxErrorType errorType)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlFile <span class="hljs-title">CreateFile</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IGrouppedContent <span class="hljs-title">CreateGrouppedContent</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlIdentifier <span class="hljs-title">CreateIdentifier</span><span class="hljs-params">(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDBody <span class="hljs-title">CreateIntSubset</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IDTDNDataDecl <span class="hljs-title">CreateNDataDecl</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IProcessingInstruction <span class="hljs-title">CreatePI</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlProcessingInstruction <span class="hljs-title">CreatePIXml</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IExternalId <span class="hljs-title">CreatePublicExternalID</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IRepetitionContent <span class="hljs-title">CreateRepetionContent</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateRootTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IElementContent <span class="hljs-title">CreateSimpleContent</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IExternalId <span class="hljs-title">CreateSystemExternalID</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTag <span class="hljs-title">CreateTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTagFooter <span class="hljs-title">CreateTagFooter</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlTagHeader <span class="hljs-title">CreateTagHeader</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IXmlToken <span class="hljs-title">CreateToken</span><span class="hljs-params">(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IAnyContent <span class="hljs-title">CreateAnyContent</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IAttDef <span class="hljs-title">CreateAttDef</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlAttribute <span class="hljs-title">CreateAttribute</span><span class="hljs-params">(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlAttributeValue <span class="hljs-title">CreateAttributeValue</span><span class="hljs-params">(XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IAttType <span class="hljs-title">CreateAttType</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlCData <span class="hljs-title">CreateCData</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlComment <span class="hljs-title">CreateComment</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDocTypeDeclaration <span class="hljs-title">CreateDocTypeDeclaration</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDAttListDecl <span class="hljs-title">CreateDTDAttListDecl</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDElementDecl <span class="hljs-title">CreateDTDElementDecl</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDEntityDecl <span class="hljs-title">CreateDTDEntityDecl</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDNotationDecl <span class="hljs-title">CreateDTDNotationDecl</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IEmptyContent <span class="hljs-title">CreateEmptyContent</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlSyntaxErrorElement <span class="hljs-title">CreateError</span><span class="hljs-params">(XmlSyntaxErrorType errorType)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlFile <span class="hljs-title">CreateFile</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IGrouppedContent <span class="hljs-title">CreateGrouppedContent</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlIdentifier <span class="hljs-title">CreateIdentifier</span><span class="hljs-params">(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDBody <span class="hljs-title">CreateIntSubset</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IDTDNDataDecl <span class="hljs-title">CreateNDataDecl</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IProcessingInstruction <span class="hljs-title">CreatePI</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlProcessingInstruction <span class="hljs-title">CreatePIXml</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IExternalId <span class="hljs-title">CreatePublicExternalID</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IRepetitionContent <span class="hljs-title">CreateRepetionContent</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTag <span class="hljs-title">CreateRootTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IElementContent <span class="hljs-title">CreateSimpleContent</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IExternalId <span class="hljs-title">CreateSystemExternalID</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTag <span class="hljs-title">CreateTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTagFooter <span class="hljs-title">CreateTagFooter</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTagHeader <span class="hljs-title">CreateTagHeader</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlToken <span class="hljs-title">CreateToken</span><span class="hljs-params">(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
 
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlElementFactory GetInstance&lt;TLanguage&gt;();
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IXmlElementFactory <span class="hljs-title">GetInstance</span><span class="hljs-params">(ITreeNode element)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">IXmlElementFactory <span class="hljs-title">GetInstance&lt;TLanguage&gt;</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">IXmlElementFactory <span class="hljs-title">GetInstance</span><span class="hljs-params">(ITreeNode element)</span></span>;
 }
 </code></pre>
 <!-- End XmlTreeNodeFactory -->

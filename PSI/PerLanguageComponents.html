@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Per-language Components | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-level="9.2.1" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="9.2.1" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3552,42 +3554,42 @@
 <p>The PSI needs a mechanism that will return a single implementation of an interface or base class for a given language type. It handles this with a <a href="../Platform/ComponentModel/ContainersPartsCatalogues.html">custom component container</a>.</p>
 <p>The PSI defines the <code>[Language]</code> attribute that derives from <code>PartAttribute</code>, in the same way that <code>ShellComponentAttribute</code> and <code>SolutionComponentAttribute</code> do. Since it derives directly from <code>PartAttribute</code>, it doesn&apos;t get included in either the shell or solution component container. Instead, the <code>ILanguageManager</code> component maintains a custom container (strictly speaking, it does this through inheritance, so it <em>is</em> a custom container) that filters parts in the product catalogue sets by the <code>LanguageAttribute</code>.</p>
 <p>The component specifies the language it relates to by passing the type in as a parameter to the constructor:</p>
-<pre><code class="lang-cs">[Language(<span class="hljs-keyword">typeof</span>(CSharpLanguage))]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CSharpCodeFormatter</span> : <span class="hljs-title">ICodeFormatter</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">Language</span><span class="hljs-params">(<span class="hljs-keyword">typeof</span>(CSharpLanguage)</span>)]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CSharpCodeFormatter</span> : ICodeFormatter
+</span>{
 }
 </code></pre>
 <p>The language type is used as a key for lookup, using the <code>ILanguageManager</code> methods, where <code>T</code> is the type of the service being retrieved, and <code>TLanguage</code> is the type of the language. Alternatively, the language is specified as an instance of the language type, perhaps retrieved via <code>ITreeNode.Language</code>:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ILanguageManager</span>
-{
-  T GetService&lt;T, TLanguage&gt;()
-    <span class="hljs-keyword">where</span> T : <span class="hljs-keyword">class</span>
-    <span class="hljs-title">where</span> <span class="hljs-title">TLanguage</span> : <span class="hljs-title">PsiLanguageType</span>;
-  T TryGetService&lt;T, TLanguage&gt;()
-    <span class="hljs-keyword">where</span> T : <span class="hljs-keyword">class</span>
-    <span class="hljs-title">where</span> <span class="hljs-title">TLanguage</span> : <span class="hljs-title">PsiLanguageType</span>;
-  T GetService&lt;T&gt;(PsiLanguageType languageType)
-    <span class="hljs-keyword">where</span> T : <span class="hljs-keyword">class</span>;
-  T TryGetService&lt;T&gt;(PsiLanguageType languageType)
-    <span class="hljs-keyword">where</span> T : <span class="hljs-keyword">class</span>;
-  IEnumerable&lt;T&gt; GetServicesFromAll&lt;T&gt;()
-    <span class="hljs-keyword">where</span> T : <span class="hljs-keyword">class</span>;
-  IEnumerable&lt;T&gt; GetMultipleServicesFromAll&lt;T&gt;()
-    <span class="hljs-keyword">where</span> T : <span class="hljs-keyword">class</span>;
-  IEnumerable&lt;T&gt; GetServices&lt;T&gt;(PsiLanguageType languageType)
-    <span class="hljs-keyword">where</span> T : <span class="hljs-keyword">class</span>;
-  <span class="hljs-keyword">bool</span> HasService&lt;T&gt;(PsiLanguageType languageType)
-    <span class="hljs-keyword">where</span> T : <span class="hljs-keyword">class</span>;
-  T TryGetCachedService&lt;T&gt;(PsiLanguageType languageType)
-    <span class="hljs-keyword">where</span> T : <span class="hljs-keyword">class</span>;
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ILanguageManager</span>
+</span>{
+  <span class="hljs-function">T <span class="hljs-title">GetService&lt;T, TLanguage&gt;</span><span class="hljs-params">()</span>
+    <span class="hljs-keyword">where</span> T : class
+    <span class="hljs-keyword">where</span> TLanguage : PsiLanguageType</span>;
+  <span class="hljs-function">T <span class="hljs-title">TryGetService&lt;T, TLanguage&gt;</span><span class="hljs-params">()</span>
+    <span class="hljs-keyword">where</span> T : class
+    <span class="hljs-keyword">where</span> TLanguage : PsiLanguageType</span>;
+  <span class="hljs-function">T <span class="hljs-title">GetService&lt;T&gt;</span><span class="hljs-params">(PsiLanguageType languageType)</span>
+    <span class="hljs-keyword">where</span> T : class</span>;
+  <span class="hljs-function">T <span class="hljs-title">TryGetService&lt;T&gt;</span><span class="hljs-params">(PsiLanguageType languageType)</span>
+    <span class="hljs-keyword">where</span> T : class</span>;
+  <span class="hljs-function">IEnumerable&lt;T&gt; <span class="hljs-title">GetServicesFromAll&lt;T&gt;</span><span class="hljs-params">()</span>
+    <span class="hljs-keyword">where</span> T : class</span>;
+  <span class="hljs-function">IEnumerable&lt;T&gt; <span class="hljs-title">GetMultipleServicesFromAll&lt;T&gt;</span><span class="hljs-params">()</span>
+    <span class="hljs-keyword">where</span> T : class</span>;
+  <span class="hljs-function">IEnumerable&lt;T&gt; <span class="hljs-title">GetServices&lt;T&gt;</span><span class="hljs-params">(PsiLanguageType languageType)</span>
+    <span class="hljs-keyword">where</span> T : class</span>;
+  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">HasService&lt;T&gt;</span><span class="hljs-params">(PsiLanguageType languageType)</span>
+    <span class="hljs-keyword">where</span> T : class</span>;
+  <span class="hljs-function">T <span class="hljs-title">TryGetCachedService&lt;T&gt;</span><span class="hljs-params">(PsiLanguageType languageType)</span>
+    <span class="hljs-keyword">where</span> T : class</span>;
 }
 
-[SolutionComponent]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span>
-{
+<span class="hljs-attribute">[<span class="hljs-title">SolutionComponent</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Foo</span>
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Foo</span><span class="hljs-params">(Lifetime lifetime, ILanguageManager languageManager)</span>
   </span>{
-    <span class="hljs-keyword">var</span> formatter = languageManager.GetService&lt;ICodeFormatter, CSharpLanguage&gt;();
+    <span class="hljs-keyword">var</span> formatter = languageManager.<span class="hljs-function"><span class="hljs-title">GetService&lt;ICodeFormatter, CSharpLanguage&gt;</span><span class="hljs-params">()</span></span>;
     <span class="hljs-comment">// ...</span>
   }
 }

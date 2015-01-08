@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Testing | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="10.1.14" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="10.1.14" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3545,7 +3547,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_24">
+                    <section class="normal" id="section-gitbook_12">
                     
                         <h1 id="testing-daemon-stages-and-highlights"><a name="testing-daemon-stages-and-highlights" class="plugin-anchor" href="#testing-daemon-stages-and-highlights"><span class="fa fa-link"></span></a>Testing Daemon Stages and Highlights</h1>
 <p>The <code>HighlightingTestBase</code> base class provides infrastructure for testing daemons, element problem analysers and highlightings. It creates an in-memory project, adds a file and analyses it. The resulting highlights are then written to a <code>.tmp</code> file and compared against the <code>.gold</code> file. If the files differ, the test fails.</p>
@@ -3565,13 +3567,13 @@
 <!-- toc stop -->
 <h2 id="input-and-gold-files"><a name="input-and-gold-files" class="plugin-anchor" href="#input-and-gold-files"><span class="fa fa-link"></span></a>Input and gold files</h2>
 <p>The input file is a simple text file. The location of the text caret is irrelevant to highlight tests, so placeholders are not required. As an example testing C# local variable usage:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span>
-{
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">foo</span> <span class="hljs-params">(<span class="hljs-keyword">bool</span> cond)</span>
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span>
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">foo</span> <span class="hljs-params">(<span class="hljs-keyword">bool</span> cond)</span>
   </span>{
     <span class="hljs-keyword">int</span> counter = <span class="hljs-number">0</span>;
-    <span class="hljs-keyword">while</span>(cond)
-      counter++;
+    <span class="hljs-function"><span class="hljs-title">while</span><span class="hljs-params">(cond)</span>
+      counter++</span>;
   }
 }
 </code></pre>
@@ -3594,27 +3596,27 @@
 <p>It is possible to change the output of the highlight text by overriding the <code>CreateHighlightingDumper</code> method and returning a custom instance of <code>TestHighlightingDumper</code>.</p>
 <h2 id="using-the-base-class"><a name="using-the-base-class" class="plugin-anchor" href="#using-the-base-class"><span class="fa fa-link"></span></a>Using the base class</h2>
 <p>In order to use the base class, simply derive from <code>HighlightingTestBase</code>, or one of the more language specific derived class (see below for more details on these derived classes), and call <code>DoTestSolution</code>, <code>DoNamedTest</code> or <code>DoNamedTest2</code> in the test method. As ever, the <code>RelativeTestDataPath</code> should be overridden to describe where the test data files are located. Most of the language specific base classes set up a value of <code>Daemon\&lt;Langauge&gt;</code>.</p>
-<pre><code class="lang-cs">[Test]
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DoTest</span><span class="hljs-params">()</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">Test</span>]</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DoTest</span><span class="hljs-params">()</span>
 </span>{
   <span class="hljs-comment">// Runs a specific set of files</span>
-  DoTestSolution(<span class="hljs-string">&quot;Foo.cs&quot;</span>);
+  <span class="hljs-function"><span class="hljs-title">DoTestSolution</span><span class="hljs-params">(<span class="hljs-string">&quot;Foo.cs&quot;</span>)</span></span>;
 }
 
-[Test]
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">CheckHighlights</span><span class="hljs-params">()</span>
+<span class="hljs-attribute">[<span class="hljs-title">Test</span>]</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CheckHighlights</span><span class="hljs-params">()</span>
 </span>{
   <span class="hljs-comment">// File name is based on the name of the test,</span>
   <span class="hljs-comment">// e.g. &quot;CheckHighlights.cs&quot;</span>
-  DoNamedTest();
+  <span class="hljs-function"><span class="hljs-title">DoNamedTest</span><span class="hljs-params">()</span></span>;
 }
 
-[Test]
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">TestLocalVariableUsage</span><span class="hljs-params">()</span>
+<span class="hljs-attribute">[<span class="hljs-title">Test</span>]</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TestLocalVariableUsage</span><span class="hljs-params">()</span>
 </span>{
   <span class="hljs-comment">// File name is based on the name of the test, stripping a &quot;Test&quot; prefix</span>
   <span class="hljs-comment">// e.g. &quot;LocalVariableUsage.cs&quot;</span>
-  DoNamedTest2();
+  <span class="hljs-function"><span class="hljs-title">DoNamedTest2</span><span class="hljs-params">()</span></span>;
 }
 </code></pre>
 <p>The <code>DoNamedTest</code> and <code>DoNamedTest2</code> methods automatically add an extension in order to find the input file. This extension comes from the <code>Extension</code> property, which looks for attributes on the test method or class that implement <code>ITestFileExtensionProvider</code>, such as <code>TestFileExtensionAttribute</code>. It defaults to <code>.cs</code>.</p>
@@ -3623,16 +3625,16 @@
 <p>The <code>HighlightinTestBase</code> class understands iterating over multiple combinations of settings. In order to make use of this, please refer to the section on <a href="../../Plugin/Testing/OptionsIterator.html">settings iteration</a>.</p>
 <h3 id="filtering-highlights"><a name="filtering-highlights" class="plugin-anchor" href="#filtering-highlights"><span class="fa fa-link"></span></a>Filtering highlights</h3>
 <p>The test class can filter what highlights it wished to test, by overriding the <code>HighlightingPredicate</code> method.</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">virtual</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">HighlightingPredicate</span><span class="hljs-params">(IHighlighting highlighting, IContextBoundSettingsStore settingsStore)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">virtual</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">HighlightingPredicate</span><span class="hljs-params">(IHighlighting highlighting, IContextBoundSettingsStore settingsStore)</span>
 </span>{
   <span class="hljs-keyword">var</span> manager = HighlightingSettingsManager.Instance;
-  <span class="hljs-keyword">var</span> severity = manager.GetSeverity(highlighting, settingsStore);
-  <span class="hljs-keyword">var</span> attribute = manager.GetHighlightingAttribute(highlighting);
+  <span class="hljs-keyword">var</span> severity = manager.<span class="hljs-function"><span class="hljs-title">GetSeverity</span><span class="hljs-params">(highlighting, settingsStore)</span></span>;
+  <span class="hljs-keyword">var</span> attribute = manager.<span class="hljs-function"><span class="hljs-title">GetHighlightingAttribute</span><span class="hljs-params">(highlighting)</span></span>;
 
-  <span class="hljs-keyword">if</span> (severity == Severity.INFO &amp;&amp; attribute.OverlapResolve == OverlapResolveKind.NONE)
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(severity == Severity.INFO &amp;&amp; attribute.OverlapResolve == OverlapResolveKind.NONE)</span>
+    return false</span>;
 
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }
 </code></pre>
 <p>The default implementation, as shown above, looks up the configured severity of the highlight, and hides it if it&apos;s set to <code>Severity.INFO</code> and its overlap resolution is set to <code>OverlapResolveKind.NONE</code>. This combination is usually used by static highlights, identifier highlights, gutter marks and context highlighting, which are not usually useful in a highlighter test. However, if the test needs to see this kind of highlighting, simply override the <code>HighlightingPredicate</code> method to suit.</p>
@@ -3659,11 +3661,11 @@
 <li><strong><code>JavaScriptHighlightingTestBase</code></strong> - base class for JavaScript highlight tests. Sets up some default settings.</li>
 <li><strong><code>TodoHighlightingTestBase</code></strong> provides a custom dumper to format todo items.</li>
 <li><strong><code>TypeScriptHighlightingTestBase</code></strong> - base class for TypeScript highlights.</li>
-<li><strong><code>VBHighlightingTestBase</code></strong> sets up the test for VB tests. Allows setting the language level before running a test:<pre><code class="lang-cs">  [Test]
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test01</span><span class="hljs-params">()</span>
+<li><strong><code>VBHighlightingTestBase</code></strong> sets up the test for VB tests. Allows setting the language level before running a test:<pre><code class="lang-cs">  <span class="hljs-attribute">[<span class="hljs-title">Test</span>]</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Test01</span><span class="hljs-params">()</span>
   </span>{
-    <span class="hljs-keyword">using</span> (<span class="hljs-keyword">new</span> LanguageLevelCookie(<span class="hljs-keyword">this</span>, VBLanguageLevel.Vb10))
-      DoNamedTest();
+    <span class="hljs-function"><span class="hljs-title">using</span> <span class="hljs-params">(new LanguageLevelCookie(this, VBLanguageLevel.Vb10)</span>)
+      <span class="hljs-title">DoNamedTest</span><span class="hljs-params">()</span></span>;
   }
 </code></pre>
 </li>
@@ -3672,7 +3674,7 @@
 <h2 id="testing-gutter-marks-and-dead-code"><a name="testing-gutter-marks-and-dead-code" class="plugin-anchor" href="#testing-gutter-marks-and-dead-code"><span class="fa fa-link"></span></a>Testing gutter marks and dead code</h2>
 <p>Gutter marks are essentially the same as normal highlights - the icons are displayed in the gutter of the text editor, but the highlight is still applied to a section of code such as a method declaration. Similarly, the highlight has text, and the text and location is listed in the gold file in exactly the same way as normal (underlined) highlights.</p>
 <p>In order to make the tests a little easier, the test class can override the <code>HighlightPredicate</code> method and filter the <code>IHighlighting</code> instance to ensure it is of a known type for the gutter marks under test, e.g.:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">HighlightingPredicate</span><span class="hljs-params">(IHighlighting highlighting, IContextBoundSettingsStore settingsStore)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">HighlightingPredicate</span><span class="hljs-params">(IHighlighting highlighting, IContextBoundSettingsStore settingsStore)</span>
 </span>{
   <span class="hljs-keyword">return</span> (highlighting <span class="hljs-keyword">is</span> InheritanceMarkOnGutter) || (highlighting <span class="hljs-keyword">is</span> RecursionMarkOnGutter);
 }

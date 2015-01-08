@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Daemons | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-level="10.1.4" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="10.1.4" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3543,7 +3545,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_23">
+                    <section class="normal" id="section-gitbook_11">
                     
                         <h1 id="daemons"><a name="daemons" class="plugin-anchor" href="#daemons"><span class="fa fa-link"></span></a>Daemons</h1>
 <p>As you may have noticed, ReSharper features background analysis of your code. In fact, at any one time there are several different analyzers running at different <em>stages</em>, all combining to provide the most complete assessment of your code.</p>
@@ -3563,7 +3565,7 @@
 <li>A method called <code>Execute()</code> where the actual analysis happens.</li>
 </ul>
 <p>Let&apos;s talk about the Execute method in more detail. If you&apos;ve inherited from a class such as <code>CSharpDaemonStageBase</code>, your <code>CreateProcess()</code> override already has a parameter of type <code>ICSharpFile</code> that you can use. If not, you can use an extension method in <code>PsiManagerExtensions</code> to acquire the file:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> file = process.SourceFile.GetPsiFiles&lt;CSharpLanguage&gt;();
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> file = process.SourceFile.<span class="hljs-function"><span class="hljs-title">GetPsiFiles&lt;CSharpLanguage&gt;</span><span class="hljs-params">()</span></span>;
 </code></pre>
 <p>Now that you have the code structure you want to analyse, you spin up one of the element processors on it. An element processor is a class implementing an interface such as <code>IRecursiveElementProcessor</code>, that lets you walk around all the tree nodes in a particular block of code. In the case of a recursive element processor, it has the following methods:</p>
 <ul>
@@ -3585,7 +3587,7 @@
 <li>The tooltip for the marker bar.</li>
 </ul>
 <p>So - coming back to the daemon stage process - you have invoked the element processor (or several) and got a set of highlightings. The last thing to do is to commit the results using the commiter that is provided as a parameter to the <code>Execute()</code> method:</p>
-<pre><code class="lang-cs">commiter(<span class="hljs-keyword">new</span> DaemonStageResult(elementProcessor.Highlightings));
+<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-title">commiter</span><span class="hljs-params">(new DaemonStageResult(elementProcessor.Highlightings)</span>)</span>;
 </code></pre>
 <p>And that&apos;s it - your daemon is ready to go!</p>
 <h2 id="elementproblemanalyzer"><a name="elementproblemanalyzer" class="plugin-anchor" href="#elementproblemanalyzer"><span class="fa fa-link"></span></a>ElementProblemAnalyzer</h2>
@@ -3606,22 +3608,22 @@
 <li><code>IHighlightingConsumer</code> - this interface is used to add the highlightings to various elements.</li>
 </ul>
 <p>The following is an example implementation of an element problem analyzer:</p>
-<pre><code class="lang-cs">[ElementProblemAnalyzer(new[] { typeof(IExpression) }, 
-  HighlightingTypes = new[] { typeof(UseOfInt64MaxValueLiteralHighlighting) })]
-public class UseOfInt64MaxValueLiteralChecker : ElementProblemAnalyzer&lt;IExpression&gt;
-{
-  protected override void Run(IExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
-  {
-    var value = element.ConstantValue;
-    if (!value.IsLong())
-      return;
+<pre><code class="lang-cs">[<span class="hljs-function"><span class="hljs-title">ElementProblemAnalyzer</span><span class="hljs-params">(new[] { typeof(IExpression)</span> }, 
+  HighlightingTypes </span>= <span class="hljs-keyword">new</span>[] { <span class="hljs-function"><span class="hljs-title">typeof</span><span class="hljs-params">(UseOfInt64MaxValueLiteralHighlighting)</span> })]
+<span class="hljs-keyword">public</span> class UseOfInt64MaxValueLiteralChecker : ElementProblemAnalyzer&lt;IExpression&gt;
+</span>{
+  <span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Run</span><span class="hljs-params">(IExpression element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)</span>
+  </span>{
+    <span class="hljs-keyword">var</span> <span class="hljs-keyword">value</span> = element.ConstantValue;
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(!value.IsLong()</span>)
+      return</span>;
 
-    long number = Convert.ToInt64(value.Value);
-    if (number != Int64.MaxValue)
-      return;
+    <span class="hljs-keyword">long</span> number = Convert.<span class="hljs-function"><span class="hljs-title">ToInt64</span><span class="hljs-params">(value.Value)</span></span>;
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(number != Int64.MaxValue)</span>
+      return</span>;
 
-    consumer.AddHighlighting(new UseOfInt64MaxValueLiteralHighlighting(element), 
-      element.GetDocumentRange(), element.GetContainingFile());
+    consumer.<span class="hljs-function"><span class="hljs-title">AddHighlighting</span><span class="hljs-params">(new UseOfInt64MaxValueLiteralHighlighting(element)</span>, 
+      element.<span class="hljs-title">GetDocumentRange</span><span class="hljs-params">()</span>, element.<span class="hljs-title">GetContainingFile</span><span class="hljs-params">()</span>)</span>;
   }
 }
 </code></pre>

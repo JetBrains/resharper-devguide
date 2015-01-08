@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Plugin testing | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="5.5.4" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="5.5.4" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3567,38 +3569,38 @@
 <p>In order to tell ReSharper that the assembly contains tests that should be executed by the ReSharper infrastructure, the assembly must include a type decorated with the <code>SetUpFixture</code> attribute and inheriting from <code>ReSharperTestEnvironmentAssembly</code>.</p>
 <p>NUnit will create any set up fixtures before running any tests defined in or below the namespace of the set up fixure class. For this reason, the project templates distributed with the ReSharper SDK create the set up fixture in the root namespace, and place it in the <code>AssemblyInfo.cs</code> file.</p>
 <p>However, it is also useful to move the class to a child namespace, and ensure that all acceptance tests are declared in or below this child namespace. This allows for real unit tests to also be declared in the assembly, and not pay the cost of initialising a ReSharper environment when running unit tests.</p>
-<pre><code class="lang-cs">[SetUpFixture]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyTestEnvironmentAssembly</span> : <span class="hljs-title">ReSharperTestEnvironmentAssembly</span>
-{
-  <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> <span class="hljs-xmlDocTag">&lt;summary&gt;</span></span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">SetUpFixture</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyTestEnvironmentAssembly</span> : ReSharperTestEnvironmentAssembly
+</span>{
+  <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">summary</span>&gt;</span></span></span>
   <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> Gets the assemblies to load into test environment.</span>
   <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> Should include all assemblies which contain components.</span>
-  <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> <span class="hljs-xmlDocTag">&lt;/summary&gt;</span></span>
-  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> IEnumerable&lt;Assembly&gt; <span class="hljs-title">GetAssembliesToLoad</span><span class="hljs-params">()</span>
+  <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> <span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">summary</span>&gt;</span></span></span>
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-function">IEnumerable&lt;Assembly&gt; <span class="hljs-title">GetAssembliesToLoad</span><span class="hljs-params">()</span>
   </span>{
     <span class="hljs-comment">// Test assembly</span>
-    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> Assembly.GetExecutingAssembly();
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> Assembly.<span class="hljs-function"><span class="hljs-title">GetExecutingAssembly</span><span class="hljs-params">()</span></span>;
 
     <span class="hljs-comment">// Plugin code - TypeUnderTest is implemented in the plugin assembly</span>
-    <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-title">typeof</span><span class="hljs-params">(<span class="hljs-keyword">typeof</span>(TypeUnderTest)</span>).Assembly</span>;
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-title">typeof</span><span class="hljs-params">(typeof(TypeUnderTest)</span>).Assembly</span>;
   }
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetUp</span><span class="hljs-params">()</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SetUp</span><span class="hljs-params">()</span>
   </span>{
-    <span class="hljs-keyword">base</span>.SetUp();
-    ReentrancyGuard.Current.Execute(<span class="hljs-string">&quot;LoadAssemblies&quot;</span>, () =&gt; 
+    <span class="hljs-keyword">base</span>.<span class="hljs-function"><span class="hljs-title">SetUp</span><span class="hljs-params">()</span></span>;
+    ReentrancyGuard.Current.<span class="hljs-function"><span class="hljs-title">Execute</span><span class="hljs-params">(<span class="hljs-string">&quot;LoadAssemblies&quot;</span>, ()</span> </span>=&gt; 
     {
-      Shell.Instance.GetComponent&lt;AssemblyManager&gt;().LoadAssemblies(GetType().Name, GetAssembliesToLoad()));
+      Shell.Instance.<span class="hljs-function"><span class="hljs-title">GetComponent&lt;AssemblyManager&gt;</span><span class="hljs-params">()</span>.<span class="hljs-title">LoadAssemblies</span><span class="hljs-params">(GetType()</span>.Name, <span class="hljs-title">GetAssembliesToLoad</span><span class="hljs-params">()</span>))</span>;
     }
   }
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">TearDown</span><span class="hljs-params">()</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TearDown</span><span class="hljs-params">()</span>
   </span>{
-    ReentrancyGuard.Current.Execute(<span class="hljs-string">&quot;UnloadAssemblies&quot;</span>, () =&gt; 
+    ReentrancyGuard.Current.<span class="hljs-function"><span class="hljs-title">Execute</span><span class="hljs-params">(<span class="hljs-string">&quot;UnloadAssemblies&quot;</span>, ()</span> </span>=&gt; 
     {
-      Shell.Instance.GetComponent&lt;AssemblyManager&gt;().LoadAssemblies(GetType().Name, GetAssembliesToLoad()));
+      Shell.Instance.<span class="hljs-function"><span class="hljs-title">GetComponent&lt;AssemblyManager&gt;</span><span class="hljs-params">()</span>.<span class="hljs-title">LoadAssemblies</span><span class="hljs-params">(GetType()</span>.Name, <span class="hljs-title">GetAssembliesToLoad</span><span class="hljs-params">()</span>))</span>;
     }
-    <span class="hljs-keyword">base</span>.TearDown();
+    <span class="hljs-keyword">base</span>.<span class="hljs-function"><span class="hljs-title">TearDown</span><span class="hljs-params">()</span></span>;
   }
 }
 </code></pre>
@@ -3621,11 +3623,11 @@
 <li>Create a folder called <code>your_feature_name</code></li>
 <li>In your test, the value of the overridden <code>RelativeTestDataPath</code> property should correspondingly be <code>your_feature_name</code></li>
 <li><p>Your test cases should invoke the appropriate test files. For example, if your test data file is named <code>availability01.cs</code>, your test can appear as follows:</p>
-<pre><code class="lang-cs">  [TestCase(<span class="hljs-string">&quot;availability01&quot;</span>)]
-  [Test]
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">TestExecution01</span><span class="hljs-params">(<span class="hljs-keyword">string</span> testSrc)</span>
+<pre><code class="lang-cs">  <span class="hljs-attribute">[<span class="hljs-title">TestCase</span><span class="hljs-params">(<span class="hljs-string">&quot;availability01&quot;</span>)</span>]</span>
+  <span class="hljs-attribute">[<span class="hljs-title">Test</span>]</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TestExecution01</span><span class="hljs-params">(<span class="hljs-keyword">string</span> testSrc)</span>
   </span>{
-    DoOneTest(testSrc);
+    <span class="hljs-function"><span class="hljs-title">DoOneTest</span><span class="hljs-params">(testSrc)</span></span>;
   }
 </code></pre>
 </li>

@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>XML and DTD | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="9.19.10" data-basepath="../../.." data-revision="1418218353318">
+    <div class="book" data-level="9.19.10" data-basepath="../../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3574,12 +3576,12 @@
 <h3 id="tree-nodes"><a name="tree-nodes" class="plugin-anchor" href="#tree-nodes"><span class="fa fa-link"></span></a>Tree nodes</h3>
 <p>Each node in the XML tree derives from <a href="TreeNodes.html#ixmltreenode"><code>IXmlTreeNode</code></a>:</p>
 <!-- Begin IXmlTreeNode -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTreeNode</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTreeNode</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  XmlTokenTypes XmlTokenTypes { <span class="hljs-keyword">get</span>; }
+</span>{
+  XmlTokenTypes <span class="hljs-title">XmlTokenTypes</span> { <span class="hljs-keyword">get</span>; }
 
-  TReturn AcceptVisitor&lt;TContext, TReturn&gt;(IXmlTreeVisitor&lt;TContext, TReturn&gt; visitor, TContext context);
+  <span class="hljs-function">TReturn <span class="hljs-title">AcceptVisitor&lt;TContext, TReturn&gt;</span><span class="hljs-params">(IXmlTreeVisitor&lt;TContext, TReturn&gt; visitor, TContext context)</span></span>;
 }
 </code></pre>
 <!-- End IXmlTreeNode -->
@@ -3588,36 +3590,36 @@
 <h3 id="tokens"><a name="tokens" class="plugin-anchor" href="#tokens"><span class="fa fa-link"></span></a>Tokens</h3>
 <p>All tokens in the tree derive from <a href="TreeNodes.html#ixmltoken"><code>IXmlToken</code></a>, which in turn derives from <a href="TreeNodes.html#ixmltreenode"><code>IXmlTreeNode</code></a>. Remember that a token is a leaf element in the tree - it doesn&apos;t have any children, and is used to build the higher level tree nodes (e.g. an xml tag contains the tokens for <code>&lt;</code>, the tag name identifier, <code>&gt;</code> and so on).</p>
 <!-- Begin IXmlToken -->
-<pre><code class="lang-cs">public interface IXmlToken :
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
-  new XmlTokenNodeType GetTokenType();
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlToken</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  <span class="hljs-keyword">new</span> <span class="hljs-function">XmlTokenNodeType <span class="hljs-title">GetTokenType</span><span class="hljs-params">()</span></span>;
 }
 </code></pre>
 <!-- End IXmlToken -->
 <p>The <code>ITokenNode.GetTokenType</code> method is hidden by a new method of the same name, but that returns an instance of <code>XmlTokenNodeType</code>, rather than <code>TokenNodeType</code>. <code>XmlTokenNodeType</code> derives from the <code>TokenNodeType</code> abstract class and adds a single property, that returns the <code>XmlTokenTypes</code> class that lists all the known token node types. This class can be a derived instance for some XML languages, such as XAML.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> XmlTokenTypes XmlTokenTypes { <span class="hljs-keyword">get</span>; }
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> XmlTokenTypes <span class="hljs-title">XmlTokenTypes</span> { <span class="hljs-keyword">get</span>; }
 </code></pre>
 <h3 id="file-node"><a name="file-node" class="plugin-anchor" href="#file-node"><span class="fa fa-link"></span></a>File node</h3>
 <p>The root node of an XML file is <a href="TreeNodes.html#ixmlfile"><code>IXmlFile</code></a>:</p>
 <!-- Begin IXmlFile -->
-<pre><code class="lang-cs">public interface IXmlFile :
-  IFile,
-  IXmlTagContainer,
-  IXmlDocumentNode,
-  IXmlTreeNode,
-  ITreeNode
-{
-  TreeNodeCollection&lt;IProcessingInstruction&gt; ProcessingInstructions { get; }
-  XmlElementTypes XmlElementTypes { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlFile</span> :
+  <span class="hljs-title">IFile</span>,
+  <span class="hljs-title">IXmlTagContainer</span>,
+  <span class="hljs-title">IXmlDocumentNode</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  TreeNodeCollection&lt;IProcessingInstruction&gt; <span class="hljs-title">ProcessingInstructions</span> { <span class="hljs-keyword">get</span>; }
+  XmlElementTypes <span class="hljs-title">XmlElementTypes</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlFile -->
 <p>The <code>XmlElementTypes</code> property provides access to the composite node type instances assigned to the composite, non-leaf nodes when building the tree. These instances are the values returned from <code>ITreeNode.NodeType</code>. It can be used to compare against the node type of any node, to look for nodes of a certain type, and is also used by the XML file parser to create element nodes via the element node type instances&apos; <code>Create</code> method. The type of <code>XmlElementTypes</code> might be a derived instance, depending on the XML language.</p>
 <p>The <code>IXmlFile</code> directly exposes a collection of processing instructions. This only returns processing instructions that implement <a href="TreeNodes.html#iprocessinginstruction"><code>IProcessingInstruction</code></a>, and despite its name, the <a href="TreeNodes.html#ixmlprocessinginstruction"><code>IXmlProcessingInstruction</code></a> that represents the XML declaration doesn&apos;t get returned in this collection. To get at the XML declaration, you need to get it directly from the child nodes:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> xmlDeclarations = file.Children&lt;IXmlProcessingInstruction&gt;();
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> xmlDeclarations = file.<span class="hljs-function"><span class="hljs-title">Children&lt;IXmlProcessingInstruction&gt;</span><span class="hljs-params">()</span></span>;
 </code></pre>
 <p>The inherited <a href="TreeNodes.html#ixmltagcontainer"><code>IXmlTagContainer</code></a> interface provides child tag access and manipulation functions.</p>
 <p>It also implements the <a href="TreeNodes.html#ixmldocumentnode"><code>IXmlDocumentNode</code></a> marker interface.</p>
@@ -3627,36 +3629,36 @@
 <p>The footer is the closing element (<code>&lt;/foo&gt;</code>), which may not be included in the tree if the XML element is self-closed (<code>&lt;foo /&gt;</code>).</p>
 <p>The inner child nodes are either text (<a href="TreeNodes.html#ixmlfloatingtexttokennode"><code>IXmlFloatingTextTokenNode</code></a>, which also includes whitespace), or other nodes such as <a href="TreeNodes.html#ixmlcdata"><code>IXmlCData</code></a>, <a href="TreeNodes.html#ixmlentitytokennode"><code>IXmlEntityTokenNode</code></a> or <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a>.</p>
 <!-- Begin IXmlTag -->
-<pre><code class="lang-cs">public interface IXmlTag :
-  IXmlTreeNode,
-  IXmlTagContainer,
-  ITreeNode
-{
-  IXmlTagFooter Footer { get; }
-  IXmlTagHeader Header { get; }
-  string InnerText { get; }
-  TreeNodeCollection&lt;IXmlToken&gt; InnerTextTokens { get; }
-  string InnerValue { get; }
-  ITreeRange InnerXml { get; }
-  bool IsEmptyTag { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTag</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">IXmlTagContainer</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  IXmlTagFooter <span class="hljs-title">Footer</span> { <span class="hljs-keyword">get</span>; }
+  IXmlTagHeader <span class="hljs-title">Header</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">InnerText</span> { <span class="hljs-keyword">get</span>; }
+  TreeNodeCollection&lt;IXmlToken&gt; <span class="hljs-title">InnerTextTokens</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">InnerValue</span> { <span class="hljs-keyword">get</span>; }
+  ITreeRange <span class="hljs-title">InnerXml</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">bool</span> <span class="hljs-title">IsEmptyTag</span> { <span class="hljs-keyword">get</span>; }
 
-  TXmlAttribute AddAttributeAfter&lt;TXmlAttribute&gt;(TXmlAttribute attribute, IXmlAttribute anchor);
-  TXmlAttribute AddAttributeBefore&lt;TXmlAttribute&gt;(TXmlAttribute attribute, IXmlAttribute anchor);
+  <span class="hljs-function">TXmlAttribute <span class="hljs-title">AddAttributeAfter&lt;TXmlAttribute&gt;</span><span class="hljs-params">(TXmlAttribute attribute, IXmlAttribute anchor)</span></span>;
+  <span class="hljs-function">TXmlAttribute <span class="hljs-title">AddAttributeBefore&lt;TXmlAttribute&gt;</span><span class="hljs-params">(TXmlAttribute attribute, IXmlAttribute anchor)</span></span>;
 
-  void RemoveAttribute(IXmlAttribute attribute);
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">RemoveAttribute</span><span class="hljs-params">(IXmlAttribute attribute)</span></span>;
 }
 </code></pre>
 <!-- End IXmlTag -->
 <h3 id="xml-attributes"><a name="xml-attributes" class="plugin-anchor" href="#xml-attributes"><span class="fa fa-link"></span></a>XML attributes</h3>
 <p>Attributes are accessible via the <a href="TreeNodes.html#ixmlattributecontainer"><code>IXmlAttributeContainer</code></a> interface, mostly implemented by <a href="TreeNodes.html#ixmltagheader"><code>IXmlTagHeader</code></a>, but also by the XML declaration <a href="TreeNodes.html#ixmlprocessinginstruction"><code>IXmlProcessingInstruction</code></a>.</p>
 <!-- Begin IXmlAttributeContainer -->
-<pre><code class="lang-cs">public interface IXmlAttributeContainer :
-  IXmlTreeNode,
-  ITreeNode
-{
-  TreeNodeCollection&lt;IXmlAttribute&gt; Attributes { get; }
-  TreeNodeEnumerable&lt;IXmlAttribute&gt; AttributesEnumerable { get; }
-  string ContainerName { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlAttributeContainer</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  TreeNodeCollection&lt;IXmlAttribute&gt; <span class="hljs-title">Attributes</span> { <span class="hljs-keyword">get</span>; }
+  TreeNodeEnumerable&lt;IXmlAttribute&gt; <span class="hljs-title">AttributesEnumerable</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">ContainerName</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlAttributeContainer -->

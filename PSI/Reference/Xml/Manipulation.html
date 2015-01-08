@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Manipulating the Tree | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="9.19.10.1" data-basepath="../../.." data-revision="1418218353318">
+    <div class="book" data-level="9.19.10.1" data-basepath="../../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3551,20 +3553,20 @@
                     
                         <h1 id="manipulating-the-tree"><a name="manipulating-the-tree" class="plugin-anchor" href="#manipulating-the-tree"><span class="fa fa-link"></span></a>Manipulating the Tree</h1>
 <p>The XML PSI tree doesn&apos;t provide many strongly typed methods for manipulating the tree. The <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a> and <a href="TreeNodes.html#ixmltagcontainer"><code>IXmlTagContainer</code></a> nodes are the only ones that provide methods.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> inteface IXmlTag
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> inteface <span class="hljs-title">IXmlTag</span>
 {
   <span class="hljs-comment">// ...snip...</span>
 
-  TXmlAttribute AddAttributeAfter&lt;TXmlAttribute&gt;(TXmlAttribute attribute, IXmlAttribute anchor);
-  TXmlAttribute AddAttributeBefore&lt;TXmlAttribute&gt;(TXmlAttribute attribute, IXmlAttribute anchor);
+  <span class="hljs-function">TXmlAttribute <span class="hljs-title">AddAttributeAfter&lt;TXmlAttribute&gt;</span><span class="hljs-params">(TXmlAttribute attribute, IXmlAttribute anchor)</span></span>;
+  <span class="hljs-function">TXmlAttribute <span class="hljs-title">AddAttributeBefore&lt;TXmlAttribute&gt;</span><span class="hljs-params">(TXmlAttribute attribute, IXmlAttribute anchor)</span></span>;
   <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">RemoveAttribute</span><span class="hljs-params">(IXmlAttribute attribute)</span></span>;
 }
 
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTagContainer</span>
-{
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTagContainer</span>
+</span>{
   <span class="hljs-comment">// ...snip...</span>
-  TXmlTag AddTagAfter&lt;TXmlTag&gt;(TXmlTag, IXmlTag anchor);
-  TXmlTag AddTagBefore&lt;TXmlTag&gt;(TXmlTag, IXmlTag anchor);
+  <span class="hljs-function">TXmlTag <span class="hljs-title">AddTagAfter&lt;TXmlTag&gt;</span><span class="hljs-params">(TXmlTag, IXmlTag anchor)</span></span>;
+  <span class="hljs-function">TXmlTag <span class="hljs-title">AddTagBefore&lt;TXmlTag&gt;</span><span class="hljs-params">(TXmlTag, IXmlTag anchor)</span></span>;
 }
 </code></pre>
 <p>Both interfaces allow adding an attribute or a tag, specifying an <code>anchor</code> tree node that should be used to insert before or after. This <code>anchor</code> node can be null, in which case, the <code>*After</code> methods will add the new attribute or tag <strong>before</strong> all other nodes, and the <code>*Before</code> methods will add it <strong>after</strong> the other nodes.</p>
@@ -3573,17 +3575,17 @@
 </blockquote>
 <h2 id="util-classes"><a name="util-classes" class="plugin-anchor" href="#util-classes"><span class="fa fa-link"></span></a>Util classes</h2>
 <p>While the tree nodes don&apos;t provide any more methods for manipulating the tree, the <a href="Utils.html">Util classes</a> do. Specifically, <a href="Utils.html#xmlattributeutil"><code>XmlAttributeUtil</code></a> and <a href="Utils.html#xmltagutil"><code>XmlTagUtil</code></a>.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlAttributeUtil</span>
-{
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlAttributeUtil</span>
+</span>{
   <span class="hljs-comment">// ...snip...</span>
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetValue</span><span class="hljs-params">(IXmlAttribute attribute, <span class="hljs-keyword">string</span> unquotedValue)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SetValue</span><span class="hljs-params">(IXmlAttribute attribute, <span class="hljs-keyword">string</span> unquotedValue)</span></span>;
 }
 
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlTagUtil</span>
-{
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">static</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XmlTagUtil</span>
+</span>{
   <span class="hljs-comment">// ...snip...</span>
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">MakeCompound</span><span class="hljs-params">(IXmlTag tag)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">void</span> <span class="hljs-title">MakeEmptyTag</span><span class="hljs-params">(IXmlTag tag)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">MakeCompound</span><span class="hljs-params">(IXmlTag tag)</span></span>;
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">MakeEmptyTag</span><span class="hljs-params">(IXmlTag tag)</span></span>;
 }
 </code></pre>
 <p>The <a href="Utils.html#xmlattributeutil"><code>XmlAttributeUtil.SetValue</code></a> method sets the value of the attribute to the string passed in. Since there are no methods for manipulating the text of the attribute value, it does this by replacing the <a href="TreeNodes.html#ixmlattributevalue"><code>IXmlAttributeValue</code></a> node in the given attribute with a new instance.</p>
@@ -3609,39 +3611,39 @@
 <p>Unless a tree node or utility class provides a helper method for manipulating the tree node, then any time the content of the XML tree needs to be updated, then the node containing that content must be replaced. That is, a new node is created, and replaces the old node in the tree.</p>
 <p>This can be quite complex, depending on what exactly needs to be replaced. The <code>XmlElementFactory</code> class provides methods to easily create tags and attributes, but not for creating other node types. The language specific implementations of <code>IXmlElementFactory</code> can create all of the other node types, but usually requires more work to build the tree nodes required.</p>
 <p>For example, replacing the inner text of a tag is complicated by the text being represented by both text token nodes and whitespace token nodes. Replacing a single word is therefore straightforward:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ReplaceTextNode</span><span class="hljs-params">(IXmlTag tag, IXmlFloatingTextTokenNode oldToken, <span class="hljs-keyword">string</span> text)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ReplaceTextNode</span><span class="hljs-params">(IXmlTag tag, IXmlFloatingTextTokenNode oldToken, <span class="hljs-keyword">string</span> text)</span>
 </span>{
   <span class="hljs-comment">// Will only take the write lock if tag is part of a &quot;real&quot; tree</span>
-  <span class="hljs-keyword">using</span>(WriteLockCookie.Create(tag.IsPhysical()))
-  {
-    IXmlElementFactory elementFactory = XmlTreeNodeFactory.GetInstance(tag);
-    <span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> StringBuffer(text);
+  <span class="hljs-function"><span class="hljs-title">using</span><span class="hljs-params">(WriteLockCookie.Create(tag.IsPhysical()</span>))
+  </span>{
+    IXmlElementFactory elementFactory = XmlTreeNodeFactory.<span class="hljs-function"><span class="hljs-title">GetInstance</span><span class="hljs-params">(tag)</span></span>;
+    <span class="hljs-keyword">var</span> buffer = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">StringBuffer</span><span class="hljs-params">(text)</span></span>;
 
     <span class="hljs-comment">// We&apos;re not doing enough parsing to make it useful to intern strings more efficiently</span>
-    <span class="hljs-keyword">var</span> tokenIntern = <span class="hljs-keyword">new</span> LexerTokenIntern();
+    <span class="hljs-keyword">var</span> tokenIntern = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">LexerTokenIntern</span><span class="hljs-params">()</span></span>;
     <span class="hljs-keyword">var</span> tokenNodeType = tag.XmlTokenTypes.TEXT;
-    <span class="hljs-keyword">var</span> newToken = elementFactory.CreateToken(tokenIntern, tokenNodeType, buffer, <span class="hljs-number">0</span>, buffer.Length);
-    ModificationUtil.ReplaceChild(oldToken, newToken);
+    <span class="hljs-keyword">var</span> newToken = elementFactory.<span class="hljs-function"><span class="hljs-title">CreateToken</span><span class="hljs-params">(tokenIntern, tokenNodeType, buffer, <span class="hljs-number">0</span>, buffer.Length)</span></span>;
+    ModificationUtil.<span class="hljs-function"><span class="hljs-title">ReplaceChild</span><span class="hljs-params">(oldToken, newToken)</span></span>;
   }
 }
 </code></pre>
 <p>However, replacing content that spans whitespace nodes is more involved. A better approach here can be to create a new tag with the entire expected text content, and replace the child nodes of the original tag with the new tag&apos;s children. Alternatively, replace the whole tag with the newly created one (ensuring attributes are correctly copied across).</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">ReplaceTextContents</span><span class="hljs-params">(IXmlTag tag, <span class="hljs-keyword">string</span> text)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">ReplaceTextContents</span><span class="hljs-params">(IXmlTag tag, <span class="hljs-keyword">string</span> text)</span>
 </span>{
-  <span class="hljs-keyword">using</span>(WriteLockCookie.Create(tag.IsPhysical()))
-  {
+  <span class="hljs-function"><span class="hljs-title">using</span><span class="hljs-params">(WriteLockCookie.Create(tag.IsPhysical()</span>))
+  </span>{
     <span class="hljs-comment">// Get an instance of XmlElementFactory, NOT IXmlElementFactory</span>
-    XmlElementFactory elementFactory = XmlElementFactory.GetInstance(tag);
+    XmlElementFactory elementFactory = XmlElementFactory.<span class="hljs-function"><span class="hljs-title">GetInstance</span><span class="hljs-params">(tag)</span></span>;
 
     <span class="hljs-comment">// Create the text to be used to create the tag</span>
-    <span class="hljs-keyword">var</span> tagText = <span class="hljs-keyword">string</span>.Format(<span class="hljs-string">&quot;&lt;foo&gt;{0}&lt;/foo&gt;&quot;</span>, text);
-    <span class="hljs-keyword">var</span> newTag = elementFactory.CreateRootTag(tagText);
+    <span class="hljs-keyword">var</span> tagText = <span class="hljs-keyword">string</span>.<span class="hljs-function"><span class="hljs-title">Format</span><span class="hljs-params">(<span class="hljs-string">&quot;&lt;foo&gt;{0}&lt;/foo&gt;&quot;</span>, text)</span></span>;
+    <span class="hljs-keyword">var</span> newTag = elementFactory.<span class="hljs-function"><span class="hljs-title">CreateRootTag</span><span class="hljs-params">(tagText)</span></span>;
 
     <span class="hljs-keyword">var</span> oldTextTokens = tag.InnerTextTokens;
-    ModificationUtil.DeleteChildRange(oldTextTokens.First(), oldTextTokens.Last());
+    ModificationUtil.<span class="hljs-function"><span class="hljs-title">DeleteChildRange</span><span class="hljs-params">(oldTextTokens.First()</span>, oldTextTokens.<span class="hljs-title">Last</span><span class="hljs-params">()</span>)</span>;
 
     <span class="hljs-keyword">var</span> newTextTokens = newTag.InnerTextTokens;
-    ModificationUtil.AddChildRangeAfter(tag.Header, newTextTokens);
+    ModificationUtil.<span class="hljs-function"><span class="hljs-title">AddChildRangeAfter</span><span class="hljs-params">(tag.Header, newTextTokens)</span></span>;
   }
 }
 </code></pre>

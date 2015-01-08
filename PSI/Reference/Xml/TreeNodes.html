@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Tree Nodes | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="9.19.10.5" data-basepath="../../.." data-revision="1418218353318">
+    <div class="book" data-level="9.19.10.5" data-basepath="../../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3606,15 +3608,15 @@
 <h2 id="p"><a name="p" class="plugin-anchor" href="#p"><span class="fa fa-link"></span></a>P</h2>
 <h3 id="iprocessinginstruction"><a name="iprocessinginstruction" class="plugin-anchor" href="#iprocessinginstruction"><span class="fa fa-link"></span></a>IProcessingInstruction</h3>
 <!-- Begin IProcessingInstruction -->
-<pre><code class="lang-cs">public interface IProcessingInstruction :
-  IXmlTreeNode,
-  ITreeNode
-{
-  IXmlToken Body { get; }
-  IXmlToken End { get; }
-  string InstructionTarget { get; }
-  IXmlIdentifier InstructionTargetNode { get; }
-  IXmlToken Start { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IProcessingInstruction</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  IXmlToken <span class="hljs-title">Body</span> { <span class="hljs-keyword">get</span>; }
+  IXmlToken <span class="hljs-title">End</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">InstructionTarget</span> { <span class="hljs-keyword">get</span>; }
+  IXmlIdentifier <span class="hljs-title">InstructionTargetNode</span> { <span class="hljs-keyword">get</span>; }
+  IXmlToken <span class="hljs-title">Start</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IProcessingInstruction -->
@@ -3623,31 +3625,31 @@
 <h2 id="x"><a name="x" class="plugin-anchor" href="#x"><span class="fa fa-link"></span></a>X</h2>
 <h3 id="ixmlasterisktokennode"><a name="ixmlasterisktokennode" class="plugin-anchor" href="#ixmlasterisktokennode"><span class="fa fa-link"></span></a>IXmlAsteriskTokenNode</h3>
 <!-- Begin IXmlAsteriskTokenNode -->
-<pre><code class="lang-cs">public interface IXmlAsteriskTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlAsteriskTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlAsteriskTokenNode -->
 <p>Marker interface for a token representing the asterisk character (<code>*</code>).</p>
 <h3 id="ixmlattribute"><a name="ixmlattribute" class="plugin-anchor" href="#ixmlattribute"><span class="fa fa-link"></span></a>IXmlAttribute</h3>
 <!-- Begin IXmlAttribute -->
-<pre><code class="lang-cs">public interface IXmlAttribute :
-  IXmlTreeNode,
-  ITreeNode
-{
-  string AttributeName { get; }
-  IXmlToken Eq { get; }
-  IXmlIdentifier Identifier { get; }
-  string UnquotedValue { get; }
-  IXmlAttributeValue Value { get; }
-  string XmlName { get; }
-  TreeTextRange XmlNameRange { get; }
-  string XmlNamespace { get; }
-  TreeTextRange XmlNamespaceRange { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlAttribute</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  <span class="hljs-keyword">string</span> <span class="hljs-title">AttributeName</span> { <span class="hljs-keyword">get</span>; }
+  IXmlToken <span class="hljs-title">Eq</span> { <span class="hljs-keyword">get</span>; }
+  IXmlIdentifier <span class="hljs-title">Identifier</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">UnquotedValue</span> { <span class="hljs-keyword">get</span>; }
+  IXmlAttributeValue <span class="hljs-title">Value</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">XmlName</span> { <span class="hljs-keyword">get</span>; }
+  TreeTextRange <span class="hljs-title">XmlNameRange</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">XmlNamespace</span> { <span class="hljs-keyword">get</span>; }
+  TreeTextRange <span class="hljs-title">XmlNamespaceRange</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlAttribute -->
@@ -3658,13 +3660,13 @@
 <p>Finally, the <code>Eq</code> property is the token representing the equals sign in the attribute declaration, e.g. <code>name=&quot;value&quot;</code>.</p>
 <h3 id="ixmlattributecontainer"><a name="ixmlattributecontainer" class="plugin-anchor" href="#ixmlattributecontainer"><span class="fa fa-link"></span></a>IXmlAttributeContainer</h3>
 <!-- Begin IXmlAttributeContainer -->
-<pre><code class="lang-cs">public interface IXmlAttributeContainer :
-  IXmlTreeNode,
-  ITreeNode
-{
-  TreeNodeCollection&lt;IXmlAttribute&gt; Attributes { get; }
-  TreeNodeEnumerable&lt;IXmlAttribute&gt; AttributesEnumerable { get; }
-  string ContainerName { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlAttributeContainer</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  TreeNodeCollection&lt;IXmlAttribute&gt; <span class="hljs-title">Attributes</span> { <span class="hljs-keyword">get</span>; }
+  TreeNodeEnumerable&lt;IXmlAttribute&gt; <span class="hljs-title">AttributesEnumerable</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">ContainerName</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlAttributeContainer -->
@@ -3672,174 +3674,174 @@
 <p>The <code>ContainerName</code> property returns the text of the child <a href="#ixmlidentifier"><code>IXmlIdentifier</code></a> node of the container. In other words, for an XML tag, it will return the name of the tag. For an XML declaration, it will return the &quot;xml&quot; part of the <code>&lt;?xml ... ?&gt;</code> declaration.</p>
 <h3 id="ixmlattributevalue"><a name="ixmlattributevalue" class="plugin-anchor" href="#ixmlattributevalue"><span class="fa fa-link"></span></a>IXmlAttributeValue</h3>
 <!-- Begin IXmlAttributeValue -->
-<pre><code class="lang-cs">public interface IXmlAttributeValue :
-  IXmlTreeNode,
-  ITreeNode
-{
-  string UnquotedValue { get; }
-  IXmlValueToken ValueToken { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlAttributeValue</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  <span class="hljs-keyword">string</span> <span class="hljs-title">UnquotedValue</span> { <span class="hljs-keyword">get</span>; }
+  IXmlValueToken <span class="hljs-title">ValueToken</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlAttributeValue -->
 <p>Represents the value in an attribute. It is implemented by the <code>XmlValueToken</code> type, and represents the quoted part of the value in an XML attribute <code>name=&quot;value&quot;</code>. The <code>ValueToken</code> property provides access to an instance of <a href="#ixmlvaluetoken"><code>IXmlValueToken</code></a> token that essentially represents the same information (indeed, the <code>XmlValueToken</code> implementation simply returns <code>this</code>).</p>
 <h3 id="ixmlcdata"><a name="ixmlcdata" class="plugin-anchor" href="#ixmlcdata"><span class="fa fa-link"></span></a>IXmlCData</h3>
 <!-- Begin IXmlCData -->
-<pre><code class="lang-cs">public interface IXmlCData :
-  IXmlTreeNode,
-  ITreeNode
-{
-  IXmlToken Body { get; }
-  string CData { get; }
-  IXmlToken End { get; }
-  IXmlToken Start { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlCData</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  IXmlToken <span class="hljs-title">Body</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">CData</span> { <span class="hljs-keyword">get</span>; }
+  IXmlToken <span class="hljs-title">End</span> { <span class="hljs-keyword">get</span>; }
+  IXmlToken <span class="hljs-title">Start</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlCData -->
 <p>An XML <a href="http://en.wikipedia.org/wiki/CDATA" target="_blank">CDATA</a> node. The <code>Start</code> property is the <code>&lt;![CDATA[</code> token, and <code>End</code> is the <code>]]&gt;</code> token. While they are listed as <a href="#ixmltoken"><code>IXmlToken</code></a> instances, they are in fact, instances of the <a href="#ixmlcdatastarttokennode"><code>IXmlCdataStartTokenNode</code></a> and <a href="#ixmlcdataendtokennode"><code>IXmlCdataEndTokenNode</code></a> marker interfaces. <code>Body</code> is a token representing the content of the CDATA node, while the <code>CData</code> property is the content as a plain string.</p>
 <h3 id="ixmlcdataendtokennode"><a name="ixmlcdataendtokennode" class="plugin-anchor" href="#ixmlcdataendtokennode"><span class="fa fa-link"></span></a>IXmlCdataEndTokenNode</h3>
 <!-- Begin IXmlCdataEndTokenNode -->
-<pre><code class="lang-cs">public interface IXmlCdataEndTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlCdataEndTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlCdataEndTokenNode -->
 <p>Marker interface for the CDATA end token <code>]]&gt;</code>.</p>
 <h3 id="ixmlcdatastarttokennode"><a name="ixmlcdatastarttokennode" class="plugin-anchor" href="#ixmlcdatastarttokennode"><span class="fa fa-link"></span></a>IXmlCdataStartTokenNode</h3>
 <!-- Begin IXmlCdataStartTokenNode -->
-<pre><code class="lang-cs">public interface IXmlCdataStartTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlCdataStartTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlCdataStartTokenNode -->
 <p>Marker interface for the CDATA start token <code>&lt;![CDATA[</code>.</p>
 <h3 id="ixmlcommatokennode"><a name="ixmlcommatokennode" class="plugin-anchor" href="#ixmlcommatokennode"><span class="fa fa-link"></span></a>IXmlCommaTokenNode</h3>
 <!-- Begin IXmlCommaTokenNode -->
-<pre><code class="lang-cs">public interface IXmlCommaTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlCommaTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlCommaTokenNode -->
 <p>Marker interface for a token representing the comma character (<code>,</code>).</p>
 <h3 id="ixmlcomment"><a name="ixmlcomment" class="plugin-anchor" href="#ixmlcomment"><span class="fa fa-link"></span></a>IXmlComment</h3>
 <!-- Begin IXmlComment -->
-<pre><code class="lang-cs">public interface IXmlComment :
-  IXmlCommentNode,
-  IXmlTreeNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlComment</span> :
+  <span class="hljs-title">IXmlCommentNode</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlComment -->
 <p>Represents an XML comment. See <a href="#ixmlcommentnode"><code>IXmlCommentNode</code></a>.</p>
 <h3 id="ixmlcommentendtokennode"><a name="ixmlcommentendtokennode" class="plugin-anchor" href="#ixmlcommentendtokennode"><span class="fa fa-link"></span></a>IXmlCommentEndTokenNode</h3>
 <!-- Begin IXmlCommentEndTokenNode -->
-<pre><code class="lang-cs">public interface IXmlCommentEndTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlCommentEndTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlCommentEndTokenNode -->
 <p>Marker interface for the XML comment close token <code>--&gt;</code>.</p>
 <h3 id="ixmlcommentnode"><a name="ixmlcommentnode" class="plugin-anchor" href="#ixmlcommentnode"><span class="fa fa-link"></span></a>IXmlCommentNode</h3>
 <!-- Begin IXmlCommentNode -->
-<pre><code class="lang-cs">public interface IXmlCommentNode :
-  IXmlTreeNode,
-  ITreeNode
-{
-  IXmlToken CommentBody { get; }
-  IXmlToken CommentEnd { get; }
-  IXmlToken CommentStart { get; }
-  string CommentText { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlCommentNode</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  IXmlToken <span class="hljs-title">CommentBody</span> { <span class="hljs-keyword">get</span>; }
+  IXmlToken <span class="hljs-title">CommentEnd</span> { <span class="hljs-keyword">get</span>; }
+  IXmlToken <span class="hljs-title">CommentStart</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">CommentText</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlCommentNode -->
 <p>Represents and XML comment. The <code>CommentStart</code> and <code>CommentEnd</code> properties are the start (<code>&lt;!--</code>) and end (<code>--&gt;</code>) tokens of the comment. Although listed here as <a href="#ixmltoken"><code>IXmlToken</code></a>, they are in fact instances of the <a href="#ixmlcommentstarttokennode"><code>IXmlCommentStartTokenNode</code></a> and <a href="#ixmlcommentendtokennode"><code>IXmlCommentEndTokenNode</code></a> marker interfaces. The comment text is held in the <code>CommentBody</code> node, and exposed as a string with the <code>CommentText</code> property.</p>
 <h3 id="ixmlcommentstarttokennode"><a name="ixmlcommentstarttokennode" class="plugin-anchor" href="#ixmlcommentstarttokennode"><span class="fa fa-link"></span></a>IXmlCommentStartTokenNode</h3>
 <!-- Begin IXmlCommentStartTokenNode -->
-<pre><code class="lang-cs">public interface IXmlCommentStartTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlCommentStartTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlCommentStartTokenNode -->
 <p>Marker interface for the XML comment start token <code>&lt;!--</code>.</p>
 <h3 id="ixmldocumentnode"><a name="ixmldocumentnode" class="plugin-anchor" href="#ixmldocumentnode"><span class="fa fa-link"></span></a>IXmlDocumentNode</h3>
 <!-- Begin IXmlDocumentNode -->
-<pre><code class="lang-cs">public interface IXmlDocumentNode :
-  IXmlTreeNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlDocumentNode</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlDocumentNode -->
 <p>Marker interface representing the document node of an XML file. Inherited by <a href="#ixmlfile"><code>IXmlFile</code></a>.</p>
 <h3 id="ixmldtdstarttokennode"><a name="ixmldtdstarttokennode" class="plugin-anchor" href="#ixmldtdstarttokennode"><span class="fa fa-link"></span></a>IXmlDtdStartTokenNode</h3>
 <!-- Begin IXmlDtdStartTokenNode -->
-<pre><code class="lang-cs">public interface IXmlDtdStartTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlDtdStartTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlDtdStartTokenNode -->
 <p>Marker interface for the start token (<code>&lt;!DOCTYPE</code>) of an inline DTD declaration.</p>
 <h3 id="ixmlentitytokennode"><a name="ixmlentitytokennode" class="plugin-anchor" href="#ixmlentitytokennode"><span class="fa fa-link"></span></a>IXmlEntityTokenNode</h3>
 <!-- Begin IXmlEntityTokenNode -->
-<pre><code class="lang-cs">public interface IXmlEntityTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
-  bool IsNumericEntity { get; }
-  string Name { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlEntityTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  <span class="hljs-keyword">bool</span> <span class="hljs-title">IsNumericEntity</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">Name</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlEntityTokenNode -->
 <p>An XML <a href="http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references" target="_blank">entity reference token</a> representing content such as <code>&amp;#8226;</code> or <code>&amp;copy;</code>. The <code>IsNumericEntity</code> property is true if the entity begins with the string <code>&amp;#</code>. The <code>Name</code> property is the name of the entity, with the ampersand and semi-colon removed, or <code>null</code> for numeric entities. That is, <code>&amp;copy;</code> will return <code>&quot;copy&quot;</code> and <code>&amp;#8226;</code> will return <code>null</code> for <code>Name</code>.</p>
 <h3 id="ixmleqtokennode"><a name="ixmleqtokennode" class="plugin-anchor" href="#ixmleqtokennode"><span class="fa fa-link"></span></a>IXmlEqTokenNode</h3>
 <!-- Begin IXmlEqTokenNode -->
-<pre><code class="lang-cs">public interface IXmlEqTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlEqTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlEqTokenNode -->
 <p>Marker interface for a token representing the equals character (<code>=</code>).</p>
 <h3 id="ixmlfile"><a name="ixmlfile" class="plugin-anchor" href="#ixmlfile"><span class="fa fa-link"></span></a>IXmlFile</h3>
 <!-- Begin IXmlFile -->
-<pre><code class="lang-cs">public interface IXmlFile :
-  IFile,
-  IXmlTagContainer,
-  IXmlDocumentNode,
-  IXmlTreeNode,
-  ITreeNode
-{
-  TreeNodeCollection&lt;IProcessingInstruction&gt; ProcessingInstructions { get; }
-  XmlElementTypes XmlElementTypes { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlFile</span> :
+  <span class="hljs-title">IFile</span>,
+  <span class="hljs-title">IXmlTagContainer</span>,
+  <span class="hljs-title">IXmlDocumentNode</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  TreeNodeCollection&lt;IProcessingInstruction&gt; <span class="hljs-title">ProcessingInstructions</span> { <span class="hljs-keyword">get</span>; }
+  XmlElementTypes <span class="hljs-title">XmlElementTypes</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlFile -->
@@ -3847,28 +3849,28 @@
 <p>Exposes a collection of processing instructions and the collection of element types used by this flavour of XML. See the <a href="Overview.html">overview</a> for more information about the element types.</p>
 <h3 id="ixmlfloatingtexttokennode"><a name="ixmlfloatingtexttokennode" class="plugin-anchor" href="#ixmlfloatingtexttokennode"><span class="fa fa-link"></span></a>IXmlFloatingTextTokenNode</h3>
 <!-- Begin IXmlFloatingTextTokenNode -->
-<pre><code class="lang-cs">public interface IXmlFloatingTextTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlFloatingTextTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlFloatingTextTokenNode -->
 <p>Marker interface for a non-fixed length token, e.g. identifiers, text, entity references or whitespace. Note that the default implementation (<code>XmlFloatingTextToken</code>) is used for text, while the derived <code>XmlWhitespaceToken</code>, <code>XmlEntityToken</code> and <code>XmlIdentifier</code> are used for the other node types. This is so that they can implement other interfaces, such as <a href="#ixmlentitytokennode"><code>IXmlEntityTokenNode</code></a> and <a href="#ixmlidentifier"><code>IXmlIdentifier</code></a>. Or in the case of <code>XmlWhitespaceToken</code>, to override <code>ITreeNode.IsFiltered()</code> to return <code>true</code>.</p>
 <h3 id="ixmlidentifier"><a name="ixmlidentifier" class="plugin-anchor" href="#ixmlidentifier"><span class="fa fa-link"></span></a>IXmlIdentifier</h3>
 <!-- Begin IXmlIdentifier -->
-<pre><code class="lang-cs">public interface IXmlIdentifier :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
-  string XmlName { get; }
-  TreeTextRange XmlNameRange { get; }
-  string XmlNamespace { get; }
-  TreeTextRange XmlNamespaceRange { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlIdentifier</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  <span class="hljs-keyword">string</span> <span class="hljs-title">XmlName</span> { <span class="hljs-keyword">get</span>; }
+  TreeTextRange <span class="hljs-title">XmlNameRange</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">XmlNamespace</span> { <span class="hljs-keyword">get</span>; }
+  TreeTextRange <span class="hljs-title">XmlNamespaceRange</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlIdentifier -->
@@ -3876,98 +3878,98 @@
 <p>The <code>XmlNameRange</code> and <code>XmlNamespaceRange</code> properties return the ranges of the namespace and local name, relative to the start of the identifier node. If there is no namespace prefix, the range returned by <code>XmlNamespaceRange</code> is empty.</p>
 <h3 id="ixmllbrackettokennode"><a name="ixmllbrackettokennode" class="plugin-anchor" href="#ixmllbrackettokennode"><span class="fa fa-link"></span></a>IXmlLbracketTokenNode</h3>
 <!-- Begin IXmlLbracketTokenNode -->
-<pre><code class="lang-cs">public interface IXmlLbracketTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlLbracketTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlLbracketTokenNode -->
 <p>Marker interface for a token representing the left bracket character (<code>[</code>).</p>
 <h3 id="ixmllparenthtokennode"><a name="ixmllparenthtokennode" class="plugin-anchor" href="#ixmllparenthtokennode"><span class="fa fa-link"></span></a>IXmlLparenthTokenNode</h3>
 <!-- Begin IXmlLparenthTokenNode -->
-<pre><code class="lang-cs">public interface IXmlLparenthTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlLparenthTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlLparenthTokenNode -->
 <p>Marker interface for a token representing the left parenthesis character (<code>(</code>).</p>
 <h3 id="ixmlortokennode"><a name="ixmlortokennode" class="plugin-anchor" href="#ixmlortokennode"><span class="fa fa-link"></span></a>IXmlOrTokenNode</h3>
 <!-- Begin IXmlOrTokenNode -->
-<pre><code class="lang-cs">public interface IXmlOrTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlOrTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlOrTokenNode -->
 <p>Marker interface for a token representing the &quot;or&quot; or &quot;pipe&quot; character (<code>|</code>).</p>
 <h3 id="ixmlpercenttokennode"><a name="ixmlpercenttokennode" class="plugin-anchor" href="#ixmlpercenttokennode"><span class="fa fa-link"></span></a>IXmlPercentTokenNode</h3>
 <!-- Begin IXmlPercentTokenNode -->
-<pre><code class="lang-cs">public interface IXmlPercentTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlPercentTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlPercentTokenNode -->
 <p>Marker interface for a token representing the percent character (<code>%</code>).</p>
 <h3 id="ixmlpiendtokennode"><a name="ixmlpiendtokennode" class="plugin-anchor" href="#ixmlpiendtokennode"><span class="fa fa-link"></span></a>IXmlPiendTokenNode</h3>
 <!-- Begin IXmlPiendTokenNode -->
-<pre><code class="lang-cs">public interface IXmlPiendTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlPiendTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlPiendTokenNode -->
 <p>Marker interface for the processing instruction end token <code>?&gt;</code>.</p>
 <h3 id="ixmlpistarttokennode"><a name="ixmlpistarttokennode" class="plugin-anchor" href="#ixmlpistarttokennode"><span class="fa fa-link"></span></a>IXmlPistartTokenNode</h3>
 <!-- Begin IXmlPistartTokenNode -->
-<pre><code class="lang-cs">public interface IXmlPistartTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlPistartTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlPistartTokenNode -->
 <p>Marker interface for the processing instruction start token <code>&lt;?</code>.</p>
 <h3 id="ixmlplustokennode"><a name="ixmlplustokennode" class="plugin-anchor" href="#ixmlplustokennode"><span class="fa fa-link"></span></a>IXmlPlusTokenNode</h3>
 <!-- Begin IXmlPlusTokenNode -->
-<pre><code class="lang-cs">public interface IXmlPlusTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlPlusTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlPlusTokenNode -->
 <p>Marker interface for a token representing the plus character (<code>+</code>).</p>
 <h3 id="ixmlprocessinginstruction"><a name="ixmlprocessinginstruction" class="plugin-anchor" href="#ixmlprocessinginstruction"><span class="fa fa-link"></span></a>IXmlProcessingInstruction</h3>
 <!-- Begin IXmlProcessingInstruction -->
-<pre><code class="lang-cs">public interface IXmlProcessingInstruction :
-  IXmlAttributeContainer,
-  IXmlTreeNode,
-  ITreeNode
-{
-  IXmlToken EndNode { get; }
-  IXmlIdentifier Name { get; }
-  IXmlToken StartNode { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlProcessingInstruction</span> :
+  <span class="hljs-title">IXmlAttributeContainer</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  IXmlToken <span class="hljs-title">EndNode</span> { <span class="hljs-keyword">get</span>; }
+  IXmlIdentifier <span class="hljs-title">Name</span> { <span class="hljs-keyword">get</span>; }
+  IXmlToken <span class="hljs-title">StartNode</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlProcessingInstruction -->
@@ -3978,36 +3980,36 @@
 <p>Access to the attributes is available via the derived <a href="#ixmlattributecontainer"><code>IXmlAttributeContainer</code></a> interface members.</p>
 <h3 id="ixmlquestiontokennode"><a name="ixmlquestiontokennode" class="plugin-anchor" href="#ixmlquestiontokennode"><span class="fa fa-link"></span></a>IXmlQuestionTokenNode</h3>
 <!-- Begin IXmlQuestionTokenNode -->
-<pre><code class="lang-cs">public interface IXmlQuestionTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlQuestionTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlQuestionTokenNode -->
 <p>Marker interface for a token representing the question mark character (<code>?</code>).</p>
 <h3 id="ixmlrbrackettokennode"><a name="ixmlrbrackettokennode" class="plugin-anchor" href="#ixmlrbrackettokennode"><span class="fa fa-link"></span></a>IXmlRbracketTokenNode</h3>
 <!-- Begin IXmlRbracketTokenNode -->
-<pre><code class="lang-cs">public interface IXmlRbracketTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlRbracketTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlRbracketTokenNode -->
 <p>Marker interface for a token representing the right bracket character (<code>]</code>).</p>
 <h3 id="ixmlrparenthtokennode"><a name="ixmlrparenthtokennode" class="plugin-anchor" href="#ixmlrparenthtokennode"><span class="fa fa-link"></span></a>IXmlRparenthTokenNode</h3>
 <!-- Begin IXmlRparenthTokenNode -->
-<pre><code class="lang-cs">public interface IXmlRparenthTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlRparenthTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlRparenthTokenNode -->
@@ -4015,34 +4017,34 @@
 <!--` (keeps vim's syntax highlighting happy after the chars above -->
 <h3 id="ixmlsyntaxerrorelement"><a name="ixmlsyntaxerrorelement" class="plugin-anchor" href="#ixmlsyntaxerrorelement"><span class="fa fa-link"></span></a>IXmlSyntaxErrorElement</h3>
 <!-- Begin IXmlSyntaxErrorElement -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlSyntaxErrorElement</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlSyntaxErrorElement</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  <span class="hljs-keyword">string</span> ErrorDescription { <span class="hljs-keyword">get</span>; }
-  XmlSyntaxErrorType ErrorType { <span class="hljs-keyword">get</span>; }
+</span>{
+  <span class="hljs-keyword">string</span> <span class="hljs-title">ErrorDescription</span> { <span class="hljs-keyword">get</span>; }
+  XmlSyntaxErrorType <span class="hljs-title">ErrorType</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlSyntaxErrorElement -->
 <p>Represents a syntax error in the tree. Does not derive from <a href="#ixmltreenode"><code>IXmlTreeNode</code></a>. The <code>ErrorDescription</code> property provides textual representation of the error, which can be displayed to the user, e.g. as a tooltip. The <code>ErrorType</code> property is an instance of <code>XmlSyntaxErrorType</code>, which can be compared against the static field instances available on the <code>XmlSyntaxErrorType</code> class.</p>
 <h3 id="ixmltag"><a name="ixmltag" class="plugin-anchor" href="#ixmltag"><span class="fa fa-link"></span></a>IXmlTag</h3>
 <!-- Begin IXmlTag -->
-<pre><code class="lang-cs">public interface IXmlTag :
-  IXmlTreeNode,
-  IXmlTagContainer,
-  ITreeNode
-{
-  IXmlTagFooter Footer { get; }
-  IXmlTagHeader Header { get; }
-  string InnerText { get; }
-  TreeNodeCollection&lt;IXmlToken&gt; InnerTextTokens { get; }
-  string InnerValue { get; }
-  ITreeRange InnerXml { get; }
-  bool IsEmptyTag { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTag</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">IXmlTagContainer</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  IXmlTagFooter <span class="hljs-title">Footer</span> { <span class="hljs-keyword">get</span>; }
+  IXmlTagHeader <span class="hljs-title">Header</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">InnerText</span> { <span class="hljs-keyword">get</span>; }
+  TreeNodeCollection&lt;IXmlToken&gt; <span class="hljs-title">InnerTextTokens</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">InnerValue</span> { <span class="hljs-keyword">get</span>; }
+  ITreeRange <span class="hljs-title">InnerXml</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">bool</span> <span class="hljs-title">IsEmptyTag</span> { <span class="hljs-keyword">get</span>; }
 
-  TXmlAttribute AddAttributeAfter&lt;TXmlAttribute&gt;(TXmlAttribute attribute, IXmlAttribute anchor);
-  TXmlAttribute AddAttributeBefore&lt;TXmlAttribute&gt;(TXmlAttribute attribute, IXmlAttribute anchor);
+  <span class="hljs-function">TXmlAttribute <span class="hljs-title">AddAttributeAfter&lt;TXmlAttribute&gt;</span><span class="hljs-params">(TXmlAttribute attribute, IXmlAttribute anchor)</span></span>;
+  <span class="hljs-function">TXmlAttribute <span class="hljs-title">AddAttributeBefore&lt;TXmlAttribute&gt;</span><span class="hljs-params">(TXmlAttribute attribute, IXmlAttribute anchor)</span></span>;
 
-  void RemoveAttribute(IXmlAttribute attribute);
+  <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">RemoveAttribute</span><span class="hljs-params">(IXmlAttribute attribute)</span></span>;
 }
 </code></pre>
 <!-- End IXmlTag -->
@@ -4059,18 +4061,18 @@
 <p>Child tags can be retrieved and modified using the <a href="#ixmltagcontainer"><code>IXmlTagContainer</code></a> derived interface.</p>
 <h3 id="ixmltagcontainer"><a name="ixmltagcontainer" class="plugin-anchor" href="#ixmltagcontainer"><span class="fa fa-link"></span></a>IXmlTagContainer</h3>
 <!-- Begin IXmlTagContainer -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTagContainer</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTagContainer</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  TreeNodeCollection&lt;IXmlTag&gt; InnerTags { <span class="hljs-keyword">get</span>; }
+</span>{
+  TreeNodeCollection&lt;IXmlTag&gt; <span class="hljs-title">InnerTags</span> { <span class="hljs-keyword">get</span>; }
 
-  TXmlTag AddTagAfter&lt;TXmlTag&gt;(TXmlTag tag, IXmlTag anchor);
-  TXmlTag AddTagBefore&lt;TXmlTag&gt;(TXmlTag tag, IXmlTag anchor);
+  <span class="hljs-function">TXmlTag <span class="hljs-title">AddTagAfter&lt;TXmlTag&gt;</span><span class="hljs-params">(TXmlTag tag, IXmlTag anchor)</span></span>;
+  <span class="hljs-function">TXmlTag <span class="hljs-title">AddTagBefore&lt;TXmlTag&gt;</span><span class="hljs-params">(TXmlTag tag, IXmlTag anchor)</span></span>;
 
-  IList&lt;T&gt; GetNestedTags&lt;T&gt;(<span class="hljs-keyword">string</span> xpath);
+  <span class="hljs-function">IList&lt;T&gt; <span class="hljs-title">GetNestedTags&lt;T&gt;</span><span class="hljs-params">(<span class="hljs-keyword">string</span> xpath)</span></span>;
   <span class="hljs-function">IXmlTag <span class="hljs-title">GetTag</span><span class="hljs-params">(Predicate&lt;IXmlTag&gt; predicate)</span></span>;
-  TreeNodeEnumerable&lt;T&gt; GetTags&lt;T&gt;();
-  TreeNodeCollection&lt;T&gt; GetTags2&lt;T&gt;();
+  <span class="hljs-function">TreeNodeEnumerable&lt;T&gt; <span class="hljs-title">GetTags&lt;T&gt;</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-function">TreeNodeCollection&lt;T&gt; <span class="hljs-title">GetTags2&lt;T&gt;</span><span class="hljs-params">()</span></span>;
 
   <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">RemoveTag</span><span class="hljs-params">(IXmlTag tag)</span></span>;
 }
@@ -4088,37 +4090,37 @@
 <p>The <code>AddTagAfter</code>, <code>AddTagBefore</code> and <code>RemoveTag</code> methods provide means of adding and removing already created tags to the tag container. Implementations will ensure that tag container is not a self-closed tag (using <code>XmlTagUtil.MakeCompound</code>) and will then use methods in <code>XmlContainerUtil</code> to add or remove the tags. Implementations will also ensure that the write lock is taken, if the tag container is part of a physical tree (that is, associated with a file, and not a sandbox). Tags can be created using the <code>XmlElementFactory</code> derived classes.</p>
 <h3 id="ixmltagend1tokennode"><a name="ixmltagend1tokennode" class="plugin-anchor" href="#ixmltagend1tokennode"><span class="fa fa-link"></span></a>IXmlTagEnd1TokenNode</h3>
 <!-- Begin IXmlTagEnd1TokenNode -->
-<pre><code class="lang-cs">public interface IXmlTagEnd1TokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTagEnd1TokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlTagEnd1TokenNode -->
 <p>Marker interface for a self-closing XML tag end token <code>/&gt;</code>.</p>
 <h3 id="ixmltagendtokennode"><a name="ixmltagendtokennode" class="plugin-anchor" href="#ixmltagendtokennode"><span class="fa fa-link"></span></a>IXmlTagEndTokenNode</h3>
 <!-- Begin IXmlTagEndTokenNode -->
-<pre><code class="lang-cs">public interface IXmlTagEndTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTagEndTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlTagEndTokenNode -->
 <p>Marker interface for an XML tag end token <code>&gt;</code>.</p>
 <h3 id="ixmltagfooter"><a name="ixmltagfooter" class="plugin-anchor" href="#ixmltagfooter"><span class="fa fa-link"></span></a>IXmlTagFooter</h3>
 <!-- Begin IXmlTagFooter -->
-<pre><code class="lang-cs">public interface IXmlTagFooter :
-  IXmlTreeNode,
-  ITreeNode
-{
-  IXmlToken EndNode { get; }
-  IXmlIdentifier Name { get; }
-  IXmlToken StartNode { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTagFooter</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  IXmlToken <span class="hljs-title">EndNode</span> { <span class="hljs-keyword">get</span>; }
+  IXmlIdentifier <span class="hljs-title">Name</span> { <span class="hljs-keyword">get</span>; }
+  IXmlToken <span class="hljs-title">StartNode</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlTagFooter -->
@@ -4126,15 +4128,15 @@
 <p>The <code>Name</code> property is the identifier representing the name of the element being closed.</p>
 <h3 id="ixmltagheader"><a name="ixmltagheader" class="plugin-anchor" href="#ixmltagheader"><span class="fa fa-link"></span></a>IXmlTagHeader</h3>
 <!-- Begin IXmlTagHeader -->
-<pre><code class="lang-cs">public interface IXmlTagHeader :
-  IXmlAttributeContainer,
-  IXmlTreeNode,
-  ITreeNode
-{
-  IXmlToken EndNode { get; }
-  bool IsClosed { get; }
-  IXmlIdentifier Name { get; }
-  IXmlToken StartNode { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTagHeader</span> :
+  <span class="hljs-title">IXmlAttributeContainer</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  IXmlToken <span class="hljs-title">EndNode</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">bool</span> <span class="hljs-title">IsClosed</span> { <span class="hljs-keyword">get</span>; }
+  IXmlIdentifier <span class="hljs-title">Name</span> { <span class="hljs-keyword">get</span>; }
+  IXmlToken <span class="hljs-title">StartNode</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlTagHeader -->
@@ -4149,36 +4151,36 @@
 <p>Attributes are accessible via the inherited <a href="#ixmlattributecontainer"><code>IXmlAttributeContainer</code></a> interface.</p>
 <h3 id="ixmltagstart1tokennode"><a name="ixmltagstart1tokennode" class="plugin-anchor" href="#ixmltagstart1tokennode"><span class="fa fa-link"></span></a>IXmlTagStart1TokenNode</h3>
 <!-- Begin IXmlTagStart1TokenNode -->
-<pre><code class="lang-cs">public interface IXmlTagStart1TokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTagStart1TokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlTagStart1TokenNode -->
 <p>Marker interface for the start token of a closing XML tag (<code>&lt;/</code>).</p>
 <h3 id="ixmltagstarttokennode"><a name="ixmltagstarttokennode" class="plugin-anchor" href="#ixmltagstarttokennode"><span class="fa fa-link"></span></a>IXmlTagStartTokenNode</h3>
 <!-- Begin IXmlTagStartTokenNode -->
-<pre><code class="lang-cs">public interface IXmlTagStartTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTagStartTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlTagStartTokenNode -->
 <p>Marker interface for the start token of an opening XML tag (<code>&lt;/</code>).</p>
 <h3 id="ixmltoken"><a name="ixmltoken" class="plugin-anchor" href="#ixmltoken"><span class="fa fa-link"></span></a>IXmlToken</h3>
 <!-- Begin IXmlToken -->
-<pre><code class="lang-cs">public interface IXmlToken :
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
-  new XmlTokenNodeType GetTokenType();
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlToken</span> :
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  <span class="hljs-keyword">new</span> <span class="hljs-function">XmlTokenNodeType <span class="hljs-title">GetTokenType</span><span class="hljs-params">()</span></span>;
 }
 </code></pre>
 <!-- End IXmlToken -->
@@ -4189,12 +4191,12 @@
 <p>The <code>GetTokenType</code> method returns the <code>XmlTokenNodeType</code> of the particular token. It will be equal to one of the properties set on <code>XmlTokenTypes</code>. Note that this method overrides and hides the <code>ITokenNode.GetTokenType</code> method, however, the returned <code>XmlTokenNodeType</code> derives from <code>TokenNodeType</code> and also implements <code>ITokenNodeType</code>. One useful method for the returned token type is to check if the node is a whitespace node - <code>node.GetTokenType().IsWhitespace()</code>.</p>
 <h3 id="ixmltreenode"><a name="ixmltreenode" class="plugin-anchor" href="#ixmltreenode"><span class="fa fa-link"></span></a>IXmlTreeNode</h3>
 <!-- Begin IXmlTreeNode -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTreeNode</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlTreeNode</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  XmlTokenTypes XmlTokenTypes { <span class="hljs-keyword">get</span>; }
+</span>{
+  XmlTokenTypes <span class="hljs-title">XmlTokenTypes</span> { <span class="hljs-keyword">get</span>; }
 
-  TReturn AcceptVisitor&lt;TContext, TReturn&gt;(IXmlTreeVisitor&lt;TContext, TReturn&gt; visitor, TContext context);
+  <span class="hljs-function">TReturn <span class="hljs-title">AcceptVisitor&lt;TContext, TReturn&gt;</span><span class="hljs-params">(IXmlTreeVisitor&lt;TContext, TReturn&gt; visitor, TContext context)</span></span>;
 }
 </code></pre>
 <!-- End IXmlTreeNode -->
@@ -4202,14 +4204,14 @@
 <p>The <code>AcceptVisitor</code> method implements the <a href="http://en.wikipedia.org/wiki/Visitor_pattern" target="_blank">Visitor pattern</a>. It will call the strongly typed <code>Visit</code> method of the <code>IXmlTreeVisitor</code> instance passed in.</p>
 <h3 id="ixmlvaluetoken"><a name="ixmlvaluetoken" class="plugin-anchor" href="#ixmlvaluetoken"><span class="fa fa-link"></span></a>IXmlValueToken</h3>
 <!-- Begin IXmlValueToken -->
-<pre><code class="lang-cs">public interface IXmlValueToken :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
-  string UnquotedValue { get; }
-  TreeTextRange UnquotedValueRange { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlValueToken</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  <span class="hljs-keyword">string</span> <span class="hljs-title">UnquotedValue</span> { <span class="hljs-keyword">get</span>; }
+  TreeTextRange <span class="hljs-title">UnquotedValueRange</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IXmlValueToken -->

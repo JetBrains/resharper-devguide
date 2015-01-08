@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Reference providers | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="9.9.2" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="9.9.2" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3579,81 +3581,81 @@
 <p>A reference provider starts life as an instance of <code>IReferenceProviderFactory</code>, which in turn creates an instance of <code>IReferenceFactory</code> for a given file. The <code>IReferenceFactory</code> then creates one or more instances of <code>IReference</code> for any given node in the PSI tree.</p>
 <h2 id="creating-the-reference-provider"><a name="creating-the-reference-provider" class="plugin-anchor" href="#creating-the-reference-provider"><span class="fa fa-link"></span></a>Creating the reference provider</h2>
 <p>The main entry point to providing references is a class that implements <code>IReferenceProviderFactory</code>. The class should be marked with the <code>ReferenceProviderFactoryAttribute</code>, which is a <code>SolutionComponentAttribute</code>, meaning the class is instantiated once per solution (and destroyed when the solution is closed). The class should implement the following members:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReferenceProviderFactory</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReferenceProviderFactory</span>
+</span>{
   <span class="hljs-function">IReferenceFactory <span class="hljs-title">CreateFactory</span><span class="hljs-params">(IPsiSourceFile sourceFile, IFile file)</span></span>;
   <span class="hljs-keyword">event</span> Action OnChanged;
 }
 </code></pre>
 <p>The <strong><code>CreateFactory</code></strong> method receives both the <code>IPsiSourceFile</code> object that provides metadata about the file, and the <code>IFile</code> object which is the root of the PSI tree. It can use these files to decide if it supports creating references for this file type. For example, it can look at the language of the file:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">if</span> (sourceFile.PrimaryPsiLanguage.Is&lt;CSharpLanguage&gt;())
-    <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">MyReferenceFactory</span><span class="hljs-params">()</span></span>;
-<span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(sourceFile.PrimaryPsiLanguage.Is&lt;CSharpLanguage&gt;()</span>)
+    return new <span class="hljs-title">MyReferenceFactory</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
 </code></pre>
 <p>If the file language is supported, the <code>IReferenceFactory</code> is created and returned. If not, null is returned, indicating this reference provider doesn&apos;t provide references in this case.</p>
 <p>The <code>IReferenceProviderFactory</code> interface also provides an <strong><code>OnChanged</code></strong> event. ReSharper subscribes to this event, and will recreate any associated references when it&apos;s fired. This is useful if, for example, your reference provider could be disabled by a flag on an options page.</p>
 <h2 id="creating-the-references"><a name="creating-the-references" class="plugin-anchor" href="#creating-the-references"><span class="fa fa-link"></span></a>Creating the references</h2>
 <p>The <code>IRefrenceProviderFactory</code> returns an instance of <code>IReferenceFactory</code> for a particular PSI file. This class is responsible for creating one or more reference for a given node in the file. It has two methods:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReferenceFactory</span>
-{
-  IReference[] GetReferences(ITreeNode element, IReference[] oldReferences);
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReferenceFactory</span>
+</span>{
+  IReference[] <span class="hljs-function"><span class="hljs-title">GetReferences</span><span class="hljs-params">(ITreeNode element, IReference[] oldReferences)</span></span>;
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">HasReference</span><span class="hljs-params">(ITreeNode element, ICollection&lt;<span class="hljs-keyword">string</span>&gt; names)</span></span>;
 }
 </code></pre>
 <p>Before references are created, the <strong><code>HasReferences</code></strong> method is called, passing in the <code>ITreeNode</code> that is to be the source of the reference, e.g. the variable or string literal, etc. The collection of names that is passed in is used to help validate the cached references - if the node doesn&apos;t have any references by that name, the cached references don&apos;t have to be recreated, even if the PSI tree has been changed and the cache is (strictly speaking) outdated.</p>
 <p>The implementation of <code>HasReferences</code> is usually very straightforward. A reference can have one or more names. Usually, it has just one name - the text of the PSI node. For example, a reference added to a method invocation would have the name of the method as the reference name. A reference might have more than one name, in the case where an element can be referred to in multiple ways, such as &quot;TestAttribute&quot; can be used as <code>[TestAttribute]</code> or <code>[Test]</code>.</p>
 <p>We&apos;ll use the example of a reference provider adding a reference between a string literal and a property name, to support nunit&apos;s <code>[TestCaseSource(&quot;MyProperty&quot;)]</code> attribute. Here&apos;s the implementation of <code>HasReferences</code>:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">HasReference</span><span class="hljs-params">(ITreeNode element, ICollection&lt;<span class="hljs-keyword">string</span>&gt; names)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">HasReference</span><span class="hljs-params">(ITreeNode element, ICollection&lt;<span class="hljs-keyword">string</span>&gt; names)</span>
 </span>{
   <span class="hljs-comment">// Check it&apos;s a string literal, and the text of the</span>
   <span class="hljs-comment">// string literal is in the collection of names</span>
   <span class="hljs-keyword">var</span> literal = element <span class="hljs-keyword">as</span> ILiteralExpression;
-  <span class="hljs-keyword">if</span> (literal != <span class="hljs-keyword">null</span> &amp;&amp; literal.ConstantValue.Value <span class="hljs-keyword">is</span> <span class="hljs-keyword">string</span>)
-    <span class="hljs-keyword">return</span> names.Contains((<span class="hljs-keyword">string</span>) literal.ConstantValue.Value);
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(literal != null &amp;&amp; literal.ConstantValue.Value is <span class="hljs-keyword">string</span>)</span>
+    return names.<span class="hljs-title">Contains</span><span class="hljs-params">((<span class="hljs-keyword">string</span>)</span> literal.ConstantValue.Value)</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 }
 </code></pre>
 <p>Note that this implementation doesn&apos;t do an exhaustive check - it&apos;s looking that the node is a string literal, but not that it&apos;s a string literal inside an attribute declaration where the attribute name is <code>TestCaseSourceAttribute</code>. It&apos;s simply a quick check to try and short circuit unnecessary cache revalidation.</p>
 <p>If the consumer doesn&apos;t pass in a collection of names, <code>HasReferences</code> isn&apos;t called, and the cached references are used, or recalculated.</p>
 <p>To actually get the references, ReSharper calls <strong><code>GetReferences</code></strong>. It passes in the PSI tree node, and an array of existing references, and expects an array of references to be returned. Taking our example of nunit&apos;s <code>[TestCaseSource(&quot;MyProperty&quot;])</code>, the code to create a reference between the string literal &quot;MyProperty&quot; and the property on the current class called &quot;MyProperty&quot; would look something like:</p>
-<pre><code class="lang-cs">public static readonly ClrTypeName TestCaseSourceAttribute =
-  new ClrTypeName(&quot;NUnit.Framework.TestCaseSourceAttribute&quot;);
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> ClrTypeName TestCaseSourceAttribute =
+  <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">ClrTypeName</span><span class="hljs-params">(<span class="hljs-string">&quot;NUnit.Framework.TestCaseSourceAttribute&quot;</span>)</span></span>;
 
-public IReference[] GetReferences(ITreeNode element, IReference[] oldReferences)
-{
-  var literal = element as ILiteralExpression;
-  if (literal != null &amp;&amp; literal.ConstantValue.Value is string)
-  {
-    var argumentExpression = literal as ICSharpExpression
-    var attribute = AttributeNavigator.GetByConstructorArgumentExpression(argumentExpression);
+<span class="hljs-keyword">public</span> IReference[] <span class="hljs-function"><span class="hljs-title">GetReferences</span><span class="hljs-params">(ITreeNode element, IReference[] oldReferences)</span>
+</span>{
+  <span class="hljs-keyword">var</span> literal = element <span class="hljs-keyword">as</span> ILiteralExpression;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(literal != null &amp;&amp; literal.ConstantValue.Value is <span class="hljs-keyword">string</span>)</span>
+  </span>{
+    <span class="hljs-keyword">var</span> argumentExpression = literal <span class="hljs-keyword">as</span> ICSharpExpression
+    <span class="hljs-keyword">var</span> attribute = AttributeNavigator.<span class="hljs-function"><span class="hljs-title">GetByConstructorArgumentExpression</span><span class="hljs-params">(argumentExpression)</span></span>;
 
-    if (attribute != null)
-    {
-      var @class = attribute.Name.Reference.Resolve().DeclaredElement as IClass;
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(attribute != null)</span>
+    </span>{
+      <span class="hljs-keyword">var</span> @<span class="hljs-class"><span class="hljs-keyword">class</span> </span>= attribute.Name.Reference.<span class="hljs-function"><span class="hljs-title">Resolve</span><span class="hljs-params">()</span>.DeclaredElement <span class="hljs-keyword">as</span> IClass</span>;
 
-      if (@class != null
-        &amp;&amp; Equals(@class.GetClrName(), TestCaseSourceAttribute))
-      {
-        var method = MethodDeclarationNavigator.GetByAttribute(attribute);
+      <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(@class != null
+        &amp;&amp; Equals(@class.GetClrName()</span>, TestCaseSourceAttribute))
+      </span>{
+        <span class="hljs-keyword">var</span> method = MethodDeclarationNavigator.<span class="hljs-function"><span class="hljs-title">GetByAttribute</span><span class="hljs-params">(attribute)</span></span>;
 
-        if (method != null &amp;&amp; method.DeclaredElement != null
-          &amp;&amp; typeElement == null)
-        {
-          typeElement = method.DeclaredElement.GetContainingType();
+        <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(method != null &amp;&amp; method.DeclaredElement != null
+          &amp;&amp; typeElement == null)</span>
+        </span>{
+          typeElement = method.DeclaredElement.<span class="hljs-function"><span class="hljs-title">GetContainingType</span><span class="hljs-params">()</span></span>;
         }
 
-        if (typeElement != null)
-        {
-          return new IReference[]
+        <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(typeElement != null)</span>
+        </span>{
+          <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> IReference[]
             {
-              new PropertyDataReference(typeElement, literal)
-            };
+              <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">PropertyDataReference</span><span class="hljs-params">(typeElement, literal)</span>
+            }</span>;
         }
       }
     }
   }
 
-  return EmptyArray&lt;IReference&gt;.Instance;
+  <span class="hljs-keyword">return</span> EmptyArray&lt;IReference&gt;.Instance;
 }
 </code></pre>
 <p>The process breaks down like this:</p>
@@ -3671,10 +3673,10 @@ public IReference[] GetReferences(ITreeNode element, IReference[] oldReferences)
 <p>(Also note that this is an incomplete implementation of support for <code>TestCaseSourceAttribute</code>. It should also support the <code>SourceType</code> value to allow the property to be defined on a different class. To do this, you would find an <code>ITypeofExpression</code> and use that to get the type element passed to the reference.)</p>
 <h2 id="implementing-the-references"><a name="implementing-the-references" class="plugin-anchor" href="#implementing-the-references"><span class="fa fa-link"></span></a>Implementing the references</h2>
 <p>The <code>IReference</code> interface has the following structure:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReference</span> : <span class="hljs-title">IUserDataHolder</span>
-{
-  <span class="hljs-keyword">bool</span> HasMultipleNames { <span class="hljs-keyword">get</span>; }
-  ResolveResultWithInfo CurrentResolveResult { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReference</span> : IUserDataHolder
+</span>{
+  <span class="hljs-keyword">bool</span> <span class="hljs-title">HasMultipleNames</span> { <span class="hljs-keyword">get</span>; }
+  ResolveResultWithInfo <span class="hljs-title">CurrentResolveResult</span> { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
   <span class="hljs-function">ITreeNode <span class="hljs-title">GetTreeNode</span><span class="hljs-params">()</span></span>;
   <span class="hljs-function"><span class="hljs-keyword">string</span> <span class="hljs-title">GetName</span><span class="hljs-params">()</span></span>;
   <span class="hljs-function">IEnumerable&lt;<span class="hljs-keyword">string</span>&gt; <span class="hljs-title">GetAllNames</span><span class="hljs-params">()</span></span>;
@@ -3698,9 +3700,9 @@ public IReference[] GetReferences(ITreeNode element, IReference[] oldReferences)
 <p>Normally, it is not necessary to implement the whole interface, but derive from a base class, such as <code>TreeReferenceBase&lt;TOwnerElement&gt;</code>. This takes the type of the owner element as a type parameter, such as <code>TreeReferenceBase&lt;ILiteralExpression&gt;</code>. It also maintains the cached results of a call to <code>Resolve</code>.</p>
 <h3 id="resolving-results"><a name="resolving-results" class="plugin-anchor" href="#resolving-results"><span class="fa fa-link"></span></a>Resolving results</h3>
 <p>When implementing a class deriving from <code>TreeReferenceBase</code>, the most interesting method to implement is <code>ResolveWithoutCache</code>. For our <code>TestCaseSourceAttribute</code> example, the implementation looks like this:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> ResolveResultWithInfo <span class="hljs-title">ResolveWithoutCache</span><span class="hljs-params">()</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">ResolveResultWithInfo <span class="hljs-title">ResolveWithoutCache</span><span class="hljs-params">()</span>
 </span>{
-  <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-title">GetReferenceSymbolTable</span><span class="hljs-params">(<span class="hljs-keyword">true</span>)</span>.<span class="hljs-title">GetResolveResult</span><span class="hljs-params">(GetName()</span>)</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-title">GetReferenceSymbolTable</span><span class="hljs-params">(true)</span>.<span class="hljs-title">GetResolveResult</span><span class="hljs-params">(GetName()</span>)</span>;
 }
 </code></pre>
 <p>This defers to <code>GetReferenceSymbolTable</code>, passing in true to filter the symbol table down to just those symbols that match the reference name. It then uses the <code>ISymbolTable.GetResolveResult</code> method to get a <code>ResolveResultWithInfo</code> instance for the reference name. The <code>ResolveResultWithInfo</code> class maintains a result, plus an error type. The result gives access to the declared element, or candidates if more than one possible value was found. The error type uses the <code>ResolveErrorType</code> enum pattern class, and can be one of many values. The most popular include <code>ResolveErrorType.OK</code>, <code>ResolveErrorType.IGNORABLE</code>, <code>ResolveErrorType.NOT_RESOLVED</code> and so on. There are also sub-types of <code>ResolveErrorType</code> that provide more explicit errors, such as <code>CSharpResolveErrorType.OPERATOR_IS_NOT_APPLICABLE</code> or <code>CssResolveErrorType.CLASS_NOT_RESOLVED</code>. Which value you use depends on your situation - you can either just use the value returned from the <code>ISymbolTable</code>, or use one of the predefined errors in <code>ResolveErrorType</code> and derived classes.</p>
@@ -3708,33 +3710,33 @@ public IReference[] GetReferences(ITreeNode element, IReference[] oldReferences)
 <p>Once the <code>ResolveWithoutCache</code> method has been called, the value is stored in <code>CurrentResolveResult</code> until the owner tree node changes.</p>
 <h3 id="getreferencesymboltable"><a name="getreferencesymboltable" class="plugin-anchor" href="#getreferencesymboltable"><span class="fa fa-link"></span></a>GetReferenceSymbolTable</h3>
 <p>This method should return a symbol table with all symbols relevant for the reference. If the <code>useReferenceName</code> parameter is <code>false</code>, it should return a set of candidates that could be used as the target for the reference. For example, in our <code>TestCaseSourceAttribute</code> reference, we could implement it like this:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> ISymbolTable <span class="hljs-title">GetReferenceSymbolTable</span><span class="hljs-params">(<span class="hljs-keyword">bool</span> useReferenceName)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">ISymbolTable <span class="hljs-title">GetReferenceSymbolTable</span><span class="hljs-params">(<span class="hljs-keyword">bool</span> useReferenceName)</span>
 </span>{
   <span class="hljs-keyword">var</span> symbolTable = ResolveUtil
-      .GetSymbolTableByTypeElement(typeElement,
+      .<span class="hljs-function"><span class="hljs-title">GetSymbolTableByTypeElement</span><span class="hljs-params">(typeElement,
                                    SymbolTableMode.FULL,
-                                   typeElement.Module);
+                                   typeElement.Module)</span></span>;
 
-  symbolTable = symbolTable.Distinct().Filter(propertyFilter);
+  symbolTable = symbolTable.<span class="hljs-function"><span class="hljs-title">Distinct</span><span class="hljs-params">()</span>.<span class="hljs-title">Filter</span><span class="hljs-params">(propertyFilter)</span></span>;
 
   <span class="hljs-keyword">return</span> useReferenceName
-         ? symbolTable.Filter(GetName(), exactNameFilter)
-         : symbolTable;
+         ? symbolTable.<span class="hljs-function"><span class="hljs-title">Filter</span><span class="hljs-params">(GetName()</span>, exactNameFilter)
+         : symbolTable</span>;
 }
 </code></pre>
 <p>This uses the <code>ResolveUtil.GetSymbolTableByElement</code> method to retrieve a full symbol table for the class that declares the property we&apos;re looking for. We then ensure we&apos;re dealing with a distinct set of symbols, and filter using our <code>propertyFilter</code>. This is a field set up with a <code>new PredicateFilter(FilterToApplicableProperties)</code>. The method <code>FilterToApplicableProperties</code> takes in a symbol, gets the declared element and checks to see if it&apos;s applicable - is it a property, public, has the right signature and so on.</p>
 <p>Once we have our symbol table, we further filter it if <code>useReferenceName</code> is true. If so, we only get any symbols that match the name of the reference, using a <code>new ExactNameFilter</code>.</p>
 <h3 id="bindto-and-renaming"><a name="bindto-and-renaming" class="plugin-anchor" href="#bindto-and-renaming"><span class="fa fa-link"></span></a>BindTo and renaming</h3>
 <p>When an item is renamed its element is recreated and replaced in the tree. The references that target it are then updated, by calling <code>BindTo</code>, passing in the new <code>IDeclaredElement</code> instance. The reference needs to update the owner tree node, and return a potentially new reference to reflect the change. The implementation is quite straightforward. Again, using our <code>TestCaseSourceAttribute</code> example:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IReference <span class="hljs-title">BindTo</span><span class="hljs-params">(IDeclaredElement element)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IReference <span class="hljs-title">BindTo</span><span class="hljs-params">(IDeclaredElement element)</span>
 </span>{
   <span class="hljs-keyword">var</span> literalAlterer = StringLiteralAltererUtil
-    .CreateStringLiteralByExpression(myOwner);
-  literalAlterer.Replace((<span class="hljs-keyword">string</span>) myOwner.ConstantValue.Value,
-    element.ShortName, myOwner.GetPsiModule());
+    .<span class="hljs-function"><span class="hljs-title">CreateStringLiteralByExpression</span><span class="hljs-params">(myOwner)</span></span>;
+  literalAlterer.<span class="hljs-function"><span class="hljs-title">Replace</span><span class="hljs-params">((<span class="hljs-keyword">string</span>)</span> myOwner.ConstantValue.Value,
+    element.ShortName, myOwner.<span class="hljs-title">GetPsiModule</span><span class="hljs-params">()</span>)</span>;
   <span class="hljs-keyword">var</span> newOwner = literalAlterer.Expression;
-  <span class="hljs-keyword">if</span> (!myOwner.Equals(newOwner))
-    <span class="hljs-keyword">return</span> newOwner.FindReference&lt;PropertyDataReference&gt;() ?? <span class="hljs-keyword">this</span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(!myOwner.Equals(newOwner)</span>)
+    return newOwner.<span class="hljs-title">FindReference&lt;PropertyDataReference&gt;</span><span class="hljs-params">()</span> ?? <span class="hljs-keyword">this</span></span>;
   <span class="hljs-keyword">return</span> <span class="hljs-keyword">this</span>;
 }
 </code></pre>

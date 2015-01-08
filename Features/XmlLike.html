@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Working with XML-like files | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-level="10.20" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="10.20" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3543,7 +3545,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_41">
+                    <section class="normal" id="section-gitbook_29">
                     
                         <h1 id="working-with-xml-like-files"><a name="working-with-xml-like-files" class="plugin-anchor" href="#working-with-xml-like-files"><span class="fa fa-link"></span></a>Working with XML-like files</h1>
 <p>ReSharper comes with support for XML and XML-specific notations such as HTML, XAML and Web.config editing. Consequently, you can use the ReSharper API in order to manipulate XML documents.</p>
@@ -3564,13 +3566,13 @@
 <p>Compared to HTML, XML is a lot easier to work with - it has a predictable structure and fairly limited variability in terms of content. Consequently, the API structures for manipulating XML are very straightforward.</p>
 <p>Let&apos;s take a look at how one would write a context action to support the conversion of an empty tag such as <code>&lt;test&gt;&lt;/test&gt;</code> to a self-closing tag <code>&lt;test/&gt;</code>.</p>
 <p>The first thing you do is create a class that is marked with the <code>ContextAction</code> attribute and is set to inherit from <code>XmlContextAction</code>.</p>
-<pre><code class="lang-cs">[ContextAction(
+<pre><code class="lang-cs">[<span class="hljs-function"><span class="hljs-title">ContextAction</span><span class="hljs-params">(
   Group = <span class="hljs-string">&quot;XML&quot;</span>,
   Name = <span class="hljs-string">&quot;Collapse empty tag&quot;</span>,
   Description = <span class="hljs-string">&quot;Converts from empty opening and closing tags into empty tag&quot;</span>,
-  Priority = <span class="hljs-number">0</span>)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MakeEmptyTagContextAction</span> : <span class="hljs-title">XmlContextAction</span>
-{
+  Priority = <span class="hljs-number">0</span>)</span>]
+<span class="hljs-keyword">public</span> class MakeEmptyTagContextAction : XmlContextAction
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MakeEmptyTagContextAction</span><span class="hljs-params">(XmlContextActionDataProvider dataProvider)</span>
     : <span class="hljs-title">base</span><span class="hljs-params">(dataProvider)</span>
   </span>{
@@ -3579,80 +3581,80 @@
 </code></pre>
 <p>As you can see, the context action is very similar to the way you would define it for, e.g., the C# language. The only major difference is that instead of supporting a general IContextAction interface, you need to inherit from a special class. (And even that is optional - <code>XmlContextAction</code> is simply an intermediate class that ensures you pick the right data provider.)</p>
 <p>Now that you have a context action, it becomes a matter of defining the familiar Text, <code>IsAvailable()</code> and <code>ExecutePsiTransaction()</code> members. The <code>IsAvailable()</code> method is the place where you would check that the tag you&apos;re on is empty. For example:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> tag = DataProvider.FindNodeAtCaret&lt;IXmlTag&gt;();
-<span class="hljs-keyword">if</span> (tag == <span class="hljs-keyword">null</span> || tag.IsEmptyTag || !XmlTagUtil.CanBeEmptyTag(tag))
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> tag = DataProvider.<span class="hljs-function"><span class="hljs-title">FindNodeAtCaret&lt;IXmlTag&gt;</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(tag == null || tag.IsEmptyTag || !XmlTagUtil.CanBeEmptyTag(tag)</span>)
+  return false</span>;
 </code></pre>
 <p>Manipulation of XML tokens is very important if you want to do fine-tuning of your XML-related actions. To get at the token at the caret location, for example, you would write:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> token = DataProvider.FindNodeAtCaret&lt;IXmlToken&gt;();
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> token = DataProvider.<span class="hljs-function"><span class="hljs-title">FindNodeAtCaret&lt;IXmlToken&gt;</span><span class="hljs-params">()</span></span>;
 </code></pre>
 <p>Now, you can, for example, call <code>GetTokenType()</code> to determine the type of the token you&apos;re on. Keep in mind that <code>IXmlToken</code> is inherited by many other interfaces such as e.g., <code>IXmlIdentifier</code>. After determining the type of token, you can cast to the right type to get at the token-specific properties and methods.</p>
 <p>Here&apos;s a brief example: suppose you want to remove all inner nodes of a particular tag. To do this, you would take the tag&apos;s header node and then take its next sibling. Then you would also take its last child. Finally, you would use the <code>ModificationUtil</code> class in order to delete all children within that range:</p>
 <pre><code class="lang-cs"><span class="hljs-keyword">var</span> header = tag.HeaderNode;
 <span class="hljs-keyword">var</span> first = header.NextSibling;
-<span class="hljs-keyword">if</span> (first != <span class="hljs-keyword">null</span>)
-{
+<span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(first != null)</span>
+</span>{
   <span class="hljs-keyword">var</span> last = tag.LastChild;
-  ModificationUtil.DeleteChildRange(first, last);
+  ModificationUtil.<span class="hljs-function"><span class="hljs-title">DeleteChildRange</span><span class="hljs-params">(first, last)</span></span>;
 }
 </code></pre>
 <p>The <code>ModificationUtil</code> class contains several methods for adding and removing elements from the XML token tree.</p>
 <h3 id="example-working-with-an-xml-attribute"><a name="example-working-with-an-xml-attribute" class="plugin-anchor" href="#example-working-with-an-xml-attribute"><span class="fa fa-link"></span></a>Example: working with an XML attribute</h3>
 <p>Here&apos;s a simple example: let&apos;s suppose that you have a tag, and you want to add an attribute to it - for example, an attribute for an XML namespace. The first thing you do is acquire an <code>XMLElementFactory</code>.</p>
-<pre><code class="lang-cs">IXmlElementFactory factory = XmlElementFactory.GetElementFactory(tag);
+<pre><code class="lang-cs">IXmlElementFactory factory = XmlElementFactory.<span class="hljs-function"><span class="hljs-title">GetElementFactory</span><span class="hljs-params">(tag)</span></span>;
 </code></pre>
 <p>Then, you can synthetically prepare the attribute declaration:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">string</span> text = String.Format(<span class="hljs-string">&quot;{0}=\&quot;{1}\&quot;&quot;</span>, namespacePrefix, namespaceUrl);
+<pre><code class="lang-cs"><span class="hljs-keyword">string</span> text = String.<span class="hljs-function"><span class="hljs-title">Format</span><span class="hljs-params">(<span class="hljs-string">&quot;{0}=\&quot;{1}\&quot;&quot;</span>, namespacePrefix, namespaceUrl)</span></span>;
 </code></pre>
 <p>With the declaration, you can use the factory to create a whole XML file. This may sound &apos;heavyweight&apos;, but is in fact a convenient way to get the structures parsed and ready for subsequent insertion.</p>
-<pre><code class="lang-cs">IXmlFile file = factory.CreateFile(provider.PsiServices, provider.PsiModule,
-                                   <span class="hljs-string">&quot;&lt;tag &quot;</span> + text + <span class="hljs-string">&quot;/&gt;&quot;</span>, <span class="hljs-keyword">true</span>);
+<pre><code class="lang-cs">IXmlFile file = factory.<span class="hljs-function"><span class="hljs-title">CreateFile</span><span class="hljs-params">(provider.PsiServices, provider.PsiModule,
+                                   <span class="hljs-string">&quot;&lt;tag &quot;</span> + text + <span class="hljs-string">&quot;/&gt;&quot;</span>, true)</span></span>;
 </code></pre>
 <p>Finally, you can get at the attribute in the created file and insert it into the tag you&apos;re trying to change:</p>
-<pre><code class="lang-cs">IXmlAttribute att = file.InnerTags.First().GetAttributes().First();
-tag.AddAttributeBefore(att, <span class="hljs-keyword">null</span>);
+<pre><code class="lang-cs">IXmlAttribute att = file.InnerTags.<span class="hljs-function"><span class="hljs-title">First</span><span class="hljs-params">()</span>.<span class="hljs-title">GetAttributes</span><span class="hljs-params">()</span>.<span class="hljs-title">First</span><span class="hljs-params">()</span></span>;
+tag.<span class="hljs-function"><span class="hljs-title">AddAttributeBefore</span><span class="hljs-params">(att, null)</span></span>;
 </code></pre>
 <h2 id="html"><a name="html" class="plugin-anchor" href="#html"><span class="fa fa-link"></span></a>HTML</h2>
 <p>Work with HTML files is a bit different than XML. The first thing to note is that, unlike with XML, an HTML context action, for instance, would have no special base class of its own. Rather, making an HTML-related context action is simply a matter of implementing the <code>IContextAction</code> interface. The only difference is that this context action would take an <code>IWebContextActionDataProvider&lt;T&gt;</code> as a parameter.</p>
 <p>The type parameter <code>T</code> has to be either of type <code>IHtmlFile</code> or one of its inheritors - <code>IAspFile</code> and <code>IRazorFile</code>. Here&apos;s an outline of a context action for HTML files:</p>
-<pre><code class="lang-cs">[ContextAction(Group = &quot;HTML&quot;,
-  Name = &quot;Specify Id&quot;,
-  Description = &quot;Creates an &apos;id&apos; attribute for the selected tag of an XML document&quot;)]
-public class SpecifyIdHtmlContextAction : IContextAction, IBulbItem
-{
-  private readonly IWebContextActionDataProvider&lt;IHtmlFile&gt; provider;
+<pre><code class="lang-cs">[<span class="hljs-function"><span class="hljs-title">ContextAction</span><span class="hljs-params">(Group = <span class="hljs-string">&quot;HTML&quot;</span>,
+  Name = <span class="hljs-string">&quot;Specify Id&quot;</span>,
+  Description = <span class="hljs-string">&quot;Creates an &apos;id&apos; attribute for the selected tag of an XML document&quot;</span>)</span>]
+<span class="hljs-keyword">public</span> class SpecifyIdHtmlContextAction : IContextAction, IBulbItem
+</span>{
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> IWebContextActionDataProvider&lt;IHtmlFile&gt; provider;
 
-  public SpecifyIdHtmlContextAction(IWebContextActionDataProvider&lt;IHtmlFile&gt; provider)
-  {
-    this.provider = provider;
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SpecifyIdHtmlContextAction</span><span class="hljs-params">(IWebContextActionDataProvider&lt;IHtmlFile&gt; provider)</span>
+  </span>{
+    <span class="hljs-keyword">this</span>.provider = provider;
   }
 }
 </code></pre>
 <p>Now, you&apos;ll notice that the code for creating an id-inserting context action is very similar to what we did for XML. The only differences are in the types of tags and factories that we are using:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IUserDataHolder cache)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IUserDataHolder cache)</span>
 </span>{
-  <span class="hljs-keyword">var</span> tag = provider.FindNodeAtCaret&lt;IHtmlTag&gt;();
-  <span class="hljs-keyword">if</span> (tag != <span class="hljs-keyword">null</span>)
-  {
-    <span class="hljs-keyword">var</span> idAtt = tag.Attributes.FirstOrDefault(a =&gt; a.AttributeName.Equals(<span class="hljs-string">&quot;id&quot;</span>));
-    <span class="hljs-keyword">if</span> (idAtt == <span class="hljs-keyword">null</span>)
-    {
+  <span class="hljs-keyword">var</span> tag = provider.<span class="hljs-function"><span class="hljs-title">FindNodeAtCaret&lt;IHtmlTag&gt;</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(tag != null)</span>
+  </span>{
+    <span class="hljs-keyword">var</span> idAtt = tag.Attributes.<span class="hljs-function"><span class="hljs-title">FirstOrDefault</span><span class="hljs-params">(a =&gt; a.AttributeName.Equals(<span class="hljs-string">&quot;id&quot;</span>)</span>)</span>;
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(idAtt == null)</span>
+    </span>{
       Tag = tag;
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+      <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
     }
   }
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 }
 </code></pre>
 <p>Now, when it comes to modifying the document tree, with Web files there is one difference: you need to explicitly create the transaction before modifying the HTML file. Here&apos;s a piece of code that, just like in the XML example, inserts the <code>id</code> attribute into a tag:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span><span class="hljs-params">(ISolution solution, ITextControl textControl)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span><span class="hljs-params">(ISolution solution, ITextControl textControl)</span>
 </span>{
-  <span class="hljs-keyword">var</span> psiServices = solution.GetComponent&lt;IPsiServices&gt;();
-  <span class="hljs-keyword">using</span> (<span class="hljs-keyword">new</span> PsiTransactionCookie(psiServices, DefaultAction.Commit, Text))
-  {
-    <span class="hljs-keyword">var</span> factory = HtmlElementFactory.GetInstance(Tag.Language);
-    <span class="hljs-keyword">var</span> dummy = factory.CreateHtmlTag(<span class="hljs-string">&quot;&lt;tag id=\&quot;\&quot;/&gt;&quot;</span>, Tag);
-    Tag.AddAttributeBefore(dummy.Attributes.First(), <span class="hljs-keyword">null</span>);
+  <span class="hljs-keyword">var</span> psiServices = solution.<span class="hljs-function"><span class="hljs-title">GetComponent&lt;IPsiServices&gt;</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-function"><span class="hljs-title">using</span> <span class="hljs-params">(new PsiTransactionCookie(psiServices, DefaultAction.Commit, Text)</span>)
+  </span>{
+    <span class="hljs-keyword">var</span> factory = HtmlElementFactory.<span class="hljs-function"><span class="hljs-title">GetInstance</span><span class="hljs-params">(Tag.Language)</span></span>;
+    <span class="hljs-keyword">var</span> dummy = factory.<span class="hljs-function"><span class="hljs-title">CreateHtmlTag</span><span class="hljs-params">(<span class="hljs-string">&quot;&lt;tag id=\&quot;\&quot;/&gt;&quot;</span>, Tag)</span></span>;
+    Tag.<span class="hljs-function"><span class="hljs-title">AddAttributeBefore</span><span class="hljs-params">(dummy.Attributes.First()</span>, null)</span>;
   }
 }
 </code></pre>

@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Managing reference providers | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="9.9.5" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="9.9.5" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3552,22 +3554,22 @@
                         <h1 id="managing-reference-providers"><a name="managing-reference-providers" class="plugin-anchor" href="#managing-reference-providers"><span class="fa fa-link"></span></a>Managing reference providers</h1>
 <p>To build a reference provider, you implement <code>IReferenceProviderFactory</code>, <code>IReferenceFactory</code> and <code>IReference</code>. It is very easy to get these mixed up with the <code>ReferenceProviderFactory</code> class and the <code>IReferenceProvider</code> interface, however, they serve different purposes. <code>ReferenceProviderFactory</code> and <code>IReferenceProvider</code> are facades that manage the responsibility of delegating and aggregating the creation of custom references to multiple custom reference providers.</p>
 <p>The <code>ReferenceProviderFactory</code> class hides the complexity of maintaining a large collection of custom reference providers. It is a <code>[PsiComponent]</code> that maintains an <code>IViewable&lt;IReferenceProviderFactory&gt;</code>. It has one public method:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ReferenceProviderFactory</span>
-{
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IReferenceProvider <span class="hljs-title">Create</span><span class="hljs-params">(IPsiSourceFile sourceFile, IFile file)</span></span>;
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ReferenceProviderFactory</span>
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IReferenceProvider <span class="hljs-title">Create</span><span class="hljs-params">(IPsiSourceFile sourceFile, IFile file)</span></span>;
 }
 </code></pre>
 <p>This method iterates over the collection of custom reference providers and calls <code>IReferenceProviderFactory.CreateFactory</code> on each, maintaining a list of the returned <code>IReferenceFactory</code> instances. It then returns a custom instance of <code>IReferenceProvider</code> that is based on this list of custom reference factories.</p>
 <p>The <code>IReferenceProvider</code> interface is very similar to the <code>IReferenceFactory</code> interface:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReferenceProvider</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReferenceProvider</span>
+</span>{
   <span class="hljs-function">ReferenceCollection <span class="hljs-title">GetReferences</span><span class="hljs-params">(ITreeNode element, ICollection&lt;<span class="hljs-keyword">string</span>&gt; names)</span></span>;
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">ContainsReference</span><span class="hljs-params">(ITreeNode element, IReference reference)</span></span>;
 }
 
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReferenceFactory</span>
-{
-  IReference[] GetReferences(ITreeNode element, IReference[] oldReferences);
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReferenceFactory</span>
+</span>{
+  IReference[] <span class="hljs-function"><span class="hljs-title">GetReferences</span><span class="hljs-params">(ITreeNode element, IReference[] oldReferences)</span></span>;
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">HasReference</span><span class="hljs-params">(ITreeNode element, ICollection&lt;<span class="hljs-keyword">string</span>&gt; names)</span></span>;
 }
 </code></pre>

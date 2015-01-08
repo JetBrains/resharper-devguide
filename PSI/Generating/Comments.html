@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Generating comments | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="9.7.1" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="9.7.1" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3555,35 +3557,35 @@
 <h2 id="basic-comments"><a name="basic-comments" class="plugin-anchor" href="#basic-comments"><span class="fa fa-link"></span></a>Basic Comments</h2>
 <p>Before we begin, the most important thing to realize is that <em>basic comments (as opposed to XML comments) are only part of the physical tree</em>, i.e., comments are available in the tree structure that is the result of lexing of the source code, but they are <em>not available</em> when dealing with the definitions that are the results of the parsing stage.</p>
 <p>Consider the following declaration:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span>
+</span>{
   <span class="hljs-comment">// this is a comment</span>
 }
 </code></pre>
 <p>From the lexical perspective, the class body can be treated essentially as a sequence of tokens such as a left curly brace, newline, and so on. The comment above is represented by an <code>ICommentNode</code> structure with a <code>type</code> of <code>END_OF_LINE_COMMENT</code>. Were you to change the comment to <code>/* this is a comment */</code>, its type would be <code>C_STYLE_COMMENT</code>.</p>
 <p>But how do you actually <em>get</em> an <code>ICommentNode</code>? This depends on the type of the feature you&#x2019;re workin on. For example, let&#x2019;s say that you&#x2019;re writing a context action which replaces any comment it finds with <code>/* hello, world */</code>. This context action would then have its <code>IsAvailable()</code> method defined as follows:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IUserDataHolder cache)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IUserDataHolder cache)</span>
 </span>{
   <span class="hljs-keyword">return</span> provider.TokenAfterCaret <span class="hljs-keyword">is</span> ICommentNode;
 }
 </code></pre>
 <p>The provider&#x2019;s <code>TokenBeforeCaret</code> and <code>TokenAfterCaret</code> properties yield the tokens that appear before and after the caret in the file being edited. Detecting them is easy, but what about actually editing them?</p>
 <p>The bad news is that you cannot just call some <code>SetText()</code> method on a comment node and be done with it - instead, you need to create a brand new <code>ICommentNode</code> and replace the old one. Thus, the implementation of <code>ExecutePsiTransaction()</code> for our context action would look something like the following:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> Action&lt;ITextControl&gt; <span class="hljs-title">ExecutePsiTransaction</span><span class="hljs-params">(ISolution solution, IProgressIndicator progress)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function">Action&lt;ITextControl&gt; <span class="hljs-title">ExecutePsiTransaction</span><span class="hljs-params">(ISolution solution, IProgressIndicator progress)</span>
 </span>{
-  <span class="hljs-keyword">var</span> factory = CSharpElementFactory.GetInstance(provider.PsiModule);
+  <span class="hljs-keyword">var</span> factory = CSharpElementFactory.<span class="hljs-function"><span class="hljs-title">GetInstance</span><span class="hljs-params">(provider.PsiModule)</span></span>;
   <span class="hljs-keyword">var</span> oldComment = provider.TokenAfterCaret <span class="hljs-keyword">as</span> ICommentNode;
-  <span class="hljs-keyword">var</span> newComment = factory.CreateComment(<span class="hljs-string">&quot;/* hello, world */&quot;</span>);
-  ModificationUtil.ReplaceChild(oldComment, newComment);
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">null</span>;
+  <span class="hljs-keyword">var</span> newComment = factory.<span class="hljs-function"><span class="hljs-title">CreateComment</span><span class="hljs-params">(<span class="hljs-string">&quot;/* hello, world */&quot;</span>)</span></span>;
+  ModificationUtil.<span class="hljs-function"><span class="hljs-title">ReplaceChild</span><span class="hljs-params">(oldComment, newComment)</span></span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>;
 }
 </code></pre>
 <p>In the above example, we use a <code>CSharpElementFactory</code> to manufacture a brand new comment, then use <code>ModificationUtil</code> to replace the old comment with the new one. If you wanted to simply get rid of the comment, you could use <code>ModificationUtil.DeleteChild()</code> instead.</p>
 <h2 id="xml-doc-comments"><a name="xml-doc-comments" class="plugin-anchor" href="#xml-doc-comments"><span class="fa fa-link"></span></a>XML Doc Comments</h2>
 <p>Now, what would happen if you declared the comment as <code>/// &lt;z&gt;this is a comment&lt;/z&gt;</code>? The end result in this case is that the comment has a type of <code>DocComment</code>. A &#x2018;doc comment&#x2019; is different though - unlike an ordinary comment, a doc comment is typically attached to a particular element of the &#x2018;chemical&#x2019; tree, such as a class or class member (field, property, etc.). It&#x2019;s also possible in certain cases for a doc comment to span <em>several</em> elements at once. Here is an example.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span>
-{
-  <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> <span class="hljs-xmlDocTag">&lt;summary&gt;</span>Co-ordinates<span class="hljs-xmlDocTag">&lt;/summary&gt;</span></span>
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">C</span>
+</span>{
+  <span class="hljs-comment"><span class="hljs-xmlDocTag">///</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-title">summary</span>&gt;</span></span>Co-ordinates<span class="xml"><span class="hljs-tag">&lt;/<span class="hljs-title">summary</span>&gt;</span></span></span>
   <span class="hljs-keyword">private</span> <span class="hljs-keyword">int</span> a, b;
 }
 </code></pre>
@@ -3603,13 +3605,13 @@
 <p>A single doc comment is then part of that block. For example, a <code>&lt;summary&gt;</code> would be a separate <code>IDocCommentNode</code> that is part of a larger <code>IDocCommentBlockNode</code>. Please note that a <code>IDocCommentBlockNode</code> is created even if there is only one <code>DocComment</code> in it.</p>
 <p>Unlike basic comments, doc comment blocks are language-specific. This means that, if you&#x2019;re working with C#, you&#x2019;ll most likely be working with an <code>ICSharpDocCommentBlockNode</code>. This type of node is a lot more interesting because, unlike the typical XML doc-related API which would yield you a simple <code>XmlNode</code> (see e.g., the <code>IDeclaration.GetXmlDoc()</code> method), the <code>ICSharpDocCommentBlockNode</code> can yield you a fully fledged XML PSI interface:</p>
 <pre><code class="lang-cs"><span class="hljs-keyword">var</span> node = provider.TokenAfterCaret.Parent <span class="hljs-keyword">as</span> ICSharpDocCommentBlockNode;
-IDocCommentXmlPsi xmlPsi = node.GetXmlPsi();
+IDocCommentXmlPsi xmlPsi = node.<span class="hljs-function"><span class="hljs-title">GetXmlPsi</span><span class="hljs-params">()</span></span>;
 </code></pre>
 <p>Note the use of <code>Parent</code> property in the above call: your caret is, essentially, on a doc comment node, whose <em>parent</em> is the block.</p>
 <p>The great thing about <code>IDocCommentXmlPsi</code> is that it contains a myriad of utility methods for adding or modifying particular XML doc declarations such as summary, parameters, exception information, and so on. For example, the following piece of code lets you add a <code>&lt;summary&gt;</code> to the block comment:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> factory = XmlElementFactory.GetInstance&lt;XmlDocLanguage&gt;();
-<span class="hljs-keyword">var</span> summaryTag = factory.CreateTag(<span class="hljs-string">&quot;&lt;summary&gt;this method rocks&lt;/summary&gt;&quot;</span>);
-xmlPsi.AddSummaryNode(summaryTag);
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> factory = XmlElementFactory.<span class="hljs-function"><span class="hljs-title">GetInstance&lt;XmlDocLanguage&gt;</span><span class="hljs-params">()</span></span>;
+<span class="hljs-keyword">var</span> summaryTag = factory.<span class="hljs-function"><span class="hljs-title">CreateTag</span><span class="hljs-params">(<span class="hljs-string">&quot;&lt;summary&gt;this method rocks&lt;/summary&gt;&quot;</span>)</span></span>;
+xmlPsi.<span class="hljs-function"><span class="hljs-title">AddSummaryNode</span><span class="hljs-params">(summaryTag)</span></span>;
 </code></pre>
 <p>Please note that the XML PSI interface is only available on <em>existing</em> XML doc comment blocks - you cannot get this interface if you have an ordinary comment <code>/// like this one</code> in your code. Thus, if you need to create an XML doc comment block from scratch, you should first use a <code>CSharpElementFactory</code> to create the initial content for the block, and then get the <code>IDocCommentXmlPsi</code> interface from it.</p>
 

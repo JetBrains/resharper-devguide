@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>IQuickDocProvider | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="10.5.1.1" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="10.5.1.1" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3547,12 +3549,12 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_35">
+                    <section class="normal" id="section-gitbook_23">
                     
                         <h1 id="implementing-iquickdocprovider"><a name="implementing-iquickdocprovider" class="plugin-anchor" href="#implementing-iquickdocprovider"><span class="fa fa-link"></span></a>Implementing IQuickDocProvider</h1>
 <p>The <code>IQuickDocProvider</code> interface provides two methods:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IQuickDocProvider</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IQuickDocProvider</span>
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">CanNavigate</span><span class="hljs-params">(IDataContext context)</span></span>;
   <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Resolve</span><span class="hljs-params">(IDataContext context, Action&lt;IQuickDocPresenter, PsiLanguageType&gt; resolved)</span></span>;
 }
@@ -3562,19 +3564,19 @@
 <p><strong><code>Resolve</code></strong> is called by the <code>QuickDocManager</code> when initially displaying the documentation (the name makes more sense when dealing with navigation from one presenter to another). The <code>IDataContext</code> is passed in, from which the provider should extract whatever data is required in order to be able to display documentation, and this data is used to create an instance of <code>IQuickDocPresenter</code>. The provider then retrieves the <code>PsiLanguageType</code> of the item being documented, and calls the passed in <code>resolved</code> action. (This action, provided by <code>ShowQuickDocAction</code>, is responsible for creating and managing the popup window and the web browser used to host the HTML).</p>
 <blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>
 <p> Retrieving the language can be done using the document from the <code>IDataContext</code>, and passing it, together with instances of <code>DocumentManager</code> and <code>ISolution</code> (injected into the constructor of your component) to the <code>PresentationUtil.GetPresentationLanguageByContainer</code> method:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> document = context.GetData(DataConstants.DOCUMENT);
-<span class="hljs-keyword">if</span> (document != <span class="hljs-keyword">null</span>)
-  projectFile = myDocumentManager.TryGetProjectFile(document);
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> document = context.<span class="hljs-function"><span class="hljs-title">GetData</span><span class="hljs-params">(DataConstants.DOCUMENT)</span></span>;
+<span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(document != null)</span>
+  projectFile </span>= myDocumentManager.<span class="hljs-function"><span class="hljs-title">TryGetProjectFile</span><span class="hljs-params">(document)</span></span>;
 
-<span class="hljs-keyword">var</span> defaultLanguage = PresentationUtil.GetPresentationLanguageByContainer(projectFile, mySolution);
-resolved(presenter, defaultLanguage);
+<span class="hljs-keyword">var</span> defaultLanguage = PresentationUtil.<span class="hljs-function"><span class="hljs-title">GetPresentationLanguageByContainer</span><span class="hljs-params">(projectFile, mySolution)</span></span>;
+<span class="hljs-function"><span class="hljs-title">resolved</span><span class="hljs-params">(presenter, defaultLanguage)</span></span>;
 </code></pre>
 </blockquote>
 <p>You need to decorate your <code>IQuickDocProvider</code> class with <code>QuickDocProviderAttribute</code>, and pass a priority into the constructor. The list of providers maintained by <code>QuickDocManager</code> is an ordered list, with the lowest priority being at the start of the list (any new items being added to the <code>QuickDocManager</code>&apos;s <code>IViewable&lt;IQuickDocProvider&gt;</code> are inserted in the correct position in the list). The majority of the default providers have a priority of <code>0</code>. You only need to provide a higher or lower priority if the items you&apos;re intending to document are also handled by the default providers, and you wish to override or provide a fallback.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">QuickDocProviderAttribute</span> : <span class="hljs-title">SolutionComponentAttribute</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">QuickDocProviderAttribute</span> : SolutionComponentAttribute
+</span>{
     <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">QuickDocProviderAttribute</span><span class="hljs-params">(<span class="hljs-keyword">int</span> priority)</span></span>;
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> Priority { <span class="hljs-keyword">get</span>; }
+    <span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">Priority</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-edit"></strong>

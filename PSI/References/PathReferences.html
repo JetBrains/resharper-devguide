@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Path references | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="9.9.6" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="9.9.6" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3552,17 +3554,17 @@
 <p>Path references are also &quot;qualified&quot; references. That is, the reference has a qualifier, which is the previous part of the path. The value of these qualifiers are available via the <code>IQualifiableReferenceBase</code> and <code>IReferenceWithQualifier</code> interfaces, which inherit from <code>IReference</code> and are implemented by the path reference. The qualifiers themselves implement <code>IQualifier</code>, and are used during when the reference is resolved. (Note that qualified references are not necessarily file path references. For example, ASP.NET support has data binding references where each segment of the reference uses the previous segment&apos;s reference as a qualifier.)</p>
 <h2 id="creating-path-references"><a name="creating-path-references" class="plugin-anchor" href="#creating-path-references"><span class="fa fa-link"></span></a>Creating path references</h2>
 <p>There are several helper classes for creating file and folder references, depending on the language of the underlying document. The <code>PathReferenceUtil.CreatePathReferences</code> static method will parse a path string and generate references for the folder and file segments.</p>
-<pre><code class="lang-cs">public static IPathReference[] CreatePathReferences&lt;TOwner,TToken&gt;(
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IPathReference[] <span class="hljs-function"><span class="hljs-title">CreatePathReferences&lt;TOwner,TToken&gt;</span><span class="hljs-params">(
   TOwner owner, TToken token, IQualifier baseQualifier,
   Func&lt;TOwner, IQualifier, TToken, TreeTextRange, IPathReference&gt; createFolderReferenceDelegate,
   Func&lt;TOwner, IQualifier, TToken, TreeTextRange, IPathReference&gt; createFileReferenceDelegate,
-  Func&lt;TToken, string&gt; getStringValueDelegate,
-  Func&lt;TToken, int&gt; getValueStartOffset
-)
-  where TOwner : ITreeNode
-  where TToken : class, ITreeNode
-{
-  // ...
+  Func&lt;TToken, <span class="hljs-keyword">string</span>&gt; getStringValueDelegate,
+  Func&lt;TToken, <span class="hljs-keyword">int</span>&gt; getValueStartOffset
+)</span>
+  <span class="hljs-keyword">where</span> TOwner : ITreeNode
+  <span class="hljs-keyword">where</span> TToken : class, ITreeNode
+</span>{
+  <span class="hljs-comment">// ...</span>
 }
 </code></pre>
 <p>The parameters are as follows:</p>

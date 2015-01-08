@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Quick fixes | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-level="10.2.2" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="10.2.2" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3543,7 +3545,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_22">
+                    <section class="normal" id="section-gitbook_10">
                     
                         <h1 id="quick-fixes-and-context-actions"><a name="quick-fixes-and-context-actions" class="plugin-anchor" href="#quick-fixes-and-context-actions"><span class="fa fa-link"></span></a>Quick-Fixes and Context Actions</h1>
 <blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
@@ -3567,12 +3569,12 @@
 <p>In addition to &#x2018;plain text&#x2019; offered by <code>IBulbAction</code>, your bulb action can also provide <em>rich text</em>, i.e., text that has some formatting. For example:</p>
 <p><img src="rich_text.png" alt="Quick Fix with rich text"></p>
 <p>To support it, your bulb action must also implement the <code>IBulbItemRichText</code> interface. This interface has a property called <code>RichText</code> that contains a definition of the text shown in the menu, including formatting changes such as bold text or a different text colour. Here&#x2019;s an example:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> RichText RichText
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> RichText <span class="hljs-title">RichText</span>
 {
   <span class="hljs-keyword">get</span>
   {
-    <span class="hljs-keyword">var</span> style = <span class="hljs-keyword">new</span> TextStyle(FontStyle.Bold, Color.Red);
-    <span class="hljs-function"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">RichText</span><span class="hljs-params">(<span class="hljs-string">&quot;Hello, &quot;</span>)</span>.<span class="hljs-title">Append</span><span class="hljs-params">(<span class="hljs-string">&quot;World!&quot;</span>, style)</span></span>; 
+    <span class="hljs-keyword">var</span> style = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">TextStyle</span><span class="hljs-params">(FontStyle.Bold, Color.Red)</span></span>;
+    <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">RichText</span><span class="hljs-params">(<span class="hljs-string">&quot;Hello, &quot;</span>)</span>.<span class="hljs-title">Append</span><span class="hljs-params">(<span class="hljs-string">&quot;World!&quot;</span>, style)</span></span>; 
   }
 }
 </code></pre>
@@ -3616,9 +3618,9 @@
 </ul>
 <p>Let&#x2019;s start with the CA constructor. As mentioned above, it should have one parameter corresponding to a <em>data provider</em> for the context action. The data provider is how we can get information about where the context action is possibly going to be displayed. In other words, it&apos;s the context for the context action. The data provider is a language-specific interface derived from <code>IContextActionDataProvider</code>.</p>
 <p>Here is an example from a C# context action:</p>
-<pre><code class="lang-cs">[ContextAction(Description=<span class="hljs-string">&quot;Foo&quot;</span>,Group=<span class="hljs-string">&quot;C#&quot;</span>,Name=<span class="hljs-string">&quot;Foo&quot;</span>, Priority=<span class="hljs-number">1</span>)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">OrdinaryContextAction</span> : <span class="hljs-title">IContextAction</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ContextAction</span><span class="hljs-params">(Description=<span class="hljs-string">&quot;Foo&quot;</span>,Group=<span class="hljs-string">&quot;C#&quot;</span>,Name=<span class="hljs-string">&quot;Foo&quot;</span>, Priority=<span class="hljs-number">1</span>)</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">OrdinaryContextAction</span> : IContextAction
+</span>{
   <span class="hljs-keyword">private</span> ICSharpContextActionDataProvider dataProvider;
 
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">OrdinaryContextAction</span><span class="hljs-params">(ICSharpContextActionDataProvider dataProvider)</span>
@@ -3630,18 +3632,18 @@
 }
 </code></pre>
 <p>Now it&#x2019;s time to implement the interface members. The first, an <code>IsAvailable()</code> method is used to check whether this context action is available. If it is, the <code>CreateBulbItems()</code> method will be called. If not, it&apos;s not called, and no items are added for this action. The <code>IsAvailable()</code> method is implemented by looking at the context data provider we were passed in the constructor, and deciding if our action is valid for the current location. There are several properties on the method that are useful, for example, we can get at the current <code>ITextControl</code>, <code>Selection</code> and <code>CaretOffset</code>. More importantly, we can look at the current node in the PSI syntax tree - the <code>SelectedElement</code> property gives us the <code>ITreeNode</code> of the PSI syntax tree at the current caret offset. We can downcast this to a more specific type, such as <code>IMethodDeclaration</code> or <code>IAssignmentExpression</code>. We can also get the tree nodes before and after the caret, using the provider&apos;s <code>TokenBeforeCaret</code> and <code>TokenAfterCaret</code>. However, the <code>GetSelectedElement&lt;T&gt;</code> method is most useful, because it will walk up the syntax tree looking for a containing node of the correct type. For example, we can use <code>GetSelectedElement&lt;IMethodDeclaration&gt;(true, true)</code> to get the containing method declaration, even if the node we&apos;re currently on is an expression. We can check to see if the value is null to ensure we&apos;re in the right place, and we can walk the contents of the method declaration node to look inside the method body or parameters, etc.</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IUserDataHolder cache)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IUserDataHolder cache)</span>
 </span>{
-  <span class="hljs-keyword">return</span> provider.GetSelectedElement&lt;IMethodDeclaration&gt;(<span class="hljs-keyword">true</span>, <span class="hljs-keyword">true</span>) != <span class="hljs-keyword">null</span>;
+  <span class="hljs-keyword">return</span> provider.<span class="hljs-function"><span class="hljs-title">GetSelectedElement&lt;IMethodDeclaration&gt;</span><span class="hljs-params">(true, true)</span> !</span>= <span class="hljs-literal">null</span>;
 }
 </code></pre>
 <p>The next interface member is the one that populates the bulb menu. The method is defined as</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">CreateBulbItems</span><span class="hljs-params">(BulbMenu menu)</span></span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CreateBulbItems</span><span class="hljs-params">(BulbMenu menu)</span></span>
 </code></pre>
 <p>and the idea is that you use the <code>menu</code> parameter to define the structure of the menu, as described in the previous section. For instance, the implementation can be as simple as</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">CreateBulbItems</span><span class="hljs-params">(BulbMenu menu)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">CreateBulbItems</span><span class="hljs-params">(BulbMenu menu)</span>
 </span>{
-  menu.ArrangeContextAction(<span class="hljs-keyword">new</span> FooBulbAction());
+  menu.<span class="hljs-function"><span class="hljs-title">ArrangeContextAction</span><span class="hljs-params">(new FooBulbAction()</span>)</span>;
 }
 </code></pre>
 <p>if you&#x2019;ve only got one bulb action that you want to add.</p>
@@ -3655,7 +3657,7 @@
 </ul>
 <p>The constructor parameter that the quick-fix takes must correspond to the highlighting which corresponds to this quick-fix. As far as interface members are concerned, the situation is identical to that of the context action, with the only difference that the <code>CreateBulbItems()</code> method takes an extra parameter indicating the <code>Severity</code> of the associated highlighting.</p>
 <p>Note that <code>BulbMenu.ArrangeQuickFixes()</code> requires a set of pairs of bulb actions and severities. Thus, if you keep an internal list of <code>IBulbAction</code> elements, you can convert it to a set of pairs using such code as:</p>
-<pre><code class="lang-cs">menu.ArrangeQuickFixes(_items.Select(_ =&gt; Pair.Of(_, severity)));
+<pre><code class="lang-cs">menu.<span class="hljs-function"><span class="hljs-title">ArrangeQuickFixes</span><span class="hljs-params">(_items.Select(_ =&gt; Pair.Of(_, severity)</span>))</span>;
 </code></pre>
 <h2 id="base-classes"><a name="base-classes" class="plugin-anchor" href="#base-classes"><span class="fa fa-link"></span></a>Base Classes</h2>
 <p>In the majority of cases, implementing <code>IBulbAction</code>, <code>IQuickFix</code> or <code>IContextAction</code> is not recommended. Instead, we suggest that you do the following:</p>

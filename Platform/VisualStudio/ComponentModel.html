@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Visual Studio interfaces | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="7.4.2" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="7.4.2" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3559,11 +3561,11 @@
 </code></pre>
 <p>Note the use of <code>Lazy&lt;T&gt;</code>. Many of the Visual Studio interfaces can only be resolved using <code>Lazy&lt;T&gt;</code>, to allow for delay loading VS packages and assemblies, or <code>Optional&lt;T&gt;</code>, because there is no guarantee that interface is available - perhaps the required VS package isn&apos;t installed.</p>
 <p>It is recommended that you use <code>Lazy</code> and <code>Optional</code>. If the plugin is run outside of the Visual Studio environment (e.g. in the Command Line Tools), the Visual Studio dependencies will not be available. It is better for your component to handle this gracefully than for the Component Model to be unable to create your component. An alternative is to mark your component as only being able to run in the Visual Studio environment, by passing in the <code>ProgramConfigurations.VS_ADDIN</code> flag to the component attribute. However, this can have a &quot;viral&quot; effect. If this component isn&apos;t created because you&apos;re not running inside Visual Studio, any other component that depends on this must also include the <code>VS_ADDIN</code> flag, or the Component Model will be unable to create it, also. A better solution is the use of <code>Optional</code>, <code>Lazy</code>, or perhaps moving the component into a Visual Studio specific assembly that is only loaded in the Visual Studio environment.</p>
-<pre><code class="lang-cs">[ShellComponent(ProgramConfigurations.VS_ADDIN)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyShellComponent</span> { ... }
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ShellComponent</span><span class="hljs-params">(ProgramConfigurations.VS_ADDIN)</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyShellComponent</span> </span>{ ... }
 
-[SolutionComponent(ProgramConfigurations.VS_ADDIN)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MySolutionComponent</span> { ... }
+<span class="hljs-attribute">[<span class="hljs-title">SolutionComponent</span><span class="hljs-params">(ProgramConfigurations.VS_ADDIN)</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MySolutionComponent</span> </span>{ ... }
 </code></pre>
 <p>ReSharper only exposes a subset of Visual Studio&apos;s interfaces in this manner. In fact, the interfaces are only exposed to support ReSharper&apos;s own integration with Visual Studio. In addition, some interfaces are wrapped, to ensure correct usage, e.g. wrapping parameters for COM interop, releasing returned COM intptr&apos;s, checking returned <code>HRESULT</code>s, etc. You should consult the whitelist below to see what interfaces are available. If it&apos;s there, you can consume it via a component&apos;s constructor.</p>
 <p>If you need to access interfaces that aren&#x2019;t exposed, you have two options:</p>
@@ -3577,10 +3579,10 @@
 <p>Once you have the <code>RawVsServiceProvider</code> class, you can simply use the <code>Value</code> property to get access to the interface, and query Visual Studio for a specific service. It is now your responsibility to ensure the interface is called correctly, and any COM requirements are met.</p>
 <h2 id="expose-interfaces-to-the-container"><a name="expose-interfaces-to-the-container" class="plugin-anchor" href="#expose-interfaces-to-the-container"><span class="fa fa-link"></span></a>Expose interfaces to the container</h2>
 <p>You can implement a class that will be called by ReSharper during initialisation that can register additional Visual Studio interfaces. It needs to be marked with the <code>WrapVsInterfaces</code> attribute, and implement the <code>IExposeVsServices</code> interface:</p>
-<pre><code class="lang-cs">[WrapVsInterfaces]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ExposeMyServices</span> : <span class="hljs-title">IExposeVsServices</span>
-{
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Register</span><span class="hljs-params">(VsServiceProviderComponentContainer.VsServiceMap map)</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">WrapVsInterfaces</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ExposeMyServices</span> : IExposeVsServices
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Register</span><span class="hljs-params">(VsServiceProviderComponentContainer.VsServiceMap map)</span>
   </span>{
     <span class="hljs-comment">// For example:</span>
     <span class="hljs-comment">// map.QueryService&lt;SComponentModel&gt;.As&lt;IComponentModel&gt;();</span>
@@ -3592,18 +3594,18 @@
 </code></pre>
 <p>This class allows you to expose one or more interfaces that comes from a service. The first example gets the <code>IComponentModel</code> interface from the MEF <code>SComponentModel</code> service, allowing you to call <code>IComponentModel.GetService</code> to retrieve a service exposed by MEF. The next two examples show an easier way of doing this, by adding support for a particular MEF exposed interface. The <code>OptionalMef</code> call is the same as the <code>Mef</code> call, but requires the interface to be wrapped in <code>Optional&lt;T&gt;</code>, or it won&apos;t be found. Finally, the Wrapper method calls a custom function to resolve the interface. Use of this method is discouraged.</p>
 <p>One important thing to note is that you can only register an interface once. If there are two plugins both registering the same interface, only the first registration (arbitrarily chosen) will be used. The second is ignored. So it is important not to do anything &#x201C;fancy&#x201D; in a custom function - it might never get called! Also, while the second registration is ignored and the registration method completes successfully, ReSharper handles and logs an exception. Since these exceptions are displayed to the user in the exception reporter, it is a good practice to check if the interface is already registered before trying to register yourself. You can use the following extension method to do this (and doesn&apos;t interfere with lazy instantiation):</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">bool</span> IsRegistered&lt;T&gt;(<span class="hljs-keyword">this</span> VsServiceProviderComponentContainer.VsServiceMap map)
-{
-  <span class="hljs-keyword">return</span> map.Resolve(<span class="hljs-keyword">typeof</span> (T)) != <span class="hljs-keyword">null</span>;
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsRegistered&lt;T&gt;</span><span class="hljs-params">(this VsServiceProviderComponentContainer.VsServiceMap map)</span>
+</span>{
+  <span class="hljs-keyword">return</span> map.<span class="hljs-function"><span class="hljs-title">Resolve</span><span class="hljs-params">(typeof (T)</span>) !</span>= <span class="hljs-literal">null</span>;
 }
 </code></pre>
 <p>These interfaces are now exposed to ReSharper&#x2019;s container, and can be injected into the constructor, or retrieved via the Shell&#x2019;s <code>GetComponent</code> method.</p>
 <p>You should use <code>Lazy&lt;TInterface&gt;</code> when consuming a Visual Studio interface, so that Visual Studio packages are not loaded until they are used. For example, accepting a parameter of <code>IEditorOperationsFactoryService</code> will cause the VS editor to be loaded into memory as soon as your plugin is loaded, which is at application startup, rather than when the editor is first needed, which might be after a solution has loaded.</p>
 <p>If you expect the interface to not be available, you can use <code>Optional&lt;TInterface&gt;</code> in your constructor. You can even combine the two <code>Lazy&lt;Optional&lt;T&gt;&gt;</code> which will defer resolving the underlying service until you need it, and allow it to be missing.</p>
 <p>When using <code>map.QueryService</code>, you can enforce requiring these flags by using the <code>LazyOnly</code> and/or <code>Optional</code> methods. If a component tries to consume the service without <code>Lazy&lt;T&gt;</code> or <code>Optional&lt;T&gt;</code> respectively, the Component Model will throw an exception.</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Register</span><span class="hljs-params">(VsServiceProviderComponentContainer.VsServiceMap map)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Register</span><span class="hljs-params">(VsServiceProviderComponentContainer.VsServiceMap map)</span>
 </span>{
-  map.QueryService&lt;STextTemplating&gt;.As&lt;ITextTemplatingEngineHost&gt;.LazyOnly().Optional();
+  map.QueryService&lt;STextTemplating&gt;.As&lt;ITextTemplatingEngineHost&gt;.<span class="hljs-function"><span class="hljs-title">LazyOnly</span><span class="hljs-params">()</span>.<span class="hljs-title">Optional</span><span class="hljs-params">()</span></span>;
 }
 </code></pre>
 <p>The <code>Mef</code> and <code>OptionalMef</code> methods register the interface as <code>LazyOnly</code>, so you can <em>only</em> get it if you request <code>Lazy&lt;TMefInterface&gt;</code>. If there is a chance that the MEF interface will not be available, you should register it with the <code>OptionalMef</code> method, and consume it as <code>Lazy&lt;Optional&lt;T&gt;&gt;</code>.</p>

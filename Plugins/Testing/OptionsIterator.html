@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Combinatorial Testing | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="5.5.4.2" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="5.5.4.2" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3553,8 +3555,8 @@
 <p> The combinatorial testing described here is in regard to running a piece of test code multiple times within the same test method run, with different settings applied for each run. It does not cause multiple NUnit test methods to run, and the standard NUnit <code>[TestCase]</code> and <code>[TestCaseSource]</code> attributes continue to work very nicely for row based, data driven testing.</p>
 </blockquote>
 <p>When running the test, the test base class needs to call the <code>Iterate</code> method on an instance of <code>TestOptionsIterator</code>:</p>
-<pre><code class="lang-cs">ExecuteWithGold(inputFile, writer =&gt;
-  myTestOptionsIterator.Iterate(writer, settingsStore, item, Solution, (data, writer1) =&gt;
+<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-title">ExecuteWithGold</span><span class="hljs-params">(inputFile, writer =&gt;
+  myTestOptionsIterator.Iterate(writer, settingsStore, item, Solution, (data, writer1)</span> </span>=&gt;
   {
     <span class="hljs-comment">// Run the test, output to writer1</span>
   })
@@ -3563,9 +3565,9 @@
 <p>The instance of <code>TestOptionsIterator</code> is usually created in the constructor:</p>
 <pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">MyTest</span><span class="hljs-params">()</span>
 </span>{
-  myTestOptionsIterator = <span class="hljs-keyword">new</span> TestOptionsIterator(<span class="hljs-keyword">this</span>)
-  {
-    ReportUnaffected = <span class="hljs-keyword">false</span>;
+  myTestOptionsIterator = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">TestOptionsIterator</span><span class="hljs-params">(this)</span>
+  </span>{
+    ReportUnaffected = <span class="hljs-literal">false</span>;
   };
 }
 </code></pre>
@@ -3590,15 +3592,15 @@
 <p>Instead of creating an array literal with all enum values listed, the object literal property can use the special value <code>&quot;all&quot;</code> or the wildcard <code>&quot;*&quot;</code>, which when applied to an enum option will run a combination of all values for that option property.</p>
 <h3 id="property-names"><a name="property-names" class="plugin-anchor" href="#property-names"><span class="fa fa-link"></span></a>Property names</h3>
 <p>In order to know what options the property names map to, the test class and its base classes can use the <code>[TestSettingsKey]</code> attribute to specify one or more settings key, as used by ReSharper&apos;s settings system.</p>
-<pre><code class="lang-cs">[TestSettingsKey(<span class="hljs-keyword">typeof</span>(HtmlFormatterSettingsKey))]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">HtmlCodeFormatterTests</span> : <span class="hljs-title">CodeFormatterWithExplicitSettingsTestBase</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">TestSettingsKey</span><span class="hljs-params">(<span class="hljs-keyword">typeof</span>(HtmlFormatterSettingsKey)</span>)]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">HtmlCodeFormatterTests</span> : CodeFormatterWithExplicitSettingsTestBase
+</span>{
   <span class="hljs-comment">// ...</span>
 }
 
-[TestSettingsKey(<span class="hljs-keyword">typeof</span>(CommonFormatterSettingsKey))]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CodeFormatterWithExplicitSettingsTestBase</span> <span class="hljs-comment">// : ...</span>
-{
+<span class="hljs-attribute">[<span class="hljs-title">TestSettingsKey</span><span class="hljs-params">(<span class="hljs-keyword">typeof</span>(CommonFormatterSettingsKey)</span>)]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CodeFormatterWithExplicitSettingsTestBase</span> <span class="hljs-comment">// : ...</span>
+</span>{
   <span class="hljs-comment">// ...</span>
 }
 </code></pre>
@@ -3623,8 +3625,8 @@
 <p>The language name is the name of the language&apos;s <code>PsiLanguageType</code> instance, e.g. <code>HtmlLanguage.Name</code>, <code>CssLanguage.Name</code>, etc.</p>
 <h3 id="custom-property-names"><a name="custom-property-names" class="plugin-anchor" href="#custom-property-names"><span class="fa fa-link"></span></a>Custom property names</h3>
 <p>Tests can also iterate over values not stored in the settings subsystem. Rather than automatically setting the option in settings before running the test, the value is made available to the test in the <code>CustomValues</code> dictionary of the test data passed to the test function.</p>
-<pre><code class="lang-cs">ExecuteWithGold(inputFile, writer =&gt;
-  myTestOptionsIterator.Iterate(writer, settingsStore, item, Solution, (data, writer1) =&gt;
+<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-title">ExecuteWithGold</span><span class="hljs-params">(inputFile, writer =&gt;
+  myTestOptionsIterator.Iterate(writer, settingsStore, item, Solution, (data, writer1)</span> </span>=&gt;
   {
     <span class="hljs-keyword">var</span> customValue = data[<span class="hljs-string">&quot;myCustomVariable&quot;</span>] <span class="hljs-keyword">as</span> CustomType;
     <span class="hljs-comment">// Run the test using customValue, output to writer1</span>
@@ -3632,14 +3634,14 @@
 );
 </code></pre>
 <p>The test class needs to tell the <code>TestOptionsIterator</code> that a custom value can be used, by decorating the class (or base class) with the <code>[TestSettingsVariable]</code> attribute. It must pass in the name and <code>Type</code> of the variable, which can be either boolean or an enum.</p>
-<pre><code class="lang-cs">[TestSettingsVariable(<span class="hljs-string">&quot;FormatProfile&quot;</span>, <span class="hljs-keyword">typeof</span>(CodeFormatProfile))]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CodeFormatterWithExplicitSettingsTestBase</span> <span class="hljs-comment">// : ...</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">TestSettingsVariable</span><span class="hljs-params">(<span class="hljs-string">&quot;FormatProfile&quot;</span>, <span class="hljs-keyword">typeof</span>(CodeFormatProfile)</span>)]</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CodeFormatterWithExplicitSettingsTestBase</span> <span class="hljs-comment">// : ...</span>
+</span>{
   <span class="hljs-comment">// ...</span>
 }
 
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">enum</span> CodeFormatProfile
-{
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">enum</span> <span class="hljs-title">CodeFormatProfile</span>
+{</span>
   DEFAULT,
   INDENT,
   GENERATOR,
@@ -3700,11 +3702,11 @@
 <p>If more than one method is used, the combinations are combined (as a binary expression, see the advanced combinations section above).</p>
 <h3 id="combinations-as-attributes"><a name="combinations-as-attributes" class="plugin-anchor" href="#combinations-as-attributes"><span class="fa fa-link"></span></a>Combinations as attributes</h3>
 <p>The <code>[TestSettings]</code> attribute can be used multiple times on a method, class or base class to provide JavaScript-like expressions to represent combinations to apply to the test.</p>
-<pre><code class="lang-cs">[TestSettings(<span class="hljs-string">&quot;{ TagAttributeFormat: all }&quot;</span>)]
-[Test]
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test001</span><span class="hljs-params">()</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">TestSettings</span><span class="hljs-params">(<span class="hljs-string">&quot;{ TagAttributeFormat: all }&quot;</span>)</span>]</span>
+<span class="hljs-attribute">[<span class="hljs-title">Test</span>]</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Test001</span><span class="hljs-params">()</span>
 </span>{
-  DoNamedTest();
+  <span class="hljs-function"><span class="hljs-title">DoNamedTest</span><span class="hljs-params">()</span></span>;
 }
 </code></pre>
 <h3 id="jcnf-files"><a name="jcnf-files" class="plugin-anchor" href="#jcnf-files"><span class="fa fa-link"></span></a>JCNF files</h3>
@@ -3723,9 +3725,9 @@
 </code></pre>
 <h3 id="sharing-combinations"><a name="sharing-combinations" class="plugin-anchor" href="#sharing-combinations"><span class="fa fa-link"></span></a>Sharing combinations</h3>
 <p>Common combinations can be described in separate files, and shared and included in multiple tests. The test class, or base class needs to use one or more <code>[TestSettingsInclude]</code> attributes to point to a file to be loaded.</p>
-<pre><code class="lang-cs">[TestSettingsInclude(<span class="hljs-string">@&quot;codeInsight\CodeFormatter\JavaScript\common.jcnf&quot;</span>)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">JavaScriptCodeFormatterTestBase</span> : <span class="hljs-title">CodeFormatterWithExplicitSettingsTestBase</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">TestSettingsInclude</span><span class="hljs-params">(@<span class="hljs-string">&quot;codeInsight\CodeFormatter\JavaScript\common.jcnf&quot;</span>)</span>]</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">JavaScriptCodeFormatterTestBase</span> : CodeFormatterWithExplicitSettingsTestBase
+</span>{
   <span class="hljs-comment">// ...</span>
 }
 </code></pre>
@@ -3739,11 +3741,11 @@
 </code></pre>
 <p>The syntax used here is as described in the <a href="#advanced-combinations">advanced combinations</a> section above. The first element is the name of the combination, displayed when the combination needs to be output. This example will run multiple times, for every combination of each value of each property (two boolean properties plus an enum value with three values gives twelve combinations).</p>
 <p>The variable name is available to be used by the main DSL, as a simple reference to the name:</p>
-<pre><code class="lang-cs">[TestSettings(<span class="hljs-string">&quot;Align&quot;</span>)]
-[Test]
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Test001</span><span class="hljs-params">()</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">TestSettings</span><span class="hljs-params">(<span class="hljs-string">&quot;Align&quot;</span>)</span>]</span>
+<span class="hljs-attribute">[<span class="hljs-title">Test</span>]</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Test001</span><span class="hljs-params">()</span>
 </span>{
-  DoNamedTest();
+  <span class="hljs-function"><span class="hljs-title">DoNamedTest</span><span class="hljs-params">()</span></span>;
 }
 </code></pre>
 <p>Or it can be combined into a binary expression:</p>

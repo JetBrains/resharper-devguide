@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Navigating Syntax Trees | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="9.5" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="9.5" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3549,13 +3551,13 @@
                     
                         <h1 id="navigating-syntax-trees"><a name="navigating-syntax-trees" class="plugin-anchor" href="#navigating-syntax-trees"><span class="fa fa-link"></span></a>Navigating syntax trees</h1>
 <p>Every node in the syntax tree implements <code>ITreeNode</code>. The interface includes members pertinent to navigating and processing the tree. These members are shown below (other members removed for brevity):</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ITreeNode</span>
-{
-  ITreeNode Parent { <span class="hljs-keyword">get</span>; }
-  ITreeNode FirstChild { <span class="hljs-keyword">get</span>; }
-  ITreeNode LastChild  { <span class="hljs-keyword">get</span>; }
-  ITreeNode NextSibling { <span class="hljs-keyword">get</span>; }
-  ITreeNode PrevSibling { <span class="hljs-keyword">get</span>; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ITreeNode</span>
+</span>{
+  ITreeNode <span class="hljs-title">Parent</span> { <span class="hljs-keyword">get</span>; }
+  ITreeNode <span class="hljs-title">FirstChild</span> { <span class="hljs-keyword">get</span>; }
+  ITreeNode <span class="hljs-title">LastChild</span>  { <span class="hljs-keyword">get</span>; }
+  ITreeNode <span class="hljs-title">NextSibling</span> { <span class="hljs-keyword">get</span>; }
+  ITreeNode <span class="hljs-title">PrevSibling</span> { <span class="hljs-keyword">get</span>; }
 
   <span class="hljs-comment">// [...snip...]</span>
 }
@@ -3576,8 +3578,8 @@
 <h3 id="walking-up-the-tree"><a name="walking-up-the-tree" class="plugin-anchor" href="#walking-up-the-tree"><span class="fa fa-link"></span></a>Walking up the tree</h3>
 <p>You can walk up the tree using the <code>Parent</code> property. This is very useful for finding the context that the current node is in - for example, you can walk the <code>Parent</code> property of a method invocation to see if the invocation is happening inside a method declaration that is async or not.</p>
 <p>To walk the <code>Parent</code> property, you will want to write code like this:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">while</span>(currentNode != <span class="hljs-keyword">null</span>)
-{
+<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-title">while</span><span class="hljs-params">(currentNode != null)</span>
+</span>{
   <span class="hljs-comment">// Process node</span>
   currentNode = currentNode.Parent;
 }
@@ -3588,8 +3590,8 @@
 <p> Even though the method declarations will be siblings, they are not going to be direct siblings. The syntax tree is a full-fidelity representation of the C# file, which means the whitespace and comments between the method declarations are also added as nodes in the tree, and these will be siblings to the method declarations.</p>
 </blockquote>
 <p>You can walk the siblings with code like this:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">while</span>(currentNode != <span class="hljs-keyword">null</span>)
-{
+<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-title">while</span><span class="hljs-params">(currentNode != null)</span>
+</span>{
   <span class="hljs-comment">// Process node</span>
   currentNode = currentNode.NextSibling;
 }
@@ -3598,11 +3600,11 @@
 <h3 id="walking-down-the-tree"><a name="walking-down-the-tree" class="plugin-anchor" href="#walking-down-the-tree"><span class="fa fa-link"></span></a>Walking down the tree</h3>
 <p>Walking down the tree is very similar to walking the sibling chain. Again, since this is a tree structure a single node can have multiple children. For example, a C# file&apos;s list of <code>using</code> statements is represented by an <code>IUsingList</code> node, and this will have multiple children - multiple instances of <code>IUsingNamespaceDirective</code> (with each child again separated by whitespace nodes).</p>
 <p>To walk the immediate children of a node, you&apos;ll want to write code like this:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">WalkChildren</span><span class="hljs-params">(ITreeNode root)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">WalkChildren</span><span class="hljs-params">(ITreeNode root)</span>
 </span>{
   <span class="hljs-keyword">var</span> child = root.FirstChild;
-  <span class="hljs-keyword">while</span>(child != <span class="hljs-keyword">null</span>)
-  {
+  <span class="hljs-function"><span class="hljs-title">while</span><span class="hljs-params">(child != null)</span>
+  </span>{
     <span class="hljs-comment">// Process child node</span>
     child = child.NextSibling;
   }

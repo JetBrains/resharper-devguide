@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Code cleanup | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-level="10.10.1" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="10.10.1" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3543,7 +3545,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_39">
+                    <section class="normal" id="section-gitbook_27">
                     
                         <h1 id="code-cleanup"><a name="code-cleanup" class="plugin-anchor" href="#code-cleanup"><span class="fa fa-link"></span></a>Code Cleanup</h1>
 <blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
@@ -3563,11 +3565,11 @@
 <li>Is decorated with the <code>Category</code> attribute, indicating the option&#x2019;s applicability. A set of ready-made categories can be found as static members of the <code>CodeCleanupOptionsDescrpitor</code> class.</li>
 </ul>
 <p>Here&#x2019;s what a typical option descriptor looks like:</p>
-<pre><code class="lang-cs">[DefaultValue(<span class="hljs-keyword">false</span>)]
-[DisplayName(<span class="hljs-string">&quot;Replace Math.Pow() integer calls&quot;</span>)]
-[Category(CSharpCategory)]
-<span class="hljs-keyword">private</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Descriptor</span> : <span class="hljs-title">CodeCleanupBoolOptionDescriptor</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">DefaultValue</span><span class="hljs-params">(<span class="hljs-literals">false</span>)</span>]</span>
+<span class="hljs-attribute">[<span class="hljs-title">DisplayName</span><span class="hljs-params">(<span class="hljs-string">&quot;Replace Math.Pow() integer calls&quot;</span>)</span>]</span>
+<span class="hljs-attribute">[<span class="hljs-title">Category</span><span class="hljs-params">(CSharpCategory)</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">private</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Descriptor</span> : CodeCleanupBoolOptionDescriptor
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">Descriptor</span><span class="hljs-params">()</span> : <span class="hljs-title">base</span><span class="hljs-params">(<span class="hljs-string">&quot;ReplaceMathPowIntegerCalls&quot;</span>)</span>
   </span>{
   }
@@ -3577,39 +3579,39 @@
 <h2 id="code-cleanup-module"><a name="code-cleanup-module" class="plugin-anchor" href="#code-cleanup-module"><span class="fa fa-link"></span></a>Code Cleanup Module</h2>
 <p>The code cleanup module is a component that provides code cleanup functionality. To count as a code cleanup module, all a class has to do is implement the <code>ICodeCleanupModule</code> interface and be decorated with the <code>CodeCleanupModule</code> attribute.</p>
 <p>The module is customizable with the descriptors we&#x2019;ve just seen, and has a <code>Descriptors</code> member to yield all the descriptors that are available to it. For example:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> Descriptor descriptor = <span class="hljs-keyword">new</span> Descriptor();
+<pre><code class="lang-cs"><span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">readonly</span> Descriptor descriptor = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">Descriptor</span><span class="hljs-params">()</span></span>;
 
-<span class="hljs-keyword">public</span> ICollection&lt;CodeCleanupOptionDescriptor&gt; Descriptors
+<span class="hljs-keyword">public</span> ICollection&lt;CodeCleanupOptionDescriptor&gt; <span class="hljs-title">Descriptors</span>
 {
   <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span>[] {descriptor}; }
 }
 </code></pre>
 <p>In order to figure out whether the module is applicable or not, we must implement the <code>IsAvailable()</code> method:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IPsiSourceFile sourceFile)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IPsiSourceFile sourceFile)</span>
 </span>{
-  <span class="hljs-keyword">return</span> sourceFile.GetPsiFile&lt;CSharpLanguage&gt;() != <span class="hljs-keyword">null</span>;
+  <span class="hljs-keyword">return</span> sourceFile.<span class="hljs-function"><span class="hljs-title">GetPsiFile&lt;CSharpLanguage&gt;</span><span class="hljs-params">()</span> !</span>= <span class="hljs-literal">null</span>;
 }
 </code></pre>
 <p>The above simply checks that the file is a C# file.</p>
 <p>Also, as mentioned previously, we must provide default values for the module&#x2019;s descriptors for the two built-in code cleanup templates. This is done in the <code>SetDefaultSetting()</code> method:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetDefaultSetting</span><span class="hljs-params">(CodeCleanupProfile profile, CodeCleanup.DefaultProfileType profileType)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SetDefaultSetting</span><span class="hljs-params">(CodeCleanupProfile profile, CodeCleanup.DefaultProfileType profileType)</span>
 </span>{
-  <span class="hljs-keyword">switch</span> (profileType)
-  {
+  <span class="hljs-function"><span class="hljs-title">switch</span> <span class="hljs-params">(profileType)</span>
+  </span>{
     <span class="hljs-keyword">case</span> CodeCleanup.DefaultProfileType.FULL:
-      profile.SetSetting(descriptor, <span class="hljs-keyword">true</span>);
+      profile.<span class="hljs-function"><span class="hljs-title">SetSetting</span><span class="hljs-params">(descriptor, true)</span></span>;
       <span class="hljs-keyword">break</span>;
     <span class="hljs-keyword">default</span>:
-      profile.SetSetting(descriptor, <span class="hljs-keyword">false</span>);
+      profile.<span class="hljs-function"><span class="hljs-title">SetSetting</span><span class="hljs-params">(descriptor, false)</span></span>;
       <span class="hljs-keyword">break</span>;
   }
 }
 </code></pre>
 <p>Finally, most of the modifications happen in the <code>Process()</code> method. This is the method where code is &#x2018;cleaned up&#x2019;, i.e. modified. Unlike some of the utility base classes (e.g., <code>BulbItemImpl</code>), the implemented interface provides no plumbing for transacted behavior, which means that to perform modifications on the document you&#x2019;ll need to write code similar to the following:</p>
-<pre><code class="lang-cs">file.GetPsiServices().PsiManager.DoTransaction(() =&gt;
+<pre><code class="lang-cs">file.<span class="hljs-function"><span class="hljs-title">GetPsiServices</span><span class="hljs-params">()</span>.PsiManager.<span class="hljs-title">DoTransaction</span><span class="hljs-params">(()</span> </span>=&gt;
 {
-  <span class="hljs-keyword">using</span> (shellLocks.UsingWriteLock())
-  {
+  <span class="hljs-function"><span class="hljs-title">using</span> <span class="hljs-params">(shellLocks.UsingWriteLock()</span>)
+  </span>{
     <span class="hljs-comment">// your changes here</span>
   }
 }, <span class="hljs-string">&quot;Code cleanup&quot;</span>);

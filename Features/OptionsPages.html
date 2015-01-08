@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Options Pages | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-level="10.9" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="10.9" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3543,7 +3545,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_20">
+                    <section class="normal" id="section-gitbook_8">
                     
                         <h1 id="options-pages"><a name="options-pages" class="plugin-anchor" href="#options-pages"><span class="fa fa-link"></span></a>Options Pages</h1>
 <blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
@@ -3565,9 +3567,9 @@
 <li><code>Sequence</code> lets you define the location of the item you are inserting in relation to the other items. Items are placed in order, so the higher this value, the further this page will be in the list of items. Of course, to accurately position the item, you need to know the <code>Sequence</code> value of its siblings. Luckily, this information is available in the metadata.</li>
 </ul>
 <p>Having specified the attributes, your class will appear as follows:</p>
-<pre><code class="lang-cs">[OptionsPage(PID, <span class="hljs-string">&quot;Sample Page&quot;</span>, <span class="hljs-keyword">typeof</span>(OptionsPageThemedIcons.SamplePage), ParentId = ToolsPage.PID)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">partial</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SampleOptionPage</span> : <span class="hljs-title">IOptionsPage</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">OptionsPage</span><span class="hljs-params">(PID, <span class="hljs-string">&quot;Sample Page&quot;</span>, <span class="hljs-keyword">typeof</span>(OptionsPageThemedIcons.SamplePage)</span>, <span class="hljs-title">ParentId</span> = <span class="hljs-title">ToolsPage.PID</span>)]</span>
+<span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">partial</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SampleOptionPage</span> : IOptionsPage
+</span>{
   <span class="hljs-keyword">private</span> <span class="hljs-keyword">const</span> <span class="hljs-keyword">string</span> PID = <span class="hljs-string">&quot;SamplePageId&quot;</span>;
 }
 </code></pre>
@@ -3600,7 +3602,7 @@
 <li>The dependency property that is being read.</li>
 </ul>
 <p>For example, here is how one would bind a WPF text box for a username to a corresponding setting:</p>
-<pre><code class="lang-cs">settings.SetBinding(lifetime, (GitHubSettings s) =&gt; s.Username, usernameBox, TextBox.TextProperty);
+<pre><code class="lang-cs">settings.<span class="hljs-function"><span class="hljs-title">SetBinding</span><span class="hljs-params">(lifetime, (GitHubSettings s)</span> </span>=&gt; s.Username, usernameBox, TextBox.TextProperty);
 </code></pre>
 <p>The situation with WinForms is a bit more trickly - there are no dependency properties to be used, so we use the <code>WinFormsProperty</code> helper class. This helper class has a single method, <code>Create()</code>, that creates an object of type <code>IProperty&lt;T&gt;</code> (where <code>T</code> is the property type). To create the property, it requires the following parameters:</p>
 <ul>
@@ -3609,8 +3611,8 @@
 <li>A lambda expression indicating which property of the aforementioned class that is to be used.</li>
 </ul>
 <p>Thus, the call to bind a WinForms-based password box to a setting becomes as follows:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> property = WinFormsProperty.Create(lifetime, passwordBox, box =&gt; box.Text, <span class="hljs-keyword">true</span>);
-settings.SetBinding(lifetime, (GitHubSettings s) =&gt; s.Password, property);
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> property = WinFormsProperty.<span class="hljs-function"><span class="hljs-title">Create</span><span class="hljs-params">(lifetime, passwordBox, box =&gt; box.Text, true)</span></span>;
+settings.<span class="hljs-function"><span class="hljs-title">SetBinding</span><span class="hljs-params">(lifetime, (GitHubSettings s)</span> </span>=&gt; s.Password, property);
 </code></pre>
 
                     

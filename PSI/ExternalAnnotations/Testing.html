@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Testing | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="9.17.1" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="9.17.1" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3554,76 +3556,76 @@
 <p>Before any tests can run, the annotations need to be loaded by the test environment. ReSharper doesn&apos;t do this by default, it only loads annotations that are installed with the product, or as extensions. Instead, they have to be loaded explicitly by the test assembly, by implementing <code>IExternalAnnotationsFileProvider</code> and marking the component with the <code>[ShellComponent]</code> attribute.</p>
 <p>The following class will load all annotations stored in a specific folder, which, in this example will be <code>test\data\annotations</code>, but by replacing the implementation of <code>RelativeTestDataPath</code> you can change it to another location relative to <code>test\data</code>, even outside of the <code>test\data</code> folder structure. Or you can completely replace <code>BaseTestDataPath</code> to return any location you want.</p>
 <p>This provider will load all XML files that are immediate children of the file location. These are expected to be named after the assembly, e.g. <code>myAssembly.dll</code> would need a <code>myAssembly.xml</code> file in the root location. It will also recursively look for any XML files in child directories. Either the directory should be named after the assembly, in which case all files in that directory apply to the assembly, or the file should be named after the assembly. This is the same folder structure and naming scheme used when annotations are distributed inside an extension package.</p>
-<pre><code class="lang-cs">[ShellComponent]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestExternalAnnotationsProvider</span> : <span class="hljs-title">IExternalAnnotationsFileProvider</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ShellComponent</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TestExternalAnnotationsProvider</span> : IExternalAnnotationsFileProvider
+</span>{
   <span class="hljs-keyword">private</span> <span class="hljs-keyword">readonly</span> OneToSetMap&lt;<span class="hljs-keyword">string</span>, FileSystemPath&gt; annotations;
   <span class="hljs-keyword">private</span> FileSystemPath cachedBaseTestDataPath;
 
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">TestExternalAnnotationsProvider</span><span class="hljs-params">()</span>
   </span>{
     <span class="hljs-keyword">var</span> location = TestDataPath2;
-    annotations = <span class="hljs-keyword">new</span> OneToSetMap&lt;<span class="hljs-keyword">string</span>, FileSystemPath&gt;(StringComparer.OrdinalIgnoreCase);
+    annotations = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">OneToSetMap&lt;string, FileSystemPath&gt;</span><span class="hljs-params">(StringComparer.OrdinalIgnoreCase)</span></span>;
 
-    <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> file <span class="hljs-keyword">in</span> location.GetChildFiles(<span class="hljs-string">&quot;*.xml&quot;</span>))
-      annotations.Add(file.NameWithoutExtension, file);
-    <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> directory <span class="hljs-keyword">in</span> location.GetChildDirectories())
-    {
-      <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> file <span class="hljs-keyword">in</span> directory.GetChildFiles(<span class="hljs-string">&quot;*.xml&quot;</span>, PathSearchFlags.RecurseIntoSubdirectories))
-      {
-        annotations.Add(file.NameWithoutExtension, file);
-        annotations.Add(file.Directory.Name, file);
+    <span class="hljs-function"><span class="hljs-title">foreach</span> <span class="hljs-params">(var file in location.GetChildFiles(<span class="hljs-string">&quot;*.xml&quot;</span>)</span>)
+      annotations.<span class="hljs-title">Add</span><span class="hljs-params">(file.NameWithoutExtension, file)</span></span>;
+    <span class="hljs-function"><span class="hljs-title">foreach</span> <span class="hljs-params">(var directory in location.GetChildDirectories()</span>)
+    </span>{
+      <span class="hljs-function"><span class="hljs-title">foreach</span> <span class="hljs-params">(var file in directory.GetChildFiles(<span class="hljs-string">&quot;*.xml&quot;</span>, PathSearchFlags.RecurseIntoSubdirectories)</span>)
+      </span>{
+        annotations.<span class="hljs-function"><span class="hljs-title">Add</span><span class="hljs-params">(file.NameWithoutExtension, file)</span></span>;
+        annotations.<span class="hljs-function"><span class="hljs-title">Add</span><span class="hljs-params">(file.Directory.Name, file)</span></span>;
       }
     }
   }
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> IEnumerable&lt;FileSystemPath&gt; <span class="hljs-title">GetAnnotationsFiles</span><span class="hljs-params">(AssemblyNameInfo assemblyName = <span class="hljs-keyword">null</span>, FileSystemPath assemblyLocation = <span class="hljs-keyword">null</span>)</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-function">IEnumerable&lt;FileSystemPath&gt; <span class="hljs-title">GetAnnotationsFiles</span><span class="hljs-params">(AssemblyNameInfo assemblyName = null, FileSystemPath assemblyLocation = null)</span>
   </span>{
-    <span class="hljs-keyword">if</span> (assemblyName == <span class="hljs-keyword">null</span>)
-      <span class="hljs-keyword">return</span> annotations.Values;
-    <span class="hljs-keyword">return</span> annotations[assemblyName.Name];
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(assemblyName == null)</span>
+      return annotations.Values</span>;
+    <span class="hljs-keyword">return</span> annotations<span class="hljs-attribute">[<span class="hljs-title">assemblyName.Name</span>]</span>;
   }
 
-  <span class="hljs-keyword">private</span> FileSystemPath BaseTestDataPath
+  <span class="hljs-keyword">private</span> FileSystemPath <span class="hljs-title">BaseTestDataPath</span>
   {
     <span class="hljs-keyword">get</span>
     {
-      <span class="hljs-keyword">if</span> (cachedBaseTestDataPath == <span class="hljs-keyword">null</span>)
-        cachedBaseTestDataPath = TestUtil.GetTestDataPathBase(GetType().Assembly);
+      <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(cachedBaseTestDataPath == null)</span>
+        cachedBaseTestDataPath </span>= TestUtil.<span class="hljs-function"><span class="hljs-title">GetTestDataPathBase</span><span class="hljs-params">(GetType()</span>.Assembly)</span>;
       <span class="hljs-keyword">return</span> cachedBaseTestDataPath;
     }
   }
 
-  <span class="hljs-keyword">private</span> <span class="hljs-keyword">string</span> RelativeTestDataPath
+  <span class="hljs-keyword">private</span> <span class="hljs-keyword">string</span> <span class="hljs-title">RelativeTestDataPath</span>
   {
     <span class="hljs-comment">// This can be relative, e.g. @&quot;..\..\ExternalAnnotations&quot;</span>
     <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> <span class="hljs-string">@&quot;annotations&quot;</span>; }
   }
 
-  <span class="hljs-keyword">private</span> FileSystemPath TestDataPath2
+  <span class="hljs-keyword">private</span> FileSystemPath <span class="hljs-title">TestDataPath2</span>
   {
-    <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> BaseTestDataPath.Combine(RelativeTestDataPath); }
+    <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> BaseTestDataPath.<span class="hljs-function"><span class="hljs-title">Combine</span><span class="hljs-params">(RelativeTestDataPath)</span></span>; }
   }
 }
 </code></pre>
 <h2 id="targeting-the-assembly"><a name="targeting-the-assembly" class="plugin-anchor" href="#targeting-the-assembly"><span class="fa fa-link"></span></a>Targeting the assembly</h2>
 <p>External annotations don&apos;t target source files, but already existing, compiled assemblies. In order to test that annotations are correctly applied, the in-memory, temporary project created by the test environment needs to add references to the target assembly/assemblies.</p>
 <p>This is easily done using the <code>[TestReferences]</code> attribute on the test class. The parameters to the attribute are the names of the assemblies to reference. The values can be a filename, or a relative or absolute file path. If the value is a filename or a relative file path, the actual path is resolved against the <code>TestDataPath2</code> property (which resolves to <code>test\data</code> plus the value of <code>RelativeTestDataPath</code>). If the value is an absolute file path, it is used as-is.</p>
-<pre><code class="lang-cs">[TestReferences(<span class="hljs-string">&quot;myAssembly.dll&quot;</span>, <span class="hljs-string">&quot;mySupport.dll&quot;</span>)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyAssemblyAnnotationsTest</span> : <span class="hljs-title">ExternalAnntotionsTestBase2</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">TestReferences</span><span class="hljs-params">(<span class="hljs-string">&quot;myAssembly.dll&quot;</span>, <span class="hljs-string">&quot;mySupport.dll&quot;</span>)</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyAssemblyAnnotationsTest</span> : ExternalAnntotionsTestBase2
+</span>{
   <span class="hljs-comment">// ...</span>
 }
 </code></pre>
 <p>The referenced assembly names can also contain environment variable names, which will be expanded before use. This can be very useful, as environment variables can be set programmatically by overriding the <code>SetUp</code> method. E.g.:</p>
-<pre><code class="lang-cs">[TestReferences(<span class="hljs-string">@&quot;%MY_ASSEMBLY_PATH%\myAssembly.dll&quot;</span>)]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyAssemblyAnnotationsTest</span> : <span class="hljs-title">ExternalAnnotationsTestBase2</span>
-{
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SetUp</span><span class="hljs-params">()</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">TestReferences</span><span class="hljs-params">(@<span class="hljs-string">&quot;%MY_ASSEMBLY_PATH%\myAssembly.dll&quot;</span>)</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyAssemblyAnnotationsTest</span> : ExternalAnnotationsTestBase2
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SetUp</span><span class="hljs-params">()</span>
   </span>{
-    <span class="hljs-keyword">base</span>.SetUp();
+    <span class="hljs-keyword">base</span>.<span class="hljs-function"><span class="hljs-title">SetUp</span><span class="hljs-params">()</span></span>;
 
-    Environment.SetEnvironmentVariable(<span class="hljs-string">&quot;MY_ASSEMBLY_PATH&quot;</span>, BaseTestDataPath.Combine(<span class="hljs-string">&quot;lib&quot;</span>));
+    Environment.<span class="hljs-function"><span class="hljs-title">SetEnvironmentVariable</span><span class="hljs-params">(<span class="hljs-string">&quot;MY_ASSEMBLY_PATH&quot;</span>, BaseTestDataPath.Combine(<span class="hljs-string">&quot;lib&quot;</span>)</span>)</span>;
   }
 }
 </code></pre>
@@ -3638,65 +3640,65 @@
 <p> ReSharper already defines a class called <code>ExternalAnnotationsTestBase</code> that provides similar functionality used internally for testing external annotations. However, it is unsuitable to use as a base class for plugin tests, as it defines tests for the standard BCL annotations, which would also run for your plugin tests.</p>
 </blockquote>
 <p>The base class looks like this:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ExternalAnnotationsTestBase2</span> : <span class="hljs-title">BaseTestWithSingleProject</span>
-{
-  <span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> RelativeTestDataPath { <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">string</span>.Empty; } }
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">abstract</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ExternalAnnotationsTestBase2</span> : BaseTestWithSingleProject
+</span>{
+  <span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-title">RelativeTestDataPath</span> { <span class="hljs-keyword">get</span> { <span class="hljs-keyword">return</span> <span class="hljs-keyword">string</span>.Empty; } }
 
-  <span class="hljs-function"><span class="hljs-keyword">private</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AssertHelper</span><span class="hljs-params">(<span class="hljs-keyword">string</span> xmlDocId, Action&lt;CodeAnnotationsCache, IDeclaredElement&gt; assert)</span>
+  <span class="hljs-keyword">private</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">AssertHelper</span><span class="hljs-params">(<span class="hljs-keyword">string</span> xmlDocId, Action&lt;CodeAnnotationsCache, IDeclaredElement&gt; assert)</span>
   </span>{
     <span class="hljs-comment">// We&apos;re not checking source files, but referenced assemblies</span>
     <span class="hljs-keyword">var</span> sourceFiles = EmptyList&lt;<span class="hljs-keyword">string</span>&gt;InstanceList;
 
-    WithSingleProject(sourceFiles, (lifetime, solution, project) =&gt;
+    <span class="hljs-function"><span class="hljs-title">WithSingleProject</span><span class="hljs-params">(sourceFiles, (lifetime, solution, project)</span> </span>=&gt;
     {
-      RunGuarded(() =&gt;
+      <span class="hljs-function"><span class="hljs-title">RunGuarded</span><span class="hljs-params">(()</span> </span>=&gt;
       {
-        <span class="hljs-keyword">var</span> psiModule = solution.PsiModules().GetPrimaryPsiModule(project);
-        <span class="hljs-keyword">var</span> psiServices = solution.GetPsiServices();
+        <span class="hljs-keyword">var</span> psiModule = solution.<span class="hljs-function"><span class="hljs-title">PsiModules</span><span class="hljs-params">()</span>.<span class="hljs-title">GetPrimaryPsiModule</span><span class="hljs-params">(project)</span></span>;
+        <span class="hljs-keyword">var</span> psiServices = solution.<span class="hljs-function"><span class="hljs-title">GetPsiServices</span><span class="hljs-params">()</span></span>;
 
         <span class="hljs-comment">// Get the IDeclaredElement from the XML Doc ID</span>
-        <span class="hljs-keyword">var</span> declaredElement = XMLDocUtil.ResolveId(psiServices, xmlDocId, psiModule, <span class="hljs-keyword">true</span>, project.GetResolveContext();
-        Assert.NotNull(declaredElement, <span class="hljs-string">&quot;Declared element cannot be resolved from XMLDocID {0}&quot;</span>, xmlDocId);
+        <span class="hljs-keyword">var</span> declaredElement = XMLDocUtil.<span class="hljs-function"><span class="hljs-title">ResolveId</span><span class="hljs-params">(psiServices, xmlDocId, psiModule, true, project.GetResolveContext()</span></span>;
+        Assert.<span class="hljs-function"><span class="hljs-title">NotNull</span><span class="hljs-params">(declaredElement, <span class="hljs-string">&quot;Declared element cannot be resolved from XMLDocID {0}&quot;</span>, xmlDocId)</span></span>;
 
-        <span class="hljs-keyword">var</span> annotationsCache = psiServices.GetAnnotationsCache();
+        <span class="hljs-keyword">var</span> annotationsCache = psiServices.<span class="hljs-function"><span class="hljs-title">GetAnnotationsCache</span><span class="hljs-params">()</span></span>;
 
-        assert(annotationsCache, declaredElement);
+        <span class="hljs-function"><span class="hljs-title">assert</span><span class="hljs-params">(annotationsCache, declaredElement)</span></span>;
       });
     });
   }
 
-  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AssertMeansImplicitUseAttribute</span><span class="hljs-params">(<span class="hljs-keyword">string</span> xmlDocId)</span>
+  <span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">AssertMeansImplicitUseAttribute</span><span class="hljs-params">(<span class="hljs-keyword">string</span> xmlDocId)</span>
   </span>{
-    AssertHelper(xmlDocId, (cache, element) =&gt;
+    <span class="hljs-function"><span class="hljs-title">AssertHelper</span><span class="hljs-params">(xmlDocId, (cache, element)</span> </span>=&gt;
     {
       <span class="hljs-keyword">var</span> attributesOwner = element <span class="hljs-keyword">as</span> IAttributesOwner;
-      Assert.NotNull(attributesOwner, <span class="hljs-string">&quot;Declared element is not an IAttributesOwner {0}&quot;</span>, xmlDocId);
+      Assert.<span class="hljs-function"><span class="hljs-title">NotNull</span><span class="hljs-params">(attributesOwner, <span class="hljs-string">&quot;Declared element is not an IAttributesOwner {0}&quot;</span>, xmlDocId)</span></span>;
 
-      <span class="hljs-keyword">var</span> attributeInstances = attributesOwner.GetAttributeInstances(<span class="hljs-keyword">false</span>);
-      <span class="hljs-keyword">foreach</span> (<span class="hljs-keyword">var</span> attributeInstance <span class="hljs-keyword">in</span> attributeInstances)
-      {
+      <span class="hljs-keyword">var</span> attributeInstances = attributesOwner.<span class="hljs-function"><span class="hljs-title">GetAttributeInstances</span><span class="hljs-params">(false)</span></span>;
+      <span class="hljs-function"><span class="hljs-title">foreach</span> <span class="hljs-params">(var attributeInstance in attributeInstances)</span>
+      </span>{
         ImplicitUseKindFlags kindFlags;
         ImplicitUseTargetFlags targetFlags;
-        <span class="hljs-keyword">if</span> (cache.IsMeansImplicitUse(attributeInstance, <span class="hljs-keyword">out</span> kindFlags, <span class="hljs-keyword">out</span> targetFlags))
-          <span class="hljs-keyword">return</span>;
+        <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(cache.IsMeansImplicitUse(attributeInstance, <span class="hljs-keyword">out</span> kindFlags, <span class="hljs-keyword">out</span> targetFlags)</span>)
+          return</span>;
       }
 
-      Assert.Fail(<span class="hljs-string">&quot;Declared element is not marked as implicit use {0}&quot;</span>, xmlDocId);
+      Assert.<span class="hljs-function"><span class="hljs-title">Fail</span><span class="hljs-params">(<span class="hljs-string">&quot;Declared element is not marked as implicit use {0}&quot;</span>, xmlDocId)</span></span>;
     });
   }
 
-  <span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">void</span> <span class="hljs-title">AssertParameterAssertCondition</span><span class="hljs-params">(<span class="hljs-keyword">string</span> xmlDocId, <span class="hljs-keyword">string</span> parameterName, AssertConditionType? conditionType)</span>
+  <span class="hljs-keyword">protected</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">AssertParameterAssertCondition</span><span class="hljs-params">(<span class="hljs-keyword">string</span> xmlDocId, <span class="hljs-keyword">string</span> parameterName, AssertConditionType? conditionType)</span>
   </span>{
-    AssertHelper(xmlDocId, (cache, element) =&gt;
+    <span class="hljs-function"><span class="hljs-title">AssertHelper</span><span class="hljs-params">(xmlDocId, (cache, element)</span> </span>=&gt;
     {
       <span class="hljs-keyword">var</span> parametersOwner = element <span class="hljs-keyword">as</span> IParametersOwner;
-      Assert.NotNull(parametersOwner, <span class="hljs-string">&quot;Declared element is not an IParametersOwner {0}&quot;</span>, xmlDocId);
+      Assert.<span class="hljs-function"><span class="hljs-title">NotNull</span><span class="hljs-params">(parametersOwner, <span class="hljs-string">&quot;Declared element is not an IParametersOwner {0}&quot;</span>, xmlDocId)</span></span>;
 
-      <span class="hljs-keyword">var</span> parameter = parametersOwner.Parameters.SingleOrDefault(p =&gt; p.ShortName == parameterName);
-      Assert.NotNull(parameter, <span class="hljs-string">&quot;Parameter \&quot;{0}\&quot; is not found on {1}&quot;</span>, parameterName, xmlDocId);
+      <span class="hljs-keyword">var</span> parameter = parametersOwner.Parameters.<span class="hljs-function"><span class="hljs-title">SingleOrDefault</span><span class="hljs-params">(p =&gt; p.ShortName == parameterName)</span></span>;
+      Assert.<span class="hljs-function"><span class="hljs-title">NotNull</span><span class="hljs-params">(parameter, <span class="hljs-string">&quot;Parameter \&quot;{0}\&quot; is not found on {1}&quot;</span>, parameterName, xmlDocId)</span></span>;
 
-      <span class="hljs-keyword">var</span> actual = cache.GetParameterAssertionCondition(parameter);
-      Assert.AreEqual(conditionType, actual);
+      <span class="hljs-keyword">var</span> actual = cache.<span class="hljs-function"><span class="hljs-title">GetParameterAssertionCondition</span><span class="hljs-params">(parameter)</span></span>;
+      Assert.<span class="hljs-function"><span class="hljs-title">AreEqual</span><span class="hljs-params">(conditionType, actual)</span></span>;
     });
   }
 }
@@ -3719,17 +3721,17 @@
 <p>Instead of testing that the annotations are applied to members, you can also test the highlights generated (or not) in response to the annotations, by deriving from <code>HighlightingTestBase</code> or one of its derived types, such as <code>CSharpHighlightingTestBase</code>.</p>
 <p>This is a simple highlighting test, which analyses a source file and creates a temporary file that contains the text of the original file, plus a list of all highlights that are applied (if any). If the analysis is affected by external annotations, such as a <code>[NotNull]</code> annotation, extra highlights can be applied to the code that wouldn&apos;t be applied if the annotations weren&apos;t there. The temporary file, with the list of highlights, is compared to a previously stored &apos;gold&apos; file. If it differs, the test fails.</p>
 <p>The tests can be run with the <code>DoOneTest</code> method, where the name of the source file is passed in, or by using the <code>DoNamedTest2</code> method, which takes the file name from the test method, minus any &apos;test&apos; prefix.</p>
-<pre><code class="lang-cs">[Test]
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">Should_show_annotations</span><span class="hljs-params">()</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">Test</span>]</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Should_show_annotations</span><span class="hljs-params">()</span>
 </span>{
   <span class="hljs-comment">// Looks for &apos;MyAnnotations.cs&apos;. The &apos;.cs&apos; is added automatically</span>
-  DoOneTest(<span class="hljs-string">&quot;MyAnnotations&quot;</span>);
+  <span class="hljs-function"><span class="hljs-title">DoOneTest</span><span class="hljs-params">(<span class="hljs-string">&quot;MyAnnotations&quot;</span>)</span></span>;
 }
 
-[Test]
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">TestMyAnnotations</span><span class="hljs-params">()</span>
+<span class="hljs-attribute">[<span class="hljs-title">Test</span>]</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">TestMyAnnotations</span><span class="hljs-params">()</span>
 </span>{
-  DoNamedTest2(); <span class="hljs-comment">// Looks for &apos;MyAnnotations.cs&apos;</span>
+  <span class="hljs-function"><span class="hljs-title">DoNamedTest2</span><span class="hljs-params">()</span></span>; <span class="hljs-comment">// Looks for &apos;MyAnnotations.cs&apos;</span>
 }
 </code></pre>
 <p>You might prefer to use this method over checking the annotations are applied as it checks the outcome of the annotation, rather than just that the annotation is applied. While this approach initially seems easier, it should be noted that each test requires a new source file for each scenario. The first approach, while requiring extra initial set up for creating the base class and importing <code>JetBrains.Annotations.dll</code>, makes each test a simple call to a helper method to assert the annotation. This might be easier if you have many annotations you wish to test.</p>

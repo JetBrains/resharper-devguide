@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Consuming Icons | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="7.13.4.1" data-basepath="../../.." data-revision="1418218353318">
+    <div class="book" data-level="7.13.4.1" data-basepath="../../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3561,7 +3563,7 @@
 </code></pre><p>The <code>CurrentIconTheme</code> property will return an observable property that contains the current icon theme, which can be retrieved for inspection, or subscribed to, in order to know when a theme has changed. See the <a href="../Theming/Icons.html">icon theming section</a> for more details on <code>IconTheme</code>.</p>
 <p>The <code>GetRawApi</code> method is intended for internal use.</p>
 <p>The Icons property returns an instance of <code>ThemedIconManagerIcons</code>, which can be used to get <code>ThemedIconLoader</code>, which in turn is responsible for loading and caching images.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> loader = manager.Icons[myIconId];
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> loader = manager.Icons<span class="hljs-attribute">[<span class="hljs-title">myIconId</span>]</span>;
 </code></pre>
 <p>Once you have a <code>ThemedIconLoader</code>, the following properties will retrieve a bitmap and <code>ImageSource</code>, either based on the current theme, or as a live, observable property that updates when the theme changes.</p>
 <ul>
@@ -3573,13 +3575,13 @@
 <h2 id="wpf-controls"><a name="wpf-controls" class="plugin-anchor" href="#wpf-controls"><span class="fa fa-link"></span></a>WPF controls</h2>
 <p>The <code>ThemedIconViewImage</code> class is a WPF element that derives from <code>Image</code>, and can be used as a drop in replacement. It will set up a live binding from an icon ID to the <code>Source</code> property. If the icon ID changes, or if the icon represented by the ID changes (due to a theme change), the binding automatically updates the <code>Source</code> property and the new image is displayed.</p>
 <p>The icon ID can be specified either in the constructor, or by setting the <code>IconId</code> property. Alternatively, the icon ID can be bound against the <code>DataContext</code> property, allowing for automatic updates:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> UIElement <span class="hljs-title">GetThemedIconViewImage</span><span class="hljs-params">(Lifetime lifetime, IProperty&lt;IconId&gt; liveIconId)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function">UIElement <span class="hljs-title">GetThemedIconViewImage</span><span class="hljs-params">(Lifetime lifetime, IProperty&lt;IconId&gt; liveIconId)</span>
 </span>{
-  <span class="hljs-keyword">var</span> image = <span class="hljs-keyword">new</span> ThemedIconViewImage();
+  <span class="hljs-keyword">var</span> image = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">ThemedIconViewImage</span><span class="hljs-params">()</span></span>;
   <span class="hljs-comment">// Wire up the live icon ID property to push the value into the DataContext,</span>
   <span class="hljs-comment">// which in turn causes the correctly themed icon to be displayed. The</span>
   <span class="hljs-comment">// property binding is automatically cleared when the Lifetime terminates</span>
-  liveIconId.FlowInto(lifetime, image, DataContextProperty);
+  liveIconId.<span class="hljs-function"><span class="hljs-title">FlowInto</span><span class="hljs-params">(lifetime, image, DataContextProperty)</span></span>;
   <span class="hljs-keyword">return</span> image;
 }
 </code></pre>
@@ -3594,14 +3596,14 @@
 </code></pre>
 <p>Note that the parameter to the extension is the class that holds the <code>CompiledIconId</code> instance, and not the <code>Id</code> property. This is because the XAML requires a compile time value, rather than a runtime instance.</p>
 <p>A similar requirement is necessary when referencing an icon in an attribute, for example with <code>OptionsPageAttribute</code>:</p>
-<pre><code class="lang-cs">[OptionsPage(PageId, <span class="hljs-string">&quot;To-do items&quot;</span>, <span class="hljs-keyword">typeof</span>(TodoItemsThemedIcons.ToDoItemsPage))]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TodoItemsPage</span> : <span class="hljs-title">IOptionsPage</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">OptionsPage</span><span class="hljs-params">(PageId, <span class="hljs-string">&quot;To-do items&quot;</span>, <span class="hljs-keyword">typeof</span>(TodoItemsThemedIcons.ToDoItemsPage)</span>)]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">TodoItemsPage</span> : IOptionsPage
+</span>{
   <span class="hljs-comment">// ...</span>
 }
 </code></pre>
 <p>The <code>OptionsPageAttribute</code> class converts the <code>Type</code> to an <code>IconId</code> using the <code>CompiledIconClassAttribute.TryGetCompiledIconClassId</code> static method:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> iconId = CompiledIconClassAttribute.TryGetCompiledIconClassId(typeOfIcon, OnError.LogException);
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> iconId = CompiledIconClassAttribute.<span class="hljs-function"><span class="hljs-title">TryGetCompiledIconClassId</span><span class="hljs-params">(typeOfIcon, OnError.LogException)</span></span>;
 </code></pre>
 <p>Once the <code>IconId</code> is known, the standard icon loader API discussed above can be used to get a bitmap or <code>ImageSource</code>. A shortcut is to use the <code>GetIcon</code> extension method for <code>IThemedIconManager</code> to return a <code>ThemedIconLoader</code> which can be used to get the icon image.</p>
 <pre><code class="lang-cs">IProperty&lt;ImageSource&gt; liveImage = themedIconManager.GetIcon&lt;TodoItemsThemedIcons.ToDoItemsPage&gt;().LiveImageSource;

@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Code Completion | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-level="10.3" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="10.3" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3543,7 +3545,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_25">
+                    <section class="normal" id="section-gitbook_13">
                     
                         <h1 id="code-completion"><a name="code-completion" class="plugin-anchor" href="#code-completion"><span class="fa fa-link"></span></a>Code Completion</h1>
 <p>Just like Visual Studio, ReSharper implements its own form of <em>code completion</em> (which Visual Studio calls IntelliSense) that is used to provide various helpers when typing code. Unlike Visual Studio, however, ReSharper implements three different varieties of code completion that plugin developers need to be aware of. These are:</p>
@@ -3563,42 +3565,42 @@
 </ul>
 <p>Let&#x2019;s look at these in more detail. First, it&#x2019;s important to note that the <code>TContext</code> generic parameter that you specify will be the first parameter in both of the above methods. This generic parameter typically relates to the language you&#x2019;re supporting, so that for example, if you want to support code completion in C#, you would inherit from <code>ItemsProviderOfSpecificContext&lt;CSharpCodeCompletionContext&gt;</code>.</p>
 <p>Once you know what context you have, you can begin to use it in the aforementioned methods. For example, when checking if the completion items are available, you can perform a check similar to the following:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(CSharpCodeCompletionContext context)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(CSharpCodeCompletionContext context)</span>
 </span>{
-  <span class="hljs-keyword">if</span> (context.BasicContext.CodeCompletionType != CodeCompletionType.SmartCompletion)
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(context.BasicContext.CodeCompletionType != CodeCompletionType.SmartCompletion)</span>
+    return false</span>;
 
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">true</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
 }
 </code></pre>
 <p>The above check ensures that the items are only available if the type of completion is Smart.</p>
 <p>The second method, <code>AddLookupItems()</code>, takes two parameters: the smart completion context and a <code>GroupedItemsCollector</code>. The second parameter is of particular importance since it is through this parameter that completion items are provided.</p>
 <p>To allow adding of items, <code>GroupedItemsCollector</code> provides a set of methods such as <code>AddToTop()</code> and <code>AddAtDefaultPlace()</code>. All of these methods take an <code>ILookupItem</code> as a parameter. This interface is by itself fairly complicated, but luckily a number of lookup item factories are available in order to facilitate the process in common scenarios. For example, the <code>CSharpCodeCompletionContext</code> class has  a property called <code>LookupItemsFactory</code> which yields an instance of a <code>CSharpLookupItemFactory</code>. You can use this factory to create different lookup items. Putting it all together, here is an example of how you can add a lookup item to a collector:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">AddLookupItems</span><span class="hljs-params">(CSharpCodeCompletionContext context, GroupedItemsCollector collector)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AddLookupItems</span><span class="hljs-params">(CSharpCodeCompletionContext context, GroupedItemsCollector collector)</span>
 </span>{
-  collector.AddAtDefaultPlace(context.LookupItemsFactory.CreateTextLookupItem(<span class="hljs-string">&quot;true&quot;</span>, <span class="hljs-string">&quot;bool&quot;</span>, <span class="hljs-keyword">true</span>));
+  collector.<span class="hljs-function"><span class="hljs-title">AddAtDefaultPlace</span><span class="hljs-params">(context.LookupItemsFactory.CreateTextLookupItem(<span class="hljs-string">&quot;true&quot;</span>, <span class="hljs-string">&quot;bool&quot;</span>, true)</span>)</span>;
 }
 </code></pre>
 <p>The <code>CreateTextLookupItem()</code> method used above simply creates and initializes a <code>TextLookupItem</code> containing specific text.</p>
 <h2 id="csharpitemsproviderbase"><a name="csharpitemsproviderbase" class="plugin-anchor" href="#csharpitemsproviderbase"><span class="fa fa-link"></span></a>CSharpItemsProviderBase</h2>
 <p>If we go off looking down the hierarchy of the <code>ItemsProviderOfSpecificContext</code>, we&#x2019;ll eventually find language-specific classes such as <code>CSharpItemsProviderBase</code>. This class, which also takes a context generic parameter, is the kind of class that one would actually use to build extensions to code completion.</p>
 <p>Here&#x2019;s a very simple example: let&#x2019;s suppose that we want to add the string <em>hello</em> as a code completion item to any C# file regardless of the position of the caret. In other words, the option <em>hello</em> will be available practically everywhere. To implement this, we first make a class that inherits from <code>CSharpItemsProviderBase</code>, i.e.,</p>
-<pre><code class="lang-cs">[Language(typeof(CSharpLanguage))]
-public class MyCodeCompletion : CSharpItemsProviderBase&lt;CSharpCodeCompletionContext&gt;
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">Language</span><span class="hljs-params">(<span class="hljs-keyword">typeof</span>(CSharpLanguage)</span>)]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyCodeCompletion</span> : CSharpItemsProviderBase&lt;CSharpCodeCompletionContext&gt;
+</span>{
 }
 </code></pre>
 <p>Then, we override the <code>IsAvailable()</code> method to only allow our code completion item to appear in automatic completion (and not in smart or type symbol completion):</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(CSharpCodeCompletionContext context)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(CSharpCodeCompletionContext context)</span>
 </span>{
   <span class="hljs-keyword">return</span> context.BasicContext.CodeCompletionType == CodeCompletionType.AutomaticCompletion;
 }
 </code></pre>
 <p>Finally, we override the <code>AddLookupItems()</code> method and add the simplest possible statement to include the string &quot;hello&quot; in the code completion popup list:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">AddLookupItems</span><span class="hljs-params">(CSharpCodeCompletionContext context, GroupedItemsCollector collector)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AddLookupItems</span><span class="hljs-params">(CSharpCodeCompletionContext context, GroupedItemsCollector collector)</span>
 </span>{
-  collector.AddAtDefaultPlace(context.LookupItemsFactory.CreateTextLookupItem(<span class="hljs-string">&quot;hello&quot;</span>));
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">base</span>.AddLookupItems(context, collector);
+  collector.<span class="hljs-function"><span class="hljs-title">AddAtDefaultPlace</span><span class="hljs-params">(context.LookupItemsFactory.CreateTextLookupItem(<span class="hljs-string">&quot;hello&quot;</span>)</span>)</span>;
+  <span class="hljs-keyword">return</span> <span class="hljs-keyword">base</span>.<span class="hljs-function"><span class="hljs-title">AddLookupItems</span><span class="hljs-params">(context, collector)</span></span>;
 }
 </code></pre>
 <p>And that&#x2019;s it - you have a code completion provider that adds an extra element when working in C# context.</p>
@@ -3612,53 +3614,53 @@ public class MyCodeCompletion : CSharpItemsProviderBase&lt;CSharpCodeCompletionC
 </ul>
 <h2 id="pre-requisites"><a name="pre-requisites" class="plugin-anchor" href="#pre-requisites"><span class="fa fa-link"></span></a>Pre-requisites</h2>
 <p>After inheriting from the aforementioned provider, we can override members to customize what, if anything, gets added to the list of completion items. Before we do that, we can also customize other aspects. For example, we can select which types of completion that we support. For example, the check on the <code>ctor</code> items is similar to the following:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(CSharpCodeCompletionContext context)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(CSharpCodeCompletionContext context)</span>
 </span>{
   <span class="hljs-keyword">var</span> type = context.BasicContext.CodeCompletionType;
-  <span class="hljs-keyword">if</span> (type == CodeCompletionType.AutomaticCompletion ||
-      type == CodeCompletionType.BasicCompletion) <span class="hljs-keyword">return</span> !context.IsQualified;
-  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(type == CodeCompletionType.AutomaticCompletion ||
+      type == CodeCompletionType.BasicCompletion)</span> return !context.IsQualified</span>;
+  <span class="hljs-keyword">else</span> <span class="hljs-keyword">return</span> <span class="hljs-literal">false</span>;
 }
 </code></pre>
 <p>The above means that that completion will only work in automatic or basic completion, and that it won&#x2019;t work if the context is qualified (i.e., <code>foo.ctorp</code> won&#x2019;t complete).</p>
 <h2 id="checking-the-location"><a name="checking-the-location" class="plugin-anchor" href="#checking-the-location"><span class="fa fa-link"></span></a>Checking the location</h2>
 <p>Before adding a completion item, you want to check that you&#x2019;re in the right location in code. This is likely done in the overridden <code>AddLookupItems</code> method, with the only difference that, unlike in e.g., context actions, you don&#x2019;t get a context that lets you directly figure out the code element you&#x2019;re in. Instead, you have to do something like this:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">AddLookupItems</span><span class="hljs-params">(CSharpCodeCompletionContext context, GroupedItemsCollector collector)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">AddLookupItems</span><span class="hljs-params">(CSharpCodeCompletionContext context, GroupedItemsCollector collector)</span>
 </span>{
-  ITreeNode node = TextControlToPsi.GetElement&lt;ITreeNode&gt;(context.BasicContext.Solution, context.BasicContext.TextControl);
-  <span class="hljs-keyword">if</span> (node == <span class="hljs-keyword">null</span>)
-    <span class="hljs-keyword">return</span> <span class="hljs-keyword">false</span>;
+  ITreeNode node = TextControlToPsi.<span class="hljs-function"><span class="hljs-title">GetElement&lt;ITreeNode&gt;</span><span class="hljs-params">(context.BasicContext.Solution, context.BasicContext.TextControl)</span></span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(node == null)</span>
+    return false</span>;
 }
 </code></pre>
 <p>From an <code>ITreeNode</code> you can move up the ranks until something like an <code>IClassBody</code>. Sooner or later, you&#x2019;ll get to the point where, given applicability, you want to add your completion items. In the case of <code>ctor</code> code completion items, the code looks something like this:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> item = <span class="hljs-keyword">new</span> GenerateConstructorLookupItem(<span class="hljs-string">&quot;ctorf&quot;</span>, fields.OfType&lt;IXmlDocIdOwner&gt;(), psiIconManager);
-item.InitializeRanges(context.CompletionRanges, context.BasicContext);
-collector.AddAtDefaultPlace(item);
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> item = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">GenerateConstructorLookupItem</span><span class="hljs-params">(<span class="hljs-string">&quot;ctorf&quot;</span>, fields.OfType&lt;IXmlDocIdOwner&gt;()</span>, psiIconManager)</span>;
+item.<span class="hljs-function"><span class="hljs-title">InitializeRanges</span><span class="hljs-params">(context.CompletionRanges, context.BasicContext)</span></span>;
+collector.<span class="hljs-function"><span class="hljs-title">AddAtDefaultPlace</span><span class="hljs-params">(item)</span></span>;
 </code></pre>
 <p>In the above, <code>psiIconManager</code> is a solution component that can be acquired from the solution. At any rate, all that happens is you add the items you want to appear to the <code>collector</code>, so that they are subsequently displayed.</p>
 <h2 id="lookup-item"><a name="lookup-item" class="plugin-anchor" href="#lookup-item"><span class="fa fa-link"></span></a>Lookup Item</h2>
 <p>The lookup item for generative completion is quite simply a class that inherits <code>TextLookupItem</code>, and there is nothing special apart from it aside from the fact that it generates a rather large amount of text. One thing to point out is that generative completion items are typically shown with emphasis:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> RichText <span class="hljs-title">GetDisplayName</span><span class="hljs-params">()</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function">RichText <span class="hljs-title">GetDisplayName</span><span class="hljs-params">()</span>
 </span>{
-  RichText displayName = <span class="hljs-keyword">new</span> RichText(myName);
-  LookupUtil.AddEmphasize(displayName, <span class="hljs-keyword">new</span> TextRange(<span class="hljs-number">0</span>, displayName.Length));
+  RichText displayName = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">RichText</span><span class="hljs-params">(myName)</span></span>;
+  LookupUtil.<span class="hljs-function"><span class="hljs-title">AddEmphasize</span><span class="hljs-params">(displayName, new TextRange(<span class="hljs-number">0</span>, displayName.Length)</span>)</span>;
   <span class="hljs-keyword">return</span> displayName;
 }
 </code></pre>
 <p>All the interesting things happen inside the <code>Accept()</code> method override. First of all, the identifier under the caret gets wiped out:</p>
-<pre><code class="lang-cs">IIdentifier identifierNode = TextControlToPsi.GetElement&lt;IIdentifier&gt;(solution, textControl);
-IPsiServices psiServices = solution.GetPsiServices();
-<span class="hljs-keyword">if</span> (identifierNode != <span class="hljs-keyword">null</span>)
-{
-  <span class="hljs-keyword">using</span> (<span class="hljs-keyword">var</span> cookie = <span class="hljs-keyword">new</span> PsiTransactionCookie(psiServices, DefaultAction.Rollback, <span class="hljs-string">&quot;RemoveIdentifier&quot;</span>))
-  <span class="hljs-keyword">using</span> (<span class="hljs-keyword">new</span> DisableCodeFormatter())
-  {
-    <span class="hljs-keyword">using</span> (WriteLockCookie.Create())
-      ModificationUtil.DeleteChild(identifierNode);
-    cookie.Commit();
+<pre><code class="lang-cs">IIdentifier identifierNode = TextControlToPsi.<span class="hljs-function"><span class="hljs-title">GetElement&lt;IIdentifier&gt;</span><span class="hljs-params">(solution, textControl)</span></span>;
+IPsiServices psiServices = solution.<span class="hljs-function"><span class="hljs-title">GetPsiServices</span><span class="hljs-params">()</span></span>;
+<span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(identifierNode != null)</span>
+</span>{
+  <span class="hljs-function"><span class="hljs-title">using</span> <span class="hljs-params">(var cookie = new PsiTransactionCookie(psiServices, DefaultAction.Rollback, <span class="hljs-string">&quot;RemoveIdentifier&quot;</span>)</span>)
+  <span class="hljs-title">using</span> <span class="hljs-params">(new DisableCodeFormatter()</span>)
+  </span>{
+    <span class="hljs-function"><span class="hljs-title">using</span> <span class="hljs-params">(WriteLockCookie.Create()</span>)
+      ModificationUtil.<span class="hljs-title">DeleteChild</span><span class="hljs-params">(identifierNode)</span></span>;
+    cookie.<span class="hljs-function"><span class="hljs-title">Commit</span><span class="hljs-params">()</span></span>;
   }
 }
-psiServices.Files.CommitAllDocuments();
+psiServices.Files.<span class="hljs-function"><span class="hljs-title">CommitAllDocuments</span><span class="hljs-params">()</span></span>;
 </code></pre>
 <p>Once this is done, you have a variety of choices. If you&#x2019;re replicating a <em>Generate</em> item, simply initialize an <code>IGeneratorWorkflow</code> (remember it&#x2019;s <code>IDisposable</code>), provide the input elements and call <code>GenerateAndFinish()</code> to inject the code.</p>
 <p>If, on the other hand, you just want to inject arbitrary code at a particular location, that&#x2019;s not a problem either. For example, instead of doing <code>ModificationUtil.DeleteChild()</code>, you can create an entirely new construct that you want to inject (using, e.g., <code>CSharpElementFactory</code> and the like) and then simply call <code>ModificationUtil.ReplaceChild()</code> instead.</p>

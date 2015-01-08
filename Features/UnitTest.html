@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Unit Test | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -40,7 +42,7 @@
 
 
         
-    <div class="book" data-level="10.15" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="10.15" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3543,7 +3545,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_40">
+                    <section class="normal" id="section-gitbook_28">
                     
                         <h1 id="unit-test-framework-support"><a name="unit-test-framework-support" class="plugin-anchor" href="#unit-test-framework-support"><span class="fa fa-link"></span></a>Unit Test Framework Support</h1>
 <blockquote class="clearfix alert alert-warning"><strong class="fa fa-4x fa-exclamation-triangle"></strong>
@@ -3582,20 +3584,20 @@
 <li>TestStuff -- this is any element which relates to tests, such as all of the aforementioned elements plus elements such as <code>[SetUpFixture]</code></li>
 </ul>
 <p>There are, in fact, two overloads of <code>IsElementKindOf()</code>. One takes an <code>IDeclaredElement</code>, whereas another atakes a <code>IUnitTestElement</code>. The overload that takes an <code>IUnitTestElement</code> is simple -- it simply implements a set of rules similar to the list above, for example:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">bool</span> <span class="hljs-title">IsElementOfKind</span><span class="hljs-params">(IUnitTestElement element, UnitTestElementKind elementKind)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsElementOfKind</span><span class="hljs-params">(IUnitTestElement element, UnitTestElementKind elementKind)</span>
 </span>{
-  <span class="hljs-keyword">switch</span> (elementKind)
-  {
+  <span class="hljs-function"><span class="hljs-title">switch</span> <span class="hljs-params">(elementKind)</span>
+  </span>{
     <span class="hljs-keyword">case</span> UnitTestElementKind.Unknown:
       <span class="hljs-keyword">return</span> !(element <span class="hljs-keyword">is</span> NUnitElementBase);
     <span class="hljs-keyword">case</span> UnitTestElementKind.Test:
       <span class="hljs-keyword">return</span> element <span class="hljs-keyword">is</span> NUnitTestElement || element <span class="hljs-keyword">is</span> NUnitRowTestElement;
     <span class="hljs-keyword">case</span> UnitTestElementKind.TestContainer:
-      <span class="hljs-keyword">return</span> element <span class="hljs-keyword">is</span> NUnitTestFixtureElement || element <span class="hljs-keyword">is</span> NUnitSetUpFixtureElement || (element <span class="hljs-keyword">is</span> NUnitElementBase &amp;&amp; !element.Children.IsEmpty()) || element <span class="hljs-keyword">is</span> NUnitTestFromAbstractFixtureFakeElement;
+      <span class="hljs-keyword">return</span> element <span class="hljs-keyword">is</span> NUnitTestFixtureElement || element <span class="hljs-keyword">is</span> NUnitSetUpFixtureElement || (element <span class="hljs-keyword">is</span> NUnitElementBase &amp;&amp; !element.Children.<span class="hljs-function"><span class="hljs-title">IsEmpty</span><span class="hljs-params">()</span>) || element <span class="hljs-keyword">is</span> NUnitTestFromAbstractFixtureFakeElement</span>;
     <span class="hljs-keyword">case</span> UnitTestElementKind.TestStuff:
       <span class="hljs-keyword">return</span> element <span class="hljs-keyword">is</span> NUnitElementBase;
     <span class="hljs-keyword">default</span>:
-      <span class="hljs-function"><span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-title">ArgumentOutOfRangeException</span><span class="hljs-params">(<span class="hljs-string">&quot;elementKind&quot;</span>)</span></span>;
+      <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">ArgumentOutOfRangeException</span><span class="hljs-params">(<span class="hljs-string">&quot;elementKind&quot;</span>)</span></span>;
   }
 }
 </code></pre>
@@ -3609,7 +3611,7 @@
 <li>Has any attribute (direct or derived) from a set containing <code>Test</code>, <code>TestCase</code>, etc.</li>
 </ul>
 <p>In order to determine whether a particular attribute has been applied to a method, we create declarations similar to the following</p>
-<pre><code class="lang-cs">IClrTypeName TestAttribute = <span class="hljs-keyword">new</span> ClrTypeName(<span class="hljs-string">&quot;NUnit.Framework.TestAttribute&quot;</span>);
+<pre><code class="lang-cs">IClrTypeName TestAttribute = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">ClrTypeName</span><span class="hljs-params">(<span class="hljs-string">&quot;NUnit.Framework.TestAttribute&quot;</span>)</span></span>;
 </code></pre>
 <p>and we subsequently check that the attribute owner (i.e. our method) has this attribute using the <code>HasInstanceAttribute()</code> method. Determining <em>derived</em> types is a bit more complicated -- take a look at the <code>UnitTestAttributeCache</code> class in ReSharper for an illustration of how this is handled.</p>
 <h3 id="remoterecursivetaskrunner"><a name="remoterecursivetaskrunner" class="plugin-anchor" href="#remoterecursivetaskrunner"><span class="fa fa-link"></span></a>RemoteRecursiveTaskRunner</h3>
@@ -3619,20 +3621,20 @@
 <p>If you peek into the <code>NUnitTaskRunner</code>, you may see something strange: infrastructure code being acquired from resources and compiled before test execution. Please note that this approach is only necessary if you want one version of your plugin to support many versions of your unit test framework. (And, even if you do that, you will have problems because of changing APIs.) Thus, if you are making a plugin for your own unit test framework, your best bet is to simply keep the test framework and the plugin in sync, i.e. release plugins that correspond to your unit test framework versions</p>
 <h3 id="row-test-support"><a name="row-test-support" class="plugin-anchor" href="#row-test-support"><span class="fa fa-link"></span></a>Row Test Support</h3>
 <p>Most test frameworks provide support for parameterised tests, usually in the form of a test method that takes parameters, and is called multiple times by the test framework&apos;s runner. NUnit&apos;s parameterised tests look like this:</p>
-<pre><code class="lang-cs">[TestCase(<span class="hljs-number">12</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)]
-[TestCase(<span class="hljs-number">12</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>)]
-[TestCase(<span class="hljs-number">12</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>)]
-<span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">DivideTest</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> d, <span class="hljs-keyword">int</span> q)</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">TestCase</span><span class="hljs-params">(<span class="hljs-number">12</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>)</span>]</span>
+<span class="hljs-attribute">[<span class="hljs-title">TestCase</span><span class="hljs-params">(<span class="hljs-number">12</span>, <span class="hljs-number">2</span>, <span class="hljs-number">6</span>)</span>]</span>
+<span class="hljs-attribute">[<span class="hljs-title">TestCase</span><span class="hljs-params">(<span class="hljs-number">12</span>, <span class="hljs-number">4</span>, <span class="hljs-number">3</span>)</span>]</span>
+<span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">DivideTest</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> d, <span class="hljs-keyword">int</span> q)</span>
 </span>{
-  Assert.AreEqual( q, n / d );
+  Assert.<span class="hljs-function"><span class="hljs-title">AreEqual</span><span class="hljs-params">( q, n / d )</span></span>;
 }
 </code></pre>
 <p>or like this:</p>
-<pre><code class="lang-cs">[TestFixture]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyTests</span>
-{
-  [Test, TestCaseSource(<span class="hljs-keyword">typeof</span>(MyFactoryClass),<span class="hljs-string">&quot;TestCases&quot;</span>)]
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">int</span> <span class="hljs-title">DivideTest</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> d)</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">TestFixture</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyTests</span>
+</span>{
+  <span class="hljs-attribute">[<span class="hljs-title">Test</span>, <span class="hljs-title">TestCaseSource</span><span class="hljs-params">(<span class="hljs-keyword">typeof</span>(MyFactoryClass)</span>,&quot;<span class="hljs-title">TestCases</span>&quot;)]</span>
+  <span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">int</span> <span class="hljs-title">DivideTest</span><span class="hljs-params">(<span class="hljs-keyword">int</span> n, <span class="hljs-keyword">int</span> d)</span>
   </span>{
     <span class="hljs-keyword">return</span> n/d;
   }
@@ -3640,17 +3642,17 @@
   <span class="hljs-comment">// ...</span>
 }
 
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyFactoryClass</span>
-{
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IEnumerable TestCases
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyFactoryClass</span>
+</span>{
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IEnumerable <span class="hljs-title">TestCases</span>
   {
     <span class="hljs-keyword">get</span>
     {
-      <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">TestCaseData</span><span class="hljs-params">(<span class="hljs-number">12</span>, <span class="hljs-number">3</span>)</span>.<span class="hljs-title">Returns</span><span class="hljs-params">(<span class="hljs-number">4</span>)</span></span>;
-      <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">TestCaseData</span><span class="hljs-params">(<span class="hljs-number">12</span>, <span class="hljs-number">2</span>)</span>.<span class="hljs-title">Returns</span><span class="hljs-params">(<span class="hljs-number">6</span>)</span></span>;
-      <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">TestCaseData</span><span class="hljs-params">(<span class="hljs-number">12</span>, <span class="hljs-number">4</span>)</span>.<span class="hljs-title">Returns</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
-      <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">TestCaseData</span><span class="hljs-params">(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)</span>
-        .<span class="hljs-title">Throws</span><span class="hljs-params">(<span class="hljs-keyword">typeof</span>(DivideByZeroException)</span>)
+      <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">TestCaseData</span><span class="hljs-params">(<span class="hljs-number">12</span>, <span class="hljs-number">3</span>)</span>.<span class="hljs-title">Returns</span><span class="hljs-params">(<span class="hljs-number">4</span>)</span></span>;
+      <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">TestCaseData</span><span class="hljs-params">(<span class="hljs-number">12</span>, <span class="hljs-number">2</span>)</span>.<span class="hljs-title">Returns</span><span class="hljs-params">(<span class="hljs-number">6</span>)</span></span>;
+      <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">TestCaseData</span><span class="hljs-params">(<span class="hljs-number">12</span>, <span class="hljs-number">4</span>)</span>.<span class="hljs-title">Returns</span><span class="hljs-params">(<span class="hljs-number">3</span>)</span></span>;
+      <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">TestCaseData</span><span class="hljs-params">(<span class="hljs-number">0</span>, <span class="hljs-number">0</span>)</span>
+        .<span class="hljs-title">Throws</span><span class="hljs-params">(typeof(DivideByZeroException)</span>)
         .<span class="hljs-title">SetName</span><span class="hljs-params">(<span class="hljs-string">&quot;DivideByZero&quot;</span>)</span>
         .<span class="hljs-title">SetDescription</span><span class="hljs-params">(<span class="hljs-string">&quot;An exception is expected&quot;</span>)</span></span>;
     }

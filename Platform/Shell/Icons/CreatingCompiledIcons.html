@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Creating Compiled Icons | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="7.13.4.2" data-basepath="../../.." data-revision="1418218353318">
+    <div class="book" data-level="7.13.4.2" data-basepath="../../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3583,15 +3585,15 @@
 <pre><code class="lang-cs"><span class="hljs-keyword">namespace</span> <span class="hljs-title">Foo</span>
 {
   <span class="hljs-comment">// Name based on the folder containing the images - Bar</span>
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BarThemedIcons</span>
-  {
+  <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title">BarThemedIcons</span>
+  </span>{
     <span class="hljs-comment">// The attribute allows for discovery of the XAML. The first argument</span>
     <span class="hljs-comment">// is the XAML pack address of the embedded XAML resource. The second</span>
     <span class="hljs-comment">// argument is the icon index, and the third is the name</span>
-    [CompiledIconClass(<span class="hljs-string">&quot;.../ThemedIcons.Bar.generated.xaml&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Quux&quot;</span>)]
-    <span class="hljs-keyword">public</span> <span class="hljs-keyword">sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Quux</span> : <span class="hljs-title">CompiledIconClass</span>
-    {
-      <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IconId Id = <span class="hljs-keyword">new</span> CompiledIconId(<span class="hljs-string">&quot;.../ThemedIcons.Bar.generated.xaml&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Quux&quot;</span>);
+    <span class="hljs-attribute">[<span class="hljs-title">CompiledIconClass</span><span class="hljs-params">(<span class="hljs-string">&quot;.../ThemedIcons.Bar.generated.xaml&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Quux&quot;</span>)</span>]</span>
+    <span class="hljs-keyword">public</span> <span class="hljs-class"><span class="hljs-keyword">sealed</span> <span class="hljs-keyword">class</span> <span class="hljs-title">Quux</span> : CompiledIconClass
+    </span>{
+      <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> IconId Id = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">CompiledIconId</span><span class="hljs-params">(<span class="hljs-string">&quot;.../ThemedIcons.Bar.generated.xaml&quot;</span>, <span class="hljs-number">0</span>, <span class="hljs-string">&quot;Quux&quot;</span>)</span></span>;
     }
   }
 }

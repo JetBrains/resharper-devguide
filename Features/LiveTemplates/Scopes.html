@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Scopes | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="10.14.2" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="10.14.2" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3545,7 +3547,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_29">
+                    <section class="normal" id="section-gitbook_17">
                     
                         <h1 id="scopes"><a name="scopes" class="plugin-anchor" href="#scopes"><span class="fa fa-link"></span></a>Scopes</h1>
 <p>ReSharper&apos;s Live Templates can declare the <em>scope</em> in which they are available. That is, instead of allowing all templates to be inserted at any location in any file, a template can be constrained to certain file types, and even to certain locations within those files. For example, a template can be constrained not just to C# files, but to any location where a namespace declaration, type definition, or an expression is valid.</p>
@@ -3559,10 +3561,10 @@
 <p> The list of <code>IScopeProvider</code> components maintained by the <code>TemplateScopeManager</code> is injected as an <code>IEnumerable&lt;IScopeProvider&gt;</code> rather than an <code>IViewable&lt;IScopeProvider&gt;</code>. Therefore, the list does not update when new components are made available. Live loading of plugins is not supported; when a new plugin is installed, ReSharper must be restarted before the new scope provider is used.</p>
 </blockquote>
 <p>The <code>IScopeProvider</code> interface declares three methods that are used to create scope points:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IScopeProvider</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IScopeProvider</span>
+</span>{
   <span class="hljs-function">IEnumerable&lt;ITemplateScopePoint&gt; <span class="hljs-title">ProvideScopePoints</span><span class="hljs-params">(TemplateAcceptanceContext context)</span></span>;
-  <span class="hljs-function">ITemplateScopePoint <span class="hljs-title">ReadFromXml</span><span class="hljs-params">([NotNull] XmlElement scopeElement)</span></span>;
+  <span class="hljs-function">ITemplateScopePoint <span class="hljs-title">ReadFromXml</span><span class="hljs-params">(<span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> XmlElement scopeElement)</span></span>;
   <span class="hljs-function">ITemplateScopePoint <span class="hljs-title">CreateScope</span><span class="hljs-params">(Guid scopeGuid, <span class="hljs-keyword">string</span> typeName, IEnumerable&lt;Pair&lt;<span class="hljs-keyword">string</span>, <span class="hljs-keyword">string</span>&gt;&gt; customProperties)</span></span>;
 }
 </code></pre>
@@ -3577,16 +3579,16 @@
 </ul>
 <p>The <code>ScopeProvider</code> abstract base class provides a mechanism for creating specific instances of <code>ITemplateScopePoint</code> based on a given type name. While it can simply instantiate the type based on the type name, it defers to a list of creator functions that take in the type name and create the scope point instance. This provides an extension point for custom creation, while also making it easy to create simple instances.</p>
 <p>For example, the CSS scope provider will set up a list of creator functions that simply defer to <code>ScopeProvider.TryToCreate&lt;T&gt;</code> which will create the type if the type name matches:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CssScopeProvider</span> : <span class="hljs-title">ScopeProvider</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">CssScopeProvider</span> : ScopeProvider
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">CssScopeProvider</span><span class="hljs-params">()</span>
   </span>{
-    Creators.AddRange(<span class="hljs-keyword">new</span> List&lt;Func&lt;<span class="hljs-keyword">string</span>, ITemplateScopePoint&gt;&gt;
+    Creators.<span class="hljs-function"><span class="hljs-title">AddRange</span><span class="hljs-params">(new List&lt;Func&lt;<span class="hljs-keyword">string</span>, ITemplateScopePoint&gt;&gt;
     {
-      s =&gt; TryToCreate&lt;InCssFile&gt;(s),
-      s =&gt; TryToCreate&lt;InCssExpression&gt;(s),
-      s =&gt; TryToCreate&lt;InCssStatement&gt;(s),
-    });
+      s =&gt; TryToCreate&lt;InCssFile&gt;(s)</span>,
+      s </span>=&gt; <span class="hljs-function"><span class="hljs-title">TryToCreate&lt;InCssExpression&gt;</span><span class="hljs-params">(s)</span>,
+      s </span>=&gt; <span class="hljs-function"><span class="hljs-title">TryToCreate&lt;InCssStatement&gt;</span><span class="hljs-params">(s)</span>,
+    })</span>;
   }
 
   <span class="hljs-comment">// ...</span>
@@ -3594,85 +3596,85 @@
 </code></pre>
 <h3 id="example-iscopeproviderprovidescopepoints-implementation"><a name="example-iscopeproviderprovidescopepoints-implementation" class="plugin-anchor" href="#example-iscopeproviderprovidescopepoints-implementation"><span class="fa fa-link"></span></a>Example IScopeProvider.ProvideScopePoints implementation</h3>
 <p>The following is an example of an implementation of <code>IScopeProvider.ProvideScopePoints</code> for CSS files. It examines the current context, as provided by <code>TemplateAcceptanceContext</code> and returns scope points that are valid:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> IEnumerable&lt;ITemplateScopePoint&gt; <span class="hljs-title">ProvideScopePoints</span><span class="hljs-params">(TemplateAcceptanceContext context)</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IEnumerable&lt;ITemplateScopePoint&gt; <span class="hljs-title">ProvideScopePoints</span><span class="hljs-params">(TemplateAcceptanceContext context)</span>
 </span>{
   <span class="hljs-comment">// Ensure we have an IPsiSourceFile, a valid document range, and the file is a CSS file</span>
-  <span class="hljs-keyword">if</span> (context.SourceFile == <span class="hljs-keyword">null</span>)
-    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">break</span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(context.SourceFile == null)</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">break</span></span>;
 
-  <span class="hljs-keyword">var</span> documentRange = <span class="hljs-keyword">new</span> DocumentRange(context.Document, context.CaretOffset);
-  <span class="hljs-keyword">if</span> (!documentRange.IsValid())
-    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">var</span> documentRange = <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">DocumentRange</span><span class="hljs-params">(context.Document, context.CaretOffset)</span></span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(!documentRange.IsValid()</span>)
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">break</span></span>;
 
-  <span class="hljs-keyword">var</span> file = context.SourceFile.GetPsiFile&lt;CssLanguage&gt;(documentRange);
-  <span class="hljs-keyword">if</span> (file == <span class="hljs-keyword">null</span>)
-    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">var</span> file = context.SourceFile.<span class="hljs-function"><span class="hljs-title">GetPsiFile&lt;CssLanguage&gt;</span><span class="hljs-params">(documentRange)</span></span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(file == null)</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">break</span></span>;
 
   <span class="hljs-comment">// Get the prefix at the text caret. This is treated as the shortcut that invokes the template</span>
   <span class="hljs-comment">// Then get the AST element that represents the prefix</span>
-  <span class="hljs-keyword">var</span> prefix = LiveTemplatesManager.GetPrefix(context.Document, context.CaretOffset);
-  <span class="hljs-keyword">var</span> element = file.FindTokenAt(context.Document, context.CaretOffset - prefix.Length) <span class="hljs-keyword">as</span> ITokenNode;
+  <span class="hljs-keyword">var</span> prefix = LiveTemplatesManager.<span class="hljs-function"><span class="hljs-title">GetPrefix</span><span class="hljs-params">(context.Document, context.CaretOffset)</span></span>;
+  <span class="hljs-keyword">var</span> element = file.<span class="hljs-function"><span class="hljs-title">FindTokenAt</span><span class="hljs-params">(context.Document, context.CaretOffset - prefix.Length)</span> <span class="hljs-keyword">as</span> ITokenNode</span>;
 
-  <span class="hljs-keyword">if</span> (element == <span class="hljs-keyword">null</span> &amp;&amp; String.IsNullOrEmpty(prefix))
-  {
-    <span class="hljs-keyword">if</span> (context.Document.GetTextLength() == <span class="hljs-number">0</span>)
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(element == null &amp;&amp; String.IsNullOrEmpty(prefix)</span>)
+  </span>{
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(context.Document.GetTextLength()</span> </span>== <span class="hljs-number">0</span>)
     {
       <span class="hljs-comment">// There is no element at the caret, no known prefix and the document is empty</span>
       <span class="hljs-comment">// Valid scope points are anywhere in a CSS file, and anywhere a CSS statement is valid</span>
-      <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">InCssFile</span><span class="hljs-params">()</span></span>;
-      <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">InCssStatement</span><span class="hljs-params">()</span></span>;
+      <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">InCssFile</span><span class="hljs-params">()</span></span>;
+      <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">InCssStatement</span><span class="hljs-params">()</span></span>;
       <span class="hljs-keyword">yield</span> <span class="hljs-keyword">break</span>;
     }
 
     <span class="hljs-comment">// If the caret is at the end of the file, get the token just before the EOF</span>
-    <span class="hljs-keyword">if</span> (context.Document.GetTextLength() == context.CaretOffset)
-      element = file.FindTokenAt(context.Document, context.CaretOffset - <span class="hljs-number">1</span>) <span class="hljs-keyword">as</span> ITokenNode;
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(context.Document.GetTextLength()</span> </span>== context.CaretOffset)
+      element = file.<span class="hljs-function"><span class="hljs-title">FindTokenAt</span><span class="hljs-params">(context.Document, context.CaretOffset - <span class="hljs-number">1</span>)</span> <span class="hljs-keyword">as</span> ITokenNode</span>;
   }
 
   <span class="hljs-comment">// There is no token, so no valid scope points</span>
-  <span class="hljs-keyword">if</span>(element == <span class="hljs-keyword">null</span>)
-    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">break</span>;
+  <span class="hljs-function"><span class="hljs-title">if</span><span class="hljs-params">(element == null)</span>
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">break</span></span>;
 
-  <span class="hljs-keyword">var</span> treeOffset = file.Translate(context.Document, context.CaretOffset);
-  <span class="hljs-keyword">if</span> (!treeOffset.IsValid())
-    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">break</span>;
+  <span class="hljs-keyword">var</span> treeOffset = file.<span class="hljs-function"><span class="hljs-title">Translate</span><span class="hljs-params">(context.Document, context.CaretOffset)</span></span>;
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(!treeOffset.IsValid()</span>)
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">break</span></span>;
 
   <span class="hljs-comment">// Return a valid CSS file scope point</span>
-  <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">InCssFile</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">InCssFile</span><span class="hljs-params">()</span></span>;
 
   <span class="hljs-comment">// Look at the containing node, and return either a CSS expression or CSS statement scope point</span>
-  <span class="hljs-keyword">if</span> (element.GetContainingNode&lt;ICssPropertyValue&gt;(<span class="hljs-keyword">true</span>) != <span class="hljs-keyword">null</span> || element.GetContainingNode&lt;ICssExpression&gt;(<span class="hljs-keyword">true</span>) != <span class="hljs-keyword">null</span>)
-    <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">InCssExpression</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(element.GetContainingNode&lt;ICssPropertyStatement&gt;(<span class="hljs-keyword">true</span>)</span>.<span class="hljs-title">IfNotNull</span><span class="hljs-params">(s =&gt; s.Property.IfNotNull(p =&gt; p.ColonToken.IfNotNull(n =&gt; n.GetTreeStartOffset()</span> &lt; element.<span class="hljs-title">GetTreeStartOffset</span><span class="hljs-params">()</span>))))
-    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">InCssExpression</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(element.GetContainingNode&lt;IMediaFeature&gt;(<span class="hljs-keyword">true</span>)</span>.<span class="hljs-title">IfNotNull</span><span class="hljs-params">(f =&gt; f.ColonToken.IfNotNull(n =&gt; n.GetTreeStartOffset()</span> &lt; element.<span class="hljs-title">GetTreeStartOffset</span><span class="hljs-params">()</span>)) )
-    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">InCssExpression</span><span class="hljs-params">()</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span><span class="hljs-params">(element.GetContainingNode&lt;ICssPropertyStatement&gt;(<span class="hljs-keyword">true</span>)</span> </span>== <span class="hljs-keyword">null</span> &amp;&amp; element.GetContainingNode&lt;IMediaFeature&gt;(<span class="hljs-keyword">true</span>) == <span class="hljs-keyword">null</span>)
+  <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(element.GetContainingNode&lt;ICssPropertyValue&gt;(true)</span> !</span>= <span class="hljs-literal">null</span> || element.<span class="hljs-function"><span class="hljs-title">GetContainingNode&lt;ICssExpression&gt;</span><span class="hljs-params">(true)</span> !</span>= <span class="hljs-literal">null</span>)
+    <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">InCssExpression</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(element.GetContainingNode&lt;ICssPropertyStatement&gt;(true)</span>.<span class="hljs-title">IfNotNull</span><span class="hljs-params">(s =&gt; s.Property.IfNotNull(p =&gt; p.ColonToken.IfNotNull(n =&gt; n.GetTreeStartOffset()</span> &lt; element.<span class="hljs-title">GetTreeStartOffset</span><span class="hljs-params">()</span>))))
+    <span class="hljs-keyword">yield</span> return new <span class="hljs-title">InCssExpression</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span> <span class="hljs-params">(element.GetContainingNode&lt;IMediaFeature&gt;(true)</span>.<span class="hljs-title">IfNotNull</span><span class="hljs-params">(f =&gt; f.ColonToken.IfNotNull(n =&gt; n.GetTreeStartOffset()</span> &lt; element.<span class="hljs-title">GetTreeStartOffset</span><span class="hljs-params">()</span>)) )
+    <span class="hljs-keyword">yield</span> return new <span class="hljs-title">InCssExpression</span><span class="hljs-params">()</span></span>;
+  <span class="hljs-function"><span class="hljs-keyword">else</span> <span class="hljs-title">if</span><span class="hljs-params">(element.GetContainingNode&lt;ICssPropertyStatement&gt;(true)</span> </span>== <span class="hljs-literal">null</span> &amp;&amp; element.<span class="hljs-function"><span class="hljs-title">GetContainingNode&lt;IMediaFeature&gt;</span><span class="hljs-params">(true)</span> </span>== <span class="hljs-literal">null</span>)
   {
-    <span class="hljs-keyword">if</span> (element.GetContainingNode&lt;ICssBlock&gt;() != <span class="hljs-keyword">null</span> || element.GetContainingNode&lt;IMediaQueryList&gt;() != <span class="hljs-keyword">null</span>)
-      <span class="hljs-function"><span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-title">InCssStatement</span><span class="hljs-params">()</span></span>;
+    <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(element.GetContainingNode&lt;ICssBlock&gt;()</span> !</span>= <span class="hljs-literal">null</span> || element.<span class="hljs-function"><span class="hljs-title">GetContainingNode&lt;IMediaQueryList&gt;</span><span class="hljs-params">()</span> !</span>= <span class="hljs-literal">null</span>)
+      <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">InCssStatement</span><span class="hljs-params">()</span></span>;
   }
 }
 </code></pre>
 <p>The call to <code>LiveTemplatesManager.GetPrefix</code> gets the &quot;word&quot; that precedes the current text caret position. It is used here to find the position in the document that marks the start of the context of the scope point. This position is used to retrieve the node from the abstract syntax tree, which can then be used to see if the scope point is inside an expression or a statement, or so on.</p>
 <p>A &quot;word&quot; is defined as any character preceding the current text caret that is a letter or digit, or is one of a set of allowed characters. The overload shown above does not specify any additional characters, so uses the default of the underscore character <code>&apos;_&apos;</code>. Another overload takes an array of allowed chars.</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-keyword">string</span> <span class="hljs-title">GetPrefix</span><span class="hljs-params">(IDocument document, <span class="hljs-keyword">int</span> caretOffset, <span class="hljs-keyword">params</span> <span class="hljs-keyword">char</span>[] allowedChars)</span></span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function"><span class="hljs-keyword">string</span> <span class="hljs-title">GetPrefix</span><span class="hljs-params">(IDocument document, <span class="hljs-keyword">int</span> caretOffset, <span class="hljs-keyword">params</span> <span class="hljs-keyword">char</span>[] allowedChars)</span></span>
 </code></pre>
 <p>For example, the <code>HTMLScopeProvider</code> class calls <code>GetPrefix</code> with an array of <code>{ &apos;_&apos; }</code> when fetching the prefix for file scope, and uses <code>{ &apos;_&apos;, &apos;&lt;&apos;, &apos;:&apos; }</code> when fetching the prefix for tag scope.</p>
 <h2 id="implementing-a-custom-scope-point"><a name="implementing-a-custom-scope-point" class="plugin-anchor" href="#implementing-a-custom-scope-point"><span class="fa fa-link"></span></a>Implementing a custom scope point</h2>
 <p>A scope point is implemented by deriving from <code>ITemplateScopePoint</code>, and is usually implemented by deriving from the <code>TemplateScopePoint</code> abstract base class. It is not a component from the Component Model, but just a class created by an <code>IScopeProvider</code>. The interface is:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ITemplateScopePoint</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ITemplateScopePoint</span>
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsSubsetOf</span><span class="hljs-params">(ITemplateScopePoint other)</span></span>;
-  <span class="hljs-keyword">string</span> Prefix { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">Prefix</span> { <span class="hljs-keyword">get</span>; }
   <span class="hljs-function"><span class="hljs-keyword">string</span> <span class="hljs-title">CalcPrefix</span><span class="hljs-params">(IDocument document, <span class="hljs-keyword">int</span> caretOffset)</span></span>;
-  [NotNull] <span class="hljs-function">XmlElement <span class="hljs-title">WriteToXml</span><span class="hljs-params">(XmlElement element)</span></span>;
-  <span class="hljs-keyword">string</span> PresentableShortName { <span class="hljs-keyword">get</span>; }
-  PsiLanguageType RelatedLanguage { <span class="hljs-keyword">get</span>; }
-  Guid UID { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
+  <span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> <span class="hljs-function">XmlElement <span class="hljs-title">WriteToXml</span><span class="hljs-params">(XmlElement element)</span></span>;
+  <span class="hljs-keyword">string</span> <span class="hljs-title">PresentableShortName</span> { <span class="hljs-keyword">get</span>; }
+  PsiLanguageType <span class="hljs-title">RelatedLanguage</span> { <span class="hljs-keyword">get</span>; }
+  Guid <span class="hljs-title">UID</span> { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
   <span class="hljs-function">Guid <span class="hljs-title">GetDefaultUID</span><span class="hljs-params">()</span></span>;
   <span class="hljs-function"><span class="hljs-keyword">string</span> <span class="hljs-title">GetTagName</span><span class="hljs-params">()</span></span>;
-  IEnumerable&lt;Pair&lt;<span class="hljs-keyword">string</span>, <span class="hljs-keyword">string</span>&gt;&gt;  EnumerateCustomProperties();
+  IEnumerable&lt;Pair&lt;<span class="hljs-keyword">string</span>, <span class="hljs-keyword">string</span>&gt;&gt;  <span class="hljs-function"><span class="hljs-title">EnumerateCustomProperties</span><span class="hljs-params">()</span></span>;
 }
 </code></pre>
 <ul>

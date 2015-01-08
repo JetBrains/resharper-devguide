@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Tree Nodes (DTD) | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="9.19.10.6" data-basepath="../../.." data-revision="1418218353318">
+    <div class="book" data-level="9.19.10.6" data-basepath="../../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3605,284 +3607,284 @@
 <h2 id="a"><a name="a" class="plugin-anchor" href="#a"><span class="fa fa-link"></span></a>A</h2>
 <h3 id="ianycontent"><a name="ianycontent" class="plugin-anchor" href="#ianycontent"><span class="fa fa-link"></span></a>IAnyContent</h3>
 <!-- Begin IAnyContent -->
-<pre><code class="lang-cs">public interface IAnyContent :
-  IElementContent,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IAnyContent</span> :
+  <span class="hljs-title">IElementContent</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IAnyContent -->
 <h3 id="iattdef"><a name="iattdef" class="plugin-anchor" href="#iattdef"><span class="fa fa-link"></span></a>IAttDef</h3>
 <!-- Begin IAttDef -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IAttDef</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IAttDef</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  IAttType AttributeType { <span class="hljs-keyword">get</span>; }
-  <span class="hljs-keyword">string</span> Name { <span class="hljs-keyword">get</span>; }
+</span>{
+  IAttType <span class="hljs-title">AttributeType</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">Name</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IAttDef -->
 <h3 id="iatttype"><a name="iatttype" class="plugin-anchor" href="#iatttype"><span class="fa fa-link"></span></a>IAttType</h3>
 <!-- Begin IAttType -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IAttType</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IAttType</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  AttType AttType { <span class="hljs-keyword">get</span>; }
-  IXmlLparenthTokenNode LPar { <span class="hljs-keyword">get</span>; }
-  IXmlRparenthTokenNode RPar { <span class="hljs-keyword">get</span>; }
-  IEnumerable&lt;<span class="hljs-keyword">string</span>&gt; Types { <span class="hljs-keyword">get</span>; }
+</span>{
+  AttType <span class="hljs-title">AttType</span> { <span class="hljs-keyword">get</span>; }
+  IXmlLparenthTokenNode <span class="hljs-title">LPar</span> { <span class="hljs-keyword">get</span>; }
+  IXmlRparenthTokenNode <span class="hljs-title">RPar</span> { <span class="hljs-keyword">get</span>; }
+  IEnumerable&lt;<span class="hljs-keyword">string</span>&gt; <span class="hljs-title">Types</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IAttType -->
 <h2 id="d"><a name="d" class="plugin-anchor" href="#d"><span class="fa fa-link"></span></a>D</h2>
 <h3 id="idoctypedeclaration"><a name="idoctypedeclaration" class="plugin-anchor" href="#idoctypedeclaration"><span class="fa fa-link"></span></a>IDocTypeDeclaration</h3>
 <!-- Begin IDocTypeDeclaration -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDocTypeDeclaration</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDocTypeDeclaration</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  IXmlTagEndTokenNode End { <span class="hljs-keyword">get</span>; }
-  IExternalId ExternalId { <span class="hljs-keyword">get</span>; }
-  IDTDBody IntSubset { <span class="hljs-keyword">get</span>; }
-  IXmlDtdStartTokenNode Start { <span class="hljs-keyword">get</span>; }
+</span>{
+  IXmlTagEndTokenNode <span class="hljs-title">End</span> { <span class="hljs-keyword">get</span>; }
+  IExternalId <span class="hljs-title">ExternalId</span> { <span class="hljs-keyword">get</span>; }
+  IDTDBody <span class="hljs-title">IntSubset</span> { <span class="hljs-keyword">get</span>; }
+  IXmlDtdStartTokenNode <span class="hljs-title">Start</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IDocTypeDeclaration -->
 <h3 id="idtdattlistdecl"><a name="idtdattlistdecl" class="plugin-anchor" href="#idtdattlistdecl"><span class="fa fa-link"></span></a>IDTDAttListDecl</h3>
 <!-- Begin IDTDAttListDecl -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDAttListDecl</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDAttListDecl</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  TreeNodeCollection&lt;IAttDef&gt; AttDefs { <span class="hljs-keyword">get</span>; }
-  <span class="hljs-keyword">string</span> ElementName { <span class="hljs-keyword">get</span>; }
-  IXmlTagEndTokenNode End { <span class="hljs-keyword">get</span>; }
-  IXmlAttlistStartTokenNode Start { <span class="hljs-keyword">get</span>; }
+</span>{
+  TreeNodeCollection&lt;IAttDef&gt; <span class="hljs-title">AttDefs</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">ElementName</span> { <span class="hljs-keyword">get</span>; }
+  IXmlTagEndTokenNode <span class="hljs-title">End</span> { <span class="hljs-keyword">get</span>; }
+  IXmlAttlistStartTokenNode <span class="hljs-title">Start</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IDTDAttListDecl -->
 <h3 id="idtdbody"><a name="idtdbody" class="plugin-anchor" href="#idtdbody"><span class="fa fa-link"></span></a>IDTDBody</h3>
 <!-- Begin IDTDBody -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDBody</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDBody</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  IXmlLbracketTokenNode LBracket { <span class="hljs-keyword">get</span>; }
-  IXmlRbracketTokenNode RBracket { <span class="hljs-keyword">get</span>; }
+</span>{
+  IXmlLbracketTokenNode <span class="hljs-title">LBracket</span> { <span class="hljs-keyword">get</span>; }
+  IXmlRbracketTokenNode <span class="hljs-title">RBracket</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IDTDBody -->
 <h3 id="idtdelementdecl"><a name="idtdelementdecl" class="plugin-anchor" href="#idtdelementdecl"><span class="fa fa-link"></span></a>IDTDElementDecl</h3>
 <!-- Begin IDTDElementDecl -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDElementDecl</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDElementDecl</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  IElementContent ContentSpec { <span class="hljs-keyword">get</span>; }
-  IXmlTagEndTokenNode End { <span class="hljs-keyword">get</span>; }
-  <span class="hljs-keyword">string</span> Name { <span class="hljs-keyword">get</span>; }
-  IXmlElementStartTokenNode Start { <span class="hljs-keyword">get</span>; }
+</span>{
+  IElementContent <span class="hljs-title">ContentSpec</span> { <span class="hljs-keyword">get</span>; }
+  IXmlTagEndTokenNode <span class="hljs-title">End</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">Name</span> { <span class="hljs-keyword">get</span>; }
+  IXmlElementStartTokenNode <span class="hljs-title">Start</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IDTDElementDecl -->
 <h3 id="idtdentitydecl"><a name="idtdentitydecl" class="plugin-anchor" href="#idtdentitydecl"><span class="fa fa-link"></span></a>IDTDEntityDecl</h3>
 <!-- Begin IDTDEntityDecl -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDEntityDecl</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDEntityDecl</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  IXmlTagEndTokenNode End { <span class="hljs-keyword">get</span>; }
-  <span class="hljs-keyword">string</span> Name { <span class="hljs-keyword">get</span>; }
-  IXmlEntityStartTokenNode Start { <span class="hljs-keyword">get</span>; }
-  <span class="hljs-keyword">string</span> Value { <span class="hljs-keyword">get</span>; }
+</span>{
+  IXmlTagEndTokenNode <span class="hljs-title">End</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">Name</span> { <span class="hljs-keyword">get</span>; }
+  IXmlEntityStartTokenNode <span class="hljs-title">Start</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">Value</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IDTDEntityDecl -->
 <h3 id="idtdfile"><a name="idtdfile" class="plugin-anchor" href="#idtdfile"><span class="fa fa-link"></span></a>IDTDFile</h3>
 <!-- Begin IDTDFile -->
-<pre><code class="lang-cs">public interface IDTDFile :
-  IXmlFile,
-  IFile,
-  IXmlTagContainer,
-  IXmlDocumentNode,
-  IXmlTreeNode,
-  IDTDBody,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDFile</span> :
+  <span class="hljs-title">IXmlFile</span>,
+  <span class="hljs-title">IFile</span>,
+  <span class="hljs-title">IXmlTagContainer</span>,
+  <span class="hljs-title">IXmlDocumentNode</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">IDTDBody</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IDTDFile -->
 <p>Represents a Document Type Definition file, which is a means of describing the format of an XML file. It derives from <code>IFile</code>, indicating that it is a root of a PSI tree, and also inherits from <code>IXmlFile</code>, meaning it&apos;s also an XML file.</p>
 <h3 id="idtdndatadecl"><a name="idtdndatadecl" class="plugin-anchor" href="#idtdndatadecl"><span class="fa fa-link"></span></a>IDTDNDataDecl</h3>
 <!-- Begin IDTDNDataDecl -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDNDataDecl</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDNDataDecl</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  <span class="hljs-keyword">string</span> Name { <span class="hljs-keyword">get</span>; }
+</span>{
+  <span class="hljs-keyword">string</span> <span class="hljs-title">Name</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IDTDNDataDecl -->
 <h3 id="idtdnotationdecl"><a name="idtdnotationdecl" class="plugin-anchor" href="#idtdnotationdecl"><span class="fa fa-link"></span></a>IDTDNotationDecl</h3>
 <!-- Begin IDTDNotationDecl -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDNotationDecl</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IDTDNotationDecl</span> :
   <span class="hljs-title">ITreeNode</span>
-{
-  IXmlTagEndTokenNode End { <span class="hljs-keyword">get</span>; }
-  <span class="hljs-keyword">string</span> Name { <span class="hljs-keyword">get</span>; }
-  IXmlNotationStartTokenNode Start { <span class="hljs-keyword">get</span>; }
+</span>{
+  IXmlTagEndTokenNode <span class="hljs-title">End</span> { <span class="hljs-keyword">get</span>; }
+  <span class="hljs-keyword">string</span> <span class="hljs-title">Name</span> { <span class="hljs-keyword">get</span>; }
+  IXmlNotationStartTokenNode <span class="hljs-title">Start</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IDTDNotationDecl -->
 <h2 id="e"><a name="e" class="plugin-anchor" href="#e"><span class="fa fa-link"></span></a>E</h2>
 <h3 id="ielementcontent"><a name="ielementcontent" class="plugin-anchor" href="#ielementcontent"><span class="fa fa-link"></span></a>IElementContent</h3>
 <!-- Begin IElementContent -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IElementContent</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IElementContent</span> :
   <span class="hljs-title">ITreeNode</span>
-{
+</span>{
 }
 </code></pre>
 <!-- End IElementContent -->
 <h3 id="iemptycontent"><a name="iemptycontent" class="plugin-anchor" href="#iemptycontent"><span class="fa fa-link"></span></a>IEmptyContent</h3>
 <!-- Begin IEmptyContent -->
-<pre><code class="lang-cs">public interface IEmptyContent :
-  IElementContent,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IEmptyContent</span> :
+  <span class="hljs-title">IElementContent</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IEmptyContent -->
 <h3 id="iexternalid"><a name="iexternalid" class="plugin-anchor" href="#iexternalid"><span class="fa fa-link"></span></a>IExternalId</h3>
 <!-- Begin IExternalId -->
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IExternalId</span> :
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IExternalId</span> :
   <span class="hljs-title">ITreeNode</span>
-{
+</span>{
 }
 </code></pre>
 <!-- End IExternalId -->
 <h2 id="g"><a name="g" class="plugin-anchor" href="#g"><span class="fa fa-link"></span></a>G</h2>
 <h3 id="igrouppedcontent"><a name="igrouppedcontent" class="plugin-anchor" href="#igrouppedcontent"><span class="fa fa-link"></span></a>IGrouppedContent</h3>
 <!-- Begin IGrouppedContent -->
-<pre><code class="lang-cs">public interface IGrouppedContent :
-  IElementContent,
-  ITreeNode
-{
-  TreeNodeCollection&lt;IElementContent&gt; Items { get; }
-  IXmlLparenthTokenNode LPar { get; }
-  IXmlRparenthTokenNode RPar { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IGrouppedContent</span> :
+  <span class="hljs-title">IElementContent</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  TreeNodeCollection&lt;IElementContent&gt; <span class="hljs-title">Items</span> { <span class="hljs-keyword">get</span>; }
+  IXmlLparenthTokenNode <span class="hljs-title">LPar</span> { <span class="hljs-keyword">get</span>; }
+  IXmlRparenthTokenNode <span class="hljs-title">RPar</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IGrouppedContent -->
 <h2 id="p"><a name="p" class="plugin-anchor" href="#p"><span class="fa fa-link"></span></a>P</h2>
 <h3 id="ipublicexternalid"><a name="ipublicexternalid" class="plugin-anchor" href="#ipublicexternalid"><span class="fa fa-link"></span></a>IPublicExternalId</h3>
 <!-- Begin IPublicExternalId -->
-<pre><code class="lang-cs">public interface IPublicExternalId :
-  IExternalId,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IPublicExternalId</span> :
+  <span class="hljs-title">IExternalId</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IPublicExternalId -->
 <h2 id="r"><a name="r" class="plugin-anchor" href="#r"><span class="fa fa-link"></span></a>R</h2>
 <h3 id="irepetitioncontent"><a name="irepetitioncontent" class="plugin-anchor" href="#irepetitioncontent"><span class="fa fa-link"></span></a>IRepetitionContent</h3>
 <!-- Begin IRepetitionContent -->
-<pre><code class="lang-cs">public interface IRepetitionContent :
-  IElementContent,
-  ITreeNode
-{
-  IElementContent Content { get; }
-  RepetitionType RepetitionType { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IRepetitionContent</span> :
+  <span class="hljs-title">IElementContent</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
+  IElementContent <span class="hljs-title">Content</span> { <span class="hljs-keyword">get</span>; }
+  RepetitionType <span class="hljs-title">RepetitionType</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <!-- End IRepetitionContent -->
 <h2 id="s"><a name="s" class="plugin-anchor" href="#s"><span class="fa fa-link"></span></a>S</h2>
 <h3 id="isimplecontent"><a name="isimplecontent" class="plugin-anchor" href="#isimplecontent"><span class="fa fa-link"></span></a>ISimpleContent</h3>
 <!-- Begin ISimpleContent -->
-<pre><code class="lang-cs">public interface ISimpleContent :
-  IElementContent,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ISimpleContent</span> :
+  <span class="hljs-title">IElementContent</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End ISimpleContent -->
 <h3 id="isystemexternalid"><a name="isystemexternalid" class="plugin-anchor" href="#isystemexternalid"><span class="fa fa-link"></span></a>ISystemExternalId</h3>
 <!-- Begin ISystemExternalId -->
-<pre><code class="lang-cs">public interface ISystemExternalId :
-  IExternalId,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">ISystemExternalId</span> :
+  <span class="hljs-title">IExternalId</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End ISystemExternalId -->
 <h2 id="x"><a name="x" class="plugin-anchor" href="#x"><span class="fa fa-link"></span></a>X</h2>
 <h3 id="ixmlattliststarttokennode"><a name="ixmlattliststarttokennode" class="plugin-anchor" href="#ixmlattliststarttokennode"><span class="fa fa-link"></span></a>IXmlAttlistStartTokenNode</h3>
 <!-- Begin IXmlAttlistStartTokenNode -->
-<pre><code class="lang-cs">public interface IXmlAttlistStartTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlAttlistStartTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlAttlistStartTokenNode -->
 <h3 id="ixmlelementstarttokennode"><a name="ixmlelementstarttokennode" class="plugin-anchor" href="#ixmlelementstarttokennode"><span class="fa fa-link"></span></a>IXmlElementStartTokenNode</h3>
 <!-- Begin IXmlElementStartTokenNode -->
-<pre><code class="lang-cs">public interface IXmlElementStartTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlElementStartTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlElementStartTokenNode -->
 <h3 id="ixmlentitystarttokennode"><a name="ixmlentitystarttokennode" class="plugin-anchor" href="#ixmlentitystarttokennode"><span class="fa fa-link"></span></a>IXmlEntityStartTokenNode</h3>
 <!-- Begin IXmlEntityStartTokenNode -->
-<pre><code class="lang-cs">public interface IXmlEntityStartTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlEntityStartTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlEntityStartTokenNode -->
 <h3 id="ixmlfixedtokennode"><a name="ixmlfixedtokennode" class="plugin-anchor" href="#ixmlfixedtokennode"><span class="fa fa-link"></span></a>IXmlFixedTokenNode</h3>
 <!-- Begin IXmlFixedTokenNode -->
-<pre><code class="lang-cs">public interface IXmlFixedTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlFixedTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlFixedTokenNode -->
 <h3 id="ixmlimpliedtokennode"><a name="ixmlimpliedtokennode" class="plugin-anchor" href="#ixmlimpliedtokennode"><span class="fa fa-link"></span></a>IXmlImpliedTokenNode</h3>
 <!-- Begin IXmlImpliedTokenNode -->
-<pre><code class="lang-cs">public interface IXmlImpliedTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlImpliedTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlImpliedTokenNode -->
 <h3 id="ixmlnotationstarttokennode"><a name="ixmlnotationstarttokennode" class="plugin-anchor" href="#ixmlnotationstarttokennode"><span class="fa fa-link"></span></a>IXmlNotationStartTokenNode</h3>
 <!-- Begin IXmlNotationStartTokenNode -->
-<pre><code class="lang-cs">public interface IXmlNotationStartTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlNotationStartTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlNotationStartTokenNode -->
 <h3 id="ixmlrequiredtokennode"><a name="ixmlrequiredtokennode" class="plugin-anchor" href="#ixmlrequiredtokennode"><span class="fa fa-link"></span></a>IXmlRequiredTokenNode</h3>
 <!-- Begin IXmlRequiredTokenNode -->
-<pre><code class="lang-cs">public interface IXmlRequiredTokenNode :
-  IXmlToken,
-  IXmlTreeNode,
-  ITokenNode,
-  ITreeNode
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IXmlRequiredTokenNode</span> :
+  <span class="hljs-title">IXmlToken</span>,
+  <span class="hljs-title">IXmlTreeNode</span>,
+  <span class="hljs-title">ITokenNode</span>,
+  <span class="hljs-title">ITreeNode</span>
+</span>{
 }
 </code></pre>
 <!-- End IXmlRequiredTokenNode -->

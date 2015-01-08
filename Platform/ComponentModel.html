@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Component Model | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -42,7 +44,7 @@
 
 
         
-    <div class="book" data-level="7.4" data-basepath=".." data-revision="1418218353318">
+    <div class="book" data-level="7.4" data-basepath=".." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3572,17 +3574,17 @@
 <h2 id="shell-components"><a name="shell-components" class="plugin-anchor" href="#shell-components"><span class="fa fa-link"></span></a>Shell Components</h2>
 <p>A <strong>Shell Component</strong> is a class that gets created when ReSharper starts. Shell components are typically marked with the <code>[ShellComponent]</code> attribute. It has essentially the same lifetime as ReSharper itself. Shell components are effectively singletons, and are most useful when creating a service that is not solution specific. For example, Live Template macro definitions are shell components. They do not use or depend on anything related to a solution, and do not change for the lifetime of the shell.</p>
 <p>To define a shell component, simply write:</p>
-<pre><code class="lang-cs">[ShellComponent]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ShellComponent</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">MyClass</span>
+</span>{
   <span class="hljs-comment">// ...</span>
 }
 </code></pre>
 <p>ReSharper will create an instance of this class when the shell starts up.</p>
 <p>If a component needs to talk to other components, it can simply add them as a constructor argument, and the Component Model will ensure that the dependent component is created first, and passed in on construction. The dependent component must have the same lifetime scope or longer, so a shell component can only request another shell component.</p>
-<pre><code class="lang-cs">[ShellComponent]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SomeOtherClass</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ShellComponent</span>]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SomeOtherClass</span>
+</span>{
   <span class="hljs-keyword">private</span> MyClass myClass;
 
   <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">SomeOtherClass</span><span class="hljs-params">(MyClass myClass)</span>
@@ -3592,18 +3594,18 @@
 }
 </code></pre>
 <p>Constructor injection is the preferred means of accessing dependencies. However, there are some cases where this isn&apos;t possible - for example, Action handlers aren&apos;t created by the Component Model. In this case, you can use the Service Locator pattern and ask for the dependency:</p>
-<pre><code class="lang-cs"><span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">void</span> <span class="hljs-title">SomeMethod</span><span class="hljs-params">()</span>
+<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">SomeMethod</span><span class="hljs-params">()</span>
 </span>{
   <span class="hljs-comment">// Shell.Instance is a static property</span>
-  <span class="hljs-keyword">var</span> myClass = Shell.Instance.GetComponent&lt;MyClass&gt;();
+  <span class="hljs-keyword">var</span> myClass = Shell.Instance.<span class="hljs-function"><span class="hljs-title">GetComponent&lt;MyClass&gt;</span><span class="hljs-params">()</span></span>;
 }
 </code></pre>
 <p>Note, however, that <code>Shell.Instance.GetComponent</code> will only return shell components, not solution components.</p>
 <h2 id="solution-components"><a name="solution-components" class="plugin-anchor" href="#solution-components"><span class="fa fa-link"></span></a>Solution Components</h2>
 <p><strong>Solution Components</strong> are components that are tied to the lifetime of a solution. They are created each time a new solution is opened, and use the <code>[SolutionComponent]</code> attribute. Again, constructor injection is the preferred means of satisfying dependencies. A <code>SolutionComponent</code> can depend on both <code>SolutionComponent</code> and <code>ShellComponent</code> instances, because shell components have a longer lifetime than solution components.</p>
 <p>You can also use the Service Locator pattern to ask for solution components. There are several ways of getting at the solution level Component Model, usually with a <code>GetComponent</code> or <code>GetComponents</code> extension method. For example, the <code>IDataContext</code> object passed to action handlers can be used to retrieve components, or the <code>ISolution</code> and <code>IProject</code> interfaces have extension methods. Again, when asking for a component directly, you can ask for a solution component or shell component. For example:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">var</span> solution = context.GetData(JetBrains.ProjectModel.DataContext.DataConstants.SOLUTION);
-<span class="hljs-keyword">var</span> dtm = solution.GetComponent&lt;DocumentTransactionManager&gt;();
+<pre><code class="lang-cs"><span class="hljs-keyword">var</span> solution = context.<span class="hljs-function"><span class="hljs-title">GetData</span><span class="hljs-params">(JetBrains.ProjectModel.DataContext.DataConstants.SOLUTION)</span></span>;
+<span class="hljs-keyword">var</span> dtm = solution.<span class="hljs-function"><span class="hljs-title">GetComponent&lt;DocumentTransactionManager&gt;</span><span class="hljs-params">()</span></span>;
 </code></pre>
 <p>One very important object that can be injected or asked for is <code>ISolution</code>. This allows a solution level component to get at its current context - the solution it&apos;s been created for.</p>
 <h2 id="component-cleanup"><a name="component-cleanup" class="plugin-anchor" href="#component-cleanup"><span class="fa fa-link"></span></a>Component cleanup</h2>

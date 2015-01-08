@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>Macros | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="10.14.1" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="10.14.1" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3547,7 +3549,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_27">
+                    <section class="normal" id="section-gitbook_15">
                     
                         <h1 id="live-template-macros"><a name="live-template-macros" class="plugin-anchor" href="#live-template-macros"><span class="fa fa-link"></span></a>Live Template macros</h1>
 <p>Of course, plugins can provide macros to extend the list already included with ReSharper (and ReSharper extensions can include Live Templates that refer to these templates, either by bundling the macro plugin into the same extension, or taking a dependency on another extension that contains a macro plugin. See the Packaging page for more details).</p>
@@ -3558,8 +3560,8 @@
 <p>The short description can also contain placeholders that indicate that a macro can be parameterised. This is only for display purposes - parameters are declared by the macro definition class, described below. When the short description is shown in the list of macros in the template editor, the placeholder text is shown in bold, indicating to the user that the macro can be parameterised, and what part is parameterised.</p>
 <p>The format of the placeholder is <code>{X:name}</code>, where the <code>X</code> is replaced by the parameter index, and the &quot;name&quot; is the text that is displayed in bold. (Strictly speaking, the &quot;name&quot; text is the name of the parameter, which is why there is also a parameter index. The name is passed to the parameter value UI, where it could be used e.g. as a label, however, it&apos;s not currently used.) For one variable, you can have a description such as &quot;Insert reference to {0:type}&quot;. This states that the macro will take one parameter, called &quot;type&quot;, and the list of macros shown in the template editor will display &quot;type&quot; in bold. Multiple parameters can be referenced by incrementing the parameter index, for example: &quot;Delimited {0:list} of items with {1:delimiter}&quot; could be a macro that uses the first parameter &quot;list&quot; to store a delimited list of string values, using the delimiter specified in the parameter called &quot;delimiter&quot; at index 1.</p>
 <p>The <code>IMacroDefinition</code> interface has two members - a <code>Parameters</code> property and a <code>GetPlaceholder</code> method.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IMacroDefinition</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IMacroDefinition</span>
+</span>{
   ParameterInfo[] Parameters { <span class="hljs-keyword">get</span>; }
   <span class="hljs-function"><span class="hljs-keyword">string</span> <span class="hljs-title">GetPlaceholder</span><span class="hljs-params">(IDocument document, IEnumerable&lt;IMacroParameterValue&gt; parameters)</span></span>;
 }
@@ -3577,8 +3579,8 @@
 <p>Multiple implementations can be provided for a single definition, and ReSharper will attempt to find the implementation that has the closest scope, as returned by <code>GetScopes</code>, to the actual scope in use. For example, a scope of &quot;C# file&quot; will be closer than a scope of &quot;everywhere&quot;. If there are multiple implementations, but there is no closest scope, an arbitrary implementation is chosen.</p>
 <p>An instance of the implementation class is created for each hotspot. The implementation class can have two constructor parameters injected when the class is created - <code>IHotspotSession</code> and <code>MacroParameterValueCollection</code>. This is how a parameterised implementation gets hold of the parameter values specified in the Live Template. The constructor parameters can be in any order, or not specified at all. However, they must be marked with the <code>[Optional]</code> attribute, because another instance of the implementation is created at shell startup time (<code>MacroImplementationAttribute</code> derives from <code>ShellCompomentAttribute</code>) and neither the session nor the parameter collections are available at that time. This instance will receive <code>null</code> for those parameters. The additional instance is created to map between implementations and definitions, especially when added dynamically from a plugin.</p>
 <p><code>IMacroImplementation</code> defines three methods:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IMacroImplementation</span>
-{
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IMacroImplementation</span>
+</span>{
   <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">HandleExpansion</span><span class="hljs-params">(IHotspotContext context)</span></span>;
   <span class="hljs-function">HotspotItems <span class="hljs-title">GetLookupItems</span><span class="hljs-params">(IHotspotContext context)</span></span>;
   <span class="hljs-function"><span class="hljs-keyword">string</span> <span class="hljs-title">EvaluateQuickResult</span><span class="hljs-params">(IHotspotContext context)</span></span>;
@@ -3589,28 +3591,28 @@
 <p>The <code>GetLookupItems</code> method can also get called when a hotspot becomes active (so if you take control in <code>HandleExpansion</code>, you should also return <code>null</code> or an empty list here). The returned items are cached, and will be reused if the text hasn&apos;t been changed, so tabbing between multiple hotspots doesn&apos;t cause multiple calls. If the surrounding text changes, the cached items are thrown away, and new items are retrieved, allowing for macros that depend on the surrounding text, such as suggesting names for a variable of a type that can also be edited.</p>
 <p><code>GetLookupItems</code> returns an instance of <code>HotspotItems</code>, which maintains a list of <code>ILookupItem</code> instances, as used in code completion. Generally speaking, this will be a list of <code>TextLookupItem</code> instances, to expand to a simple text string. However, you can use any <code>ILookupItem</code> instance; the <code>ILookupItem.Accept</code> method is called to insert the text. For example, the macro to insert a reference to a type derives from <code>TypeLookupItem</code> and overrides a method called from its <code>Accept</code> method in order to properly position the text caret for generic types. You can also use the <code>HotspotItems.Empty</code> instance if you don&apos;t have any lookup items. The list is created once, and doesn&apos;t change as you type, although the values are filtered to match what you are typing.</p>
 <p><code>EvaluateQuickResult</code> is called when another hotspot changes. It allows for a macro to be based on the contents of other hotspots, or the surrounding text. If the macro is based on a parameter, such as a constant value from the template editor, or a reference to another hotspot variable, the content can be retreived from the <code>MacroParameterValueCollection</code> passed in to the constructor. To get the value would look something like this:</p>
-<pre><code class="lang-cs">[MacroImplementation(Definition = <span class="hljs-keyword">typeof</span>(ToUpperMacroDef))]
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ToUpperMacroImpl</span> : <span class="hljs-title">SimpleMacroImplementation</span>
-{
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">MacroImplementation</span><span class="hljs-params">(Definition = <span class="hljs-keyword">typeof</span>(ToUpperMacroDef)</span>)]</span>
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ToUpperMacroImpl</span> : SimpleMacroImplementation
+</span>{
   <span class="hljs-keyword">private</span> IMacroParameterValueNew myArgument;
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ToUpperMacroImpl</span><span class="hljs-params">([Optional] MacroParameterValueCollection arguments)</span> </span>{
-    myArgument = arguments.OptionalFirstOrDefault();
+  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-title">ToUpperMacroImpl</span><span class="hljs-params">(<span class="hljs-attribute">[<span class="hljs-title">Optional</span>]</span> MacroParameterValueCollection arguments)</span> </span>{
+    myArgument = arguments.<span class="hljs-function"><span class="hljs-title">OptionalFirstOrDefault</span><span class="hljs-params">()</span></span>;
   }
 
-  <span class="hljs-function"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-keyword">string</span> <span class="hljs-title">EvaluateQuickResult</span><span class="hljs-params">(IHotspotContext context)</span> </span>{
-    <span class="hljs-keyword">return</span> myArgument == <span class="hljs-keyword">null</span> ? <span class="hljs-keyword">null</span> : myArgument.GetValue().ToUpperInvariant();
+  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">string</span> <span class="hljs-title">EvaluateQuickResult</span><span class="hljs-params">(IHotspotContext context)</span> </span>{
+    <span class="hljs-keyword">return</span> myArgument == <span class="hljs-literal">null</span> ? <span class="hljs-literal">null</span> : myArgument.<span class="hljs-function"><span class="hljs-title">GetValue</span><span class="hljs-params">()</span>.<span class="hljs-title">ToUpperInvariant</span><span class="hljs-params">()</span></span>;
   }
 }
 </code></pre>
 <p>As the name suggests, <code>EvaluateQuickResult</code> needs to be quick, as each macro&apos;s implementation is called for every character typed in the current hotspot. Processing should be kept to a minimum.</p>
 <h2 id="ihotspotcontext"><a name="ihotspotcontext" class="plugin-anchor" href="#ihotspotcontext"><span class="fa fa-link"></span></a>IHotspotContext</h2>
 <p>All of the methods in <code>IMacroImplementation</code> take <code>IHotspotContext</code> as an argument. This interface has three properties:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IHotspotContext</span>
-{
-  IHotspotSession HotspotSession { <span class="hljs-keyword">get</span>; }
-  IHotspotSessionContext SessionContext { <span class="hljs-keyword">get</span>; }
-  DocumentRange ExpressionRange { <span class="hljs-keyword">get</span>; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IHotspotContext</span>
+</span>{
+  IHotspotSession <span class="hljs-title">HotspotSession</span> { <span class="hljs-keyword">get</span>; }
+  IHotspotSessionContext <span class="hljs-title">SessionContext</span> { <span class="hljs-keyword">get</span>; }
+  DocumentRange <span class="hljs-title">ExpressionRange</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
 <ul>

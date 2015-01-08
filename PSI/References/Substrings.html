@@ -4,16 +4,18 @@
     <head>
         
         <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
         <title>References within elements | ReSharper DevGuide</title>
         <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
         <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.3.1">
+        <meta name="generator" content="GitBook 1.5.0">
         <meta name="HandheldFriendly" content="true">
         <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-status-bar-style" content="black">
         <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../../gitbook/images/apple-touch-icon-precomposed-152.png">
         <link rel="shortcut icon" href="../../gitbook/images/favicon.ico" type="image/x-icon">
+        
         
     
     
@@ -44,7 +46,7 @@
 
 
         
-    <div class="book" data-level="9.9.4" data-basepath="../.." data-revision="1418218353318">
+    <div class="book" data-level="9.9.4" data-basepath="../.." data-revision="1420728981635">
     
 
 <div class="book-summary">
@@ -3552,16 +3554,16 @@
                         <h1 id="references-within-elements---substrings"><a name="references-within-elements---substrings" class="plugin-anchor" href="#references-within-elements---substrings"><span class="fa fa-link"></span></a>References within elements - substrings</h1>
 <p>A reference doesn&apos;t need to be applied to the complete range of an element - it doesn&apos;t have to be the whole string in a string literal. Multiple references can be applied to different parts of a single element.</p>
 <p>For example, a file path reference provider will create multiple references for substrings within the string, one for each file path segment. A reference which wishes to do this should implement the <code>IReferenceWithinElement&lt;T&gt;</code> interface, where <code>T</code> is the owning PSI tree node.</p>
-<pre><code class="lang-cs">public interface IReferenceWithinElement : IReference
-{
-  ITreeNode Token { get; }
-  TreeTextRange RangeWithin { get; }
+<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReferenceWithinElement</span> : IReference
+</span>{
+  ITreeNode <span class="hljs-title">Token</span> { <span class="hljs-keyword">get</span>; }
+  TreeTextRange <span class="hljs-title">RangeWithin</span> { <span class="hljs-keyword">get</span>; }
 }
 
-public interface IReferenceWithinElement&lt;T&gt; : IReferenceWithinElement
-  where T : class, ITreeNode
-{
-  ElementRange&lt;T&gt; ElementRange { get; set; }
+<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IReferenceWithinElement&lt;T&gt;</span> : IReferenceWithinElement
+  <span class="hljs-keyword">where</span> T : <span class="hljs-keyword">class</span>, ITreeNode
+</span>{
+  ElementRange&lt;T&gt; <span class="hljs-title">ElementRange</span> { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
 }
 </code></pre>
 <p>The constructor for <code>ElementRange</code> takes in an instance of <code>T</code> and the <code>TreeTextRange</code> that is the range within the node that should be used for the reference. The range should be relative to the length of the owner node&apos;s short name.</p>
@@ -3574,9 +3576,9 @@ public interface IReferenceWithinElement&lt;T&gt; : IReferenceWithinElement
 <p>The core implementation of <code>GetSymbolFilters</code> is held in <code>GetCompletionFilters</code> which returns an empty list by default. To add functionality, return an array of filters, for example:</p>
 <pre><code class="lang-cs"><span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> ISymbolFilter[]
 {
-  <span class="hljs-keyword">new</span> DeclaredElementTypeFilter(ResolveErrorType.NOT_RESOLVED, CLRDeclaredElementType.ENUM_MEMBER),
+  <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">DeclaredElementTypeFilter</span><span class="hljs-params">(ResolveErrorType.NOT_RESOLVED, CLRDeclaredElementType.ENUM_MEMBER)</span>,
   IsPublicFilter.INSTANCE
-};
+}</span>;
 </code></pre>
 <p>These will create a filter that finds any enums, and returns <code>ResolveErrorType.NOT_RESOLVED</code> if it can&apos;t find anything. If it finds an enum, it then goes through the <code>IsPublicFilter</code> instance, which checks that the declared element is public. If it can&apos;t find a match, it returns <code>ResolveErrorType.ACCESS_RIGHTS</code>. There are lots of implementations of <code>ISymbolFilter</code> which can be sequenced together to filter down to the appropriate candidates.</p>
 <p>The only other method that requires implementation (unless you wish to customise the class further) is <code>BindToInternal</code>. The <code>BindTo</code> methods are implemented, and call into <code>BindToInternal</code>. This method can use the <code>ReferenceWithinElementUtil.SetText</code> method to set the text in the substring of the node, by creating a new token, with a passed in token factory <code>Func</code>, using the new text of the node. It also fixes up any other references that are attached to the original node.</p>
