@@ -63,8 +63,7 @@ More specifically, any classes marked with attributes such as `[ShellComponent]`
 One implication of this change is that the application can now be up and running before all of the components in the container have been created. Previous versions would create the whole container before allowing the application to continue running. There may be cases where a component should be created in a more timely manner. For example, the Visual Studio integration needs to be created and hooked up before the application can continue. In this case, the component can require "instant" activation, in which case the component (and all of the components required to satisfy constructor dependencies) are created immediately rather than scheduled:
 
 ```cs
-// Note the typo. This is likely to be fixed by RTM
-[ShellComponent(Requirement = InstanciationRequirement.Instant)]
+[ShellComponent(Requirement = InstantiationRequirement.Instant)]
 public class ImmediateComponent
 {
 }
