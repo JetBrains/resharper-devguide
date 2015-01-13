@@ -1,5 +1,9 @@
 # ElementFactories
 
+<!-- Not auto-indexed, so we can split definitions between XML and XML DTD.
+     Also not including ClrDocCommentElementFactoryImpl + DocCommentElementFactory.
+     These are XML Doc Comment PSI element factories -->
+
 The XML PSI has several classes related to element factories, that is, for creating [`IXmlTreeNode`](TreeNodes.md#ixmltreenode) derived instances. Some of the classes are for internal use, or implementation details. They are documented here for completeness, and to avoid confusion when spelunking around the code in dotPeek.
 
 The [`XmlElementFactory`](#xmlelementfactory) class is the class to use for creating tags, attributes or an entire [`IXmlFile`](#ixmlfile) instance. Use the `XmlElementFactory.GetInstance` method to get a copy of the class. The [`IXmlElementFactory`](#ixmlelementfactory) interface is a lower level API which can create any [`IXmlTreeNode`](TreeNodes.md#ixmltreenode) instance. The default implementation is [`XmlTreeNodeFactory`](#xmltreenodefactory) and can be retrieved using the `XmlTreeNodeFactory.GetInstance` method.

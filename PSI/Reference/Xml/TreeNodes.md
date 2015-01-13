@@ -1,5 +1,8 @@
 # Tree Nodes (XML)
 
+<!-- Not auto-indexed, so we can split definitions between XML and XML DTD.
+     Also not including IDocCommentBlockWithPsi`2 as this is XML Doc Comment PSI stuff -->
+
 <!-- toc -->
 <!-- toc stop -->
 
