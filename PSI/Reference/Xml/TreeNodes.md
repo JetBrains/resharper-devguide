@@ -25,6 +25,8 @@ public interface IProcessingInstruction :
 }
 ```
 
+* See also: [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IProcessingInstruction -->
 
 Represents a [processing instruction](http://en.wikipedia.org/wiki/Processing_Instruction). The `Start` and `End` properties give access to the tokens that represent the start and end of the processing instruction, namely the `<?` and `?>` tokens respectively. The `InstructionTargetNode` property is an [`IXmlIdentifier`](#ixmlidentifier) that represents the target of the processing instruction, that is, the identifier immediately following the start token. As a convenience, you can get at the text of the target using the `InstructionTarget` property, which simply calls `GetText()` on the [`IXmlIdentifier`](#ixmlidentifier). Finally, the `Body` property is a token that contains the content of the processing instruction, if any. This is a simple `XmlToken` containing the text after the target, unparsed. If the instruction contains text that looks like attributes, they are not parsed - the `Body` property will contain the full text.
@@ -46,6 +48,8 @@ public interface IXmlAsteriskTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlAsteriskTokenNode -->
 
@@ -71,6 +75,8 @@ public interface IXmlAttribute :
   TreeTextRange XmlNamespaceRange { get; }
 }
 ```
+
+* See also: [IXmlAttributeValue](TreeNodes.md#ixmlattributevalue), [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlAttribute -->
 
@@ -99,6 +105,8 @@ public interface IXmlAttributeContainer :
 }
 ```
 
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlAttributeContainer -->
 
 Represents a node that can contain attributes. This is typically mostly inherited by [`IXmlTagHeader`](#ixmltagheader), but also by [`IXmlProcessingInstruction`](#ixmlprocessinginstruction) in order to expose the attributes defined in the XML declaration. The `Attributes` collection is pre-iterated and backed by an array, while the `AttributesEnumerable` is lazily evaluated.
@@ -118,6 +126,8 @@ public interface IXmlAttributeValue :
   IXmlValueToken ValueToken { get; }
 }
 ```
+
+* See also: [IXmlTreeNode](TreeNodes.md#ixmltreenode), [IXmlValueToken](TreeNodes.md#ixmlvaluetoken)
 
 <!-- End IXmlAttributeValue -->
 
@@ -139,6 +149,8 @@ public interface IXmlCData :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlCData -->
 
 An XML [CDATA](http://en.wikipedia.org/wiki/CDATA) node. The `Start` property is the `<![CDATA[` token, and `End` is the `]]>` token. While they are listed as [`IXmlToken`](#ixmltoken) instances, they are in fact, instances of the [`IXmlCdataStartTokenNode`](#ixmlcdatastarttokennode) and [`IXmlCdataEndTokenNode`](#ixmlcdataendtokennode) marker interfaces. `Body` is a token representing the content of the CDATA node, while the `CData` property is the content as a plain string.
@@ -156,6 +168,8 @@ public interface IXmlCdataEndTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlCdataEndTokenNode -->
 
@@ -175,6 +189,8 @@ public interface IXmlCdataStartTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlCdataStartTokenNode -->
 
 Marker interface for the CDATA start token `<![CDATA[`.
@@ -193,6 +209,8 @@ public interface IXmlCommaTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlCommaTokenNode -->
 
 Marker interface for a token representing the comma character (`,`).
@@ -209,6 +227,8 @@ public interface IXmlComment :
 {
 }
 ```
+
+* See also: [IXmlCommentNode](TreeNodes.md#ixmlcommentnode), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlComment -->
 
@@ -227,6 +247,8 @@ public interface IXmlCommentEndTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlCommentEndTokenNode -->
 
@@ -248,6 +270,8 @@ public interface IXmlCommentNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlCommentNode -->
 
 Represents and XML comment. The `CommentStart` and `CommentEnd` properties are the start (`<!--`) and end (`-->`) tokens of the comment. Although listed here as [`IXmlToken`](#ixmltoken), they are in fact instances of the [`IXmlCommentStartTokenNode`](#ixmlcommentstarttokennode) and [`IXmlCommentEndTokenNode`](#ixmlcommentendtokennode) marker interfaces. The comment text is held in the `CommentBody` node, and exposed as a string with the `CommentText` property.
@@ -266,6 +290,8 @@ public interface IXmlCommentStartTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlCommentStartTokenNode -->
 
 Marker interface for the XML comment start token `<!--`.
@@ -281,6 +307,8 @@ public interface IXmlDocumentNode :
 {
 }
 ```
+
+* See also: [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlDocumentNode -->
 
@@ -299,6 +327,8 @@ public interface IXmlDtdStartTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlDtdStartTokenNode -->
 
@@ -320,6 +350,8 @@ public interface IXmlEntityTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlEntityTokenNode -->
 
 An XML [entity reference token](http://en.wikipedia.org/wiki/List_of_XML_and_HTML_character_entity_references) representing content such as `&#8226;` or `&copy;`. The `IsNumericEntity` property is true if the entity begins with the string `&#`. The `Name` property is the name of the entity, with the ampersand and semi-colon removed, or `null` for numeric entities. That is, `&copy;` will return `"copy"` and `&#8226;` will return `null` for `Name`.
@@ -337,6 +369,8 @@ public interface IXmlEqTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlEqTokenNode -->
 
@@ -359,6 +393,8 @@ public interface IXmlFile :
 }
 ```
 
+* See also: [IProcessingInstruction](TreeNodes.md#iprocessinginstruction), [IXmlDocumentNode](TreeNodes.md#ixmldocumentnode), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlFile -->
 
 The root interface for an XML file. Derives from both `IFile` and [`IXmlTreeNode`](#ixmltreenode). Also derives from [`IXmlTagContainer`](#ixmltagcontainer) showing that it can have child tags.
@@ -378,6 +414,8 @@ public interface IXmlFloatingTextTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlFloatingTextTokenNode -->
 
@@ -401,6 +439,8 @@ public interface IXmlIdentifier :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlIdentifier -->
 
 An XML identifier, with optional namespace prefix. The `XmlName` property returns the text of the identifier without the namespace prefix, while the `XmlNamespace` property returns the prefix, if any. E.g. `"foo:bar"` will return `"bar"` for `XmlName` and `"foo"` for `XmlNamespace`. If there is no namespace prefix, `XmlNamespace` returns an empty string (the property is marked with the `[NotNull]` annotation attribute).
@@ -421,6 +461,8 @@ public interface IXmlLbracketTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlLbracketTokenNode -->
 
 Marker interface for a token representing the left bracket character (`[`).
@@ -438,6 +480,8 @@ public interface IXmlLparenthTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlLparenthTokenNode -->
 
@@ -457,6 +501,8 @@ public interface IXmlOrTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlOrTokenNode -->
 
 Marker interface for a token representing the "or" or "pipe" character (`|`).
@@ -474,6 +520,8 @@ public interface IXmlPercentTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlPercentTokenNode -->
 
@@ -493,6 +541,8 @@ public interface IXmlPiendTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlPiendTokenNode -->
 
 Marker interface for the processing instruction end token `?>`.
@@ -511,6 +561,8 @@ public interface IXmlPistartTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlPistartTokenNode -->
 
 Marker interface for the processing instruction start token `<?`.
@@ -528,6 +580,8 @@ public interface IXmlPlusTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlPlusTokenNode -->
 
@@ -548,6 +602,8 @@ public interface IXmlProcessingInstruction :
   IXmlToken StartNode { get; }
 }
 ```
+
+* See also: [IXmlAttributeContainer](TreeNodes.md#ixmlattributecontainer), [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlProcessingInstruction -->
 
@@ -575,6 +631,8 @@ public interface IXmlQuestionTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlQuestionTokenNode -->
 
 Marker interface for a token representing the question mark character (`?`).
@@ -593,6 +651,8 @@ public interface IXmlRbracketTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlRbracketTokenNode -->
 
 Marker interface for a token representing the right bracket character (`]`).
@@ -610,6 +670,8 @@ public interface IXmlRparenthTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlRparenthTokenNode -->
 
@@ -659,6 +721,8 @@ public interface IXmlTag :
 }
 ```
 
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer), [IXmlTagFooter](TreeNodes.md#ixmltagfooter), [IXmlTagHeader](TreeNodes.md#ixmltagheader), [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlTag -->
 
 Represents a complete XML element. The `Header` and `Footer` properties represent the opening and closing tags of the element. Attributes can be retrieved via the `Header` property (see [`IXmlTagHeader`](#ixmltagheader)).
@@ -698,6 +762,8 @@ public interface IXmlTagContainer :
 }
 ```
 
+* See also: [IXmlTag](TreeNodes.md#ixmltag)
+
 <!-- End IXmlTagContainer -->
 
 Represents a node that can contain tags. Mostly inherited by [`IXmlTag`](#ixmltag), but also inherited by [`IXmlFile`](#ixmlfile).
@@ -726,6 +792,8 @@ public interface IXmlTagEnd1TokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlTagEnd1TokenNode -->
 
 Marker interface for a self-closing XML tag end token `/>`.
@@ -743,6 +811,8 @@ public interface IXmlTagEndTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlTagEndTokenNode -->
 
@@ -762,6 +832,8 @@ public interface IXmlTagFooter :
   IXmlToken StartNode { get; }
 }
 ```
+
+* See also: [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlTagFooter -->
 
@@ -785,6 +857,8 @@ public interface IXmlTagHeader :
   IXmlToken StartNode { get; }
 }
 ```
+
+* See also: [IXmlAttributeContainer](TreeNodes.md#ixmlattributecontainer), [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlTagHeader -->
 
@@ -818,6 +892,8 @@ public interface IXmlTagStart1TokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlTagStart1TokenNode -->
 
 Marker interface for the start token of a closing XML tag (`</`).
@@ -836,6 +912,8 @@ public interface IXmlTagStartTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlTagStartTokenNode -->
 
 Marker interface for the start token of an opening XML tag (`</`).
@@ -853,6 +931,8 @@ public interface IXmlToken :
   new XmlTokenNodeType GetTokenType();
 }
 ```
+
+* See also: [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlToken -->
 
@@ -901,6 +981,8 @@ public interface IXmlValueToken :
   TreeTextRange UnquotedValueRange { get; }
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlValueToken -->
 

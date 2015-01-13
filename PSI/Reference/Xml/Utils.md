@@ -27,6 +27,8 @@ public static class ModuleQualificationUtil
 }
 ```
 
+* See also: [IXmlAttributeValue](TreeNodes.md#ixmlattributevalue)
+
 <!-- End ModuleQualificationUtil -->
 
 Helper methods to support references to CLR types inside XML documents, e.g. web.config files.
@@ -56,6 +58,8 @@ public static class ReferenceWithTokenUtil
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken)
+
 <!-- End ReferenceWithTokenUtil -->
 
 Helper methods for handling references within a token node. The methods defer to `ReferenceWithinElementUtil<IXmlToken>`. The `SetText` methods provide a factory method to create an appropriate token to replace the existing element.
@@ -75,6 +79,8 @@ public static class XmlAttributeContainerExtensions
 }
 ```
 
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlAttributeContainer](TreeNodes.md#ixmlattributecontainer)
+
 <!-- End XmlAttributeContainerExtensions -->
 
 Gets an attribute from an instance of [`IXmlAttributeContainer`](TreeNodes.md#ixmlattributecontainer) either of a specific derived type, or matching a predicate, or based on name (including namespace prefix, if specified).
@@ -91,6 +97,8 @@ public static class XmlAttributeExtension
 }
 ```
 
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute)
+
 <!-- End XmlAttributeExtension -->
 
 Helper methods to get information about the unquoted text of an instance of [`IXmlAttribute`](TreeNodes.md#ixmlattribute). `GetUnquotedText` will return the unquoted text, as well as the tree range of the value. It is better to use the properties on [`IXmlValueToken`](TreeNodes.md#ixmlvaluetoken), as that implementation will cache the values for repeated calls. `GetUnquotedValueRange` returns the range of the unquoted value, relative to the document the XML PSI is hosted inside (this might be an XML file, or an XML island inside another doucment).
@@ -105,6 +113,8 @@ public static class XmlAttributeExtensions
   public static void Remove(this IXmlAttribute xmlAttribute);
 }
 ```
+
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute)
 
 <!-- End XmlAttributeExtensions -->
 
@@ -124,6 +134,8 @@ public static class XmlAttributeUtil
 }
 ```
 
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute)
+
 <!-- End XmlAttributeUtil -->
 
 Helper methods for working with XML attributes. `SetValue` replaces an attributes value by creating a new instance of `IXmlAttributeValue` and modifying the tree (it takes the write lock, so the caller doesn't have to). The other methods return the range of the unquoted value of the attribute, relative to the tree, and relative to the document. These may be different if the XML `IFile` is not the primary PSI tree in the file.
@@ -139,6 +151,8 @@ public static class XmlElementFactoryExtensions
   public static IXmlFile CreateFileRaw(this IXmlElementFactory factory, this string xmlText);
 }
 ```
+
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlElementFactory](ElementFactories.md#ixmlelementfactory), [IXmlFile](TreeNodes.md#ixmlfile)
 
 <!-- End XmlElementFactoryExtensions -->
 
@@ -179,6 +193,8 @@ public static class XmlTagExtensions
 }
 ```
 
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlTag](TreeNodes.md#ixmltag)
+
 <!-- End XmlTagExtensions -->
 
 Convenience methods that call into properties and methods on [`IXmlTag`](TreeNodes.md#ixmltag) and child nodes. E.g. `GetTagName` returns `tag.Header.Name.XmlName`, and `Remove` finds the tag's parent [`IXmlTagContainer`](TreeNodes.md#ixmltagcontainer) and calls `IXmlTagContainer.RemoveTag`.
@@ -196,6 +212,8 @@ public static class XmlTagUtil
   public static void MakeEmptyTag(IXmlTag tag);
 }
 ```
+
+* See also: [IXmlTag](TreeNodes.md#ixmltag)
 
 <!-- End XmlTagUtil -->
 
@@ -215,6 +233,8 @@ public static class XPathUtil
   public static IList<T> GetNestedTags<T>(IXmlTagContainer container, string xpath);
 }
 ```
+
+* See also: [IXmlTagContainer](TreeNodes.md#ixmltagcontainer)
 
 <!-- End XPathUtil -->
 

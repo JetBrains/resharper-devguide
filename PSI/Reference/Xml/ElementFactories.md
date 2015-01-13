@@ -30,6 +30,8 @@ public class DefaultXmlElementFactoryContext :
 }
 ```
 
+* See also: [IXmlElementFactoryContext](ElementFactories.md#ixmlelementfactorycontext), [IXmlTag](TreeNodes.md#ixmltag)
+
 <!-- End DefaultXmlElementFactoryContext -->
 
 Default implementation of [`IXmlElementFactoryContext`](#ixmlelementfactorycontext) that defers to `ITreeNode.GetContainingNode<T>()` and `XmlTagNavigator.GetByTag()`.
@@ -82,6 +84,8 @@ public class DelegatingXmlElementFactory :
 }
 ```
 
+* See also: [IAnyContent](TreeNodesDTD.md#ianycontent), [IAttDef](TreeNodesDTD.md#iattdef), [IAttType](TreeNodesDTD.md#iatttype), [IDocTypeDeclaration](TreeNodesDTD.md#idoctypedeclaration), [IDTDAttListDecl](TreeNodesDTD.md#idtdattlistdecl), [IDTDBody](TreeNodesDTD.md#idtdbody), [IDTDElementDecl](TreeNodesDTD.md#idtdelementdecl), [IDTDEntityDecl](TreeNodesDTD.md#idtdentitydecl), [IDTDNDataDecl](TreeNodesDTD.md#idtdndatadecl), [IDTDNotationDecl](TreeNodesDTD.md#idtdnotationdecl), [IElementContent](TreeNodesDTD.md#ielementcontent), [IEmptyContent](TreeNodesDTD.md#iemptycontent), [IExternalId](TreeNodesDTD.md#iexternalid), [IGrouppedContent](TreeNodesDTD.md#igrouppedcontent), [IProcessingInstruction](TreeNodes.md#iprocessinginstruction), [IRepetitionContent](TreeNodesDTD.md#irepetitioncontent), [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlAttributeContainer](TreeNodes.md#ixmlattributecontainer), [IXmlAttributeValue](TreeNodes.md#ixmlattributevalue), [IXmlCData](TreeNodes.md#ixmlcdata), [IXmlComment](TreeNodes.md#ixmlcomment), [IXmlElementFactory](ElementFactories.md#ixmlelementfactory), [IXmlElementFactoryContext](ElementFactories.md#ixmlelementfactorycontext), [IXmlFile](TreeNodes.md#ixmlfile), [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlProcessingInstruction](TreeNodes.md#ixmlprocessinginstruction), [IXmlSyntaxErrorElement](TreeNodes.md#ixmlsyntaxerrorelement), [IXmlTag](TreeNodes.md#ixmltag), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer), [IXmlTagFooter](TreeNodes.md#ixmltagfooter), [IXmlTagHeader](TreeNodes.md#ixmltagheader), [IXmlToken](TreeNodes.md#ixmltoken)
+
 <!-- End DelegatingXmlElementFactory -->
 
 ## I
@@ -130,6 +134,8 @@ public interface IXmlElementFactory
 }
 ```
 
+* See also: [IAnyContent](TreeNodesDTD.md#ianycontent), [IAttDef](TreeNodesDTD.md#iattdef), [IAttType](TreeNodesDTD.md#iatttype), [IDocTypeDeclaration](TreeNodesDTD.md#idoctypedeclaration), [IDTDAttListDecl](TreeNodesDTD.md#idtdattlistdecl), [IDTDBody](TreeNodesDTD.md#idtdbody), [IDTDElementDecl](TreeNodesDTD.md#idtdelementdecl), [IDTDEntityDecl](TreeNodesDTD.md#idtdentitydecl), [IDTDNDataDecl](TreeNodesDTD.md#idtdndatadecl), [IDTDNotationDecl](TreeNodesDTD.md#idtdnotationdecl), [IElementContent](TreeNodesDTD.md#ielementcontent), [IEmptyContent](TreeNodesDTD.md#iemptycontent), [IExternalId](TreeNodesDTD.md#iexternalid), [IGrouppedContent](TreeNodesDTD.md#igrouppedcontent), [IProcessingInstruction](TreeNodes.md#iprocessinginstruction), [IRepetitionContent](TreeNodesDTD.md#irepetitioncontent), [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlAttributeContainer](TreeNodes.md#ixmlattributecontainer), [IXmlAttributeValue](TreeNodes.md#ixmlattributevalue), [IXmlCData](TreeNodes.md#ixmlcdata), [IXmlComment](TreeNodes.md#ixmlcomment), [IXmlElementFactoryContext](ElementFactories.md#ixmlelementfactorycontext), [IXmlFile](TreeNodes.md#ixmlfile), [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlProcessingInstruction](TreeNodes.md#ixmlprocessinginstruction), [IXmlSyntaxErrorElement](TreeNodes.md#ixmlsyntaxerrorelement), [IXmlTag](TreeNodes.md#ixmltag), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer), [IXmlTagFooter](TreeNodes.md#ixmltagfooter), [IXmlTagHeader](TreeNodes.md#ixmltagheader), [IXmlToken](TreeNodes.md#ixmltoken)
+
 <!-- End IXmlElementFactory -->
 
 ### IXmlElementFactoryContext
@@ -143,6 +149,8 @@ public interface IXmlElementFactoryContext
   IXmlTag GetParentTag(IXmlTag currentTag);
 }
 ```
+
+* See also: [IXmlTag](TreeNodes.md#ixmltag)
 
 <!-- End IXmlElementFactoryContext -->
 
@@ -168,6 +176,8 @@ public class ResyncXmlElementFactory :
 }
 ```
 
+* See also: [DelegatingXmlElementFactory](ElementFactories.md#delegatingxmlelementfactory), [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlAttributeContainer](TreeNodes.md#ixmlattributecontainer), [IXmlElementFactoryContext](ElementFactories.md#ixmlelementfactorycontext), [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlTag](TreeNodes.md#ixmltag), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer), [IXmlTagFooter](TreeNodes.md#ixmltagfooter), [IXmlTagHeader](TreeNodes.md#ixmltagheader)
+
 <!-- End ResyncXmlElementFactory -->
 
 Implementation detail for incremental reparsing. When a change is made to a file which is encapsulated by an [`IXmlTag`](TreeNodes.md#ixmltag), the tag's `IChameleonNode.Resync` method is called, and the node tries to reparse just its contents, rather than have to parse the whole file on each change.
@@ -188,6 +198,8 @@ public class ResyncXmlElementFactoryContext :
   public IXmlTag GetParentTag(IXmlTag currentTag);
 }
 ```
+
+* See also: [IXmlElementFactoryContext](ElementFactories.md#ixmlelementfactorycontext), [IXmlTag](TreeNodes.md#ixmltag)
 
 <!-- End ResyncXmlElementFactoryContext -->
 
@@ -219,6 +231,8 @@ public class XmlElementFactory
 }
 ```
 
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlElementFactory](ElementFactories.md#ixmlelementfactory), [IXmlFile](TreeNodes.md#ixmlfile), [IXmlTag](TreeNodes.md#ixmltag)
+
 <!-- End XmlElementFactory -->
 
 Methods for creating instances of [`IXmlFile`](TreeNodes.md#ixmlfile), [`IXmlTag`](TreeNodes.md#ixmltag) and [`IXmlAttribute`](#ixmlattribute). It is intended for use by code client. Note that it does not implement the similarly named [`IXmlElementFactory`](#ixmlelementfactory) interface (in fact, internally, it uses this interface). Clients can get an instance of the class via the `GetInstance` static method. Passing in an `ITreeNode` allows for getting the language specific implementations of [`IXmlElementFactory`](#ixmlelementfactory) and `XmlLanguageSupport`.
@@ -247,6 +261,8 @@ public class XmlElementFactory<TXmlLanguage> :
 }
 ```
 
+* See also: [XmlElementFactory](ElementFactories.md#xmlelementfactory)
+
 <!-- End XmlElementFactory`1 -->
 
 A derived instance of [`XmlElementFactory`](#xmlelementfactory) which allows creating calling `GetInstance` for a specific language without requiring an instance of `ITreeNode`. Also derived by some XML languages to provide additional functionality for the factory, e.g. `ResxElementFactory` and `XamlElementFactory`.
@@ -264,6 +280,8 @@ public class XmlElementFactoryForCreateAttribute :
   public override IXmlAttribute CreateAttribute(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context);
 }
 ```
+
+* See also: [DelegatingXmlElementFactory](ElementFactories.md#delegatingxmlelementfactory), [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlAttributeContainer](TreeNodes.md#ixmlattributecontainer), [IXmlElementFactoryContext](ElementFactories.md#ixmlelementfactorycontext), [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer)
 
 <!-- End XmlElementFactoryForCreateAttribute -->
 
@@ -283,6 +301,8 @@ public class XmlElementFactoryForCreateTag :
   public override IXmlTag CreateTag(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context);
 }
 ```
+
+* See also: [DelegatingXmlElementFactory](ElementFactories.md#delegatingxmlelementfactory), [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlAttributeContainer](TreeNodes.md#ixmlattributecontainer), [IXmlElementFactoryContext](ElementFactories.md#ixmlelementfactorycontext), [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlTag](TreeNodes.md#ixmltag), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer), [IXmlTagHeader](TreeNodes.md#ixmltagheader)
 
 <!-- End XmlElementFactoryForCreateTag -->
 
@@ -338,6 +358,8 @@ public class XmlTreeNodeFactory :
   public static IXmlElementFactory GetInstance(ITreeNode element);
 }
 ```
+
+* See also: [IAnyContent](TreeNodesDTD.md#ianycontent), [IAttDef](TreeNodesDTD.md#iattdef), [IAttType](TreeNodesDTD.md#iatttype), [IDocTypeDeclaration](TreeNodesDTD.md#idoctypedeclaration), [IDTDAttListDecl](TreeNodesDTD.md#idtdattlistdecl), [IDTDBody](TreeNodesDTD.md#idtdbody), [IDTDElementDecl](TreeNodesDTD.md#idtdelementdecl), [IDTDEntityDecl](TreeNodesDTD.md#idtdentitydecl), [IDTDNDataDecl](TreeNodesDTD.md#idtdndatadecl), [IDTDNotationDecl](TreeNodesDTD.md#idtdnotationdecl), [IElementContent](TreeNodesDTD.md#ielementcontent), [IEmptyContent](TreeNodesDTD.md#iemptycontent), [IExternalId](TreeNodesDTD.md#iexternalid), [IGrouppedContent](TreeNodesDTD.md#igrouppedcontent), [IProcessingInstruction](TreeNodes.md#iprocessinginstruction), [IRepetitionContent](TreeNodesDTD.md#irepetitioncontent), [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlAttributeContainer](TreeNodes.md#ixmlattributecontainer), [IXmlAttributeValue](TreeNodes.md#ixmlattributevalue), [IXmlCData](TreeNodes.md#ixmlcdata), [IXmlComment](TreeNodes.md#ixmlcomment), [IXmlElementFactory](ElementFactories.md#ixmlelementfactory), [IXmlElementFactoryContext](ElementFactories.md#ixmlelementfactorycontext), [IXmlFile](TreeNodes.md#ixmlfile), [IXmlIdentifier](TreeNodes.md#ixmlidentifier), [IXmlProcessingInstruction](TreeNodes.md#ixmlprocessinginstruction), [IXmlSyntaxErrorElement](TreeNodes.md#ixmlsyntaxerrorelement), [IXmlTag](TreeNodes.md#ixmltag), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer), [IXmlTagFooter](TreeNodes.md#ixmltagfooter), [IXmlTagHeader](TreeNodes.md#ixmltagheader), [IXmlToken](TreeNodes.md#ixmltoken)
 
 <!-- End XmlTreeNodeFactory -->
 

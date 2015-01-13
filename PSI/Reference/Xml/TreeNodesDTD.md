@@ -17,6 +17,8 @@ public interface IAnyContent :
 }
 ```
 
+* See also: [IElementContent](TreeNodesDTD.md#ielementcontent)
+
 <!-- End IAnyContent -->
 
 ### IAttDef
@@ -31,6 +33,8 @@ public interface IAttDef :
   string Name { get; }
 }
 ```
+
+* See also: [IAttType](TreeNodesDTD.md#iatttype)
 
 <!-- End IAttDef -->
 
@@ -48,6 +52,8 @@ public interface IAttType :
   IEnumerable<string> Types { get; }
 }
 ```
+
+* See also: [IXmlLparenthTokenNode](TreeNodes.md#ixmllparenthtokennode), [IXmlRparenthTokenNode](TreeNodes.md#ixmlrparenthtokennode)
 
 <!-- End IAttType -->
 
@@ -68,6 +74,8 @@ public interface IDocTypeDeclaration :
 }
 ```
 
+* See also: [IDTDBody](TreeNodesDTD.md#idtdbody), [IExternalId](TreeNodesDTD.md#iexternalid), [IXmlDtdStartTokenNode](TreeNodes.md#ixmldtdstarttokennode), [IXmlTagEndTokenNode](TreeNodes.md#ixmltagendtokennode)
+
 <!-- End IDocTypeDeclaration -->
 
 ### IDTDAttListDecl
@@ -85,6 +93,8 @@ public interface IDTDAttListDecl :
 }
 ```
 
+* See also: [IAttDef](TreeNodesDTD.md#iattdef), [IXmlAttlistStartTokenNode](TreeNodesDTD.md#ixmlattliststarttokennode), [IXmlTagEndTokenNode](TreeNodes.md#ixmltagendtokennode)
+
 <!-- End IDTDAttListDecl -->
 
 ### IDTDBody
@@ -99,6 +109,8 @@ public interface IDTDBody :
   IXmlRbracketTokenNode RBracket { get; }
 }
 ```
+
+* See also: [IXmlLbracketTokenNode](TreeNodes.md#ixmllbrackettokennode), [IXmlRbracketTokenNode](TreeNodes.md#ixmlrbrackettokennode)
 
 <!-- End IDTDBody -->
 
@@ -117,6 +129,8 @@ public interface IDTDElementDecl :
 }
 ```
 
+* See also: [IElementContent](TreeNodesDTD.md#ielementcontent), [IXmlElementStartTokenNode](TreeNodesDTD.md#ixmlelementstarttokennode), [IXmlTagEndTokenNode](TreeNodes.md#ixmltagendtokennode)
+
 <!-- End IDTDElementDecl -->
 
 ### IDTDEntityDecl
@@ -133,6 +147,8 @@ public interface IDTDEntityDecl :
   string Value { get; }
 }
 ```
+
+* See also: [IXmlEntityStartTokenNode](TreeNodesDTD.md#ixmlentitystarttokennode), [IXmlTagEndTokenNode](TreeNodes.md#ixmltagendtokennode)
 
 <!-- End IDTDEntityDecl -->
 
@@ -152,6 +168,8 @@ public interface IDTDFile :
 {
 }
 ```
+
+* See also: [IDTDBody](TreeNodesDTD.md#idtdbody), [IXmlDocumentNode](TreeNodes.md#ixmldocumentnode), [IXmlFile](TreeNodes.md#ixmlfile), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IDTDFile -->
 
@@ -185,6 +203,8 @@ public interface IDTDNotationDecl :
 }
 ```
 
+* See also: [IXmlNotationStartTokenNode](TreeNodesDTD.md#ixmlnotationstarttokennode), [IXmlTagEndTokenNode](TreeNodes.md#ixmltagendtokennode)
+
 <!-- End IDTDNotationDecl -->
 
 ## E
@@ -213,6 +233,8 @@ public interface IEmptyContent :
 {
 }
 ```
+
+* See also: [IElementContent](TreeNodesDTD.md#ielementcontent)
 
 <!-- End IEmptyContent -->
 
@@ -246,6 +268,8 @@ public interface IGrouppedContent :
 }
 ```
 
+* See also: [IElementContent](TreeNodesDTD.md#ielementcontent), [IXmlLparenthTokenNode](TreeNodes.md#ixmllparenthtokennode), [IXmlRparenthTokenNode](TreeNodes.md#ixmlrparenthtokennode)
+
 <!-- End IGrouppedContent -->
 
 ## P
@@ -261,6 +285,8 @@ public interface IPublicExternalId :
 {
 }
 ```
+
+* See also: [IExternalId](TreeNodesDTD.md#iexternalid)
 
 <!-- End IPublicExternalId -->
 
@@ -280,6 +306,8 @@ public interface IRepetitionContent :
 }
 ```
 
+* See also: [IElementContent](TreeNodesDTD.md#ielementcontent)
+
 <!-- End IRepetitionContent -->
 
 ## S
@@ -296,6 +324,8 @@ public interface ISimpleContent :
 }
 ```
 
+* See also: [IElementContent](TreeNodesDTD.md#ielementcontent)
+
 <!-- End ISimpleContent -->
 
 ### ISystemExternalId
@@ -309,6 +339,8 @@ public interface ISystemExternalId :
 {
 }
 ```
+
+* See also: [IExternalId](TreeNodesDTD.md#iexternalid)
 
 <!-- End ISystemExternalId -->
 
@@ -328,6 +360,8 @@ public interface IXmlAttlistStartTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlAttlistStartTokenNode -->
 
 ### IXmlElementStartTokenNode
@@ -343,6 +377,8 @@ public interface IXmlElementStartTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlElementStartTokenNode -->
 
@@ -360,6 +396,8 @@ public interface IXmlEntityStartTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlEntityStartTokenNode -->
 
 ### IXmlFixedTokenNode
@@ -375,6 +413,8 @@ public interface IXmlFixedTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlFixedTokenNode -->
 
@@ -392,6 +432,8 @@ public interface IXmlImpliedTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlImpliedTokenNode -->
 
 ### IXmlNotationStartTokenNode
@@ -408,6 +450,8 @@ public interface IXmlNotationStartTokenNode :
 }
 ```
 
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlNotationStartTokenNode -->
 
 ### IXmlRequiredTokenNode
@@ -423,6 +467,8 @@ public interface IXmlRequiredTokenNode :
 {
 }
 ```
+
+* See also: [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlRequiredTokenNode -->
 

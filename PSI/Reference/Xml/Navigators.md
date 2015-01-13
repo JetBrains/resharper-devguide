@@ -18,6 +18,8 @@ public static class XmlAttributeNavigator
 }
 ```
 
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlAttributeValue](TreeNodes.md#ixmlattributevalue)
+
 <!-- End XmlAttributeNavigator -->
 
 Navigate up the tree to an instance of `IXmlAttribute`, given an `IXmlAttributeValue`. Returns `null` if it can't find the `IXmlAttribute`.
@@ -32,6 +34,8 @@ public static class XmlTagContainerNavigator
   public static IXmlTagContainer GetByTag(IXmlTag tag);
 }
 ```
+
+* See also: [IXmlTag](TreeNodes.md#ixmltag), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer)
 
 <!-- End XmlTagContainerNavigator -->
 
@@ -50,6 +54,8 @@ public static class XmlTagNavigator
   public static IXmlTag GetByTagHeader(IXmlTagHeader header);
 }
 ```
+
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlTag](TreeNodes.md#ixmltag), [IXmlTagFooter](TreeNodes.md#ixmltagfooter), [IXmlTagHeader](TreeNodes.md#ixmltagheader)
 
 <!-- End XmlTagNavigator -->
 

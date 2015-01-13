@@ -50,6 +50,8 @@ public interface IXmlToken :
 }
 ```
 
+* See also: [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlToken -->
 
 The `ITokenNode.GetTokenType` method is hidden by a new method of the same name, but that returns an instance of `XmlTokenNodeType`, rather than `TokenNodeType`. `XmlTokenNodeType` derives from the `TokenNodeType` abstract class and adds a single property, that returns the `XmlTokenTypes` class that lists all the known token node types. This class can be a derived instance for some XML languages, such as XAML.
@@ -76,6 +78,8 @@ public interface IXmlFile :
   XmlElementTypes XmlElementTypes { get; }
 }
 ```
+
+* See also: [IProcessingInstruction](TreeNodes.md#iprocessinginstruction), [IXmlDocumentNode](TreeNodes.md#ixmldocumentnode), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlFile -->
 
@@ -124,6 +128,8 @@ public interface IXmlTag :
 }
 ```
 
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlTagContainer](TreeNodes.md#ixmltagcontainer), [IXmlTagFooter](TreeNodes.md#ixmltagfooter), [IXmlTagHeader](TreeNodes.md#ixmltagheader), [IXmlToken](TreeNodes.md#ixmltoken), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
+
 <!-- End IXmlTag -->
 
 ### XML attributes
@@ -142,6 +148,8 @@ public interface IXmlAttributeContainer :
   string ContainerName { get; }
 }
 ```
+
+* See also: [IXmlAttribute](TreeNodes.md#ixmlattribute), [IXmlTreeNode](TreeNodes.md#ixmltreenode)
 
 <!-- End IXmlAttributeContainer -->
 
