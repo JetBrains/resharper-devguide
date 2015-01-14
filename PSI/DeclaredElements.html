@@ -44,7 +44,7 @@
 
 
         
-    <div class="book" data-level="9.8" data-basepath=".." data-revision="1420728981635">
+    <div class="book" data-level="9.8" data-basepath=".." data-revision="1421236054123">
     
 
 <div class="book-summary">
@@ -668,10 +668,40 @@
                 
     
         
-        <li class="chapter " data-level="7.1">
+        <li class="chapter " data-level="7.1" data-path="Platform/Logging.html">
             
-            <span><b>1.</b> Logging</span>
+                
+                    <a href="../Platform/Logging.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Logging
+                    </a>
+                
             
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1.1">
+            
+            <span><b>1.1.</b> Usage</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.1.2">
+            
+            <span><b>1.2.</b> Category Reference</span>
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -3547,7 +3577,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_61">
+                    <section class="normal" id="section-gitbook_60">
                     
                         <h1 id="declared-elements"><a name="declared-elements" class="plugin-anchor" href="#declared-elements"><span class="fa fa-link"></span></a>Declared Elements</h1>
 <p>Declared elements are the backbone of ReSharper&apos;s semantic model, and provide a language-agnostic entry point into the semantic model of the codebase. While an AST provides a high-fidelity model of a code file, it is a representation only of the syntax - the typed text. It does little to help with the semantic view of the underlying code. For example, a definition of a C# class may be split across multiple files by using the <code>partial</code> keyword. Retrieving all type members from the AST now requires processing multiple ASTs, and the existing AST gives no indication of the location of the other part of the file. Similarly, if a C# class derives from the class <code>Foo</code>, the AST gives no indication which class <code>Foo</code> - what namespace does it belong to? A semantic model provides all of this information, for example, applying the type resolution rules to the <code>using</code> statements at the top of the file.</p>

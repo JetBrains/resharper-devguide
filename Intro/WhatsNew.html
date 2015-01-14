@@ -46,7 +46,7 @@
 
 
         
-    <div class="book" data-level="5.3" data-basepath=".." data-revision="1420728981635">
+    <div class="book" data-level="5.3" data-basepath=".." data-revision="1421236054123">
     
 
 <div class="book-summary">
@@ -670,10 +670,40 @@
                 
     
         
-        <li class="chapter " data-level="7.1">
+        <li class="chapter " data-level="7.1" data-path="Platform/Logging.html">
             
-            <span><b>1.</b> Logging</span>
+                
+                    <a href="../Platform/Logging.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Logging
+                    </a>
+                
             
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1.1">
+            
+            <span><b>1.1.</b> Usage</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.1.2">
+            
+            <span><b>1.2.</b> Category Reference</span>
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -3549,7 +3579,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_41">
+                    <section class="normal" id="section-gitbook_12">
                     
                         <h1 id="whats-new-in-resharper-90"><a name="whats-new-in-resharper-90" class="plugin-anchor" href="#whats-new-in-resharper-90"><span class="fa fa-link"></span></a>What&apos;s New in ReSharper 9.0?</h1>
 <p>This document lists the major changes between ReSharper 8 and ReSharper 9, for extension authors. It is not an exhaustive list, but lists the major breaking changes. Other minor changes may exist. If you wish to update this page, please <a href="https://github.com/JetBrains/resharper-devguide/edit/master/Intro/WhatsNew.md" target="_blank">edit it</a>, or <a href="https://github.com/JetBrains/resharper-devguide/issues" target="_blank">submit an issue</a>.</p>
@@ -3605,8 +3635,7 @@
 <p>Starting with ReSharper 9.0, the Component Model will no longer immediately create components during application startup, but will instead defer creation until the application becomes idle. This has a very positive impact on application startup performance.</p>
 <p>More specifically, any classes marked with attributes such as <code>[ShellComponent]</code> and <code>[SolutionComponent]</code> are no longer created immediately, as the parts container is composed (e.g. application startup, or solution load), but are queued up to the current thread&apos;s <code>Dispatcher</code>, at <code>Background</code> priority. The components are still created on the main thread, as in previous versions, and all dependencies are still created first.</p>
 <p>One implication of this change is that the application can now be up and running before all of the components in the container have been created. Previous versions would create the whole container before allowing the application to continue running. There may be cases where a component should be created in a more timely manner. For example, the Visual Studio integration needs to be created and hooked up before the application can continue. In this case, the component can require &quot;instant&quot; activation, in which case the component (and all of the components required to satisfy constructor dependencies) are created immediately rather than scheduled:</p>
-<pre><code class="lang-cs"><span class="hljs-comment">// Note the typo. This is likely to be fixed by RTM</span>
-<span class="hljs-attribute">[<span class="hljs-title">ShellComponent</span><span class="hljs-params">(Requirement = InstanciationRequirement.Instant)</span>]</span>
+<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ShellComponent</span><span class="hljs-params">(Requirement = InstantiationRequirement.Instant)</span>]</span>
 <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">ImmediateComponent</span>
 </span>{
 }

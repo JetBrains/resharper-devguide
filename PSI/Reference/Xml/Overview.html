@@ -44,7 +44,7 @@
 
 
         
-    <div class="book" data-level="9.19.10" data-basepath="../../.." data-revision="1420728981635">
+    <div class="book" data-level="9.19.10" data-basepath="../../.." data-revision="1421236054123">
     
 
 <div class="book-summary">
@@ -668,10 +668,40 @@
                 
     
         
-        <li class="chapter " data-level="7.1">
+        <li class="chapter " data-level="7.1" data-path="Platform/Logging.html">
             
-            <span><b>1.</b> Logging</span>
+                
+                    <a href="../../../Platform/Logging.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Logging
+                    </a>
+                
             
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1.1">
+            
+            <span><b>1.1.</b> Usage</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.1.2">
+            
+            <span><b>1.2.</b> Category Reference</span>
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -3547,7 +3577,7 @@
                 <div class="page-inner">
                 
                 
-                    <section class="normal" id="section-gitbook_57">
+                    <section class="normal" id="section-gitbook_58">
                     
                         <h1 id="overview"><a name="overview" class="plugin-anchor" href="#overview"><span class="fa fa-link"></span></a>Overview</h1>
 <!-- toc -->
@@ -3598,6 +3628,9 @@
   <span class="hljs-keyword">new</span> <span class="hljs-function">XmlTokenNodeType <span class="hljs-title">GetTokenType</span><span class="hljs-params">()</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="TreeNodes.html#ixmltreenode">IXmlTreeNode</a></li>
+</ul>
 <!-- End IXmlToken -->
 <p>The <code>ITokenNode.GetTokenType</code> method is hidden by a new method of the same name, but that returns an instance of <code>XmlTokenNodeType</code>, rather than <code>TokenNodeType</code>. <code>XmlTokenNodeType</code> derives from the <code>TokenNodeType</code> abstract class and adds a single property, that returns the <code>XmlTokenTypes</code> class that lists all the known token node types. This class can be a derived instance for some XML languages, such as XAML.</p>
 <pre><code class="lang-cs"><span class="hljs-keyword">public</span> XmlTokenTypes <span class="hljs-title">XmlTokenTypes</span> { <span class="hljs-keyword">get</span>; }
@@ -3616,6 +3649,9 @@
   XmlElementTypes <span class="hljs-title">XmlElementTypes</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
+<ul>
+<li>See also: <a href="TreeNodes.html#iprocessinginstruction">IProcessingInstruction</a>, <a href="TreeNodes.html#ixmldocumentnode">IXmlDocumentNode</a>, <a href="TreeNodes.html#ixmltagcontainer">IXmlTagContainer</a>, <a href="TreeNodes.html#ixmltreenode">IXmlTreeNode</a></li>
+</ul>
 <!-- End IXmlFile -->
 <p>The <code>XmlElementTypes</code> property provides access to the composite node type instances assigned to the composite, non-leaf nodes when building the tree. These instances are the values returned from <code>ITreeNode.NodeType</code>. It can be used to compare against the node type of any node, to look for nodes of a certain type, and is also used by the XML file parser to create element nodes via the element node type instances&apos; <code>Create</code> method. The type of <code>XmlElementTypes</code> might be a derived instance, depending on the XML language.</p>
 <p>The <code>IXmlFile</code> directly exposes a collection of processing instructions. This only returns processing instructions that implement <a href="TreeNodes.html#iprocessinginstruction"><code>IProcessingInstruction</code></a>, and despite its name, the <a href="TreeNodes.html#ixmlprocessinginstruction"><code>IXmlProcessingInstruction</code></a> that represents the XML declaration doesn&apos;t get returned in this collection. To get at the XML declaration, you need to get it directly from the child nodes:</p>
@@ -3648,6 +3684,9 @@
   <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">RemoveAttribute</span><span class="hljs-params">(IXmlAttribute attribute)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="TreeNodes.html#ixmlattribute">IXmlAttribute</a>, <a href="TreeNodes.html#ixmltagcontainer">IXmlTagContainer</a>, <a href="TreeNodes.html#ixmltagfooter">IXmlTagFooter</a>, <a href="TreeNodes.html#ixmltagheader">IXmlTagHeader</a>, <a href="TreeNodes.html#ixmltoken">IXmlToken</a>, <a href="TreeNodes.html#ixmltreenode">IXmlTreeNode</a></li>
+</ul>
 <!-- End IXmlTag -->
 <h3 id="xml-attributes"><a name="xml-attributes" class="plugin-anchor" href="#xml-attributes"><span class="fa fa-link"></span></a>XML attributes</h3>
 <p>Attributes are accessible via the <a href="TreeNodes.html#ixmlattributecontainer"><code>IXmlAttributeContainer</code></a> interface, mostly implemented by <a href="TreeNodes.html#ixmltagheader"><code>IXmlTagHeader</code></a>, but also by the XML declaration <a href="TreeNodes.html#ixmlprocessinginstruction"><code>IXmlProcessingInstruction</code></a>.</p>
@@ -3661,6 +3700,9 @@
   <span class="hljs-keyword">string</span> <span class="hljs-title">ContainerName</span> { <span class="hljs-keyword">get</span>; }
 }
 </code></pre>
+<ul>
+<li>See also: <a href="TreeNodes.html#ixmlattribute">IXmlAttribute</a>, <a href="TreeNodes.html#ixmltreenode">IXmlTreeNode</a></li>
+</ul>
 <!-- End IXmlAttributeContainer -->
 <p>Methods to add and remove attributes are available on <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a>.</p>
 <h3 id="processing-instructions"><a name="processing-instructions" class="plugin-anchor" href="#processing-instructions"><span class="fa fa-link"></span></a>Processing Instructions</h3>

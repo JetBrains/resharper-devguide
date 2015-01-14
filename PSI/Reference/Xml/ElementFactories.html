@@ -46,7 +46,7 @@
 
 
         
-    <div class="book" data-level="9.19.10.3" data-basepath="../../.." data-revision="1420728981635">
+    <div class="book" data-level="9.19.10.3" data-basepath="../../.." data-revision="1421236054123">
     
 
 <div class="book-summary">
@@ -670,10 +670,40 @@
                 
     
         
-        <li class="chapter " data-level="7.1">
+        <li class="chapter " data-level="7.1" data-path="Platform/Logging.html">
             
-            <span><b>1.</b> Logging</span>
+                
+                    <a href="../../../Platform/Logging.html">
+                        <i class="fa fa-check"></i>
+                        
+                            <b>1.</b>
+                        
+                         Logging
+                    </a>
+                
             
+            
+            <ul class="articles">
+                
+    
+        
+        <li class="chapter " data-level="7.1.1">
+            
+            <span><b>1.1.</b> Usage</span>
+            
+            
+        </li>
+    
+        
+        <li class="chapter " data-level="7.1.2">
+            
+            <span><b>1.2.</b> Category Reference</span>
+            
+            
+        </li>
+    
+
+            </ul>
             
         </li>
     
@@ -3552,6 +3582,9 @@
                     <section class="normal" id="section-gitbook_54">
                     
                         <h1 id="elementfactories"><a name="elementfactories" class="plugin-anchor" href="#elementfactories"><span class="fa fa-link"></span></a>ElementFactories</h1>
+<!-- Not auto-indexed, so we can split definitions between XML and XML DTD.
+     Also not including ClrDocCommentElementFactoryImpl + DocCommentElementFactory.
+     These are XML Doc Comment PSI element factories -->
 <p>The XML PSI has several classes related to element factories, that is, for creating <a href="TreeNodes.html#ixmltreenode"><code>IXmlTreeNode</code></a> derived instances. Some of the classes are for internal use, or implementation details. They are documented here for completeness, and to avoid confusion when spelunking around the code in dotPeek.</p>
 <p>The <a href="#xmlelementfactory"><code>XmlElementFactory</code></a> class is the class to use for creating tags, attributes or an entire <a href="#ixmlfile"><code>IXmlFile</code></a> instance. Use the <code>XmlElementFactory.GetInstance</code> method to get a copy of the class. The <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> interface is a lower level API which can create any <a href="TreeNodes.html#ixmltreenode"><code>IXmlTreeNode</code></a> instance. The default implementation is <a href="#xmltreenodefactory"><code>XmlTreeNodeFactory</code></a> and can be retrieved using the <code>XmlTreeNodeFactory.GetInstance</code> method.</p>
 <p>All other classes and interfaces are used internally, and will probably not be used from client code.</p>
@@ -3594,6 +3627,9 @@
   <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTag <span class="hljs-title">GetParentTag</span><span class="hljs-params">(IXmlTag currentTag)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="ElementFactories.html#ixmlelementfactorycontext">IXmlElementFactoryContext</a>, <a href="TreeNodes.html#ixmltag">IXmlTag</a></li>
+</ul>
 <!-- End DefaultXmlElementFactoryContext -->
 <p>Default implementation of <a href="#ixmlelementfactorycontext"><code>IXmlElementFactoryContext</code></a> that defers to <code>ITreeNode.GetContainingNode&lt;T&gt;()</code> and <code>XmlTagNavigator.GetByTag()</code>.</p>
 <h3 id="delegatingxmlelementfactory"><a name="delegatingxmlelementfactory" class="plugin-anchor" href="#delegatingxmlelementfactory"><span class="fa fa-link"></span></a>DelegatingXmlElementFactory</h3>
@@ -3640,6 +3676,9 @@
   <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlToken <span class="hljs-title">CreateToken</span><span class="hljs-params">(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="TreeNodesDTD.html#ianycontent">IAnyContent</a>, <a href="TreeNodesDTD.html#iattdef">IAttDef</a>, <a href="TreeNodesDTD.html#iatttype">IAttType</a>, <a href="TreeNodesDTD.html#idoctypedeclaration">IDocTypeDeclaration</a>, <a href="TreeNodesDTD.html#idtdattlistdecl">IDTDAttListDecl</a>, <a href="TreeNodesDTD.html#idtdbody">IDTDBody</a>, <a href="TreeNodesDTD.html#idtdelementdecl">IDTDElementDecl</a>, <a href="TreeNodesDTD.html#idtdentitydecl">IDTDEntityDecl</a>, <a href="TreeNodesDTD.html#idtdndatadecl">IDTDNDataDecl</a>, <a href="TreeNodesDTD.html#idtdnotationdecl">IDTDNotationDecl</a>, <a href="TreeNodesDTD.html#ielementcontent">IElementContent</a>, <a href="TreeNodesDTD.html#iemptycontent">IEmptyContent</a>, <a href="TreeNodesDTD.html#iexternalid">IExternalId</a>, <a href="TreeNodesDTD.html#igrouppedcontent">IGrouppedContent</a>, <a href="TreeNodes.html#iprocessinginstruction">IProcessingInstruction</a>, <a href="TreeNodesDTD.html#irepetitioncontent">IRepetitionContent</a>, <a href="TreeNodes.html#ixmlattribute">IXmlAttribute</a>, <a href="TreeNodes.html#ixmlattributecontainer">IXmlAttributeContainer</a>, <a href="TreeNodes.html#ixmlattributevalue">IXmlAttributeValue</a>, <a href="TreeNodes.html#ixmlcdata">IXmlCData</a>, <a href="TreeNodes.html#ixmlcomment">IXmlComment</a>, <a href="ElementFactories.html#ixmlelementfactory">IXmlElementFactory</a>, <a href="ElementFactories.html#ixmlelementfactorycontext">IXmlElementFactoryContext</a>, <a href="TreeNodes.html#ixmlfile">IXmlFile</a>, <a href="TreeNodes.html#ixmlidentifier">IXmlIdentifier</a>, <a href="TreeNodes.html#ixmlprocessinginstruction">IXmlProcessingInstruction</a>, <a href="TreeNodes.html#ixmlsyntaxerrorelement">IXmlSyntaxErrorElement</a>, <a href="TreeNodes.html#ixmltag">IXmlTag</a>, <a href="TreeNodes.html#ixmltagcontainer">IXmlTagContainer</a>, <a href="TreeNodes.html#ixmltagfooter">IXmlTagFooter</a>, <a href="TreeNodes.html#ixmltagheader">IXmlTagHeader</a>, <a href="TreeNodes.html#ixmltoken">IXmlToken</a></li>
+</ul>
 <!-- End DelegatingXmlElementFactory -->
 <h2 id="i"><a name="i" class="plugin-anchor" href="#i"><span class="fa fa-link"></span></a>I</h2>
 <h3 id="ixmlelementfactory"><a name="ixmlelementfactory" class="plugin-anchor" href="#ixmlelementfactory"><span class="fa fa-link"></span></a>IXmlElementFactory</h3>
@@ -3682,6 +3721,9 @@
   <span class="hljs-function">IXmlToken <span class="hljs-title">CreateToken</span><span class="hljs-params">(ITokenIntern internalizer, XmlTokenNodeType tokenType, IBuffer buffer, <span class="hljs-keyword">int</span> startOffset, <span class="hljs-keyword">int</span> endOffset)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="TreeNodesDTD.html#ianycontent">IAnyContent</a>, <a href="TreeNodesDTD.html#iattdef">IAttDef</a>, <a href="TreeNodesDTD.html#iatttype">IAttType</a>, <a href="TreeNodesDTD.html#idoctypedeclaration">IDocTypeDeclaration</a>, <a href="TreeNodesDTD.html#idtdattlistdecl">IDTDAttListDecl</a>, <a href="TreeNodesDTD.html#idtdbody">IDTDBody</a>, <a href="TreeNodesDTD.html#idtdelementdecl">IDTDElementDecl</a>, <a href="TreeNodesDTD.html#idtdentitydecl">IDTDEntityDecl</a>, <a href="TreeNodesDTD.html#idtdndatadecl">IDTDNDataDecl</a>, <a href="TreeNodesDTD.html#idtdnotationdecl">IDTDNotationDecl</a>, <a href="TreeNodesDTD.html#ielementcontent">IElementContent</a>, <a href="TreeNodesDTD.html#iemptycontent">IEmptyContent</a>, <a href="TreeNodesDTD.html#iexternalid">IExternalId</a>, <a href="TreeNodesDTD.html#igrouppedcontent">IGrouppedContent</a>, <a href="TreeNodes.html#iprocessinginstruction">IProcessingInstruction</a>, <a href="TreeNodesDTD.html#irepetitioncontent">IRepetitionContent</a>, <a href="TreeNodes.html#ixmlattribute">IXmlAttribute</a>, <a href="TreeNodes.html#ixmlattributecontainer">IXmlAttributeContainer</a>, <a href="TreeNodes.html#ixmlattributevalue">IXmlAttributeValue</a>, <a href="TreeNodes.html#ixmlcdata">IXmlCData</a>, <a href="TreeNodes.html#ixmlcomment">IXmlComment</a>, <a href="ElementFactories.html#ixmlelementfactorycontext">IXmlElementFactoryContext</a>, <a href="TreeNodes.html#ixmlfile">IXmlFile</a>, <a href="TreeNodes.html#ixmlidentifier">IXmlIdentifier</a>, <a href="TreeNodes.html#ixmlprocessinginstruction">IXmlProcessingInstruction</a>, <a href="TreeNodes.html#ixmlsyntaxerrorelement">IXmlSyntaxErrorElement</a>, <a href="TreeNodes.html#ixmltag">IXmlTag</a>, <a href="TreeNodes.html#ixmltagcontainer">IXmlTagContainer</a>, <a href="TreeNodes.html#ixmltagfooter">IXmlTagFooter</a>, <a href="TreeNodes.html#ixmltagheader">IXmlTagHeader</a>, <a href="TreeNodes.html#ixmltoken">IXmlToken</a></li>
+</ul>
 <!-- End IXmlElementFactory -->
 <h3 id="ixmlelementfactorycontext"><a name="ixmlelementfactorycontext" class="plugin-anchor" href="#ixmlelementfactorycontext"><span class="fa fa-link"></span></a>IXmlElementFactoryContext</h3>
 <!-- Begin IXmlElementFactoryContext -->
@@ -3691,6 +3733,9 @@
   <span class="hljs-function">IXmlTag <span class="hljs-title">GetParentTag</span><span class="hljs-params">(IXmlTag currentTag)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="TreeNodes.html#ixmltag">IXmlTag</a></li>
+</ul>
 <!-- End IXmlElementFactoryContext -->
 <p>Helper methods used while parsing XML into <a href="TreeNodes.html#ixmltreenode"><code>IXmlTreeNode</code></a> instances. Allows treating a node as though it has a different parent or containing node while parsing.</p>
 <h2 id="r"><a name="r" class="plugin-anchor" href="#r"><span class="fa fa-link"></span></a>R</h2>
@@ -3708,6 +3753,9 @@
   <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IXmlTagHeader <span class="hljs-title">CreateTagHeader</span><span class="hljs-params">(IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="ElementFactories.html#delegatingxmlelementfactory">DelegatingXmlElementFactory</a>, <a href="TreeNodes.html#ixmlattribute">IXmlAttribute</a>, <a href="TreeNodes.html#ixmlattributecontainer">IXmlAttributeContainer</a>, <a href="ElementFactories.html#ixmlelementfactorycontext">IXmlElementFactoryContext</a>, <a href="TreeNodes.html#ixmlidentifier">IXmlIdentifier</a>, <a href="TreeNodes.html#ixmltag">IXmlTag</a>, <a href="TreeNodes.html#ixmltagcontainer">IXmlTagContainer</a>, <a href="TreeNodes.html#ixmltagfooter">IXmlTagFooter</a>, <a href="TreeNodes.html#ixmltagheader">IXmlTagHeader</a></li>
+</ul>
 <!-- End ResyncXmlElementFactory -->
 <p>Implementation detail for incremental reparsing. When a change is made to a file which is encapsulated by an <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a>, the tag&apos;s <code>IChameleonNode.Resync</code> method is called, and the node tries to reparse just its contents, rather than have to parse the whole file on each change.</p>
 <p>The changed range is re-parsed, as a whole file. However, the element factory used by the parser is <a href="#resyncxmlelementfactory"><code>ResyncXmlElementFactory</code></a>, which is passed the original parent tag in its constructor. When creating tags, headers, footers and attributes where the passed <code>parentTag</code> is the root <a href="TreeNodes.html#ixmlfile"><code>IXmlFile</code></a>, the <a href="#resyncxmlelementfactory"><code>ResyncXmlElementFactory</code></a> replaces the <code>parentTag</code> parameter with the original parent tag passed to the constructor. This keeps the context of the original parent tag when parsing the changed child content.</p>
@@ -3722,6 +3770,9 @@
   <span class="hljs-keyword">public</span> <span class="hljs-function">IXmlTag <span class="hljs-title">GetParentTag</span><span class="hljs-params">(IXmlTag currentTag)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="ElementFactories.html#ixmlelementfactorycontext">IXmlElementFactoryContext</a>, <a href="TreeNodes.html#ixmltag">IXmlTag</a></li>
+</ul>
 <!-- End ResyncXmlElementFactoryContext -->
 <p>Defers to <a href="#defaultxmlelementfactorycontext"><code>DefaultXmlElementFactoryContext</code></a>. If the returned value is <code>null</code>, the original node passed to the constructor is checked.</p>
 <h2 id="x"><a name="x" class="plugin-anchor" href="#x"><span class="fa fa-link"></span></a>X</h2>
@@ -3745,6 +3796,9 @@
   <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">XmlElementFactory <span class="hljs-title">GetInstance</span><span class="hljs-params">(ITreeNode context, <span class="hljs-keyword">bool</span> applyFormatter = true)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="TreeNodes.html#ixmlattribute">IXmlAttribute</a>, <a href="ElementFactories.html#ixmlelementfactory">IXmlElementFactory</a>, <a href="TreeNodes.html#ixmlfile">IXmlFile</a>, <a href="TreeNodes.html#ixmltag">IXmlTag</a></li>
+</ul>
 <!-- End XmlElementFactory -->
 <p>Methods for creating instances of <a href="TreeNodes.html#ixmlfile"><code>IXmlFile</code></a>, <a href="TreeNodes.html#ixmltag"><code>IXmlTag</code></a> and <a href="#ixmlattribute"><code>IXmlAttribute</code></a>. It is intended for use by code client. Note that it does not implement the similarly named <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> interface (in fact, internally, it uses this interface). Clients can get an instance of the class via the <code>GetInstance</code> static method. Passing in an <code>ITreeNode</code> allows for getting the language specific implementations of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> and <code>XmlLanguageSupport</code>.</p>
 <ul>
@@ -3766,6 +3820,9 @@
   <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">XmlElementFactory&lt;TXmlLanguage&gt; <span class="hljs-title">GetInstance</span><span class="hljs-params">(IPsiModule module, <span class="hljs-keyword">bool</span> applyFormatter = true)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="ElementFactories.html#xmlelementfactory">XmlElementFactory</a></li>
+</ul>
 <!-- End XmlElementFactory`1 -->
 <p>A derived instance of <a href="#xmlelementfactory"><code>XmlElementFactory</code></a> which allows creating calling <code>GetInstance</code> for a specific language without requiring an instance of <code>ITreeNode</code>. Also derived by some XML languages to provide additional functionality for the factory, e.g. <code>ResxElementFactory</code> and <code>XamlElementFactory</code>.</p>
 <h3 id="xmlelementfactoryforcreateattribute"><a name="xmlelementfactoryforcreateattribute" class="plugin-anchor" href="#xmlelementfactoryforcreateattribute"><span class="fa fa-link"></span></a>XmlElementFactoryForCreateAttribute</h3>
@@ -3778,6 +3835,9 @@
   <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IXmlAttribute <span class="hljs-title">CreateAttribute</span><span class="hljs-params">(IXmlIdentifier nameIdentifier, IXmlAttributeContainer attributeContainer, IXmlTagContainer parentTag, IXmlElementFactoryContext context)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="ElementFactories.html#delegatingxmlelementfactory">DelegatingXmlElementFactory</a>, <a href="TreeNodes.html#ixmlattribute">IXmlAttribute</a>, <a href="TreeNodes.html#ixmlattributecontainer">IXmlAttributeContainer</a>, <a href="ElementFactories.html#ixmlelementfactorycontext">IXmlElementFactoryContext</a>, <a href="TreeNodes.html#ixmlidentifier">IXmlIdentifier</a>, <a href="TreeNodes.html#ixmltagcontainer">IXmlTagContainer</a></li>
+</ul>
 <!-- End XmlElementFactoryForCreateAttribute -->
 <p>Instance of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> that changes the context when creating an attribute to instead of using the passed in <code>parentTag</code> as the parent tag of the newly created attribute, uses an instance of <code>IXmlTag</code> passed to the constructor. This is used as an implementation detail of <a href="#xmlelementfactory"><code>XmlElementFactory.CreateAttributeForTag()</code></a> to make sure the new attribute is created with the correct parent tag as context. See <a href="#xmlelementfactory"><code>XmlElementFactory</code></a> for more details.</p>
 <h3 id="xmlelementfactoryforcreatetag"><a name="xmlelementfactoryforcreatetag" class="plugin-anchor" href="#xmlelementfactoryforcreatetag"><span class="fa fa-link"></span></a>XmlElementFactoryForCreateTag</h3>
@@ -3791,6 +3851,9 @@
   <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function">IXmlTag <span class="hljs-title">CreateTag</span><span class="hljs-params">(IXmlTagHeader header, IXmlTag parentTag, IXmlElementFactoryContext context)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="ElementFactories.html#delegatingxmlelementfactory">DelegatingXmlElementFactory</a>, <a href="TreeNodes.html#ixmlattribute">IXmlAttribute</a>, <a href="TreeNodes.html#ixmlattributecontainer">IXmlAttributeContainer</a>, <a href="ElementFactories.html#ixmlelementfactorycontext">IXmlElementFactoryContext</a>, <a href="TreeNodes.html#ixmlidentifier">IXmlIdentifier</a>, <a href="TreeNodes.html#ixmltag">IXmlTag</a>, <a href="TreeNodes.html#ixmltagcontainer">IXmlTagContainer</a>, <a href="TreeNodes.html#ixmltagheader">IXmlTagHeader</a></li>
+</ul>
 <!-- End XmlElementFactoryForCreateTag -->
 <p>Instance of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a> that changes the context when creating a tag to ignore the passed <code>parentTag</code> when creating the tree node, and use the tag passed to the constructor as the parent instead. This class is used as an implementation detail of <a href="#xmlelementfactory"><code>XmlElementFactory.CreateTagForTag()</code></a> to make sure the new attribute is created with the correct parent tag as context. See <a href="#xmlelementfactory"><code>XmlElementFactory</code></a> for more details.</p>
 <h3 id="xmltreenodefactory"><a name="xmltreenodefactory" class="plugin-anchor" href="#xmltreenodefactory"><span class="fa fa-link"></span></a>XmlTreeNodeFactory</h3>
@@ -3840,6 +3903,9 @@
   <span class="hljs-keyword">public</span> <span class="hljs-keyword">static</span> <span class="hljs-function">IXmlElementFactory <span class="hljs-title">GetInstance</span><span class="hljs-params">(ITreeNode element)</span></span>;
 }
 </code></pre>
+<ul>
+<li>See also: <a href="TreeNodesDTD.html#ianycontent">IAnyContent</a>, <a href="TreeNodesDTD.html#iattdef">IAttDef</a>, <a href="TreeNodesDTD.html#iatttype">IAttType</a>, <a href="TreeNodesDTD.html#idoctypedeclaration">IDocTypeDeclaration</a>, <a href="TreeNodesDTD.html#idtdattlistdecl">IDTDAttListDecl</a>, <a href="TreeNodesDTD.html#idtdbody">IDTDBody</a>, <a href="TreeNodesDTD.html#idtdelementdecl">IDTDElementDecl</a>, <a href="TreeNodesDTD.html#idtdentitydecl">IDTDEntityDecl</a>, <a href="TreeNodesDTD.html#idtdndatadecl">IDTDNDataDecl</a>, <a href="TreeNodesDTD.html#idtdnotationdecl">IDTDNotationDecl</a>, <a href="TreeNodesDTD.html#ielementcontent">IElementContent</a>, <a href="TreeNodesDTD.html#iemptycontent">IEmptyContent</a>, <a href="TreeNodesDTD.html#iexternalid">IExternalId</a>, <a href="TreeNodesDTD.html#igrouppedcontent">IGrouppedContent</a>, <a href="TreeNodes.html#iprocessinginstruction">IProcessingInstruction</a>, <a href="TreeNodesDTD.html#irepetitioncontent">IRepetitionContent</a>, <a href="TreeNodes.html#ixmlattribute">IXmlAttribute</a>, <a href="TreeNodes.html#ixmlattributecontainer">IXmlAttributeContainer</a>, <a href="TreeNodes.html#ixmlattributevalue">IXmlAttributeValue</a>, <a href="TreeNodes.html#ixmlcdata">IXmlCData</a>, <a href="TreeNodes.html#ixmlcomment">IXmlComment</a>, <a href="ElementFactories.html#ixmlelementfactory">IXmlElementFactory</a>, <a href="ElementFactories.html#ixmlelementfactorycontext">IXmlElementFactoryContext</a>, <a href="TreeNodes.html#ixmlfile">IXmlFile</a>, <a href="TreeNodes.html#ixmlidentifier">IXmlIdentifier</a>, <a href="TreeNodes.html#ixmlprocessinginstruction">IXmlProcessingInstruction</a>, <a href="TreeNodes.html#ixmlsyntaxerrorelement">IXmlSyntaxErrorElement</a>, <a href="TreeNodes.html#ixmltag">IXmlTag</a>, <a href="TreeNodes.html#ixmltagcontainer">IXmlTagContainer</a>, <a href="TreeNodes.html#ixmltagfooter">IXmlTagFooter</a>, <a href="TreeNodes.html#ixmltagheader">IXmlTagHeader</a>, <a href="TreeNodes.html#ixmltoken">IXmlToken</a></li>
+</ul>
 <!-- End XmlTreeNodeFactory -->
 <p>Default implementation of <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a>. This is used by the parser and lexer to create <a href="TreeNode.html#ixmltreenode"><code>IXmlTreeNode</code></a> instances when building the PSI tree. It is a per-language class, as indicated by the <code>[Language(typeof(XmlLanguage))]</code> attribute. This means it will be used for all XML derived languages when calling <code>LanguageManager.Instance.GetService&lt;IXmlElementFactory&gt;(language)</code>, unless the derived language implements its own <a href="#ixmlelementfactory"><code>IXmlElementFactory</code></a>.</p>
 <p>Call one of the <code>GetInstance</code> methods to get an instance of the class (internally, this calls <code>LanguageManager.GetService</code>, using the language from the passed in <code>ITreeNode</code> or the <code>TLanguage</code> generic parameter.</p>
