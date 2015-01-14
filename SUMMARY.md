@@ -45,7 +45,9 @@
     * Deployment
 
 ## Part III - Platform
-* Logging
+* [Logging](Platform/Logging.md)
+    * Usage
+    * Category Reference
 * [Lifetime](Platform/Lifetime.md)
     * [Usage](Platform/Lifetime/Usage.md)
     * [Lifetime Management](Platform/Lifetime/LifetimeDefinition.md)
