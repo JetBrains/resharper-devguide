@@ -1,9 +1,13 @@
 {
     "output": "./.grunt/gitbook",
-    "plugins": [ "richquotes", "toc", "anchors", "multipart", "-mathjax" ],
+    "plugins": [ "richquotes", "toc", "anchors", "multipart", "edit-link", "-mathjax" ],
     "pluginsConfig": {
         "richquotes": {
             "todos": true
+        },
+        "edit-link": {
+            "base": "https://github.com/JetBrains/resharper-devguide/edit/master",
+            "label": "Edit this page on GitHub"
         }
     },
 
