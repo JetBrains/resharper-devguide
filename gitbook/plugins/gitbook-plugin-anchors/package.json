@@ -2,7 +2,7 @@
   "name": "gitbook-plugin-anchors",
   "description": "Add Github style heading anchors to your Gitbook",
   "main": "index.js",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "license": "Apache 2",
   "author": {
     "name": "Bo Marchman",
@@ -25,8 +25,8 @@
   },
   "readme": "Gitbook Anchors Plugin\n==============\n\nAdd Github style heading anchors to your book.\n\n![](https://cloud.githubusercontent.com/assets/2666107/3465465/9fc9a502-0266-11e4-80ca-09a1dad1473e.png)\n\nInstall in your book using\n\t \n```\n$ npm install --save gitbook-plugin-anchors\n```\n\nAdd the plugin to your `book.json`:\n    \n```\n{\n\t\"plugins\" : [ \"anchors\" ]\n}\t\t\n```\n\n",
   "readmeFilename": "README.md",
-  "_id": "gitbook-plugin-anchors@0.3.0",
-  "_shasum": "a356fe837b9552fade08781bb971b5dbb5178cd1",
-  "_resolved": "git://github.com/citizenmatt/gitbook-plugin-anchors#0a90e491ab4687d5319666780f05b2c455728900",
-  "_from": "git://github.com/citizenmatt/gitbook-plugin-anchors#anchor_position"
+  "_id": "gitbook-plugin-anchors@0.4.0",
+  "_shasum": "9f2b1729a8470c129f6803c22d12be38ffbcdfc0",
+  "_from": "gitbook-plugin-anchors@0.4.0",
+  "_resolved": "https://registry.npmjs.org/gitbook-plugin-anchors/-/gitbook-plugin-anchors-0.4.0.tgz"
 }
