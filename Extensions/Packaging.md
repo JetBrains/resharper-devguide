@@ -20,4 +20,3 @@ The package must also add a dependency to the package called "Wave". This is the
 
 Extensions can include settings and annotations files, by including the files in a folder in the format `Extensions\{packageId}\annotations\` or `Extensions\{packageId}\settings\`, where `{packageId}` is the full ID of the package, e.g. `Extensions\CitizenMatt.Xunit\annotations\xunit.xml` or `Extensions\CitizenMatt.Xunit\settings\template.dotSettings`. These files are copied directly, with the same folder structure into the main installation directory. This folder structure is intended to prevent name clashes. If the folder name under `Extensions` does not match the package ID directly (case insensitive), then the files will not be loaded.
 
-> **WARNING** Annotations and settings files are not loaded by default in Beta 1. This will be fixed before RTM.
