@@ -68,7 +68,7 @@ The ReSharper Platform will pick up changes to the file automatically, without r
 
 The ReSharper Platform ships with a number of appenders:
 
-* `JetBrains.Util.Logging.DebugOutputLogEventListener` outputs log events to an attached debugger, using the [`OutputDebugString`](http://msdn.microsoft.com/en-us/library/windows/desktop/aa363362(v=vs.85).aspx) method.
+* `JetBrains.Util.Logging.DebugOutputLogEventListener` outputs log events to an attached debugger, using the [`OutputDebugString`](http://msdn.microsoft.com/en-us/library/windows/desktop/aa363362.aspx) method.
     * It can accept a single string argument that defines a prefix to be output before each event.
 * `JetBrains.Util.Logging.FileLogEventListener` outputs log events to a file.
     * It requires a single string argument specifying the file path. It will process the string and substitute special variables to make the log file unique.
