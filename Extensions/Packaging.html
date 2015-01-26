@@ -44,7 +44,7 @@
 
 
         
-    <div class="book" data-level="5.6" data-basepath=".." data-revision="1421662333764">
+    <div class="book" data-level="5.6" data-basepath=".." data-revision="1422271722204">
     
 
 <div class="book-summary">
@@ -3593,7 +3593,7 @@
 <p><strong>NOTE</strong> Package dependencies are case sensitive, and the installer will (silently!) refuse to install a package that does not have the correct dependency on &quot;Wave&quot;.</p>
 <p><strong>NOTE</strong> The extension package needs to have a name that includes a &quot;.&quot; separator, or the installer will refuse to install it. This is used by the installer to produce &quot;Company name&quot; metadata. The package should be in the format &quot;Company.Package&quot;, e.g. &quot;JetBrains.Plugins&quot; or &quot;CitizenMatt.Xunit&quot;.</p>
 </blockquote>
-<p>Extensions can include settings and annotations files, by including the files in a folder in the format <code>Extensions\{packageId}\annotations\</code> or <code>Extensions\{packageId}\settings\</code>, where <code>{packageId}</code> is the full ID of the package, e.g. <code>Extensions\CitizenMatt.Xunit\annotations\xunit.xml</code> or <code>Extensions\CitizenMatt.Xunit\settings\template.dotSettings</code>. These files are copied directly, with the same folder structure into the main installation directory. This folder structure is intended to prevent name clashes. If the folder name under <code>Extensions</code> does not match the package ID directly (case insensitive), then the files will not be loaded.</p>
+<p>Extensions can include settings and annotations files, by including the files in a folder in the format <code>DotFiles\Extensions\{packageId}\annotations\</code> or <code>DotFiles\Extensions\{packageId}\settings\</code>, where <code>{packageId}</code> is the full ID of the package, e.g. <code>DotFiles\Extensions\CitizenMatt.Xunit\annotations\xunit.xml</code> or <code>DotFiles\Extensions\CitizenMatt.Xunit\settings\template.dotSettings</code>. These files are copied directly, with the same folder structure into the main installation directory. This folder structure is intended to prevent name clashes. If the folder name under <code>DotFiles\Extensions</code> does not match the package ID directly (case insensitive), then the files will not be loaded.</p>
 
                     
                     </section>
