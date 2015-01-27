@@ -169,6 +169,11 @@
     * Build scripts
     * XAML
     * XML Doc
+    * [Regular Expressions](PSI/Reference/RegExp/Overview.md)
+        * [Manipulating the Tree](PSI/Reference/RegExp/Manipulation.md)
+        * [Navigators](PSI/Reference/RegExp/Navigators.md)
+        * [Tree Nodes A-N](PSI/Reference/RegExp/TreeNodesA-N.md)
+        * [Tree Nodes O-Z](PSI/Reference/RegExp/TreeNodesO-Z.md)
 
 ## Part VI - Features
 * Analysis
