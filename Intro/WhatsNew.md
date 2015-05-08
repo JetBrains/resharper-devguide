@@ -87,8 +87,8 @@ The control flow graph interfaces have been renamed to correct spelling:
 Also, the language specific interfaces have been renamed:
 
 * `ICSharpControlFlowGraf` -> `ICSharpControlFlowGraph` and `ICSharpControlFlowRib` -> `ICSharpControlFlowEdge`
-* `IVBControlFlowGraf` -> IVBControlFlowGraph` and `IVBControlFlowRib` -> `IVBControlFlowEdge`
-* `IJsControlFlowGraf` -> IJsControlFlowGraph` and `IJavaScriptControlFlowRib` -> `IJsControlFlowEdge`
+* `IVBControlFlowGraf` -> `IVBControlFlowGraph` and `IVBControlFlowRib` -> `IVBControlFlowEdge`
+* `IJsControlFlowGraf` -> `IJsControlFlowGraph` and `IJavaScriptControlFlowRib` -> `IJsControlFlowEdge`
 
 The `IControlFlowBuilder` and `ControlFlowBuilder` provide language agnostic methods to create a control flow graph.
 

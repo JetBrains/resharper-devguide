@@ -73,7 +73,7 @@ A small note on data contexts: as you have seen, the `BindToContextTransient` ta
 
 In addition to being able to manipulate settings individually, ReSharper also allows wholesale manipulation of settings using the concept of _layers_. A layer is simply a collection of settings that are stored in a particular file. The layering effect is such that layers above override the settings of layers below.
 
-If you go into *ReSharper | Manage Options…* with an open solution, you will typically see three layers:
+If you go into *ReSharper &rarr; Manage Options…* with an open solution, you will typically see three layers:
 
 * A personal layer
 * A team-shared layer
