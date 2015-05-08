@@ -1,16 +1,20 @@
+---
+---
+
 # Testing Daemon Stages and Highlights
 
 The `HighlightingTestBase` base class provides infrastructure for testing daemons, element problem analysers and highlightings. It creates an in-memory project, adds a file and analyses it. The resulting highlights are then written to a `.tmp` file and compared against the `.gold` file. If the files differ, the test fails.
 
 Further derived classes, such as `CssHighlightingTestBase`, `CSharpHighlightingTestBase`, `CSharpHighlightingTestNet45Base`, etc. provide extra support for language specific tests.
 
-<!-- toc -->
+* Table of contents
+{:toc}
 
 ## Input and gold files
 
 The input file is a simple text file. The location of the text caret is irrelevant to highlight tests, so placeholders are not required. As an example testing C# local variable usage:
 
-```cs
+```csharp
 class C
 {
   public void foo (bool cond)
@@ -50,7 +54,7 @@ It is possible to change the output of the highlight text by overriding the `Cre
 
 In order to use the base class, simply derive from `HighlightingTestBase`, or one of the more language specific derived class (see below for more details on these derived classes), and call `DoTestSolution`, `DoNamedTest` or `DoNamedTest2` in the test method. As ever, the `RelativeTestDataPath` should be overridden to describe where the test data files are located. Most of the language specific base classes set up a value of `Daemon\<Langauge>`.
 
-```cs
+```csharp
 [Test]
 public void DoTest()
 {
@@ -87,7 +91,7 @@ The `HighlightinTestBase` class understands iterating over multiple combinations
 
 The test class can filter what highlights it wished to test, by overriding the `HighlightingPredicate` method.
 
-```cs
+```csharp
 protected virtual bool HighlightingPredicate(IHighlighting highlighting, IContextBoundSettingsStore settingsStore)
 {
   var manager = HighlightingSettingsManager.Instance;
@@ -127,7 +131,7 @@ The following derived classes provide language specific features, such as adding
 * **`TodoHighlightingTestBase`** provides a custom dumper to format todo items.
 * **`TypeScriptHighlightingTestBase`** - base class for TypeScript highlights.
 * **`VBHighlightingTestBase`** sets up the test for VB tests. Allows setting the language level before running a test:
-    ```cs
+    ```csharp
     [Test]
     public void Test01()
     {
@@ -143,7 +147,7 @@ Gutter marks are essentially the same as normal highlights - the icons are displ
 
 In order to make the tests a little easier, the test class can override the `HighlightPredicate` method and filter the `IHighlighting` instance to ensure it is of a known type for the gutter marks under test, e.g.:
 
-```cs
+```csharp
 protected override bool HighlightingPredicate(IHighlighting highlighting, IContextBoundSettingsStore settingsStore)
 {
   return (highlighting is InheritanceMarkOnGutter) || (highlighting is RecursionMarkOnGutter);

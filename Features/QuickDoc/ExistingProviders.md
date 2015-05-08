@@ -1,6 +1,10 @@
+---
+---
+
 # Existing QuickDoc providers
 
-<!-- toc -->
+* Table of contents
+{:toc}
 
 ## Overview
 

@@ -1,9 +1,12 @@
+---
+---
+
 # Navigators
 
 <!-- Index A - Z (auto-generated. Remove this line if manually adding/removing entries) -->
 
-<!-- toc -->
-<!-- toc stop -->
+* Table of contents
+{:toc}
 
 ## X
 
@@ -11,7 +14,7 @@
 
 <!-- Begin XmlAttributeNavigator -->
 
-```cs
+```csharp
 public static class XmlAttributeNavigator
 {
   public static IXmlAttribute GetByAttributeValue(IXmlAttributeValue attributeValue);
@@ -28,7 +31,7 @@ Navigate up the tree to an instance of `IXmlAttribute`, given an `IXmlAttributeV
 
 <!-- Begin XmlTagContainerNavigator -->
 
-```cs
+```csharp
 public static class XmlTagContainerNavigator
 {
   public static IXmlTagContainer GetByTag(IXmlTag tag);
@@ -45,7 +48,7 @@ Navigate up the tree to an instance of `IXmlTagContainerNavigator` given an `IXm
 
 <!-- Begin XmlTagNavigator -->
 
-```cs
+```csharp
 public static class XmlTagNavigator
 {
   public static IXmlTag GetByAttribute(IXmlAttribute attribute);

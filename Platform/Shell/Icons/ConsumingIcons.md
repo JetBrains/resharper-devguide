@@ -1,3 +1,6 @@
+---
+---
+
 # Consuming Icons
 
 ReSharper provides several ways to consume icons, from WPF controls to display the icon, to APIs to get a Windows Forms compatible bitmap or WPF `ImageSource`.
@@ -19,7 +22,7 @@ The `GetRawApi` method is intended for internal use.
 
 The Icons property returns an instance of `ThemedIconManagerIcons`, which can be used to get `ThemedIconLoader`, which in turn is responsible for loading and caching images.
 
-```cs
+```csharp
 var loader = manager.Icons[myIconId];
 ```
 
@@ -36,7 +39,7 @@ The `ThemedIconViewImage` class is a WPF element that derives from `Image`, and 
 
 The icon ID can be specified either in the constructor, or by setting the `IconId` property. Alternatively, the icon ID can be bound against the `DataContext` property, allowing for automatic updates:
 
-```cs
+```csharp
 public UIElement GetThemedIconViewImage(Lifetime lifetime, IProperty<IconId> liveIconId)
 {
   var image = new ThemedIconViewImage();
@@ -56,7 +59,7 @@ The most common icon type is the compiled icon, which is compiled as a resource 
 
 For example, you can get the icon ID for the To Do Explorer option page using:
 
-```cs
+```csharp
 var iconId = TodoItemsThemedIcons.TodoOptions.Id;
 ```
 
@@ -70,7 +73,7 @@ Note that the parameter to the extension is the class that holds the `CompiledIc
 
 A similar requirement is necessary when referencing an icon in an attribute, for example with `OptionsPageAttribute`:
 
-```cs
+```csharp
 [OptionsPage(PageId, "To-do items", typeof(TodoItemsThemedIcons.ToDoItemsPage))]
 public class TodoItemsPage : IOptionsPage
 {
@@ -80,13 +83,13 @@ public class TodoItemsPage : IOptionsPage
 
 The `OptionsPageAttribute` class converts the `Type` to an `IconId` using the `CompiledIconClassAttribute.TryGetCompiledIconClassId` static method:
 
-```cs
+```csharp
 var iconId = CompiledIconClassAttribute.TryGetCompiledIconClassId(typeOfIcon, OnError.LogException);
 ```
 
 Once the `IconId` is known, the standard icon loader API discussed above can be used to get a bitmap or `ImageSource`. A shortcut is to use the `GetIcon` extension method for `IThemedIconManager` to return a `ThemedIconLoader` which can be used to get the icon image.
 
-```cs
+```csharp
 IProperty<ImageSource> liveImage = themedIconManager.GetIcon<TodoItemsThemedIcons.ToDoItemsPage>().LiveImageSource;
 ```
 

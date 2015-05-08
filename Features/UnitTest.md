@@ -1,6 +1,9 @@
+---
+---
+
 # Unit Test Framework Support
 
-> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+> **WARNING** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
 
 Most of ReSharper plugins involve support for different unit test frameworks. This page describes ways in which you can add unit test support to your own framework.
 
@@ -51,7 +54,7 @@ The unit test provider is a class which implements the `IUnitTestProvider` inter
 
 There are, in fact, two overloads of `IsElementKindOf()`. One takes an `IDeclaredElement`, whereas another atakes a `IUnitTestElement`. The overload that takes an `IUnitTestElement` is simple -- it simply implements a set of rules similar to the list above, for example:
 
-```cs
+```csharp
 public bool IsElementOfKind(IUnitTestElement element, UnitTestElementKind elementKind)
 {
   switch (elementKind)
@@ -83,7 +86,7 @@ Here’s an example. Let’s suppose that we want to determine whether something
 
 In order to determine whether a particular attribute has been applied to a method, we create declarations similar to the following
 
-```cs
+```csharp
 IClrTypeName TestAttribute = new ClrTypeName("NUnit.Framework.TestAttribute");
 ```
 
@@ -103,7 +106,7 @@ If you peek into the `NUnitTaskRunner`, you may see something strange: infrastru
 
 Most test frameworks provide support for parameterised tests, usually in the form of a test method that takes parameters, and is called multiple times by the test framework's runner. NUnit's parameterised tests look like this:
 
-```cs
+```csharp
 [TestCase(12, 3, 4)]
 [TestCase(12, 2, 6)]
 [TestCase(12, 4, 3)]
@@ -115,7 +118,7 @@ public void DivideTest(int n, int d, int q)
 
 or like this:
 
-```cs
+```csharp
 [TestFixture]
 public class MyTests
 {

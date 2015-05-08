@@ -1,6 +1,10 @@
+---
+---
+
 # References
 
-<!-- toc -->
+* Table of contents
+{:toc}
 
 Reference Providers are a very powerful extension mechanism in ReSharper. They are used to create a reference from one node in the PSI abstract syntax tree (AST) to another, either in the same file, or in separate files.
 
@@ -20,7 +24,7 @@ For example, references are used with ASP.NET MVC's view and action names. Ctrl+
 
 ![Navigating to references from an MVC View method](mvc_ctrl_click.png)
 
->**Note** References are evaluated on-demand. They do not maintain a direct relationship with their target, but need to be resolved before they can be used. Resolving can fail, in which case the reference is deemed to be invalid, and the attached element marked as an error.
+> **Note** References are evaluated on-demand. They do not maintain a direct relationship with their target, but need to be resolved before they can be used. Resolving can fail, in which case the reference is deemed to be invalid, and the attached element marked as an error.
 
 A reference provider starts life as an instance of `IReferenceProviderFactory`, which in turn creates an instance of `IReferenceFactory` for a given file. The `IReferenceFactory` then creates one or more instances of `IReference` for any given node in the PSI tree.
 
@@ -28,7 +32,7 @@ A reference provider starts life as an instance of `IReferenceProviderFactory`, 
 
 The main entry point to providing references is a class that implements `IReferenceProviderFactory`. The class should be marked with the `ReferenceProviderFactoryAttribute`, which is a `SolutionComponentAttribute`, meaning the class is instantiated once per solution (and destroyed when the solution is closed). The class should implement the following members:
 
-```cs
+```csharp
 public interface IReferenceProviderFactory
 {
   IReferenceFactory CreateFactory(IPsiSourceFile sourceFile, IFile file);
@@ -38,7 +42,7 @@ public interface IReferenceProviderFactory
 
 The **`CreateFactory`** method receives both the `IPsiSourceFile` object that provides metadata about the file, and the `IFile` object which is the root of the PSI tree. It can use these files to decide if it supports creating references for this file type. For example, it can look at the language of the file:
 
-```cs
+```csharp
 if (sourceFile.PrimaryPsiLanguage.Is<CSharpLanguage>())
     return new MyReferenceFactory();
 return null;
@@ -52,7 +56,7 @@ The `IReferenceProviderFactory` interface also provides an **`OnChanged`** event
 
 The `IRefrenceProviderFactory` returns an instance of `IReferenceFactory` for a particular PSI file. This class is responsible for creating one or more reference for a given node in the file. It has two methods:
 
-```cs
+```csharp
 public interface IReferenceFactory
 {
   IReference[] GetReferences(ITreeNode element, IReference[] oldReferences);
@@ -66,7 +70,7 @@ The implementation of `HasReferences` is usually very straightforward. A referen
 
 We'll use the example of a reference provider adding a reference between a string literal and a property name, to support nunit's `[TestCaseSource("MyProperty")]` attribute. Here's the implementation of `HasReferences`:
 
-```cs
+```csharp
 public bool HasReference(ITreeNode element, ICollection<string> names)
 {
   // Check it's a string literal, and the text of the
@@ -84,7 +88,7 @@ If the consumer doesn't pass in a collection of names, `HasReferences` isn't cal
 
 To actually get the references, ReSharper calls **`GetReferences`**. It passes in the PSI tree node, and an array of existing references, and expects an array of references to be returned. Taking our example of nunit's `[TestCaseSource("MyProperty"])`, the code to create a reference between the string literal "MyProperty" and the property on the current class called "MyProperty" would look something like:
 
-```cs
+```csharp
 public static readonly ClrTypeName TestCaseSourceAttribute =
   new ClrTypeName("NUnit.Framework.TestCaseSourceAttribute");
 
@@ -147,7 +151,7 @@ Finally, it is perfectly acceptable to return more than one reference, if there 
 
 The `IReference` interface has the following structure:
 
-```cs
+```csharp
 public interface IReference : IUserDataHolder
 {
   bool HasMultipleNames { get; }
@@ -178,7 +182,7 @@ Normally, it is not necessary to implement the whole interface, but derive from 
 
 When implementing a class deriving from `TreeReferenceBase`, the most interesting method to implement is `ResolveWithoutCache`. For our `TestCaseSourceAttribute` example, the implementation looks like this:
 
-```cs
+```csharp
 public override ResolveResultWithInfo ResolveWithoutCache()
 {
   return GetReferenceSymbolTable(true).GetResolveResult(GetName());
@@ -195,7 +199,7 @@ Once the `ResolveWithoutCache` method has been called, the value is stored in `C
 
 This method should return a symbol table with all symbols relevant for the reference. If the `useReferenceName` parameter is `false`, it should return a set of candidates that could be used as the target for the reference. For example, in our `TestCaseSourceAttribute` reference, we could implement it like this:
 
-```cs
+```csharp
 public override ISymbolTable GetReferenceSymbolTable(bool useReferenceName)
 {
   var symbolTable = ResolveUtil
@@ -219,7 +223,7 @@ Once we have our symbol table, we further filter it if `useReferenceName` is tru
 
 When an item is renamed its element is recreated and replaced in the tree. The references that target it are then updated, by calling `BindTo`, passing in the new `IDeclaredElement` instance. The reference needs to update the owner tree node, and return a potentially new reference to reflect the change. The implementation is quite straightforward. Again, using our `TestCaseSourceAttribute` example:
 
-```cs
+```csharp
 public override IReference BindTo(IDeclaredElement element)
 {
   var literalAlterer = StringLiteralAltererUtil

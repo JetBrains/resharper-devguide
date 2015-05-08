@@ -1,6 +1,10 @@
+---
+---
+
 # Overview
 
-<!-- toc -->
+* Table of contents
+{:toc}
 
 ## Tree structure
 
@@ -18,7 +22,7 @@ Each node in the XML tree derives from [`IXmlTreeNode`](TreeNodes.md#ixmltreenod
 
 <!-- Begin IXmlTreeNode -->
 
-```cs
+```csharp
 public interface IXmlTreeNode :
   ITreeNode
 {
@@ -40,7 +44,7 @@ All tokens in the tree derive from [`IXmlToken`](TreeNodes.md#ixmltoken), which 
 
 <!-- Begin IXmlToken -->
 
-```cs
+```csharp
 public interface IXmlToken :
   IXmlTreeNode,
   ITokenNode,
@@ -56,7 +60,7 @@ public interface IXmlToken :
 
 The `ITokenNode.GetTokenType` method is hidden by a new method of the same name, but that returns an instance of `XmlTokenNodeType`, rather than `TokenNodeType`. `XmlTokenNodeType` derives from the `TokenNodeType` abstract class and adds a single property, that returns the `XmlTokenTypes` class that lists all the known token node types. This class can be a derived instance for some XML languages, such as XAML.
 
-```cs
+```csharp
 public XmlTokenTypes XmlTokenTypes { get; }
 ```
 
@@ -66,7 +70,7 @@ The root node of an XML file is [`IXmlFile`](TreeNodes.md#ixmlfile):
 
 <!-- Begin IXmlFile -->
 
-```cs
+```csharp
 public interface IXmlFile :
   IFile,
   IXmlTagContainer,
@@ -87,7 +91,7 @@ The `XmlElementTypes` property provides access to the composite node type instan
 
 The `IXmlFile` directly exposes a collection of processing instructions. This only returns processing instructions that implement [`IProcessingInstruction`](TreeNodes.md#iprocessinginstruction), and despite its name, the [`IXmlProcessingInstruction`](TreeNodes.md#ixmlprocessinginstruction) that represents the XML declaration doesn't get returned in this collection. To get at the XML declaration, you need to get it directly from the child nodes:
 
-```cs
+```csharp
 var xmlDeclarations = file.Children<IXmlProcessingInstruction>();
 ```
 
@@ -107,7 +111,7 @@ The inner child nodes are either text ([`IXmlFloatingTextTokenNode`](TreeNodes.m
 
 <!-- Begin IXmlTag -->
 
-```cs
+```csharp
 public interface IXmlTag :
   IXmlTreeNode,
   IXmlTagContainer,
@@ -138,7 +142,7 @@ Attributes are accessible via the [`IXmlAttributeContainer`](TreeNodes.md#ixmlat
 
 <!-- Begin IXmlAttributeContainer -->
 
-```cs
+```csharp
 public interface IXmlAttributeContainer :
   IXmlTreeNode,
   ITreeNode

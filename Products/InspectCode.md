@@ -1,3 +1,6 @@
+---
+---
+
 # InspectCode Plugins
 
 This page contains documentation on developing plugins for [InspectCode](http://confluence.jetbrains.com/display/NETCOM/Introducing+InspectCode), part of [ReSharper Command Line Tools](http://confluence.jetbrains.com/display/NETCOM/Introducing+ReSharper+Command+Line+Tools).
@@ -14,34 +17,34 @@ Currently, the only extension point for InspectCode that isn't part of ReSharper
 * Add additional reference to `JetBrains.CommandLine.InspectCode.Unattended.dll` library from CLT distribution.
 * Implement your own logic for `IInspectCodeConsumer`
 
-    ```cs
-    public class IssueLogger : IInspectCodeConsumer
-    {
-      void IDisposable.Dispose() { }
+  ```csharp
+  public class IssueLogger : IInspectCodeConsumer
+  {
+    void IDisposable.Dispose() { }
 
-      public void Consume(IIssue issue)
-      {
-        Console.WriteLine("{0}({1}) {2}", issue.File, issue.Range, issue.Message);
-      }
+    public void Consume(IIssue issue)
+    {
+      Console.WriteLine("{0}({1}) {2}", issue.File, issue.Range, issue.Message);
     }
-    ```
+  }
+  ```
 
 * Implement `IInspectCodeConsumerFactory` factory to return a new instance of your consumer
 
-    ```cs
-    [SolutionComponent]
-    public class IssueLoggerFactory : IInspectCodeConsumerFactory
+  ```csharp
+  [SolutionComponent]
+  public class IssueLoggerFactory : IInspectCodeConsumerFactory
+  {
+    public IInspectCodeConsumer CreateConsumer(IEnumerable<IProjectModelElement> inspectScope, FileSystemPath outputFile = null)
     {
-      public IInspectCodeConsumer CreateConsumer(IEnumerable<IProjectModelElement> inspectScope, FileSystemPath outputFile = null)
-      {
-        return new IssueLogger();
-      }
+      return new IssueLogger();
     }
-    ```
+  }
+  ```
 
 * Start InspectCode with following parameters
 
-    ```
-    inspectcode ... /Plugin=path-to-custom-logger-dll
-    ```
+  ```
+  inspectcode ... /Plugin=path-to-custom-logger-dll
+  ```
 

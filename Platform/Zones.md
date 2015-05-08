@@ -1,3 +1,6 @@
+---
+---
+
 # Zones
 
 Zones provide logical dependency management for features. Code can declare what Zones it requires and exports, enabling tooling to ensure correct layering, packaging and deployment. Features, implemented as Zones, can be independently licensed and disabled. Products can be created by combining Features, and multiple Products can be efficiently installed by sharing overlapping Features.

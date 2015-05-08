@@ -1,8 +1,11 @@
+---
+---
+
 # Implementing IQuickDocPresenter
 
 Once a provider has identified an element that it can generate documentation for, it creates an instance of `IQuickDocPresenter`, which is responsible for generating the documentation. It has the following methods:
 
-```cs
+```csharp
 public interface IQuickDocPresenter
 {
   string GetHtml(PsiLanguageType presentationLanguage);
@@ -23,6 +26,6 @@ The **`OpenInEditor`** and **`ReadMore`** methods are called in response to the 
 
 The most important method is **`GetHtml`**. The string returned from this method is displayed verbatim in a web browser control. If the current code element doesn't have any documentation, or the documentation cannot be created, this method should return `null`, in which case a fallback message, such as "no documentation available for {ID}" is displayed.
 
->**Note** It is the responsibility of the `IQuickDocPresenter` to ensure the HTML is properly sanitised before display (see [RSRP-186295](http://youtrack.jetbrains.com/issue/RSRP-186295) for a great reason why!). Using the helper classes mentioned below can help with this, particularly `XmlDocPresenterUtil.EscapeHtmlString`
+> **NOTE** It is the responsibility of the `IQuickDocPresenter` to ensure the HTML is properly sanitised before display (see [RSRP-186295](http://youtrack.jetbrains.com/issue/RSRP-186295) for a great reason why!). Using the helper classes mentioned below can help with this, particularly `XmlDocPresenterUtil.EscapeHtmlString`
 
 ReSharper provides a couple of classes to help build the HTML - **`XmlDocHtmlUtil`** and **`XmlDocHtmlPresenter`**. Typically, the presenter will generate the HTML by calling `XmlDocHtmlPresenter.Run` which in turn calls methods on `XmlDocHtmlUtil`, such as `XmlDocHtmlUtil.BuildHtml`, although the presenter is free to call `XmlDocHtmlUtil` directly, or create the HTML itself. It is, however, recommended to use the helper classes).

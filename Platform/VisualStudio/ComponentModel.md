@@ -1,12 +1,15 @@
+---
+---
+
 # Component Model and Visual Studio interfaces
 
-> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+> **WARNING** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
 
 The Component Model also allows access to interfaces implemented by Visual Studio. However, it is recommended that you try and avoid the use of Visual Studio interfaces, as this usually ties your plugin to a particular version of Visual Studio, and requires the plugin to run in the Visual Studio hosted version of ReSharper. Your plugin won't run in the Command Line Tools version of ReSharper. You are strongly encouraged to use ReSharper interfaces and services whenever possible.
 
 If you still need to get an interface implemented by Visual Studio, or by a Visual Studio extension, you can do this in several ways. The easiest is to simply inject the interface as a constructor parameter to your plugin component, or retrieve it from the Shell’s container. For example, to get to VS's Output Window interface `IVsOutputWindow`, you can acquire it with the following:
 
-```cs
+```csharp
 Shell.Instance.GetComponent<Lazy<IVsOutputWindow>>()
 ```
 
@@ -14,7 +17,7 @@ Note the use of `Lazy<T>`. Many of the Visual Studio interfaces can only be reso
 
 It is recommended that you use `Lazy` and `Optional`. If the plugin is run outside of the Visual Studio environment (e.g. in the Command Line Tools), the Visual Studio dependencies will not be available. It is better for your component to handle this gracefully than for the Component Model to be unable to create your component. An alternative is to mark your component as only being able to run in the Visual Studio environment, by passing in the `ProgramConfigurations.VS_ADDIN` flag to the component attribute. However, this can have a "viral" effect. If this component isn't created because you're not running inside Visual Studio, any other component that depends on this must also include the `VS_ADDIN` flag, or the Component Model will be unable to create it, also. A better solution is the use of `Optional`, `Lazy`, or perhaps moving the component into a Visual Studio specific assembly that is only loaded in the Visual Studio environment.
 
-```cs
+```csharp
 [ShellComponent(ProgramConfigurations.VS_ADDIN)]
 public class MyShellComponent { ... }
 
@@ -41,7 +44,7 @@ Once you have the `RawVsServiceProvider` class, you can simply use the `Value` p
 
 You can implement a class that will be called by ReSharper during initialisation that can register additional Visual Studio interfaces. It needs to be marked with the `WrapVsInterfaces` attribute, and implement the `IExposeVsServices` interface:
 
-```cs
+```csharp
 [WrapVsInterfaces]
 public class ExposeMyServices : IExposeVsServices
 {
@@ -60,7 +63,7 @@ This class allows you to expose one or more interfaces that comes from a service
 
 One important thing to note is that you can only register an interface once. If there are two plugins both registering the same interface, only the first registration (arbitrarily chosen) will be used. The second is ignored. So it is important not to do anything “fancy” in a custom function - it might never get called! Also, while the second registration is ignored and the registration method completes successfully, ReSharper handles and logs an exception. Since these exceptions are displayed to the user in the exception reporter, it is a good practice to check if the interface is already registered before trying to register yourself. You can use the following extension method to do this (and doesn't interfere with lazy instantiation):
 
-```cs
+```csharp
 public static bool IsRegistered<T>(this VsServiceProviderComponentContainer.VsServiceMap map)
 {
   return map.Resolve(typeof (T)) != null;
@@ -75,7 +78,7 @@ If you expect the interface to not be available, you can use `Optional<TInterfac
 
 When using `map.QueryService`, you can enforce requiring these flags by using the `LazyOnly` and/or `Optional` methods. If a component tries to consume the service without `Lazy<T>` or `Optional<T>` respectively, the Component Model will throw an exception.
 
-```cs
+```csharp
 public void Register(VsServiceProviderComponentContainer.VsServiceMap map)
 {
   map.QueryService<STextTemplating>.As<ITextTemplatingEngineHost>.LazyOnly().Optional();
@@ -151,6 +154,7 @@ And Visual Studio 2012:
 * `IVsDebugger4`
 
 And Visual Studio 2013:
+
 * `IPeekBroker` (Lazy/Optional only)
 
 Furthermore, the following classes are used instead of accessing the VS interfaces directly:

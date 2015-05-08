@@ -1,14 +1,18 @@
+---
+---
+
 # Custom Languages
 
 In this part of the guide we'll look at developing ReSharper support for a new language. We shall take a look at the following:
 
-<!-- toc -->
+* Table of contents
+{:toc}
 
 ## Introduction
 
 ReSharper supports a wide variety of language and also supports a mixture of languages (e.g., `.cshtml` files are a mixture of C# and HTML). Plugin writers can use existing infrastructure in order to support new languages within ReSharper. A language implementation can be a plugin or part of a plugin, and in most cases no special action is required for it to be picked up and recognized by ReSharper.
 
-> **Note** While new language support may be provided in any .NET-compatible programming language, the provided parsing/lexing tools support only the C# programming language.
+> **NOTE** While new language support may be provided in any .NET-compatible programming language, the provided parsing/lexing tools support only the C# programming language.
 
 ## Tools
 
@@ -80,7 +84,7 @@ The `MyLanguage` class must also be marked with the `[LanguageDefinition]` attri
 
 Here is an example of a language definition for the C# language:
 
-```cs
+```csharp
 [LanguageDefinition(Name, Edition = ReSharperEditions.Ids.Csharp)]
 public class CSharpLanguage : KnownLanguage
 {
@@ -112,7 +116,7 @@ In addition, the project file type class has to be decorated with the `ProjectFi
 
 Here is an example of a project file type class for HTML files:
 
-```cs
+```csharp
 [ProjectFileTypeDefinition(Name)]
 public class HtmlProjectFileType : KnownProjectFileType
 {
@@ -145,7 +149,7 @@ We are now getting in the thick of language development, this being the last sto
 * The `Icon` property needs to return the icon for this type of file. If you are storing the icon internally as an embedded resource, use `ImageLoader.GetImage("icon.resource.name", null)` to return the icon.
 * The `GetPsiLanguageType()` method takes an `IProjectFile` parameter. If the `LanguageType` property of this parameter matches our language, then we return the `Instance` field of our language. Otherwise, we return `UnknownLanguage.Instance`. Here is an example:
 
-    ```cs
+    ```csharp
     public PsiLanguageType GetPsiLanguageType(IProjectFile projectFile)
     {
       if (projectFile.LanguageType.Is<MyLanguageProjectFileType>())
@@ -157,7 +161,7 @@ We are now getting in the thick of language development, this being the last sto
 
 * There is also an overload of the `GetPsiLanguageType()` method that takes a `ProjectFileType` as a parameter. The implementation of this method is similar to the one above:
 
-    ```cs
+    ```csharp
     public PsiLanguageType GetPsiLanguageType(ProjectFileType languageType)
     {
       if (languageType.Is<MyLanguageProjectFileType>())
@@ -169,19 +173,19 @@ We are now getting in the thick of language development, this being the last sto
 
 * The `GetMixedLexerFactory()` method returns the mixed lexer factory. The mixed lexer (_mixed_ refers to the possibility of having mixed languages in a file) is returned by the language service, which we haven't defined. The typical implementation of this method is as follows:
 
-    ```cs
+    ```csharp
     public ILexerFactory GetMixedLexerFactory(IBuffer buffer, IPsiSourceFile sourceFile, PsiManager manager)
     {
       return MyLanguage.Instance.LanguageService().GetPrimaryLexerFactory();
     }
     ```
 
-> **Note** In the above code, `LanguageService()` is an extension method that resides in the `PsiLanguageTypeExtensions` class.
+> **NOTE** In the above code, `LanguageService()` is an extension method that resides in the `PsiLanguageTypeExtensions` class.
 
 * The `GetPreprocessorDefines()` method is used to return a set of `PreProcessingDirective` definitions. If your language doesn’t have preprocessing directives, in which case you can simply return `EmptyArray<PreProcessingDirective>.Instance`.
 * The `GetPsiProperties()` method is used to return a new instance of the PSI properties type for this file as follows:
 
-    ```cs
+    ```csharp
     public IPsiSourceFileProperties GetPsiProperties(IProjectFile projectFile, IPsiSourceFile sourceFile)
     {
       Assertion.Assert(projectFile.LanguageType.IsProjectFileType(LanguageType), "projectFile.LanguageType == LanguageType");
@@ -202,7 +206,7 @@ Thus, the PSI Properties entity is a kind of glue that manages takes as paramete
 
 The PSI Properties class is a class deriving from `DefaultPsiProjectFileProperties`, and is often located as an inner class of the above language service type. This class takes two parameters - the project file and the PSI source file. Typically, its constructor simply passes them up to the parent:
 
-```cs
+```csharp
 private class MyLanguageFileProperties : DefaultPsiProjectFileProperties
 {
   public MyLanguageFileProperties(IProjectFile projectFile, IPsiSourceFile sourceFile)
@@ -227,7 +231,7 @@ We are finally ready to create is a language service -- an entity that finally l
 * It must have a public constructor taking _at least_ the language definition (i.e., the `MyLanguage` type) and an `IConstantValueService`.
 * It must call the base constructor with the above parameters.
 
-> **Note** After implementing the above, check that your breakpoints actually fire when opening the file with your chosen extension. An empty implementation of the above should be sufficient for ReSharper to identify the feature-related language service.
+> **NOTE** After implementing the above, check that your breakpoints actually fire when opening the file with your chosen extension. An empty implementation of the above should be sufficient for ReSharper to identify the feature-related language service.
 
 The language service is where all the activity occurs. In particular, the language services exposes both the lexer and the parser, as well as a number of complementary services that may or may not be required for the particular language.
 
@@ -235,7 +239,7 @@ We begin our language implementation with the lexer. The language service type h
 
 The first is the `GetPrimaryLexerFactory()` method. This method returns a lexer factory, which is simply a class that implements the `ILexerFactory` interface and whose `CreateLexer()` method returns an instance of a lexer (which we'll define in a moment):
 
-```cs
+```csharp
 private class MyLanguageLexerFactory : ILexerFactory
 {
   public ILexer CreateLexer(IBuffer buffer)
@@ -247,7 +251,7 @@ private class MyLanguageLexerFactory : ILexerFactory
 
 Thus, the implementation of `MyLanguageService.GetPrimaryLexerFactory()` reduces to:
 
-```cs
+```csharp
 public override ILexerFactory GetPrimaryLexerFactory()
 {
   return new MyLanguageLexerFactory();
@@ -258,7 +262,7 @@ Of course, we have not yet mentioned the `ILexer`. Before we get on to actually 
 
 The `Skip()` method is simple: it takes a `TokenNodeType` and determines whether this is the kind of token that needs to be skipped. Typical tokens to be skipped often include whitespace, line breaks, comments or code within certain preprocessor directives. Now, the simplest way to provide support for this is to create a `NodeTypeSet` of all the tokens that you intend to skip as follows:
 
-```cs
+```csharp
 internal static readonly NodeTypeSet TokensToSkip = new NodeTypeSet(
   new NodeType[]
     {
@@ -270,7 +274,7 @@ internal static readonly NodeTypeSet TokensToSkip = new NodeTypeSet(
 
 With this definition in place, the implementation of the `Skip()` method can be as follows:
 
-```cs
+```csharp
 protected override bool Skip(TokenNodeType tokenType)
 {
   return MyLanguageService.TokensToSkip[tokenType];

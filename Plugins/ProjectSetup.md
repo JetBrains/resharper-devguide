@@ -1,3 +1,6 @@
+---
+---
+
 # Project Setup
 
 Plugins for the ReSharper Platform are simply .net assemblies. In order to create a plugin project, you need to:
@@ -16,7 +19,7 @@ Simply create a .net class library assembly. The project should be a .net 4.0 as
 
 Your plugin project needs to add a NuGet reference to the [`JetBrains.ReSharper.SDK` package](http://www.nuget.org/packages/JetBrains.ReSharper.SDK/). This package will include all dependencies required to build plugins that extend ReSharper - both the core ReSharper Platform (e.g. language support, reference providers, etc) and the ReSharper product (e.g. navigation, unit testing support, etc.).
 
-> **INFO** There are currently no packages available to allow extending features specific to other .net tools, such as dotCover and dotTrace. Instructions for this will be made available later. If you need instructions sooner, please raise an [issue for the documentation](https://github.com/JetBrains/resharper-devguide/issues).
+> **NOTE** There are currently no packages available to allow extending features specific to other .net tools, such as dotCover and dotTrace. Instructions for this will be made available later. If you need instructions sooner, please raise an [issue for the documentation](https://github.com/JetBrains/resharper-devguide/issues).
 
 The SDK package tracks the current version of ReSharper - that is, there is only one package for ReSharper plugins, and not one for each version of the SDK. EAP releases of ReSharper will have a pre-release version in the NuGet gallery, and releases will have a stable version. To target the current release of ReSharper, add a reference to the latest stable version in the gallery.
 

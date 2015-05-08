@@ -1,3 +1,6 @@
+---
+---
+
 # Settings
 
 Plugin writers can use a wide variety of mechanisms in order to store and retrieve program settings. However, ReSharper provides its own infrastructure for keeping options. The advantages of this approach are that
@@ -10,7 +13,7 @@ Plugin writers can use a wide variety of mechanisms in order to store and retrie
 
 In ReSharper, settings are kept in ordinary classes that have been decorated with some metadata. Let us take a look at an example of a settings class:
 
-```cs
+```csharp
 [SettingsKey(typeof(InternetSettings), "GitHub settings")]
 public class GitHubSettings
 {
@@ -27,19 +30,19 @@ As you can see, the above class is decorated with the `SettingsKey` attribute. T
 
 Following the `SettingsKey` attribute, each property in the class is decorated with the `SettingsEntry` attribute. This attribute takes two parameters - the first being the default value for the property, the second the property's textual description.
 
-> **Note** The default value specified here is perhaps mis-named. It's not actually a default value, but a value to use if the settings infrastructure is unavailable. If client code can't get hold of an instance of `ISettingsStore` to retrieve the value, it can use the default value in the attributes. To specify default values, your plugin should implement `IHaveDefaultSettingsStream`
+> **NOTE** The default value specified here is perhaps mis-named. It's not actually a default value, but a value to use if the settings infrastructure is unavailable. If client code can't get hold of an instance of `ISettingsStore` to retrieve the value, it can use the default value in the attributes. To specify default values, your plugin should implement `IHaveDefaultSettingsStream`
 
 ## Reading and Writing Settings
 
 Rather than reading the settings directly, the correct approach is to _bind_ settings to a particular context, and then operate on settings in this particular context. In order to bind settings, you first need an `ISettingsStore`, which can be injected into the required component via the constructor. Once you have acquired the `ISettingsStore`, you can bind it to a given data context (i.e. an `IDataContext`) using code similar to the following:
 
-```cs
+```csharp
 var boundSettings = mySettingsStore.BindToContextTransient(ContextRange.Smart((lt, _) => context));
 ```
 
 Subsequently, you can use the `GetKey()` method of `boundSettings` to access the settings you need. For example:
 
-```cs
+```csharp
 var settings = boundSettings.GetKey<GitHubSettings>(SettingsOptimization.DoMeSlowly);
 ```
 
@@ -51,13 +54,13 @@ Now, when it comes to writing settings, there is a corresponding `SetKey()` meth
 
 For example, to bind `GitHubSetting`’s `Username` property to a WPF `TextBox` called `usernameBox`, you could write the following:
 
-```cs
+```csharp
 settings.SetBinding(lifetime, (GitHubSettings s) => s.Username, usernameBox, TextBox.TextProperty);
 ```
 
 Things are a little different if you need to bind to a WinForms property: in thic case, you can use the `WinFormsProperty` helper class, particularly its `Create` method:
 
-```cs
+```csharp
 settings.SetBinding(lifetime, (GitHubSettings s) => s.Password, WinFormsProperty.Create(lifetime, passwordBox, box => box.Text, true));
 ```
 
@@ -78,7 +81,7 @@ If you go into *ReSharper | Manage Options…* with an open solution, you will t
 
 The sum total of settings is held in a registrar that can be affected using an API that is available to plugin writers. For example, if you have a separate settings file that you want to programmatically inject, you can use the `FileInjectedLayers` shell component to inject this file using code similar to the following:
 
-```cs
+```csharp
 var host = context.GetData(DataConstants.InjectedLayersHost_IncludingHostItself);
 var path = new FileSystemPath(filename);
 fileInjectedLayers.InjectLayer(host.Value, path);

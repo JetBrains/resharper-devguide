@@ -1,3 +1,6 @@
+---
+---
+
 # Navigation
 
 ReSharper navigation consists of two main parts:
@@ -7,7 +10,8 @@ ReSharper navigation consists of two main parts:
 
 The navigation framework is fairly pluggable, so in most cases all you need to do is to simply provide your own components. You can implement the following features:
 
-<!-- toc -->
+* Table of contents
+{:toc}
 
 ## Context Navigation
 
@@ -19,7 +23,7 @@ Feature providers represent features themselves. That is, there is just one prov
 
 Each context navigation provider implements either the `IContextSearchProvider` or the `INavigateFromHereProvider` interface. The `IContextSearchProvider` interface is defined as follows:
 
-```cs
+```csharp
 public interface IContextSearchProvider
 {
   [CanBeNull]
@@ -39,7 +43,7 @@ You don't need to write any code in your action handler's methods, as all featur
 
 Additionally, your provider should be decorated with the `ContextNavigationProvider` attribute.
 
-> **Info** If you want your feature to appear only in 'Navigate From Here' menu, you don't even have to write an action - just implement `ContextNavigationProvider` that implements `INavigateFromHereProvider`.
+> **NOTE** If you want your feature to appear only in 'Navigate From Here' menu, you don't even have to write an action - just implement `ContextNavigationProvider` that implements `INavigateFromHereProvider`.
 
 If your navigation is not complicated, that's all you need to know about the context navigation framework.
 
@@ -47,7 +51,7 @@ If your navigation is not complicated, that's all you need to know about the con
 
 Here is an example of simple navigation to the corresponding folder using Windows explorer.
 
-```cs
+```csharp
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -124,13 +128,13 @@ If your navigation is complicated and works differently in differenent languages
 
 In this case, your provider needs to be derived from `ContextSearchesCollector<TContextSearch>` class and all you need is to implement the `Execute()` method.
 
-```cs
+```csharp
 protected abstract void Execute(IDataContext dataContext, IEnumerable<TContextSearch> searches, INavigationExecutionHost host);
 ```
 
 `IContextSearch` is an interface for providers decorated with the `FeaturePart` attribute and providing specific navigation execution. There are just two methods in this interface, indicating applicability and availability of said context search.
 
-```cs
+```csharp
 public interface IContextSearch
 {
   bool IsAvailable(IDataContext dataContext);
@@ -144,7 +148,7 @@ Availability means that for a specific data context this context search is enabl
 
 You can alter the behavior of existing ReSharper navigation features by providing your own context search components. Here is an example of a  context search that extends the 'Go To Implementation' search for XAML:
 
-```cs
+```csharp
 [FeaturePart]
 public class XamlImplementationContextSearch : ContextNavigation.ContextSearches.BaseSearches.ImplementationContextSearch
 {
@@ -179,7 +183,7 @@ As you can see, the four interface members are self-descriprive, and are further
 
 The interface is fairly simple, and has only three members:
 
-```cs
+```csharp
 public interface IOccurenceNavigationProvider : IApplicableGotoProvider
 {
   IEnumerable<MatchingInfo> FindMatchingInfos(IdentifierMatcher matcher, INavigationScope scope,
@@ -194,7 +198,7 @@ The second method, `GetOccurencesByMatchingInfo`, returns a set of occurences gi
 
 In addition, you are required to implement an interface member inherited from `IApplicableGotoProvider`:
 
-```cs
+```csharp
 public interface IApplicableGotoProvider
 {
   bool IsApplicable(INavigationScope scope, GotoContext gotoContext, IdentifierMatcher matcher);
@@ -205,7 +209,7 @@ The above method lets us determine if a particular provider should work in a giv
 
 The API now provides you an interface called `IGotoEverythingProvider`, which happens to inherit these two interfaces and in addition specifies a sorting function declared as
 
-```cs
+```csharp
 Func<int, int> ItemsPriorityFunc { get; }
 ```
 
@@ -213,7 +217,7 @@ This interface lets you calculate a priority of the displayed element, such that
 
 Now, to create a provider, simply implement the interface and decorate the class with `[ShellFeaturePart]`:
 
-```cs
+```csharp
 [ShellFeaturePart]
 class GoToYouTrackIssueProvider : IGotoEverythingProvider
 {
@@ -225,7 +229,7 @@ class GoToYouTrackIssueProvider : IGotoEverythingProvider
 
 Having a set of occurences is great, but they’re useless until presented on-screen. And this is where occurence presenters come in. An occurence presenter is, basically, a class that knows how to present a particular occurence as a menu item. In addition to being decorated by an `OccurencePresenter` attribute, it is embodied by the `IOccurencePresenter` interface defined below:
 
-```cs
+```csharp
 public interface IOccurencePresenter
 {
   bool Present(IMenuItemDescriptor descriptor, IOccurence occurence,
@@ -236,7 +240,7 @@ public interface IOccurencePresenter
 
 First, there’s the `IsApplicable()` method. This method determines whether this occurence presenter is applicable for the particular type of occurence. These typically go hand-in-hand, for example:
 
-```cs
+```csharp
 [OccurencePresenter(Priority=0.0)]
 public class RangeOccurencePresenter : IOccurencePresenter
 {
@@ -252,7 +256,7 @@ Then there’s the `Present()` method, which is called when the `IOccurence` nee
 
 Here's a sample implementation. Note that `descriptor.Style` _must_ be defined - otherwise, the item will be disabled.
 
-```cs
+```csharp
 public bool Present(IMenuItemDescriptor descriptor, IOccurence occurence,
   OccurencePresentationOptions occurencePresentationOptions)
 {
@@ -273,7 +277,7 @@ The types of elements just mentioned are called _occurence kinds_. Many kinds of
 
 Now, we can talk about occurence type providers. These are typically solution components (i.e., decorated with the `SolutionComponent` attributes) that also implement the `IOccurenceKindProvider` interface. This interface is defined as follows:
 
-```cs
+```csharp
 public interface IOccurenceKindProvider
 {
   ICollection<OccurenceKind> GetOccurenceKinds(IOccurence occurence);
@@ -289,7 +293,7 @@ The `GetOccurenceKinds()` method returns a collection of occurence kinds (or you
 
 When search results are presented in a dialogue window, they are typically split into sections via horizintal lines. The component that provides information about the different types of section is a `FeaturePart` that implements the `IOccurenceSectionProvider` interface. The interface is defined as follows:
 
-```cs
+```csharp
 public interface IOccurenceSectionProvider
 {
   bool IsApplicable(OccurenceBrowserDescriptor descriptor);
@@ -300,7 +304,7 @@ public interface IOccurenceSectionProvider
 
 Let’s go through the methods. Firstly, `IsApplicable()` checks whether this section provider is applicable given the type of the occurence browser we are working with. This is typically a simple `is` call, e.g.:
 
-```cs
+```csharp
 public override bool IsApplicable(OccurenceBrowserDescriptor descriptor)
 {
   return descriptor is GotoDeclaredElementsBrowserDescriptor;
@@ -309,7 +313,7 @@ public override bool IsApplicable(OccurenceBrowserDescriptor descriptor)
 
 The second method is `GetTreeSections()`, and it is this method that returns a set of `TreeSection` objects specific to this section provider. We’ll discuss the `TreeSection` structure in a moment, but let’s briefly discuss the third method first. `GetGroupSectionId` basically lets us determine the groups (there can be more than one) in which a particular `IOccurence` needs to appear. The default implementation as defined in the `OccurenceSectionProvider` class (you should inherit from this, rather than implementing the interface by hand) is to use a special method `GetSectionId()` to pick a known section given the type of the occurence:
 
-```cs
+```csharp
 // in OccurenceSectionProvider
 public virtual ICollection<GroupingSectionId> GetGroupSectionId(IOccurence occurence, OccurenceBrowserDescriptor descriptor)
 {
@@ -331,7 +335,7 @@ It helps to remember that both `TreeModel` and `TreeModelNode` are abstract clas
 
 The menu items themselves are simply items which implement the `IOccurence` interface. This interface defines a rather large number of elements:
 
-```cs
+```csharp
 public interface IOccurence
 {
   TextRange TextRange { get; }

@@ -1,8 +1,11 @@
+---
+---
+
 # Usage
 
 The `Lifetime` class looks like this:
 
-```cs
+```csharp
 public class Lifetime
 {
   public Lifetime AddAction(Action f);
@@ -15,7 +18,7 @@ public class Lifetime
 
 Your code receives a `Lifetime` instance, and registers its cleanup callback using `AddAction`. It then doesn't need to do anything else. When the `Lifetime` is terminated, the callback is called, and the action is performed. Actions are called in reverse order to how they were added. If an exception is thrown by an action, it is logged, and the next action is called.
 
-```cs
+```csharp
 public void MyMethod(Lifetime lifetime)
 {
   lifetime.AddAction(() => { /* Do cleanup */ });

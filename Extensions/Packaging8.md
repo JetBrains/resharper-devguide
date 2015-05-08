@@ -1,6 +1,9 @@
+---
+---
+
 # Packaging and Distribution
 
-> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+> **WARNING** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
 
 Once you’re done writing your plugin, you probably want to deploy it to end users. Starting with ReSharper 8, we provide support for clean and easy deployment of your plugins with the new Extension Manager. For these purposes, your plugin must be prepared as a [NuGet package](http://docs.nuget.org/). Also, there is a central place, the ReSharper Gallery, that can be used to host your plugins - it can be found at <http://resharper-plugins.jetbrains.com>. But you can also use you own server to deploy plugins (e.g., within your company). Repositories can also be stored in a physical folder or a shared location on the network.
 
@@ -9,7 +12,7 @@ Creating a package happens in the same way as you create a package for NuGet, an
 
 `nuget push myextension.1.0.0.nupkg -ApiKey XXX -Source https://resharper-plugins.jetbrains.com`
 
-> **Note** Calling `nuget pack` without specifying the `.nuspec` file causes Nuget to search for any project file (e.g., `.csproj`) or `.nuspec` file in the current directory and build the package file from the first one it finds. Of course, you can also specify the package file explicitly with `nuget pack myplugin.nuspec`.
+> **NOTE** Calling `nuget pack` without specifying the `.nuspec` file causes Nuget to search for any project file (e.g., `.csproj`) or `.nuspec` file in the current directory and build the package file from the first one it finds. Of course, you can also specify the package file explicitly with `nuget pack myplugin.nuspec`.
 >
 > You can safely ignore the warning about the assembly being outside the lib folder. Alternatively, create your package with `nuget pack -NoPackageAnalysis`.
 
@@ -88,11 +91,11 @@ Further information about the NuSpec format can be found at [http://docs.nuget.o
 
 The NuGet based Extension Manager is only available for Visual Studio 2010 and later, because the `NuGet.Core` assembly and the user interface is only supported in Visual Studio 2010 and above. To support older Visual Studio versions, you would need to make available a download that will copy the plugin dlls to the appropriate locations for manual installation. This is also how plugins were supported prior to ReSharper 8. Note that settings files and external annotations are not supported as part of manual installation.
 
-> **Warning** This method of installation is deprecated, as the new extension infrastructure provides more benefits, such as per-user install, automated update checks and easier discovery of new plugins.
+> **WARNING** This method of installation is deprecated, as the new extension infrastructure provides more benefits, such as per-user install, automated update checks and easier discovery of new plugins.
 
 ReSharper checks several locations for plugins. You can see these by going to ReSharper -> Options -> Plugins and clicking "Show developer information". The locations are searched for plugins recursively, so you can create a folder that contains your plugin files.
 
-> **Info** In the following list, `vX.X` refers to the version of ReSharper, e.g. `v8.1`, and `vsY.Y` is a Visual Studio version number, e.g. `vs12.0`.
+> **NOTE** In the following list, `vX.X` refers to the version of ReSharper, e.g. `v8.1`, and `vsY.Y` is a Visual Studio version number, e.g. `vs12.0`.
 >
 > `%LOCALAPPDATA%` and `%APPDATA%` are not defined on Windows XP. They equate to the local and roaming user profile directories, respectively. For Windows XP, the values are `%USERPROFILE%\Local Settings\Application Data` and `%USERPROFILE%\Application Data` respectively.
 >
@@ -110,7 +113,7 @@ ReSharper checks several locations for plugins. You can see these by going to Re
 1. `%APPDATA%\JetBrains\DotNet\v1.0\plugins` - **not recommended** (see below)
 1. `%APPDATA%\JetBrains\DotNet\vAny\plugins` - **not recommended** (see below)
 
-> **Note** Plugins installed into `%APPDATA%` will be roamed with the Windows profile for domain-joined PCs. As such, file size plays an important part - the larger files are, the longer profile roaming (and login) will take. It is not recommended to install plugins here.
+> **NOTE** Plugins installed into `%APPDATA%` will be roamed with the Windows profile for domain-joined PCs. As such, file size plays an important part - the larger files are, the longer profile roaming (and login) will take. It is not recommended to install plugins here.
 >
 > The `DotNet` folders were intended to support plugins common to all JetBrains .net tools. However, the .net tools do not currently share a common binary platform (though they do share a common source platform). Therefore, plugins are not compatible between .net tools. Also, the version number hasn't been incremented to reflect changes in the platform. Therefore, these locations are not a good place to install plugins.
 

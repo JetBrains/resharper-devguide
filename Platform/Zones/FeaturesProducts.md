@@ -1,3 +1,6 @@
+---
+---
+
 # Features and Products
 
 ## Features
@@ -10,7 +13,7 @@ ReSharper supports this for specific zone definitions. The Features page on the 
 
 This list is populated by applying the `ZoneDefinitionConfigurableFeatureAttribute` to a zone definition. It takes three settings - the name of the feature, a short description, and a flag to state if the zone definition should be treated as a feature or a product.
 
-```cs
+```csharp
 [ZoneDefinition]
 [ZoneDefinitionConfigurableFeature("CSS Language", "Support for CSS language in .css and HTML based files", false)]
 public interface ILanguageCssZone : IPsiLanguageZone, IRequire<ILanguageHtmlZone>
@@ -30,7 +33,7 @@ A zone definition can be treated as a product by passing `true` to the `isInProd
 
 A product can also expose product information to the ReSharper Platform, by using the `ZoneDefinitionProductAttribute`. It is simply an informational attribute, used to inform the user of the name of the installed product, the company responsible and to provide links to product web pages.
 
-```cs
+```csharp
 [ZoneDefinition]
 [ZoneDefinitionProduct(CompanyName = "JetBrains", CompanyNameLegal = "JetBrains s.r.o.", 
   ProductPresentableName = "ReSharper", ProductTechnicalName = "ReSharper",

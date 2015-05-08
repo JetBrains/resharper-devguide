@@ -1,5 +1,6 @@
 # Summary
 
+* [Introduction](README.md)
 * [The ReSharper Platform](Intro/ReSharperPlatform.md)
 * [About This Guide](Intro/About.md)
 * [Key Topics](Intro/KeyTopics.md)

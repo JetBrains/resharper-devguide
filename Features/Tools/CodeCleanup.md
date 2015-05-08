@@ -1,6 +1,9 @@
+---
+---
+
 # Code Cleanup
 
-> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+> **WARNING** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
 
 If you want to fix an error at a particular location in code, you can create a Quick-Fix. But what if you need to fix that same error in all locations in a file, the whole project, or even the whole solution? This is there the concept of _Code Cleanup_ comes into play.
 
@@ -23,7 +26,7 @@ Each of the settings listed under the profile details is provided using a _descr
 
 Here’s what a typical option descriptor looks like:
 
-```cs
+```csharp
 [DefaultValue(false)]
 [DisplayName("Replace Math.Pow() integer calls")]
 [Category(CSharpCategory)]
@@ -43,7 +46,7 @@ The code cleanup module is a component that provides code cleanup functionality.
 
 The module is customizable with the descriptors we’ve just seen, and has a `Descriptors` member to yield all the descriptors that are available to it. For example:
 
-```cs
+```csharp
 private static readonly Descriptor descriptor = new Descriptor();
 
 public ICollection<CodeCleanupOptionDescriptor> Descriptors
@@ -54,7 +57,7 @@ public ICollection<CodeCleanupOptionDescriptor> Descriptors
 
 In order to figure out whether the module is applicable or not, we must implement the `IsAvailable()` method:
 
-```cs
+```csharp
 public bool IsAvailable(IPsiSourceFile sourceFile)
 {
   return sourceFile.GetPsiFile<CSharpLanguage>() != null;
@@ -65,7 +68,7 @@ The above simply checks that the file is a C# file.
 
 Also, as mentioned previously, we must provide default values for the module’s descriptors for the two built-in code cleanup templates. This is done in the `SetDefaultSetting()` method:
 
-```cs
+```csharp
 public void SetDefaultSetting(CodeCleanupProfile profile, CodeCleanup.DefaultProfileType profileType)
 {
   switch (profileType)
@@ -82,7 +85,7 @@ public void SetDefaultSetting(CodeCleanupProfile profile, CodeCleanup.DefaultPro
 
 Finally, most of the modifications happen in the `Process()` method. This is the method where code is ‘cleaned up’, i.e. modified. Unlike some of the utility base classes (e.g., `BulbItemImpl`), the implemented interface provides no plumbing for transacted behavior, which means that to perform modifications on the document you’ll need to write code similar to the following:
 
-```cs
+```csharp
 file.GetPsiServices().PsiManager.DoTransaction(() =>
 {
   using (shellLocks.UsingWriteLock())

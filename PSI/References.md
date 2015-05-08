@@ -1,3 +1,6 @@
+---
+---
+
 # References
 
 References are a very powerful mechanism that allow any tree node to link to a declared element. The reference might be from a type name in a variable declaration, and would link to the declared element of that type. ReSharper makes ubiquitous use of references, and enables many of ReSharper's features. For example, Ctrl+Click navigation is simply a matter of following a reference, Find Usages can be performed by listing all incoming references on a declared element, and renaming can be accomplished by renaming a declared element's declaration, and all incoming references.

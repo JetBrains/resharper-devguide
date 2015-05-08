@@ -1,3 +1,6 @@
+---
+---
+
 # Logging
 
 The ReSharper Platform provides a comprehensive set of logging features, such as logging levels and different log listeners. It can also be configured with different levels and listeners based on the log category, such as `JetBrains.DataFlow` for capturing log events from the DataFlow subsystem.
@@ -106,7 +109,7 @@ Also, the width of the parameter can be specified between the percent symbol and
 
 ReSharper supports 7 logging levels, from `OFF` to `TRACE`. These are defined in the `LoggingLevel` enum:
 
-```cs
+```csharp
 public enum LoggingLevel
 {
   OFF = 0,

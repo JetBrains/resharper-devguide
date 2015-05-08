@@ -1,3 +1,6 @@
+---
+---
+
 # QuickDoc
 
 The QuickDoc feature displays a popup window with details of the code element at the current text caret position. What gets displayed depends on what that code element is.

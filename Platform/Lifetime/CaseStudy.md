@@ -1,6 +1,9 @@
+---
+---
+
 # Case Study
 
-> **INFO** This topic refers to the implementation of the Extension Manager for ReSharper 8. This implementation has changed for ReSharper 9 and no longer matches this description. However, the described behaviour is still a very valid usage of the `Lifetime` classes.
+> **NOTE** This topic refers to the implementation of the Extension Manager for ReSharper 8. This implementation has changed for ReSharper 9 and no longer matches this description. However, the described behaviour is still a very valid usage of the `Lifetime` classes.
 
 `Lifetime` is a very powerful concept. Normal usage is very straight forward, either by adding a simple callback, or passing it to an API. Generally speaking, this is how it will be used day to day.
 
@@ -16,7 +19,7 @@ Since extensions can be uninstalled at any time, it makes sense that they have a
 
 When an extension is first loaded, the `ExtensionSettingsLoader` class looks to see if it contains any settings files. If so, it calls into the Settings subsystem to load the files. The files are loaded with a `Lifetime` instance, and the Settings subsystem will register a callback that removes the settings file when that `Lifetime` terminates.
 
-> **Note** Note that there is no code to explicitly remove settings files. It is automatically handled by nested `Lifetime`s and the settings subsystem adding cleanup code to the given `Lifetime`.
+> **NOTE** Note that there is no code to explicitly remove settings files. It is automatically handled by nested `Lifetime`s and the settings subsystem adding cleanup code to the given `Lifetime`.
 
 However, we also want to remove settings files when the extension is disabled. So, instead of calling the Settings subsystem with the extension's own `Lifetime`, `ExtensionSettingsLoader` creates a new `Lifetime` that is valid for the duration that an extension is enabled. Since this is a consecutive, non-overlapping duration, the settings loader uses an instance of `SequentialLifetimes` to manage this.
 
@@ -55,6 +58,7 @@ This means we have three `Lifetime` objects on the go.
 We now have a system of adding and removing the settings files when the extension's `Enabled` property changes. We also add and remove the settings files on the main thread, and don't add the settings files if the extension has been disabled before the main thread was available to run the command. Finally, everything is removed when the extension is uninstalled.
 
 Consider implementing these same requirements with `IDisposable`.
+
 * Firstly, we would need to know when the extension was being uninstalled, which `IDisposable` wouldn't give us. (We would need to register with some event, presumably exposed by the extension itself)
 * Secondly, we would have to manage state to know if the files were currently loaded or not in the Settings subsystem and update this when the extension's enabled state changed.
 * Thirdly, we would have to manage enqueuing to the main thread, and work around the race condition of disabling the extension before adding the files.

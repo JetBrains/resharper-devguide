@@ -1,3 +1,6 @@
+---
+---
+
 # Creating Compiled Icons
 
 The most common type of icon is the compiled icon, represented by `CompiledIconId`. These icons are embedded into assembly references at compile type, as XAML resources.
@@ -57,7 +60,7 @@ The generated C# file contains `CompiledIconId` instances used to identify and c
 
 Each class has a single public static field called `Id`, which is the instance of `IconId` that you use when consuming the icon.
 
-```cs
+```csharp
 namespace Foo
 {
   // Name based on the folder containing the images - Bar

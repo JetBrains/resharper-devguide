@@ -1,3 +1,6 @@
+---
+---
+
 # Usage
 
 Each component must be marked as belonging to one or more zones before it will be added to the Component Model. Zones are declared with zone definition types, and zone markers are used to associate components with zone definitions.
@@ -6,7 +9,7 @@ Each component must be marked as belonging to one or more zones before it will b
 
 A zone is declared by a type implementing the empty `IZone` marker interface, and decorated with the `[ZoneDefinition]` attribute. The type can be a class or an interface, with no significance attached to the choice, although it has implications on inheritance. The simplest definition declares a zone with no dependencies:
 
-```cs
+```csharp
 [ZoneDefinition]
 public interface ISimpleZone : IZone
 {
@@ -21,7 +24,7 @@ Dependencies can be defined either by inheritance or by implementing the `IRequi
 
 If a zone definition is expected to be inherited, it makes sense to implement it as an interface. In this way, the inheriting zone definition has the ability to inherit from multiple zones. If the base zone definition is a class, the inheriting zone definition can only inherit a single zone.
 
-```cs
+```csharp
 [ZoneDefinition]
 public interface IMyZone : IZone, IRequire<NavigationZone>
 {
@@ -38,7 +41,7 @@ Zone markers are used to declare that a component belongs to one or more zones. 
 
 A zone marker is typically implemented by creating a type called `ZoneMarker`, or with a name ending in `_ZoneMarker`, and decorating it with the `[ZoneMarker]` attribute. All dependencies are listed either by implementing the `IRequire<TZone>` interface, or by passing the zone definitions to the `ZoneMarkerAttribute` constructor. There is no difference in the approach.
 
-```cs
+```csharp
 namespace Foo.Bar
 {
   [ZoneMarker]
@@ -58,7 +61,7 @@ This example declares that the `Foo.Bar` namespace belongs to the `IMyZone` zone
 
 Multiple dependencies can be applied to the zone marker, meaning the components in the zone require multiple zones for their implementation. For example, a JavaScript unit test runner will require both the `IUnitTestingZone` and the `ILanguageJavaScriptZone`.
 
-```cs
+```csharp
 namespace Foo.Bar.JavaScriptTestRunner
 {
   [ZoneMarker]
@@ -84,7 +87,7 @@ Generally speaking, most registration will use `ZoneMarker` classes to apply a z
 
 A namespace can be marked with an empty zone marker, meaning it is zone aware, but does not require any other zone.
 
-```cs
+```csharp
 namespace Foo.Bar
 {
   [ZoneMarker]
@@ -100,7 +103,7 @@ All components in the `Foo.Bar` namespace and below are now zone aware, but do n
 
 When creating the component containers, the Component Model applies the zone filter to every part, and checks that each part belongs to one or more active zone. It will walk the namespace segments of the type name of the part, and check for zones at each level. If there are any zones attached to that namespace, then all zones must be active, or the part is not included in the container. The filter will walk every segment in the namespace, and all zones in all namespace segments must be active, or the part is not included. If there are no zones specified for the part, it is not included.
 
-```cs
+```csharp
 // The namespace of the zone definition is irrelevant
 [ZoneDefinition]
 public interface IMyZone : IDependentZone

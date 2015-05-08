@@ -1,3 +1,6 @@
+---
+---
+
 # Activation
 
 Components are only included into the Component Model if the zones they belong to are "active". Zones are not activated by default, and must be activated by an activator class, which is a component decorated by the `[ZoneActivator]` attribute, and implementing `IActivate<TZone>` for each zone it activates.
@@ -12,7 +15,7 @@ If a zone is not activated, any components that require that zone will not be av
 
 An activator class implements the `IActivate<TZone>` interface, which is defined as:
 
-```cs
+```csharp
 public interface IActivate<TZone>
   where TZone : IZone
 {
@@ -26,7 +29,7 @@ When activating a zone, the ReSharper Platform activates that zone, and all zone
 
 Typically, a zone activator aligns with a [Product or Feature](FeaturesProducts.md), and unconditionally enables the zone definition that declares the Product or Feature via the `[ZoneDefinitionProduct]` attribute. It should also activate the zones that the Product or Feature zone requires. It is not an error to activate the same zone from multiple activators. E.g. if both ReSharper and dotPeek need the `ExternalSourcesZone`, they should both activate it - if they don't, and they end up being the only product installed into the ReSharper Platform, the required zone won't be active and the Product or Feature's requiring zones won't be loaded.
 
-```cs
+```csharp
 [ZoneActivator]
 class DotPeekZoneActivator :
   IActivate<DotPeekProductZone>,
@@ -50,7 +53,7 @@ However, it is perfectly reasonable to implement some logic in this method, for 
 
 The activator can implement the `IActivate<TZone>` interfaces explicitly, to allow for different implementations for each zone:
 
-```cs
+```csharp
 [ZoneActivator]
 public class MyZone : IActivate<IZone1>, IActivate<IZone2>
 {
@@ -72,7 +75,7 @@ public class MyZone : IActivate<IZone1>, IActivate<IZone2>
 
 Similarly, zone activator classes are components (`ZoneActivatorAttribute` derives from `EnvironmentComponentAttribute`, so they are components that get created very early in the application lifecycle), which means they can accept dependencies in the constructor. For example, a Feature that is intended for use only in [Internal Mode](../../Intro/InternalMode.md) can do something like:
 
-```cs
+```csharp
 [ZoneActivator]
 public class MyInternalModeFeatureZonesActivator : IActivate<IMyInternalModeFeatureZone>
 {
@@ -101,7 +104,7 @@ In other words, the zone activator is only available if it has a zone marker. Th
 
 For example, the `ReSharperZonesActivator` class, which lives in the `JetBrains.ReSharper.Product.Application.Product` namespace, has the following zone marker:
 
-```cs
+```csharp
 namespace JetBrains.ReSharper.Product.Application
 {
   // This zone is only active when IVisualStudioZone is active.
@@ -130,7 +133,7 @@ The main reason for wanting to disable a zone activator is so that supporting zo
 
 For example, the ReSharper C++ activator requires the C++ product zone, but also activates code editing, daemon and navigation zones. If the C++ product zone feature is disabled, the C++ activator would still activate code editing, daemon and navigation. If no other Features or Products used those zones, they are unnecessarily activated (and probably unlicensed). By requiring the C++ product zone, the ReSharper Platform will disabled the C++ activator if the C++ product zone is disabled. And now, the code editing, daemon and navigation zones are only activated if another activator needs them.
 
-```cs
+```csharp
 [ZoneActivator]
 class CppProductZonesActivator :
   IActivate<ILanguageCppZone>,
@@ -184,7 +187,7 @@ The Visual Studio zones are very hierarchical (see above). The "just" zones are 
 
 A zone definition can be declared as auto-enabled, if it makes sense that the zone is always available, regardless of configuration, installed products, etc. This is handled with the `ZoneFlags` parameter to the `[ZoneDefinition]` attribute.
 
-```cs
+```csharp
 [ZoneDefinition(ZoneFlags.AutoEnable)]
 public interface IMyZone
 {

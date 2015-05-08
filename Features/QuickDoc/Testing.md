@@ -1,3 +1,6 @@
+---
+---
+
 # Testing QuickDoc providers
 
 You can test your QuickDoc providers by creating a test class that derives from `QuickDocTestBase`. This class derives from `BaseTestWithTextControl`, and will open a text file into an in-memory text control and place the text caret at the location indicated by the `{caret}` placeholder. It then uses the `QuickDocManager` class to ensure that at least one provider can generate documentation, and then generates the HTML and compares it to the expected value in the gold file for the test.
@@ -16,7 +19,7 @@ As an example, this test class will test the C# QuickDoc provider for XML Doc Co
 
 **test\src\QuickDoc\CSharpQuickDocTest.cs:**
 
-```cs
+```csharp
 [TestFileExtension(CSharpProjectFileType.CS_EXTENSION)]
 public class CSharpQuickDocTest : QuickDocTestBase
 {
@@ -43,7 +46,7 @@ public class CSharpQuickDocTest : QuickDocTestBase
 
 Note the `{caret}` marker. This is used by the test's base class to position the text caret in the in-memory text control, ensuring the QuickDoc is for the class `Foo`.
 
-```cs
+```csharp
 /// <summary>Bar!</summary>
 public class Fo{caret}o
 {

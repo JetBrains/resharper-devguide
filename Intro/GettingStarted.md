@@ -1,3 +1,6 @@
+---
+---
+
 # Getting Started
 
 There are two main ways to extend the ReSharper Platform:

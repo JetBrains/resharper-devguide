@@ -1,3 +1,6 @@
+---
+---
+
 # Refactoring
 
 Refactorings are one of the most powerful features of ReSharper, but also the most complicated. A refactoring can be triggered from a variety of events (e.g., from a simple edit or deliberate invocation) and can result in all sorts of operations, some involving just local code, others involving the project (e.g., renaming a file) or changing multiple files in many projects.
@@ -27,7 +30,7 @@ The workflow provider is a class which provides workflows for ReSharper to consu
 
 The class has a single method - `CreateWorkflow()` that returns an `IEnumerable` of one or more workflows that you may wish to provide. Here is a typical example:
 
-```cs
+```csharp
 [RefactoringWorkflowProvider]
 public class MakeSingletonProvider : IRefactoringWorkflowProvider
 {
@@ -47,7 +50,7 @@ One of the methods we forgot to mention in the workflow is the `CreateRefactorin
 
 Thus, the refactoring itself is typically a class (let's call it `C`) inheriting from `DrivenRefactoring<Workflow, Refactoring>`, where `Workflow` corresponds to the refactoring workflow, and `Refactoring` corresponds to a type of `RefactoringExecBase<Workflow, C>`.
 
-```cs
+```csharp
 public class MakeSingletonRefactoring
   : DrivenRefactoring<MakeSingletonWorkflow,
     RefactoringExecBase<MakeSingletonWorkflow,

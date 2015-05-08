@@ -1,3 +1,6 @@
+---
+---
+
 # Key Topics
 
 The ReSharper Platform is very large, and very capable, and its size can initially be very daunting. This page is intended to list the key topics that a plugin author would be interested in, and provide quick links to the most common extension points.

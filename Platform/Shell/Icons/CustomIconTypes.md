@@ -1,3 +1,6 @@
+---
+---
+
 # Custom Icon Types
 
 It is possible to create a custom icon type, if the existing item types do not meet requirements. For example, the image could be retrieved from the filesystem, rather than compiled into an assembly.
@@ -6,7 +9,7 @@ To create a custom file type, you need to create a class that derives from `Icon
 
 Each `IconId` is associated with a class that implements `IIconIdOwner`, and is marked with the `[ShellComponent]` attribute. This class is responsible for taking the information in the `IconId` derived class and retrieving the icon.
 
-```cs
+```csharp
 public interface IIconIdOwner
 {
     Type IconIdType { get; }
@@ -24,7 +27,7 @@ In the case of an error, the class should pass any exception to the `Handle` met
 
 If the icon owner needs to use other icons, perhaps to apply an overlay (although the `CompositeIconId` should handle this), it can use the `IThemedIconManagerPerThemeCache` instance that gets passed in. This interface is a cache of existing icons for the current theme, and can be used to get an icon image, as a WPF `ImageSource` or a `System.Drawing.Bitmap` for a particular DPI.
 
-```cs
+```csharp
 public interface IThemedIconManagerPerThemeCache
 {
     ImageSource GetIconImageSource([NotNull] IconId iconid);
@@ -55,7 +58,7 @@ When the `IIconIdOwner` class needs to return a themed icon, it should look at `
 
 How the icon owner chooses to get a theme aspect specific icon is up to the implementation of the icon owner. `CompiledIconId` icons embed several different versions of the icons into an assembly's resources, and the owner simply retrieves the version of the icon that matches the aspect. The `ShellFileIconIdOwner` on the other hand, retrieves a file type icon from the operating system, looks for the `GenericIconThemeAspect.Gray` theme aspect and makes the icon monochrome using `ColorManagement.MakeMonochrome`.
 
-```cs
+```csharp
 BitmapSource bmp = GetFileIcon(iconid.ExtensionWithDot);
 if (theme.Aspects.Contains(GenericIconThemeAspect.Gray))
   return ColorManagement.MakeMonochrome(bmp);

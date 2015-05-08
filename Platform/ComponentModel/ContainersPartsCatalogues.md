@@ -1,8 +1,12 @@
+---
+---
+
 # Containers, Parts and Catalogues
 
-> **INFO** This is an advanced, deep dive into the implementation of the Component Model. It is not necessary to understand this in order to use the Component Model, or solution or shell components.
+> **NOTE** This is an advanced, deep dive into the implementation of the Component Model. It is not necessary to understand this in order to use the Component Model, or solution or shell components.
 
-<!-- toc -->
+* Table of contents
+{:toc}
 
 The Component Model is designed to create loosely coupled, composable applications. Shell and solution components are just one example of doing this, and are implemented on top of infrastructure that allows for more flexibility and custom handling of component creation and lifetime. In other words, the Component Model is a complete [Inversion of Control](http://en.wikipedia.org/wiki/Inversion_of_control) framework.
 
@@ -50,7 +54,7 @@ The collection of `IPartsCatalogueFilter` can be used to filter the parts that a
 
 The easiest way to register a source is to use one of the `RegisterCatalogue` extension methods from `CatalogueComponents`:
 
-```cs
+```csharp
 public void Register(ComponentContainer container, IPartsCatalogSet catalogSet)
 {
   // Register a catalog set with an attribute filter for MyPartAttribute
@@ -66,7 +70,7 @@ The container can be "chained" to another container. When resolving a type, if i
 
 Chaining is handled with the `ChainTo` extension method:
 
-```cs
+```csharp
 public ComponentContainer Create(CatalogComponentSource source, ComponentContainer parent)
 {
   return new ComponentContainer(lifetime, "myContainer")
@@ -108,7 +112,7 @@ Alternatively, when creating the container, you can pass in an instance of `Dela
 
 A component can opt-out of delayed initialisation by setting the `Requirement` property on its attribute:
 
-```cs
+```csharp
 [ShellComponent(Requirement = InstantiationRequirement.Immediate)]
 public class MyImmediateComponent
 {
@@ -135,7 +139,7 @@ The `T` passed to these methods can be any type in the type hierarchy of the req
 
 Typically, a container will be made up of only the most derived types of a hierarchy, thanks to the use of the `LeafsAndHides` parts selector. However, this does not dictate how many instances of a particular base type or interface are available in the container. For example, given the following:
 
-```cs
+```csharp
 public interface IFoo { }
 public class Foo1 : IFoo { }
 public class Foo2 : IFoo { }
@@ -149,7 +153,7 @@ The container will make available two instances of `IFoo` - `Foo1` and `Foo2`. H
 
 It is important to get this right when consuming dependencies in the constructor. For example, the following constructor will fail, since there are multiple instances of `IFoo` that can satisfy the parameter:
 
-```cs
+```csharp
 [ShellComponent]
 public class MyComponent(IFoo foo)
 {
@@ -166,7 +170,7 @@ As seen above, only the most derived instance of a type is added to the containe
 
 It is also possible to replace a component completely, without deriving from it. If a component implements `IHideImplementation<T>`, then the `LeafsAndHides` selector will replace the existing implementation `T` in the container with the current component.
 
-```cs
+```csharp
 [ShellComponent]
 public void AnotherComponent : IFoo
 {
@@ -184,7 +188,7 @@ While both `AnotherComponent` and `MyComponent` implement `IFoo`, only `MyCompon
 
 The main source of part types for a container is a catalogue set, which is essentially an observable collection of catalogues, implementing the `IPartsCatalogueSet` interface.
 
-```cs
+```csharp
 public interface IPartsCatalogueSet
 {
   IViewable<IPartsCatalogue> Catalogues { get; }

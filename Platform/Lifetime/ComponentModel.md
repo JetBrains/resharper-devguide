@@ -1,8 +1,11 @@
+---
+---
+
 # Component Lifetime
 
 The simplest way to get a `Lifetime` instance is to let the Component Model inject it into your constructor:
 
-```cs
+```csharp
 [ShellComponent]
 public class MyComponent
 {

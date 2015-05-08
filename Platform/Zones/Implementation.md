@@ -1,3 +1,6 @@
+---
+---
+
 # Implementation
 
 When the application first starts up, the Component Model creates a collection of all of the types in the application that are marked with an attribute deriving from `PartAttribute` (known as "parts"). The shell and solution containers are created by filtering this collection based on the type of the part attribute, i.e. `[ShellComponent]` or `[SolutionComponent]`. Zones are implemented by a similar filter.

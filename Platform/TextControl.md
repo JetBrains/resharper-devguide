@@ -1,3 +1,6 @@
+---
+---
+
 # TextControl
 
 Though for the most part plug-ins work by manipulating the AST, it is sometimes necessary to interact with the underlying text control. One typical example of this is when deploying _highlightings_ - those wavy lines that are used to underline code that needs to be corrected.

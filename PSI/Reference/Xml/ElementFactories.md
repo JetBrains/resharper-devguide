@@ -1,3 +1,6 @@
+---
+---
+
 # ElementFactories
 
 <!-- Not auto-indexed, so we can split definitions between XML and XML DTD.
@@ -10,8 +13,8 @@ The [`XmlElementFactory`](#xmlelementfactory) class is the class to use for crea
 
 All other classes and interfaces are used internally, and will probably not be used from client code.
 
-<!-- toc -->
-<!-- toc stop -->
+* Table of contents
+{:toc}
 
 ## D
 
@@ -19,7 +22,7 @@ All other classes and interfaces are used internally, and will probably not be u
 
 <!-- Begin DefaultXmlElementFactoryContext -->
 
-```cs
+```csharp
 public class DefaultXmlElementFactoryContext :
   IXmlElementFactoryContext
 {
@@ -40,7 +43,7 @@ Default implementation of [`IXmlElementFactoryContext`](#ixmlelementfactoryconte
 
 <!-- Begin DelegatingXmlElementFactory -->
 
-```cs
+```csharp
 public class DelegatingXmlElementFactory :
   IXmlElementFactory
 {
@@ -94,7 +97,7 @@ public class DelegatingXmlElementFactory :
 
 <!-- Begin IXmlElementFactory -->
 
-```cs
+```csharp
 public interface IXmlElementFactory
 {
   PsiLanguageType LanguageType { get; }
@@ -142,7 +145,7 @@ public interface IXmlElementFactory
 
 <!-- Begin IXmlElementFactoryContext -->
 
-```cs
+```csharp
 public interface IXmlElementFactoryContext
 {
   T GetContainingNode<T>(ITreeNode currentNode, bool returnCurrent);
@@ -162,7 +165,7 @@ Helper methods used while parsing XML into [`IXmlTreeNode`](TreeNodes.md#ixmltre
 
 <!-- Begin ResyncXmlElementFactory -->
 
-```cs
+```csharp
 public class ResyncXmlElementFactory :
   DelegatingXmlElementFactory
 {
@@ -188,7 +191,7 @@ The changed range is re-parsed, as a whole file. However, the element factory us
 
 <!-- Begin ResyncXmlElementFactoryContext -->
 
-```cs
+```csharp
 public class ResyncXmlElementFactoryContext :
   IXmlElementFactoryContext
 {
@@ -211,7 +214,7 @@ Defers to [`DefaultXmlElementFactoryContext`](#defaultxmlelementfactorycontext).
 
 <!-- Begin XmlElementFactory -->
 
-```cs
+```csharp
 public class XmlElementFactory
 {
   protected XmlElementFactory(IPsiModule module, IXmlElementFactory factory, IXmlLanguageSupport support, bool applyFormatter);
@@ -251,7 +254,7 @@ Generally speaking, callers should use `CreateTagForTag` and `CreateTagForAttrib
 
 <!-- Begin XmlElementFactory`1 -->
 
-```cs
+```csharp
 public class XmlElementFactory<TXmlLanguage> :
   XmlElementFactory
 {
@@ -271,7 +274,7 @@ A derived instance of [`XmlElementFactory`](#xmlelementfactory) which allows cre
 
 <!-- Begin XmlElementFactoryForCreateAttribute -->
 
-```cs
+```csharp
 public class XmlElementFactoryForCreateAttribute :
   DelegatingXmlElementFactory
 {
@@ -291,7 +294,7 @@ Instance of [`IXmlElementFactory`](#ixmlelementfactory) that changes the context
 
 <!-- Begin XmlElementFactoryForCreateTag -->
 
-```cs
+```csharp
 public class XmlElementFactoryForCreateTag :
   DelegatingXmlElementFactory
 {
@@ -312,7 +315,7 @@ Instance of [`IXmlElementFactory`](#ixmlelementfactory) that changes the context
 
 <!-- Begin XmlTreeNodeFactory -->
 
-```cs
+```csharp
 [Language(typeof(XmlLanguage))]
 public class XmlTreeNodeFactory :
   IXmlElementFactory

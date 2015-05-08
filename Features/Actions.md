@@ -1,6 +1,9 @@
+---
+---
+
 # Actions and Menu Items
 
-> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+> **WARNING** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
 
 While the bulk of ReSharper is concerned with presenting its own types of UI (popups, dialog windows, etc.), certain features can be implemented using traditional menu items that would be familiar to anyone who has done Visual Studio plugin development. A menu item subsequently triggers an _action_, i.e. a unit of work associated with this menu item.
 
@@ -29,11 +32,11 @@ Let's take a look at these steps in turn.
 
 `Actions.xml` is an embedded resource you can keep in your project. ReSharper is able to locate the resource due to the ActionsXml attribute with which the assembly is decorated. For example:
 
-```cs
+```csharp
 [assembly: ActionsXml("JetBrains.ReSharper.PowerToys.MenuItem.Actions.xml")]
 ```
 
-> **Note**: This attribute is no longer required in ReSharper 8. ReSharper will instead look for all embedded resources in an assembly to see if it matches the name `Actions.xml`
+> **NOTE**: This attribute is no longer required in ReSharper 8. ReSharper will instead look for all embedded resources in an assembly to see if it matches the name `Actions.xml`
 
 The XML file itself is fairly simple. At the root level, it uses the `actions` element. Within it, there are several different types of content.
 
@@ -72,7 +75,7 @@ Concerning the `IActionHandler` interface, it requires that you implement two me
 
 The first - `Update()` - returns a boolean value indicating whether the menu item is enabled or disabled. For example, if your action needs a solution to work on, you could specify the following Update() method:
 
-```cs
+```csharp
 public bool Update(IDataContext context, ActionPresentation presentation, DelegateUpdate nextUpdate)
 {
   // fetch active solution from context
@@ -89,7 +92,7 @@ The second method is called `Execute()`. This is the method where the action is 
 
 If you wish to override existing actions, you can create a custom shell component that finds an existing action and adds a different handler for it. For example, here is a custom action handler override for the `TypeHierarchy.ClassHierarchy` action:
 
-```cs
+```csharp
 [ShellComponent]
 public class CustomActionHandlerManager
 {

@@ -1,6 +1,9 @@
+---
+---
+
 # Options Pages
 
-> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+> **WARNING** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
 
 An options page allows a plugin developer to add controls to the ReSharper Options dialog. This is typically used to let the user specify various plugin settings. The plugin writer can add an unlimited amount of option pages to the dialog, and the dialogs can be nested in any of the options groups.
 
@@ -23,7 +26,7 @@ In addition, you may specify the following optional parameters:
 
 Having specified the attributes, your class will appear as follows:
 
-```cs
+```csharp
 [OptionsPage(PID, "Sample Page", typeof(OptionsPageThemedIcons.SamplePage), ParentId = ToolsPage.PID)]
 public partial class SampleOptionPage : IOptionsPage
 {
@@ -46,7 +49,7 @@ In addition to these values, you may inject any other available component into t
 
 You can define the UI for your options page using either Windows Forms or WPF. Whichever option you choose, all you have to do to actually present the UI is to initialize it and assign it to your option page's `Control` variable.
 
-> **Note**: whichever UI framework you choose, your application _must_ reference the WPF assemblies. The compiler will warn you about this if you start using the `EitherControl` type without adding appropriate references.
+> **NOTE** whichever UI framework you choose, your application _must_ reference the WPF assemblies. The compiler will warn you about this if you start using the `EitherControl` type without adding appropriate references.
 
 To create an options page using Windows Forms, simply create a `UserControl` and assign it to the `Control` property. Please note that since multiple inheritance is impossible, the only way to keep the options page class and the `UserControl` class one and the same is as follows:
 
@@ -68,7 +71,7 @@ The `OptionsSettingsSmartContext` class that we inject has several `SetBinding()
 
 For example, here is how one would bind a WPF text box for a username to a corresponding setting:
 
-```cs
+```csharp
 settings.SetBinding(lifetime, (GitHubSettings s) => s.Username, usernameBox, TextBox.TextProperty);
 ```
 
@@ -80,7 +83,7 @@ The situation with WinForms is a bit more trickly - there are no dependency prop
 
 Thus, the call to bind a WinForms-based password box to a setting becomes as follows:
 
-```cs
+```csharp
 var property = WinFormsProperty.Create(lifetime, passwordBox, box => box.Text, true);
 settings.SetBinding(lifetime, (GitHubSettings s) => s.Password, property);
 ```

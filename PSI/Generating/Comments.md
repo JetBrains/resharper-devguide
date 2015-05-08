@@ -1,3 +1,6 @@
+---
+---
+
 # Generating Comments
 
 Comments occupy a curious place within the ReSharper ecosystem. On the one hand, a comment may be a simple string encapsulated in a node of a physical tree. On the other hand, a comment preceding a method consist of valid XML that is subsequently represented as a proper data structure.
@@ -10,7 +13,7 @@ Before we begin, the most important thing to realize is that *basic comments (as
 
 Consider the following declaration:
 
-```cs
+```csharp
 class C
 {
   // this is a comment
@@ -21,7 +24,7 @@ From the lexical perspective, the class body can be treated essentially as a seq
 
 But how do you actually _get_ an `ICommentNode`? This depends on the type of the feature you’re workin on. For example, let’s say that you’re writing a context action which replaces any comment it finds with `/* hello, world */`. This context action would then have its `IsAvailable()` method defined as follows:
 
-```cs
+```csharp
 public bool IsAvailable(IUserDataHolder cache)
 {
   return provider.TokenAfterCaret is ICommentNode;
@@ -32,7 +35,7 @@ The provider’s `TokenBeforeCaret` and `TokenAfterCaret` properties yield the t
 
 The bad news is that you cannot just call some `SetText()` method on a comment node and be done with it - instead, you need to create a brand new `ICommentNode` and replace the old one. Thus, the implementation of `ExecutePsiTransaction()` for our context action would look something like the following:
 
-```cs
+```csharp
 protected override Action<ITextControl> ExecutePsiTransaction(ISolution solution, IProgressIndicator progress)
 {
   var factory = CSharpElementFactory.GetInstance(provider.PsiModule);
@@ -49,7 +52,7 @@ In the above example, we use a `CSharpElementFactory` to manufacture a brand new
 
 Now, what would happen if you declared the comment as `/// <z>this is a comment</z>`? The end result in this case is that the comment has a type of `DocComment`. A ‘doc comment’ is different though - unlike an ordinary comment, a doc comment is typically attached to a particular element of the ‘chemical’ tree, such as a class or class member (field, property, etc.). It’s also possible in certain cases for a doc comment to span _several_ elements at once. Here is an example.
 
-```cs
+```csharp
 class C
 {
   /// <summary>Co-ordinates</summary>
@@ -61,7 +64,7 @@ While the above may not be a best example in terms of programming, it does illus
 
 So now let’s get back to the usual questions. First, how do you determine that the caret is on a doc comment? The same way as before, except that the type of the node is different:
 
-```cs
+```csharp
 bool isOnDocComment = provider.TokenAfterCaret is IDocCommentNode;
 ```
 
@@ -82,7 +85,7 @@ A single doc comment is then part of that block. For example, a `<summary>` woul
 
 Unlike basic comments, doc comment blocks are language-specific. This means that, if you’re working with C#, you’ll most likely be working with an `ICSharpDocCommentBlockNode`. This type of node is a lot more interesting because, unlike the typical XML doc-related API which would yield you a simple `XmlNode` (see e.g., the `IDeclaration.GetXmlDoc()` method), the `ICSharpDocCommentBlockNode` can yield you a fully fledged XML PSI interface:
 
-```cs
+```csharp
 var node = provider.TokenAfterCaret.Parent as ICSharpDocCommentBlockNode;
 IDocCommentXmlPsi xmlPsi = node.GetXmlPsi();
 ```
@@ -91,7 +94,7 @@ Note the use of `Parent` property in the above call: your caret is, essentially,
 
 The great thing about `IDocCommentXmlPsi` is that it contains a myriad of utility methods for adding or modifying particular XML doc declarations such as summary, parameters, exception information, and so on. For example, the following piece of code lets you add a `<summary>` to the block comment:
 
-```cs
+```csharp
 var factory = XmlElementFactory.GetInstance<XmlDocLanguage>();
 var summaryTag = factory.CreateTag("<summary>this method rocks</summary>");
 xmlPsi.AddSummaryNode(summaryTag);
