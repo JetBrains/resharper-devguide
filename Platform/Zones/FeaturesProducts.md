@@ -33,7 +33,7 @@ A product can also expose product information to the ReSharper Platform, by usin
 ```cs
 [ZoneDefinition]
 [ZoneDefinitionProduct(CompanyName = "JetBrains", CompanyNameLegal = "JetBrains s.r.o.", 
-  ProductPresentableName = "ReSharper", ProductTechnicalName = "ReSharper", Version = "1.2.3",
+  ProductPresentableName = "ReSharper", ProductTechnicalName = "ReSharper", Version = "9.1",
   ProductUrl = "http://www.jetbrains.com/resharper",
   ProductIcon = typeof(ReSharperUIThemedIcons.ReSharper16x16))]
 public class IReSharperProductZone : IZone
