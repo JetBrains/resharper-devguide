@@ -1,3 +1,6 @@
+---
+---
+
 # Tool Windows
 
 One of ReSharper's core abilities is to present various types of tool windows. Broadly speaking, there are two varieties of tool window: one where its content structure is predefined, and one where you decide what the content of the window is.
@@ -15,7 +18,7 @@ The general-purpose tool window typically consists of the following:
 
 The descriptor is simply an empty class that inherits from `ToolWindowDescriptor` and is decorated with the `ToolWindowDescriptor` attribute. All of the configuration happens in the attribute. Here is an example:
 
-```cs
+```csharp
 [ToolWindowDescriptor(
   ProductNeutralId="KeyboardHelperWindow",
   Text="Keyboard Helper",
@@ -44,7 +47,7 @@ Let us briefly go over the information that is provided in the above:
 
 To create an action that opens up a tool window, simply create a class that inherits from `ActivateToolWindowHandle<TDescriptorType>`, parameterise it with your descriptor type (as seen above) and decorate it with the `ActionHandler` attribute:
 
-```cs
+```csharp
 [ActionHandler("MyPlugin.ShowKeyboardHelper")]
 public class KeyboardHelperAction : ActivateToolWindowActionHandler<KeyboardHelperDescriptor>
 {
@@ -57,7 +60,7 @@ The registrar is a component (it can be shell or solution) that is used to regis
 
 The first option is to simply use a `UserControl` (it can be either WinForms or WPF):
 
-```cs
+```csharp
 [ShellComponent]
 public class KeyboardHelperRegistrar
 {

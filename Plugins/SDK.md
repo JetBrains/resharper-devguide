@@ -1,6 +1,9 @@
+---
+---
+
 # SDK Reference
 
-> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+> **WARNING** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
 
 The ReSharper SDK is a set of Visual Studio project and item templates designed to help you create and build ReSharper plugins. You can download it [here](http://www.jetbrains.com/resharper/download/).
 
@@ -26,7 +29,7 @@ Of course, the SDK itself is not limited to just these extension points; there a
 
 Once you’ve familiarized yourself with the sample project, go ahead and create one of your own! The project templates for ReSharper plugins are available for both Visual Basic and Visual C#. Corresponding test project templates are also available.
 
-> **Info** ReSharper plugin development is a lot easier if you use the tools such as the Psi Viewer which are available in ReSharper’s Internal Mode. To enable Internal Mode, edit Visual Studio’s shortcut, adding the string `/ReSharper.Internal` to the end. Restart Visual Studio to see an additional Internal menu under the ReSharper top-level menu.
+> **NOTE** ReSharper plugin development is a lot easier if you use the tools such as the Psi Viewer which are available in ReSharper’s Internal Mode. To enable Internal Mode, edit Visual Studio’s shortcut, adding the string `/ReSharper.Internal` to the end. Restart Visual Studio to see an additional Internal menu under the ReSharper top-level menu.
 
 ## Samples
 
@@ -45,7 +48,7 @@ First, in the `SamplePlugin` folder, we have a plugin that shows how a single fe
 
 as well as the associated tests.
 
-> **Info** Unfortunately, the `SamplePlugin` project that ships with the 8.2 SDK expects the `packages` folder to be in the folder *above* the location of the solution file. NuGet's package restore will restore the packages to the `packages` folder at the same location as the solution.
+> **NOTE** Unfortunately, the `SamplePlugin` project that ships with the 8.2 SDK expects the `packages` folder to be in the folder *above* the location of the solution file. NuGet's package restore will restore the packages to the `packages` folder at the same location as the solution.
 >
 > To fix this, please replace the two `.csproj` files with these: [SamplePlugin.csproj](SamplePlugin.csproj) and [SamplePlugin.Tests.csproj](SamplePlugin.Tests.csproj). They are the same as the existing `.csproj` files, except any references to `..\..\packages\...` have been replaced with `..\packages\...`
 >

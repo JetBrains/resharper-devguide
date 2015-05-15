@@ -1,3 +1,6 @@
+---
+---
+
 # Path references
 
 ReSharper supports path references, which are references that target file system paths. They implement `IPathReference` or `IFileReference`, which both inherit from `IReference` and typically apply to a substring within a string literal. Hitting Ctrl+Click on a path reference will navigate to that file or folder, and renaming a path (as long as it's part of the Visual Studio project) will be reflected in the string associated with the reference.
@@ -8,7 +11,7 @@ Path references are also "qualified" references. That is, the reference has a qu
 
 There are several helper classes for creating file and folder references, depending on the language of the underlying document. The `PathReferenceUtil.CreatePathReferences` static method will parse a path string and generate references for the folder and file segments.
 
-```cs
+```csharp
 public static IPathReference[] CreatePathReferences<TOwner,TToken>(
   TOwner owner, TToken token, IQualifier baseQualifier,
   Func<TOwner, IQualifier, TToken, TreeTextRange, IPathReference> createFolderReferenceDelegate,

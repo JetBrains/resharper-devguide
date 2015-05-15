@@ -1,9 +1,12 @@
+---
+---
+
 # Utils
 
 <!-- Index A - Z (auto-generated. Remove this line if manually adding/removing entries) -->
 
-<!-- toc -->
-<!-- toc stop -->
+* Table of contents
+{:toc}
 
 ## M
 
@@ -11,7 +14,7 @@
 
 <!-- Begin ModuleQualificationUtil -->
 
-```cs
+```csharp
 public static class ModuleQualificationUtil
 {
   public static string GetModuleName(IPsiModule psiModule);
@@ -48,7 +51,7 @@ Helper methods to support references to CLR types inside XML documents, e.g. web
 
 <!-- Begin ReferenceWithTokenUtil -->
 
-```cs
+```csharp
 public static class ReferenceWithTokenUtil
 {
   public static void AddRestoreTransactionAction(IPsiServices psiServices, IReferenceWithToken referenceWithToken, ElementRange<IXmlToken> oldRange);
@@ -70,7 +73,7 @@ Helper methods for handling references within a token node. The methods defer to
 
 <!-- Begin XmlAttributeContainerExtensions -->
 
-```cs
+```csharp
 public static class XmlAttributeContainerExtensions
 {
   public static TAttribute GetAttribute<TAttribute>(this IXmlAttributeContainer container);
@@ -89,7 +92,7 @@ Gets an attribute from an instance of [`IXmlAttributeContainer`](TreeNodes.md#ix
 
 <!-- Begin XmlAttributeExtension -->
 
-```cs
+```csharp
 public static class XmlAttributeExtension
 {
   public static string GetUnquotedText(IXmlAttribute attribute, out TreeTextRange range);
@@ -107,7 +110,7 @@ Helper methods to get information about the unquoted text of an instance of [`IX
 
 <!-- Begin XmlAttributeExtensions -->
 
-```cs
+```csharp
 public static class XmlAttributeExtensions
 {
   public static void Remove(this IXmlAttribute xmlAttribute);
@@ -124,7 +127,7 @@ Convenience method. Will remove the given attribute from it's parent tag via `IX
 
 <!-- Begin XmlAttributeUtil -->
 
-```cs
+```csharp
 public static class XmlAttributeUtil
 {
   public static void SetValue(IXmlAttribute attribute, string unquotedValue);
@@ -144,7 +147,7 @@ Helper methods for working with XML attributes. `SetValue` replaces an attribute
 
 <!-- Begin XmlElementFactoryExtensions -->
 
-```cs
+```csharp
 public static class XmlElementFactoryExtensions
 {
   public static IXmlAttribute CreateAttributeRaw(this IXmlElementFactory factory, this string attributeText);
@@ -162,7 +165,7 @@ Creates an instance of [`IXmlFile`](TreeNodes.md#ixmlfile) or [`IXmlAttribute`](
 
 <!-- Begin XmlReferenceUtil -->
 
-```cs
+```csharp
 public static class XmlReferenceUtil
 {
   public static TReference FindReferenceRecursively<TReference>(ITreeNode element, Predicate<TReference> predicate);
@@ -177,7 +180,7 @@ Helper method that will recursively walk down the PSI tree starting at `element`
 
 <!-- Begin XmlTagExtensions -->
 
-```cs
+```csharp
 public static class XmlTagExtensions
 {
   public static IXmlAttribute GetAttribute(this IXmlTag tag, this Predicate<IXmlAttribute> predicate);
@@ -203,7 +206,7 @@ Convenience methods that call into properties and methods on [`IXmlTag`](TreeNod
 
 <!-- Begin XmlTagUtil -->
 
-```cs
+```csharp
 public static class XmlTagUtil
 {
   public static bool CanBeEmptyTag(IXmlTag tag);
@@ -227,7 +230,7 @@ Helper methods for working with `IXmlTag`.
 
 <!-- Begin XPathUtil -->
 
-```cs
+```csharp
 public static class XPathUtil
 {
   public static IList<T> GetNestedTags<T>(IXmlTagContainer container, string xpath);

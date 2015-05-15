@@ -1,3 +1,6 @@
+---
+---
+
 # Presenter helper classes
 
 ReSharper provides a couple of classes to help build the HTML - **`XmlDocHtmlUtil`** and **`XmlDocHtmlPresenter`**. Typically, the presenter will generate the HTML by calling `XmlDocHtmlPresenter.Run` which in turn calls methods on `XmlDocHtmlUtil`, such as `XmlDocHtmlUtil.BuildHtml`, although the presenter is free to call `XmlDocHtmlUtil` directly, or create the HTML itself. It is, however, recommended to use the helper classes).
@@ -6,7 +9,7 @@ ReSharper provides a couple of classes to help build the HTML - **`XmlDocHtmlUti
 
 Since the presenter has to create the entire HTML that is displayed, it should at the very least use the standard HTML style template that is defined as a public constant in `XmlDocHtmlUtil.QUICK_DOC_HTML_STYLE`:
 
-```cs
+```csharp
 return "<html><head>\n" +
   "<META http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\n" +
   XmlDocHtmlUtil.QUICK_DOC_HTML_STYLE +
@@ -17,7 +20,7 @@ return "<html><head>\n" +
 
 However, doing this doesn't include the standard scripts for showing and hiding sections, or the content for the "go to" and "read more" links. To get this, call `XmlDocHtmlUtil.BuildHtml`, passing in a function that will insert the HTML body into a given `StringBuilder`, and also a `NavigationStyle` enum to state if you want "go to", "read more", both or none:
 
-```cs
+```csharp
 BuildHtml(sb => sb.Append(body), NavigationStyle.All);
 ```
 
@@ -29,7 +32,7 @@ There are a number of other helper methods:
 
     This can be used with anonymous types. For example, CLR attributes get the "ext" class added to indicate external annotation attributes:
     
-    ```cs
+    ```csharp
     var htmlFragment = Hyperlink(name, id, new {
       @class = "ext",
       title = fullyQualifiedName
@@ -46,7 +49,7 @@ There are a number of other helper methods:
 
 The entry point to the API is the `Run` method:
 
-```cs
+```csharp
 var html = XmlDocHtmlPresenter.Run(node, module, element, language, navigationStyle, processCRef);
 ```
 
@@ -69,7 +72,7 @@ Generally, the root node is the `member` node, and is used to generate a name he
 
 All child nodes of the `member` node are converted into sections in the generated HTML. Each section has a title, such as "Remarks" or "See Also", and the content of each XML node is converted and displayed in the section.
 
->**Note** the root node of the XML will only be processed if an `IDeclaredElement` is passed in, otherwise the child nodes are immediately processed instead. While it is assumed that the root node is the `member` node, this is not a requirement.
+> **NOTE** the root node of the XML will only be processed if an `IDeclaredElement` is passed in, otherwise the child nodes are immediately processed instead. While it is assumed that the root node is the `member` node, this is not a requirement.
 
 The following elements are recognised:
 
@@ -103,7 +106,7 @@ If an `IDeclaredElement` is passed in, and the member header is to be rendered, 
 
 If you are implementing your own language, and you do not wish to use the `CommonXmlDocHeaderPresenter`, you should also implement `IXmlDocHeaderPresenter`. The interface is simple:
 
-```cs
+```csharp
 public interface IXmlDocHeaderPresenter
 {
   void Present(StringBuilder header, IDeclaredElement declaredElement, IPsiModule module);

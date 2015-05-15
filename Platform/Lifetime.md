@@ -1,8 +1,11 @@
+---
+---
+
 # Lifetime
 
 The `JetBrains.DataFlow.Lifetime` class is used for cleanup code and resource management. `Lifetime` is similar to, but different from `IDisposable`. In fact, you can consider `Lifetime` to be the "dual" of `IDisposable`.
 
-> **Note** This class is used *extensively* throughout the codebase, and it is *highly recommended* that you understand what it is and how it works.
+> **NOTE** This class is used *extensively* throughout the codebase, and it is *highly recommended* that you understand what it is and how it works.
 
 `IDisposable` is best suited to deterministic cleanup of a limited number of objects in a small scope. That is, it's ideal when you have created one or maybe two objects that need cleanup at a specific point in code; the `using` keyword makes this particularly easy.
 

@@ -1,3 +1,6 @@
+---
+---
+
 # Icon Types
 
 The most common kind of `IconId` is `CompiledIconId`. This represents icons that have been compiled into an assembly's resources. ReSharper also supports several other types of icons:
@@ -15,7 +18,7 @@ The icon types don't apply theming, and when creating a new icon based on an exi
 
 An icon representing a solid colour can be defined by creating a new instance of `ColorIconId` and passing in a `Color`. The resulting icon will be a solid square of that colour.
 
-```cs
+```csharp
 var iconId = new ColorIconId(Color.Red);
 ```
 
@@ -23,7 +26,7 @@ var iconId = new ColorIconId(Color.Red);
 
 The `CompositeIconId` will combine other icons into a single image, useful for applying overlays. To create a composite icon, call one of the static `Compose` methods, passing in the `IconId` of the icons to combine. The images are composed in left to right order. That is, the `Compose` method's leftmost argument being applied first, and subsequent arguments are applied on top.
 
-```cs
+```csharp
 var iconId1 = new ColorIconId(Color.Red);
 var iconId2 = ProjectModelThemedIcons.LayerSolutionShared.Id;
 var compositeIconId = CompositeIconId.Compose(iconId1, iconId2);
@@ -31,7 +34,7 @@ var compositeIconId = CompositeIconId.Compose(iconId1, iconId2);
 
 A more realistic example shows how to create an icon that represents a private method (although this is unlikely to be required in user code, as the PSI can provide this icon automatically for a given declared element):
 
-```cs
+```csharp
 var iconId1 = PsiSymbolsThemedIcons.Method.Id;
 var iconId2 = PsiSymbolsThemedIcons.ModifiersPrivate.Id;
 var compositeIconId = CompositeIconId.Compose(iconId1, iconId2);
@@ -43,7 +46,7 @@ The `EffectOnIconId` creates a new `IconId` based on an existing icon, but with 
 
 When making the icon monochrome, if the base icon is a WPF vector image, the brushes associated with the vector geometries are replaced with the given colour. When the base icon is a bitmap, the bitmap is rendered and the monochrome colour is applied.
 
-```cs
+```csharp
 var baseIconId = ProjectModelThemedIcons.LayedSolutionShared.Id;
 // Apply a 0.7 opacity, convert to red and apply a radius blur with a radius of 5
 var iconId = new EffectOnIconId(baseIconId, 0.7, Color.Red, 5);
@@ -55,7 +58,7 @@ var iconId = new EffectOnIconId(baseIconId, 0.7, Color.Red, 5);
 
 Icons for file types can be retrieved using the `ShellFileIconId` class. These icon IDs ask the operating system for the icon to represent a given file extension (the dot should be included), at a given file size. The returned icon is also converted to monochrome, if the current theme is a monochrome theme (such as Visual Studio's Light or Dark theme. The Blue theme is not, and the icon is not converted if this is the current theme).
 
-```cs
+```csharp
 var smallIconId = new ShellFileIconId(".cs", ShellFileIconId.IconSize.SmallIcon);
 var largeIconId = new ShellFileIconId(".cs", ShellFileIconId.IconSize.LargeIcon);
 ```
@@ -74,7 +77,7 @@ For Windows Forms, the individual frames of a rotated animation can be retrieved
 
 Alternatively, animation can be achieved by creating icons for individual frames and updating an `IProperty<IconId>` with each frame. Again, this can be used with `ThemedIconViewImage`, which will display each frame as a static image, and update when the icon changes for each frame. This is how the solution wide analysis round icon in the status bar is handled.
 
-```cs
+```csharp
 public UIElement GetIconView(Lifetime animationLifetime, IProperty<IconId> animatedIcon)
 {
   var image = new ThemedIconViewImage();

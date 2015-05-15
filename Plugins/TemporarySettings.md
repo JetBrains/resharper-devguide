@@ -1,10 +1,13 @@
+---
+---
+
 # Temporary Settings in Tests
 
 The ReSharper test environment will use default values for settings. If your test needs particular values in the settings, you need to set them yourself in the test, and they should be reset at the end of the test. This is important because ReSharper will try to reuse the current project and solution for future tests.
 
 The `BaseTest` class provides two methods to help with this:
 
-```cs
+```csharp
 public class BaseTest : BaseTestNoShell
 {
   public void ExecuteWithinSettingsTransaction( Action<IContextBoundSettingsStore> action);
@@ -16,7 +19,7 @@ public class BaseTest : BaseTestNoShell
 
 Normally, you would use the `ExecuteWithinSettingsTransaction` method. This takes an action that receives an instance of `IContextBoundSettingsStore`, and your code will use this settings store to temporarily change the settings. Once the action is complete, the changes to the settings are automatically undone.
 
-```cs
+```csharp
 [Test]
 public void MyTest()
 {

@@ -1,8 +1,12 @@
+---
+---
+
 # What's New in ReSharper 9.0?
 
 This document lists the major changes between ReSharper 8 and ReSharper 9, for extension authors. It is not an exhaustive list, but lists the major breaking changes. Other minor changes may exist. If you wish to update this page, please [edit it](https://github.com/JetBrains/resharper-devguide/edit/master/Intro/WhatsNew.md), or [submit an issue](https://github.com/JetBrains/resharper-devguide/issues).
 
-<!-- toc -->
+* Table of Contents
+{:toc}
 
 ## Zones and namespace refactorings
 
@@ -62,7 +66,7 @@ More specifically, any classes marked with attributes such as `[ShellComponent]`
 
 One implication of this change is that the application can now be up and running before all of the components in the container have been created. Previous versions would create the whole container before allowing the application to continue running. There may be cases where a component should be created in a more timely manner. For example, the Visual Studio integration needs to be created and hooked up before the application can continue. In this case, the component can require "instant" activation, in which case the component (and all of the components required to satisfy constructor dependencies) are created immediately rather than scheduled:
 
-```cs
+```csharp
 [ShellComponent(Requirement = InstantiationRequirement.Instant)]
 public class ImmediateComponent
 {
@@ -83,8 +87,8 @@ The control flow graph interfaces have been renamed to correct spelling:
 Also, the language specific interfaces have been renamed:
 
 * `ICSharpControlFlowGraf` -> `ICSharpControlFlowGraph` and `ICSharpControlFlowRib` -> `ICSharpControlFlowEdge`
-* `IVBControlFlowGraf` -> IVBControlFlowGraph` and `IVBControlFlowRib` -> `IVBControlFlowEdge`
-* `IJsControlFlowGraf` -> IJsControlFlowGraph` and `IJavaScriptControlFlowRib` -> `IJsControlFlowEdge`
+* `IVBControlFlowGraf` -> `IVBControlFlowGraph` and `IVBControlFlowRib` -> `IVBControlFlowEdge`
+* `IJsControlFlowGraf` -> `IJsControlFlowGraph` and `IJavaScriptControlFlowRib` -> `IJsControlFlowEdge`
 
 The `IControlFlowBuilder` and `ControlFlowBuilder` provide language agnostic methods to create a control flow graph.
 

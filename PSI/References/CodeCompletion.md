@@ -1,8 +1,11 @@
+---
+---
+
 # Code Completion
 
 Code completion is handled by ReSharper, as long as the reference also implements the `ICompleteableReference` interface. This interface inherits from `IReference` and defines just one method:
 
-```cs
+```csharp
 public interface ICompleteableReference : IReference
 {
   ISymbolTable GetCompletionSymbolTable();
@@ -11,7 +14,7 @@ public interface ICompleteableReference : IReference
 
 This method should return a symbol table of candidates. Each candidate will be added to the code completion list. The implementation for this is usually very straightforward:
 
-```cs
+```csharp
 public ISymbolTable GetCompletionSymbolTable()
 {
   return GetReferenceSymbolTable(false);

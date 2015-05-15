@@ -1,3 +1,6 @@
+---
+---
+
 # Required Tools
 
 You need the following tools in order to build ReSharper extensions:

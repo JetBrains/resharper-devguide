@@ -1,12 +1,15 @@
+---
+---
+
 # Combinatorial Testing
 
 The test framework supports running the same test multiple times with different combinations of settings. The settings can be specified in a text file, via an attribute, or via a parameter embedded in the test input file. The base class for the test must support this explicitly, it is not available to all tests by default.
 
-> **Note** The combinatorial testing described here is in regard to running a piece of test code multiple times within the same test method run, with different settings applied for each run. It does not cause multiple NUnit test methods to run, and the standard NUnit `[TestCase]` and `[TestCaseSource]` attributes continue to work very nicely for row based, data driven testing.
+> **NOTE** The combinatorial testing described here is in regard to running a piece of test code multiple times within the same test method run, with different settings applied for each run. It does not cause multiple NUnit test methods to run, and the standard NUnit `[TestCase]` and `[TestCaseSource]` attributes continue to work very nicely for row based, data driven testing.
 
 When running the test, the test base class needs to call the `Iterate` method on an instance of `TestOptionsIterator`:
 
-```cs
+```csharp
 ExecuteWithGold(inputFile, writer =>
   myTestOptionsIterator.Iterate(writer, settingsStore, item, Solution, (data, writer1) =>
   {
@@ -17,7 +20,7 @@ ExecuteWithGold(inputFile, writer =>
 
 The instance of `TestOptionsIterator` is usually created in the constructor:
 
-```cs
+```csharp
 public MyTest()
 {
   myTestOptionsIterator = new TestOptionsIterator(this)
@@ -63,7 +66,7 @@ Instead of creating an array literal with all enum values listed, the object lit
 
 In order to know what options the property names map to, the test class and its base classes can use the `[TestSettingsKey]` attribute to specify one or more settings key, as used by ReSharper's settings system.
 
-```cs
+```csharp
 [TestSettingsKey(typeof(HtmlFormatterSettingsKey))]
 public class HtmlCodeFormatterTests : CodeFormatterWithExplicitSettingsTestBase
 {
@@ -109,7 +112,7 @@ The language name is the name of the language's `PsiLanguageType` instance, e.g.
 
 Tests can also iterate over values not stored in the settings subsystem. Rather than automatically setting the option in settings before running the test, the value is made available to the test in the `CustomValues` dictionary of the test data passed to the test function.
 
-```cs
+```csharp
 ExecuteWithGold(inputFile, writer =>
   myTestOptionsIterator.Iterate(writer, settingsStore, item, Solution, (data, writer1) =>
   {
@@ -121,7 +124,7 @@ ExecuteWithGold(inputFile, writer =>
 
 The test class needs to tell the `TestOptionsIterator` that a custom value can be used, by decorating the class (or base class) with the `[TestSettingsVariable]` attribute. It must pass in the name and `Type` of the variable, which can be either boolean or an enum.
 
-```cs
+```csharp
 [TestSettingsVariable("FormatProfile", typeof(CodeFormatProfile))]
 public abstract class CodeFormatterWithExplicitSettingsTestBase // : ...
 {
@@ -223,7 +226,7 @@ If more than one method is used, the combinations are combined (as a binary expr
 
 The `[TestSettings]` attribute can be used multiple times on a method, class or base class to provide JavaScript-like expressions to represent combinations to apply to the test.
 
-```cs
+```csharp
 [TestSettings("{ TagAttributeFormat: all }")]
 [Test]
 public void Test001()
@@ -260,7 +263,7 @@ function foo() {}
 
 Common combinations can be described in separate files, and shared and included in multiple tests. The test class, or base class needs to use one or more `[TestSettingsInclude]` attributes to point to a file to be loaded.
 
-```cs
+```csharp
 [TestSettingsInclude(@"codeInsight\CodeFormatter\JavaScript\common.jcnf")]
 public abstract class JavaScriptCodeFormatterTestBase : CodeFormatterWithExplicitSettingsTestBase
 {
@@ -283,7 +286,7 @@ The syntax used here is as described in the [advanced combinations](#advanced-co
 
 The variable name is available to be used by the main DSL, as a simple reference to the name:
 
-```cs
+```csharp
 [TestSettings("Align")]
 [Test]
 public void Test001()

@@ -1,3 +1,6 @@
+---
+---
+
 # dotPeek
 
 This page contains _preliminary_ documentation on developing plugins for dotPeek. As dotPeek does not yet have an SDK, this guide should serve the temporary purpose of explaining how to write dotPeek plugins until an SDK is introduced.

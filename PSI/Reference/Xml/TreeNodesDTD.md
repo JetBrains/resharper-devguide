@@ -1,7 +1,10 @@
+---
+---
+
 # Tree Nodes (DTD)
 
-<!-- toc -->
-<!-- toc stop -->
+* Table of contents
+{:toc}
 
 ## A
 
@@ -9,7 +12,7 @@
 
 <!-- Begin IAnyContent -->
 
-```cs
+```csharp
 public interface IAnyContent :
   IElementContent,
   ITreeNode
@@ -25,7 +28,7 @@ public interface IAnyContent :
 
 <!-- Begin IAttDef -->
 
-```cs
+```csharp
 public interface IAttDef :
   ITreeNode
 {
@@ -42,7 +45,7 @@ public interface IAttDef :
 
 <!-- Begin IAttType -->
 
-```cs
+```csharp
 public interface IAttType :
   ITreeNode
 {
@@ -63,7 +66,7 @@ public interface IAttType :
 
 <!-- Begin IDocTypeDeclaration -->
 
-```cs
+```csharp
 public interface IDocTypeDeclaration :
   ITreeNode
 {
@@ -82,7 +85,7 @@ public interface IDocTypeDeclaration :
 
 <!-- Begin IDTDAttListDecl -->
 
-```cs
+```csharp
 public interface IDTDAttListDecl :
   ITreeNode
 {
@@ -101,7 +104,7 @@ public interface IDTDAttListDecl :
 
 <!-- Begin IDTDBody -->
 
-```cs
+```csharp
 public interface IDTDBody :
   ITreeNode
 {
@@ -118,7 +121,7 @@ public interface IDTDBody :
 
 <!-- Begin IDTDElementDecl -->
 
-```cs
+```csharp
 public interface IDTDElementDecl :
   ITreeNode
 {
@@ -137,7 +140,7 @@ public interface IDTDElementDecl :
 
 <!-- Begin IDTDEntityDecl -->
 
-```cs
+```csharp
 public interface IDTDEntityDecl :
   ITreeNode
 {
@@ -156,7 +159,7 @@ public interface IDTDEntityDecl :
 
 <!-- Begin IDTDFile -->
 
-```cs
+```csharp
 public interface IDTDFile :
   IXmlFile,
   IFile,
@@ -179,7 +182,7 @@ Represents a Document Type Definition file, which is a means of describing the f
 
 <!-- Begin IDTDNDataDecl -->
 
-```cs
+```csharp
 public interface IDTDNDataDecl :
   ITreeNode
 {
@@ -193,7 +196,7 @@ public interface IDTDNDataDecl :
 
 <!-- Begin IDTDNotationDecl -->
 
-```cs
+```csharp
 public interface IDTDNotationDecl :
   ITreeNode
 {
@@ -213,7 +216,7 @@ public interface IDTDNotationDecl :
 
 <!-- Begin IElementContent -->
 
-```cs
+```csharp
 public interface IElementContent :
   ITreeNode
 {
@@ -226,7 +229,7 @@ public interface IElementContent :
 
 <!-- Begin IEmptyContent -->
 
-```cs
+```csharp
 public interface IEmptyContent :
   IElementContent,
   ITreeNode
@@ -242,7 +245,7 @@ public interface IEmptyContent :
 
 <!-- Begin IExternalId -->
 
-```cs
+```csharp
 public interface IExternalId :
   ITreeNode
 {
@@ -257,7 +260,7 @@ public interface IExternalId :
 
 <!-- Begin IGrouppedContent -->
 
-```cs
+```csharp
 public interface IGrouppedContent :
   IElementContent,
   ITreeNode
@@ -278,7 +281,7 @@ public interface IGrouppedContent :
 
 <!-- Begin IPublicExternalId -->
 
-```cs
+```csharp
 public interface IPublicExternalId :
   IExternalId,
   ITreeNode
@@ -296,7 +299,7 @@ public interface IPublicExternalId :
 
 <!-- Begin IRepetitionContent -->
 
-```cs
+```csharp
 public interface IRepetitionContent :
   IElementContent,
   ITreeNode
@@ -316,7 +319,7 @@ public interface IRepetitionContent :
 
 <!-- Begin ISimpleContent -->
 
-```cs
+```csharp
 public interface ISimpleContent :
   IElementContent,
   ITreeNode
@@ -332,7 +335,7 @@ public interface ISimpleContent :
 
 <!-- Begin ISystemExternalId -->
 
-```cs
+```csharp
 public interface ISystemExternalId :
   IExternalId,
   ITreeNode
@@ -350,7 +353,7 @@ public interface ISystemExternalId :
 
 <!-- Begin IXmlAttlistStartTokenNode -->
 
-```cs
+```csharp
 public interface IXmlAttlistStartTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -368,7 +371,7 @@ public interface IXmlAttlistStartTokenNode :
 
 <!-- Begin IXmlElementStartTokenNode -->
 
-```cs
+```csharp
 public interface IXmlElementStartTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -386,7 +389,7 @@ public interface IXmlElementStartTokenNode :
 
 <!-- Begin IXmlEntityStartTokenNode -->
 
-```cs
+```csharp
 public interface IXmlEntityStartTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -404,7 +407,7 @@ public interface IXmlEntityStartTokenNode :
 
 <!-- Begin IXmlFixedTokenNode -->
 
-```cs
+```csharp
 public interface IXmlFixedTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -422,7 +425,7 @@ public interface IXmlFixedTokenNode :
 
 <!-- Begin IXmlImpliedTokenNode -->
 
-```cs
+```csharp
 public interface IXmlImpliedTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -440,7 +443,7 @@ public interface IXmlImpliedTokenNode :
 
 <!-- Begin IXmlNotationStartTokenNode -->
 
-```cs
+```csharp
 public interface IXmlNotationStartTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -458,7 +461,7 @@ public interface IXmlNotationStartTokenNode :
 
 <!-- Begin IXmlRequiredTokenNode -->
 
-```cs
+```csharp
 public interface IXmlRequiredTokenNode :
   IXmlToken,
   IXmlTreeNode,

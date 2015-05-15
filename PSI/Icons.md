@@ -1,3 +1,6 @@
+---
+---
+
 # PSI Icons
 
 The PSI needs to be able to display icons to help identify code elements in completion, navigation or find usage result lists. The PSI can display different icons to distinguish between classes, constructors, methods, parameters, etc. It can also show specific icons for CSS class IDs, HTML elements and unit test elements.
@@ -6,7 +9,7 @@ While the [Shell provides the `ThemedIconManager` class](../Platform/Shell/Icons
 
 The `PsiIconManager` provides the following methods and properties:
 
-```cs
+```csharp
 public abstract class PsiIconManager
 {
   public abstract IconId GetDummyImage();
@@ -23,7 +26,7 @@ The `PsiIconExtension` type is a flags based enum, which provides the modifiers,
 
 * **`GetDummyImage`** returns a dummy, placeholder image, which is to be used if the icon manager cannot return a more specific image. The pattern for usage is usually:
 
-    ```cs
+    ```csharp
     var iconId = manager.GetImage(CLRDeclaredElementType.CONSTRUCTOR) ?? manager.GetDummyImage();
     ```
 
@@ -41,7 +44,7 @@ Typically, the icon manager will return an icon when `GetImage` is called. If it
 
 By default, the icon manager will try to return a specific icon for a given declared element. If it can't find one, it returns the icon from the element's `DeclaredElementType`. In order to find a specific icon, it asks an extensible collection of icon providers, which all implement the `IDeclaredElementIconProvider` interface:
 
-```cs
+```csharp
 public interface IDeclaredElementIconProvider
 {
   IconId GetImageId(IDeclaredElement declaredElement, PsiLanguageType languageType, out bool canApplyExtensions);

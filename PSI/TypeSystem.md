@@ -1,10 +1,14 @@
+---
+---
+
 # Type System
 
-<!-- toc -->
+* Table of contents
+{:toc}
 
 Any kind of manipulation of object-oriented structures necessarily involve working with _types_ such as `int`, `string` or, say, `MyType<U,V>`. Predictably, ReSharper has a number of data structures that allow plugin writers to identify and introspect types, whether these types are available as code or not.
 
-> **Hint** use the _Explore Type Hierarchy_ (*Ctrl+E,H*) command to explore the hiearchies of the various `IXxxType` interfaces.
+> **TIP** use the _Explore Type Hierarchy_ (*Ctrl+E,H*) command to explore the hiearchies of the various `IXxxType` interfaces.
 
 ## IExpressionType
 
@@ -86,7 +90,7 @@ This interface is interesting to us because of its immediate descendants. The on
 * `ITypeOwner` - means the declared element has a type of its own.
 * `ITypeParametersOwner` - means this declared element has type parameters. Examples would be classes and methods.
 
-> **Note**: Concrete declared elements can implement multiple interfaces. As a result, a single declared element can be both an `ITypeOwner` and an `ITypeParametersOwner`. The majority of declared elements implement multiple interfaces.
+> **NOTE**: Concrete declared elements can implement multiple interfaces. As a result, a single declared element can be both an `ITypeOwner` and an `ITypeParametersOwner`. The majority of declared elements implement multiple interfaces.
 
 ## ITypeElement
 

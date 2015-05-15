@@ -1,3 +1,6 @@
+---
+---
+
 # Testing External Annotations
 
 There are two approaches to testing External Annotations. The first is to use the `CodeAnnotationsCache` class to assert that annotations are applied to specific code elements in the compiled assemblies. The second is to assert the highlights and warnings that are affected by annotations. For example, an element marked with the `[NotNull]` attribute will cause ReSharper to highlight a null check as unnecessary.
@@ -12,7 +15,7 @@ The following class will load all annotations stored in a specific folder, which
 
 This provider will load all XML files that are immediate children of the file location. These are expected to be named after the assembly, e.g. `myAssembly.dll` would need a `myAssembly.xml` file in the root location. It will also recursively look for any XML files in child directories. Either the directory should be named after the assembly, in which case all files in that directory apply to the assembly, or the file should be named after the assembly. This is the same folder structure and naming scheme used when annotations are distributed inside an extension package.
 
-```cs
+```csharp
 [ShellComponent]
 public class TestExternalAnnotationsProvider : IExternalAnnotationsFileProvider
 {
@@ -72,7 +75,7 @@ External annotations don't target source files, but already existing, compiled a
 
 This is easily done using the `[TestReferences]` attribute on the test class. The parameters to the attribute are the names of the assemblies to reference. The values can be a filename, or a relative or absolute file path. If the value is a filename or a relative file path, the actual path is resolved against the `TestDataPath2` property (which resolves to `test\data` plus the value of `RelativeTestDataPath`). If the value is an absolute file path, it is used as-is.
 
-```cs
+```csharp
 [TestReferences("myAssembly.dll", "mySupport.dll")]
 public class MyAssemblyAnnotationsTest : ExternalAnntotionsTestBase2
 {
@@ -82,7 +85,7 @@ public class MyAssemblyAnnotationsTest : ExternalAnntotionsTestBase2
 
 The referenced assembly names can also contain environment variable names, which will be expanded before use. This can be very useful, as environment variables can be set programmatically by overriding the `SetUp` method. E.g.:
 
-```cs
+```csharp
 [TestReferences(@"%MY_ASSEMBLY_PATH%\myAssembly.dll")]
 public class MyAssemblyAnnotationsTest : ExternalAnnotationsTestBase2
 {
@@ -97,7 +100,7 @@ public class MyAssemblyAnnotationsTest : ExternalAnnotationsTestBase2
 
 If you need more control over the references you're adding, you can override the `BaseTestWithSingleProject.GetReferencedAssemblies` method.
 
-> **Note** Remember that external annotations can target multiple versions of an assembly by specifying the version in the assembly `name` attribute in the XML file. To test multiple versions, simply create multiple test classes, each referencing a different version of the target assembly. If the multiple versions share test cases, they can implemented in a base class and shared via inheritance.
+> **NOTE** Remember that external annotations can target multiple versions of an assembly by specifying the version in the assembly `name` attribute in the XML file. To test multiple versions, simply create multiple test classes, each referencing a different version of the target assembly. If the multiple versions share test cases, they can implemented in a base class and shared via inheritance.
 >
 > If using base classes, the `TestReferencesAttribute.Inherits` property declares whether `TestReferences` attributes on the base class are used or not. By default, they aren't - the `TestReferences` attribute of declared classes override the base class.
 
@@ -105,11 +108,11 @@ If you need more control over the references you're adding, you can override the
 
 The following code snippet defines a class called `ExternalAnnotationsTestBase2` which provides a helper method to convert an XML Doc ID to an `IDeclaredElement`. It then gets an instance of `CodeAnnotationsCache` and both are passed to the assert method, which can use the cache to ask for the annotations applied to the given code element.
 
->**Note** ReSharper already defines a class called `ExternalAnnotationsTestBase` that provides similar functionality used internally for testing external annotations. However, it is unsuitable to use as a base class for plugin tests, as it defines tests for the standard BCL annotations, which would also run for your plugin tests.
+> **NOTE** ReSharper already defines a class called `ExternalAnnotationsTestBase` that provides similar functionality used internally for testing external annotations. However, it is unsuitable to use as a base class for plugin tests, as it defines tests for the standard BCL annotations, which would also run for your plugin tests.
 
 The base class looks like this:
 
-```cs
+```csharp
 public abstract class ExternalAnnotationsTestBase2 : BaseTestWithSingleProject
 {
   protected override RelativeTestDataPath { get { return string.Empty; } }
@@ -176,11 +179,11 @@ public abstract class ExternalAnnotationsTestBase2 : BaseTestWithSingleProject
 
 Other assert methods can be added similar to `AssertParameterAssertCondition` that also call into `CodeAnnotationsCache` in order to assert annotations are applied.
 
->**Info** The prefix in the name of the XML Doc ID identifies the type of the code element - `T` for type, `M` for method, `P` for property and so on. See the [MSDN documentation on XML Doc IDs](http://msdn.microsoft.com/en-us/library/fsbx0t7x.aspx) for more details.
+> **NOTE** The prefix in the name of the XML Doc ID identifies the type of the code element - `T` for type, `M` for method, `P` for property and so on. See the [MSDN documentation on XML Doc IDs](http://msdn.microsoft.com/en-us/library/fsbx0t7x.aspx) for more details.
 
 <!-- Comment to separate the notes -->
 
->**Warning** This approach requires that ReSharper can resolve the types and constructors of the `JetBrains.Annotations` attributes referenced in the external annotations file. If ReSharper cannot resolve these types, the annotations are not applied, and tests can fail.
+> **WARNING** This approach requires that ReSharper can resolve the types and constructors of the `JetBrains.Annotations` attributes referenced in the external annotations file. If ReSharper cannot resolve these types, the annotations are not applied, and tests can fail.
 >
 > ReSharper can automatically resolve types against the `JetBrains.Annotations.dll` assembly in the product install directory (by using a custom `IPsiModule`). In normal usage, this effectively means all projects can resolve references to the annotation attributes.
 >
@@ -202,7 +205,7 @@ This is a simple highlighting test, which analyses a source file and creates a t
 
 The tests can be run with the `DoOneTest` method, where the name of the source file is passed in, or by using the `DoNamedTest2` method, which takes the file name from the test method, minus any 'test' prefix.
 
-```cs
+```csharp
 [Test]
 public void Should_show_annotations()
 {

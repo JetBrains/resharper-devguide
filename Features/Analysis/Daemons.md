@@ -1,3 +1,6 @@
+---
+---
+
 # Daemons
 
 As you may have noticed, ReSharper features background analysis of your code. In fact, at any one time there are several different analyzers running at different _stages_, all combining to provide the most complete assessment of your code.
@@ -24,7 +27,7 @@ The `IDaemonStageProcess` interface has two members:
 
 Let's talk about the Execute method in more detail. If you've inherited from a class such as `CSharpDaemonStageBase`, your `CreateProcess()` override already has a parameter of type `ICSharpFile` that you can use. If not, you can use an extension method in `PsiManagerExtensions` to acquire the file:
 
-```cs
+```csharp
 var file = process.SourceFile.GetPsiFiles<CSharpLanguage>();
 ```
 
@@ -51,7 +54,7 @@ There are several pieces of information that your own highlighting class can pro
 
 So - coming back to the daemon stage process - you have invoked the element processor (or several) and got a set of highlightings. The last thing to do is to commit the results using the commiter that is provided as a parameter to the `Execute()` method:
 
-```cs
+```csharp
 commiter(new DaemonStageResult(elementProcessor.Highlightings));
 ```
 
@@ -69,7 +72,7 @@ Put briefly, the element problem analyzer is a class that:
 
 The `Run()` method is invoked recursively for every element of type `T` found in the file. For example, if `T == IExpression`, the `Run()` method will be called for every expression that is found. The method signature is as follows:
 
-```cs
+```csharp
 void Run(T element, ElementProblemAnalyzerData data, IHighlightingConsumer consumer)
 ```
 
@@ -81,7 +84,7 @@ The parameters are:
 
 The following is an example implementation of an element problem analyzer:
 
-```cs
+```csharp
 [ElementProblemAnalyzer(new[] { typeof(IExpression) }, 
   HighlightingTypes = new[] { typeof(UseOfInt64MaxValueLiteralHighlighting) })]
 public class UseOfInt64MaxValueLiteralChecker : ElementProblemAnalyzer<IExpression>

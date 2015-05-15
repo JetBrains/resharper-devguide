@@ -1,3 +1,6 @@
+---
+---
+
 # Getting Help
 
 ## Problems with the guide

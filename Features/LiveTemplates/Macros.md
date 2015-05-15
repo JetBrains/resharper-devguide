@@ -1,3 +1,6 @@
+---
+---
+
 # Live Template macros
 
 Of course, plugins can provide macros to extend the list already included with ReSharper (and ReSharper extensions can include Live Templates that refer to these templates, either by bundling the macro plugin into the same extension, or taking a dependency on another extension that contains a macro plugin. See the Packaging page for more details).
@@ -16,7 +19,7 @@ The format of the placeholder is `{X:name}`, where the `X` is replaced by the pa
 
 The `IMacroDefinition` interface has two members - a `Parameters` property and a `GetPlaceholder` method.
 
-```cs
+```csharp
 public interface IMacroDefinition
 {
   ParameterInfo[] Parameters { get; }
@@ -44,7 +47,7 @@ An instance of the implementation class is created for each hotspot. The impleme
 
 `IMacroImplementation` defines three methods:
 
-```cs
+```csharp
 public interface IMacroImplementation
 {
   bool HandleExpansion(IHotspotContext context);
@@ -63,7 +66,7 @@ The `GetLookupItems` method can also get called when a hotspot becomes active (s
 
 `EvaluateQuickResult` is called when another hotspot changes. It allows for a macro to be based on the contents of other hotspots, or the surrounding text. If the macro is based on a parameter, such as a constant value from the template editor, or a reference to another hotspot variable, the content can be retreived from the `MacroParameterValueCollection` passed in to the constructor. To get the value would look something like this:
 
-```cs
+```csharp
 [MacroImplementation(Definition = typeof(ToUpperMacroDef))]
 public class ToUpperMacroImpl : SimpleMacroImplementation
 {
@@ -85,7 +88,7 @@ As the name suggests, `EvaluateQuickResult` needs to be quick, as each macro's i
 
 All of the methods in `IMacroImplementation` take `IHotspotContext` as an argument. This interface has three properties:
 
-```cs
+```csharp
 public interface IHotspotContext
 {
   IHotspotSession HotspotSession { get; }

@@ -1,8 +1,12 @@
+---
+---
+
 # Glossary
 
 Here are some terms that are used throughout ReSharper and the devguide.
 
-<!-- toc -->
+* Table of Contents
+{:toc}
 
 ### AST
 

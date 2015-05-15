@@ -1,10 +1,13 @@
+---
+---
+
 # Tree Nodes (XML)
 
 <!-- Not auto-indexed, so we can split definitions between XML and XML DTD.
      Also not including IDocCommentBlockWithPsi`2 as this is XML Doc Comment PSI stuff -->
 
-<!-- toc -->
-<!-- toc stop -->
+* Table of contents
+{:toc}
 
 ## P
 
@@ -12,7 +15,7 @@
 
 <!-- Begin IProcessingInstruction -->
 
-```cs
+```csharp
 public interface IProcessingInstruction :
   IXmlTreeNode,
   ITreeNode
@@ -39,7 +42,7 @@ While the `<?xml ... ?>` declaration at the start of an XML document shares simi
 
 <!-- Begin IXmlAsteriskTokenNode -->
 
-```cs
+```csharp
 public interface IXmlAsteriskTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -59,7 +62,7 @@ Marker interface for a token representing the asterisk character (`*`).
 
 <!-- Begin IXmlAttribute -->
 
-```cs
+```csharp
 public interface IXmlAttribute :
   IXmlTreeNode,
   ITreeNode
@@ -94,7 +97,7 @@ Finally, the `Eq` property is the token representing the equals sign in the attr
 
 <!-- Begin IXmlAttributeContainer -->
 
-```cs
+```csharp
 public interface IXmlAttributeContainer :
   IXmlTreeNode,
   ITreeNode
@@ -117,7 +120,7 @@ The `ContainerName` property returns the text of the child [`IXmlIdentifier`](#i
 
 <!-- Begin IXmlAttributeValue -->
 
-```cs
+```csharp
 public interface IXmlAttributeValue :
   IXmlTreeNode,
   ITreeNode
@@ -137,7 +140,7 @@ Represents the value in an attribute. It is implemented by the `XmlValueToken` t
 
 <!-- Begin IXmlCData -->
 
-```cs
+```csharp
 public interface IXmlCData :
   IXmlTreeNode,
   ITreeNode
@@ -159,7 +162,7 @@ An XML [CDATA](http://en.wikipedia.org/wiki/CDATA) node. The `Start` property is
 
 <!-- Begin IXmlCdataEndTokenNode -->
 
-```cs
+```csharp
 public interface IXmlCdataEndTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -179,7 +182,7 @@ Marker interface for the CDATA end token `]]>`.
 
 <!-- Begin IXmlCdataStartTokenNode -->
 
-```cs
+```csharp
 public interface IXmlCdataStartTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -199,7 +202,7 @@ Marker interface for the CDATA start token `<![CDATA[`.
 
 <!-- Begin IXmlCommaTokenNode -->
 
-```cs
+```csharp
 public interface IXmlCommaTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -219,7 +222,7 @@ Marker interface for a token representing the comma character (`,`).
 
 <!-- Begin IXmlComment -->
 
-```cs
+```csharp
 public interface IXmlComment :
   IXmlCommentNode,
   IXmlTreeNode,
@@ -238,7 +241,7 @@ Represents an XML comment. See [`IXmlCommentNode`](#ixmlcommentnode).
 
 <!-- Begin IXmlCommentEndTokenNode -->
 
-```cs
+```csharp
 public interface IXmlCommentEndTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -258,7 +261,7 @@ Marker interface for the XML comment close token `-->`.
 
 <!-- Begin IXmlCommentNode -->
 
-```cs
+```csharp
 public interface IXmlCommentNode :
   IXmlTreeNode,
   ITreeNode
@@ -280,7 +283,7 @@ Represents and XML comment. The `CommentStart` and `CommentEnd` properties are t
 
 <!-- Begin IXmlCommentStartTokenNode -->
 
-```cs
+```csharp
 public interface IXmlCommentStartTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -300,7 +303,7 @@ Marker interface for the XML comment start token `<!--`.
 
 <!-- Begin IXmlDocumentNode -->
 
-```cs
+```csharp
 public interface IXmlDocumentNode :
   IXmlTreeNode,
   ITreeNode
@@ -318,7 +321,7 @@ Marker interface representing the document node of an XML file. Inherited by [`I
 
 <!-- Begin IXmlDtdStartTokenNode -->
 
-```cs
+```csharp
 public interface IXmlDtdStartTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -338,7 +341,7 @@ Marker interface for the start token (`<!DOCTYPE`) of an inline DTD declaration.
 
 <!-- Begin IXmlEntityTokenNode -->
 
-```cs
+```csharp
 public interface IXmlEntityTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -360,7 +363,7 @@ An XML [entity reference token](http://en.wikipedia.org/wiki/List_of_XML_and_HTM
 
 <!-- Begin IXmlEqTokenNode -->
 
-```cs
+```csharp
 public interface IXmlEqTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -380,7 +383,7 @@ Marker interface for a token representing the equals character (`=`).
 
 <!-- Begin IXmlFile -->
 
-```cs
+```csharp
 public interface IXmlFile :
   IFile,
   IXmlTagContainer,
@@ -405,7 +408,7 @@ Exposes a collection of processing instructions and the collection of element ty
 
 <!-- Begin IXmlFloatingTextTokenNode -->
 
-```cs
+```csharp
 public interface IXmlFloatingTextTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -425,7 +428,7 @@ Marker interface for a non-fixed length token, e.g. identifiers, text, entity re
 
 <!-- Begin IXmlIdentifier -->
 
-```cs
+```csharp
 public interface IXmlIdentifier :
   IXmlToken,
   IXmlTreeNode,
@@ -451,7 +454,7 @@ The `XmlNameRange` and `XmlNamespaceRange` properties return the ranges of the n
 
 <!-- Begin IXmlLbracketTokenNode -->
 
-```cs
+```csharp
 public interface IXmlLbracketTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -471,7 +474,7 @@ Marker interface for a token representing the left bracket character (`[`).
 
 <!-- Begin IXmlLparenthTokenNode -->
 
-```cs
+```csharp
 public interface IXmlLparenthTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -491,7 +494,7 @@ Marker interface for a token representing the left parenthesis character (`(`).
 
 <!-- Begin IXmlOrTokenNode -->
 
-```cs
+```csharp
 public interface IXmlOrTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -511,7 +514,7 @@ Marker interface for a token representing the "or" or "pipe" character (`|`).
 
 <!-- Begin IXmlPercentTokenNode -->
 
-```cs
+```csharp
 public interface IXmlPercentTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -531,7 +534,7 @@ Marker interface for a token representing the percent character (`%`).
 
 <!-- Begin IXmlPiendTokenNode -->
 
-```cs
+```csharp
 public interface IXmlPiendTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -551,7 +554,7 @@ Marker interface for the processing instruction end token `?>`.
 
 <!-- Begin IXmlPistartTokenNode -->
 
-```cs
+```csharp
 public interface IXmlPistartTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -571,7 +574,7 @@ Marker interface for the processing instruction start token `<?`.
 
 <!-- Begin IXmlPlusTokenNode -->
 
-```cs
+```csharp
 public interface IXmlPlusTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -591,7 +594,7 @@ Marker interface for a token representing the plus character (`+`).
 
 <!-- Begin IXmlProcessingInstruction -->
 
-```cs
+```csharp
 public interface IXmlProcessingInstruction :
   IXmlAttributeContainer,
   IXmlTreeNode,
@@ -621,7 +624,7 @@ Access to the attributes is available via the derived [`IXmlAttributeContainer`]
 
 <!-- Begin IXmlQuestionTokenNode -->
 
-```cs
+```csharp
 public interface IXmlQuestionTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -641,7 +644,7 @@ Marker interface for a token representing the question mark character (`?`).
 
 <!-- Begin IXmlRbracketTokenNode -->
 
-```cs
+```csharp
 public interface IXmlRbracketTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -661,7 +664,7 @@ Marker interface for a token representing the right bracket character (`]`).
 
 <!-- Begin IXmlRparenthTokenNode -->
 
-```cs
+```csharp
 public interface IXmlRparenthTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -683,7 +686,7 @@ Marker interface for a token representing the right parenthesis character (`)`).
 
 <!-- Begin IXmlSyntaxErrorElement -->
 
-```cs
+```csharp
 public interface IXmlSyntaxErrorElement :
   ITreeNode
 {
@@ -700,7 +703,7 @@ Represents a syntax error in the tree. Does not derive from [`IXmlTreeNode`](#ix
 
 <!-- Begin IXmlTag -->
 
-```cs
+```csharp
 public interface IXmlTag :
   IXmlTreeNode,
   IXmlTagContainer,
@@ -744,7 +747,7 @@ Child tags can be retrieved and modified using the [`IXmlTagContainer`](#ixmltag
 
 <!-- Begin IXmlTagContainer -->
 
-```cs
+```csharp
 public interface IXmlTagContainer :
   ITreeNode
 {
@@ -782,7 +785,7 @@ The `AddTagAfter`, `AddTagBefore` and `RemoveTag` methods provide means of addin
 
 <!-- Begin IXmlTagEnd1TokenNode -->
 
-```cs
+```csharp
 public interface IXmlTagEnd1TokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -802,7 +805,7 @@ Marker interface for a self-closing XML tag end token `/>`.
 
 <!-- Begin IXmlTagEndTokenNode -->
 
-```cs
+```csharp
 public interface IXmlTagEndTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -822,7 +825,7 @@ Marker interface for an XML tag end token `>`.
 
 <!-- Begin IXmlTagFooter -->
 
-```cs
+```csharp
 public interface IXmlTagFooter :
   IXmlTreeNode,
   ITreeNode
@@ -845,7 +848,7 @@ The `Name` property is the identifier representing the name of the element being
 
 <!-- Begin IXmlTagHeader -->
 
-```cs
+```csharp
 public interface IXmlTagHeader :
   IXmlAttributeContainer,
   IXmlTreeNode,
@@ -882,7 +885,7 @@ Attributes are accessible via the inherited [`IXmlAttributeContainer`](#ixmlattr
 
 <!-- Begin IXmlTagStart1TokenNode -->
 
-```cs
+```csharp
 public interface IXmlTagStart1TokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -902,7 +905,7 @@ Marker interface for the start token of a closing XML tag (`</`).
 
 <!-- Begin IXmlTagStartTokenNode -->
 
-```cs
+```csharp
 public interface IXmlTagStartTokenNode :
   IXmlToken,
   IXmlTreeNode,
@@ -922,7 +925,7 @@ Marker interface for the start token of an opening XML tag (`</`).
 
 <!-- Begin IXmlToken -->
 
-```cs
+```csharp
 public interface IXmlToken :
   IXmlTreeNode,
   ITokenNode,
@@ -950,7 +953,7 @@ The `GetTokenType` method returns the `XmlTokenNodeType` of the particular token
 
 <!-- Begin IXmlTreeNode -->
 
-```cs
+```csharp
 public interface IXmlTreeNode :
   ITreeNode
 {
@@ -970,7 +973,7 @@ The `AcceptVisitor` method implements the [Visitor pattern](http://en.wikipedia.
 
 <!-- Begin IXmlValueToken -->
 
-```cs
+```csharp
 public interface IXmlValueToken :
   IXmlToken,
   IXmlTreeNode,

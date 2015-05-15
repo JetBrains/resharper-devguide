@@ -1,3 +1,6 @@
+---
+---
+
 # Abstract Syntax Trees
 
 An [abstract syntax tree](http://en.wikipedia.org/wiki/Abstract_syntax_tree) (AST) is a data structure used to represent the contents of a file, where each node in the tree denotes a construct in the source code. For example, a node might represent a method declaration, with child nodes that provide information on accessibility, return type, method name, parameters and the method body, which itself has child nodes representing the method instructions and any nested code blocks.

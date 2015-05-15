@@ -1,8 +1,12 @@
+---
+---
+
 # Testing
 
-> **Warning** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
+> **WARNING** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
 
-<!-- toc -->
+* Table of contents
+{:toc}
 
 ReSharper's SDK provides infrastructure for testing your plugin.
 
@@ -18,7 +22,7 @@ NUnit will create any set up fixtures before running any tests defined in or bel
 
 However, it is also useful to move the class to a child namespace, and ensure that all acceptance tests are declared in or below this child namespace. This allows for real unit tests to also be declared in the assembly, and not pay the cost of initialising a ReSharper environment when running unit tests.
 
-```cs
+```csharp
 [SetUpFixture]
 public class MyTestEnvironmentAssembly : ReSharperTestEnvironmentAssembly
 {
@@ -83,7 +87,7 @@ In the above structure, in order to get your feature files to be picked up by th
 * In your test, the value of the overridden `RelativeTestDataPath` property should correspondingly be `your_feature_name`
 * Your test cases should invoke the appropriate test files. For example, if your test data file is named `availability01.cs`, your test can appear as follows:
 
-    ```cs
+    ```csharp
     [TestCase("availability01")]
     [Test]
     public void TestExecution01(string testSrc)

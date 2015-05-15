@@ -1,3 +1,6 @@
+---
+---
+
 # Per-language Components
 
 The PSI is designed to work with multiple languages. It supports many features, from parsing and code rewriting, to formatting and navigation. The PSI provides cross language infrastructure to support these features, but each feature requires language specific implementations, for example, the `LanguageService` abstract base class provides the interface to create lexers and parsers for a particular file type, but the implementation of the class must be specific to each language.
@@ -12,7 +15,7 @@ The PSI defines the `[Language]` attribute that derives from `PartAttribute`, in
 
 The component specifies the language it relates to by passing the type in as a parameter to the constructor:
 
-```cs
+```csharp
 [Language(typeof(CSharpLanguage))]
 public class CSharpCodeFormatter : ICodeFormatter
 {
@@ -21,7 +24,7 @@ public class CSharpCodeFormatter : ICodeFormatter
 
 The language type is used as a key for lookup, using the `ILanguageManager` methods, where `T` is the type of the service being retrieved, and `TLanguage` is the type of the language. Alternatively, the language is specified as an instance of the language type, perhaps retrieved via `ITreeNode.Language`:
 
-```cs
+```csharp
 public interface ILanguageManager
 {
   T GetService<T, TLanguage>()

@@ -1,8 +1,12 @@
+---
+---
+
 # Working with XML-like files
 
 ReSharper comes with support for XML and XML-specific notations such as HTML, XAML and Web.config editing. Consequently, you can use the ReSharper API in order to manipulate XML documents.
 
-<!-- toc -->
+* Table of contents
+{:toc}
 
 ## Web vs XML
 
@@ -18,7 +22,7 @@ Let's take a look at how one would write a context action to support the convers
 
 The first thing you do is create a class that is marked with the `ContextAction` attribute and is set to inherit from `XmlContextAction`.
 
-```cs
+```csharp
 [ContextAction(
   Group = "XML",
   Name = "Collapse empty tag",
@@ -37,7 +41,7 @@ As you can see, the context action is very similar to the way you would define i
 
 Now that you have a context action, it becomes a matter of defining the familiar Text, `IsAvailable()` and `ExecutePsiTransaction()` members. The `IsAvailable()` method is the place where you would check that the tag you're on is empty. For example:
 
-```cs
+```csharp
 var tag = DataProvider.FindNodeAtCaret<IXmlTag>();
 if (tag == null || tag.IsEmptyTag || !XmlTagUtil.CanBeEmptyTag(tag))
   return false;
@@ -45,7 +49,7 @@ if (tag == null || tag.IsEmptyTag || !XmlTagUtil.CanBeEmptyTag(tag))
 
 Manipulation of XML tokens is very important if you want to do fine-tuning of your XML-related actions. To get at the token at the caret location, for example, you would write:
 
-```cs
+```csharp
 var token = DataProvider.FindNodeAtCaret<IXmlToken>();
 ```
 
@@ -53,7 +57,7 @@ Now, you can, for example, call `GetTokenType()` to determine the type of the to
 
 Here's a brief example: suppose you want to remove all inner nodes of a particular tag. To do this, you would take the tag's header node and then take its next sibling. Then you would also take its last child. Finally, you would use the `ModificationUtil` class in order to delete all children within that range:
 
-```cs
+```csharp
 var header = tag.HeaderNode;
 var first = header.NextSibling;
 if (first != null)
@@ -69,26 +73,26 @@ The `ModificationUtil` class contains several methods for adding and removing el
 
 Here's a simple example: let's suppose that you have a tag, and you want to add an attribute to it - for example, an attribute for an XML namespace. The first thing you do is acquire an `XMLElementFactory`.
 
-```cs
+```csharp
 IXmlElementFactory factory = XmlElementFactory.GetElementFactory(tag);
 ```
 
 Then, you can synthetically prepare the attribute declaration:
 
-```cs
+```csharp
 string text = String.Format("{0}=\"{1}\"", namespacePrefix, namespaceUrl);
 ```
 
 With the declaration, you can use the factory to create a whole XML file. This may sound 'heavyweight', but is in fact a convenient way to get the structures parsed and ready for subsequent insertion.
 
-```cs
+```csharp
 IXmlFile file = factory.CreateFile(provider.PsiServices, provider.PsiModule,
                                    "<tag " + text + "/>", true);
 ```
 
 Finally, you can get at the attribute in the created file and insert it into the tag you're trying to change:
 
-```cs
+```csharp
 IXmlAttribute att = file.InnerTags.First().GetAttributes().First();
 tag.AddAttributeBefore(att, null);
 ```
@@ -99,7 +103,7 @@ Work with HTML files is a bit different than XML. The first thing to note is tha
 
 The type parameter `T` has to be either of type `IHtmlFile` or one of its inheritors - `IAspFile` and `IRazorFile`. Here's an outline of a context action for HTML files:
 
-```cs
+```csharp
 [ContextAction(Group = "HTML",
   Name = "Specify Id",
   Description = "Creates an 'id' attribute for the selected tag of an XML document")]
@@ -116,7 +120,7 @@ public class SpecifyIdHtmlContextAction : IContextAction, IBulbItem
 
 Now, you'll notice that the code for creating an id-inserting context action is very similar to what we did for XML. The only differences are in the types of tags and factories that we are using:
 
-```cs
+```csharp
 public bool IsAvailable(IUserDataHolder cache)
 {
   var tag = provider.FindNodeAtCaret<IHtmlTag>();
@@ -135,7 +139,7 @@ public bool IsAvailable(IUserDataHolder cache)
 
 Now, when it comes to modifying the document tree, with Web files there is one difference: you need to explicitly create the transaction before modifying the HTML file. Here's a piece of code that, just like in the XML example, inserts the `id` attribute into a tag:
 
-```cs
+```csharp
 public void Execute(ISolution solution, ITextControl textControl)
 {
   var psiServices = solution.GetComponent<IPsiServices>();

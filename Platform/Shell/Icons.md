@@ -1,3 +1,6 @@
+---
+---
+
 # Icons
 
 ReSharper supports icons in several places, such as options pages, gutter icons, tied to an action for context menus or toolbars for tool windows. Complicating matters is that ReSharper needs to match the host platform, more specifically, icons need to match the current Visual Studio theme. Also, ReSharper needs to provide support for high DPI scenarios, either by providing multiple bitmap images, automatically scaling, or supporting vector images.

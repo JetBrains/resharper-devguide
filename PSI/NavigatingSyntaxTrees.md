@@ -1,8 +1,11 @@
+---
+---
+
 # Navigating syntax trees
 
 Every node in the syntax tree implements `ITreeNode`. The interface includes members pertinent to navigating and processing the tree. These members are shown below (other members removed for brevity):
 
-```cs
+```csharp
 public interface ITreeNode
 {
   ITreeNode Parent { get; }
@@ -27,7 +30,7 @@ There are several ways of navigating the tree.
 
 Manually walking the tree is the lowest level means of navigation, and involves walking the nodes using the properties shown above.
 
-> **Note** Generally speaking, you'll want to use one of the other, less low level, navigation techniques in this section to navigate around the tree. However, it is useful to know how to navigate the tree in order to understand how the tree is structured.
+> **NOTE** Generally speaking, you'll want to use one of the other, less low level, navigation techniques in this section to navigate around the tree. However, it is useful to know how to navigate the tree in order to understand how the tree is structured.
 
 ### Walking up the tree
 
@@ -35,7 +38,7 @@ You can walk up the tree using the `Parent` property. This is very useful for fi
 
 To walk the `Parent` property, you will want to write code like this:
 
-```cs
+```csharp
 while(currentNode != null)
 {
   // Process node
@@ -47,11 +50,11 @@ while(currentNode != null)
 
 Since a file is parsed into a tree structure, nodes have siblings as well as children. For example, a C# file can have a class declaration that contains multiple methods. Each method is represented by an `IMethodDeclaration` node. Intuitively, each method is a child of the class, and therefore are siblings, and no method is higher or lower in the tree than any other.
 
-> **Note** Even though the method declarations will be siblings, they are not going to be direct siblings. The syntax tree is a full-fidelity representation of the C# file, which means the whitespace and comments between the method declarations are also added as nodes in the tree, and these will be siblings to the method declarations.
+> **NOTE** Even though the method declarations will be siblings, they are not going to be direct siblings. The syntax tree is a full-fidelity representation of the C# file, which means the whitespace and comments between the method declarations are also added as nodes in the tree, and these will be siblings to the method declarations.
 
 You can walk the siblings with code like this:
 
-```cs
+```csharp
 while(currentNode != null)
 {
   // Process node
@@ -67,7 +70,7 @@ Walking down the tree is very similar to walking the sibling chain. Again, since
 
 To walk the immediate children of a node, you'll want to write code like this:
 
-```cs
+```csharp
 public void WalkChildren(ITreeNode root)
 {
   var child = root.FirstChild;
@@ -83,7 +86,7 @@ Note that we start with `FirstChild` but then walk that child's siblings. To wal
 
 If you want to walk all descendants of a node, simply recursively walk a child node's children.
 
-> **Note** Beware of recursively walking the descendants of a node. Recursion can run into problems with a very deeply nested syntax tree. It is better to iteratively walk the tree than to use recursion.
+> **NOTE** Beware of recursively walking the descendants of a node. Recursion can run into problems with a very deeply nested syntax tree. It is better to iteratively walk the tree than to use recursion.
 >
 > You should avoid writing your own methods for walking the tree, and make use of the [`TreeNodeVisitor` or `IRecursiveElementProcessor`](SyntaxTrees/RecursiveNavigation.md) patterns that ReSharper implements.
 

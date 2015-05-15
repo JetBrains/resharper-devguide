@@ -1,3 +1,6 @@
+---
+---
+
 # Generate Menu
 
 So you’ve seen those fancy menu items in the _Generate_ menu (Alt+Insert) and you want to write your own? Okay, we’ll tell you how. But first, you have to realize that, really, those generator items are not specific to the _Generate_ menu _per se_. For example, the _Generate Missing Members_ item is mirrored as a Quick Fix. Still, we’ll be talking about generator items here.
@@ -8,7 +11,7 @@ Right, let’s get started with the `GenerateProvider` - a provider class that d
 
 First, we create the generate provider body and appropriate attribute:
 
-```cs
+```csharp
 [GenerateProvider]
 public class GenerateDisposeItemProvider : IGenerateActionProvider
 {
@@ -23,7 +26,7 @@ The above method `yield return`s all the necessary workflows, even if they are u
 
 The workflow typically defines its own characteristic. However, we can pass an icon from the point where it is created:
 
-```cs
+```csharp
 [GenerateProvider]
 public class GenerateDisposeItemProvider : IGenerateActionProvider
 {
@@ -41,7 +44,7 @@ public class GenerateDisposeItemProvider : IGenerateActionProvider
 
 A workflow is simply a process defining how the action looks. Most of the `StandardGenerateActionWorkflow` that we’ll be using is actually a call to its base class that configures the various properties that subsequently affect the way the menu item is displayed.
 
-```cs
+```csharp
 public class GenerateDisposeActionWorkflow : StandardGenerateActionWorkflow
 {
   // Using named parameters for clarification
@@ -67,7 +70,7 @@ Another thing you need to define is the order in which the item appears in the _
 
 Now, all is good but the above won’t work. The problem is that we’ve defined our own item _kind_, which goes against ReSharper’s policy of only enabling items of a well-known kind. As a result, we also redefine the `StandardGenerateActionWorkflow.IsAvailable()` method, taking ReSharper’s own implementation and removing the _kind_ check:
 
-```cs
+```csharp
 public override bool IsAvailable(IDataContext dataContext)
 {
   var solution = dataContext.GetData(IDE.DataConstants.SOLUTION);

@@ -1,3 +1,6 @@
+---
+---
+
 # Code Completion
 
 Just like Visual Studio, ReSharper implements its own form of _code completion_ (which Visual Studio calls IntelliSense) that is used to provide various helpers when typing code. Unlike Visual Studio, however, ReSharper implements three different varieties of code completion that plugin developers need to be aware of. These are:
@@ -23,7 +26,7 @@ Let’s look at these in more detail. First, it’s important to note that the `
 
 Once you know what context you have, you can begin to use it in the aforementioned methods. For example, when checking if the completion items are available, you can perform a check similar to the following:
 
-```cs
+```csharp
 protected override bool IsAvailable(CSharpCodeCompletionContext context)
 {
   if (context.BasicContext.CodeCompletionType != CodeCompletionType.SmartCompletion)
@@ -39,7 +42,7 @@ The second method, `AddLookupItems()`, takes two parameters: the smart completio
 
 To allow adding of items, `GroupedItemsCollector` provides a set of methods such as `AddToTop()` and `AddAtDefaultPlace()`. All of these methods take an `ILookupItem` as a parameter. This interface is by itself fairly complicated, but luckily a number of lookup item factories are available in order to facilitate the process in common scenarios. For example, the `CSharpCodeCompletionContext` class has  a property called `LookupItemsFactory` which yields an instance of a `CSharpLookupItemFactory`. You can use this factory to create different lookup items. Putting it all together, here is an example of how you can add a lookup item to a collector:
 
-```cs
+```csharp
 protected override bool AddLookupItems(CSharpCodeCompletionContext context, GroupedItemsCollector collector)
 {
   collector.AddAtDefaultPlace(context.LookupItemsFactory.CreateTextLookupItem("true", "bool", true));
@@ -54,7 +57,7 @@ If we go off looking down the hierarchy of the `ItemsProviderOfSpecificContext`,
 
 Here’s a very simple example: let’s suppose that we want to add the string _hello_ as a code completion item to any C# file regardless of the position of the caret. In other words, the option _hello_ will be available practically everywhere. To implement this, we first make a class that inherits from `CSharpItemsProviderBase`, i.e.,
 
-```cs
+```csharp
 [Language(typeof(CSharpLanguage))]
 public class MyCodeCompletion : CSharpItemsProviderBase<CSharpCodeCompletionContext>
 {
@@ -63,7 +66,7 @@ public class MyCodeCompletion : CSharpItemsProviderBase<CSharpCodeCompletionCont
 
 Then, we override the `IsAvailable()` method to only allow our code completion item to appear in automatic completion (and not in smart or type symbol completion):
 
-```cs
+```csharp
 protected override bool IsAvailable(CSharpCodeCompletionContext context)
 {
   return context.BasicContext.CodeCompletionType == CodeCompletionType.AutomaticCompletion;
@@ -72,7 +75,7 @@ protected override bool IsAvailable(CSharpCodeCompletionContext context)
 
 Finally, we override the `AddLookupItems()` method and add the simplest possible statement to include the string "hello" in the code completion popup list:
 
-```cs
+```csharp
 protected override bool AddLookupItems(CSharpCodeCompletionContext context, GroupedItemsCollector collector)
 {
   collector.AddAtDefaultPlace(context.LookupItemsFactory.CreateTextLookupItem("hello"));
@@ -97,7 +100,7 @@ The class responsible for providing these items to the code completion mechanism
 
 After inheriting from the aforementioned provider, we can override members to customize what, if anything, gets added to the list of completion items. Before we do that, we can also customize other aspects. For example, we can select which types of completion that we support. For example, the check on the `ctor` items is similar to the following:
 
-```cs
+```csharp
 protected override bool IsAvailable(CSharpCodeCompletionContext context)
 {
   var type = context.BasicContext.CodeCompletionType;
@@ -113,7 +116,7 @@ The above means that that completion will only work in automatic or basic comple
 
 Before adding a completion item, you want to check that you’re in the right location in code. This is likely done in the overridden `AddLookupItems` method, with the only difference that, unlike in e.g., context actions, you don’t get a context that lets you directly figure out the code element you’re in. Instead, you have to do something like this:
 
-```cs
+```csharp
 protected override bool AddLookupItems(CSharpCodeCompletionContext context, GroupedItemsCollector collector)
 {
   ITreeNode node = TextControlToPsi.GetElement<ITreeNode>(context.BasicContext.Solution, context.BasicContext.TextControl);
@@ -124,7 +127,7 @@ protected override bool AddLookupItems(CSharpCodeCompletionContext context, Grou
 
 From an `ITreeNode` you can move up the ranks until something like an `IClassBody`. Sooner or later, you’ll get to the point where, given applicability, you want to add your completion items. In the case of `ctor` code completion items, the code looks something like this:
 
-```cs
+```csharp
 var item = new GenerateConstructorLookupItem("ctorf", fields.OfType<IXmlDocIdOwner>(), psiIconManager);
 item.InitializeRanges(context.CompletionRanges, context.BasicContext);
 collector.AddAtDefaultPlace(item);
@@ -136,7 +139,7 @@ In the above, `psiIconManager` is a solution component that can be acquired from
 
 The lookup item for generative completion is quite simply a class that inherits `TextLookupItem`, and there is nothing special apart from it aside from the fact that it generates a rather large amount of text. One thing to point out is that generative completion items are typically shown with emphasis:
 
-```cs
+```csharp
 protected override RichText GetDisplayName()
 {
   RichText displayName = new RichText(myName);
@@ -147,7 +150,7 @@ protected override RichText GetDisplayName()
 
 All the interesting things happen inside the `Accept()` method override. First of all, the identifier under the caret gets wiped out:
 
-```cs
+```csharp
 IIdentifier identifierNode = TextControlToPsi.GetElement<IIdentifier>(solution, textControl);
 IPsiServices psiServices = solution.GetPsiServices();
 if (identifierNode != null)

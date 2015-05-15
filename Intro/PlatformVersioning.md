@@ -1,3 +1,6 @@
+---
+---
+
 # Platform Versioning
 
 ReSharper does **not** maintain backwards binary compatibility between major or minor releases. For example, plugins written for ReSharper 8.2 do not work with ReSharper 8.1, and vice versa. The same is true for ReSharper 7.x and 8.x. Plugins need to be re-compiled between major and minor versions. However, maintenance releases **are** binary compatible - maintenance releases, such as 8.2.2 or 8.2.3, are intended to fix critical bugs, and do not usually introduce new features that would change APIs.

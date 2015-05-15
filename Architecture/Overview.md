@@ -1,10 +1,14 @@
+---
+---
+
 # Architectural Overview
 
 In any given ReSharper plugin, you are likely to be interacting with many different subsystems of the ReSharper product. In this part of the guide, we are going to take a look at a bird's eye view of ReSharper.
 
 At the top level, we can isolate the following aspects of ReSharper:
 
-<!-- toc -->
+* Table of contents
+{:toc}
 
 ## Platform
 

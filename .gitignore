@@ -1,4 +1,7 @@
-node_modules/
-_book/
-.grunt/
+.bundle/
+_site/
+_includes/
+_gh_pages/
+
 .idea/
+

@@ -1,3 +1,6 @@
+---
+---
+
 # Running and Debugging an Extension
 
 In order to manual test or debug your plugin, it must be installed into an instance of ReSharper. Currently, this is a manual step, details of which can be found in the [Local Installation](../Extensions/Deployment/LocalInstallation.md) guide (our intention is to make this easier in future versions of the SDK).

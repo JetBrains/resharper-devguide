@@ -1,3 +1,6 @@
+---
+---
+
 # Advanced Lifetime Management
 
 Lifetime instances can be combined in very powerful ways.
@@ -8,8 +11,8 @@ The `Lifetimes.CreateIntersection2` method creates a `LifetimeDefinition` that i
 
 This is useful as a companion to `Lifetimes.Define`, which creates a `LifetimeDefinition` tied to a "parent" `Lifetime`. When the parent terminates, the child terminates, or the child can be terminated independently. `CreateIntersection2` creates a new `LifetimeDefinition` tied to a collection of "parent" `Lifetime` instances. When any of them terminate, the child terminates, or the child can be terminated independently. 
 
-> **Note** The `CreateIntersection2` method will eventually replace the `CreateIntersection` method, which is currently marked as obsolete. 
-
+> **NOTE** The `CreateIntersection2` method will eventually replace the `CreateIntersection` method, which is currently marked as obsolete. 
+>
 > `CreateIntersection` has the same implementation as `CreateIntersection2`, but returns a `Lifetime`, while `CreateIntersection2` returns a `LifetimeDefinition`, which gives more control over the resulting `Lifetime`.
 
 ## Synchronising Multiple Lifetimes
