@@ -1,0 +1,104 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper-devguide/app/css/styles.min.css">
+<link  rel="stylesheet" href="/resharper-devguide/styles/styles.css"></head>
+<body data-id="Platform/Zones/Troubleshooting">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="troubleshooting" class="elem-anchor"></a>
+<h1>Troubleshooting<a href="#troubleshooting" class="anchor-link"><span></span></a></h1>
+
+<aside class="todo">
+  <p> TBD</p>
+</aside>
+
+<a name="inspections" class="elem-anchor"></a>
+<h2>Inspections<a href="#inspections" class="anchor-link"><span></span></a></h2>
+
+<p>ReSharper ships with several inspections to help ensure correct zone registration.</p>
+
+<ul>
+  <li><code class="code highlight language-text">RedundantDependencyChecker</code> will highlight a class that</li>
+</ul>
+
+<p>Also, <code class="code highlight language-text">MarkersCompletionProvider</code> will remove any zone definitions from <code class="code highlight language-text">IRequireZone&lt;TZone&gt;</code> that aren’t valid. Or something</p>
+
+<a name="diagrams" class="elem-anchor"></a>
+<h2>Diagrams<a href="#diagrams" class="anchor-link"><span></span></a></h2>
+
+
+                    <div class="last-modified">
+                        Last modified: 8 May 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper-devguide/app/js/main.build" data-baseurl="/resharper-devguide/" src="/resharper-devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

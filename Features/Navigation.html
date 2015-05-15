@@ -1,3899 +1,445 @@
-<!DOCTYPE HTML>
+
+
+
+<!doctype html>
 <html lang="en-US">
-    
-    <head>
-        
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=11; IE=10; IE=9; IE=8; IE=7; IE=EDGE">
-        <title>Navigation | ReSharper DevGuide</title>
-        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
-        <meta name="description" content="">
-        <meta name="generator" content="GitBook 1.5.0">
-        <meta name="HandheldFriendly" content="true">
-        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-status-bar-style" content="black">
-        <link rel="apple-touch-icon-precomposed" sizes="152x152" href="../gitbook/images/apple-touch-icon-precomposed-152.png">
-        <link rel="shortcut icon" href="../gitbook/images/favicon.ico" type="image/x-icon">
-        
-        
-    
-    
-    
-    <link rel="prev" href="../Features/GenerateMenu.html">
-    
-
-        
-    </head>
-    <body>
-        
-        
-<link rel="stylesheet" href="../gitbook/style.css">
-
-    
-    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-richquotes/plugin.css">
-    
-
-    
-    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-anchors/plugin.css">
-    
-
-    
-    <link rel="stylesheet" href="../gitbook/plugins/gitbook-plugin-multipart/multipart.css">
-    
-
-
-        
-    <div class="book" data-level="10.8" data-basepath=".." data-revision="1422271722204">
-    
-
-<div class="book-summary">
-    <div class="book-search">
-        <input type="text" placeholder="Type to search" class="form-control">
-    </div>
-    <ul class="summary">
-        
-    	
-    	
-    	    
-            <li>
-                <a href="https://github.com/JetBrains" target="blank" class="custom-link">About the author</a>
-            </li>
-    	
-    	    
-            <li>
-                <a href="https://github.com/JetBrains/resharper-devguide/issues" target="blank" class="custom-link">Questions and Issues</a>
-            </li>
-    	
-    	    
-            <li>
-                <a href="https://github.com/JetBrains/resharper-devguide" target="blank" class="custom-link">Edit and Contribute</a>
-            </li>
-    	
-    	
-
-        
-        <li class="divider"></li>
-        
-
-        
-    
-        
-        <li class="chapter " data-level="0" data-path="index.html">
-            
-                
-                    <a href="../index.html">
-                        <i class="fa fa-check"></i>
-                        
-                         Introduction
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="1" data-path="Intro/ReSharperPlatform.html">
-            
-                
-                    <a href="../Intro/ReSharperPlatform.html">
-                        <i class="fa fa-check"></i>
-                        
-                            
-                        
-                         The ReSharper Platform
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="2" data-path="Intro/About.html">
-            
-                
-                    <a href="../Intro/About.html">
-                        <i class="fa fa-check"></i>
-                        
-                            
-                        
-                         About This Guide
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="3" data-path="Intro/KeyTopics.html">
-            
-                
-                    <a href="../Intro/KeyTopics.html">
-                        <i class="fa fa-check"></i>
-                        
-                            
-                        
-                         Key Topics
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="4" data-path="Intro/GettingHelp.html">
-            
-                
-                    <a href="../Intro/GettingHelp.html">
-                        <i class="fa fa-check"></i>
-                        
-                            
-                        
-                         Getting Help
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="part divider"></li><li class="part" data-level="5">
-            
-            <span> Part I - Extending the ReSharper Platform</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="5.1" data-path="Intro/GettingStarted.html">
-            
-                
-                    <a href="../Intro/GettingStarted.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.</b>
-                        
-                         Getting Started
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="5.1.1" data-path="Intro/Tools.html">
-            
-                
-                    <a href="../Intro/Tools.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.1.</b>
-                        
-                         Tools
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.1.2" data-path="Intro/InternalMode.html">
-            
-                
-                    <a href="../Intro/InternalMode.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.2.</b>
-                        
-                         Internal mode
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.2" data-path="Intro/PlatformVersioning.html">
-            
-                
-                    <a href="../Intro/PlatformVersioning.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.</b>
-                        
-                         Platform Versioning
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.3" data-path="Intro/WhatsNew.html">
-            
-                
-                    <a href="../Intro/WhatsNew.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.</b>
-                        
-                         What&apos;s New?
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.4" data-path="Intro/DeclarativeExtensions.html">
-            
-                
-                    <a href="../Intro/DeclarativeExtensions.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.</b>
-                        
-                         Declarative Extensions
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="5.4.1">
-            
-            <span><b>4.1.</b> Live Templates</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.4.2">
-            
-            <span><b>4.2.</b> Structural Search and Replace Patterns</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.4.3">
-            
-            <span><b>4.3.</b> External Annotations</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="5.4.3.1">
-            
-            <span><b>4.3.1.</b> Attribute Reference</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.4.3.2">
-            
-            <span><b>4.3.2.</b> Annotator Tool</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.5" data-path="Intro/CompiledExtensions.html">
-            
-                
-                    <a href="../Intro/CompiledExtensions.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.</b>
-                        
-                         Compiled Extensions (Plugins)
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="5.5.1" data-path="Plugins/SDK.html">
-            
-                
-                    <a href="../Plugins/SDK.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.1.</b>
-                        
-                         SDK Reference
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.5.2" data-path="Plugins/ProjectSetup.html">
-            
-                
-                    <a href="../Plugins/ProjectSetup.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.2.</b>
-                        
-                         Project Setup
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.5.3" data-path="Plugins/Debugging.html">
-            
-                
-                    <a href="../Plugins/Debugging.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.3.</b>
-                        
-                         Debugging
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.5.4" data-path="Plugins/Testing.html">
-            
-                
-                    <a href="../Plugins/Testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.4.</b>
-                        
-                         Plugin testing
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="5.5.4.1">
-            
-            <span><b>5.4.1.</b> Test Framework</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.5.4.2" data-path="Plugins/Testing/OptionsIterator.html">
-            
-                
-                    <a href="../Plugins/Testing/OptionsIterator.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.4.2.</b>
-                        
-                         Combinatorial Testing
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.5.4.3" data-path="Plugins/TemporarySettings.html">
-            
-                
-                    <a href="../Plugins/TemporarySettings.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.4.3.</b>
-                        
-                         Temporary Settings
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.5.5" data-path="Intro/KnownIssues.html">
-            
-                
-                    <a href="../Intro/KnownIssues.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.5.</b>
-                        
-                         Known Issues
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.6" data-path="Extensions/Packaging.html">
-            
-                
-                    <a href="../Extensions/Packaging.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.</b>
-                        
-                         Deployment
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="5.6.1">
-            
-            <span><b>6.1.</b> Installing the ReSharper Platform</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.6.2">
-            
-            <span><b>6.2.</b> Packaging Details</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.6.3" data-path="Extensions/Deployment/LocalInstallation.html">
-            
-                
-                    <a href="../Extensions/Deployment/LocalInstallation.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.3.</b>
-                        
-                         Installing Locally
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.6.4" data-path="Extensions/Packaging8.html">
-            
-                
-                    <a href="../Extensions/Packaging8.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.4.</b>
-                        
-                         Supporting ReSharper 8
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.7">
-            
-            <span><b>7.</b> Hints and Tips</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="5.8">
-            
-            <span><b>8.</b> Best Practices</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="part divider"></li><li class="part" data-level="6">
-            
-            <span> Part II - Architectural Overview</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="6.1" data-path="Architecture/Overview.html">
-            
-                
-                    <a href="../Architecture/Overview.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.</b>
-                        
-                         Overview
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.2">
-            
-            <span><b>2.</b> Platform</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.3">
-            
-            <span><b>3.</b> Project Model</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.4" data-path="Architecture/PSI.html">
-            
-                
-                    <a href="../Architecture/PSI.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.</b>
-                        
-                         PSI
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.5">
-            
-            <span><b>5.</b> Features</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.6">
-            
-            <span><b>6.</b> Products</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="6.6.1">
-            
-            <span><b>6.1.</b> Standalone</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="6.6.2">
-            
-            <span><b>6.2.</b> Deployment</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="part divider"></li><li class="part" data-level="7">
-            
-            <span> Part III - Platform</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="7.1" data-path="Platform/Logging.html">
-            
-                
-                    <a href="../Platform/Logging.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.</b>
-                        
-                         Logging
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="7.1.1">
-            
-            <span><b>1.1.</b> Usage</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.1.2">
-            
-            <span><b>1.2.</b> Category Reference</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.2" data-path="Platform/Lifetime.html">
-            
-                
-                    <a href="../Platform/Lifetime.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.</b>
-                        
-                         Lifetime
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="7.2.1" data-path="Platform/Lifetime/Usage.html">
-            
-                
-                    <a href="../Platform/Lifetime/Usage.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.1.</b>
-                        
-                         Usage
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.2.2" data-path="Platform/Lifetime/LifetimeDefinition.html">
-            
-                
-                    <a href="../Platform/Lifetime/LifetimeDefinition.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.2.</b>
-                        
-                         Lifetime Management
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.2.3" data-path="Platform/Lifetime/Advanced.html">
-            
-                
-                    <a href="../Platform/Lifetime/Advanced.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.3.</b>
-                        
-                         Advanced Lifetime Management
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.2.4" data-path="Platform/Lifetime/ComponentModel.html">
-            
-                
-                    <a href="../Platform/Lifetime/ComponentModel.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.4.</b>
-                        
-                         Component Lifetime
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.2.5" data-path="Platform/Lifetime/CaseStudy.html">
-            
-                
-                    <a href="../Platform/Lifetime/CaseStudy.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.5.</b>
-                        
-                         Case Study
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.3">
-            
-            <span><b>3.</b> DataFlow</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="7.3.1">
-            
-            <span><b>3.1.</b> IViewable</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.3.2">
-            
-            <span><b>3.2.</b> IProperty</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.3.3">
-            
-            <span><b>3.3.</b> ISignal</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.4" data-path="Platform/ComponentModel.html">
-            
-                
-                    <a href="../Platform/ComponentModel.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.</b>
-                        
-                         Component Model
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="7.4.1" data-path="Platform/ComponentModel/ContainersPartsCatalogues.html">
-            
-                
-                    <a href="../Platform/ComponentModel/ContainersPartsCatalogues.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.1.</b>
-                        
-                         Containers, Parts and Catalogues
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.4.2" data-path="Platform/VisualStudio/ComponentModel.html">
-            
-                
-                    <a href="../Platform/VisualStudio/ComponentModel.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.2.</b>
-                        
-                         Visual Studio interfaces
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.5" data-path="Platform/Zones.html">
-            
-                
-                    <a href="../Platform/Zones.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.</b>
-                        
-                         Zones
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="7.5.1" data-path="Platform/Zones/Implementation.html">
-            
-                
-                    <a href="../Platform/Zones/Implementation.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.1.</b>
-                        
-                         Implementation
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.5.2" data-path="Platform/Zones/Usage.html">
-            
-                
-                    <a href="../Platform/Zones/Usage.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.2.</b>
-                        
-                         Usage
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.5.3" data-path="Platform/Zones/FeaturesProducts.html">
-            
-                
-                    <a href="../Platform/Zones/FeaturesProducts.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.3.</b>
-                        
-                         Features and Products
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.5.4" data-path="Platform/Zones/Activation.html">
-            
-                
-                    <a href="../Platform/Zones/Activation.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.4.</b>
-                        
-                         Activation
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.5.5">
-            
-            <span><b>5.5.</b> Licensing</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.5.6">
-            
-            <span><b>5.6.</b> Troubleshooting</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.5.7" data-path="Platform/Zones/HowTo.html">
-            
-                
-                    <a href="../Platform/Zones/HowTo.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.7.</b>
-                        
-                         How to Define a Zone Marker
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.5.8">
-            
-            <span><b>5.8.</b> Reference</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.6">
-            
-            <span><b>6.</b> DataContext</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.7" data-path="Platform/TextControl.html">
-            
-                
-                    <a href="../Platform/TextControl.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>7.</b>
-                        
-                         TextControl
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.8">
-            
-            <span><b>8.</b> Documents</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.9">
-            
-            <span><b>9.</b> Threading</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.10">
-            
-            <span><b>10.</b> Locks</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.11">
-            
-            <span><b>11.</b> Transactions</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.12">
-            
-            <span><b>12.</b> IL Metadata</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13">
-            
-            <span><b>13.</b> Shell</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="7.13.1">
-            
-            <span><b>13.1.</b> Visual Studio integration</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="7.13.1.1" data-path="Platform/VisualStudio/CustomHives.html">
-            
-                
-                    <a href="../Platform/VisualStudio/CustomHives.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>13.1.1.</b>
-                        
-                         Experimental Instances
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.2">
-            
-            <span><b>13.2.</b> Command line</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.3" data-path="Platform/Shell/ToolWindows.html">
-            
-                
-                    <a href="../Platform/Shell/ToolWindows.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>13.3.</b>
-                        
-                         Tool windows
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.4" data-path="Platform/Shell/Icons.html">
-            
-                
-                    <a href="../Platform/Shell/Icons.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>13.4.</b>
-                        
-                         Icons
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="7.13.4.1" data-path="Platform/Shell/Icons/ConsumingIcons.html">
-            
-                
-                    <a href="../Platform/Shell/Icons/ConsumingIcons.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>13.4.1.</b>
-                        
-                         Consuming Icons
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.4.2" data-path="Platform/Shell/Icons/CreatingCompiledIcons.html">
-            
-                
-                    <a href="../Platform/Shell/Icons/CreatingCompiledIcons.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>13.4.2.</b>
-                        
-                         Creating Compiled Icons
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.4.3" data-path="Platform/Shell/Icons/IconTypes.html">
-            
-                
-                    <a href="../Platform/Shell/Icons/IconTypes.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>13.4.3.</b>
-                        
-                         Icon Types
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.4.4" data-path="Platform/Shell/Icons/CustomIconTypes.html">
-            
-                
-                    <a href="../Platform/Shell/Icons/CustomIconTypes.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>13.4.4.</b>
-                        
-                         Custom Icon Types
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.5">
-            
-            <span><b>13.5.</b> Tooltips</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.6">
-            
-            <span><b>13.6.</b> TreeView</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.7">
-            
-            <span><b>13.7.</b> Progress reporting</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.8">
-            
-            <span><b>13.8.</b> Popup menus</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.9">
-            
-            <span><b>13.9.</b> Extensions</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.13.10">
-            
-            <span><b>13.10.</b> Theming</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="7.13.10.1" data-path="Platform/Shell/Theming/Icons.html">
-            
-                
-                    <a href="../Platform/Shell/Theming/Icons.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>13.10.1.</b>
-                        
-                         Themed Icons
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.14" data-path="Platform/Settings.html">
-            
-                
-                    <a href="../Platform/Settings.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>14.</b>
-                        
-                         Settings
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="7.14.1">
-            
-            <span><b>14.1.</b> Reading and writing</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.14.2">
-            
-            <span><b>14.2.</b> Defaults</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.14.3">
-            
-            <span><b>14.3.</b> Layers</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.14.4">
-            
-            <span><b>14.4.</b> File format</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="7.14.5">
-            
-            <span><b>14.5.</b> Util</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="part divider"></li><li class="part" data-level="8">
-            
-            <span> Part IV - Project Model</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="8.1">
-            
-            <span><b>1.</b> Overview</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="8.2">
-            
-            <span><b>2.</b> Change Manager</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="8.3">
-            
-            <span><b>3.</b> MSBuild Integration</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="8.4">
-            
-            <span><b>4.</b> Project Files</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="part divider"></li><li class="part" data-level="9">
-            
-            <span> Part V - PSI</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.1" data-path="Architecture/PSI.html">
-            
-                
-                    <a href="../Architecture/PSI.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.</b>
-                        
-                         Overview
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.2">
-            
-            <span><b>2.</b> PSI Languages</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.2.1" data-path="PSI/PerLanguageComponents.html">
-            
-                
-                    <a href="../PSI/PerLanguageComponents.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.1.</b>
-                        
-                         Per-language Components
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.3">
-            
-            <span><b>3.</b> Files and Modules</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.4" data-path="PSI/SyntaxTrees.html">
-            
-                
-                    <a href="../PSI/SyntaxTrees.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.</b>
-                        
-                         Syntax Trees
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.5" data-path="PSI/NavigatingSyntaxTrees.html">
-            
-                
-                    <a href="../PSI/NavigatingSyntaxTrees.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.</b>
-                        
-                         Navigating Syntax Trees
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.5.1">
-            
-            <span><b>5.1.</b> Helper methods</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.5.2" data-path="PSI/SyntaxTrees/StronglyTypedNavigation.html">
-            
-                
-                    <a href="../PSI/SyntaxTrees/StronglyTypedNavigation.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.2.</b>
-                        
-                         Strongly Typed Navigation
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.5.3">
-            
-            <span><b>5.3.</b> Recursive navigation</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.5.4">
-            
-            <span><b>5.4.</b> Finding nodes</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.6">
-            
-            <span><b>6.</b> Manipulating syntax trees</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.6.1">
-            
-            <span><b>6.1.</b> Transactions</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.7" data-path="PSI/Generating/Code.html">
-            
-                
-                    <a href="../PSI/Generating/Code.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>7.</b>
-                        
-                         Generating code
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.7.1" data-path="PSI/Generating/Comments.html">
-            
-                
-                    <a href="../PSI/Generating/Comments.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>7.1.</b>
-                        
-                         Generating comments
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.8" data-path="PSI/DeclaredElements.html">
-            
-                
-                    <a href="../PSI/DeclaredElements.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>8.</b>
-                        
-                         Declared Elements
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.8.1">
-            
-            <span><b>8.1.</b> Declared Element Types</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.8.2">
-            
-            <span><b>8.2.</b> Declared Element Envoys</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.9" data-path="PSI/References.html">
-            
-                
-                    <a href="../PSI/References.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>9.</b>
-                        
-                         References
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.9.1">
-            
-            <span><b>9.1.</b> Resolving references</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.9.2" data-path="PSI/References/ReferenceProviders.html">
-            
-                
-                    <a href="../PSI/References/ReferenceProviders.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>9.2.</b>
-                        
-                         Reference providers
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.9.3" data-path="PSI/References/CodeCompletion.html">
-            
-                
-                    <a href="../PSI/References/CodeCompletion.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>9.3.</b>
-                        
-                         Code Completion
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.9.4" data-path="PSI/References/Substrings.html">
-            
-                
-                    <a href="../PSI/References/Substrings.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>9.4.</b>
-                        
-                         References within elements
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.9.5" data-path="PSI/References/IReferenceProvider.html">
-            
-                
-                    <a href="../PSI/References/IReferenceProvider.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>9.5.</b>
-                        
-                         Managing reference providers
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.9.6" data-path="PSI/References/PathReferences.html">
-            
-                
-                    <a href="../PSI/References/PathReferences.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>9.6.</b>
-                        
-                         Path references
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.9.7">
-            
-            <span><b>9.7.</b> Colour references</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.10" data-path="PSI/TypeSystem.html">
-            
-                
-                    <a href="../PSI/TypeSystem.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>10.</b>
-                        
-                         Type Systems
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.10.1" data-path="PSI/TypeSystems2.html">
-            
-                
-                    <a href="../PSI/TypeSystems2.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>10.1.</b>
-                        
-                         Overview
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.11">
-            
-            <span><b>11.</b> Symbols and Symbol Tables</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.12">
-            
-            <span><b>12.</b> Constant Evaluation</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.13">
-            
-            <span><b>13.</b> Control Flow Graphs</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.14" data-path="PSI/Caching.html">
-            
-                
-                    <a href="../PSI/Caching.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>14.</b>
-                        
-                         Caching
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.14.1">
-            
-            <span><b>14.1.</b> Persistent Caches</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.14.1.1">
-            
-            <span><b>14.1.1.</b> Symbol Cache</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.14.1.2">
-            
-            <span><b>14.1.2.</b> Word Index</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.14.2">
-            
-            <span><b>14.2.</b> Persistent Indexes</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.14.3">
-            
-            <span><b>14.3.</b> Transient Caches</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.15">
-            
-            <span><b>15.</b> Searching</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.16">
-            
-            <span><b>16.</b> Pointers</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.17">
-            
-            <span><b>17.</b> External Annotations</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.17.1" data-path="PSI/ExternalAnnotations/Testing.html">
-            
-                
-                    <a href="../PSI/ExternalAnnotations/Testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>17.1.</b>
-                        
-                         Testing
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.18" data-path="PSI/Icons.html">
-            
-                
-                    <a href="../PSI/Icons.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>18.</b>
-                        
-                         PSI Icons
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19">
-            
-            <span><b>19.</b> PSI Implementations Reference</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.19.1">
-            
-            <span><b>19.1.</b> C#</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.2">
-            
-            <span><b>19.2.</b> Visual Basic</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.3">
-            
-            <span><b>19.3.</b> JavaScript</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.4">
-            
-            <span><b>19.4.</b> TypeScript</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.5">
-            
-            <span><b>19.5.</b> JSON</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.6">
-            
-            <span><b>19.6.</b> HTML</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.7">
-            
-            <span><b>19.7.</b> CSS</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.8">
-            
-            <span><b>19.8.</b> Razor</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.9">
-            
-            <span><b>19.9.</b> ASP.net</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.10" data-path="PSI/Reference/Xml/Overview.html">
-            
-                
-                    <a href="../PSI/Reference/Xml/Overview.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>19.10.</b>
-                        
-                         XML and DTD
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="9.19.10.1" data-path="PSI/Reference/Xml/Manipulation.html">
-            
-                
-                    <a href="../PSI/Reference/Xml/Manipulation.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>19.10.1.</b>
-                        
-                         Manipulating the Tree
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.10.2" data-path="PSI/Reference/Xml/Navigators.html">
-            
-                
-                    <a href="../PSI/Reference/Xml/Navigators.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>19.10.2.</b>
-                        
-                         Navigators
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.10.3" data-path="PSI/Reference/Xml/ElementFactories.html">
-            
-                
-                    <a href="../PSI/Reference/Xml/ElementFactories.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>19.10.3.</b>
-                        
-                         Element Factories
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.10.4" data-path="PSI/Reference/Xml/Utils.html">
-            
-                
-                    <a href="../PSI/Reference/Xml/Utils.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>19.10.4.</b>
-                        
-                         Utils
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.10.5" data-path="PSI/Reference/Xml/TreeNodes.html">
-            
-                
-                    <a href="../PSI/Reference/Xml/TreeNodes.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>19.10.5.</b>
-                        
-                         Tree Nodes
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.10.6" data-path="PSI/Reference/Xml/TreeNodesDTD.html">
-            
-                
-                    <a href="../PSI/Reference/Xml/TreeNodesDTD.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>19.10.6.</b>
-                        
-                         Tree Nodes (DTD)
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.11">
-            
-            <span><b>19.11.</b> Build scripts</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.12">
-            
-            <span><b>19.12.</b> XAML</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="9.19.13">
-            
-            <span><b>19.13.</b> XML Doc</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="part divider"></li><li class="part" data-level="10">
-            
-            <span> Part VI - Features</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.1">
-            
-            <span><b>1.</b> Analysis</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.1.1">
-            
-            <span><b>1.1.</b> Highlights</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.2">
-            
-            <span><b>1.2.</b> Custom Highlights</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.3">
-            
-            <span><b>1.3.</b> Suppressing Highlights</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.4" data-path="Features/Analysis/Daemons.html">
-            
-                
-                    <a href="../Features/Analysis/Daemons.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.4.</b>
-                        
-                         Daemons
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.5">
-            
-            <span><b>1.5.</b> Element problem analysers</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.6">
-            
-            <span><b>1.6.</b> Xml and Html analysers</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.7">
-            
-            <span><b>1.7.</b> Solution Wide Analysis</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.8">
-            
-            <span><b>1.8.</b> Error Stripe</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.9">
-            
-            <span><b>1.9.</b> Gutter Marks</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.10">
-            
-            <span><b>1.10.</b> Syntax Highlighting</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.11">
-            
-            <span><b>1.11.</b> Caches again</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.12">
-            
-            <span><b>1.12.</b> Value Analysis</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.13">
-            
-            <span><b>1.13.</b> Call Hierarchy</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.1.14" data-path="Features/Analysis/Testing.html">
-            
-                
-                    <a href="../Features/Analysis/Testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.14.</b>
-                        
-                         Testing
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.2" data-path="Features/Actions.html">
-            
-                
-                    <a href="../Features/Actions.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.</b>
-                        
-                         Actions
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.2.1">
-            
-            <span><b>2.1.</b> Menu items</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.2.2" data-path="Features/Actions/QuickFixes.html">
-            
-                
-                    <a href="../Features/Actions/QuickFixes.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.2.</b>
-                        
-                         Quick fixes
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.2.3">
-            
-            <span><b>2.3.</b> Context actions</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.2.4" data-path="Features/Actions/Bulk.html">
-            
-                
-                    <a href="../Features/Actions/Bulk.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.4.</b>
-                        
-                         Bulk actions
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.2.5">
-            
-            <span><b>2.5.</b> Overriding</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.2.6">
-            
-            <span><b>2.6.</b> Temporary editor actions</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.2.7">
-            
-            <span><b>2.7.</b> Action ID reference</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.3" data-path="Features/Completion.html">
-            
-                
-                    <a href="../Features/Completion.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>3.</b>
-                        
-                         Code Completion
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.3.1">
-            
-            <span><b>3.1.</b> Basic, smart and import</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.3.2">
-            
-            <span><b>3.2.</b> Dynamic completion</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.3.3">
-            
-            <span><b>3.3.</b> Double completion</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.3.4">
-            
-            <span><b>3.4.</b> Lookup items</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.4">
-            
-            <span><b>4.</b> Contextual highlighting</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.4.1">
-            
-            <span><b>4.1.</b> Brace matching</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.4.2">
-            
-            <span><b>4.2.</b> string.Format style highlighting</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.4.3">
-            
-            <span><b>4.3.</b> Find usages in file style highlighting</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.5">
-            
-            <span><b>5.</b> Popup docs</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.5.1" data-path="Features/QuickDoc/Overview.html">
-            
-                
-                    <a href="../Features/QuickDoc/Overview.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.1.</b>
-                        
-                         Quick Doc
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.5.1.1" data-path="Features/QuickDoc/ImplementingProvider.html">
-            
-                
-                    <a href="../Features/QuickDoc/ImplementingProvider.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.1.1.</b>
-                        
-                         IQuickDocProvider
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.5.1.2" data-path="Features/QuickDoc/ImplementingPresenter.html">
-            
-                
-                    <a href="../Features/QuickDoc/ImplementingPresenter.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.1.2.</b>
-                        
-                         IQuickDocPresenter
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.5.1.3" data-path="Features/QuickDoc/HelperClasses.html">
-            
-                
-                    <a href="../Features/QuickDoc/HelperClasses.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.1.3.</b>
-                        
-                         Helper classes
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.5.1.4" data-path="Features/QuickDoc/ExistingProviders.html">
-            
-                
-                    <a href="../Features/QuickDoc/ExistingProviders.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.1.4.</b>
-                        
-                         Existing providers
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.5.1.5" data-path="Features/QuickDoc/Testing.html">
-            
-                
-                    <a href="../Features/QuickDoc/Testing.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>5.1.5.</b>
-                        
-                         Testing
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.5.2">
-            
-            <span><b>5.2.</b> Parameter Info</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.6" data-path="Features/Refactoring.html">
-            
-                
-                    <a href="../Features/Refactoring.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>6.</b>
-                        
-                         Refactoring
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.6.1">
-            
-            <span><b>6.1.</b> Workflow</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.6.2">
-            
-            <span><b>6.2.</b> Integrating</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.6.3">
-            
-            <span><b>6.3.</b> Renaming</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.6.4">
-            
-            <span><b>6.4.</b> Unused references</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.7" data-path="Features/GenerateMenu.html">
-            
-                
-                    <a href="../Features/GenerateMenu.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>7.</b>
-                        
-                         Generate Menu
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter active" data-level="10.8" data-path="Features/Navigation.html">
-            
-                
-                    <a href="../Features/Navigation.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>8.</b>
-                        
-                         Navigation
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.8.1">
-            
-            <span><b>8.1.</b> Go to everything</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.8.2">
-            
-            <span><b>8.2.</b> Go to related</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.8.3">
-            
-            <span><b>8.3.</b> Go to next/prev</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.8.4">
-            
-            <span><b>8.4.</b> Contextual - find exits</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.8.5">
-            
-            <span><b>8.5.</b> Navigate from here</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.8.6">
-            
-            <span><b>8.6.</b> Occurrences</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.9" data-path="Features/OptionsPages.html">
-            
-                
-                    <a href="../Features/OptionsPages.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>9.</b>
-                        
-                         Options Pages
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.9.1">
-            
-            <span><b>9.1.</b> Search in Options Pages</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.10">
-            
-            <span><b>10.</b> Tools</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.10.1" data-path="Features/Tools/CodeCleanup.html">
-            
-                
-                    <a href="../Features/Tools/CodeCleanup.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>10.1.</b>
-                        
-                         Code cleanup
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.10.2">
-            
-            <span><b>10.2.</b> Code structure</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.10.3">
-            
-            <span><b>10.3.</b> Todo items</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.10.4">
-            
-            <span><b>10.4.</b> Bookmarks</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.10.5">
-            
-            <span><b>10.5.</b> Assembly explorer</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.11">
-            
-            <span><b>11.</b> Naming</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.11.1">
-            
-            <span><b>11.1.</b> Suggestions</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.11.2">
-            
-            <span><b>11.2.</b> Policy</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.12">
-            
-            <span><b>12.</b> Editing</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.12.1">
-            
-            <span><b>12.1.</b> Formatting</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.12.2">
-            
-            <span><b>12.2.</b> Typing assist</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.12.3">
-            
-            <span><b>12.3.</b> Complete statement</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.12.4">
-            
-            <span><b>12.4.</b> Extend selection</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.12.5">
-            
-            <span><b>12.5.</b> Rearrange code</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.12.6">
-            
-            <span><b>12.6.</b> Comments</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.13">
-            
-            <span><b>13.</b> Structural Search and Replace</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.13.1">
-            
-            <span><b>13.1.</b> C# vs HTML and CSS</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.13.2">
-            
-            <span><b>13.2.</b> Programmatic usage</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.14" data-path="Features/LiveTemplates/Overview.html">
-            
-                
-                    <a href="../Features/LiveTemplates/Overview.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>14.</b>
-                        
-                         Live Templates
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.14.1" data-path="Features/LiveTemplates/Macros.html">
-            
-                
-                    <a href="../Features/LiveTemplates/Macros.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>14.1.</b>
-                        
-                         Macros
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.14.2" data-path="Features/LiveTemplates/Scopes.html">
-            
-                
-                    <a href="../Features/LiveTemplates/Scopes.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>14.2.</b>
-                        
-                         Scopes
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.14.3">
-            
-            <span><b>14.3.</b> Categories</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.14.4">
-            
-            <span><b>14.4.</b> Quick lists</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.14.5">
-            
-            <span><b>14.5.</b> Hotspots</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.14.6">
-            
-            <span><b>14.6.</b> Programmatic usage</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.15" data-path="Features/UnitTest.html">
-            
-                
-                    <a href="../Features/UnitTest.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>15.</b>
-                        
-                         Unit Test
-                    </a>
-                
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.15.1">
-            
-            <span><b>15.1.</b> Test discovery</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.15.2">
-            
-            <span><b>15.2.</b> Test execution</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.15.3">
-            
-            <span><b>15.3.</b> Non-CLR tests</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.16">
-            
-            <span><b>16.</b> Diagramming</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.16.1">
-            
-            <span><b>16.1.</b> Architecture diagrams</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.17">
-            
-            <span><b>17.</b> External sources</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="10.17.1">
-            
-            <span><b>17.1.</b> PDB symbols</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.17.2">
-            
-            <span><b>17.2.</b> Decompiling</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.17.3">
-            
-            <span><b>17.3.</b> Source servers</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.18">
-            
-            <span><b>18.</b> Asp.net MVC</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.19">
-            
-            <span><b>19.</b> Internationalisation</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="10.20" data-path="Features/XmlLike.html">
-            
-                
-                    <a href="../Features/XmlLike.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>20.</b>
-                        
-                         Working with XML-like files
-                    </a>
-                
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="part divider"></li><li class="part" data-level="11">
-            
-            <span> Part VII - Products</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="11.1" data-path="Products/dotPeek.html">
-            
-                
-                    <a href="../Products/dotPeek.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.</b>
-                        
-                         dotPeek
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="11.2" data-path="Products/InspectCode.html">
-            
-                
-                    <a href="../Products/InspectCode.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>2.</b>
-                        
-                         InspectCode
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="11.3">
-            
-            <span><b>3.</b> Custom products</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="part divider"></li><li class="part" data-level="12">
-            
-            <span> Part VIII - Custom languages</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="12.1" data-path="CustomLanguages/Overview.html">
-            
-                
-                    <a href="../CustomLanguages/Overview.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>1.</b>
-                        
-                         Overview
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="12.2">
-            
-            <span><b>2.</b> Registering a Custom Language</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="12.2.1">
-            
-            <span><b>2.1.</b> Project Model</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="12.2.2">
-            
-            <span><b>2.2.</b> PSI</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="12.3">
-            
-            <span><b>3.</b> Secondary PSI</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="12.4" data-path="CustomLanguages/InjectedPsi.html">
-            
-                
-                    <a href="../CustomLanguages/InjectedPsi.html">
-                        <i class="fa fa-check"></i>
-                        
-                            <b>4.</b>
-                        
-                         Injected PSI
-                    </a>
-                
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="12.5">
-            
-            <span><b>5.</b> Building the PSI tree</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="12.5.1">
-            
-            <span><b>5.1.</b> Lexing</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="12.5.2">
-            
-            <span><b>5.2.</b> Parsing</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="12.5.2.1">
-            
-            <span><b>5.2.1.</b> PsiGen and .psi Files</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="12.5.2.2">
-            
-            <span><b>5.2.2.</b> TreeBuilder</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="12.5.3">
-            
-            <span><b>5.3.</b> Extending Existing Languages</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="12.5.4">
-            
-            <span><b>5.4.</b> Incremental Parsing</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="12.6">
-            
-            <span><b>6.</b> Creating Declared Elements</span>
-            
-            
-        </li>
-    
-        
-        <li class="chapter " data-level="12.7">
-            
-            <span><b>7.</b> Language Specific Features</span>
-            
-            
-            <ul class="articles">
-                
-    
-        
-        <li class="chapter " data-level="12.7.1">
-            
-            <span><b>7.1.</b> Disabling Intellisense</span>
-            
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-            </ul>
-            
-        </li>
-    
-
-
-        
-        <li class="divider"></li>
-        <li>
-            <a href="http://www.gitbook.io/" target="blank" class="gitbook-link">Published using GitBook</a>
-        </li>
-        
-    </ul>
-</div>
-
-    <div class="book-body">
-        <div class="body-inner">
-            <div class="book-header">
-    <!-- Actions Left -->
-    <a href="#" class="btn pull-left toggle-summary" aria-label="Toggle summary"><i class="fa fa-align-justify"></i></a>
-    <a href="#" class="btn pull-left toggle-search" aria-label="Toggle search"><i class="fa fa-search"></i></a>
-    
-    <div id="font-settings-wrapper" class="dropdown pull-left">
-        <a href="#" class="btn toggle-dropdown" aria-label="Toggle font settings"><i class="fa fa-font"></i>
-        </a>
-        <div class="dropdown-menu font-settings">
-    <div class="dropdown-caret">
-        <span class="caret-outer"></span>
-        <span class="caret-inner"></span>
-    </div>
-
-    <div class="buttons">
-        <button type="button" id="reduce-font-size" class="button size-2">A</button>
-        <button type="button" id="enlarge-font-size" class="button size-2">A</button>
-    </div>
-
-    <div class="buttons font-family-list">
-        <button type="button" data-font="0" class="button">Serif</button>
-        <button type="button" data-font="1" class="button">Sans</button>
-    </div>
-
-    <div class="buttons color-theme-list">
-        <button type="button" id="color-theme-preview-0" class="button size-3" data-theme="0">White</button>
-        <button type="button" id="color-theme-preview-1" class="button size-3" data-theme="1">Sepia</button>
-        <button type="button" id="color-theme-preview-2" class="button size-3" data-theme="2">Night</button>
-    </div>
-</div>
-
-    </div>
-
-    <a href="https://github.com/JetBrains/resharper-devguide/edit/master/Features/Navigation.md" class="btn fa fa-edit pull-left">&nbsp;&nbsp;Edit this page on GitHub</a><!-- Actions Right -->
-    
-    <div class="dropdown pull-right">
-        <a href="#" class="btn toggle-dropdown" aria-label="Toggle share dropdown"><i class="fa fa-share-alt"></i>
-        </a>
-        <div class="dropdown-menu font-settings dropdown-left">
-            <div class="dropdown-caret">
-                <span class="caret-outer"></span>
-                <span class="caret-inner"></span>
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper-devguide/app/css/styles.min.css">
+<link  rel="stylesheet" href="/resharper-devguide/styles/styles.css"></head>
+<body data-id="Features/Navigation">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
             </div>
-            <div class="buttons">
-                <button type="button" data-sharing="twitter" class="button">Twitter</button>
-                <button type="button" data-sharing="google-plus" class="button">Google</button>
-                <button type="button" data-sharing="facebook" class="button">Facebook</button>
-                <button type="button" data-sharing="weibo" class="button">Weibo</button>
-                <button type="button" data-sharing="instapaper" class="button">Instapaper</button>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
             </div>
+            <div class="container _footer panel__footer">
+                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
         </div>
-    </div>
     
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
 
-    
-    <a href="#" target="_blank" class="btn pull-right google-plus-sharing-link sharing-link" data-sharing="google-plus" aria-label="Share on Google Plus"><i class="fa fa-google-plus"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right facebook-sharing-link sharing-link" data-sharing="facebook" aria-label="Share on Facebook"><i class="fa fa-facebook"></i></a>
-    
-    
-    <a href="#" target="_blank" class="btn pull-right twitter-sharing-link sharing-link" data-sharing="twitter" aria-label="Share on Twitter"><i class="fa fa-twitter"></i></a>
-    
-    
-
-    <!-- Title -->
-    <h1>
-        <i class="fa fa-circle-o-notch fa-spin"></i>
-        <a href="../">ReSharper DevGuide</a>
-    </h1>
-</div>
-
-            <div class="page-wrapper" tabindex="-1">
-                <div class="page-inner">
-                
-                
-                    <section class="normal" id="section-gitbook_18">
                     
-                        <h1 id="navigation"><a name="navigation" class="plugin-anchor" href="#navigation"><span class="fa fa-link"></span></a>Navigation</h1>
+                    <a name="navigation" class="elem-anchor"></a>
+<h1>Navigation<a href="#navigation" class="anchor-link"><span></span></a></h1>
+
 <p>ReSharper navigation consists of two main parts:</p>
+
 <ul>
-<li>Context navigation (&apos;Navigate From Here...&apos;)</li>
-<li>Global navigation (&apos;Go To ...&apos;)</li>
+  <li>Context navigation (‘Navigate From Here…’)</li>
+  <li>Global navigation (‘Go To …’)</li>
 </ul>
+
 <p>The navigation framework is fairly pluggable, so in most cases all you need to do is to simply provide your own components. You can implement the following features:</p>
-<!-- toc -->
-<ul>
-<li><a href="#context-navigation">Context Navigation</a></li>
-<li><a href="#feature-providers">Feature Providers</a></li>
-<li><a href="#binding-to-an-action">Binding to an action</a></li>
-<li><a href="#example">Example</a></li>
-<li><a href="#context-searches">Context Searches</a></li>
-<li><a href="#global-navigation-go-to">Global Navigation (&apos;Go To ...&apos;)</a></li>
-<li><a href="#occurence-navigation-provider">Occurence Navigation Provider</a></li>
-<li><a href="#occurence-presenter">Occurence Presenter</a></li>
-<li><a href="#occurence-kind-provider">Occurence Kind Provider</a></li>
-<li><a href="#occurence-section-provider">Occurence Section Provider</a></li>
-<li><a href="#tree-model">Tree Model</a></li>
-<li><a href="#occurence">Occurence</a></li>
+
+<ul id="markdown-toc">
+  <li><a href="#context-navigation" id="markdown-toc-context-navigation"><span>Context Navigation<a href="#context-navigation" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#feature-providers" id="markdown-toc-feature-providers"><span>Feature Providers<a href="#feature-providers" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#binding-to-an-action" id="markdown-toc-binding-to-an-action"><span>Binding to an action<a href="#binding-to-an-action" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#example" id="markdown-toc-example"><span>Example<a href="#example" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#context-searches" id="markdown-toc-context-searches"><span>Context Searches<a href="#context-searches" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#global-navigation-go-to-" id="markdown-toc-global-navigation-go-to-"><span>Global Navigation (‘Go To …’)<a href="#global-navigation-go-to-" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#occurrence-navigation-provider" id="markdown-toc-occurrence-navigation-provider"><span>Occurrence Navigation Provider<a href="#occurrence-navigation-provider" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#occurrence-presenter" id="markdown-toc-occurrence-presenter"><span>Occurrence Presenter<a href="#occurrence-presenter" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#occurrence-kind-provider" id="markdown-toc-occurrence-kind-provider"><span>Occurrence Kind Provider<a href="#occurrence-kind-provider" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#occurrence-section-provider" id="markdown-toc-occurrence-section-provider"><span>Occurrence Section Provider<a href="#occurrence-section-provider" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#tree-model" id="markdown-toc-tree-model"><span>Tree Model<a href="#tree-model" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#occurrence" id="markdown-toc-occurrence"><span>Occurrence<a href="#occurrence" class="anchor-link"><span></span></a></span></a></li>
 </ul>
-<!-- toc stop -->
-<h2 id="context-navigation"><a name="context-navigation" class="plugin-anchor" href="#context-navigation"><span class="fa fa-link"></span></a>Context Navigation</h2>
+
+<a name="context-navigation" class="elem-anchor"></a>
+<h2>Context Navigation<a href="#context-navigation" class="anchor-link"><span></span></a></h2>
+
 <p>Context navigation consists of two parts: the searching engine and the user-interaction provider. These two parts are divided into different entities in ReSharper Framework.</p>
-<h2 id="feature-providers"><a name="feature-providers" class="plugin-anchor" href="#feature-providers"><span class="fa fa-link"></span></a>Feature Providers</h2>
+
+<a name="feature-providers" class="elem-anchor"></a>
+<h2>Feature Providers<a href="#feature-providers" class="anchor-link"><span></span></a></h2>
+
 <p>Feature providers represent features themselves. That is, there is just one provider per navigation feature regardless of the number of languages and environments where this feature is supposed to work.</p>
-<p>Each context navigation provider implements either the <code>IContextSearchProvider</code> or the <code>INavigateFromHereProvider</code> interface. The <code>IContextSearchProvider</code> interface is defined as follows:</p>
-<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IContextSearchProvider</span>
-</span>{
-  <span class="hljs-attribute">[<span class="hljs-title">CanBeNull</span>]</span>
-  <span class="hljs-function">Action <span class="hljs-title">GetSearchesExecution</span><span class="hljs-params">(IDataContext dataContext, INavigationExecutionHost host)</span></span>;
-}
-</code></pre>
-<p>The action that the <code>GetSearchesExecution()</code> method returns is actually the execution of the navigation feature. When this method returns <code>null</code>, it implies that this feature is not available for this data context. The <code>INavigationExecutionHost</code> is a host object which can be used for performing certain UI activities, such as showing a drop-down box or the advanced search dialog.</p>
-<p>The <code>INavigateFromHere</code> interface is fairly similar to <code>IContextSearchProvider</code> - it has just one method that returns navigation execution and additional data for presenting in the &apos;Navigate From Here&apos; drop-down menu.</p>
-<p>If you want your navigation items to appear in the &apos;Navigate From Here&apos; menu, you have to implement the <code>INavigateFromHereProvider</code> interface.</p>
-<h2 id="binding-to-an-action"><a name="binding-to-an-action" class="plugin-anchor" href="#binding-to-an-action"><span class="fa fa-link"></span></a>Binding to an action</h2>
-<p>You don&apos;t need to write any code in your action handler&apos;s methods, as all feature logic needs to be written inside navigation providers. All you need to bind your action to a navigation provider is to derive your custom action handler class from <code>ContextNavigationActionBase&lt;TNavigateFromHereProvider&gt;</code> (if you want your action to appear in the &apos;Navigate From Here&apos; menu) or <code>ContextSearchActionBase&lt;TContextSearchProvider&gt;</code>.</p>
-<p>Additionally, your provider should be decorated with the <code>ContextNavigationProvider</code> attribute.</p>
-<blockquote class="clearfix alert alert-info"><strong class="fa fa-4x fa-info"></strong>
-<p> If you want your feature to appear only in &apos;Navigate From Here&apos; menu, you don&apos;t even have to write an action - just implement <code>ContextNavigationProvider</code> that implements <code>INavigateFromHereProvider</code>.</p>
-</blockquote>
-<p>If your navigation is not complicated, that&apos;s all you need to know about the context navigation framework.</p>
-<h2 id="example"><a name="example" class="plugin-anchor" href="#example"><span class="fa fa-link"></span></a>Example</h2>
+
+<p>Each context navigation provider implements either the <code class="code highlight language-text">IContextSearchProvider</code> or the <code class="code highlight language-text">INavigateFromHereProvider</code> interface. The <code class="code highlight language-text">IContextSearchProvider</code> interface is defined as follows:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">interface</span> <span class="n">IContextSearchProvider</span>
+<span class="p">{</span>
+<span class="na">  [CanBeNull]</span>
+  <span class="n">Action</span> <span class="nf">GetSearchesExecution</span><span class="p">(</span><span class="n">IDataContext</span> <span class="n">dataContext</span><span class="p">,</span> <span class="n">INavigationExecutionHost</span> <span class="n">host</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+
+<p>The action that the <code class="code highlight language-text">GetSearchesExecution()</code> method returns is actually the execution of the navigation feature. When this method returns <code class="code highlight language-text">null</code>, it implies that this feature is not available for this data context. The <code class="code highlight language-text">INavigationExecutionHost</code> is a host object which can be used for performing certain UI activities, such as showing a drop-down box or the advanced search dialog.</p>
+
+<p>The <code class="code highlight language-text">INavigateFromHere</code> interface is fairly similar to <code class="code highlight language-text">IContextSearchProvider</code> - it has just one method that returns navigation execution and additional data for presenting in the ‘Navigate From Here’ drop-down menu.</p>
+
+<p>If you want your navigation items to appear in the ‘Navigate From Here’ menu, you have to implement the <code class="code highlight language-text">INavigateFromHereProvider</code> interface.</p>
+
+<a name="binding-to-an-action" class="elem-anchor"></a>
+<h2>Binding to an action<a href="#binding-to-an-action" class="anchor-link"><span></span></a></h2>
+
+<p>You don’t need to write any code in your action handler’s methods, as all feature logic needs to be written inside navigation providers. All you need to bind your action to a navigation provider is to derive your custom action handler class from <code class="code highlight language-text">ContextNavigationActionBase&lt;TNavigateFromHereProvider&gt;</code> (if you want your action to appear in the ‘Navigate From Here’ menu) or <code class="code highlight language-text">ContextSearchActionBase&lt;TContextSearchProvider&gt;</code>.</p>
+
+<p>Additionally, your provider should be decorated with the <code class="code highlight language-text">ContextNavigationProvider</code> attribute.</p>
+
+<aside class="note">
+  <p> If you want your feature to appear only in ‘Navigate From Here’ menu, you don’t even have to write an action - just implement <code class="code highlight language-text">ContextNavigationProvider</code> that implements <code class="code highlight language-text">INavigateFromHereProvider</code>.</p>
+</aside>
+
+<p>If your navigation is not complicated, that’s all you need to know about the context navigation framework.</p>
+
+<a name="example" class="elem-anchor"></a>
+<h2>Example<a href="#example" class="anchor-link"><span></span></a></h2>
+
 <p>Here is an example of simple navigation to the corresponding folder using Windows explorer.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">using</span> System;
-<span class="hljs-keyword">using</span> System.Collections.Generic;
-<span class="hljs-keyword">using</span> System.Diagnostics;
-<span class="hljs-keyword">using</span> JetBrains.Annotations;
-<span class="hljs-keyword">using</span> JetBrains.Application.DataContext;
-<span class="hljs-keyword">using</span> JetBrains.ProjectModel;
-<span class="hljs-keyword">using</span> JetBrains.ReSharper.Feature.Services.ContextNavigation;
-<span class="hljs-keyword">using</span> JetBrains.Util;
 
-<span class="hljs-keyword">using</span> DataConstants = JetBrains.ProjectModel.DataContext.DataConstants;
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">using</span> <span class="nn">System</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Collections.Generic</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">System.Diagnostics</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">JetBrains.Annotations</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">JetBrains.Application.DataContext</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">JetBrains.ProjectModel</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">JetBrains.ReSharper.Feature.Services.ContextNavigation</span><span class="p">;</span>
+<span class="k">using</span> <span class="nn">JetBrains.Util</span><span class="p">;</span>
 
-<span class="hljs-keyword">namespace</span> <span class="hljs-title">ReSharperPlugIn6</span>
-{
-  <span class="hljs-attribute">[<span class="hljs-title">ActionHandler</span>]</span>
-  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SimpleNavigation</span> : ContextNavigationActionBase&lt;SimpleNavigationProvider&gt;
-  </span>{
-  }
+<span class="k">using</span> <span class="nn">DataConstants</span> <span class="p">=</span> <span class="n">JetBrains</span><span class="p">.</span><span class="n">ProjectModel</span><span class="p">.</span><span class="n">DataContext</span><span class="p">.</span><span class="n">DataConstants</span><span class="p">;</span>
 
-  <span class="hljs-attribute">[<span class="hljs-title">ContextNavigationProvider</span>]</span>
-  <span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">SimpleNavigationProvider</span> : INavigateFromHereProvider
-  </span>{
-    <span class="hljs-attribute">[<span class="hljs-title">CanBeNull</span>]</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-function">ProcessStartInfo <span class="hljs-title">GetProcessStartInfo</span><span class="hljs-params">(<span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> FileSystemPath path)</span>
-    </span>{
-      <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">ProcessStartInfo</span><span class="hljs-params">(<span class="hljs-string">&quot;explorer.exe&quot;</span>,
-        path.ExistsFile ? <span class="hljs-keyword">string</span>.Format(@<span class="hljs-string">&quot;/select,&quot;</span><span class="hljs-string">&quot;{0}&quot;</span><span class="hljs-string">&quot;&quot;</span>, path)</span> : <span class="hljs-keyword">string</span>.<span class="hljs-title">Format</span><span class="hljs-params">(@<span class="hljs-string">&quot;&quot;</span><span class="hljs-string">&quot;{0}&quot;</span><span class="hljs-string">&quot;&quot;</span>, path.Directory)</span>)</span>;
-    }
+<span class="k">namespace</span> <span class="nn">ReSharperPlugIn6</span>
+<span class="p">{</span>
+<span class="na">  [ActionHandler]</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">SimpleNavigation</span> <span class="p">:</span> <span class="n">ContextNavigationActionBase</span><span class="p">&lt;</span><span class="n">SimpleNavigationProvider</span><span class="p">&gt;</span>
+  <span class="p">{</span>
+  <span class="p">}</span>
 
-    <span class="hljs-attribute">[<span class="hljs-title">CanBeNull</span>]</span>
-    <span class="hljs-keyword">private</span> <span class="hljs-keyword">static</span> <span class="hljs-function">FileSystemPath <span class="hljs-title">GetPathByContext</span><span class="hljs-params">(<span class="hljs-attribute">[<span class="hljs-title">NotNull</span>]</span> IDataContext context)</span>
-    </span>{
-      <span class="hljs-keyword">var</span> projectModelElement = context.<span class="hljs-function"><span class="hljs-title">GetData</span><span class="hljs-params">(DataConstants.PROJECT_MODEL_ELEMENT)</span></span>;
+<span class="na">  [ContextNavigationProvider]</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">SimpleNavigationProvider</span> <span class="p">:</span> <span class="n">INavigateFromHereProvider</span>
+  <span class="p">{</span>
+<span class="na">    [CanBeNull]</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="n">ProcessStartInfo</span> <span class="nf">GetProcessStartInfo</span><span class="p">([</span><span class="n">NotNull</span><span class="p">]</span> <span class="n">FileSystemPath</span> <span class="n">path</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="k">return</span> <span class="k">new</span> <span class="nf">ProcessStartInfo</span><span class="p">(</span><span class="s">&quot;explorer.exe&quot;</span><span class="p">,</span>
+        <span class="n">path</span><span class="p">.</span><span class="n">ExistsFile</span> <span class="p">?</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">@&quot;/select,&quot;&quot;{0}&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">)</span> <span class="p">:</span> <span class="kt">string</span><span class="p">.</span><span class="n">Format</span><span class="p">(</span><span class="s">@&quot;&quot;&quot;{0}&quot;&quot;&quot;</span><span class="p">,</span> <span class="n">path</span><span class="p">.</span><span class="n">Directory</span><span class="p">));</span>
+    <span class="p">}</span>
 
-      <span class="hljs-keyword">var</span> projectItem = projectModelElement <span class="hljs-keyword">as</span> IProjectItem;
-      <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(projectItem == null)</span>
-        return null</span>;
+<span class="na">    [CanBeNull]</span>
+    <span class="k">private</span> <span class="k">static</span> <span class="n">FileSystemPath</span> <span class="nf">GetPathByContext</span><span class="p">([</span><span class="n">NotNull</span><span class="p">]</span> <span class="n">IDataContext</span> <span class="n">context</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="kt">var</span> <span class="n">projectModelElement</span> <span class="p">=</span> <span class="n">context</span><span class="p">.</span><span class="n">GetData</span><span class="p">(</span><span class="n">DataConstants</span><span class="p">.</span><span class="n">PROJECT_MODEL_ELEMENT</span><span class="p">);</span>
 
-      <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(!projectItem.Location.Directory.ExistsDirectory)</span>
-        return null</span>;
+      <span class="kt">var</span> <span class="n">projectItem</span> <span class="p">=</span> <span class="n">projectModelElement</span> <span class="k">as</span> <span class="n">IProjectItem</span><span class="p">;</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">projectItem</span> <span class="p">==</span> <span class="k">null</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
 
-      <span class="hljs-keyword">return</span> projectItem.Location;
-    }
+      <span class="k">if</span> <span class="p">(!</span><span class="n">projectItem</span><span class="p">.</span><span class="n">Location</span><span class="p">.</span><span class="n">Directory</span><span class="p">.</span><span class="n">ExistsDirectory</span><span class="p">)</span>
+        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
 
-    <span class="hljs-keyword">public</span> <span class="hljs-function">IEnumerable&lt;ContextNavigation&gt; <span class="hljs-title">CreateWorkflow</span><span class="hljs-params">(IDataContext dataContext)</span>
-    </span>{
-      <span class="hljs-keyword">var</span> path = <span class="hljs-function"><span class="hljs-title">GetPathByContext</span><span class="hljs-params">(dataContext)</span></span>;
-      <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(path != null)</span>
-      </span>{
-        ProcessStartInfo processStartInfo = <span class="hljs-function"><span class="hljs-title">GetProcessStartInfo</span><span class="hljs-params">(path)</span></span>;
-        <span class="hljs-function"><span class="hljs-title">if</span> <span class="hljs-params">(processStartInfo != null)</span>
-        </span>{
-          <span class="hljs-keyword">yield</span> <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span> <span class="hljs-function"><span class="hljs-title">ContextNavigation</span><span class="hljs-params">( <span class="hljs-string">&quot;&amp;Windows Explorer&quot;</span>, null, NavigationActionGroup.Other,
-            ()</span> </span>=&gt;
-            {
-              <span class="hljs-keyword">try</span>
-              {
-                <span class="hljs-function"><span class="hljs-title">using</span> <span class="hljs-params">(Process.Start(processStartInfo)</span>) </span>{ }
-              }
-              <span class="hljs-function"><span class="hljs-title">catch</span> <span class="hljs-params">(Exception e)</span>
-              </span>{
-                MessageBox.<span class="hljs-function"><span class="hljs-title">ShowError</span><span class="hljs-params">(e.Message)</span></span>;
-              }
-            });
-        }
-      }
-    }
-  }
-}
-</code></pre>
-<h2 id="context-searches"><a name="context-searches" class="plugin-anchor" href="#context-searches"><span class="fa fa-link"></span></a>Context Searches</h2>
-<p>If your navigation is complicated and works differently in differenent languages then you can use context searches to provide different search results for a specific language.</p>
-<p>In this case, your provider needs to be derived from <code>ContextSearchesCollector&lt;TContextSearch&gt;</code> class and all you need is to implement the <code>Execute()</code> method.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">protected</span> <span class="hljs-keyword">abstract</span> <span class="hljs-function"><span class="hljs-keyword">void</span> <span class="hljs-title">Execute</span><span class="hljs-params">(IDataContext dataContext, IEnumerable&lt;TContextSearch&gt; searches, INavigationExecutionHost host)</span></span>;
-</code></pre>
-<p><code>IContextSearch</code> is an interface for providers decorated with the <code>FeaturePart</code> attribute and providing specific navigation execution. There are just two methods in this interface, indicating applicability and availability of said context search.</p>
-<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IContextSearch</span>
-</span>{
-  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IDataContext dataContext)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(IDataContext dataContext)</span></span>;
-}
-</code></pre>
+      <span class="k">return</span> <span class="n">projectItem</span><span class="p">.</span><span class="n">Location</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="k">public</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">ContextNavigation</span><span class="p">&gt;</span> <span class="n">CreateWorkflow</span><span class="p">(</span><span class="n">IDataContext</span> <span class="n">dataContext</span><span class="p">)</span>
+    <span class="p">{</span>
+      <span class="kt">var</span> <span class="n">path</span> <span class="p">=</span> <span class="n">GetPathByContext</span><span class="p">(</span><span class="n">dataContext</span><span class="p">);</span>
+      <span class="k">if</span> <span class="p">(</span><span class="n">path</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+      <span class="p">{</span>
+        <span class="n">ProcessStartInfo</span> <span class="n">processStartInfo</span> <span class="p">=</span> <span class="n">GetProcessStartInfo</span><span class="p">(</span><span class="n">path</span><span class="p">);</span>
+        <span class="k">if</span> <span class="p">(</span><span class="n">processStartInfo</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+        <span class="p">{</span>
+          <span class="k">yield</span> <span class="k">return</span> <span class="k">new</span> <span class="nf">ContextNavigation</span><span class="p">(</span> <span class="s">&quot;&amp;Windows Explorer&quot;</span><span class="p">,</span> <span class="k">null</span><span class="p">,</span> <span class="n">NavigationActionGroup</span><span class="p">.</span><span class="n">Other</span><span class="p">,</span>
+            <span class="p">()</span> <span class="p">=&gt;</span>
+            <span class="p">{</span>
+              <span class="k">try</span>
+              <span class="p">{</span>
+                <span class="k">using</span> <span class="p">(</span><span class="n">Process</span><span class="p">.</span><span class="n">Start</span><span class="p">(</span><span class="n">processStartInfo</span><span class="p">))</span> <span class="p">{</span> <span class="p">}</span>
+              <span class="p">}</span>
+              <span class="k">catch</span> <span class="p">(</span><span class="n">Exception</span> <span class="n">e</span><span class="p">)</span>
+              <span class="p">{</span>
+                <span class="n">MessageBox</span><span class="p">.</span><span class="n">ShowError</span><span class="p">(</span><span class="n">e</span><span class="p">.</span><span class="n">Message</span><span class="p">);</span>
+              <span class="p">}</span>
+            <span class="p">});</span>
+        <span class="p">}</span>
+      <span class="p">}</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<a name="context-searches" class="elem-anchor"></a>
+<h2>Context Searches<a href="#context-searches" class="anchor-link"><span></span></a></h2>
+
+<p>If your navigation is complicated and works differently in different languages then you can use context searches to provide different search results for a specific language.</p>
+
+<p>In this case, your provider needs to be derived from <code class="code highlight language-text">ContextSearchesCollector&lt;TContextSearch&gt;</code> class and all you need is to implement the <code class="code highlight language-text">Execute()</code> method.</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">protected</span> <span class="k">abstract</span> <span class="k">void</span> <span class="nf">Execute</span><span class="p">(</span><span class="n">IDataContext</span> <span class="n">dataContext</span><span class="p">,</span> <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">TContextSearch</span><span class="p">&gt;</span> <span class="n">searches</span><span class="p">,</span> <span class="n">INavigationExecutionHost</span> <span class="n">host</span><span class="p">);</span></code></pre>
+
+<p><code class="code highlight language-text">IContextSearch</code> is an interface for providers decorated with the <code class="code highlight language-text">FeaturePart</code> attribute and providing specific navigation execution. There are just two methods in this interface, indicating applicability and availability of said context search.</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">interface</span> <span class="n">IContextSearch</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="nf">IsAvailable</span><span class="p">(</span><span class="n">IDataContext</span> <span class="n">dataContext</span><span class="p">);</span>
+  <span class="kt">bool</span> <span class="nf">IsApplicable</span><span class="p">(</span><span class="n">IDataContext</span> <span class="n">dataContext</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+
 <p>The applicability method is more global and implies that this context search can work for this data context and will <em>override</em> other components it is derived from.</p>
+
 <p>Availability means that for a specific data context this context search is enabled and will be fired.</p>
-<p>You can alter the behavior of existing ReSharper navigation features by providing your own context search components. Here is an example of a  context search that extends the &apos;Go To Implementation&apos; search for XAML:</p>
-<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">FeaturePart</span>]</span>
-<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">XamlImplementationContextSearch</span> : ContextNavigation.ContextSearches.BaseSearches.ImplementationContextSearch
-</span>{
-  <span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsAvailable</span><span class="hljs-params">(IDataContext dataContext)</span>
-  </span>{
-    <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-  }
 
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(IDataContext dataContext)</span>
-  </span>{
-    <span class="hljs-keyword">return</span> ContextNavigationUtil.<span class="hljs-function"><span class="hljs-title">CheckDefaultApplicability&lt;XamlLanguage&gt;</span><span class="hljs-params">(dataContext)</span></span>;
-  }
+<p>You can alter the behavior of existing ReSharper navigation features by providing your own context search components. Here is an example of a  context search that extends the ‘Go To Implementation’ search for XAML:</p>
 
-  <span class="hljs-keyword">protected</span> <span class="hljs-keyword">override</span> <span class="hljs-function">SearchImplementationsRequest <span class="hljs-title">CreateSearchRequest</span><span class="hljs-params">(IDataContext dataContext, IDeclaredElement declaredElement)</span>
-  </span>{
-    <span class="hljs-comment">// Your custom logic here...</span>
-  }
-}
-</code></pre>
-<h2 id="global-navigation-go-to-"><a name="global-navigation-go-to-" class="plugin-anchor" href="#global-navigation-go-to-"><span class="fa fa-link"></span></a>Global Navigation (&apos;Go To ...&apos;)</h2>
-<p><em>Global nagivation</em> relates to functionality used in various global searches such as <em>Go To Type</em> or <em>Go To Member</em>. Typically, these searches all function as a text-entry popup box that, when typed into, presents a list that can be further refined and then, upon selection, navigated to the declared element. In addition, lists can &#x2018;morph&#x2019; so that a Go To Type search can suddenly become a Go To Symbol search with the press of one shortcut.</p>
-<h2 id="occurence-navigation-provider"><a name="occurence-navigation-provider" class="plugin-anchor" href="#occurence-navigation-provider"><span class="fa fa-link"></span></a>Occurence Navigation Provider</h2>
-<p>In order to provide items for a particular global navigation mechanic, we need to implement an occurence navigation provider - a class that implements the <code>IOccurenceNavigationProvider</code> interface. The following image illustrates the hierarchy of this interface:</p>
-<p><img src="navigation.png" alt="IOccurenceNavigationProvider hierarchy"></p>
-<p>As you can see, the four interface members are self-descriprive, and are further implemented by concrete classes based on language. For example, <code>IGotoSymbolProvider</code> has concrete implementations for the CLR, CSS, HTML and JavaScript. This interface is also implemented by the <code>ClrGotoTypeMemberProvider</code>, which illustrates a kind of inheritance mechanic - this makes sense because Go To Symbol actually includes information from Go To Type.</p>
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="na">[FeaturePart]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">XamlImplementationContextSearch</span> <span class="p">:</span> <span class="n">ContextNavigation</span><span class="p">.</span><span class="n">ContextSearches</span><span class="p">.</span><span class="n">BaseSearches</span><span class="p">.</span><span class="n">ImplementationContextSearch</span>
+<span class="p">{</span>
+  <span class="k">protected</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">IsAvailable</span><span class="p">(</span><span class="n">IDataContext</span> <span class="n">dataContext</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+  <span class="p">}</span>
+
+  <span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">IsApplicable</span><span class="p">(</span><span class="n">IDataContext</span> <span class="n">dataContext</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">ContextNavigationUtil</span><span class="p">.</span><span class="n">CheckDefaultApplicability</span><span class="p">&lt;</span><span class="n">XamlLanguage</span><span class="p">&gt;(</span><span class="n">dataContext</span><span class="p">);</span>
+  <span class="p">}</span>
+
+  <span class="k">protected</span> <span class="k">override</span> <span class="n">SearchImplementationsRequest</span> <span class="nf">CreateSearchRequest</span><span class="p">(</span><span class="n">IDataContext</span> <span class="n">dataContext</span><span class="p">,</span> <span class="n">IDeclaredElement</span> <span class="n">declaredElement</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Your custom logic here...</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<a name="global-navigation-go-to-" class="elem-anchor"></a>
+<h2>Global Navigation (‘Go To …’)<a href="#global-navigation-go-to-" class="anchor-link"><span></span></a></h2>
+
+<p><em>Global nagivation</em> relates to functionality used in various global searches such as <em>Go To Type</em> or <em>Go To Member</em>. Typically, these searches all function as a text-entry popup box that, when typed into, presents a list that can be further refined and then, upon selection, navigated to the declared element. In addition, lists can ‘morph’ so that a Go To Type search can suddenly become a Go To Symbol search with the press of one shortcut.</p>
+
+<a name="occurrence-navigation-provider" class="elem-anchor"></a>
+<h2>Occurrence Navigation Provider<a href="#occurrence-navigation-provider" class="anchor-link"><span></span></a></h2>
+
+<p>In order to provide items for a particular global navigation mechanic, we need to implement an occurrence navigation provider - a class that implements the <code class="code highlight language-text">IOccurenceNavigationProvider</code> interface. The following image illustrates the hierarchy of this interface:</p>
+
+<p><img src="navigation.png" alt="IOccurenceNavigationProvider hierarchy" /></p>
+
+<p>As you can see, the four interface members are self-descriptive, and are further implemented by concrete classes based on language. For example, <code class="code highlight language-text">IGotoSymbolProvider</code> has concrete implementations for the CLR, CSS, HTML and JavaScript. This interface is also implemented by the <code class="code highlight language-text">ClrGotoTypeMemberProvider</code>, which illustrates a kind of inheritance mechanic - this makes sense because Go To Symbol actually includes information from Go To Type.</p>
+
 <p>The interface is fairly simple, and has only three members:</p>
-<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurenceNavigationProvider</span> : IApplicableGotoProvider
-</span>{
-  <span class="hljs-function">IEnumerable&lt;MatchingInfo&gt; <span class="hljs-title">FindMatchingInfos</span><span class="hljs-params">(IdentifierMatcher matcher, INavigationScope scope,
-                                              CheckForInterrupt checkCancelled, GotoContext gotoContext)</span></span>;
-  <span class="hljs-function">IEnumerable&lt;IOccurence&gt; <span class="hljs-title">GetOccurencesByMatchingInfo</span><span class="hljs-params">(MatchingInfo navigationInfo, INavigationScope scope, GotoContext gotoContext)</span></span>;
-}
-</code></pre>
-<p>The first method, <code>FindMatchingInfos()</code>, find matched items and returns a corresponding list of <code>MatchingInfo</code> objects. A <code>MatchingInfo</code> is simply a data class that describes the necessary info used to store a matching item - its identifier, a set of <code>IdentifierMatch</code> objects (corresponding to the matches, as there can be many) and some other service information.</p>
-<p>The second method, <code>GetOccurencesByMatchingInfo</code>, returns a set of occurences given the matching information. An <em>occurence</em> is essentially a pointer to the location where something was found. Since the definition of &#x2018;something&#x2019; is quite vague, an occurence can be practically anything - a range in a text editor, a project reference, a while project or a file. For example, a project file is represented by a <code>ProjectItemOccurence</code>, which in turn references an <code>IProjectItem</code> it points to.</p>
-<p>In addition, you are required to implement an interface member inherited from <code>IApplicableGotoProvider</code>:</p>
-<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IApplicableGotoProvider</span>
-</span>{
-  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(INavigationScope scope, GotoContext gotoContext, IdentifierMatcher matcher)</span></span>;
-}
-</code></pre>
-<p>The above method lets us determine if a particular provider should work in a given context. Providers can theoretically inherit from one another, and if you are overriding an existing provider, instead of working every single time (like a <code>SolutionComponent</code> would), it instead checks the <code>IsApplicable</code> result.</p>
-<p>The API now provides you an interface called <code>IGotoEverythingProvider</code>, which happens to inherit these two interfaces and in addition specifies a sorting function declared as</p>
-<pre><code class="lang-cs">Func&lt;<span class="hljs-keyword">int</span>, <span class="hljs-keyword">int</span>&gt; <span class="hljs-title">ItemsPriorityFunc</span> { <span class="hljs-keyword">get</span>; }
-</code></pre>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">interface</span> <span class="n">IOccurenceNavigationProvider</span> <span class="p">:</span> <span class="n">IApplicableGotoProvider</span>
+<span class="p">{</span>
+  <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">MatchingInfo</span><span class="p">&gt;</span> <span class="n">FindMatchingInfos</span><span class="p">(</span><span class="n">IdentifierMatcher</span> <span class="n">matcher</span><span class="p">,</span> <span class="n">INavigationScope</span> <span class="n">scope</span><span class="p">,</span>
+                                              <span class="n">CheckForInterrupt</span> <span class="n">checkCancelled</span><span class="p">,</span> <span class="n">GotoContext</span> <span class="n">gotoContext</span><span class="p">);</span>
+  <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">IOccurence</span><span class="p">&gt;</span> <span class="n">GetOccurencesByMatchingInfo</span><span class="p">(</span><span class="n">MatchingInfo</span> <span class="n">navigationInfo</span><span class="p">,</span> <span class="n">INavigationScope</span> <span class="n">scope</span><span class="p">,</span> <span class="n">GotoContext</span> <span class="n">gotoContext</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+
+<p>The first method, <code class="code highlight language-text">FindMatchingInfos()</code>, find matched items and returns a corresponding list of <code class="code highlight language-text">MatchingInfo</code> objects. A <code class="code highlight language-text">MatchingInfo</code> is simply a data class that describes the necessary info used to store a matching item - its identifier, a set of <code class="code highlight language-text">IdentifierMatch</code> objects (corresponding to the matches, as there can be many) and some other service information.</p>
+
+<p>The second method, <code class="code highlight language-text">GetOccurencesByMatchingInfo</code>, returns a set of occurrences given the matching information. An <em>occurence</em> is essentially a pointer to the location where something was found. Since the definition of ‘something’ is quite vague, an occurrence can be practically anything - a range in a text editor, a project reference, a while project or a file. For example, a project file is represented by a <code class="code highlight language-text">ProjectItemOccurence</code>, which in turn references an <code class="code highlight language-text">IProjectItem</code> it points to.</p>
+
+<p>In addition, you are required to implement an interface member inherited from <code class="code highlight language-text">IApplicableGotoProvider</code>:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">interface</span> <span class="n">IApplicableGotoProvider</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="nf">IsApplicable</span><span class="p">(</span><span class="n">INavigationScope</span> <span class="n">scope</span><span class="p">,</span> <span class="n">GotoContext</span> <span class="n">gotoContext</span><span class="p">,</span> <span class="n">IdentifierMatcher</span> <span class="n">matcher</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+
+<p>The above method lets us determine if a particular provider should work in a given context. Providers can theoretically inherit from one another, and if you are overriding an existing provider, instead of working every single time (like a <code class="code highlight language-text">SolutionComponent</code> would), it instead checks the <code class="code highlight language-text">IsApplicable</code> result.</p>
+
+<p>The API now provides you an interface called <code class="code highlight language-text">IGotoEverythingProvider</code>, which happens to inherit these two interfaces and in addition specifies a sorting function declared as</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="n">Func</span><span class="p">&lt;</span><span class="kt">int</span><span class="p">,</span> <span class="kt">int</span><span class="p">&gt;</span> <span class="n">ItemsPriorityFunc</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span></code></pre>
+
 <p>This interface lets you calculate a priority of the displayed element, such that the lower the result gets returned, the higher is the priority of the element.</p>
-<p>Now, to create a provider, simply implement the interface and decorate the class with <code>[ShellFeaturePart]</code>:</p>
-<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">ShellFeaturePart</span>]</span>
-<span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">GoToYouTrackIssueProvider</span> : IGotoEverythingProvider
-</span>{
-  <span class="hljs-comment">// ...</span>
-}
-</code></pre>
-<h2 id="occurence-presenter"><a name="occurence-presenter" class="plugin-anchor" href="#occurence-presenter"><span class="fa fa-link"></span></a>Occurence Presenter</h2>
-<p>Having a set of occurences is great, but they&#x2019;re useless until presented on-screen. And this is where occurence presenters come in. An occurence presenter is, basically, a class that knows how to present a particular occurence as a menu item. In addition to being decorated by an <code>OccurencePresenter</code> attribute, it is embodied by the <code>IOccurencePresenter</code> interface defined below:</p>
-<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurencePresenter</span>
-</span>{
-  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Present</span><span class="hljs-params">(IMenuItemDescriptor descriptor, IOccurence occurence,
-    OccurencePresentationOptions occurencePresentationOptions)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(IOccurence occurence)</span></span>;
-}
-</code></pre>
-<p>First, there&#x2019;s the <code>IsApplicable()</code> method. This method determines whether this occurence presenter is applicable for the particular type of occurence. These typically go hand-in-hand, for example:</p>
-<pre><code class="lang-cs"><span class="hljs-attribute">[<span class="hljs-title">OccurencePresenter</span><span class="hljs-params">(Priority=<span class="hljs-number">0.0</span>)</span>]</span>
-<span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">class</span> <span class="hljs-title">RangeOccurencePresenter</span> : IOccurencePresenter
-</span>{
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(IOccurence occurence)</span>
-  </span>{
-    <span class="hljs-keyword">return</span> occurence <span class="hljs-keyword">is</span> RangeOccurence;
-  }
-  <span class="hljs-comment">// other members omitted</span>
-}
-</code></pre>
-<p>Then there&#x2019;s the <code>Present()</code> method, which is called when the <code>IOccurence</code> needs to be presented. The goal of this method is to make assignments to the <code>descriptor</code> parameter. The <code>IMenuItemDescriptor</code> interface is quite large, but the only property we need to concern ourselves with here is <code>Text</code> - this is a <code>RichText</code> definition that will be displayed as a menu item for this occurence.</p>
-<p>Here&apos;s a sample implementation. Note that <code>descriptor.Style</code> <em>must</em> be defined - otherwise, the item will be disabled.</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Present</span><span class="hljs-params">(IMenuItemDescriptor descriptor, IOccurence occurence,
-  OccurencePresentationOptions occurencePresentationOptions)</span>
-</span>{
-  <span class="hljs-keyword">var</span> o = ((YouTrackIssueOccurence) occurence);
-  descriptor.Text = o.IssueId;
-  descriptor.Text.<span class="hljs-function"><span class="hljs-title">Append</span><span class="hljs-params">(<span class="hljs-string">&quot; - &quot;</span>)</span></span>;
-  descriptor.Text.<span class="hljs-function"><span class="hljs-title">Append</span><span class="hljs-params">(o.IssueDescription)</span></span>;
-  descriptor.Style = MenuItemStyle.Enabled;
-  <span class="hljs-keyword">return</span> <span class="hljs-literal">true</span>;
-}
-</code></pre>
-<h2 id="occurence-kind-provider"><a name="occurence-kind-provider" class="plugin-anchor" href="#occurence-kind-provider"><span class="fa fa-link"></span></a>Occurence Kind Provider</h2>
-<p>When you open up, say, Find Usages, you&#x2019;ll find that you have an ability to filter information. Some examples are read usages, write usages, attribute references, and so on. Each has its own special icon and an ability to filter it out if necessary.</p>
-<p>The types of elements just mentioned are called <em>occurence kinds</em>. Many kinds of occurences can be found as static members of the <code>OccurenceKind</code> class, and new ones can be created. An occurence kind is simply an enum-like class, keeping only two bits of information: its name and whether it is primary or not. If the occurrence kind is set as primary, the Find Results window will always display this kind of occurrence regardless of what filter is set. Other occurrences are non-primary, i.e. they are only displayed when there are occurrences of this occurrence kind (e.g., unit tests).</p>
-<p>Now, we can talk about occurence type providers. These are typically solution components (i.e., decorated with the <code>SolutionComponent</code> attributes) that also implement the <code>IOccurenceKindProvider</code> interface. This interface is defined as follows:</p>
-<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurenceKindProvider</span>
-</span>{
-  <span class="hljs-function">ICollection&lt;OccurenceKind&gt; <span class="hljs-title">GetOccurenceKinds</span><span class="hljs-params">(IOccurence occurence)</span></span>;
-  <span class="hljs-function">IEnumerable&lt;OccurenceKind&gt; <span class="hljs-title">GetAllPossibleOccurenceKinds</span><span class="hljs-params">()</span></span>;
-}
-</code></pre>
-<p>The <code>GetAllPossibleOccurenceKinds()</code> method returns a list of all possible occurences that this provider can give in theory. For example, in C# we can yield interface qualifications, base method calls and invocations, whereas in VB we also have the <code>Handles</code> clause.</p>
-<p>The <code>GetOccurenceKinds()</code> method returns a collection of occurence kinds (or you can return an <code>EmptyList&lt;OccurenceKind&gt;.InstanceList</code> if there aren&#x2019;t any) that are applicable for a given occurence. Naturally, this typically assumes that you would try to cast the <code>IOccurence</code> to a concrete type (e.g., <code>ReferenceOccurence</code>) to investigate its contents and yield the occurence kinds accordingly.</p>
-<h2 id="occurence-section-provider"><a name="occurence-section-provider" class="plugin-anchor" href="#occurence-section-provider"><span class="fa fa-link"></span></a>Occurence Section Provider</h2>
-<p>When search results are presented in a dialogue window, they are typically split into sections via horizintal lines. The component that provides information about the different types of section is a <code>FeaturePart</code> that implements the <code>IOccurenceSectionProvider</code> interface. The interface is defined as follows:</p>
-<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurenceSectionProvider</span>
-</span>{
-  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(OccurenceBrowserDescriptor descriptor)</span></span>;
-  <span class="hljs-function">ICollection&lt;TreeSection&gt; <span class="hljs-title">GetTreeSections</span><span class="hljs-params">(OccurenceBrowserDescriptor descriptor)</span></span>;
-  <span class="hljs-function">ICollection&lt;GroupingSectionId&gt; <span class="hljs-title">GetGroupSectionId</span><span class="hljs-params">(IOccurence occurence, OccurenceBrowserDescriptor descriptor)</span></span>;
-}
-</code></pre>
-<p>Let&#x2019;s go through the methods. Firstly, <code>IsApplicable()</code> checks whether this section provider is applicable given the type of the occurence browser we are working with. This is typically a simple <code>is</code> call, e.g.:</p>
-<pre><code class="lang-cs"><span class="hljs-keyword">public</span> <span class="hljs-keyword">override</span> <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">IsApplicable</span><span class="hljs-params">(OccurenceBrowserDescriptor descriptor)</span>
-</span>{
-  <span class="hljs-keyword">return</span> descriptor <span class="hljs-keyword">is</span> GotoDeclaredElementsBrowserDescriptor;
-}
-</code></pre>
-<p>The second method is <code>GetTreeSections()</code>, and it is this method that returns a set of <code>TreeSection</code> objects specific to this section provider. We&#x2019;ll discuss the <code>TreeSection</code> structure in a moment, but let&#x2019;s briefly discuss the third method first. <code>GetGroupSectionId</code> basically lets us determine the groups (there can be more than one) in which a particular <code>IOccurence</code> needs to appear. The default implementation as defined in the <code>OccurenceSectionProvider</code> class (you should inherit from this, rather than implementing the interface by hand) is to use a special method <code>GetSectionId()</code> to pick a known section given the type of the occurence:</p>
-<pre><code class="lang-cs"><span class="hljs-comment">// in OccurenceSectionProvider</span>
-<span class="hljs-keyword">public</span> <span class="hljs-keyword">virtual</span> <span class="hljs-function">ICollection&lt;GroupingSectionId&gt; <span class="hljs-title">GetGroupSectionId</span><span class="hljs-params">(IOccurence occurence, OccurenceBrowserDescriptor descriptor)</span>
-</span>{
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">new</span>[] {occurence.OccurenceType.<span class="hljs-function"><span class="hljs-title">GetSectionId</span><span class="hljs-params">()</span>}</span>;
-}
-</code></pre>
-<h2 id="tree-model"><a name="tree-model" class="plugin-anchor" href="#tree-model"><span class="fa fa-link"></span></a>Tree Model</h2>
-<p>Now, let&#x2019;s go back and talk about <code>TreeSection</code> definitions or, rather, about tree model, since the <code>TreeSection</code> is nothing more than a container class for a title and a <code>TreeModel</code> and it is this tree model that&#x2019;s of interest to us.</p>
-<p>A <code>TreeModel</code>, as you may have guessed, is simply a definition for the classical N-ary tree. The model itself has itself a collection of roots, i.e. a property <code>Roots</code> of type <code>IList&lt;TreeModelNode&gt;</code> as well as variousl mechanisms for insertion, removal and updating of <code>TreeModelNode</code> entities.</p>
-<p>Each <code>TreeModelNode</code> in turn has a set of children, who are also <code>TreeModelNode</code> s themselves. Sorting is possible at both the <code>TreeModel</code> and <code>TreeModelNode</code> level. Note that the actual data storage inside the nodes is defined as an <code>object</code>, i.e. is untyped.</p>
-<p>It helps to remember that both <code>TreeModel</code> and <code>TreeModelNode</code> are abstract classes, and that you are more likely to be working with their descendants, the most basic of which is <code>TreeSimpleModel</code>.</p>
-<h2 id="occurence"><a name="occurence" class="plugin-anchor" href="#occurence"><span class="fa fa-link"></span></a>Occurence</h2>
-<p>The menu items themselves are simply items which implement the <code>IOccurence</code> interface. This interface defines a rather large number of elements:</p>
-<pre><code class="lang-cs"><span class="hljs-class"><span class="hljs-keyword">public</span> <span class="hljs-keyword">interface</span> <span class="hljs-title">IOccurence</span>
-</span>{
-  TextRange <span class="hljs-title">TextRange</span> { <span class="hljs-keyword">get</span>; }
-  ProjectModelElementEnvoy <span class="hljs-title">ProjectModelElementEnvoy</span> { <span class="hljs-keyword">get</span>; }
-  DeclaredElementEnvoy&lt;ITypeMember&gt; <span class="hljs-title">TypeMember</span> { <span class="hljs-keyword">get</span>; }
-  DeclaredElementEnvoy&lt;ITypeElement&gt; <span class="hljs-title">TypeElement</span> { <span class="hljs-keyword">get</span>; }
-  DeclaredElementEnvoy&lt;INamespace&gt; <span class="hljs-title">Namespace</span> { <span class="hljs-keyword">get</span>; }
-  OccurenceType <span class="hljs-title">OccurenceType</span> { <span class="hljs-keyword">get</span>; }
-  <span class="hljs-keyword">bool</span> <span class="hljs-title">IsValid</span> { <span class="hljs-keyword">get</span>; }
-  <span class="hljs-keyword">object</span> <span class="hljs-title">MergeKey</span> { <span class="hljs-keyword">get</span>; }
-  IList&lt;IOccurence&gt; <span class="hljs-title">MergedItems</span> { <span class="hljs-keyword">get</span>; }
-  OccurencePresentationOptions <span class="hljs-title">PresentationOptions</span> { <span class="hljs-keyword">get</span>; <span class="hljs-keyword">set</span>; }
-  <span class="hljs-function"><span class="hljs-keyword">bool</span> <span class="hljs-title">Navigate</span><span class="hljs-params">(ISolution solution, PopupWindowContextSource windowContext, <span class="hljs-keyword">bool</span> transferFocus, TabOptions tabOptions = TabOptions.Default)</span></span>;
-  <span class="hljs-function"><span class="hljs-keyword">string</span> <span class="hljs-title">DumpToString</span><span class="hljs-params">()</span></span>;
-}
-</code></pre>
-<p>This interface is very feature-complete in terms of supporting, e.g., constructs which exist in code. In the case where you are providing ad hoc items not related to the PSI, you can provide the following defaults intead:</p>
+
+<p>Now, to create a provider, simply implement the interface and decorate the class with <code class="code highlight language-text">[ShellFeaturePart]</code>:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="na">[ShellFeaturePart]</span>
+<span class="k">class</span> <span class="nc">GoToYouTrackIssueProvider</span> <span class="p">:</span> <span class="n">IGotoEverythingProvider</span>
+<span class="p">{</span>
+  <span class="c1">// ...</span>
+<span class="p">}</span></code></pre>
+
+<a name="occurrence-presenter" class="elem-anchor"></a>
+<h2>Occurrence Presenter<a href="#occurrence-presenter" class="anchor-link"><span></span></a></h2>
+
+<p>Having a set of occurrences is great, but they’re useless until presented on-screen. And this is where occurrence presenters come in. An occurrence presenter is, basically, a class that knows how to present a particular occurrence as a menu item. In addition to being decorated by an <code class="code highlight language-text">OccurencePresenter</code> attribute, it is embodied by the <code class="code highlight language-text">IOccurencePresenter</code> interface defined below:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">interface</span> <span class="n">IOccurencePresenter</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="nf">Present</span><span class="p">(</span><span class="n">IMenuItemDescriptor</span> <span class="n">descriptor</span><span class="p">,</span> <span class="n">IOccurence</span> <span class="n">occurence</span><span class="p">,</span>
+    <span class="n">OccurencePresentationOptions</span> <span class="n">occurencePresentationOptions</span><span class="p">);</span>
+  <span class="kt">bool</span> <span class="nf">IsApplicable</span><span class="p">(</span><span class="n">IOccurence</span> <span class="n">occurence</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+
+<p>First, there’s the <code class="code highlight language-text">IsApplicable()</code> method. This method determines whether this occurrence presenter is applicable for the particular type of occurrence. These typically go hand-in-hand, for example:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="na">[OccurencePresenter(Priority=0.0)]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">RangeOccurencePresenter</span> <span class="p">:</span> <span class="n">IOccurencePresenter</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">virtual</span> <span class="kt">bool</span> <span class="nf">IsApplicable</span><span class="p">(</span><span class="n">IOccurence</span> <span class="n">occurence</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="k">return</span> <span class="n">occurence</span> <span class="k">is</span> <span class="n">RangeOccurence</span><span class="p">;</span>
+  <span class="p">}</span>
+  <span class="c1">// other members omitted</span>
+<span class="p">}</span></code></pre>
+
+<p>Then there’s the <code class="code highlight language-text">Present()</code> method, which is called when the <code class="code highlight language-text">IOccurence</code> needs to be presented. The goal of this method is to make assignments to the <code class="code highlight language-text">descriptor</code> parameter. The <code class="code highlight language-text">IMenuItemDescriptor</code> interface is quite large, but the only property we need to concern ourselves with here is <code class="code highlight language-text">Text</code> - this is a <code class="code highlight language-text">RichText</code> definition that will be displayed as a menu item for this occurrence.</p>
+
+<p>Here’s a sample implementation. Note that <code class="code highlight language-text">descriptor.Style</code> <em>must</em> be defined - otherwise, the item will be disabled.</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="kt">bool</span> <span class="nf">Present</span><span class="p">(</span><span class="n">IMenuItemDescriptor</span> <span class="n">descriptor</span><span class="p">,</span> <span class="n">IOccurence</span> <span class="n">occurence</span><span class="p">,</span>
+  <span class="n">OccurencePresentationOptions</span> <span class="n">occurencePresentationOptions</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">var</span> <span class="n">o</span> <span class="p">=</span> <span class="p">((</span><span class="n">YouTrackIssueOccurence</span><span class="p">)</span> <span class="n">occurence</span><span class="p">);</span>
+  <span class="n">descriptor</span><span class="p">.</span><span class="n">Text</span> <span class="p">=</span> <span class="n">o</span><span class="p">.</span><span class="n">IssueId</span><span class="p">;</span>
+  <span class="n">descriptor</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="s">&quot; - &quot;</span><span class="p">);</span>
+  <span class="n">descriptor</span><span class="p">.</span><span class="n">Text</span><span class="p">.</span><span class="n">Append</span><span class="p">(</span><span class="n">o</span><span class="p">.</span><span class="n">IssueDescription</span><span class="p">);</span>
+  <span class="n">descriptor</span><span class="p">.</span><span class="n">Style</span> <span class="p">=</span> <span class="n">MenuItemStyle</span><span class="p">.</span><span class="n">Enabled</span><span class="p">;</span>
+  <span class="k">return</span> <span class="k">true</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+
+<a name="occurrence-kind-provider" class="elem-anchor"></a>
+<h2>Occurrence Kind Provider<a href="#occurrence-kind-provider" class="anchor-link"><span></span></a></h2>
+
+<p>When you open up, say, Find Usages, you’ll find that you have an ability to filter information. Some examples are read usages, write usages, attribute references, and so on. Each has its own special icon and an ability to filter it out if necessary.</p>
+
+<p>The types of elements just mentioned are called <em>occurence kinds</em>. Many kinds of occurrences can be found as static members of the <code class="code highlight language-text">OccurenceKind</code> class, and new ones can be created. An occurrence kind is simply an enum-like class, keeping only two bits of information: its name and whether it is primary or not. If the occurrence kind is set as primary, the Find Results window will always display this kind of occurrence regardless of what filter is set. Other occurrences are non-primary, i.e. they are only displayed when there are occurrences of this occurrence kind (e.g., unit tests).</p>
+
+<p>Now, we can talk about occurrence type providers. These are typically solution components (i.e., decorated with the <code class="code highlight language-text">SolutionComponent</code> attributes) that also implement the <code class="code highlight language-text">IOccurenceKindProvider</code> interface. This interface is defined as follows:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">interface</span> <span class="n">IOccurenceKindProvider</span>
+<span class="p">{</span>
+  <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">OccurenceKind</span><span class="p">&gt;</span> <span class="n">GetOccurenceKinds</span><span class="p">(</span><span class="n">IOccurence</span> <span class="n">occurence</span><span class="p">);</span>
+  <span class="n">IEnumerable</span><span class="p">&lt;</span><span class="n">OccurenceKind</span><span class="p">&gt;</span> <span class="n">GetAllPossibleOccurenceKinds</span><span class="p">();</span>
+<span class="p">}</span></code></pre>
+
+<p>The <code class="code highlight language-text">GetAllPossibleOccurenceKinds()</code> method returns a list of all possible occurrences that this provider can give in theory. For example, in C# we can yield interface qualifications, base method calls and invocations, whereas in VB we also have the <code class="code highlight language-text">Handles</code> clause.</p>
+
+<p>The <code class="code highlight language-text">GetOccurenceKinds()</code> method returns a collection of occurrence kinds (or you can return an <code class="code highlight language-text">EmptyList&lt;OccurenceKind&gt;.InstanceList</code> if there aren’t any) that are applicable for a given occurrence. Naturally, this typically assumes that you would try to cast the <code class="code highlight language-text">IOccurence</code> to a concrete type (e.g., <code class="code highlight language-text">ReferenceOccurence</code>) to investigate its contents and yield the occurrence kinds accordingly.</p>
+
+<a name="occurrence-section-provider" class="elem-anchor"></a>
+<h2>Occurrence Section Provider<a href="#occurrence-section-provider" class="anchor-link"><span></span></a></h2>
+
+<p>When search results are presented in a dialogue window, they are typically split into sections via horizontal lines. The component that provides information about the different types of section is a <code class="code highlight language-text">FeaturePart</code> that implements the <code class="code highlight language-text">IOccurenceSectionProvider</code> interface. The interface is defined as follows:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">interface</span> <span class="n">IOccurenceSectionProvider</span>
+<span class="p">{</span>
+  <span class="kt">bool</span> <span class="nf">IsApplicable</span><span class="p">(</span><span class="n">OccurenceBrowserDescriptor</span> <span class="n">descriptor</span><span class="p">);</span>
+  <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">TreeSection</span><span class="p">&gt;</span> <span class="n">GetTreeSections</span><span class="p">(</span><span class="n">OccurenceBrowserDescriptor</span> <span class="n">descriptor</span><span class="p">);</span>
+  <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">GroupingSectionId</span><span class="p">&gt;</span> <span class="n">GetGroupSectionId</span><span class="p">(</span><span class="n">IOccurence</span> <span class="n">occurence</span><span class="p">,</span> <span class="n">OccurenceBrowserDescriptor</span> <span class="n">descriptor</span><span class="p">);</span>
+<span class="p">}</span></code></pre>
+
+<p>Let’s go through the methods. Firstly, <code class="code highlight language-text">IsApplicable()</code> checks whether this section provider is applicable given the type of the occurrence browser we are working with. This is typically a simple <code class="code highlight language-text">is</code> call, e.g.:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">override</span> <span class="kt">bool</span> <span class="nf">IsApplicable</span><span class="p">(</span><span class="n">OccurenceBrowserDescriptor</span> <span class="n">descriptor</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="n">descriptor</span> <span class="k">is</span> <span class="n">GotoDeclaredElementsBrowserDescriptor</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+
+<p>The second method is <code class="code highlight language-text">GetTreeSections()</code>, and it is this method that returns a set of <code class="code highlight language-text">TreeSection</code> objects specific to this section provider. We’ll discuss the <code class="code highlight language-text">TreeSection</code> structure in a moment, but let’s briefly discuss the third method first. <code class="code highlight language-text">GetGroupSectionId</code> basically lets us determine the groups (there can be more than one) in which a particular <code class="code highlight language-text">IOccurence</code> needs to appear. The default implementation as defined in the <code class="code highlight language-text">OccurenceSectionProvider</code> class (you should inherit from this, rather than implementing the interface by hand) is to use a special method <code class="code highlight language-text">GetSectionId()</code> to pick a known section given the type of the occurrence:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="c1">// in OccurenceSectionProvider</span>
+<span class="k">public</span> <span class="k">virtual</span> <span class="n">ICollection</span><span class="p">&lt;</span><span class="n">GroupingSectionId</span><span class="p">&gt;</span> <span class="n">GetGroupSectionId</span><span class="p">(</span><span class="n">IOccurence</span> <span class="n">occurence</span><span class="p">,</span> <span class="n">OccurenceBrowserDescriptor</span> <span class="n">descriptor</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="k">return</span> <span class="k">new</span><span class="p">[]</span> <span class="p">{</span><span class="n">occurence</span><span class="p">.</span><span class="n">OccurenceType</span><span class="p">.</span><span class="n">GetSectionId</span><span class="p">()};</span>
+<span class="p">}</span></code></pre>
+
+<a name="tree-model" class="elem-anchor"></a>
+<h2>Tree Model<a href="#tree-model" class="anchor-link"><span></span></a></h2>
+
+<p>Now, let’s go back and talk about <code class="code highlight language-text">TreeSection</code> definitions or, rather, about tree model, since the <code class="code highlight language-text">TreeSection</code> is nothing more than a container class for a title and a <code class="code highlight language-text">TreeModel</code> and it is this tree model that’s of interest to us.</p>
+
+<p>A <code class="code highlight language-text">TreeModel</code>, as you may have guessed, is simply a definition for the classical N-ary tree. The model itself has itself a collection of roots, i.e. a property <code class="code highlight language-text">Roots</code> of type <code class="code highlight language-text">IList&lt;TreeModelNode&gt;</code> as well as various mechanisms for insertion, removal and updating of <code class="code highlight language-text">TreeModelNode</code> entities.</p>
+
+<p>Each <code class="code highlight language-text">TreeModelNode</code> in turn has a set of children, who are also <code class="code highlight language-text">TreeModelNode</code> s themselves. Sorting is possible at both the <code class="code highlight language-text">TreeModel</code> and <code class="code highlight language-text">TreeModelNode</code> level. Note that the actual data storage inside the nodes is defined as an <code class="code highlight language-text">object</code>, i.e. is untyped.</p>
+
+<p>It helps to remember that both <code class="code highlight language-text">TreeModel</code> and <code class="code highlight language-text">TreeModelNode</code> are abstract classes, and that you are more likely to be working with their descendants, the most basic of which is <code class="code highlight language-text">TreeSimpleModel</code>.</p>
+
+<a name="occurrence" class="elem-anchor"></a>
+<h2>Occurrence<a href="#occurrence" class="anchor-link"><span></span></a></h2>
+
+<p>The menu items themselves are simply items which implement the <code class="code highlight language-text">IOccurence</code> interface. This interface defines a rather large number of elements:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">interface</span> <span class="n">IOccurence</span>
+<span class="p">{</span>
+  <span class="n">TextRange</span> <span class="n">TextRange</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">ProjectModelElementEnvoy</span> <span class="n">ProjectModelElementEnvoy</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">DeclaredElementEnvoy</span><span class="p">&lt;</span><span class="n">ITypeMember</span><span class="p">&gt;</span> <span class="n">TypeMember</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">DeclaredElementEnvoy</span><span class="p">&lt;</span><span class="n">ITypeElement</span><span class="p">&gt;</span> <span class="n">TypeElement</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">DeclaredElementEnvoy</span><span class="p">&lt;</span><span class="n">INamespace</span><span class="p">&gt;</span> <span class="n">Namespace</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">OccurenceType</span> <span class="n">OccurenceType</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">bool</span> <span class="n">IsValid</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">object</span> <span class="n">MergeKey</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">IList</span><span class="p">&lt;</span><span class="n">IOccurence</span><span class="p">&gt;</span> <span class="n">MergedItems</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="p">}</span>
+  <span class="n">OccurencePresentationOptions</span> <span class="n">PresentationOptions</span> <span class="p">{</span> <span class="k">get</span><span class="p">;</span> <span class="k">set</span><span class="p">;</span> <span class="p">}</span>
+  <span class="kt">bool</span> <span class="nf">Navigate</span><span class="p">(</span><span class="n">ISolution</span> <span class="n">solution</span><span class="p">,</span> <span class="n">PopupWindowContextSource</span> <span class="n">windowContext</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">transferFocus</span><span class="p">,</span> <span class="n">TabOptions</span> <span class="n">tabOptions</span> <span class="p">=</span> <span class="n">TabOptions</span><span class="p">.</span><span class="n">Default</span><span class="p">);</span>
+  <span class="kt">string</span> <span class="nf">DumpToString</span><span class="p">();</span>
+<span class="p">}</span></code></pre>
+
+<p>This interface is very feature-complete in terms of supporting, e.g., constructs which exist in code. In the case where you are providing ad hoc items not related to the PSI, you can provide the following defaults instead:</p>
+
 <ul>
-<li><code>DumpToString()</code> - up to you, this is a debugging method.</li>
-<li><code>TextRange</code> - just return a <code>new TextRange()</code>. You might want to consider making a single instance to return for each query.</li>
-<li><code>MergeKey</code> - this yields a key which indicates whether or not several items should be merged. Thus, it makes sense to have this property yield a unique value for each item you don&apos;t intend to merge.</li>
-<li><code>ProjectElementEnvoy</code>, <code>TypeMember</code>, <code>TypeElement</code>, <code>Namespace</code>, <code>MergedItems</code> - simply return <code>null</code>.</li>
-<li><code>OccurenceType</code> - <code>OccurenceType.Occurence</code>.</li>
-<li><code>IsValid</code> - <code>true</code>.</li>
-<li><code>PresentationOption</code> - define it as a <code>get/set</code> property.</li>
+  <li><code class="code highlight language-text">DumpToString()</code> - up to you, this is a debugging method.</li>
+  <li><code class="code highlight language-text">TextRange</code> - just return a <code class="code highlight language-text">new TextRange()</code>. You might want to consider making a single instance to return for each query.</li>
+  <li><code class="code highlight language-text">MergeKey</code> - this yields a key which indicates whether or not several items should be merged. Thus, it makes sense to have this property yield a unique value for each item you don’t intend to merge.</li>
+  <li><code class="code highlight language-text">ProjectElementEnvoy</code>, <code class="code highlight language-text">TypeMember</code>, <code class="code highlight language-text">TypeElement</code>, <code class="code highlight language-text">Namespace</code>, <code class="code highlight language-text">MergedItems</code> - simply return <code class="code highlight language-text">null</code>.</li>
+  <li><code class="code highlight language-text">OccurenceType</code> - <code class="code highlight language-text">OccurenceType.Occurence</code>.</li>
+  <li><code class="code highlight language-text">IsValid</code> - <code class="code highlight language-text">true</code>.</li>
+  <li><code class="code highlight language-text">PresentationOption</code> - define it as a <code class="code highlight language-text">get/set</code> property.</li>
 </ul>
-<p>For examples of leveraging the various <code>IOccurence</code> members, take a look at some of the its built-in ReSharper implementors.</p>
 
-                    
-                    </section>
-                
-                
-                </div>
+<p>For examples of leveraging the various <code class="code highlight language-text">IOccurence</code> members, take a look at some of the its built-in ReSharper implementors.</p>
+
+
+
+                    <div class="last-modified">
+                        Last modified: 8 May 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
             </div>
-        </div>
-
-        
-        <a href="../Features/GenerateMenu.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page: Generate Menu"><i class="fa fa-angle-left"></i></a>
-        
-        
-    </div>
+        </section>
+    </main>
 </div>
 
-        
-<script src="../gitbook/app.js"></script>
 
-    
-    <script src="../gitbook/plugins/gitbook-plugin-livereload/plugin.js"></script>
-    
+<script data-main="/resharper-devguide/app/js/main.build" data-baseurl="/resharper-devguide/" src="/resharper-devguide/app/js/vendor/requirejs/require.js"></script>
 
-<script>
-require(["gitbook"], function(gitbook) {
-    var config = {"fontSettings":{"theme":null,"family":"sans","size":2},"richquotes":{"todos":true},"edit-link":{"base":"https://github.com/JetBrains/resharper-devguide/edit/master","label":"Edit this page on GitHub"}};
-    gitbook.start(config);
-});
-</script>
-
-        
-    </body>
-    
+</body>
 </html>
+
