@@ -1,0 +1,133 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="CONTRIBUTING">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="contributing" class="elem-anchor"></a>
+<h1>Contributing<a href="#contributing" class="anchor-link"><span></span></a></h1>
+
+<p>In order to build the site locally, you will need Ruby installed (the site is based on <a href="http://jekyllrb.com" data-bypass="yes"><span>Jekyll</span></a>). The steps to get the site built are:</p>
+
+<ol>
+  <li>Install Ruby</li>
+  <li>Install Bundler - <code class="code highlight language-text">gem install bundler</code></li>
+  <li>Clone this repo</li>
+  <li>Initialise and clone the sub-modules - <code class="code highlight language-text">git submodule init</code> and <code class="code highlight language-text">git submodule update</code></li>
+  <li>Download dependencies (gems) - <code class="code highlight language-text">rake bootstrap</code></li>
+  <li>Build and preview the site with <code class="code highlight language-text">rake preview</code></li>
+</ol>
+
+<p>This starts Jekyll running the site at <code class="code highlight language-text">http://localhost:4001/resharper/devguide/</code></p>
+
+<a name="notes-on-style" class="elem-anchor"></a>
+<h2>Notes on style<a href="#notes-on-style" class="anchor-link"><span></span></a></h2>
+
+<a name="titles" class="elem-anchor"></a>
+<h3>Titles<a href="#titles" class="anchor-link"><span></span></a></h3>
+
+<ul>
+  <li>Title case for page headings, both in the page and in the <code class="code highlight language-text">_SUMMARY.md</code> file.</li>
+  <li>Sentence case for sub headings in pages</li>
+</ul>
+
+<a name="terms" class="elem-anchor"></a>
+<h3>Terms<a href="#terms" class="anchor-link"><span></span></a></h3>
+
+<p>The following terms are used to refer to standard well known features in the product. They are not normally capitalised, unless otherwise shown.</p>
+
+<ul>
+  <li>Alt+Enter, mono space (should wrap in <code class="code highlight language-text">&lt;kbd&gt;Alt&lt;/kbd&gt;+&lt;kbd&gt;Enter&lt;/kbd&gt;</code>?)</li>
+  <li>Context action</li>
+  <li>Quick-fix</li>
+  <li>Code cleanup</li>
+  <li>plugin</li>
+</ul>
+
+<a name="code-examples" class="elem-anchor"></a>
+<h3>Code examples<a href="#code-examples" class="anchor-link"><span></span></a></h3>
+
+<ul>
+  <li>Indent of 2. Be conservative with space</li>
+  <li>Long lines will scroll horizontally, so don’t wrap unnecessarily. However, don’t add really long lines either.</li>
+  <li>Allow blank lines for clarity</li>
+  <li>Comment if necessary, but not for everything</li>
+</ul>
+
+
+                    <div class="last-modified">
+                        Last modified: 19 May 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+
