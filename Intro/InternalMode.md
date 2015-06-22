@@ -5,11 +5,11 @@
 
 ReSharper supports an "internal mode" that enables a number of extra features that are normally hidden from end users. These are diagnostic and testing features that most users will never need to use, however, they can be very useful for extension authors.
 
-Another useful feature is that internal mode also enables exception reporting. In production builds, exceptions are silently logged and not reported to the end user. Checked builds (such as EAP builds) have exception reporting enabled by default, and also include extra contextual information in the [exception's `Data` dictionary](http://msdn.microsoft.com/en-us/library/system.exception.data(v=vs.110).aspx). Checked builds are highly recommended when developing extensions.
+Another useful feature is that internal mode also enables exception reporting. In production builds, exceptions are silently logged and not reported to the end user. Checked builds (such as EAP builds) have exception reporting enabled by default, and also include extra contextual information in the [exception's `Data` dictionary](http://msdn.microsoft.com/en-us/library/system.exception.data(v=vs.110).aspx). [Checked builds](Tools.md) are highly recommended when developing extensions.
 
 ## Enabling internal mode
 
-Internal mode can be enabled using the "Internal" command line switch. When used with standalone tools, this means starting the application with `/Internal` in the command line. Since ReSharper is a hosted application, the command line switch needs a prefix - `/ReSharper.Internal`. For example, to start dotPeek with internal mode enabled:
+Internal mode can be enabled using the "Internal" command line switch. When used with standalone tools such as dotPeek, this means starting the application with `/Internal` in the command line. Since ReSharper is a hosted application, the command line switch needs a prefix - `/ReSharper.Internal`. For example, to start dotPeek with internal mode enabled:
 
 ```
 dotPeek.exe /Internal

@@ -19,7 +19,6 @@
         * Attribute Reference
         * Annotator Tool
 * [Compiled Extensions (Plugins)](Intro/CompiledExtensions.md)
-    * [SDK Reference](Plugins/SDK.md)
     * [Project Setup](Plugins/ProjectSetup.md)
     * [Debugging](Plugins/Debugging.md)
     * [Plugin testing](Plugins/Testing.md)

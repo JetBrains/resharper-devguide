@@ -7,11 +7,11 @@ The guide is split into several parts:
 
 * **Part I - Extending the ReSharper Platform**
 
-    Details how the ReSharper Platform can be extended, both declaratively, with Live Templates, annotations and patterns and programmatically, via plugins. It explains how to get started with extensions, setting up the SDK and so on. It also includes a migration guide to help migrate plugins and extensions from previous versions of ReSharper.
+    An overview of the ways in which the ReSharper Platform can be extended, both declaratively, with Live Templates, annotations and patterns and programmatically, via plugins. It explains how to get started with extensions, setting up the SDK and so on. It also includes a migration guide to help migrate plugins and extensions from previous versions of ReSharper.
 
 * [**Part II - Architectural Overview**](../Architecture/Overview.md)
 
-    Provides an introduction and overview of the architecture of the ReSharper Platform, how it is split into several layers - Base Platform, Project Model, Features, custom Products and support for custom Languages. It also introduces the Program Structure Index (PSI) which provides ReSharper with syntactic and semantic models of many different languages.
+    Provides an introduction to and overview of the architecture of the ReSharper Platform, looking at how it is split into several layers - Base Platform, Project Model, Features, custom Products and support for custom Languages. It also introduces the Program Structure Index (PSI) which provides ReSharper with syntactic and semantic models of many different languages.
 
 * **Part III - Platform**
 

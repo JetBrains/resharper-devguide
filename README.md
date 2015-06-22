@@ -7,7 +7,7 @@ redirect_from:
 
 Welcome to the developer guide for the [ReSharper Platform](Intro/ReSharperPlatform.md). This is the primary source of documentation for developing extensions for the ReSharper Platform that ships as part of ReSharper 9.1.
 
-To view the guide, please visit: https://www.jetbrains.com/resharper/devguide
+To view the guide, please visit: [https://www.jetbrains.com/resharper/devguide/](https://www.jetbrains.com/resharper/devguide/)
 
 ## Getting Started
 

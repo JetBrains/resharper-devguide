@@ -9,7 +9,7 @@ If you're having problems with the guide itself, such as missing, incorrect or c
 
 If you just want to share feedback on the guide, again, raise an issue, even if it's for a discussion, ideas on improvements or suggestions.
 
-Please don't use GitHub issues for support requests instead, please use one of the methods below.
+Please don't use GitHub issues for support requests. Instead, please use one of the methods below.
 
 ## Problems with code - support issues
 
