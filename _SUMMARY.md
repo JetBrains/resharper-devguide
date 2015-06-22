@@ -46,6 +46,7 @@
 
 ## Part III - Platform
 * [Logging](Platform/Logging.md)
+    * [Advanced Configuration](Platform/Logging/AdvancedConfiguration.md)
     * Usage
     * Category Reference
 * [Lifetime](Platform/Lifetime.md)
