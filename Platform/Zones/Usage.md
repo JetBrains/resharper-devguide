@@ -39,7 +39,7 @@ A zone definition has to be activated before it can be used. Typically, the owni
 
 Zone markers are used to declare that a component belongs to one or more zones. This means that the component can only be instantiated if all of those zones (and transitively, all dependent zones) are active in the product.
 
-A zone marker is typically implemented by creating a type called `ZoneMarker`, or with a name ending in `_ZoneMarker`, and decorating it with the `[ZoneMarker]` attribute. All dependencies are listed either by implementing the `IRequire<TZone>` interface, or by passing the zone definitions to the `ZoneMarkerAttribute` constructor. There is no difference in the approach.
+A zone marker is a class that has been decorated with the `[ZoneMarker]` attribute, and **must** be named `ZoneMarker`, or have a name that ends `_ZoneMarker`. All dependencies are listed either by implementing the `IRequire<TZone>` interface, or by passing the zone definitions to the `ZoneMarkerAttribute` constructor. There is no difference in the approach.
 
 ```csharp
 namespace Foo.Bar
