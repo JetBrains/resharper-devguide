@@ -3,11 +3,16 @@
 
 # Combinatorial Testing
 
-The test framework supports running the same test multiple times with different combinations of settings. The settings can be specified in a text file, via an attribute, or via a parameter embedded in the test input file. The base class for the test must support this explicitly, it is not available to all tests by default.
+The test framework supports running a test multiple times using different product settings. The settings can be specified in a text file, via an attribute or via a parameter embedded in the test input file. The base class for the test must support this explicitly - it is not available to all tests by default.
 
-> **NOTE** The combinatorial testing described here is in regard to running a piece of test code multiple times within the same test method run, with different settings applied for each run. It does not cause multiple NUnit test methods to run, and the standard NUnit `[TestCase]` and `[TestCaseSource]` attributes continue to work very nicely for row based, data driven testing.
+> **NOTE** This functionality serves a different purpose to NUnit's `[TestCase]` and `[TestCaseSource]` attributes, which are also used frequently across the Platform. The purpose of NUnit's attributes is to run a test method multiple times with different parameters passed in. The purpose of ReSharper's combinatorial testing is to run a test method multiple times, changing the environment (settings) each time it's run. It does this within a single test method run - only one test is executed, and all results are stored in the same file.
 
-When running the test, the test base class needs to call the `Iterate` method on an instance of `TestOptionsIterator`:
+* Table of Contents
+{:toc}
+
+## Overview
+
+The base class uses the `TestOptionsIterator.Iterate` method to run a lambda multiple times, temporarily changing settings before each run. Typically, it's called as part of `ExecuteWithGold`, and passes a `TextWriter` to the lambda to write to a `.tmp` file ready to be compared to a `.gold` file.
 
 ```csharp
 ExecuteWithGold(inputFile, writer =>
@@ -33,6 +38,19 @@ public MyTest()
 When running, the options iterator will run the test multiple times, once for each combination of configured settings. The results are all written to the same `.tmp` file, separated by a marker line, and listing details of the settings that were valid for that run. Once the run is complete, the `.tmp` file is compared against the `.gold` file. If there are any differences, the test fails.
 
 The `ReportUnaffected` property controls how the runs are output. If the value is set to `true`, then each combination of settings is output. If set to `false`, only combinations of settings that produce a previously unseen value are output. This is normally handled by the base class of the item you're trying to test, and is not usually available to change.
+
+## Supported test base classes
+
+The use of `TestOptionsIterator` is opt-in, and only supported by a number of test base classes. The following are the list of currently supported base classes.
+
+* `CodeCleanupTestBase`
+* `HighlightingTestBase`
+* `TypingAssistTestBase`
+* `CodeFormatterWithExplicitSettingsTestBase`
+* `CSharpQuickFixTestBase`
+* `TypeScriptQuickFixTestBase`
+
+Of course, the class is available to use in your own test code, too.
 
 ## Describing combinations
 

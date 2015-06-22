@@ -23,14 +23,15 @@
     * [Debugging](Plugins/Debugging.md)
     * [Plugin testing](Plugins/Testing.md)
         * Test Framework
-        * [Combinatorial Testing](Plugins/Testing/OptionsIterator.md)
         * [Temporary Settings](Plugins/TemporarySettings.md)
+        * [Combinatorial Settings](Plugins/Testing/OptionsIterator.md)
     * [Known Issues](Intro/KnownIssues.md)
 * [Deployment](Extensions/Packaging.md)
     * Installing the ReSharper Platform
     * Packaging Details
     * [Installing Locally](Extensions/Deployment/LocalInstallation.md)
     * [Supporting ReSharper 8](Extensions/Packaging8.md)
+* [Troubleshooting](Extensions/Troubleshooting.md)
 * Hints and Tips
 * Best Practices
 

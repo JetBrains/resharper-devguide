@@ -11,7 +11,7 @@ Plugins for the ReSharper Platform are simply .net assemblies. In order to creat
 
 ## Creating the project
 
-Simply create a .net class library assembly. The project should be a .net 4.0 assembly, which allows the plugin to run on Visual Studio 2010, which is the oldest version of Visual Studio supported by the ReSharper Platform.
+Simply create a .net class library assembly. The project should be a .net 4.0 assembly, which allows the plugin to run on Visual Studio 2010, which is the oldest version of Visual Studio supported by the ReSharper Platform. Note that you **should not** target .net 4.5 or later, as this will mean the extension won't work in earlier versions of Visual Studio.
 
 > **NOTE** The only exception to this is when creating support for unit test frameworks. A unit test framework plugin includes a runner assembly that is hosted in an external process, and actually runs the tests. This needs to be a .net 3.5 assembly, so that test assemblies targeting .net 2.0 and .net 3.5 will run (obviously, if the test framework is .net 4.0 and above, the runner assembly can also be .net 4.0 and above).
 
@@ -21,7 +21,7 @@ Your plugin project needs to add a NuGet reference to the [`JetBrains.ReSharper.
 
 > **NOTE** There are currently no packages available to allow extending features specific to other .net tools, such as dotCover and dotTrace. Instructions for this will be made available later. If you need instructions sooner, please raise an [issue for the documentation](https://github.com/JetBrains/resharper-devguide/issues).
 
-The SDK package tracks the current version of ReSharper - that is, there is only one package for ReSharper plugins, and not one for each version of the SDK. EAP releases of ReSharper will have a pre-release version in the NuGet gallery, and releases will have a stable version. To target the current release of ReSharper, add a reference to the latest stable version in the gallery.
+The current version of the SDK package matches the current version of ReSharper. There isn't a separate package for previous versions of ReSharper. When a new version of ReSharper is released, a new version of the SDK package is released. EAP versions are released as pre-release packages. To target the current release of ReSharper, add a reference to the latest stable version of the SDK package in the NuGet gallery.
 
 In order to target an older version of the SDK, you can add a NuGet reference to a specific version of the SDK, e.g. by using the following command in the "Package Manager Console":
 
@@ -29,7 +29,14 @@ In order to target an older version of the SDK, you can add a NuGet reference to
 Install-Package JetBrains.ReSharper.SDK -Version 8.2.1158
 ```
 
-The specific version number can be found by looking at the package history on the gallery. The version numbers of the SDK package match the product version of ReSharper, e.g. 8.2.1158 is for ReSharper 8.2, 8.1.555 is for ReSharper 8.1, and 9.0.20141204.190166 is for ReSharper 9.0.
+The specific version number can be found by looking at the package history on the gallery. The major and minor version numbers of the SDK package match the product version of ReSharper. For example:
+
+| Product&nbsp;version | NuGet version       |
+|----------------------|---------------------|
+| ReSharper 9.1        | 9.0.20150522.81235  |
+| ReSharper 9.0        | 9.0.20141204.190166 |
+| ReSharper 8.2        | 8.2.1158            |
+| ReSharper 8.1        | 8.1.555             |
 
 An existing plugin project can be updated to the latest SDK by simply updating the `JetBrains.ReSharper.SDK` package. Changes to the API are to be expected (see the guide on [Platform Versioning](../Intro/PlatformVersioning.md) for more details), and significant changes are called out in the [What's New?](../Intro/WhatsNew.md) guide.
 
