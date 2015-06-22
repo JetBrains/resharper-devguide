@@ -116,6 +116,7 @@
 * Files and Modules
 * [Syntax Trees](PSI/SyntaxTrees.md)
 * [Navigating Syntax Trees](PSI/NavigatingSyntaxTrees.md)
+    * [Manual Navigation](PSI/SyntaxTrees/ManualNavigation.md)
     * Helper methods
     * [Strongly Typed Navigation](PSI/SyntaxTrees/StronglyTypedNavigation.md)
     * Recursive navigation
