@@ -3,7 +3,7 @@
 
 # Platform Versioning
 
-ReSharper does **not** maintain backwards binary compatibility between major or minor releases. For example, plugins written for ReSharper 8.2 do not work with ReSharper 8.1, and vice versa. The same is true for ReSharper 7.x and 8.x. Plugins need to be re-compiled between major and minor versions. However, maintenance releases **are** binary compatible - maintenance releases, such as 8.2.2 or 8.2.3, are intended to fix critical bugs, and do not usually introduce new features that would change APIs.
+ReSharper does **not** maintain backwards binary compatibility between major **or** minor releases. For example, plugins written for ReSharper 9.1 do not work with ReSharper 9.0, and vice versa. The same is true for ReSharper 7.x and 8.x. Plugins need to be re-compiled between major and minor versions. However, maintenance releases **are** binary compatible - maintenance releases, such as 9.1.1 or 9.1.2, are intended to fix critical bugs, and do not usually introduce new features that would change APIs.
 
 The reasons for this are fairly straightforward:
 
@@ -12,7 +12,7 @@ The reasons for this are fairly straightforward:
 
 ## Versioning the ReSharper Platform
 
-With the move to the shared binary distribution of the ReSharper Platform, maintaining a track of the version of the installed products can be difficult - the initial release of the Platform includes ReSharper 9.0, dotCover 3.0, dotPeek 1.3, etc. In order to make this easier, the version of the ReSharper Platform is known as a "Wave". The initial version released with ReSharper 9.0 is known as "Wave 01".
+With the move to the shared binary distribution of the ReSharper Platform, maintaining a track of the version of the installed products can be difficult - the initial release of the Platform includes ReSharper 9.0, dotCover 3.0, dotPeek 1.3, etc. In order to make this easier, the version of the ReSharper Platform is known as a "Wave". The initial version released with ReSharper 9.0 is known as "Wave 01". The version released with ReSharper 9.1 is "Wave 02".
 
 Previous versions of the .net tools were intended to be built and distributed on their own timescales. Each product shared common code via source, and could be installed separately, and updated at any time. In practice, however, because dotCover and dotTrace need to integrate with ReSharper's test runner, a new version of ReSharper would require a simultaneous release of other .net tools, removing a large reason for the independence of the tools.
 
