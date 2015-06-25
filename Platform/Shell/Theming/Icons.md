@@ -1,3 +1,6 @@
+---
+---
+
 # Themed Icons
 
 ReSharper supports theming icons on two axes - application colour, and source code symbol style. In other words, icons can be themed either based on the application colour, or on the style for source code symbols.
