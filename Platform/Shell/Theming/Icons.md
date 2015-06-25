@@ -29,7 +29,7 @@ The current theme is represented by the `IconTheme` class, and can be retrieved 
 
 A theme aspect represents the two axes described above - application colour and symbol style. The application colour aspect values are represented by static values on the `GenericIconThemeAspect` class:
 
-```cs
+```csharp
 public static class GenericIconThemeAspect
 {
   public static readonly IconThemeAspect Color = new IconThemeAspect(...);
@@ -40,7 +40,7 @@ public static class GenericIconThemeAspect
 
 The `PsiSymbolIconThemeAspect` class holds the values for the source symbol style:
 
-```cs
+```csharp
 public static class PsiSymbolIconThemeAspect
 {
   public static readonly IconThemeAspect SymbolsIdea = new IconThemeAspect(...);
@@ -65,7 +65,7 @@ To make sure the icon is updated when the theme changes, either use a "live" ima
 
 If using a live image source, e.g. `IThemedIconManager.Icons[myIconId].LiveImageSource` or `IThemedIconManager.Icons[myIconId].LiveGdipBitmapScreenDpi`, then the observable property will notify of changes to the image when the theme changes.
 
-Alternatively, use the WPF `ThemedIconViewImage` control or the `ThemedIcon` XAML markup extension to automatically update the image source when the theme changes. See [Consuming Icons](../Icons/ConsumingIcons.md) for more details.
+Alternatively, use the WPF `ThemedIconViewImage` control or the `ThemedIcon` XAML markup extension to automatically update the image source when the theme changes. See [Consuming Icons](/Platform/Shell/Icons/ConsumingIcons.md) for more details.
 
 ## Creating theme aware icons
 
@@ -83,4 +83,4 @@ And for source code symbols:
 * **SymbolsVs11DarkGray**
 * **SymbolsVs08**
 
-The details of how to specify the aspect name are listed in the [creating compiled icons](../Icons/CreatingCompiledIcons.md) section.
+The details of how to specify the aspect name are listed in the [creating compiled icons](/Platform/Shell/Icons/CreatingCompiledIcons.md) section.
