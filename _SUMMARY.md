@@ -20,16 +20,26 @@
         * Annotator Tool
 * [Compiled Extensions (Plugins)](Intro/CompiledExtensions.md)
     * [Project Setup](Plugins/ProjectSetup.md)
+        * [Creating Projects](Plugins/ProjectSetup/CreatingProjects.md)
+        * [NuGet References](Plugins/ProjectSetup/NuGetReferences.md)
+        * [Initial Installation](Plugins/ProjectSetup/InitialInstallation.md)
+        * [Copy Plugin on Build](Plugins/ProjectSetup/CopyOnBuild.md)
     * [Debugging](Plugins/Debugging.md)
-    * [Plugin testing](Plugins/Testing.md)
+    * [Plugin Testing](Plugins/Testing.md)
         * Test Framework
         * [Temporary Settings](Plugins/TemporarySettings.md)
         * [Combinatorial Settings](Plugins/Testing/OptionsIterator.md)
     * [Known Issues](Intro/KnownIssues.md)
 * [Deployment](Extensions/Packaging.md)
     * Installing the ReSharper Platform
+        * [Host Identifiers](Extensions/Deployment/InstallProcess/HostIdentifiers.md)
+        * Dependencies
     * Packaging Details
     * [Installing Locally](Extensions/Deployment/LocalInstallation.md)
+        * [Experimental Instances](Extensions/Deployment/LocalInstallation/ExperimentalInstance.md)
+        * [Package the Extension](Extensions/Deployment/LocalInstallation/Packaging.md)
+        * [Install Local Copy](Extensions/Deployment/LocalInstallation/InstallCustomSource.md)
+        * [Copy Plugin on Build](Extensions/Deployment/LocalInstallation/CopyOnBuild.md)
     * [Supporting ReSharper 8](Extensions/Packaging8.md)
 * [Troubleshooting](Extensions/Troubleshooting.md)
 * Hints and Tips

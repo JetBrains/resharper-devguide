@@ -3,9 +3,9 @@
 
 # Running and Debugging an Extension
 
-In order to manual test or debug your plugin, it must first be installed into an instance of ReSharper. Currently, this initial install is a manual step, details of which can be found in the [Local Installation](../Extensions/Deployment/LocalInstallation.md) guide (our intention is to make this easier in future versions of the SDK).
+In order to manually test or debug your plugin, it must first be installed into an instance of ReSharper. Currently, this initial install is a manual step, details of which can be found in the [Initial Installation](/Plugins/ProjectSetup/InitialInstallation.md) guide (our intention is to make this easier in future versions of the SDK). Once the plugin has been initially installed, it can be updated automatically by modifying the project to [copy updated files on build](/Plugins/ProjectSetup/CopyOnBuild.md).
 
-It is **strongly recommended** to install ReSharper and your plugin into an [experimental instance of Visual Studio](../Extensions/Deployment/LocalInstallation.html#install-to-an-experimental-instance). This allows the assembly to be updated while compiling. If the plugin being tested/debugged is installed in the main instance of Visual Studio, all instances of VS need to be closed before the plugin can be updated. If the plugin is installed in a different instance of Visual Studio to the solution used to build the plugin, the plugin's assemblies can be updated without restarting all instances of Visual Studio.
+It is **strongly recommended** to install ReSharper and your plugin into an [experimental instance of Visual Studio](/Extensions/Deployment/LocalInstallation/ExperimentalInstance.md). This allows the assembly to be updated while compiling. If the plugin being tested/debugged is installed in the main instance of Visual Studio, all instances of VS need to be closed before the plugin can be updated. If the plugin is installed in a different instance of Visual Studio to the solution used to build the plugin, the plugin's assemblies can be updated without restarting all instances of Visual Studio.
 
 Once installed, the extension is loaded as part of ReSharper.
 
@@ -20,6 +20,6 @@ To debug an extension, simply attach a debugger to an instance of Visual Studio 
 
 If debugging a plugin installed into a standalone host such as dotPeek, simply change the startup executable to point to the host. The standalone applications are installed to `%LOCALAPPDATA%\JetBrains\Installations\{HostFullIdentifier}`. The `/rootSuffix` argument is not needed.
 
-> **NOTE** The `{HostFullIdentifier}` is the name of the install folder for the current host, such as `ReSharperPlatformVs12` for Visual Studio 2013, or `dotPeek01`. More details can be found about the `HostFullIdentifier` in the section on [Extension Deployment](../Extensions/Deployment/LocalInstallation.md#updating-the-extension-locally).
+> **NOTE** The [`{HostFullIdentifier}`](/Extensions/Deployment/InstallProcess/HostIdentifiers.md) is the name of the install folder for the current host, such as `ReSharperPlatformVs12` for Visual Studio 2013, or `dotPeek01`. More details can be found in the section on [Host Identifiers](/Extensions/Deployment/InstallProcess/HostIdentifiers.md).
 
-If the plugin doesn't load, see the [Troubleshooting section](../Extensions/Troubleshooting.md).
+If the plugin doesn't load, see the [Troubleshooting section](/Extensions/Troubleshooting.md).

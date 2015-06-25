@@ -3,13 +3,13 @@
 
 # Internal Mode
 
-ReSharper supports an "internal mode" that enables a number of extra features that are normally hidden from end users. These are diagnostic and testing features that most users will never need to use, however, they can be very useful for extension authors.
+ReSharper supports an "internal mode" that enables a number of extra features that are normally hidden from end users. These are diagnostic and testing features used by the dev team, and most users will never need to use, however, they can be very useful for extension authors.
 
 Another useful feature is that internal mode also enables exception reporting. In production builds, exceptions are silently logged and not reported to the end user. Checked builds (such as EAP builds) have exception reporting enabled by default, and also include extra contextual information in the [exception's `Data` dictionary](http://msdn.microsoft.com/en-us/library/system.exception.data(v=vs.110).aspx). [Checked builds](Tools.md) are highly recommended when developing extensions.
 
 ## Enabling internal mode
 
-Internal mode can be enabled using the "Internal" command line switch. When used with standalone tools such as dotPeek, this means starting the application with `/Internal` in the command line. Since ReSharper is a hosted application, the command line switch needs a prefix - `/ReSharper.Internal`. For example, to start dotPeek with internal mode enabled:
+Internal mode can be enabled using the "Internal" command line switch. When used with standalone tools such as dotPeek, this means starting the application with `/Internal` in the command line. Since ReSharper is a hosted application, the command line switch needs a prefix to prevent clashes with other Visual Studio command line switches - `/ReSharper.Internal`. For example, to start dotPeek with internal mode enabled:
 
 ```
 dotPeek.exe /Internal
@@ -32,7 +32,7 @@ Once enabled, ReSharper adds the "Internal" menu to the main "ReSharper" menu. T
 * **PSI Module Browser** is a tree view of all of the PSI modules in the currently loaded solution. A module is a container for anything that can be referenced, usually source files or referenced assemblies. Each project is a module, as is each referenced assembly. The module browser lists all of the modules, and shows who is referencing them. It also shows the internal modules that ReSharper sets up to add references that are implicit in the project (for example, modules that contain definitions for default global JavaScript objects).
 * **Code behind** displays a "code behind" view of any secondary PSI trees of the current file. For example, HTML files maintain a hidden, generated, secondary file to represent all of the JavaScript sections in the file. ReSharper can map between the main file and the secondary file, supporting "islands" of one language inside another language. The secondary file can give more context to the islands in the primary file to aid code completion, navigation, etc.
 * **Settings Store View** allows examining the value of settings, what settings files are currently mounted, and can view the settings schema.
-* **Show Themed Icons** provides a tool window to browse and search the icons registered with the `ThemeIconManager`, which can be useful to find icons for use in extensions.
+* **Show Themed Icons** provides a tool window to browse and search the icons registered with the [`ThemeIconManager`](/Platform/Shell/Theming/Icons.md), which can be useful to find icons for use in extensions.
 * **Show Change Manager Graph in yEd** will create a graph file to be opened in the [yEd graphing application](http://www.yworks.com/en/products/yfiles/yed/) showing change providers, and how they are registered.
 
 Other items are available, these are just some of the more interesting ones for extension developers.
