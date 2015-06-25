@@ -5,7 +5,7 @@
 
 The PSI needs to be able to display icons to help identify code elements in completion, navigation or find usage result lists. The PSI can display different icons to distinguish between classes, constructors, methods, parameters, etc. It can also show specific icons for CSS class IDs, HTML elements and unit test elements.
 
-While the [Shell provides the `ThemedIconManager` class](../Platform/Shell/Icons.md) in order to load and create icons, it is a low level API. It provides no means for getting the icon for a class, other than explicitly loading `PsiSymbolsThemedIcons.Class.Id`. The PSI provides the `PsiIconManager` to retrieve icons for a specific declared element.
+While the [Shell provides the `ThemedIconManager` class](/Platform/Shell/Icons.md) in order to load and create icons, it is a low level API. It provides no means for getting the icon for a class, other than explicitly loading `PsiSymbolsThemedIcons.Class.Id`. The PSI provides the `PsiIconManager` to retrieve icons for a specific declared element.
 
 The `PsiIconManager` provides the following methods and properties:
 
@@ -61,6 +61,6 @@ The `IDeclaredElementIconExtensionProvider` can be implemented to extend the pro
 
 ## Loading icons manually
 
-It is not recommended to load icons directly, but they are available in the [`ThemedIconManager`](../Platform/Shell/Icons/ConsumingIcons.md). Simply use the icon IDs defined in the `PsiSymbolsThemedIcons` class, and use [`CompositeIconId.Compose`](../Platform/Shell/Icons/IconTypes.md#composite-icons) method to apply modifiers. There are language specific icons in other classes, such `PsiCssThemedIcons` or `PsiBuildScriptsThemedIcons`.
+It is not recommended to load icons directly, but they are available in the [`ThemedIconManager`](/Platform/Shell/Icons/ConsumingIcons.md). Simply use the icon IDs defined in the `PsiSymbolsThemedIcons` class, and use [`CompositeIconId.Compose`](/Platform/Shell/Icons/IconTypes.md#composite-icons) method to apply modifiers. There are language specific icons in other classes, such `PsiCssThemedIcons` or `PsiBuildScriptsThemedIcons`.
 
 The `PsiIconManager` provides a more flexible and extensible way of getting the correct icon.

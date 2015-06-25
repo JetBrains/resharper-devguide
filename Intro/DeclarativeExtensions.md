@@ -19,7 +19,7 @@ This is a very powerful mechanism and can be used to provide more accurate analy
 
 Extensions can also include settings files, that get [mounted as new settings layers](https://www.jetbrains.com/resharper/help/Reference__Settings_Layers.html). This is a very simple, but very powerful extension point. It can be used to distribute:
 
-* **Live Templates** - code snippets and templates, targeting any supported language, or providing templates for a particular framework. An extension can also include a plugin that provides a custom [Live Template macro](../Features/LiveTemplates/Macros.md), to allow for even more customisation.
+* **Live Templates** - code snippets and templates, targeting any supported language, or providing templates for a particular framework. An extension can also include a plugin that provides a custom [Live Template macro](/Features/LiveTemplates/Macros.md), to allow for even more customisation.
 * **Structural Search and Replace patterns** - a declarative pattern to be used for searching for code, or for highlighting a particular pattern as a warning or error. Furthermore, the pattern can integrate with the Alt+Enter menu to optionally allow for a replacement pattern, to rewrite the matched code, using the value of placeholders in the original text. This allows for declaratively creating analyses and Quick Fixes.
 * **Arbitrary settings** - set up standard code formatting, naming patterns, change the default values for inspection severities, etc. Any setting in the Options dialog can be overridden in a .dotSettings file.
 

@@ -18,13 +18,13 @@ Zones are based on namespaces - a zone marker class declares the required zones 
 
 Existing plugin authors will have to update their plugins to work with zones. Firstly, many errors will simply be namespace renames. Using ReSharper to automatically import the types from their new namespaces should fix many of these errors. Secondly, the plugin author should add a zone marker class describing the zones required for the plugins functionality. ReSharper provides an internal analysis to help with this.
 
-See the [section on Zones](../Platform/Zones.md) for more details.
+See the [section on Zones](/Platform/Zones.md) for more details.
 
 ## Extension packages
 
 Extensions are now extensions to the ReSharper Platform, instead of extensions to just ReSharper. This requires some changes to the way extensions are packaged, and deployed. They are still NuGet packages, but the layout of the content has changed. Instead of putting the extensions in a root folder called "ReSharper", plugins, external annotations or settings files should be in a folder called "DotFiles". When installed, extensions are now installed directly to the product folder, which is now in `%LOCALAPPDATA%`, rather than `C:\Program Files`.
 
-See the [section on Deployment](../Extensions/Deployment.md) for more details.
+See the [section on Deployment](/Extensions/Deployment.md) for more details.
 
 ## Removal of plugin metadata attributes
 
@@ -34,7 +34,7 @@ The ReSharper Platform has changed the way it works with extensions and plugins.
 
 Both the Plugins Options page and the previous version of the Extension Manager allowed for disabling plugins or extensions. This functionality has been removed, in favour of disabling features at the zone level, providing richer control of what can be disabled - an entire product, or one of several features implemented by an extension, be that a 1st party extension like dotTrace, or a 3rd party extension such as a plugin.
 
-A major difference is that this is an opt-in mechanism. In order to allow for disabling a product or a feature, a plugin must advertise a zone as being a product or feature. This is described in the [Features and Products](../Platform/Zones/FeaturesProducts.md) section of the [Zones](../Platform/Zones.md) guide.
+A major difference is that this is an opt-in mechanism. In order to allow for disabling a product or a feature, a plugin must advertise a zone as being a product or feature. This is described in the [Features and Products](/Platform/Zones/FeaturesProducts.md) section of the [Zones](/Platform/Zones.md) guide.
 
 ## Actions
 
@@ -73,7 +73,7 @@ public class ImmediateComponent
 }
 ```
 
-See the [Component Model section](../Platform/ComponentModel.md) for more details.
+See the [Component Model section](/Platform/ComponentModel.md) for more details.
 
 Note that this only applies when the ReSharper platform is hosted in Visual Studio. Standalone products will always instantiate components immediately.
 

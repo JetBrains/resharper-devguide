@@ -16,7 +16,7 @@ public interface IThemedIconManager
 }
 ```
 
-The `CurrentIconTheme` property will return an observable property that contains the current icon theme, which can be retrieved for inspection, or subscribed to, in order to know when a theme has changed. See the [icon theming section](../Theming/Icons.md) for more details on `IconTheme`.
+The `CurrentIconTheme` property will return an observable property that contains the current icon theme, which can be retrieved for inspection, or subscribed to, in order to know when a theme has changed. See the [icon theming section](/Platform/Shell/Theming/Icons.md) for more details on `IconTheme`.
 
 The `GetRawApi` method is intended for internal use.
 
@@ -103,5 +103,5 @@ When displaying as a flat or grouped list, the icons are searchable, and typing 
 
 ## PSI symbols
 
-While it is possible to use the icon manager to get icons for PSI elements such as class, method or parameter, it is highly recommended to use the `PsiIconManager` class instead. See the section on [icons in the PSI](../../../PSI/Icons.md) for more details.
+While it is possible to use the icon manager to get icons for PSI elements such as class, method or parameter, it is highly recommended to use the `PsiIconManager` class instead. See the section on [icons in the PSI](/PSI/Icons.md) for more details.
 

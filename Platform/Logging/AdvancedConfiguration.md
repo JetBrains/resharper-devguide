@@ -5,9 +5,9 @@
 
 While logging can be enabled on the command line, specifying a configuration file allows for much more flexibility in what gets logged. The file is an XML file called `LogConfiguration.xml`, and should be created in `%LOCALAPPDATA%\JetBrains\{HostFullIdentifier}\v01`. Alternatively, if the file is named `LogConfiguration.Debug.xml`, then it only applies when ReSharper is being run in a custom hive. The `LogConfiguration.xml` applies regardless of custom hive.
 
-> **NOTE** The `{HostFullIdentifier}` is the name of the install folder for the current host, such as `ReSharperPlatformVs12` for Visual Studio 2013. More details can be found about the `HostFullIdentifier` in the section on [Extension Deployment](../Extensions/Deployment/LocalInstallation.md#updating-the-extension-locally).
+> **NOTE** The `{HostFullIdentifier}` is the name of the install folder for the current host, such as `ReSharperPlatformVs12` for Visual Studio 2013. More details can be found about the `HostFullIdentifier` in the section on [Extension Deployment](/Extensions/Deployment/LocalInstallation.md#updating-the-extension-locally).
 
-The best way to set up a log file is via the [Logging Options Page](../Logging.md#logging-options-page) which is only visible when in [Internal Mode](../../../Intro/InternalMode.md).
+The best way to set up a log file is via the [Logging Options Page](/Platform/Logging.md#logging-options-page) which is only visible when in [Internal Mode](/Intro/InternalMode.md).
 
 The file format is fairly straightforward:
 
@@ -39,7 +39,7 @@ The `appender` element defines an appender/listener, which is the class that wil
 
 The `root` element defines the logging level and appenders that apply for all categories, unless otherwise overridden. It is the default way of setting the logging details for the Platform.
 
-* `level` - this is the logging level, as text. See [here](../Logging.md#logging-levels) for the list of logging levels.
+* `level` - this is the logging level, as text. See [here](/Platform/Logging.md#logging-levels) for the list of logging levels.
 * `appender-ref` - the `appender-ref` child elements specify the name of the appenders that are to be used to log events. The appenders need to be created in `appender` elements at the head of the file.
 
 The `logger` element defines the logging level and appenders to use for a category. When creating a logger, the code can specify a category, usually a namespace. This allows for logging to be configured differently for different parts of the Platform. For example, the `JetBrains.Platform.Util` category can be set to `OFF` to disable all logging from components in the `JetBrains.Platform.Util` namespace, or the `JetBrains.DataFlow` namespace can be configured to output to a different file, and capture events at a different logging level.

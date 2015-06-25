@@ -10,7 +10,7 @@ There are two main ways to extend the ReSharper Platform:
 
 Declarative extensions are simpler and quicker to create than plugins, and can be created with an existing install of ReSharper.
 
-Plugins require more effort to create than declarative extensions, and it is strongly recommended to read the guide sections on how to [set up your environment](Tools.md), [project setup](../Plugins/ProjectSetup.md), [debugging](../Plugins/Debugging.md), [local deployment](../Deployment/LocalInstallation.md) and [testing](../Plugins/Testing.md). Plugins can also include settings files and external annotations.
+Plugins require more effort to create than declarative extensions, and it is strongly recommended to read the guide sections on how to [set up your environment](Tools.md), [project setup](/Plugins/ProjectSetup.md), [debugging](/Plugins/Debugging.md), [local deployment](/Deployment/LocalInstallation.md) and [testing](/Plugins/Testing.md). Plugins can also include settings files and external annotations.
 
-Once an extension has been built, it must be [packaged and deployed](../Extensions/Packaging.md). ReSharper extensions are based on the NuGet infrastructure (although it must be understood that ReSharper extensions are not packaged the same as NuGet packages, and are not intended to be used interchangeably). 
+Once an extension has been built, it must be [packaged and deployed](/Extensions/Packaging.md). ReSharper extensions are based on the NuGet infrastructure (although it must be understood that ReSharper extensions are not packaged the same as NuGet packages, and are not intended to be used interchangeably). 
 

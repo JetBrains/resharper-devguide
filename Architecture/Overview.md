@@ -14,9 +14,9 @@ At the top level, we can isolate the following aspects of ReSharper:
 
 The Platform part of ReSharper typically relates to features which interact directly with Visual Studio. As a result, plugin developers are unlikely to work with Platform components directly. However, it's important to have a general idea of some of the platform components in order to be able to understand and investigate, if necessary, the ways in which interactions happen. Here are a few Platform elements that are worth knowing about:
 
-* *ActionManagement* - this assembly concerns itself with managing actions, i.e., executable pieces of code that appear in Visual Studio's Command system. See [Actions and Menu Items](../Features/Actions.md) for more information on creating actions.
+* *ActionManagement* - this assembly concerns itself with managing actions, i.e., executable pieces of code that appear in Visual Studio's Command system. See [Actions and Menu Items](/Features/Actions.md) for more information on creating actions.
 * *Annotations* - relates to the Annotations subsystem. The idea of annotations is being able to use attributes to give ReSharper hints as to how the code behaves. Frequently encountered attributes such as `[NotNull]` are examples of annotations.
-* *ComponentModel* - relates to ReSharper's component model. Understanding of the component model is critical to be able to use various ReSharper's subsystems. See [Component Model](../Platform/ComponentModel.md) for more details.
+* *ComponentModel* - relates to ReSharper's component model. Understanding of the component model is critical to be able to use various ReSharper's subsystems. See [Component Model](/Platform/ComponentModel.md) for more details.
 * *DocumentManager* and *DocumentModel* - contains mechanisms for managing documents. Encapsulates important concepts (e.g., `RangeMarker`) used for correctly modifying documents.
 * *ProjectModel* - used for interacting with Visual Studio's project model.
 * *TextControl* - used for interacting with Visual Studio's text editor control.
@@ -44,7 +44,7 @@ Please note that in developing your own features, you are more likely to be inte
 
 ## Feature Services
 
-As the name suggests, ReSharper's Feature Services contain a large number of services that support ReSharper's features. For example, the component that provides the Code Inspection Wiki data at start-up time is a feature service. Another example would be the various data provider and builder classes that are used in bulb items that ReSharper presents. Support for the [Generate Menu](../Features/GenerateMenu.md) and many other features is also contained here.
+As the name suggests, ReSharper's Feature Services contain a large number of services that support ReSharper's features. For example, the component that provides the Code Inspection Wiki data at start-up time is a feature service. Another example would be the various data provider and builder classes that are used in bulb items that ReSharper presents. Support for the [Generate Menu](/Features/GenerateMenu.md) and many other features is also contained here.
 
 Please note that feature services do not contain features themselves. Quite often they contain components which are used by more than one feature.
 
@@ -52,19 +52,19 @@ Please note that feature services do not contain features themselves. Quite ofte
 
 The Daemon assemblies are the background-running tasks that analyze source and binary code, react to changes in the solution or the environment, and allow the possibility of highlighting code based on said analyses.
 
-If you require any sort of background analysis on existing code, it's likely you need a daemon. To learn how to write one, see [Daemons and Daemon Stages](../Features/Analysis/Daemons.md).
+If you require any sort of background analysis on existing code, it's likely you need a daemon. To learn how to write one, see [Daemons and Daemon Stages](/Features/Analysis/Daemons.md).
 
 ### Intentions
 
-Intentions are concerned primarily with [Quick-Fixes and Context Actions](../Features/Actions.md) - those bulb-bearing popup menus that show up in code either in relation to daemon highlightings or depending on the current context (i.e., the location of the caret).
+Intentions are concerned primarily with [Quick-Fixes and Context Actions](/Features/Actions.md) - those bulb-bearing popup menus that show up in code either in relation to daemon highlightings or depending on the current context (i.e., the location of the caret).
 
 All the important base classes for quick-fixes and context actions live here. In addition, these assemblies actually contain the quick-fixes and context actions that are shipped with ReSharper.
 
 ### Live Templates
 
-This is where support for Live Templates, ReSharper's snippet-based code generation mechanism, is contained. It is probably of little interest to plugin developers save for those wishing to write [Live Template Macros](../Features/LiveTemplates/Overview.md).
+This is where support for Live Templates, ReSharper's snippet-based code generation mechanism, is contained. It is probably of little interest to plugin developers save for those wishing to write [Live Template Macros](/Features/LiveTemplates/Overview.md).
 
 ### Refactorings
 
-ReSharper's support for [Refactoring](../Features/Refactoring.md) is contained here. These assemblies contain the necessary base classes in order to create and execute your own refactoring workflows.
+ReSharper's support for [Refactoring](/Features/Refactoring.md) is contained here. These assemblies contain the necessary base classes in order to create and execute your own refactoring workflows.
 

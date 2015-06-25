@@ -13,7 +13,7 @@ Themed icons are supported by including multiple images in the generated XAML fi
 
 When retrieving an icon, the aspects from the current theme are enumerated in priority order, and the first matching image for the icon is used. If there are no images that match any of the theme aspects, the fallback image is used, if available. A fallback image is an image that is created without a theme aspect. If there are no fallback images, an arbitrary themed image for the icon is used.
 
-See the [theming section](../Theming/Icons.md) for more details about theming and theme aspects.
+See the [theming section](/Platform/Shell/Theming/Icons.md) for more details about theming and theme aspects.
 
 ## XAML icons
 
@@ -36,7 +36,7 @@ Both pieces of metadata are required, or the custom task will not process the XA
 </ThemedIconsXamlV3>
 ```
 
-The names of the theme aspects are listed in the [theming section](../Theming/Icons.md).
+The names of the theme aspects are listed in the [theming section](/Platform/Theming/Icons.md).
 
 ## PNG icons
 
@@ -46,7 +46,7 @@ In order to create an icon from a PNG file, add the file to the Visual Studio pr
 
 Theming is supported by a naming convention. The theme aspect name should be placed in square brackets, e.g. `Foo[GrayDark].png`, and a separate PNG file used for each theme aspect. If a theme aspect name isn't specified, the image is treated as a fallback image when failing to find a theme specific image.
 
-The theme aspect names are listed in the [theming section](../Theming/Icons.md).
+The theme aspect names are listed in the [theming section](/Platform/Theming/Icons.md).
 
 ## Generated files
 

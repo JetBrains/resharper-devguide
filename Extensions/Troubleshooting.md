@@ -5,14 +5,14 @@
 
 If the extension does not load, or you cannot debug your plugin, there are several things to check:
 
-1. Ensure the [package is in the correct format](../Extensions/Packaging.md).
+1. Ensure the [package is in the correct format](/Extensions/Packaging.md).
     1. Ensure the package has a "." in the name, or it won't install correctly.
     2. Ensure the package [includes a dependency on "Wave"](#wave-dependency).
     3. Do not include dependencies on compile time NuGet packages, e.g. `JetBrains.ReSharper.SDK`. ReSharper extension packages and NuGet library reference packages are not the same, and cannot be used interchangeably - one is used at runtime, the other at compile time.
 2. Check the [installer logs](#installer-logs) to ensure the package installed correctly. The extension may have installed, and be listed in the Extension Manager as installed, but if the files are copied to an incorrect location, the extension isn't correctly installed. The easiest thing to do is search for your extension package or assembly name.
-3. Ensure the plugin has a [Zone marker](../Platform/Zones/HowTo.md) defined in the project's root namespace (e.g. if the project has code in the `Foo.Bar` and `Foo.Bar.Quux` namespaces, the zone marker should live in the `Foo.Bar.ZoneMarker` class).
-4. Enable [logging](../Platform/Logging.md) via the Logging options dialog page available in [Internal Mode](../Intro/InternalMode.md), and check the logs for errors, especially related to Zones.
-5. Run in [Internal Mode](../Intro/InternalMode.md), and look for reported exceptions (exceptions are suppressed when not in internal mode). Even better, use a [checked build](../Intro/Tools.md).
+3. Ensure the plugin has a [Zone marker](/Platform/Zones/HowTo.md) defined in the project's root namespace (e.g. if the project has code in the `Foo.Bar` and `Foo.Bar.Quux` namespaces, the zone marker should live in the `Foo.Bar.ZoneMarker` class).
+4. Enable [logging](/Platform/Logging.md) via the Logging options dialog page available in [Internal Mode](/Intro/InternalMode.md), and check the logs for errors, especially related to Zones.
+5. Run in [Internal Mode](/Intro/InternalMode.md), and look for reported exceptions (exceptions are suppressed when not in internal mode). Even better, use a [checked build](/Intro/Tools.md).
 6. Ensure the debugger has loaded the extension (look in the Debug » Windows » Modules tool window for the name of the plugin assembly). If it hasn't loaded, check the [installer logs](#installer-logs).
 7. Ensure the debugger has loaded symbols for the extension (again, look in the Debug » Windows » Modules tool window for the name of the plugin, this row will include details for symbols). If the symbols are not loaded, you will not be able to set breakpoints for the plugin. 
     1. Copy the `.pdb` files for the plugin to the installation folder (`%LOCALAPPDATA%\JetBrains\Installations\{HostFullIdentifier}`).

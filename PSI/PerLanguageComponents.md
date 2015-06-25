@@ -9,7 +9,7 @@ As such, the normal `[ShellComponent]` and `[SolutionComponent]` components do n
 
 Furthermore, languages are hierarchical, allowing for more specific or perhaps fallback implementations of services. For example, XAML inherits from the XML language, so could provide its own specific code formatter, or fall back to the XML formatter.
 
-The PSI needs a mechanism that will return a single implementation of an interface or base class for a given language type. It handles this with a [custom component container](../Platform/ComponentModel/ContainersPartsCatalogues.md).
+The PSI needs a mechanism that will return a single implementation of an interface or base class for a given language type. It handles this with a [custom component container](/Platform/ComponentModel/ContainersPartsCatalogues.md).
 
 The PSI defines the `[Language]` attribute that derives from `PartAttribute`, in the same way that `ShellComponentAttribute` and `SolutionComponentAttribute` do. Since it derives directly from `PartAttribute`, it doesn't get included in either the shell or solution component container. Instead, the `ILanguageManager` component maintains a custom container (strictly speaking, it does this through inheritance, so it *is* a custom container) that filters parts in the product catalogue sets by the `LanguageAttribute`.
 
