@@ -29,12 +29,32 @@ For example:
 ```xml
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   ...
+  <!-- See note below for ReSharper 9.1 -->
   <PropertyGroup>
     <HostFullIdentifier>ReSharperPlatformVs12Plugins</HostFullIdentifier>
   </PropertyGroup>
   ...
 </Project>
 ```
+
+> **NOTE** The ReSharper 9.1 SDK doesn't set up the custom task correctly, preventing it from running properly. It won't find any installations from a host identifier, and also won't print out a list of known identifiers. To work around this issue, add the following `ItemGroup` to the `.csproj.user` file:
+>
+> ```xml
+> <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+>   ...
+>   <ItemGroup>
+>     <ReferencePath Inlude="@(Reference->HasMetadata('HintPath')->'$(MSBuildProjectDirectory)\%(HintPath)')" />
+>   </ItemGroup>
+>   ...
+>   <!-- As above -->
+>   <PropertyGroup>
+>     <HostFullIdentifier>ReSharperPlatformVs12Plugins</HostFullIdentifier>
+>   </PropertyGroup>
+>   ...
+> </Project>
+>```
+>
+> (The custom task references assemblies that are distributed elsewhere in the SDK, and the SDK sets up the `ReferencePath` property to allow the task to find them. Unfortunately, for 9.1, it resolves relative paths against the location of the SDK `.targets` file, rather than the `.csproj` file, meaning any hint path such as `..\packages\{...}` is not resolved correctly, and the custom task cannot find required dependencies.)
 
 ## Copying multiple files
 
