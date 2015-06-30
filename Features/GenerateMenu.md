@@ -32,7 +32,7 @@ public class GenerateDisposeItemProvider : IGenerateActionProvider
 {
   public IEnumerable<IGenerateActionWorkflow> CreateWorkflow(IDataContext dataContext)
   {
-    var solution = dataContext.GetData(IDE.DataConstants.SOLUTION);
+    var solution = dataContext.GetData(ProjectModel.DataConstants.SOLUTION);
     var iconManager = solution.GetComponent<PsiIconManager>();
     var icon = iconManager.GetImage(CLRDeclaredElementType.METHOD);
     yield return new GenerateDisposeActionWorkflow(icon);
@@ -73,7 +73,7 @@ Now, all is good but the above won’t work. The problem is that we’ve defined
 ```csharp
 public override bool IsAvailable(IDataContext dataContext)
 {
-  var solution = dataContext.GetData(IDE.DataConstants.SOLUTION);
+  var solution = dataContext.GetData(ProjectModel.DataConstants.SOLUTION);
   if (solution == null)
     return false;
 
