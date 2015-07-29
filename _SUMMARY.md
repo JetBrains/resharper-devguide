@@ -26,15 +26,25 @@
         * [Copy Plugin on Build](Plugins/ProjectSetup/CopyOnBuild.md)
     * [Debugging](Plugins/Debugging.md)
     * [Plugin Testing](Plugins/Testing.md)
-        * Test Framework
+        * [Project Structure](Plugins/Testing/ProjectStructure.md)
+        * [Test Environment](Plugins/Testing/TestEnvironment.md)
+        * [Zones](Plugins/Testing/Zones.md)
+        * [Test Components](Plugins/Testing/TestComponents.md)
+        * [Gold Files](Plugins/Testing/GoldFiles.md)
+        * Base Classes
+        * Attributes
+        * Project References
         * [Temporary Settings](Plugins/TemporarySettings.md)
         * [Combinatorial Settings](Plugins/Testing/OptionsIterator.md)
+        * Utility Classes
+        * Reference
     * [Known Issues](Intro/KnownIssues.md)
 * [Deployment](Extensions/Packaging.md)
     * Installing the ReSharper Platform
         * [Host Identifiers](Extensions/Deployment/InstallProcess/HostIdentifiers.md)
         * Dependencies
     * Packaging Details
+    * Localisation
     * [Installing Locally](Extensions/Deployment/LocalInstallation.md)
         * [Experimental Instances](Extensions/Deployment/LocalInstallation/ExperimentalInstance.md)
         * [Package the Extension](Extensions/Deployment/LocalInstallation/Packaging.md)
