@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /Features/LiveTemplates/Overview.html
 ---
 
 # Live Templates

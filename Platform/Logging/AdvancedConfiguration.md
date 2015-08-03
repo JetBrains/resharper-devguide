@@ -5,7 +5,7 @@
 
 While logging can be enabled on the command line, specifying a configuration file allows for much more flexibility in what gets logged. The file is an XML file called `LogConfiguration.xml`, and should be created in `%LOCALAPPDATA%\JetBrains\{HostFullIdentifier}\v01`. Alternatively, if the file is named `LogConfiguration.Debug.xml`, then it only applies when ReSharper is being run in a custom hive. The `LogConfiguration.xml` applies regardless of custom hive.
 
-> **NOTE** The `{HostFullIdentifier}` is the name of the install folder for the current host, such as `ReSharperPlatformVs12` for Visual Studio 2013. More details can be found about the `HostFullIdentifier` in the section on [Extension Deployment](/Extensions/Deployment/LocalInstallation.md#updating-the-extension-locally).
+> **NOTE** The `{HostFullIdentifier}` is the name of the install folder for the current host, such as `ReSharperPlatformVs12` for Visual Studio 2013. More details can be found in the section on [Host Identifiers](/Extensions/Deployment/InstallProcess/HostIdentifiers.md).
 
 The best way to set up a log file is via the [Logging Options Page](/Platform/Logging.md#logging-options-page) which is only visible when in [Internal Mode](/Intro/InternalMode.md).
 

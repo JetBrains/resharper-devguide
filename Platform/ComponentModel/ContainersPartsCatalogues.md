@@ -202,7 +202,7 @@ The `CataloguesPreview` property is a similar observable collection to the `Cata
 
 At application startup, the `JetEnvironment` class is responsible for setting up the catalogue sets. It creates an instance of `FullProductCatalogueSet`, passing in a list of all of the assemblies that make up the product. The catalogue set is initially created with a single catalogue made up of all of these assemblies, and containing a list of types that are decorated with `[Part]` derived attributes. This catalogue set is an unfiltered collection of all parts that are available to the application. Note that no component instances have been created yet.
 
-It also exposes an `EnvironmentPartCatalogSet`, which is an instance of `PartsCatalogueSet`. This is a filtered view of the `FullProductCatalogSet` that strips out any parts that are not part of a [Zone](Zones.md). This catalogue set is used to populate the component containers.
+It also exposes an `EnvironmentPartCatalogSet`, which is an instance of `PartsCatalogueSet`. This is a filtered view of the `FullProductCatalogSet` that strips out any parts that are not part of a [Zone](/Platform/Zones.md). This catalogue set is used to populate the component containers.
 
 ## Catalogues
 

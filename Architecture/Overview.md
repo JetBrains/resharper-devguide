@@ -62,7 +62,7 @@ All the important base classes for quick-fixes and context actions live here. In
 
 ### Live Templates
 
-This is where support for Live Templates, ReSharper's snippet-based code generation mechanism, is contained. It is probably of little interest to plugin developers save for those wishing to write [Live Template Macros](/Features/LiveTemplates/Overview.md).
+This is where support for Live Templates, ReSharper's snippet-based code generation mechanism, is contained. It is probably of little interest to plugin developers save for those wishing to write [Live Template Macros](/Features/LiveTemplates.md).
 
 ### Refactorings
 

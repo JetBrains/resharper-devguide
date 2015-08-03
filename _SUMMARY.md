@@ -268,7 +268,7 @@
 * Structural Search and Replace
     * C# vs HTML and CSS
     * Programmatic usage
-* [Live Templates](Features/LiveTemplates/Overview.md)
+* [Live Templates](Features/LiveTemplates.md)
     * [Macros](Features/LiveTemplates/Macros.md)
     * [Scopes](Features/LiveTemplates/Scopes.md)
     * Categories
@@ -290,7 +290,7 @@
 * [Working with XML-like files](Features/XmlLike.md)
 
 ## Part VII - Products
-* [dotPeek](Products/dotPeek.md)
+* dotPeek
 * [InspectCode](Products/InspectCode.md)
 * Custom products
 

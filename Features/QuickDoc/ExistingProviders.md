@@ -57,5 +57,5 @@ If you wish to extend the default providers, for example, if you're implementing
 3. You can provide a simple, single string description for your `IDeclaredElement` derived types by implementing `IDeclaredElementDescriptionProvider`, which is used by `QuickDocDescriptionProvider`
 4. Implement `ILanguageReferenceSelector` and mark your class with `[Language(typeof(NewLanguage))]`. This class will take in an `IReference` and use it to find any relevant declared elements from which to find documentation. For example, the C# implementation looks for object creation expressions and returns candidates for the constructor and the type being used. This interface is used by the `QuickDocCandidatesProvider`.
 
-Of course, if your requirements don't fit any of these scenarios, you can [implement `IQuickDocProvider` and `IQuickDocPresenter` directly](Implementing.md). You should use the helper methods in `XmlDocHtmlUtil` and `XmlDocHtmlPresenter` to build the HTML.
+Of course, if your requirements don't fit any of these scenarios, you can [implement `IQuickDocProvider`](ImplementingProvider.md) and [`IQuickDocPresenter` directly](ImplementingPresenter.md). You should use the helper methods in `XmlDocHtmlUtil` and `XmlDocHtmlPresenter` to build the HTML.
 

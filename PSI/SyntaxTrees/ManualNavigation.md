@@ -66,5 +66,5 @@ If you want to walk all descendants of a node, simply recursively walk a child n
 
 > **NOTE** While you do need to recursively walk the structure (walk a child node's children, then it's children, etc.), beware of an implementation that uses recursion to accomplish this. Recursion can run into problems with a very deeply nested syntax tree. It is better to iteratively walk the tree than to use recursion.
 >
-> Even better, you should avoid writing your own methods for walking the tree at all, and make use of the [`TreeNodeVisitor` or `IRecursiveElementProcessor`](SyntaxTrees/RecursiveNavigation.md) patterns that ReSharper implements. Failing that, use the `TreeNodeExtensions` helper methods.
+> Even better, you should avoid writing your own methods for walking the tree at all, and make use of the `TreeNodeVisitor` or `IRecursiveElementProcessor` patterns that ReSharper implements. Failing that, use the `TreeNodeExtensions` helper methods.
 

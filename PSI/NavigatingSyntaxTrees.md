@@ -23,6 +23,6 @@ There are several ways of navigating the tree.
 * [Manually walking the tree](SyntaxTrees/ManualNavigation.md), using the interface members shown above. This is the least recommended, requiring boilerplate tree walking code that is time consuming and easy to get wrong.
 * Use the `TreeNodeExtensions` helper methods to manually walk the tree.
 * Use [strongly typed navigation](SyntaxTrees/StronglyTypedNavigation.md), using accessors on derived `ITreeNode` implementations, and the strongly typed "navigator" classes.
-* Process the tree using the [visitor pattern or the `IRecursiveElementProcessor` set of classes](SyntaxTrees/RecursiveNavigation.md).
+* Process the tree using the visitor pattern or the `IRecursiveElementProcessor` set of classes.
 * Finding child or parent nodes of a specific type.
 

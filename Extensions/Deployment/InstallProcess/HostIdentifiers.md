@@ -3,9 +3,9 @@
 
 # Host Identifiers
 
-When the ReSharper Platform is installed, files are copied to several installation folders, one for each host. The installation folders are in the `%LOCALAPPDATA%\JetBrains\Installations\` folder, and each host is named with a Host Identifier.
+When the ReSharper Platform is installed, files are copied to several installation folders, one for each host. The installation folders are in the `%LOCALAPPDATA%\JetBrains\Installations` folder, and each host is named with a Host Identifier.
 
-The host identifier is a combination of the name and version of the host. For standalone hosts, the name is something like `dotPeek02`, while for the ReSharper Platform, the identifier comes from the host name, the Visual Studio version and optionally, an [experimental instance](/Extensions/Deployment/LocalInstallation/ExperimentlaInstance.md) name. For example, `ReSharperPlatformVs12` is the ReSharper Platform hosted in Visual Studio 2013, and `ReSharperPlatformVs14Plugins` is the ReSharper Platform hosted in Visual Studio 2015, and using the `Plugins` experimental instance.
+The host identifier is a combination of the name and version of the host. For standalone hosts, the name is something like `dotPeek02`, while for the ReSharper Platform, the identifier comes from the host name, the Visual Studio version and optionally, an [experimental instance](/Extensions/Deployment/LocalInstallation/ExperimentalInstance.md) name. For example, `ReSharperPlatformVs12` is the ReSharper Platform hosted in Visual Studio 2013, and `ReSharperPlatformVs14Plugins` is the ReSharper Platform hosted in Visual Studio 2015, and using the `Plugins` experimental instance.
 
 A host identifier is used by the SDK to find the installation folder for that host. The SDK includes a [custom MSBuild task](/Extensions/Deployment/LocalInstallation/CopyOnBuild.md) that can return an installation folder when given a host identifier.
 

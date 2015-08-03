@@ -24,7 +24,7 @@ See the [section on Zones](/Platform/Zones.md) for more details.
 
 Extensions are now extensions to the ReSharper Platform, instead of extensions to just ReSharper. This requires some changes to the way extensions are packaged, and deployed. They are still NuGet packages, but the layout of the content has changed. Instead of putting the extensions in a root folder called "ReSharper", plugins, external annotations or settings files should be in a folder called "DotFiles". When installed, extensions are now installed directly to the product folder, which is now in `%LOCALAPPDATA%`, rather than `C:\Program Files`.
 
-See the [section on Deployment](/Extensions/Deployment.md) for more details.
+See the [section on Deployment](/Extensions/Packaging.md) for more details.
 
 ## Removal of plugin metadata attributes
 

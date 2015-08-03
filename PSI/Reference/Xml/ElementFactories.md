@@ -9,7 +9,7 @@
 
 The XML PSI has several classes related to element factories, that is, for creating [`IXmlTreeNode`](TreeNodes.md#ixmltreenode) derived instances. Some of the classes are for internal use, or implementation details. They are documented here for completeness, and to avoid confusion when spelunking around the code in dotPeek.
 
-The [`XmlElementFactory`](#xmlelementfactory) class is the class to use for creating tags, attributes or an entire [`IXmlFile`](#ixmlfile) instance. Use the `XmlElementFactory.GetInstance` method to get a copy of the class. The [`IXmlElementFactory`](#ixmlelementfactory) interface is a lower level API which can create any [`IXmlTreeNode`](TreeNodes.md#ixmltreenode) instance. The default implementation is [`XmlTreeNodeFactory`](#xmltreenodefactory) and can be retrieved using the `XmlTreeNodeFactory.GetInstance` method.
+The [`XmlElementFactory`](#xmlelementfactory) class is the class to use for creating tags, attributes or an entire [`IXmlFile`](TreeNodes.md#ixmlfile) instance. Use the `XmlElementFactory.GetInstance` method to get a copy of the class. The [`IXmlElementFactory`](#ixmlelementfactory) interface is a lower level API which can create any [`IXmlTreeNode`](TreeNodes.md#ixmltreenode) instance. The default implementation is [`XmlTreeNodeFactory`](#xmltreenodefactory) and can be retrieved using the `XmlTreeNodeFactory.GetInstance` method.
 
 All other classes and interfaces are used internally, and will probably not be used from client code.
 
@@ -238,7 +238,7 @@ public class XmlElementFactory
 
 <!-- End XmlElementFactory -->
 
-Methods for creating instances of [`IXmlFile`](TreeNodes.md#ixmlfile), [`IXmlTag`](TreeNodes.md#ixmltag) and [`IXmlAttribute`](#ixmlattribute). It is intended for use by code client. Note that it does not implement the similarly named [`IXmlElementFactory`](#ixmlelementfactory) interface (in fact, internally, it uses this interface). Clients can get an instance of the class via the `GetInstance` static method. Passing in an `ITreeNode` allows for getting the language specific implementations of [`IXmlElementFactory`](#ixmlelementfactory) and `XmlLanguageSupport`.
+Methods for creating instances of [`IXmlFile`](TreeNodes.md#ixmlfile), [`IXmlTag`](TreeNodes.md#ixmltag) and [`IXmlAttribute`](TreeNodes.md#ixmlattribute). It is intended for use by code client. Note that it does not implement the similarly named [`IXmlElementFactory`](#ixmlelementfactory) interface (in fact, internally, it uses this interface). Clients can get an instance of the class via the `GetInstance` static method. Passing in an `ITreeNode` allows for getting the language specific implementations of [`IXmlElementFactory`](#ixmlelementfactory) and `XmlLanguageSupport`.
 
 * `CreateFile` will parse a string containing XML into a complete XML file, represented by [`IXmlFile`](TreeNodes.md#ixmlfile).
 * `CreateRootTag` creates an instance of [`IXmlTag`](TreeNodes.md#ixmltag) based on the given XML string. It is a "root" tag in that it treats the given string as a complete XML file, and returns the first tag found in that "file".
@@ -366,7 +366,7 @@ public class XmlTreeNodeFactory :
 
 <!-- End XmlTreeNodeFactory -->
 
-Default implementation of [`IXmlElementFactory`](#ixmlelementfactory). This is used by the parser and lexer to create [`IXmlTreeNode`](TreeNode.md#ixmltreenode) instances when building the PSI tree. It is a per-language class, as indicated by the `[Language(typeof(XmlLanguage))]` attribute. This means it will be used for all XML derived languages when calling `LanguageManager.Instance.GetService<IXmlElementFactory>(language)`, unless the derived language implements its own [`IXmlElementFactory`](#ixmlelementfactory).
+Default implementation of [`IXmlElementFactory`](#ixmlelementfactory). This is used by the parser and lexer to create [`IXmlTreeNode`](TreeNodes.md#ixmltreenode) instances when building the PSI tree. It is a per-language class, as indicated by the `[Language(typeof(XmlLanguage))]` attribute. This means it will be used for all XML derived languages when calling `LanguageManager.Instance.GetService<IXmlElementFactory>(language)`, unless the derived language implements its own [`IXmlElementFactory`](#ixmlelementfactory).
 
 Call one of the `GetInstance` methods to get an instance of the class (internally, this calls `LanguageManager.GetService`, using the language from the passed in `ITreeNode` or the `TLanguage` generic parameter.
 

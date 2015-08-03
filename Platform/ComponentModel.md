@@ -14,7 +14,7 @@ This loosely coupled design allows for easily extending ReSharper - new componen
 
 Conceptually, the Component Model is very similar to Microsoft's [Managed Extensibility Framework (MEF)](http://msdn.microsoft.com/en-us/library/dd460648.aspx) although there are some fundamental differences, such as the ability to live load and unload new components, during runtime.
 
-ReSharper defines many component types. The two most interesting are `ShellComponent` and `SolutionComponent`. More details about other component types can be found in the [Advanced section](ComponentModel/Advanced.md).
+ReSharper defines many component types. The two most interesting are `ShellComponent` and `SolutionComponent`. More details about other component types can be found in the discussion about `Parts` in [Containers, Parts and Catalogues](ComponentModel/ContainersPartsCatalogues.md).
 
 ## Shell Components
 
