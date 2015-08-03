@@ -42,7 +42,7 @@
 * [Deployment](Extensions/Packaging.md)
     * Installing the ReSharper Platform
         * [Host Identifiers](Extensions/Deployment/InstallProcess/HostIdentifiers.md)
-        * Dependencies
+        * [Dependencies](Extensions/Deployment/InstallProcess/Dependencies.md)
     * Packaging Details
     * Localisation
     * [Installing Locally](Extensions/Deployment/LocalInstallation.md)
