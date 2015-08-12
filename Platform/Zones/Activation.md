@@ -47,7 +47,7 @@ class DotPeekZoneActivator :
 
 There is usually little or no logic in the implementation of `ActivatorEnabled`. Generally speaking, if a product is installed, it should be activated. Activation is separate to licensing, trial versions and user disabling of a product or feature - this is handled separately by the ReSharper Platform. Unlicensed, expired, or disabled zones are removed from the list of activated zones before components are filtered into the container.
 
-However, it is perfectly reasonable to implement some logic in this method, for example, the `InternalModeProductZoneActivator` class will activate the `IInternalVisibilityZone` (for [Internal Mode](/Intro/InternalMode.md)) only if the `/Internal` command line argument is supplied.
+However, it is perfectly reasonable to implement some logic in this method, for example, the `InternalModeProductZoneActivator` class will activate the `IInternalVisibilityZone` (for [Internal Mode](/Extensions/InternalMode.md)) only if the `/Internal` command line argument is supplied.
 
 ### Explicit implementation
 
@@ -73,7 +73,7 @@ public class MyZone : IActivate<IZone1>, IActivate<IZone2>
 
 ### Activator class as component
 
-Similarly, zone activator classes are components (`ZoneActivatorAttribute` derives from `EnvironmentComponentAttribute`, so they are components that get created very early in the application lifecycle), which means they can accept dependencies in the constructor. For example, a Feature that is intended for use only in [Internal Mode](/Intro/InternalMode.md) can do something like:
+Similarly, zone activator classes are components (`ZoneActivatorAttribute` derives from `EnvironmentComponentAttribute`, so they are components that get created very early in the application lifecycle), which means they can accept dependencies in the constructor. For example, a Feature that is intended for use only in [Internal Mode](/Extensions/InternalMode.md) can do something like:
 
 ```csharp
 [ZoneActivator]

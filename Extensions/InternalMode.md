@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /Intro/InternalMode.html
 ---
 
 # Internal Mode

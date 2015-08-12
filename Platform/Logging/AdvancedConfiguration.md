@@ -7,7 +7,7 @@ While logging can be enabled on the command line, specifying a configuration fil
 
 > **NOTE** The `{HostFullIdentifier}` is the name of the install folder for the current host, such as `ReSharperPlatformVs12` for Visual Studio 2013. More details can be found in the section on [Host Identifiers](/Extensions/Deployment/InstallProcess/HostIdentifiers.md).
 
-The best way to set up a log file is via the [Logging Options Page](/Platform/Logging.md#logging-options-page) which is only visible when in [Internal Mode](/Intro/InternalMode.md).
+The best way to set up a log file is via the [Logging Options Page](/Platform/Logging.md#logging-options-page) which is only visible when in [Internal Mode](/Extensions/InternalMode.md).
 
 The file format is fairly straightforward:
 

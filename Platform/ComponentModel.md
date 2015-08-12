@@ -86,7 +86,7 @@ One downside to wiring up an application through the Component Model is that err
 
 Troubleshooting can initially seem very difficult, due to the cascading errors, all of which will throw exceptions. The important exception is the first one, which will tell you which component failed during creation. The failure will be related to one of the constructor parameters, so each parameter should be checked - is the parameter type a component? Does it come from the same or higher scope (i.e. is a shell component trying to depend on a solution component)? Does the parameter have the correct cardinality (single instance vs. collection)?
 
-ReSharper 9.0 adds better diagnostics for troubleshooting component model failures, describing which parameter caused the issue, and adding more context to the exception's `Data` dictionary. This data is only available in a [checked build](/Intro/Tools.md).
+ReSharper 9.0 adds better diagnostics for troubleshooting component model failures, describing which parameter caused the issue, and adding more context to the exception's `Data` dictionary. This data is only available in a [checked build](/Extensions/Tools.md).
 
 ## Lazy and optional acquisition
 

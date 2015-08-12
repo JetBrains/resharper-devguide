@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /Intro/KnownIssues.html
 ---
 
 # Known Issues

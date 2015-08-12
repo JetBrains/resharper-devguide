@@ -7,13 +7,13 @@ The ReSharper Platform is very large, and very capable, and its size can initial
 
 ## Essential concepts
 
-* [Getting Started](GettingStarted.md) with extensions and plugins.
+* [Getting Started](/Extensions/GettingStarted.md) with extensions and plugins.
 * [Architectural overview](/Architecture/Overview.md) - a brief tour of the different layers of the ReSharper Platform.
 * [Lifetime management](/Platform/Lifetime.md) - discusses the `Lifetime` class, which is key to lifetime management and used throughout the Platform.
 * [Component Model](/Platform/ComponentModel.md) - ReSharper is very much a component based application. All services and components are exported and must be imported in order to be consumed. This allows for a very loose coupled architecture, and is instrumental to making ReSharper very extensible. To get the most out of it requires some understanding of how the component model works, and how it relates to lifetime management.
 * [Zones](/Platform/Zones.md) - the ReSharper Platform's shared binary distribution raises issues about shipping mechanisms (i.e. how to ship a component that is used by one product configuration but not another). Zones manage this by partitioning components into logical feature sets. Extension providers **must** understand how this works in order to correctly import and export components.
 
-Also, there is a [migration guide](/Intro/WhatsNew.md) for existing extension authors.
+Also, there is a [migration guide](/Extensions/WhatsNew.md) for existing extension authors.
 
 ## The code model
 

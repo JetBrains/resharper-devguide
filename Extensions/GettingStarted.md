@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /Intro/GettingStarted.html
 ---
 
 # Getting Started

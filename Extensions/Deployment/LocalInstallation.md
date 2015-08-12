@@ -3,7 +3,7 @@
 
 # Local Installation
 
-In order to manually test an extension, whether it's a [plugin](/Intro/CompiledExtensions.md) or a [declarative extension](/Intro/DeclarativeExtensions.md), it must first be installed into the ReSharper Platform. Once installed, existing files can generally be updated by copying a new version without re-runnning the installatione. This is a similar pattern to Visual Studio's VSIX development model.
+In order to manually test an extension, whether it's a [plugin](/Extensions/CompiledExtensions.md) or a [declarative extension](/Extensions/DeclarativeExtensions.md), it must first be installed into the ReSharper Platform. Once installed, existing files can generally be updated by copying a new version without re-runnning the installatione. This is a similar pattern to Visual Studio's VSIX development model.
 
 > **NOTE** Previous versions of ReSharper allowed plugins to be run via a command line parameter (`/ReSharper.plugin`). This is no longer supported, as the ReSharper Platform now requires all extensions (including Products such as dotTrace and dotPeek) to be statically registered. Visual Studio integration plays a large role in this decision. Dynamically registering components with Visual Studio introduced issues that are not evident when statically registering (e.g. dynamically added menu items not maintaining assigned keyboard shortcuts). So, while the Component Model allows for dynamic live loading of assemblies and types, the ReSharper Platform requires static registration.
 

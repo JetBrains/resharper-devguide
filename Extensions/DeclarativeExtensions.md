@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /Intro/DeclarativeExtensions.html
 ---
 
 # Declarative Extensions

@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /Intro/Tools.html
 ---
 
 # Required Tools

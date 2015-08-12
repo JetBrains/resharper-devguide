@@ -5,7 +5,7 @@
 
 The guide is split into several parts:
 
-* [**Part I - Extending the ReSharper Platform**](/Intro/GettingStarted.md)
+* [**Part I - Extending the ReSharper Platform**](/Extensions/GettingStarted.md)
 
     An overview of the ways in which the ReSharper Platform can be extended, both declaratively, with Live Templates, annotations and patterns and programmatically, via plugins. It explains how to get started with extensions, setting up the SDK and so on. It also includes a migration guide to help migrate plugins and extensions from previous versions of ReSharper.
 

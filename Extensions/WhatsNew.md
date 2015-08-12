@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /Intro/WhatsNew.html
 ---
 
 # What's New in ReSharper 9.0?

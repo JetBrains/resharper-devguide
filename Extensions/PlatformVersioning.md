@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /Intro/PlatformVersioning.html
 ---
 
 # Platform Versioning

@@ -7,18 +7,18 @@
 * [Getting Help](Intro/GettingHelp.md)
 
 ## Part I - Extending the ReSharper Platform
-* [Getting Started](Intro/GettingStarted.md)
-    * [Tools](Intro/Tools.md)
-    * [Internal mode](Intro/InternalMode.md)
-    * [Platform Versioning](Intro/PlatformVersioning.md)
-* [What's New?](Intro/WhatsNew.md)
-* [Declarative Extensions](Intro/DeclarativeExtensions.md)
+* [Getting Started](Extensions/GettingStarted.md)
+    * [Tools](Extensions/Tools.md)
+    * [Internal mode](Extensions/InternalMode.md)
+    * [Platform Versioning](Extensions/PlatformVersioning.md)
+* [What's New?](Extensions/WhatsNew.md)
+* [Declarative Extensions](Extensions/DeclarativeExtensions.md)
     * Live Templates
     * Structural Search and Replace Patterns
     * External Annotations
         * Attribute Reference
         * Annotator Tool
-* [Compiled Extensions (Plugins)](Intro/CompiledExtensions.md)
+* [Compiled Extensions (Plugins)](Extensions/CompiledExtensions.md)
     * [Project Setup](Plugins/ProjectSetup.md)
         * [Creating Projects](Plugins/ProjectSetup/CreatingProjects.md)
         * [NuGet References](Plugins/ProjectSetup/NuGetReferences.md)
@@ -38,7 +38,7 @@
         * [Combinatorial Settings](Plugins/Testing/OptionsIterator.md)
         * Utility Classes
         * Reference
-    * [Known Issues](Intro/KnownIssues.md)
+    * [Known Issues](Extensions/KnownIssues.md)
 * [Deployment](Extensions/Packaging.md)
     * Installing the ReSharper Platform
         * [Host Identifiers](Extensions/Deployment/InstallProcess/HostIdentifiers.md)
