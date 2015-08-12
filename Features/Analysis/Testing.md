@@ -85,7 +85,7 @@ Additional files can be passed to either `DoTestSolution` and `DoNamedTest`/`DoN
 
 ### Testing with combinations of settings
 
-The `HighlightinTestBase` class understands iterating over multiple combinations of settings. In order to make use of this, please refer to the section on [settings iteration](/Plugins/Testing/OptionsIterator.md).
+The `HighlightinTestBase` class understands iterating over multiple combinations of settings. In order to make use of this, please refer to the section on [settings iteration](/Extensions/Plugins/Testing/OptionsIterator.md).
 
 ### Filtering highlights
 

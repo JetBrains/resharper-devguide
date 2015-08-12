@@ -7,7 +7,7 @@ A test project is an [NUnit](http://nunit.org) based Class Library project, that
 
 The test project should also include a reference to the `JetBrains.ReSharper.SDK.Tests` NuGet package. This package takes a dependency on the `JetBrains.ReSharper.SDK` package, as well as the `NUnit` package. The `SDK.Tests` package will ensure that all files required to run the plugin are copied to the output directory. This includes reference assemblies, but also content files, such as external annotations and CSS definition files.
 
-> **NOTE** The normal SDK package does not copy these files, as the plugin cannot be run outside of the context of ReSharper, as installed in Visual Studio. For manual testing, the plugin should be [initially installed](/Plugins/ProjectSetup/InitialInstallation.md) and then [copied to the installation folder on each build](/Plugins/ProjectSetup/CopyOnBuild.md).
+> **NOTE** The normal SDK package does not copy these files, as the plugin cannot be run outside of the context of ReSharper, as installed in Visual Studio. For manual testing, the plugin should be [initially installed](/Extensions/Plugins/ProjectSetup/InitialInstallation.md) and then [copied to the installation folder on each build](/Extensions/Plugins/ProjectSetup/CopyOnBuild.md).
 
 > **NOTE** ReSharper 9.0 did not publish a `JetBrains.ReSharper.SDK.Tests` package, primarily because the SDK contained all assemblies, including the test framework, and it would copy all files to the output folder, both for production builds and test builds. This left little else for the Tests package to do, so it was not released. In order to write tests for a 9.0 plugin, you would include `JetBrains.ReSharper.SDK` directly in the test project.
 

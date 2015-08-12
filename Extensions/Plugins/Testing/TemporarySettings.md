@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /Plugins/TemporarySettings.html
 ---
 
 # Temporary Settings in Tests

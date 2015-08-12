@@ -1,9 +1,11 @@
 ---
+redirect_from:
+  - /Plugins/Debugging.html
 ---
 
 # Running and Debugging an Extension
 
-In order to manually test or debug your plugin, it must first be installed into an instance of ReSharper. Currently, this initial install is a manual step, details of which can be found in the [Initial Installation](/Plugins/ProjectSetup/InitialInstallation.md) guide (our intention is to make this easier in future versions of the SDK). Once the plugin has been initially installed, it can be updated automatically by modifying the project to [copy updated files on build](/Plugins/ProjectSetup/CopyOnBuild.md).
+In order to manually test or debug your plugin, it must first be installed into an instance of ReSharper. Currently, this initial install is a manual step, details of which can be found in the [Initial Installation](/Extensions/Plugins/ProjectSetup/InitialInstallation.md) guide (our intention is to make this easier in future versions of the SDK). Once the plugin has been initially installed, it can be updated automatically by modifying the project to [copy updated files on build](/Extensions/Plugins/ProjectSetup/CopyOnBuild.md).
 
 It is **strongly recommended** to install ReSharper and your plugin into an [experimental instance of Visual Studio](/Extensions/Deployment/LocalInstallation/ExperimentalInstance.md). This allows the assembly to be updated while compiling. If the plugin being tested/debugged is installed in the main instance of Visual Studio, all instances of VS need to be closed before the plugin can be updated. If the plugin is installed in a different instance of Visual Studio to the solution used to build the plugin, the plugin's assemblies can be updated without restarting all instances of Visual Studio.
 

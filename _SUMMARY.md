@@ -19,23 +19,23 @@
         * Attribute Reference
         * Annotator Tool
 * [Compiled Extensions (Plugins)](Extensions/CompiledExtensions.md)
-    * [Project Setup](Plugins/ProjectSetup.md)
-        * [Creating Projects](Plugins/ProjectSetup/CreatingProjects.md)
-        * [NuGet References](Plugins/ProjectSetup/NuGetReferences.md)
-        * [Initial Installation](Plugins/ProjectSetup/InitialInstallation.md)
-        * [Copy Plugin on Build](Plugins/ProjectSetup/CopyOnBuild.md)
-    * [Debugging](Plugins/Debugging.md)
-    * [Plugin Testing](Plugins/Testing.md)
-        * [Project Structure](Plugins/Testing/ProjectStructure.md)
-        * [Test Environment](Plugins/Testing/TestEnvironment.md)
-        * [Zones](Plugins/Testing/Zones.md)
-        * [Test Components](Plugins/Testing/TestComponents.md)
-        * [Gold Files](Plugins/Testing/GoldFiles.md)
+    * [Project Setup](Extensions/Plugins/ProjectSetup.md)
+        * [Creating Projects](Extensions/Plugins/ProjectSetup/CreatingProjects.md)
+        * [NuGet References](Extensions/Plugins/ProjectSetup/NuGetReferences.md)
+        * [Initial Installation](Extensions/Plugins/ProjectSetup/InitialInstallation.md)
+        * [Copy Plugin on Build](Extensions/Plugins/ProjectSetup/CopyOnBuild.md)
+    * [Debugging](Extensions/Plugins/Debugging.md)
+    * [Plugin Testing](Extensions/Plugins/Testing.md)
+        * [Project Structure](Extensions/Plugins/Testing/ProjectStructure.md)
+        * [Test Environment](Extensions/Plugins/Testing/TestEnvironment.md)
+        * [Zones](Extensions/Plugins/Testing/Zones.md)
+        * [Test Components](Extensions/Plugins/Testing/TestComponents.md)
+        * [Gold Files](Extensions/Plugins/Testing/GoldFiles.md)
         * Base Classes
         * Attributes
         * Project References
-        * [Temporary Settings](Plugins/TemporarySettings.md)
-        * [Combinatorial Settings](Plugins/Testing/OptionsIterator.md)
+        * [Temporary Settings](Extensions/Plugins/Testing/TemporarySettings.md)
+        * [Combinatorial Settings](Extensions/Plugins/Testing/OptionsIterator.md)
         * Utility Classes
         * Reference
     * [Known Issues](Extensions/KnownIssues.md)

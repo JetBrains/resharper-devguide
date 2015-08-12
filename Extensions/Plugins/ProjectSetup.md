@@ -1,4 +1,6 @@
 ---
+redirect_from:
+  - /Plugins/ProjectSetup.html
 ---
 
 # Project Setup
