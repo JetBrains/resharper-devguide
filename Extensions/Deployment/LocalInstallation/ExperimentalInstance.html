@@ -1,0 +1,121 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/Deployment/LocalInstallation/ExperimentalInstance">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="install-to-an-experimental-instance" class="elem-anchor"></a>
+<h1>Install to an Experimental Instance<a href="#install-to-an-experimental-instance" class="anchor-link"><span></span></a></h1>
+
+<p>This first step is optional, but strongly recommended for working with extensions for ReSharper. This allows running the plugin in a separate instance to the one used to build it. Doing this prevents the main instance from locking the plugin in memory, which would require restarting both the test Visual Studio and the editing Visual Studio. This is not strictly required for declarative extensions as ReSharper will not keep a lock on .dotSettings or .xml files, however, it may be useful for testing purposes. Similarly, this is not required for plugins for standalone products, such as dotPeek.</p>
+
+<p>Visual Studio’s <a href="http://msdn.microsoft.com/en-us/library/bb166560.aspx" data-bypass="yes"><span>“Experimental Instance”</span></a> feature is intended for developing and debugging Visual Studio extensions, and maintains a separate copy of the configuration needed to run Visual Studio. Each experimental instance can have an entirely different configuration, from theme and window layout to the extensions that are loaded.</p>
+
+<aside class="note">
+  <p> “Experimental instances” were previously known as “custom hives”</p>
+</aside>
+
+<p>By default, the ReSharper Platform and all Product extensions (dotTrace, dotPeek, etc) are installed as a per-user extension for the main instance of Visual Studio. It is not visible in other (experimental) instances. However, it can be installed into an experimental instance to allow for a separate version of ReSharper (complete with separate versions of extensions) than what is installed in the main instance.</p>
+
+<p>To install to an experimental instance, run the ReSharper unified installer, select the Options button, and enter the name of the instance. The experimental instance does not need to exist before starting the install.</p>
+
+<p>Once the install is complete, a separate instance of ReSharper has been installed to the system. The main instance of Visual Studio will continue to use the original install of ReSharper. Running Visual Studio in the new experimental instance will run with this newly installed copy of ReSharper, and only use the extensions installed into that copy.</p>
+
+<p>To run Visual Studio in an experimental instance called “Plugins”, run:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_text">devenv.exe /rootSuffix Plugins</code></pre>
+
+<p>Of course, the experimental instance can be called anything, and you can install more than instance if you wish.</p>
+
+
+
+                    <div class="last-modified">
+                        Last modified: 25 June 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Architecture/Overview">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -90,9 +104,9 @@
 <p>The Platform part of ReSharper typically relates to features which interact directly with Visual Studio. As a result, plugin developers are unlikely to work with Platform components directly. However, it’s important to have a general idea of some of the platform components in order to be able to understand and investigate, if necessary, the ways in which interactions happen. Here are a few Platform elements that are worth knowing about:</p>
 
 <ul>
-  <li><em>ActionManagement</em> - this assembly concerns itself with managing actions, i.e., executable pieces of code that appear in Visual Studio’s Command system. See <a href="../Features/Actions.html"><span>Actions and Menu Items</span></a> for more information on creating actions.</li>
+  <li><em>ActionManagement</em> - this assembly concerns itself with managing actions, i.e., executable pieces of code that appear in Visual Studio’s Command system. See <a href="/resharper/devguide/Features/Actions.html"><span>Actions and Menu Items</span></a> for more information on creating actions.</li>
   <li><em>Annotations</em> - relates to the Annotations subsystem. The idea of annotations is being able to use attributes to give ReSharper hints as to how the code behaves. Frequently encountered attributes such as <code class="code highlight language-text">[NotNull]</code> are examples of annotations.</li>
-  <li><em>ComponentModel</em> - relates to ReSharper’s component model. Understanding of the component model is critical to be able to use various ReSharper’s subsystems. See <a href="../Platform/ComponentModel.html"><span>Component Model</span></a> for more details.</li>
+  <li><em>ComponentModel</em> - relates to ReSharper’s component model. Understanding of the component model is critical to be able to use various ReSharper’s subsystems. See <a href="/resharper/devguide/Platform/ComponentModel.html"><span>Component Model</span></a> for more details.</li>
   <li><em>DocumentManager</em> and <em>DocumentModel</em> - contains mechanisms for managing documents. Encapsulates important concepts (e.g., <code class="code highlight language-text">RangeMarker</code>) used for correctly modifying documents.</li>
   <li><em>ProjectModel</em> - used for interacting with Visual Studio’s project model.</li>
   <li><em>TextControl</em> - used for interacting with Visual Studio’s text editor control.</li>
@@ -125,7 +139,7 @@
 <a name="feature-services" class="elem-anchor"></a>
 <h2>Feature Services<a href="#feature-services" class="anchor-link"><span></span></a></h2>
 
-<p>As the name suggests, ReSharper’s Feature Services contain a large number of services that support ReSharper’s features. For example, the component that provides the Code Inspection Wiki data at start-up time is a feature service. Another example would be the various data provider and builder classes that are used in bulb items that ReSharper presents. Support for the <a href="../Features/GenerateMenu.html"><span>Generate Menu</span></a> and many other features is also contained here.</p>
+<p>As the name suggests, ReSharper’s Feature Services contain a large number of services that support ReSharper’s features. For example, the component that provides the Code Inspection Wiki data at start-up time is a feature service. Another example would be the various data provider and builder classes that are used in bulb items that ReSharper presents. Support for the <a href="/resharper/devguide/Features/GenerateMenu.html"><span>Generate Menu</span></a> and many other features is also contained here.</p>
 
 <p>Please note that feature services do not contain features themselves. Quite often they contain components which are used by more than one feature.</p>
 
@@ -134,29 +148,29 @@
 
 <p>The Daemon assemblies are the background-running tasks that analyze source and binary code, react to changes in the solution or the environment, and allow the possibility of highlighting code based on said analyses.</p>
 
-<p>If you require any sort of background analysis on existing code, it’s likely you need a daemon. To learn how to write one, see <a href="../Features/Analysis/Daemons.html"><span>Daemons and Daemon Stages</span></a>.</p>
+<p>If you require any sort of background analysis on existing code, it’s likely you need a daemon. To learn how to write one, see <a href="/resharper/devguide/Features/Analysis/Daemons.html"><span>Daemons and Daemon Stages</span></a>.</p>
 
 <a name="intentions" class="elem-anchor"></a>
 <h3>Intentions<a href="#intentions" class="anchor-link"><span></span></a></h3>
 
-<p>Intentions are concerned primarily with <a href="../Features/Actions.html"><span>Quick-Fixes and Context Actions</span></a> - those bulb-bearing popup menus that show up in code either in relation to daemon highlightings or depending on the current context (i.e., the location of the caret).</p>
+<p>Intentions are concerned primarily with <a href="/resharper/devguide/Features/Actions.html"><span>Quick-Fixes and Context Actions</span></a> - those bulb-bearing popup menus that show up in code either in relation to daemon highlightings or depending on the current context (i.e., the location of the caret).</p>
 
 <p>All the important base classes for quick-fixes and context actions live here. In addition, these assemblies actually contain the quick-fixes and context actions that are shipped with ReSharper.</p>
 
 <a name="live-templates" class="elem-anchor"></a>
 <h3>Live Templates<a href="#live-templates" class="anchor-link"><span></span></a></h3>
 
-<p>This is where support for Live Templates, ReSharper’s snippet-based code generation mechanism, is contained. It is probably of little interest to plugin developers save for those wishing to write <a href="../Features/LiveTemplates/Overview.html"><span>Live Template Macros</span></a>.</p>
+<p>This is where support for Live Templates, ReSharper’s snippet-based code generation mechanism, is contained. It is probably of little interest to plugin developers save for those wishing to write <a href="/resharper/devguide/Features/LiveTemplates.html"><span>Live Template Macros</span></a>.</p>
 
 <a name="refactorings" class="elem-anchor"></a>
 <h3>Refactorings<a href="#refactorings" class="anchor-link"><span></span></a></h3>
 
-<p>ReSharper’s support for <a href="../Features/Refactoring.html"><span>Refactoring</span></a> is contained here. These assemblies contain the necessary base classes in order to create and execute your own refactoring workflows.</p>
+<p>ReSharper’s support for <a href="/resharper/devguide/Features/Refactoring.html"><span>Refactoring</span></a> is contained here. These assemblies contain the necessary base classes in order to create and execute your own refactoring workflows.</p>
 
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 3 August 2015
                     </div>
                 </article>
 

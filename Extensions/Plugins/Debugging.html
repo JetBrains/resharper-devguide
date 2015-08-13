@@ -1,0 +1,128 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/Plugins/Debugging">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="running-and-debugging-an-extension" class="elem-anchor"></a>
+<h1>Running and Debugging an Extension<a href="#running-and-debugging-an-extension" class="anchor-link"><span></span></a></h1>
+
+<p>In order to manually test or debug your plugin, it must first be installed into an instance of ReSharper. Currently, this initial install is a manual step, details of which can be found in the <a href="/resharper/devguide/Extensions/Plugins/ProjectSetup/InitialInstallation.html"><span>Initial Installation</span></a> guide (our intention is to make this easier in future versions of the SDK). Once the plugin has been initially installed, it can be updated automatically by modifying the project to <a href="/resharper/devguide/Extensions/Plugins/ProjectSetup/CopyOnBuild.html"><span>copy updated files on build</span></a>.</p>
+
+<p>It is <strong>strongly recommended</strong> to install ReSharper and your plugin into an <a href="/resharper/devguide/Extensions/Deployment/LocalInstallation/ExperimentalInstance.html"><span>experimental instance of Visual Studio</span></a>. This allows the assembly to be updated while compiling. If the plugin being tested/debugged is installed in the main instance of Visual Studio, all instances of VS need to be closed before the plugin can be updated. If the plugin is installed in a different instance of Visual Studio to the solution used to build the plugin, the plugin’s assemblies can be updated without restarting all instances of Visual Studio.</p>
+
+<p>Once installed, the extension is loaded as part of ReSharper.</p>
+
+<aside class="note">
+  <p> Previous versions of ReSharper supported the <code class="code highlight language-text">/ReSharper.Plugin</code> flag to dynamically load the plugin at runtime. This is no longer supported, and the plugin must be installed in order to be loaded.</p>
+</aside>
+
+<a name="debugging" class="elem-anchor"></a>
+<h2>Debugging<a href="#debugging" class="anchor-link"><span></span></a></h2>
+
+<p>To debug an extension, simply attach a debugger to an instance of Visual Studio that will run the plugin.</p>
+
+<ol>
+  <li>Set the properties of the plugin project to start Visual Studio (e.g. <code class="code highlight language-text">C:\Program Files (x86)\Visual Studio 12.0\Common7\IDE\devenv.exe</code> for Visual Studio 2013). Also set the command line to run in the appropriate experimental instance, e.g. <code class="code highlight language-text">/rootSuffix Plugins</code> will run Visual Studio in the “Plugins” experimental instance.</li>
+  <li>Start Visual Studio with <kbd>F5</kbd> or <kbd>Ctrl</kbd>+<kbd>F5</kbd>. Using <kbd>F5</kbd> may have performance implications as .net disables optimisations for applications started under the debugger. With an application the size of Visual Studio, this can have a notable impact on performance. If this is the case, use <kbd>Ctrl</kbd>+<kbd>F5</kbd> - Visual Studio will start quicker, you can attach (look for the <code class="code highlight language-text">devenv.exe</code> process) and debug as normal.</li>
+</ol>
+
+<p>If debugging a plugin installed into a standalone host such as dotPeek, simply change the startup executable to point to the host. The standalone applications are installed to <code class="code highlight language-text">%LOCALAPPDATA%\JetBrains\Installations\{HostFullIdentifier}</code>. The <code class="code highlight language-text">/rootSuffix</code> argument is not needed.</p>
+
+<aside class="note">
+  <p> The <a href="/resharper/devguide/Extensions/Deployment/InstallProcess/HostIdentifiers.html"><span><code class="code highlight language-text">{HostFullIdentifier}</code></span></a> is the name of the install folder for the current host, such as <code class="code highlight language-text">ReSharperPlatformVs12</code> for Visual Studio 2013, or <code class="code highlight language-text">dotPeek01</code>. More details can be found in the section on <a href="/resharper/devguide/Extensions/Deployment/InstallProcess/HostIdentifiers.html"><span>Host Identifiers</span></a>.</p>
+</aside>
+
+<p>If the plugin doesn’t load, see the <a href="/resharper/devguide/Extensions/Troubleshooting.html"><span>Troubleshooting section</span></a>.</p>
+
+
+                    <div class="last-modified">
+                        Last modified: 12 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

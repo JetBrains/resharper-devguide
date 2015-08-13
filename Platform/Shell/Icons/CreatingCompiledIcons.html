@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Platform/Shell/Icons/CreatingCompiledIcons">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -75,7 +89,7 @@
 
 <p>When retrieving an icon, the aspects from the current theme are enumerated in priority order, and the first matching image for the icon is used. If there are no images that match any of the theme aspects, the fallback image is used, if available. A fallback image is an image that is created without a theme aspect. If there are no fallback images, an arbitrary themed image for the icon is used.</p>
 
-<p>See the <a href="../Theming/Icons.html"><span>theming section</span></a> for more details about theming and theme aspects.</p>
+<p>See the <a href="/resharper/devguide/Platform/Shell/Theming/Icons.html"><span>theming section</span></a> for more details about theming and theme aspects.</p>
 
 <a name="xaml-icons" class="elem-anchor"></a>
 <h2>XAML icons<a href="#xaml-icons" class="anchor-link"><span></span></a></h2>
@@ -97,7 +111,7 @@
   <span class="nt">&lt;RemoveBackgroundElement&gt;</span>True<span class="nt">&lt;/RemoveBackgroundElement&gt;</span>
 <span class="nt">&lt;/ThemedIconsXamlV3&gt;</span></code></pre>
 
-<p>The names of the theme aspects are listed in the <a href="../Theming/Icons.html"><span>theming section</span></a>.</p>
+<p>The names of the theme aspects are listed in the <a href="/resharper/devguide/Platform/Shell/Theming/Icons.html"><span>theming section</span></a>.</p>
 
 <a name="png-icons" class="elem-anchor"></a>
 <h2>PNG icons<a href="#png-icons" class="anchor-link"><span></span></a></h2>
@@ -108,7 +122,7 @@
 
 <p>Theming is supported by a naming convention. The theme aspect name should be placed in square brackets, e.g. <code class="code highlight language-text">Foo[GrayDark].png</code>, and a separate PNG file used for each theme aspect. If a theme aspect name isn’t specified, the image is treated as a fallback image when failing to find a theme specific image.</p>
 
-<p>The theme aspect names are listed in the <a href="../Theming/Icons.html"><span>theming section</span></a>.</p>
+<p>The theme aspect names are listed in the <a href="/resharper/devguide/Platform/Shell/Theming/Icons.html"><span>theming section</span></a>.</p>
 
 <a name="generated-files" class="elem-anchor"></a>
 <h2>Generated files<a href="#generated-files" class="anchor-link"><span></span></a></h2>
@@ -149,7 +163,7 @@
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 3 August 2015
                     </div>
                 </article>
 

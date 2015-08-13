@@ -1,0 +1,145 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/Plugins/Testing/TestEnvironment">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="test-environment" class="elem-anchor"></a>
+<h1>Test Environment<a href="#test-environment" class="anchor-link"><span></span></a></h1>
+
+<p>ReSharper tests are functional tests, testing a complete end to end slice of ReSharper functionality, rather than a smaller unit such as a class. This is because it is impractical to try and mock an abstract syntax tree and a semantic model - it is simpler to build a real syntax tree and semantic model and exercise real functionality with the actual data model.</p>
+
+<p>Under normal operation, ReSharper runs as an extension to Visual Studio, but this is also impractical for testing purposes. When running tests, ReSharper is started and runs as an in-memory test environment.</p>
+
+<p>To create an in-memory ReSharper instance, ReSharper tests use an <a href="http://nunit.org/index.php?p=setupFixture&amp;r=2.6.3" data-bypass="yes"><span>NUnit setup fixture</span></a>, which is a fixture class that is run once, before any tests that are in the same namespace or below are run. (E.g. the <code class="code highlight language-text">Foo.MySetupFixture</code> setup fixture class is run before any tests in the <code class="code highlight language-text">Foo</code> namespace or below, such as <code class="code highlight language-text">Foo.Bar.MyTests</code>, are run. See the <a href="http://nunit.org/index.php?p=setupFixture&amp;r=2.6.3" data-bypass="yes"><span>NUnit docs for more details on setup fixtures</span></a>). This allows the fixture to set up and tear down any data required for those tests - i.e. the test environment.</p>
+
+<p>An extension should create a class that derives from <code class="code highlight language-text">ExtensionTestEnvironmentAssembly&lt;TTestEnvironmentZone&gt;</code> and mark it with the <code class="code highlight language-text">[SetUpFixture]</code> attribute. The <code class="code highlight language-text">TTestEnvironmentZone</code> type parameter is used by the test environment to decide what parts of the ReSharper platform are initialised, and available during testing. See <a href="#zones"><span>Zones</span></a> below for more details.</p>
+
+<aside class="note">
+  <p> The ReSharper 9.0 SDK did not ship with the <code class="code highlight language-text">ExtensionTestEnvironmentAssembly</code> class, and testing on 9.0 is not officially supported. The recommended approach is to upgrade your plugins to 9.1 or later.</p>
+</aside>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">namespace</span> <span class="nn">Foo.Tests</span>
+<span class="p">{</span>
+  <span class="c1">// See Zones below</span>
+<span class="na">  [ZoneDefinition]</span>
+  <span class="k">public</span> <span class="k">interface</span> <span class="n">IMyTestZone</span> <span class="p">:</span> <span class="n">ITestsZone</span><span class="p">,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">PsiFeatureTestZone</span><span class="p">&gt;</span>
+  <span class="p">{</span>
+  <span class="p">}</span>
+
+<span class="na">  [SetUpFixture]</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">TestEnvironment</span> <span class="p">:</span> <span class="n">ExtensionTestEnvironmentAssembly</span><span class="p">&lt;</span><span class="n">IMyTestZone</span><span class="p">&gt;</span>
+  <span class="p">{</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<p>This is all that is necessary to create a ReSharper test environment based on the files in the output folder. The ReSharper test environment will scan all of the files in the output folder looking for components to load via the <a href="/resharper/devguide/Platform/ComponentModel.html"><span>Component Model</span></a>, which means that the plugin does not need to be installed into this in-memory ReSharper instance (it still needs to be <a href="/resharper/devguide/Extensions/Plugins/ProjectSetup/InitialInstallation.html"><span>installed into an interactive instance</span></a> for manual testing).</p>
+
+<a name="zones" class="elem-anchor"></a>
+<h2>Zones<a href="#zones" class="anchor-link"><span></span></a></h2>
+
+<p>Zones are a feature that ReSharper uses to manage shipping multiple products with overlapping assemblies, features and licensing requirements. Essentially, they are used to decide what parts of the application are active. More details on the use of Zones for testing can be found in the <a href="Zones.html"><span>Testing Zones</span></a> section.</p>
+
+<p>Briefly, an extension should create a test zone definition that states what zones are required in order to run the tests. Typically, the following is sufficient. The use of the <code class="code highlight language-text">IRequire&lt;PsiFeatureTestZone&gt;</code> states that the test environment needs to run all components that have declared that they are required for testing PSI features, which includes code completion, unit testing, parsing, analysis and so on.</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="na">[ZoneDefinition]</span>
+<span class="k">public</span> <span class="k">interface</span> <span class="n">IMyTestZone</span> <span class="p">:</span> <span class="n">ITestsZone</span><span class="p">,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">PsiFeatureTestZone</span><span class="p">&gt;</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="na">[SetUpFixture]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">TestEnvironment</span> <span class="p">:</span> <span class="n">ExtensionTestEnvironmentAssembly</span><span class="p">&lt;</span><span class="n">IMyTestZone</span><span class="p">&gt;</span>
+<span class="p">{</span>
+<span class="p">}</span></code></pre>
+
+
+                    <div class="last-modified">
+                        Last modified: 12 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

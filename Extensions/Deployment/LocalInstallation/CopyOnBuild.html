@@ -1,0 +1,180 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/Deployment/LocalInstallation/CopyOnBuild">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="copy-plugin-on-build" class="elem-anchor"></a>
+<h1>Copy Plugin on Build<a href="#copy-plugin-on-build" class="anchor-link"><span></span></a></h1>
+
+<p>When developing a plugin, it must <a href="/resharper/devguide/Extensions/Plugins/ProjectSetup/InitialInstallation.html"><span>first be installed</span></a> in order to manually test and debug it. While it is possible to repackage and update through the extension manager on each compile, this is an overhead that is not necessary for day-to-day development. Instead, the files in the installation folder can be overwritten, and ReSharper will use the new version when the host (e.g. Visual Studio) is restarted.</p>
+
+<p>This method works as long as there are no changes that require re-registering the extension with ReSharper or Visual Studio. In this case, the extension should be repackaged and updated through the Extension Manager, using a custom source to install from a local folder.</p>
+
+<ul>
+  <li>An extension requires re-registering with ReSharper if files are added, removed or renamed, as ReSharper needs to know what files to load.</li>
+  <li>An extension requires re-registering with Visual Studio if any integration points with Visual Studio are modified. Typically, this means if any Actions are created, modified or removed, or the menu items they correspond to are moved or updated, as these are translated at install time to Visual Studio commands, and statically registered.</li>
+</ul>
+
+<a name="automating-the-copy" class="elem-anchor"></a>
+<h2>Automating the copy<a href="#automating-the-copy" class="anchor-link"><span></span></a></h2>
+
+<p>The SDK NuGet package adds a build step called <code class="code highlight language-text">CopyPlugin</code> that can automate updating an existing install when a project is successfully built. This target will execute after the <code class="code highlight language-text">AfterBuild</code> target, and will copy the main assembly of the project to the install folder of a specified host.</p>
+
+<p>The MSBuild target uses a custom task to map between a <a href="/resharper/devguide/Extensions/Deployment/InstallProcess/HostIdentifiers.html"><span>Host Identifier</span></a> and an installation folder. The <code class="code highlight language-text">HostFullIdentifier</code> MSBuild property needs to be set in order for the target to know where to install the project’s assembly. It is not set by default as the SDK does not know which host instance you wish to install into.</p>
+
+<p>The value of <code class="code highlight language-text">HostFullIdentifier</code> is the host name and version, such as <code class="code highlight language-text">dotPeek02</code> (where 02 is the version of the wave for this instance of dotPeek) or <code class="code highlight language-text">ReSharperPlatformVs12</code>, which is the host identifier for the ReSharper Platform, as hosted in Visual Studio 2013. If you are using <a href="/resharper/devguide/Extensions/Deployment/LocalInstallation/ExperimentalInstance.html"><span>experimental instances</span></a>, the instance name is added to the end of the host identifier. So the <code class="code highlight language-text">Plugins</code> experimental instance for Visual Studio 2013 would have a host identifier of <code class="code highlight language-text">ReSharperPlatformVs12Plugins</code>.</p>
+
+<p>The simplest way to find out what host identifiers are available on your system is to set the <code class="code highlight language-text">HostFullIdentifier</code> property to an invalid value and run the build. The MSBuild task will print out a list of available identifiers, and you can update to the correct value. See the <a href="/resharper/devguide/Extensions/Deployment/InstallProcess/HostIdentifiers.html"><span>Host Identifiers</span></a> section for more details.</p>
+
+<p>To specify the host identifier property, you need to modify the <code class="code highlight language-text">.csproj</code> file. If you wish to use the same host identifier as other members of your team, you can put this directly in the <code class="code highlight language-text">.csproj</code> file and commit to source control. If your team wants to deploy to different hosts (perhaps you are using different <a href="/resharper/devguide/Extensions/Deployment/LocalInstallation/ExperimentalInstance.html"><span>experimental instances</span></a>), it might be better to place your MSBuild property in the <code class="code highlight language-text">.csproj.user</code> file, which is included into the <code class="code highlight language-text">.csproj</code> file, but not committed to source control.</p>
+
+<aside class="note">
+  <p> If editing the <code class="code highlight language-text">.csproj</code> file, make sure the property is set up before the statements that import the SDK targets files.</p>
+</aside>
+
+<p>For example:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_xml"><span class="nt">&lt;Project</span> <span class="na">xmlns=</span><span class="s">&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;</span><span class="nt">&gt;</span>
+  ...
+  <span class="c">&lt;!-- See note below for ReSharper 9.1 --&gt;</span>
+  <span class="nt">&lt;PropertyGroup&gt;</span>
+    <span class="nt">&lt;HostFullIdentifier&gt;</span>ReSharperPlatformVs12Plugins<span class="nt">&lt;/HostFullIdentifier&gt;</span>
+  <span class="nt">&lt;/PropertyGroup&gt;</span>
+  ...
+<span class="nt">&lt;/Project&gt;</span></code></pre>
+
+<aside class="note">
+  <p> The ReSharper 9.1 SDK doesn’t set up the custom task correctly, preventing it from running properly. It won’t find any installations from a host identifier, and also won’t print out a list of known identifiers. To work around this issue, add the following <code class="code highlight language-text">ItemGroup</code> to the <code class="code highlight language-text">.csproj.user</code> file:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_xml"><span class="nt">&lt;Project</span> <span class="na">xmlns=</span><span class="s">&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;</span><span class="nt">&gt;</span>
+  ...
+  <span class="nt">&lt;ItemGroup&gt;</span>
+    <span class="nt">&lt;ReferencePath</span> <span class="na">Inlude=</span><span class="s">&quot;@(Reference-&gt;HasMetadata(&#39;HintPath&#39;)-&gt;&#39;$(MSBuildProjectDirectory)\%(HintPath)&#39;)&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/ItemGroup&gt;</span>
+  ...
+  <span class="c">&lt;!-- As above --&gt;</span>
+  <span class="nt">&lt;PropertyGroup&gt;</span>
+    <span class="nt">&lt;HostFullIdentifier&gt;</span>ReSharperPlatformVs12Plugins<span class="nt">&lt;/HostFullIdentifier&gt;</span>
+  <span class="nt">&lt;/PropertyGroup&gt;</span>
+  ...
+<span class="nt">&lt;/Project&gt;</span></code></pre>
+
+  <p>(The custom task references assemblies that are distributed elsewhere in the SDK, and the SDK sets up the <code class="code highlight language-text">ReferencePath</code> property to allow the task to find them. Unfortunately, for 9.1, it resolves relative paths against the location of the SDK <code class="code highlight language-text">.targets</code> file, rather than the <code class="code highlight language-text">.csproj</code> file, meaning any hint path such as <code class="code highlight language-text">..\packages\{...}</code> is not resolved correctly, and the custom task cannot find required dependencies.)</p>
+</aside>
+
+<a name="copying-multiple-files" class="elem-anchor"></a>
+<h2>Copying multiple files<a href="#copying-multiple-files" class="anchor-link"><span></span></a></h2>
+
+<p>The build step will <strong>only copy the main assembly</strong> to the output directory. No dependencies are copied, and no items marked “Copy to output” will be copied either. This is because the SDK does not know what should be copied to the installation folder - this is really the concern of the <code class="code highlight language-text">.nuspec</code> file. There are also <a href="/resharper/devguide/Extensions/Deployment/InstallProcess/Dependencies.html"><span>complications with dependencies</span></a> that need to be considered.</p>
+
+<p>If there are multiple projects that need to be copied, each project can set up the <code class="code highlight language-text">HostFullIdentifier</code> property (or include a common <code class="code highlight language-text">.targets</code> file that does it for all projects) to get the main assembly of that project copied.</p>
+
+<p>Alternatively, the project can make use of the MSBuild tasks to provide its own custom copy task, and provide its own logic for selecting what files should be copied to where. E.g.</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_xml"><span class="nt">&lt;Target</span> <span class="na">Name=</span><span class="s">&quot;CopyAllPluginFiles&quot;</span> <span class="na">AfterTargets=</span><span class="s">&quot;AfterBuild&quot;</span> <span class="na">Condition=</span><span class="s">&quot;&#39;$(HostFullIdentifier)&#39; != &#39;&#39;&quot;</span><span class="nt">&gt;</span>
+  <span class="nt">&lt;InstalledProductsDiscoveryTask</span> <span class="na">HostFullIdentifier=</span><span class="s">&quot;$(HostFullIdentifier)&quot;</span><span class="nt">&gt;</span>
+    <span class="nt">&lt;Output</span> <span class="na">TaskParameter=</span><span class="s">&quot;Directories&quot;</span> <span class="na">ItemName=</span><span class="s">&quot;InstallFolder&quot;</span> <span class="nt">/&gt;</span>
+  <span class="nt">&lt;/InstalledProductsDiscoveryTask&gt;</span>
+
+  <span class="c">&lt;!-- InstallFolder is now the location of the host --&gt;</span>
+  <span class="nt">&lt;Message</span> <span class="na">Text=</span><span class="s">&quot;InstallFolder: @(InstallFolder)&quot;</span> <span class="na">Importance=</span><span class="s">&quot;High&quot;</span> <span class="nt">/&gt;</span>
+
+  <span class="c">&lt;!-- Copy any files in the AllFilesToCopy property to the host installation folder.</span>
+<span class="c">       The AllFilesToCopy property needs to be populated, based on your own criteria --&gt;</span>
+  <span class="nt">&lt;Copy</span> <span class="na">SourceFiles=</span><span class="s">&quot;@(AllFilesToCopy)&quot;</span> <span class="na">DestinationFolder=</span><span class="s">&quot;@(InstallFolder)&quot;</span> <span class="na">Condition=</span><span class="s">&quot;Exists(&#39;@(InstallFolder)&#39;)&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/Target&gt;</span></code></pre>
+
+<p>All files should be copied to the installation folder in the same layout that they are saved in the <code class="code highlight language-text">DotFiles</code> folder of the NuGet package. That is, assemblies live in the <code class="code highlight language-text">DotFiles</code> folder, so should be copied to the root of the installation folder. Settings and external annotations are saved to <code class="code highlight language-text">DotFiles\Extensions\{packageId}\settings\</code> and <code class="code highlight language-text">DotFiles\Extensions\{packageId}\annotations\</code>, and should be copied to the <code class="code highlight language-text">Extensions\{packageId}\settings\</code> and <code class="code highlight language-text">Extensions\{packageId}\annotations\</code> folders in the root of the installation folder.</p>
+
+
+                    <div class="last-modified">
+                        Last modified: 12 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

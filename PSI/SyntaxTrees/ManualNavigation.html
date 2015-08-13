@@ -1,0 +1,172 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="PSI/SyntaxTrees/ManualNavigation">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="manually-navigating-a-syntax-tree" class="elem-anchor"></a>
+<h1>Manually Navigating a Syntax Tree<a href="#manually-navigating-a-syntax-tree" class="anchor-link"><span></span></a></h1>
+
+<p>Manually walking a syntax tree is the lowest level means of navigation, and involves walking the nodes using the properties defined on <code class="code highlight language-text">ITreeNode</code>.</p>
+
+<aside class="note">
+  <p> Generally speaking, you should prefer to use <a href="StronglyTypedNavigation.html"><span>strongly typed navigation</span></a> or the visitor pattern to walk and process the tree. Failing that, you should use the <code class="code highlight language-text">TreeNodeExtensions</code> helper methods that have implemented the boilerplate tree walking code for you.</p>
+</aside>
+
+<ul id="markdown-toc">
+  <li><a href="#walking-up-the-tree" id="markdown-toc-walking-up-the-tree"><span>Walking up the tree<a href="#walking-up-the-tree" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#walking-sibling-nodes" id="markdown-toc-walking-sibling-nodes"><span>Walking sibling nodes<a href="#walking-sibling-nodes" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#walking-down-the-tree" id="markdown-toc-walking-down-the-tree"><span>Walking down the tree<a href="#walking-down-the-tree" class="anchor-link"><span></span></a></span></a></li>
+</ul>
+
+<a name="walking-up-the-tree" class="elem-anchor"></a>
+<h3>Walking up the tree<a href="#walking-up-the-tree" class="anchor-link"><span></span></a></h3>
+
+<p>You can walk up the tree using the <code class="code highlight language-text">Parent</code> property. This is very useful for finding the context that the current node is in - for example, you can walk the <code class="code highlight language-text">Parent</code> property of a method invocation to see if the invocation is happening inside a method declaration that is async or not.</p>
+
+<p>To walk the <code class="code highlight language-text">Parent</code> property, you will want to write code like this:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">while</span><span class="p">(</span><span class="n">currentNode</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// Process node</span>
+  <span class="n">currentNode</span> <span class="p">=</span> <span class="n">currentNode</span><span class="p">.</span><span class="n">Parent</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+
+<a name="walking-sibling-nodes" class="elem-anchor"></a>
+<h3>Walking sibling nodes<a href="#walking-sibling-nodes" class="anchor-link"><span></span></a></h3>
+
+<p>Since a file is parsed into a tree structure, nodes have siblings as well as children. For example, a C# file can have a class declaration that contains multiple methods. Each method is represented by an <code class="code highlight language-text">IMethodDeclaration</code> node. Intuitively, each method is a child of the class, and therefore are siblings, and no method is higher or lower in the tree than any other.</p>
+
+<aside class="note">
+  <p> Even though the method declarations will be siblings, they are not going to be direct siblings. The syntax tree is a full-fidelity representation of the C# file, which means the whitespace and comments between the method declarations are also added as nodes in the tree, and these will be siblings to the method declarations.</p>
+</aside>
+
+<p>You can walk the siblings with code like this:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">while</span><span class="p">(</span><span class="n">currentNode</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="c1">// Process node</span>
+  <span class="n">currentNode</span> <span class="p">=</span> <span class="n">currentNode</span><span class="p">.</span><span class="n">NextSibling</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
+
+<p>Obviously the code to walk the sibling chain in reverse is just the same, but using the <code class="code highlight language-text">PrevSibling</code> property.</p>
+
+<a name="walking-down-the-tree" class="elem-anchor"></a>
+<h3>Walking down the tree<a href="#walking-down-the-tree" class="anchor-link"><span></span></a></h3>
+
+<p>Walking down the tree is very similar to walking the sibling chain. Again, since this is a tree structure a single node can have multiple children. For example, a C# file’s list of <code class="code highlight language-text">using</code> statements is represented by an <code class="code highlight language-text">IUsingList</code> node, and this will have multiple children - multiple instances of <code class="code highlight language-text">IUsingNamespaceDirective</code> (with each child again separated by whitespace nodes).</p>
+
+<p>To walk the immediate children of a node, you’ll want to write code like this:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">void</span> <span class="nf">WalkChildren</span><span class="p">(</span><span class="n">ITreeNode</span> <span class="n">root</span><span class="p">)</span>
+<span class="p">{</span>
+  <span class="kt">var</span> <span class="n">child</span> <span class="p">=</span> <span class="n">root</span><span class="p">.</span><span class="n">FirstChild</span><span class="p">;</span>
+  <span class="k">while</span><span class="p">(</span><span class="n">child</span> <span class="p">!=</span> <span class="k">null</span><span class="p">)</span>
+  <span class="p">{</span>
+    <span class="c1">// Process child node</span>
+    <span class="n">child</span> <span class="p">=</span> <span class="n">child</span><span class="p">.</span><span class="n">NextSibling</span><span class="p">;</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+<p>Note that we start with <code class="code highlight language-text">FirstChild</code> but then walk that child’s siblings. To walk the children in reverse order, start with <code class="code highlight language-text">LastChild</code>, and walk <code class="code highlight language-text">PrevSibling</code>.</p>
+
+<p>If you want to walk all descendants of a node, simply recursively walk a child node’s children.</p>
+
+<aside class="note">
+  <p> While you do need to recursively walk the structure (walk a child node’s children, then it’s children, etc.), beware of an implementation that uses recursion to accomplish this. Recursion can run into problems with a very deeply nested syntax tree. It is better to iteratively walk the tree than to use recursion.</p>
+
+  <p>Even better, you should avoid writing your own methods for walking the tree at all, and make use of the <code class="code highlight language-text">TreeNodeVisitor</code> or <code class="code highlight language-text">IRecursiveElementProcessor</code> patterns that ReSharper implements. Failing that, use the <code class="code highlight language-text">TreeNodeExtensions</code> helper methods.</p>
+</aside>
+
+
+
+                    <div class="last-modified">
+                        Last modified: 3 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

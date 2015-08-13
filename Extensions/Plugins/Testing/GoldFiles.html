@@ -1,0 +1,259 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/Plugins/Testing/GoldFiles">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="gold-files" class="elem-anchor"></a>
+<h1>Gold Files<a href="#gold-files" class="anchor-link"><span></span></a></h1>
+
+<p>ReSharper’s test framework typically takes an input file, adds it as source file to an in-memory project, runs a process on it, such as inspections or code completion, and records the output in a temporary text file. This <code class="code highlight language-text">.tmp</code> file is then compared to a <code class="code highlight language-text">.gold</code> file, which contains the expected output. If they match, the test passes. If they don’t, the test fails.</p>
+
+<p>The input file typically lives in the same folder under the <code class="code highlight language-text">test\data</code> folder as the <code class="code highlight language-text">.gold</code> file. The input file and the gold file should both be committed to source control. The <code class="code highlight language-text">.tmp</code> file should not be committed, as it represents a failing test.</p>
+
+<p>The contents of the gold file depends very much on the test. For example, gold files for code completion tests will be a list of items in the code completion list, while inspections will be a copy of the source file annotated with location and text of highlights. Details of the contents of gold files can be found throughout this guide, in the specific sections on testing a particular feature.</p>
+
+<a name="input-files" class="elem-anchor"></a>
+<h2>Input files<a href="#input-files" class="anchor-link"><span></span></a></h2>
+
+<p>The input file typically lives in the same <code class="code highlight language-text">test\data</code> sub-folder as the <code class="code highlight language-text">.gold</code> file. Exactly what the input file is depends on the test, but mostly, it is a source file, such as <code class="code highlight language-text">.cs</code>, <code class="code highlight language-text">.js</code>, <code class="code highlight language-text">.html</code>, etc. However, it can also be a compiled assembly, i.e. a <code class="code highlight language-text">.dll</code> file.</p>
+
+<p>Depending on the type of the file, it can be handled in different ways. It can be added as a source file to the in-memory project that the test environment creates, and the test will run some process over that file, such as running inspections, or invoking code completion. An assembly could be added as a reference to the in-memory project, and the test might perform metadata analysis (like Reflection) or decompilation, and put the output of that process to the <code class="code highlight language-text">.tmp</code> file.</p>
+
+<a name="special-tokens" class="elem-anchor"></a>
+<h2>Special tokens<a href="#special-tokens" class="anchor-link"><span></span></a></h2>
+
+<aside class="todo">
+  <p> Document the default special tokens</p>
+</aside>
+
+<a name="creating-gold-files" class="elem-anchor"></a>
+<h2>Creating gold files<a href="#creating-gold-files" class="anchor-link"><span></span></a></h2>
+
+<p>To initially make a test pass, a known good gold file is required. The easiest way to create this is to run the test without a <code class="code highlight language-text">.gold</code> file - which will cause it to fail. The resulting <code class="code highlight language-text">.tmp</code> file should then be manually examined to see if it is the correct output for the test. If it is, it should be renamed to <code class="code highlight language-text">.gold</code>.</p>
+
+<a name="working-with-failures" class="elem-anchor"></a>
+<h2>Working with failures<a href="#working-with-failures" class="anchor-link"><span></span></a></h2>
+
+<p>When a test fails, ReSharper’s test framework adds extra information into the <a href="http://msdn.microsoft.com/en-us/library/system.exception.data.aspx" data-bypass="yes"><span><code class="code highlight language-text">Data</code> dictionary of the exception</span></a> that the failing test throws. This data provides extra context about the test, and is rendered as part of the test failure message in the unit test runner. The following fields are added:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Field name</th>
+      <th>Contents</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="code highlight language-text">GoldFile</code></td>
+      <td>The path to the <code class="code highlight language-text">.gold</code> file. This is rendered as a clickable <code class="code highlight language-text">file://</code> url that will open Windows Explorer with the <code class="code highlight language-text">.gold</code> file selected.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">TempFile</code></td>
+      <td>The path to the <code class="code highlight language-text">.tmp</code> file. This is rendered as a clickable <code class="code highlight language-text">file://</code> url that will open Windows Explorer with the <code class="code highlight language-text">.tmp</code> file selected.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">Cmd</code></td>
+      <td>A clickable <code class="code highlight language-text">file://</code> url that will open a command prompt to the <code class="code highlight language-text">test\data</code> sub-folder that contains the <code class="code highlight language-text">.gold</code> or <code class="code highlight language-text">.tmp</code> file.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">Directory</code></td>
+      <td>A plain text string that contains the sub-folder under <code class="code highlight language-text">test\data</code> that contains the <code class="code highlight language-text">.gold</code> or <code class="code highlight language-text">.tmp</code> file.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">Diff</code></td>
+      <td>A diff between the <code class="code highlight language-text">.gold</code> and <code class="code highlight language-text">.tmp</code> files.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">CopyToGold</code></td>
+      <td>A clickable <code class="code highlight language-text">file://</code> url that will execute a <code class="code highlight language-text">.bat</code> file that’s been created in the <code class="code highlight language-text">%TEMP%</code> folder. The batch file will copy the <code class="code highlight language-text">.tmp</code> file to the <code class="code highlight language-text">.gold</code> file. This field is added when the <code class="code highlight language-text">.gold</code> file doesn’t already exist.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">UpdateGold</code></td>
+      <td>A clickable <code class="code highlight language-text">file://</code> url that will execute a <code class="code highlight language-text">.bat</code> file that’s been created in the <code class="code highlight language-text">%TEMP%</code> folder. The batch file will copy the <code class="code highlight language-text">.tmp</code> file over an existing <code class="code highlight language-text">.gold</code> file. This should be used only once the differences between the existing <code class="code highlight language-text">.gold</code> and the .<code class="code highlight language-text">tmp</code> file have been examined and found to be correct.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">ComparisonFile</code>   </td>
+      <td>A clickable <code class="code highlight language-text">file://</code> url that will execute a <code class="code highlight language-text">.bat</code> file that’s been created in the <code class="code highlight language-text">%TEMP%</code> folder. This batch file will open a visual diff tool to show the differences between the <code class="code highlight language-text">.tmp</code> file and the <code class="code highlight language-text">.gold</code> file. See below for more details.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">GoldLine</code></td>
+      <td>Can contain the first line of the <code class="code highlight language-text">.gold</code> file that does not match against a new <code class="code highlight language-text">.tmp</code> file. This is only used by certain tests.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">TestLine</code></td>
+      <td>Can contain the first line of the <code class="code highlight language-text">.tmp</code> file that does not match against a <code class="code highlight language-text">.gold</code> file. This is only used by certain tests.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">LineNumber</code></td>
+      <td>Can contain the line number of the first line in both the <code class="code highlight language-text">.tmp</code> and <code class="code highlight language-text">.gold</code> file that does not match. This is only used by certain tests.</td>
+    </tr>
+  </tbody>
+</table>
+
+<aside class="note">
+  <p> Failures create <code class="code highlight language-text">.bat</code> files in the <code class="code highlight language-text">%TEMP%</code> folder that will update the <code class="code highlight language-text">.gold</code> file, or run a visual diff tool. These <code class="code highlight language-text">.bat</code> files are not cleaned up automatically (as the test run has already finished and the <code class="code highlight language-text">.bat</code> files are used when browsing results). The <code class="code highlight language-text">%TEMP%</code> folder should be manually cleaned up from time to time.</p>
+</aside>
+
+<a name="visual-diff-tools" class="elem-anchor"></a>
+<h2>Visual diff tools<a href="#visual-diff-tools" class="anchor-link"><span></span></a></h2>
+
+<p>When a test fails, the <code class="code highlight language-text">ComparisonFile</code> field is added to the failing test’s exception’s <code class="code highlight language-text">Data</code> dictionary. This field contains a clickable <code class="code highlight language-text">file://</code> url that will execute a <code class="code highlight language-text">.bat</code> file that’s been saved in the <code class="code highlight language-text">%TEMP%</code> folder. This batch file is as follows:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_dosbatch"><span class="k">setlocal</span>
+<span class="k">if</span> not <span class="k">defined</span> DIFF <span class="k">SET</span> <span class="nv">DIFF</span><span class="o">=</span>kdiff<span class="m">3</span>
+<span class="k">if</span> not <span class="k">defined</span> DIFF_PARAMETERS <span class="k">SET</span> <span class="nv">DIFF_PARAMETERS</span><span class="o">=</span> --L<span class="m">1</span> <span class="s1">&#39;$plabel1&#39;</span> --L<span class="m">2</span> <span class="s1">&#39;$clabel&#39;</span> $parent $child
+<span class="k">set</span> <span class="nv">DIFF_PARAMETERS</span><span class="o">=</span><span class="nv">%DIFF_PARAMETERS:$plabel1</span><span class="o">=</span>Input.cs.tmp%
+<span class="k">set</span> <span class="nv">DIFF_PARAMETERS</span><span class="o">=</span><span class="nv">%DIFF_PARAMETERS:$clabel</span><span class="o">=</span>Input.cs.gold%
+<span class="k">set</span> <span class="nv">DIFF_PARAMETERS</span><span class="o">=</span><span class="nv">%DIFF_PARAMETERS:$parent</span><span class="o">=</span><span class="s2">&quot;C:\Users\matt\Code\MyPlugin\test\data\Completion\Input.cs.tmp&quot;</span>%
+<span class="k">set</span> <span class="nv">DIFF_PARAMETERS</span><span class="o">=</span><span class="nv">%DIFF_PARAMETERS:$child</span><span class="o">=</span><span class="s2">&quot;C:\Users\matt\Code\MyPlugin\test\data\Completion\Input.cs.gold&quot;</span>%
+start <span class="n">/B</span> <span class="s2">&quot;&quot;</span> <span class="s2">&quot;%DIFF%&quot;</span> <span class="nv">%DIFF_PARAMETERS%</span>
+<span class="k">endlocal</span></code></pre>
+
+<p>By default, it will launch the <a href="http://kdiff3.sourceforge.net" data-bypass="yes"><span>KDiff3</span></a> diff tool, passing in the parameters to display the <code class="code highlight language-text">.tmp</code> and <code class="code highlight language-text">.gold</code> files side by side. This can be overridden by defining the <code class="code highlight language-text">%DIFF%</code> and <code class="code highlight language-text">%DIFF_PARAMETERS%</code> environment variables.</p>
+
+<p>The <code class="code highlight language-text">%DIFF%</code> environment variable should be defined to the command needed to start the diff tool. This can be a fully qualified path, or just the executable name if it’s already on the path.</p>
+
+<p>The <code class="code highlight language-text">%DIFF_PARAMETER%</code> environment variable specifies the command line for the diff tool. The batch file will substitute the <code class="code highlight language-text">.temp</code> and <code class="code highlight language-text">.gold</code> names and full file paths for specific placeholders:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Placeholder</th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="code highlight language-text">$plabel1</code></td>
+      <td>File name of the <code class="code highlight language-text">.tmp</code> file.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">$clabel</code></td>
+      <td>File name of the <code class="code highlight language-text">.gold</code> file.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">$parent</code></td>
+      <td>Full path to the <code class="code highlight language-text">.tmp</code> file.</td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">$child</code></td>
+      <td>Full path to the <code class="code highlight language-text">.gold</code> file.</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>For example, to use <a href="https://sourcegear.com/diffmerge/" data-bypass="yes"><span>SourceGear DiffMerge</span></a> as the diff tool, you can set:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Environment variable   </th>
+      <th>Value</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code class="code highlight language-text">DIFF</code></td>
+      <td><code class="code highlight language-text">sgdm</code></td>
+    </tr>
+    <tr>
+      <td><code class="code highlight language-text">DIFF_PARAMETERS</code></td>
+      <td><code class="code highlight language-text">/t1=&quot;$plabel1&quot; /t2=&quot;$clabel&quot; $parent $child</code></td>
+    </tr>
+  </tbody>
+</table>
+
+
+
+                    <div class="last-modified">
+                        Last modified: 13 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

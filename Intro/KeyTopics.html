@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Intro/KeyTopics">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -66,18 +80,18 @@
 
 <p>The ReSharper Platform is very large, and very capable, and its size can initially be very daunting. This page is intended to list the key topics that a plugin author would be interested in, and provide quick links to the most common extension points.</p>
 
-<a name="basics" class="elem-anchor"></a>
-<h2>Basics<a href="#basics" class="anchor-link"><span></span></a></h2>
+<a name="essential-concepts" class="elem-anchor"></a>
+<h2>Essential concepts<a href="#essential-concepts" class="anchor-link"><span></span></a></h2>
 
 <ul>
-  <li><a href="GettingStarted.html"><span>Getting Started</span></a> with extensions and plugins.</li>
-  <li><a href="../Architecture/Overview.html"><span>Architectural overview</span></a> - a brief tour of the different layers of the ReSharper Platform.</li>
-  <li><a href="../Platform/Lifetime.html"><span><code class="code highlight language-text">Lifetime</code></span></a> - a key class used across the whole of the Platform. Provides lifetime management features.</li>
-  <li><a href="../Platform/ComponentModel.html"><span>Component Model</span></a> - ReSharper is a highly component based application, importing and exporting services and components. To get the most out of it requires some understanding of how the component model works, and how it relates to lifetime management.</li>
-  <li><a href="../Platform/Zones.html"><span>Zones</span></a> - the ReSharper Platform’s shared binary distribution raises issues about shipping mechanisms (i.e. how to ship a component that is used by one product configuration but not another). Zones manage this by partitioning components into logical feature sets. Extension providers need to understand how this works in order to correctly import and export components.</li>
+  <li><a href="/resharper/devguide/Extensions/GettingStarted.html"><span>Getting Started</span></a> with extensions and plugins.</li>
+  <li><a href="/resharper/devguide/Architecture/Overview.html"><span>Architectural overview</span></a> - a brief tour of the different layers of the ReSharper Platform.</li>
+  <li><a href="/resharper/devguide/Platform/Lifetime.html"><span>Lifetime management</span></a> - discusses the <code class="code highlight language-text">Lifetime</code> class, which is key to lifetime management and used throughout the Platform.</li>
+  <li><a href="/resharper/devguide/Platform/ComponentModel.html"><span>Component Model</span></a> - ReSharper is very much a component based application. All services and components are exported and must be imported in order to be consumed. This allows for a very loose coupled architecture, and is instrumental to making ReSharper very extensible. To get the most out of it requires some understanding of how the component model works, and how it relates to lifetime management.</li>
+  <li><a href="/resharper/devguide/Platform/Zones.html"><span>Zones</span></a> - the ReSharper Platform’s shared binary distribution raises issues about shipping mechanisms (i.e. how to ship a component that is used by one product configuration but not another). Zones manage this by partitioning components into logical feature sets. Extension providers <strong>must</strong> understand how this works in order to correctly import and export components.</li>
 </ul>
 
-<p>Also, there is a <a href="../Intro/WhatsNew.html"><span>migration guide</span></a> for existing extension authors.</p>
+<p>Also, there is a <a href="/resharper/devguide/Extensions/WhatsNew.html"><span>migration guide</span></a> for existing extension authors.</p>
 
 <a name="the-code-model" class="elem-anchor"></a>
 <h2>The code model<a href="#the-code-model" class="anchor-link"><span></span></a></h2>
@@ -85,11 +99,11 @@
 <p>ReSharper’s code model is called the PSI - the Program Structure Index. The key topics here are:</p>
 
 <ul>
-  <li><a href="../Architecture/PSI.html"><span>Overview</span></a></li>
-  <li><a href="../PSI/SyntaxTrees.html"><span>Abstract syntax trees</span></a> - files are parsed and abstract syntax trees are generated, as you type.</li>
-  <li><a href="../PSI/DeclaredElements.html"><span>Declared elements</span></a> - declared elements are the root interfaces for ReSharper’s semantic view of the code.</li>
-  <li><a href="../PSI/References.html"><span>References</span></a> - a very powerful mechanism to allow abstract syntax trees to have an outgoing references to a declared element, that is, to link syntax nodes, such as type names, to the semantic item they refer to.</li>
-  <li><a href="../PSI/TypeSystems2.html"><span>Type Systems</span></a> - modelling type usage, based on the semantic view of the code given by declared elements.</li>
+  <li><a href="/resharper/devguide/Architecture/PSI.html"><span>Overview</span></a></li>
+  <li><a href="/resharper/devguide/PSI/SyntaxTrees.html"><span>Abstract syntax trees</span></a> - files are parsed and abstract syntax trees are generated, as you type.</li>
+  <li><a href="/resharper/devguide/PSI/DeclaredElements.html"><span>Declared elements</span></a> - declared elements are the root interfaces for ReSharper’s semantic view of the code.</li>
+  <li><a href="/resharper/devguide/PSI/References.html"><span>References</span></a> - a very powerful mechanism to allow abstract syntax trees to have an outgoing references to a declared element, that is, to link syntax nodes, such as type names, to the semantic item they refer to.</li>
+  <li><a href="/resharper/devguide/PSI/TypeSystems2.html"><span>Type Systems</span></a> - modelling type usage, based on the semantic view of the code given by declared elements.</li>
 </ul>
 
 <p>These are the core building blocks of the PSI, although it has more functionality, including caching, searching and control flow analysis. The PSI section has more details.</p>
@@ -100,23 +114,23 @@
 <p>ReSharper is extremely extensible. It is a heavily component based application, and is designed to follow the Open Closed Principle to allow for such extensibility. Most features and services can be extended, but some common extension points are:</p>
 
 <ul>
-  <li><a href="../Features/Analysis/Daemons.html"><span>Daemons and daemon stages</span></a> - code analysis, as you type. Displays “squiggly” warnings in your code.</li>
-  <li><a href="../Features/Actions.html"><span>Actions</span></a> - menu items, and toolbar items.</li>
-  <li><a href="../Features/Actions/QuickFixes.html"><span>Quick-Fixes and Context Actions</span></a> - extending the Alt+Enter menu.</li>
-  <li><a href="../Features/Completion.html"><span>Code Completion</span></a> - extend the code completion menus.</li>
-  <li><a href="../PSI/References/ReferenceProviders.html"><span>Reference Providers</span></a> - apply references from an arbitrary abstract syntax tree node to another code element, such as supporting code completion and navigation from string literals to class or property names.</li>
-  <li><a href="../Features/GenerateMenu.html"><span>Generate Menu</span></a> - add items to the Generate menu.</li>
-  <li><a href="../Features/Navigation.html"><span>Navigation</span></a> - extend navigation.</li>
-  <li><a href="../Features/OptionsPages.html"><span>Options Pages</span></a> - add your own options pages.</li>
-  <li><a href="../Features/Tools/CodeCleanup.html"><span>Code Cleanup</span></a> - participate in code cleanup.</li>
-  <li><a href="../Features/LiveTemplates.html"><span>Live Templates</span></a> - add macros for Live Templates.</li>
-  <li><a href="../Features/Refactoring.html"><span>Refactoring</span></a> - add your own refactorings.</li>
+  <li><a href="/resharper/devguide/Features/Analysis/Daemons.html"><span>Daemons and daemon stages</span></a> - code analysis, as you type. Displays “squiggly” warnings in your code.</li>
+  <li><a href="/resharper/devguide/Features/Actions.html"><span>Actions</span></a> - menu items, and toolbar items.</li>
+  <li><a href="/resharper/devguide/Features/Actions/QuickFixes.html"><span>Quick-Fixes and Context Actions</span></a> - extending the Alt+Enter menu.</li>
+  <li><a href="/resharper/devguide/Features/Completion.html"><span>Code Completion</span></a> - extend the code completion menus.</li>
+  <li><a href="/resharper/devguide/PSI/References/ReferenceProviders.html"><span>Reference Providers</span></a> - apply references from an arbitrary abstract syntax tree node to another code element, such as supporting code completion and navigation from string literals to class or property names.</li>
+  <li><a href="/resharper/devguide/Features/GenerateMenu.html"><span>Generate Menu</span></a> - add items to the Generate menu.</li>
+  <li><a href="/resharper/devguide/Features/Navigation.html"><span>Navigation</span></a> - extend navigation.</li>
+  <li><a href="/resharper/devguide/Features/OptionsPages.html"><span>Options Pages</span></a> - add your own options pages.</li>
+  <li><a href="/resharper/devguide/Features/Tools/CodeCleanup.html"><span>Code Cleanup</span></a> - participate in code cleanup.</li>
+  <li><a href="/resharper/devguide/Features/LiveTemplates.html"><span>Live Templates</span></a> - add macros for Live Templates.</li>
+  <li><a href="/resharper/devguide/Features/Refactoring.html"><span>Refactoring</span></a> - add your own refactorings.</li>
 </ul>
 
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 12 August 2015
                     </div>
                 </article>
 

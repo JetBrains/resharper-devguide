@@ -1,0 +1,122 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/Tools">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="required-tools" class="elem-anchor"></a>
+<h1>Required Tools<a href="#required-tools" class="anchor-link"><span></span></a></h1>
+
+<p>You need the following tools in order to build ReSharper extensions:</p>
+
+<ul>
+  <li><strong>Visual Studio</strong> and <strong>ReSharper</strong>, naturally.</li>
+  <li><strong><a href="https://nuget.codeplex.com/" data-bypass="yes"><span>NuGet.exe</span></a></strong>. ReSharper extensions are NuGet packages, so you’ll need <code class="code highlight language-text">nuget.exe</code> in order to create the packages from a <code class="code highlight language-text">.nuspec</code> file.</li>
+</ul>
+
+<p>If you wish to build a compiled extension (plugin), you will also need:</p>
+
+<ul>
+  <li>A <strong>“checked build”</strong> of ReSharper. This is a build of ReSharper that is identical to the production version, except it is compiled with extra diagnostics enabled. The code contains asserts that verify assumptions during development of the product, and are not needed during day-to-day usage, but are very useful when developing extensions. Also, a checked build also includes more contextual data when an exception is thrown, by storing information in the <a href="http://msdn.microsoft.com/en-us/library/system.exception.data.aspx" data-bypass="yes"><span><code class="code highlight language-text">Exception.Data</code> dictionary</span></a>. A checked build can be <a href="http://resharper-support.jetbrains.com/entries/21206508-Where-can-I-download-an-old-previous-ReSharper-version-" data-bypass="yes"><span>downloaded from here</span></a>.</li>
+  <li><strong>ReSharper SDK nuget packages</strong> for <a href="http://www.nuget.org/packages/JetBrains.ReSharper.SDK/" data-bypass="yes"><span>assembly references</span></a> and <a href="http://www.nuget.org/packages/JetBrains.ReSharper.SDK.Tests/" data-bypass="yes"><span>testing</span></a>. These packages contain the assembly references for your project, as well as testing infrastructure and msbuild tasks for icon creation, new language development and more. More details in the <a href="/resharper/devguide/Extensions/Plugins/ProjectSetup/NuGetReferences.html"><span>NuGet References</span></a> section.</li>
+</ul>
+
+<a name="optional-tools" class="elem-anchor"></a>
+<h2>Optional Tools<a href="#optional-tools" class="anchor-link"><span></span></a></h2>
+
+<ul>
+  <li>When running in <a href="InternalMode.html"><span>Internal Mode</span></a>, some diagnostic features can create graphs and diagrams, and will start the <a href="http://www.yworks.com/en/products/yfiles/yed/" data-bypass="yes"><span>yEd</span></a> graphing application to view them.</li>
+  <li>When running tests that compare a generated output file against an expected “gold” file, any differences can be displayed in <a href="http://kdiff3.sourceforge.net" data-bypass="yes"><span>kdiff3</span></a>.</li>
+</ul>
+
+
+                    <div class="last-modified">
+                        Last modified: 12 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

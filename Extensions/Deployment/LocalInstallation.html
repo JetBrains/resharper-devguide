@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Extensions/Deployment/LocalInstallation">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -64,7 +78,7 @@
                     <a name="local-installation" class="elem-anchor"></a>
 <h1>Local Installation<a href="#local-installation" class="anchor-link"><span></span></a></h1>
 
-<p>In order to manually test an extension, whether it’s a <a href="../../Intro/CompiledExtensions.html"><span>plugin</span></a> or a <a href="../../Intro/DeclarativeExtensions.html"><span>declarative extension</span></a>, it must first be installed into the ReSharper Platform. Once installed, existing files can be updated by copying a new version in place. This is a similar pattern to Visual Studio’s VSIX development model.</p>
+<p>In order to manually test an extension, whether it’s a <a href="/resharper/devguide/Extensions/CompiledExtensions.html"><span>plugin</span></a> or a <a href="/resharper/devguide/Extensions/DeclarativeExtensions.html"><span>declarative extension</span></a>, it must first be installed into the ReSharper Platform. Once installed, existing files can generally be updated by copying a new version without re-runnning the installatione. This is a similar pattern to Visual Studio’s VSIX development model.</p>
 
 <aside class="note">
   <p> Previous versions of ReSharper allowed plugins to be run via a command line parameter (<code class="code highlight language-text">/ReSharper.plugin</code>). This is no longer supported, as the ReSharper Platform now requires all extensions (including Products such as dotTrace and dotPeek) to be statically registered. Visual Studio integration plays a large role in this decision. Dynamically registering components with Visual Studio introduced issues that are not evident when statically registering (e.g. dynamically added menu items not maintaining assigned keyboard shortcuts). So, while the Component Model allows for dynamic live loading of assemblies and types, the ReSharper Platform requires static registration.</p>
@@ -73,103 +87,17 @@
 <p>The steps to install locally are straight forward, but unfortunately, longer and more manual than we would like. We hope to improve and automate some of these steps going forward. To install locally:</p>
 
 <ol>
-  <li>Install ReSharper to an experimental instance of Visual Studio <em>(optional)</em>.</li>
-  <li>Package the extension into a custom NuGet package.</li>
-  <li>Install the local copy of the extension into ReSharper.</li>
+  <li><a href="LocalInstallation/ExperimentalInstance.html"><span>Install ReSharper to an experimental instance of Visual Studio</span></a> <em>(optional, but recommended)</em>.</li>
+  <li><a href="LocalInstallation/Packaging.html"><span>Package the extension</span></a> into a custom NuGet package.</li>
+  <li><a href="LocalInstallation/InstallCustomSource.html"><span>Install the local copy</span></a> of the extension into ReSharper, using a custom extension source.</li>
+  <li>Modify the project so that the plugin files are <a href="LocalInstallation/CopyOnBuild.html"><span>automatically copied</span></a> when the project is built.</li>
 </ol>
 
-<a name="install-to-an-experimental-instance" class="elem-anchor"></a>
-<h2>Install to an experimental instance<a href="#install-to-an-experimental-instance" class="anchor-link"><span></span></a></h2>
-
-<p>This first step is optional, but strongly recommended for working with plugins for ReSharper. This allows for having the plugin solution open in one instance of Visual Studio, and the plugin running in another instance of Visual Studio. The instance of Visual Studio with the solution open does not keep the plugin locked in memory. This is not strictly required for declarative extensions as ReSharper will not keep a lock on .dotSettings or .xml files, however, it may be useful for testing purposes. Similarly, this is not required for plugins for standalone products, such as dotPeek.</p>
-
-<p>Visual Studio’s <a href="http://msdn.microsoft.com/en-us/library/bb166560.aspx" data-bypass="yes"><span>“Experimental Instance”</span></a> feature is intended for developing and debugging Visual Studio extensions, and maintains a separate copy of the configuration needed to run Visual Studio. Each experimental instance can have an entirely different configuration, from theme and window layout to the extensions that are loaded.</p>
-
-<aside class="note">
-  <p> “Experimental instances” were previously known as “custom hives”</p>
-</aside>
-
-<p>By default, the ReSharper Platform and all Product extensions (dotTrace, dotPeek, etc) are installed as a per-user extension for the main instance of Visual Studio. It is not visible in existing instances. However, it can be installed into an experimental instance to allow for a separate version of ReSharper (complete with separate versions of extensions) than what is installed in the main instance.</p>
-
-<p>To install to an experimental instance, run the ReSharper unified installer, select the Options button, and enter the name of the instance. The experimental instance does not need to exist before starting the install.]</p>
-
-<p>Once the install is complete, a separate instance of ReSharper has been installed to the system. The main instance of Visual Studio will continue to use the original install of ReSharper. Running Visual Studio in the new experimental instance will run with this newly installed copy of ReSharper, and only use the extensions installed into that copy.</p>
-
-<p>To run Visual Studio in an experimental instance called “Plugins”, run:</p>
-
-<pre><code class="code-block__wrapper code-block _highlighted lang_text">devenv.exe /rootSuffix Plugins</code></pre>
-
-<p>Of course, the experimental instance can be called anything, and you can install more than instance if you wish.</p>
-
-<a name="package-the-extension" class="elem-anchor"></a>
-<h2>Package the extension<a href="#package-the-extension" class="anchor-link"><span></span></a></h2>
-
-<p>In order to test the extension against a custom instance (or even the main instance), it needs to be installed, and needs to be packaged up in a custom <code class="code highlight language-text">.nupkg</code> file. This is detailed in the <a href="../Packaging.html"><span>Packaging</span></a> guide.</p>
-
-<aside class="note">
-  <p> It might seem odd that a plugin needs to be packaged up and installed before it can even be run for the first time. However, the plugin must be registered with the ReSharper Platform in order to be loaded. If it’s not registered, it can’t be loaded. This pattern is also the same way that Visual Studio VSIX extensions work, however, the packaging is automated by custom tooling.</p>
-
-  <p>For the first release of the ReSharper Platform, this process is manual. We hope to automate this for future releases.</p>
-</aside>
-
-<a name="install-the-local-copy-of-the-extension" class="elem-anchor"></a>
-<h2>Install the local copy of the extension<a href="#install-the-local-copy-of-the-extension" class="anchor-link"><span></span></a></h2>
-
-<p>Once the extension has been packaged up, and a <code class="code highlight language-text">.nupkg</code> file has been created, it must be installed into the ReSharper Platform. In order to do so:</p>
-
-<ol>
-  <li>
-    <p>Start Visual Studio, ensuring you are running in the appropriate experimental instance.</p>
-
-    <p><code class="code highlight language-text"> devenv.exe /rootSuffix Plugins</code></p>
-
-    <p>Of course, if the extension is for a standalone product, start the appropriate host, e.g. dotPeek.</p>
-  </li>
-  <li>Add a custom source to the Extension Manager. Go to the Options dialog and select the Extension Manager page. Add a new source, pointing to a location on the local filesystem. Hit OK.</li>
-  <li>Display the Extension Manager, find and install the extension. The Extension Manager will aggregate extensions from the default gallery and the new custom source location (the local file system). The new extension will be found and displayed. After being selected for install, the ReSharper Platform will invoke the unified installer to find the extension package, resolve any dependencies and install and register the new package(s). The host (Visual Studio) will need to be restarted to pick up the changes.</li>
-</ol>
-
-<aside class="note">
-  <p> Again, we hope to automate this manual step for future releases.</p>
-</aside>
-
-<a name="updating-the-extension-locally" class="elem-anchor"></a>
-<h2>Updating the extension locally<a href="#updating-the-extension-locally" class="anchor-link"><span></span></a></h2>
-
-<p>Once the extension has been installed, it can be updated through the extension manager as normal, although this can be slow as the entire product is re-registered each time. To speed up testing times, updated files can be copied over the existing files. If new files are introduced, or old files renamed or deleted, the extension will need to be re-installed. Similarly, if a plugin adds new functionality that affects the integration with Visual Studio (e.g. adding new Actions), the extension will need to be re-registered (re-installed).</p>
-
-<p>The ReSharper Platform installs to a location based on a host identifier. For example, the default location for installing ReSharper into Visual Studio 2013 is <code class="code highlight language-text">%LOCALAPPDATA%\JetBrains\Installations\ReSharperPlatformVs12</code>. When installing dotPeek, the files are installed to <code class="code highlight language-text">%LOCALAPPDATA%\JetBrains\Installations\dotPeek01</code> (where the 01 is the version number of the “wave” of the combined release of the ReSharper Platform and all products compatible with it). When installing to an experimental instance, the name of the instance is added to the host identifier: <code class="code highlight language-text">%LOCALAPPDATA%\JetBrains\Installations\ReSharperPlatformVs12Plugins</code> is the location of the install to the “Plugins” experimental instance for Visual Studio 2013.</p>
-
-<p>The SDK NuGet package adds a build step that can automate updating an existing install. It will copy the main assembly of a project to the install folder, given a particular host identifier, after a successful build. If no host identifier is specified, the assembly isn’t copied. If an invalid host identifier is given, the custom task will list all host identifiers. The build step will also output the location of the installation folder for that host.</p>
-
-<p>To add the host identifier, you need to modify the <code class="code highlight language-text">.csproj</code> file (or add the identifier to the <code class="code highlight language-text">.csproj.user</code> file, so it doesn’t get committed to source control). You need to add a property called <code class="code highlight language-text">HostFullIdentifier</code>. Make sure it’s added before the import of the SDK targets. For example, to get the main assembly copied to the “Plugins” experimental instance of Visual Studio 2013, you would need to add something like:</p>
-
-<pre><code class="code-block__wrapper code-block _highlighted lang_xml"><span class="nt">&lt;Project</span> <span class="na">xmlns=</span><span class="s">&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;</span><span class="nt">&gt;</span>
-  ...
-  <span class="nt">&lt;PropertyGroup&gt;</span>
-    <span class="nt">&lt;HostFullIdentifier&gt;</span>ReSharperPlatformVs12Plugins<span class="nt">&lt;/HostFullIdentifier&gt;</span>
-  <span class="nt">&lt;/PropertyGroup&gt;</span>
-  ...
-<span class="nt">&lt;/Project&gt;</span></code></pre>
-
-<p>The build step will only copy the main assembly to the output directory. No dependencies are copied, and no items marked “Copy to output” will be copied either. If the solution consists of multiple projects that reference the SDK, each one can include the <code class="code highlight language-text">HostFullIdentifier</code> to get the main assembly copied. Alternatively, dependencies and other files should be copied manually, or with another build step (the <code class="code highlight language-text">JetBrains.CommonSdk.targets</code> file in the <code class="code highlight language-text">DotFiles</code> folder of the <code class="code highlight language-text">JetBrains.ReSharper.SDK</code> package can provide a template for implementing a custom build step to copy other files).</p>
-
-<a name="troubleshooting" class="elem-anchor"></a>
-<h2>Troubleshooting<a href="#troubleshooting" class="anchor-link"><span></span></a></h2>
-
-<p>The installer creates logs when it runs. These can be found in <code class="code highlight language-text">%LOCALAPPDATA%\JetBrains\Shared\v01\InstallerLogXXX</code>, where the <code class="code highlight language-text">XXX</code> is a number to allow for multiple logs (the version number in the path is the version number of the wave, currently 01 for the ReSharper 9.0 release).</p>
-
-<p>Two important points to remember when building the package:</p>
-
-<ol>
-  <li>The package must depend on the <code class="code highlight language-text">Wave</code> package (version 1.0 for the ReSharper 9.0 release). This is case sensitive, and the package will not be installed if the dependency does not exist. A simple gotcha is that the Extension Manager is case <em>insensitive</em>, and will display the extension even if the package is incorrectly cased, e.g. <code class="code highlight language-text">wave</code>. While it looks like the extension is installed, the package is rejected. This is reflected in the logs.</li>
-  <li>The package name must contain a “.”. The first segment of the name is used to infer a company name. Without this dot, the package is rejected. This is reflected in the logs.</li>
-</ol>
-
+<p>If after following these steps, the extension doesn’t appear to load, please check the <a href="/resharper/devguide/Extensions/Troubleshooting.html"><span>Troubleshooting</span></a> page.</p>
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 12 August 2015
                     </div>
                 </article>
 

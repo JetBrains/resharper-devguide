@@ -7,8 +7,22 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
-<body data-id="Products/dotPeek">
+<body data-id="Extensions/Plugins/ProjectSetup/CopyOnBuild">
 <div class="wrapper">
     <section class="panel _nav">
         <header class="panel__header">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -61,31 +75,16 @@
                 <article class="article" data-shortcut-switcher="false">
 
                     
-                    <a name="dotpeek" class="elem-anchor"></a>
-<h1>dotPeek<a href="#dotpeek" class="anchor-link"><span></span></a></h1>
+                    <a name="copy-plugin-on-build" class="elem-anchor"></a>
+<h1>Copy Plugin on Build<a href="#copy-plugin-on-build" class="anchor-link"><span></span></a></h1>
 
-<p>This page contains <em>preliminary</em> documentation on developing plugins for dotPeek. As dotPeek does not yet have an SDK, this guide should serve the temporary purpose of explaining how to write dotPeek plugins until an SDK is introduced.</p>
+<p>When building a plugin, it must first be installed and registered with both ReSharper and Visual Studio, via the Extension Manager. However, as long as nothing changes that would alter that registration (such as adding new files, changing Visual Studio integration features, modifying Action registration), then the plugin files can be copied over for each build.</p>
 
-<p>All of the JetBrains .net tools share the Platform and PSI parts of the architecture, and share some parts of Features, so the existing documentation in this guide should cover writing plugins for dotPeek.</p>
-
-<p>Major points of interest:</p>
-
-<ul>
-  <li>dotPeek is obviously a standalone product, and therefore does not provide any integration with Visual Studio.</li>
-  <li>The decompiler pipeline is not currently designed to be extensible.</li>
-  <li>The Extension Manager functionality is not included in dotPeek. This means plugins need to be <a href="../Extensions/Packaging.html#manual-install"><span>manually installed</span></a>.</li>
-</ul>
-
-<p>The dotPeek binaries should be included directly in the plugin project. The <a href="https://www.nuget.org/packages/JetBrains.DotPeek.PluginDevelopment/" data-bypass="yes"><span><code class="code highlight language-text">JetBrains.DotPeek.PluginDevelopment</code></span></a> nuget package can automate this (this is an official nuget package).</p>
-
-<p>To test the plugin, you can use the following command line:</p>
-
-<pre><code class="code-block__wrapper code-block _highlighted lang_text">dotPeek.exe /Plugin foo.dll</code></pre>
-
+<p>The SDK package provides functionality to automatically copy files across, but requires some set up (the SDK does not know which ReSharper installation you have installed into). For more details, see the general <a href="/resharper/devguide/Extensions/Deployment/LocalInstallation/CopyOnBuild.html"><span>Copy on Build</span></a> topic in the <a href="/resharper/devguide/Extensions/Deployment/LocalInstallation.html"><span>Local Installation</span></a> deployment guide for more details.</p>
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 12 August 2015
                     </div>
                 </article>
 

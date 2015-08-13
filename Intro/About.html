@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Intro/About">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -68,14 +82,14 @@
 
 <ul>
   <li>
-    <p><strong>Part I - Extending the ReSharper Platform</strong></p>
+    <p><a href="/resharper/devguide/Extensions/GettingStarted.html"><span><strong>Part I - Extending the ReSharper Platform</strong></span></a></p>
 
-    <p>Details how the ReSharper Platform can be extended, both declaratively, with Live Templates, annotations and patterns and programmatically, via plugins. It explains how to get started with extensions, setting up the SDK and so on. It also includes a migration guide to help migrate plugins and extensions from previous versions of ReSharper.</p>
+    <p>An overview of the ways in which the ReSharper Platform can be extended, both declaratively, with Live Templates, annotations and patterns and programmatically, via plugins. It explains how to get started with extensions, setting up the SDK and so on. It also includes a migration guide to help migrate plugins and extensions from previous versions of ReSharper.</p>
   </li>
   <li>
-    <p><a href="../Architecture/Overview.html"><span><strong>Part II - Architectural Overview</strong></span></a></p>
+    <p><a href="/resharper/devguide/Architecture/Overview.html"><span><strong>Part II - Architectural Overview</strong></span></a></p>
 
-    <p>Provides an introduction and overview of the architecture of the ReSharper Platform, how it is split into several layers - Base Platform, Project Model, Features, custom Products and support for custom Languages. It also introduces the Program Structure Index (PSI) which provides ReSharper with syntactic and semantic models of many different languages.</p>
+    <p>Provides an introduction to and overview of the architecture of the ReSharper Platform, looking at how it is split into several layers - Base Platform, Project Model, Features, custom Products and support for custom Languages. It also introduces the Program Structure Index (PSI) which provides ReSharper with syntactic and semantic models of many different languages.</p>
   </li>
   <li>
     <p><strong>Part III - Platform</strong></p>
@@ -88,7 +102,7 @@
     <p>Documents the Project Model, which represents the solution and products currently open, abstracting away the differences between target types (console, class library, website, etc.) and also language (C#, VB, JavaScript, etc.)</p>
   </li>
   <li>
-    <p><a href="../Architecture/PSI.html"><span><strong>Part V - Program Structure Index (PSI)</strong></span></a></p>
+    <p><a href="/resharper/devguide/Architecture/PSI.html"><span><strong>Part V - Program Structure Index (PSI)</strong></span></a></p>
 
     <p>Describes and provides reference for consuming and manipulating the parsers, abstract syntax trees and semantic views of the file formats that ReSharper understands, such as C#, HTML, CSS, Razor, XML, etc. Documents the powerful reference system which allows for cross-language navigation and refactoring. Also looks at code generation, caching, and control flow.</p>
   </li>
@@ -103,7 +117,7 @@
     <p>The ReSharper Platform hosts multiple products, from ReSharper to dotPeek, dotTrace and dotCover. This section looks at how to create a custom product that lives in the ReSharper Platform. It also takes a look at integration points in the other .net JetBrains products.</p>
   </li>
   <li>
-    <p><a href="../CustomLanguages/Overview.html"><span><strong>Part VIII - Custom Languages</strong></span></a></p>
+    <p><a href="/resharper/devguide/CustomLanguages/Overview.html"><span><strong>Part VIII - Custom Languages</strong></span></a></p>
 
     <p>This section documents how to add support for a language that the ReSharper Platform doesn’t know about, creating parsers, abstract syntax trees, semantic views and all of the features built on top.</p>
   </li>
@@ -112,7 +126,7 @@
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 12 August 2015
                     </div>
                 </article>
 

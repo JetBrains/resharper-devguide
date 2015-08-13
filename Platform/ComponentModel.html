@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Platform/ComponentModel">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -87,7 +101,7 @@
 
 <p>Conceptually, the Component Model is very similar to Microsoft’s <a href="http://msdn.microsoft.com/en-us/library/dd460648.aspx" data-bypass="yes"><span>Managed Extensibility Framework (MEF)</span></a> although there are some fundamental differences, such as the ability to live load and unload new components, during runtime.</p>
 
-<p>ReSharper defines many component types. The two most interesting are <code class="code highlight language-text">ShellComponent</code> and <code class="code highlight language-text">SolutionComponent</code>. More details about other component types can be found in the <a href="ComponentModel/Advanced.html"><span>Advanced section</span></a>.</p>
+<p>ReSharper defines many component types. The two most interesting are <code class="code highlight language-text">ShellComponent</code> and <code class="code highlight language-text">SolutionComponent</code>. More details about other component types can be found in the discussion about <code class="code highlight language-text">Parts</code> in <a href="ComponentModel/ContainersPartsCatalogues.html"><span>Containers, Parts and Catalogues</span></a>.</p>
 
 <a name="shell-components" class="elem-anchor"></a>
 <h2>Shell Components<a href="#shell-components" class="anchor-link"><span></span></a></h2>
@@ -155,7 +169,7 @@
 
 <p>Troubleshooting can initially seem very difficult, due to the cascading errors, all of which will throw exceptions. The important exception is the first one, which will tell you which component failed during creation. The failure will be related to one of the constructor parameters, so each parameter should be checked - is the parameter type a component? Does it come from the same or higher scope (i.e. is a shell component trying to depend on a solution component)? Does the parameter have the correct cardinality (single instance vs. collection)?</p>
 
-<p>ReSharper 9.0 adds better diagnostics for troubleshooting component model failures, describing which parameter caused the issue, and adding more context to the exception’s <code class="code highlight language-text">Data</code> dictionary. This data is only available in a <a href="../Intro/Tools.html"><span>checked build</span></a>.</p>
+<p>ReSharper 9.0 adds better diagnostics for troubleshooting component model failures, describing which parameter caused the issue, and adding more context to the exception’s <code class="code highlight language-text">Data</code> dictionary. This data is only available in a <a href="/resharper/devguide/Extensions/Tools.html"><span>checked build</span></a>.</p>
 
 <a name="lazy-and-optional-acquisition" class="elem-anchor"></a>
 <h2>Lazy and optional acquisition<a href="#lazy-and-optional-acquisition" class="anchor-link"><span></span></a></h2>
@@ -189,7 +203,7 @@
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 12 August 2015
                     </div>
                 </article>
 

@@ -1,0 +1,189 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Platform/Shell/Theming/Icons">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="themed-icons" class="elem-anchor"></a>
+<h1>Themed Icons<a href="#themed-icons" class="anchor-link"><span></span></a></h1>
+
+<p>ReSharper supports theming icons on two axes - application colour, and source code symbol style. In other words, icons can be themed either based on the application colour, or on the style for source code symbols.</p>
+
+<p>The application colour is used to match the theme of the host application, specifically Visual Studio, and is used by icons representing the parts of the application - toolbars, context menus, option pages. The following icon sets are available:</p>
+
+<ul>
+  <li><strong>Colour</strong> - used when Visual Studio is in the Blue theme.</li>
+  <li><strong>Gray</strong> - for Visual Studio’s Light theme.</li>
+  <li><strong>Dark Gray</strong> - for Visual Studio’s Dark theme.</li>
+</ul>
+
+<p>ReSharper does not hard code Visual Studio’s themes, but analyses the theme colours to detect high and low contrast monochrome themes. If the theme does not appear to be monochrome, ReSharper will use the Colour theme. This helps ReSharper better support custom themes.</p>
+
+<p>The source code symbol style is used by the icons displayed to represent code elements, for example in code completion lists, navigation windows or the file structure window. There are five choices here:</p>
+
+<ul>
+  <li><strong>Idea</strong> - the icon set used by IntelliJ IDEA.</li>
+  <li><strong>Gray</strong> - matches the icons used by Visual Studio 2012, in the Light theme.</li>
+  <li><strong>Dark Gray</strong> - matches the icons used by Visual Studio 2012, in the Dark theme.</li>
+  <li><strong>Colour</strong> - matches the icons used by Visual Studio 2012, in a colour theme.</li>
+  <li><strong>Legacy Visual Studio</strong> - matches the icons used by Visual Studio 2008.</li>
+</ul>
+
+<p>By default, both of these theme aspects are chosen automatically, meaning the application colour will match the environment, and the source code symbols will match the application colour. However, both can be overridden by the user in the options dialog.</p>
+
+<a name="identifying-the-current-theme" class="elem-anchor"></a>
+<h2>Identifying the current theme<a href="#identifying-the-current-theme" class="anchor-link"><span></span></a></h2>
+
+<p>The current theme is represented by the <code class="code highlight language-text">IconTheme</code> class, and can be retrieved using <code class="code highlight language-text">IThemedIconManager.CurrentIconTheme</code> (or <code class="code highlight language-text">ITheming.CurrentIconTheme</code>, since <code class="code highlight language-text">ITheming</code> inherits from <code class="code highlight language-text">IThemedIconManger</code>). The <code class="code highlight language-text">IconTheme</code> class is a simple value class that maintains an array of <code class="code highlight language-text">IconThemeAspect</code> instances, in priority order.</p>
+
+<p>A theme aspect represents the two axes described above - application colour and symbol style. The application colour aspect values are represented by static values on the <code class="code highlight language-text">GenericIconThemeAspect</code> class:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">GenericIconThemeAspect</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">IconThemeAspect</span> <span class="n">Color</span> <span class="p">=</span> <span class="k">new</span> <span class="n">IconThemeAspect</span><span class="p">(...);</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">IconThemeAspect</span> <span class="n">Gray</span> <span class="p">=</span> <span class="k">new</span> <span class="n">IconThemeAspect</span><span class="p">(...);</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">IconThemeAspect</span> <span class="n">DarkGray</span> <span class="p">=</span> <span class="k">new</span> <span class="n">IconThemeAspect</span><span class="p">(...);</span>
+<span class="p">}</span></code></pre>
+
+<p>The <code class="code highlight language-text">PsiSymbolIconThemeAspect</code> class holds the values for the source symbol style:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">static</span> <span class="k">class</span> <span class="nc">PsiSymbolIconThemeAspect</span>
+<span class="p">{</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">IconThemeAspect</span> <span class="n">SymbolsIdea</span> <span class="p">=</span> <span class="k">new</span> <span class="n">IconThemeAspect</span><span class="p">(...);</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">IconThemeAspect</span> <span class="n">SymbolsVs08</span> <span class="p">=</span> <span class="k">new</span> <span class="n">IconThemeAspect</span><span class="p">(...);</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">IconThemeAspect</span> <span class="n">SymbolsVs11Color</span> <span class="p">=</span> <span class="k">new</span> <span class="n">IconThemeAspect</span><span class="p">(...);</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">IconThemeAspect</span> <span class="n">SymbolsVs11Gray</span> <span class="p">=</span> <span class="k">new</span> <span class="n">IconThemeAspect</span><span class="p">(...);</span>
+  <span class="k">public</span> <span class="k">static</span> <span class="k">readonly</span> <span class="n">IconThemeAspect</span> <span class="n">SymbolsVs11GrayDark</span> <span class="p">=</span> <span class="k">new</span> <span class="n">IconThemeAspect</span><span class="p">(...);</span>
+<span class="p">}</span></code></pre>
+
+<p>When inspecting the <code class="code highlight language-text">IconTheme.Aspects</code> array, the values should be compared against the values in <code class="code highlight language-text">GenericIconThemeAspect</code> and <code class="code highlight language-text">PsiSymbolIconThemeAspect</code>.</p>
+
+<p>There may be more than one value for each aspect in the <code class="code highlight language-text">IconTheme.Aspects</code> array. These are fallback values, and are there for when a particular aspect value is not recognised or supported. The array is stored in priority order, so each value should be inspected in turn and the first recognised icon should be used.</p>
+
+<p>The symbol style aspects are listed first, so a custom icon set will try to use a specific source symbol style first, then symbol fallbacks, then application colour and colour fallbacks.</p>
+
+<a name="using-the-correct-icon-theme" class="elem-anchor"></a>
+<h2>Using the correct icon theme<a href="#using-the-correct-icon-theme" class="anchor-link"><span></span></a></h2>
+
+<p>When retrieving an icon for a given <code class="code highlight language-text">IconId</code>, the <code class="code highlight language-text">IThemedIconManager</code> will automatically use the current theme, by examining the <code class="code highlight language-text">IconTheme</code> and its aspects.</p>
+
+<p>To make sure the icon is updated when the theme changes, either use a “live” image source, or subscribe to the <code class="code highlight language-text">IThemedIconManager.CurrentIconTheme</code> observable property, and manually retrieve a new image source from the <code class="code highlight language-text">IThemedIconManager.Icons</code> property.</p>
+
+<p>If using a live image source, e.g. <code class="code highlight language-text">IThemedIconManager.Icons[myIconId].LiveImageSource</code> or <code class="code highlight language-text">IThemedIconManager.Icons[myIconId].LiveGdipBitmapScreenDpi</code>, then the observable property will notify of changes to the image when the theme changes.</p>
+
+<p>Alternatively, use the WPF <code class="code highlight language-text">ThemedIconViewImage</code> control or the <code class="code highlight language-text">ThemedIcon</code> XAML markup extension to automatically update the image source when the theme changes. See <a href="/resharper/devguide/Platform/Shell/Icons/ConsumingIcons.html"><span>Consuming Icons</span></a> for more details.</p>
+
+<a name="creating-theme-aware-icons" class="elem-anchor"></a>
+<h2>Creating theme aware icons<a href="#creating-theme-aware-icons" class="anchor-link"><span></span></a></h2>
+
+<p>When creating theme aware icons, each image should be identified by the theme aspect it applies to. The recognised application colour theme aspect names are:</p>
+
+<ul>
+  <li><strong>Color</strong></li>
+  <li><strong>Gray</strong></li>
+  <li><strong>DarkGray</strong></li>
+</ul>
+
+<p>And for source code symbols:</p>
+
+<ul>
+  <li><strong>SymbolsIdea</strong></li>
+  <li><strong>SymbolsVs11Color</strong></li>
+  <li><strong>SymbolsVs11Gray</strong></li>
+  <li><strong>SymbolsVs11DarkGray</strong></li>
+  <li><strong>SymbolsVs08</strong></li>
+</ul>
+
+<p>The details of how to specify the aspect name are listed in the <a href="/resharper/devguide/Platform/Shell/Icons/CreatingCompiledIcons.html"><span>creating compiled icons</span></a> section.</p>
+
+
+                    <div class="last-modified">
+                        Last modified: 25 June 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,153 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/Plugins/Testing/Zones">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="zones" class="elem-anchor"></a>
+<h1>Zones<a href="#zones" class="anchor-link"><span></span></a></h1>
+
+<aside class="warning">
+  <p> This topic assumes familiarity with the concept and usage of both the <a href="/resharper/devguide/Platform/ComponentModel.html"><span>Component Model</span></a> and <a href="/resharper/devguide/Platform/Zones.html"><span>Zones</span></a> topics.</p>
+</aside>
+
+<p>The <a href="/resharper/devguide/Platform/ComponentModel.html"><span>Component Model</span></a> is responsible for bootstrapping the ReSharper environment, creating the containers and components (classes) that provide ReSharper functionality. To work with the constraints of shipping multiple products with overlapping and complementary feature sets, assemblies, and licensing requirements, the Component Model uses <a href="/resharper/devguide/Platform/Zones.html"><span>Zones</span></a> to decide what components should be activated. It is strongly recommended that you have the topics on the <a href="/resharper/devguide/Platform/ComponentModel.html"><span>Component Model</span></a> and <a href="/resharper/devguide/Platform/Zones.html"><span>Zones</span></a> before continuing.</p>
+
+<p>The same process happens when creating the in-memory <a href="TestEnvironment.html"><span>test environment</span></a>. The Component Model is still responsible for creating the containers and components, and still uses Zones to filter what components are activated. However, the process for deciding what zones are active is different.</p>
+
+<p>During normal startup, the host provides a set of zones that are already active. These zones provide details about the current host, and a zone can “require” a host zone to allow for activation only in a specific host. (E.g. a zone can require <code class="code highlight language-text">IVisualStudioZone</code> to only be active when hosted inside Visual Studio.)</p>
+
+<p>When creating the test environment, the <code class="code highlight language-text">ExtensionTestEnvironmentAssembly&lt;TTestEnvironmentZone&gt;</code> derived class has to specify a type parameter that derives from <code class="code highlight language-text">ITestsZone</code>, which is a host zone definition that indicates that the current host is for running tests.</p>
+
+<aside class="tip">
+  <p> <code class="code highlight language-text">ITestsZone</code> should not be confused with <code class="code highlight language-text">IUnitTestingZone</code>, which is the zone that provides the unit testing feature set.</p>
+</aside>
+
+<p>Any zone definitions that the derived <code class="code highlight language-text">ITestsZone</code> definition requires will be activated by the test environment. For example:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="na">[ZoneDefinition]</span>
+<span class="k">public</span> <span class="k">interface</span> <span class="n">IMyTestsZone</span> <span class="p">:</span> <span class="n">ITestsZone</span><span class="p">,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">PsiFeaturesTestZone</span><span class="p">&gt;</span>
+<span class="p">{</span>
+<span class="p">}</span>
+
+<span class="na">[SetUpFixture]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">TestEnvironment</span> <span class="p">:</span> <span class="n">ExtensionTestEnvironmentAssembly</span><span class="p">&lt;</span><span class="n">IMyTestsZone</span><span class="p">&gt;</span>
+<span class="p">{</span>
+<span class="p">}</span></code></pre>
+
+<p>This will create a test environment that activates <code class="code highlight language-text">IMyTestsZone</code> (and therefore <code class="code highlight language-text">ITestsZone</code> through inheritance). It will also activate any zones it requires - in this case, <code class="code highlight language-text">PsiFeaturesTestZone</code>, which is a convenience definition that includes most zones required for testing the majority of ReSharper functionality.</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="na">[ZoneDefinition]</span>
+<span class="k">public</span> <span class="k">class</span> <span class="nc">PsiFeatureTestZone</span> <span class="p">:</span> <span class="n">IZone</span><span class="p">,</span>
+  <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">DaemonZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">NavigationZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageJavaScriptZone</span><span class="p">&gt;,</span>
+  <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageCSharpZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageCssZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageVBZone</span><span class="p">&gt;,</span>
+  <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageMsBuild</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageXamlZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageNAntZone</span><span class="p">&gt;,</span>
+  <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageResxZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageRegExpZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageAspZone</span><span class="p">&gt;,</span>
+  <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageRazorZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageIlZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ICodeEditingZone</span><span class="p">&gt;,</span>
+  <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">IInternalVisibilityZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ExternalSourcesZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">IUnitTestingZone</span><span class="p">&gt;,</span>
+  <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">IMsTestUntilVs09Zone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">SymbolsImplZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">SweaZone</span><span class="p">&gt;,</span>
+  <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ITestsZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">IParameterInfoZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ICodeEditingOptionsPageImplZone</span><span class="p">&gt;</span>
+<span class="p">{</span>
+<span class="p">}</span></code></pre>
+
+<p>This is a good zone definition for tests to require by default, as it activates a lot of other zones that will be useful for testing, such as <code class="code highlight language-text">DaemonZone</code> and <code class="code highlight language-text">SweaZone</code> for highlighting and analysis, <code class="code highlight language-text">ICodeEditingZone</code> for code completion and <code class="code highlight language-text">IUnitTestingZone</code> for unit testing. It also includes a lot of language support, although it doesn’t include the C++ language.</p>
+
+<p>It is possible to require a subset of these zones. If a plugin’s tests do not need JavaScript support, or unit testing support, they can be omitted, by requiring only what is needed as <code class="code highlight language-text">IRequire&lt;TZone&gt;</code> interfaces on the <code class="code highlight language-text">ITestsZone</code> derived zone definition. E.g.:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">interface</span> <span class="n">IMyTestsZone</span> <span class="p">:</span> <span class="n">ITestsZone</span><span class="p">,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">DaemonZone</span><span class="p">&gt;,</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">ILanguageCppZone</span><span class="p">&gt;</span>
+<span class="p">{</span>
+<span class="p">}</span></code></pre>
+
+<p>The custom <code class="code highlight language-text">ITestsZone</code> zone definition can also be used to activate components that are defined in the test assembly, and that wouldn’t normally be defined. See the section on <a href="TestComponents.html"><span><code class="code highlight language-text">Test Components</code></span></a> for more details.</p>
+
+
+                    <div class="last-modified">
+                        Last modified: 12 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

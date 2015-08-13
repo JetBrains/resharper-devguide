@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="PSI/SyntaxTrees">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -64,7 +78,7 @@
                     <a name="abstract-syntax-trees" class="elem-anchor"></a>
 <h1>Abstract Syntax Trees<a href="#abstract-syntax-trees" class="anchor-link"><span></span></a></h1>
 
-<p>An <a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree" data-bypass="yes"><span>abstract syntax tree</span></a> (AST) is a data structure used to represent the contents of a file, where each node in the tree denotes a construct in the source code. For example, a node might represent a method declaration, with child nodes that provide information on accessibility, return type, method name, parameters and the method body, which itself has child nodes representing the method instructions and any nested code blocks.</p>
+<p>An <a href="http://en.wikipedia.org/wiki/Abstract_syntax_tree" data-bypass="yes"><span>abstract syntax tree</span></a> (AST) is a data structure used to represent the contents of a file, where each node in the tree denotes a construct in the source code. For example, a node might represent a method declaration, with child nodes that provide information on accessibility, return type, method name, parameters and the method body, which itself has child nodes representing the method instructions and any nested code blocks. Equally, a node might represent whitespace, or a comment, or string literals.</p>
 
 <p>The PSI defines common base interfaces for creating an AST. These interfaces are shared across all languages that ReSharper supports, providing a common base for sharing information across files and languages. ReSharper provides utility methods for walking and manipulating the tree, including deleting and adding nodes and moving nodes around the tree.</p>
 
@@ -78,7 +92,7 @@
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 22 June 2015
                     </div>
                 </article>
 

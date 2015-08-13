@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="PSI/Icons">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -66,7 +80,7 @@
 
 <p>The PSI needs to be able to display icons to help identify code elements in completion, navigation or find usage result lists. The PSI can display different icons to distinguish between classes, constructors, methods, parameters, etc. It can also show specific icons for CSS class IDs, HTML elements and unit test elements.</p>
 
-<p>While the <a href="../Platform/Shell/Icons.html"><span>Shell provides the <code class="code highlight language-text">ThemedIconManager</code> class</span></a> in order to load and create icons, it is a low level API. It provides no means for getting the icon for a class, other than explicitly loading <code class="code highlight language-text">PsiSymbolsThemedIcons.Class.Id</code>. The PSI provides the <code class="code highlight language-text">PsiIconManager</code> to retrieve icons for a specific declared element.</p>
+<p>While the <a href="/resharper/devguide/Platform/Shell/Icons.html"><span>Shell provides the <code class="code highlight language-text">ThemedIconManager</code> class</span></a> in order to load and create icons, it is a low level API. It provides no means for getting the icon for a class, other than explicitly loading <code class="code highlight language-text">PsiSymbolsThemedIcons.Class.Id</code>. The PSI provides the <code class="code highlight language-text">PsiIconManager</code> to retrieve icons for a specific declared element.</p>
 
 <p>The <code class="code highlight language-text">PsiIconManager</code> provides the following methods and properties:</p>
 
@@ -126,13 +140,13 @@
 <a name="loading-icons-manually" class="elem-anchor"></a>
 <h2>Loading icons manually<a href="#loading-icons-manually" class="anchor-link"><span></span></a></h2>
 
-<p>It is not recommended to load icons directly, but they are available in the <a href="../Platform/Shell/Icons/ConsumingIcons.html"><span><code class="code highlight language-text">ThemedIconManager</code></span></a>. Simply use the icon IDs defined in the <code class="code highlight language-text">PsiSymbolsThemedIcons</code> class, and use <a href="../Platform/Shell/Icons/IconTypes.html#composite-icons"><span><code class="code highlight language-text">CompositeIconId.Compose</code></span></a> method to apply modifiers. There are language specific icons in other classes, such <code class="code highlight language-text">PsiCssThemedIcons</code> or <code class="code highlight language-text">PsiBuildScriptsThemedIcons</code>.</p>
+<p>It is not recommended to load icons directly, but they are available in the <a href="/resharper/devguide/Platform/Shell/Icons/ConsumingIcons.html"><span><code class="code highlight language-text">ThemedIconManager</code></span></a>. Simply use the icon IDs defined in the <code class="code highlight language-text">PsiSymbolsThemedIcons</code> class, and use <a href="/resharper/devguide/Platform/Shell/Icons/IconTypes.html#composite-icons"><span><code class="code highlight language-text">CompositeIconId.Compose</code></span></a> method to apply modifiers. There are language specific icons in other classes, such <code class="code highlight language-text">PsiCssThemedIcons</code> or <code class="code highlight language-text">PsiBuildScriptsThemedIcons</code>.</p>
 
 <p>The <code class="code highlight language-text">PsiIconManager</code> provides a more flexible and extensible way of getting the correct icon.</p>
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 25 June 2015
                     </div>
                 </article>
 

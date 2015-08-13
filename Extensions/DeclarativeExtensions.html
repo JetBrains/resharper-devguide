@@ -1,0 +1,126 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/DeclarativeExtensions">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="declarative-extensions" class="elem-anchor"></a>
+<h1>Declarative Extensions<a href="#declarative-extensions" class="anchor-link"><span></span></a></h1>
+
+<p>The ReSharper Platform supports two types of extensions - <a href="CompiledExtensions.html"><span>compiled extensions (aka plugins)</span></a>, and declarative extensions. Plugins are code based, .dll assemblies that are loaded into the process and have full access to the API.</p>
+
+<p>Declarative extensions are either settings files or External Annotation files. They do not contain code, but can be very versatile.</p>
+
+<a name="external-annotations" class="elem-anchor"></a>
+<h2>External annotations<a href="#external-annotations" class="anchor-link"><span></span></a></h2>
+
+<p>ReSharper provides comprehensive analysis based on looking at your project’s source code. However, sometimes it can benefit from extra information. If it has more context about a method, it can produce more accurate warnings, such as better <code class="code highlight language-text">null</code> analysis, knowing that a variable in a closure is used immediately (the infamous <a href="https://confluence.jetbrains.com/display/ReSharper/Access+to+modified+closure" data-bypass="yes"><span>“access to modified closure”</span></a> analysis), or help for <code class="code highlight language-text">string.Format</code> style methods. This context is given by <a href="https://www.jetbrains.com/resharper/help/Code_Analysis__Code_Annotations.html" data-bypass="yes"><span>adding annotations to the source code</span></a>.</p>
+
+<p>However, if the source is unavailable, it is still possible to add annotations, using <a href="https://www.jetbrains.com/resharper/help/Code_Analysis__External_Annotations.html" data-bypass="yes"><span>External Annotation files</span></a>, which are XML files that provide a mapping between a pre-compiled assembly’s type members, and the annotation attributes that should be applied.</p>
+
+<p>This is a very powerful mechanism and can be used to provide more accurate analysis and warnings to your libraries.</p>
+
+<a name="settings-files" class="elem-anchor"></a>
+<h2>Settings files<a href="#settings-files" class="anchor-link"><span></span></a></h2>
+
+<p>Extensions can also include settings files, that get <a href="https://www.jetbrains.com/resharper/help/Reference__Settings_Layers.html" data-bypass="yes"><span>mounted as new settings layers</span></a>. This is a very simple, but very powerful extension point. It can be used to distribute:</p>
+
+<ul>
+  <li><strong>Live Templates</strong> - code snippets and templates, targeting any supported language, or providing templates for a particular framework. An extension can also include a plugin that provides a custom <a href="/resharper/devguide/Features/LiveTemplates/Macros.html"><span>Live Template macro</span></a>, to allow for even more customisation.</li>
+  <li><strong>Structural Search and Replace patterns</strong> - a declarative pattern to be used for searching for code, or for highlighting a particular pattern as a warning or error. Furthermore, the pattern can integrate with the Alt+Enter menu to optionally allow for a replacement pattern, to rewrite the matched code, using the value of placeholders in the original text. This allows for declaratively creating analyses and Quick Fixes.</li>
+  <li><strong>Arbitrary settings</strong> - set up standard code formatting, naming patterns, change the default values for inspection severities, etc. Any setting in the Options dialog can be overridden in a .dotSettings file.</li>
+</ul>
+
+<p>This last point is worth repeating. The traditional uses for adding a settings file to an extension is to distribute Live Templates or SSR patterns. However, any setting can be applied in a settings file - disagree with the defaults that ReSharper has chosen? Replace them!</p>
+
+
+                    <div class="last-modified">
+                        Last modified: 12 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

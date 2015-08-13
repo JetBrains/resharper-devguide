@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Platform/Logging">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -64,9 +78,9 @@
                     <a name="logging" class="elem-anchor"></a>
 <h1>Logging<a href="#logging" class="anchor-link"><span></span></a></h1>
 
-<p>The ReSharper Platform provides a comprehensive set of logging features, such as logging levels and different log listeners. It can also be configured with different levels and listeners based on the log category, such as <code class="code highlight language-text">JetBrains.DataFlow</code> for capturing log events from the DataFlow subsystem.</p>
+<p>The ReSharper Platform provides a comprehensive set of logging features, such as logging levels and different log listeners. It can also be configured with different levels and listeners based on a log category, such as “JetBrains.DataFlow” for capturing log events from the DataFlow subsystem.</p>
 
-<p>There are two ways to enable logging, via the command line and via a config file. The command line options are much simpler, and can only control logging level and enable logging to a file. The config file provides much more power and can configure multiple listeners, as well as different configuration options per category. ReSharper even provides an Options page to configure logging, once <a href="../Intro/InternalMode.html"><span>Internal Mode</span></a> is enabled.</p>
+<p>There are two ways to enable logging, via the command line and via a config file. The command line options are much simpler, and can only control logging level and enable logging to a file. The config file provides much more power and can configure multiple listeners, as well as different configuration options per category. ReSharper even provides an Options page to configure logging, once <a href="/resharper/devguide/Extensions/InternalMode.html"><span>Internal Mode</span></a> is enabled.</p>
 
 <a name="command-line" class="elem-anchor"></a>
 <h2>Command line<a href="#command-line" class="anchor-link"><span></span></a></h2>
@@ -88,118 +102,12 @@
 <a name="configuration-file" class="elem-anchor"></a>
 <h2>Configuration file<a href="#configuration-file" class="anchor-link"><span></span></a></h2>
 
-<p>Logging can also be enabled by creating a configuration file, which allows for much more powerful configuration. The file is an XML file called <code class="code highlight language-text">LogConfiguration.xml</code>, and should be created in <code class="code highlight language-text">%LOCALAPPDATA%\JetBrains\{HostFullIdentifier}\v01</code>. Alternatively, if the file is named <code class="code highlight language-text">LogConfiguration.Debug.xml</code>, then it only applies when ReSharper is being run in a custom hive. The <code class="code highlight language-text">LogConfiguration.xml</code> applies regardless of custom hive.</p>
-
-<aside class="note">
-  <p> The <code class="code highlight language-text">{HostFullIdentifier}</code> is the name of the install folder for the current host, such as <code class="code highlight language-text">ReSharperPlatformVs12</code> for Visual Studio 2013. More details can be found about the <code class="code highlight language-text">HostFullIdentifier</code> in the section on <a href="../Extensions/Deployment/LocalInstallation.html#updating-the-extension-locally"><span>Extension Deployment</span></a>.</p>
-</aside>
-
-<p>The file format is fairly straightforward:</p>
-
-<pre><code class="code-block__wrapper code-block _highlighted lang_xml"><span class="nt">&lt;configuration&gt;</span>
-
-  <span class="nt">&lt;appender</span> <span class="na">name=</span><span class="s">&quot;file&quot;</span> <span class="na">class=</span><span class="s">&quot;JetBrains.Util.Logging.FileLogEventListener&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;arg&gt;</span>c:\logs\resharper-{date}.log<span class="nt">&lt;/arg&gt;</span>
-  <span class="nt">&lt;/appender&gt;</span>
-
-  <span class="nt">&lt;root</span> <span class="na">level=</span><span class="s">&quot;VERBOSE&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;appender-ref&gt;</span>file<span class="nt">&lt;/appender-ref&gt;</span>
-  <span class="nt">&lt;/root&gt;</span>
-
-  <span class="nt">&lt;logger</span> <span class="na">name=</span><span class="s">&quot;JetBrains.Platform.Util&quot;</span> <span class="na">level=</span><span class="s">&quot;OFF&quot;</span> <span class="nt">/&gt;</span>
-
-  <span class="nt">&lt;logger</span> <span class="na">name=</span><span class="s">&quot;JetBrains.DataFlow&quot;</span> <span class="na">level=</span><span class="s">&quot;TRACE&quot;</span> <span class="na">additivity=</span><span class="s">&quot;false&quot;</span><span class="nt">&gt;</span>
-    <span class="nt">&lt;appender-ref&gt;</span>file<span class="nt">&lt;/appender-ref&gt;</span>
-  <span class="nt">&lt;/logger&gt;</span>
-<span class="nt">&lt;/configuration&gt;</span></code></pre>
-
-<p>The <code class="code highlight language-text">appender</code> element defines an appender/listener, which is the class that will listen for events and output them.</p>
-
-<ul>
-  <li><code class="code highlight language-text">name</code> - the <code class="code highlight language-text">name</code> attribute is required so the appender can be referenced later in the file.</li>
-  <li><code class="code highlight language-text">class</code> - the <code class="code highlight language-text">class</code> attribute is the fully qualified type name of the appender class. The class must implement the <code class="code highlight language-text">ILogEventListener</code> interface.</li>
-  <li><code class="code highlight language-text">pattern</code> - the <code class="code highlight language-text">pattern</code> attribute (not shown) defines a pattern that can be used to define the output pattern for messages. See <a href="#appender-patterns"><span>below</span></a> for more details.</li>
-  <li><code class="code highlight language-text">arg</code> - the <code class="code highlight language-text">arg</code> element is used to pass arguments to the constructor of the appender. Multiple child <code class="code highlight language-text">arg</code> elements are allowed, and are passed as-is, as strings, to the appender. It is up to the appender to interpret the argument value. For example, the <code class="code highlight language-text">FileLogEventListener</code> will substitute the current date in the value <code class="code highlight language-text">C:\logs\resharer-{date}.log</code>.</li>
-</ul>
-
-<p>The <code class="code highlight language-text">root</code> element defines the logging level and appenders that apply for all categories, unless otherwise overridden. It is the default way of setting the logging details for the Platform.</p>
-
-<ul>
-  <li><code class="code highlight language-text">level</code> - this is the logging level, as text. See <a href="#logging-levels"><span>below</span></a> for the list of logging levels.</li>
-  <li><code class="code highlight language-text">appender-ref</code> - the <code class="code highlight language-text">appender-ref</code> child elements specify the name of the appenders that are to be used to log events. The appenders need to be created in <code class="code highlight language-text">appender</code> elements at the head of the file.</li>
-</ul>
-
-<p>The <code class="code highlight language-text">logger</code> element defines the logging level and appenders to use for a category. When creating a logger, the code can specify a category, usually a namespace. This allows for logging to be configured differently for different parts of the Platform. For example, the <code class="code highlight language-text">JetBrains.Platform.Util</code> category can be set to <code class="code highlight language-text">OFF</code> to disable all logging from components in the <code class="code highlight language-text">JetBrains.Platform.Util</code> namespace, or the <code class="code highlight language-text">JetBrains.DataFlow</code> namespace can be configured to output to a different file, and capture events at a different logging level.</p>
-
-<ul>
-  <li><code class="code highlight language-text">name</code> - the <code class="code highlight language-text">name</code> attribute is required to specify the category that is to be configured.</li>
-  <li><code class="code highlight language-text">level</code> - the <code class="code highlight language-text">level</code> attribute allows overriding the <code class="code highlight language-text">root</code> logging level.</li>
-  <li><code class="code highlight language-text">additivity</code> - the <code class="code highlight language-text">additivity</code> attribute is a boolean value to control if previously declared appenders are also used for this category. The default value is <code class="code highlight language-text">true</code>.</li>
-  <li><code class="code highlight language-text">appender-ref</code> - the <code class="code highlight language-text">appender-ref</code> child elements can be used to specify one or more appenders that will be used to output the log events. More than one element can be specified. All appenders must be specified in <code class="code highlight language-text">appender</code> elements at the head of the file.</li>
-</ul>
-
-<p>The ReSharper Platform will pick up changes to the file automatically, without requiring a restart.</p>
-
-<a name="built-in-appenders" class="elem-anchor"></a>
-<h3>Built in appenders<a href="#built-in-appenders" class="anchor-link"><span></span></a></h3>
-
-<p>The ReSharper Platform ships with a number of appenders:</p>
-
-<ul>
-  <li><code class="code highlight language-text">JetBrains.Util.Logging.DebugOutputLogEventListener</code> outputs log events to an attached debugger, using the <a href="http://msdn.microsoft.com/en-us/library/windows/desktop/aa363362.aspx" data-bypass="yes"><span><code class="code highlight language-text">OutputDebugString</code></span></a> method.
-    <ul>
-      <li>It can accept a single string argument that defines a prefix to be output before each event.</li>
-    </ul>
-  </li>
-  <li><code class="code highlight language-text">JetBrains.Util.Logging.FileLogEventListener</code> outputs log events to a file.
-    <ul>
-      <li>It requires a single string argument specifying the file path. It will process the string and substitute special variables to make the log file unique.
-        <ul>
-          <li><code class="code highlight language-text">{pid}</code> - process ID</li>
-          <li><code class="code highlight language-text">{pname}</code> - process name</li>
-          <li><code class="code highlight language-text">{temp}</code> - full path to the <code class="code highlight language-text">%TEMP%</code> folder.</li>
-          <li><code class="code highlight language-text">{date}</code> - the current date.</li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li><code class="code highlight language-text">JetBrains.Util.Logging.MessageBoxListener</code> will display a message box when an event’s message matches a given regular expression.
-    <ul>
-      <li>It requires two string arguments. The first is a regular expression that must match an event’s message. The second is the text to be shown when the event matches.</li>
-    </ul>
-  </li>
-  <li><code class="code highlight language-text">LogEventListener</code> is a listener that will call a given <code class="code highlight language-text">Action&lt;LogEvent&gt;</code> when an event is logged. It isn’t intended to be used from the configuration file, but from code.</li>
-  <li><code class="code highlight language-text">TextWriterLogEventListener</code> is also intended to be used by code, writing events to a given <code class="code highlight language-text">TextWriter</code>.</li>
-  <li><code class="code highlight language-text">ConsoleToolLogger</code>, <code class="code highlight language-text">MsBuildToolLogger</code> and <code class="code highlight language-text">TeamCityToolLogger</code> are all used by command line tools to log events when running in the command line, as MSBuild tasks, or in Team City. They are automatically configured by the console host.</li>
-</ul>
-
-<a name="appender-patterns" class="elem-anchor"></a>
-<h3>Appender patterns<a href="#appender-patterns" class="anchor-link"><span></span></a></h3>
-
-<p>The <code class="code highlight language-text">pattern</code> attribute of the <code class="code highlight language-text">appender</code> element can be used to format log messages. Control sequences beginning with the percent symbol <code class="code highlight language-text">%</code> can be used to substitute parameters, e.g. <code class="code highlight language-text">%L</code> is substituted with the log level.</p>
-
-<ul>
-  <li><code class="code highlight language-text">%d</code> - date. Accepts option parameter in curly braces. E.g. <code class="code highlight language-text">%d{hh:mm:ss}</code></li>
-  <li><code class="code highlight language-text">%m</code> - original message.</li>
-  <li><code class="code highlight language-text">%M</code> - message, including exception with stack trace if present.</li>
-  <li><code class="code highlight language-text">%e</code> - short exception.</li>
-  <li><code class="code highlight language-text">%E</code> - long exception.</li>
-  <li><code class="code highlight language-text">%n</code> - new line.</li>
-  <li><code class="code highlight language-text">%l</code> - log level’s first character, e.g. <code class="code highlight language-text">V</code> for <code class="code highlight language-text">VERBOSE</code>.</li>
-  <li><code class="code highlight language-text">%L</code> - log level.</li>
-  <li><code class="code highlight language-text">%c</code> - category (i.e. namespace). Accepts optional parameter in curly braces to limit length of namespace segments, e.g. <code class="code highlight language-text">%c{2}</code> will output the category <code class="code highlight language-text">A.B.C.D</code> as <code class="code highlight language-text">C.D</code>.</li>
-  <li><code class="code highlight language-text">%t</code> - thread ID.</li>
-  <li><code class="code highlight language-text">%T</code> - thread name.</li>
-  <li><code class="code highlight language-text">%p</code> - process ID.</li>
-  <li><code class="code highlight language-text">%P</code> - process name.</li>
-</ul>
-
-<p>Also, the width of the parameter can be specified between the percent symbol and the control character, e.g. <code class="code highlight language-text">%{min}.{max}c</code> will ensure that the output value has at least <code class="code highlight language-text">{min}</code> characters and at most <code class="code highlight language-text">{max}</code>. If there are fewer characters than <code class="code highlight language-text">{min}</code>, the text is right justified (padded with leading spaces). By specifying a negative number for <code class="code highlight language-text">{min}</code>, the text is left justified (padded with trailing spaces).</p>
+<p>Logging can also be enabled by creating a config file, which allows for much more powerful configuration. The config file can enable or disable individual categories, and even route log messages from different categories to different files. Configuration files are described in the <a href="Logging/AdvancedConfiguration.html"><span>Advanced Configuration section</span></a>.</p>
 
 <a name="logging-levels" class="elem-anchor"></a>
-<h3>Logging levels<a href="#logging-levels" class="anchor-link"><span></span></a></h3>
+<h2>Logging levels<a href="#logging-levels" class="anchor-link"><span></span></a></h2>
 
-<p>ReSharper supports 7 logging levels, from <code class="code highlight language-text">OFF</code> to <code class="code highlight language-text">TRACE</code>. These are defined in the <code class="code highlight language-text">LoggingLevel</code> enum:</p>
+<p>Logging levels are used by both the config file and the command line, and are defined in the following enum:</p>
 
 <pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">public</span> <span class="k">enum</span> <span class="n">LoggingLevel</span>
 <span class="p">{</span>
@@ -217,24 +125,24 @@
 <p>By specifying a logging level, you will get all log events at that level and below. So, <code class="code highlight language-text">INFO</code> will also get the log events for <code class="code highlight language-text">WARN</code>, <code class="code highlight language-text">ERROR</code> and <code class="code highlight language-text">FATAL</code>.</p>
 
 <a name="logging-options-page" class="elem-anchor"></a>
-<h3>Logging options page<a href="#logging-options-page" class="anchor-link"><span></span></a></h3>
+<h2>Logging options page<a href="#logging-options-page" class="anchor-link"><span></span></a></h2>
 
-<p>The simplest way to create a file is to use the Logging options page when running in <a href="../Intro/InternalMode.html"><span>Internal Mode</span></a>. This page shows the current configuration of logging, based on the command line args, the currently created and active log files, and what appenders/listeners and loggers are active.</p>
+<p>The simplest way to create a file is to use the Logging options page when running in <a href="/resharper/devguide/Extensions/InternalMode.html"><span>Internal Mode</span></a>. This page shows the current configuration of logging, based on the command line args, the currently created and active log files, and what appenders/listeners and loggers are active.</p>
 
 <!-- TODO: Add screenshot -->
 
-<p>From this page, it is possible to create a log file, by clicking the “Create File” link next to the Common or Hive file details. Clicking “Create File” for Common will create the <code class="code highlight language-text">LogConfiguration.xml</code> file, while clicking “Create File” for Hive will create the <code class="code highlight language-text">LogConfiguration.Debug.xml</code> file. The generated file contain a default setting for <code class="code highlight language-text">VERBOSE</code> logging to the <code class="code highlight language-text">DebugOutputLogEventListener</code>, which outputs to an attached debugger. It also provides commented-out example syntax to configure file appenders and category-based logging.</p>
+<p>From this page, it is possible to create a log file, by clicking the “Create File” link next to the Common or Hive file details. Clicking “Create File” for Common will create the <code class="code highlight language-text">LogConfiguration.xml</code> file, while clicking “Create File” for Hive will create the <code class="code highlight language-text">LogConfiguration.Debug.xml</code> file. The generated file contains a default setting for <code class="code highlight language-text">VERBOSE</code> logging to the <code class="code highlight language-text">DebugOutputLogEventListener</code>, which outputs to an attached debugger. It also provides commented-out example syntax to configure file appenders and category-based logging.</p>
 
-<p>The page also shows the current active configuration, including currently active logging command line args, listed appenders and which appender is applied to what category, at what level. It’s a very handy at-a-glance view of how the logging is configured. It also includes a “Log Log” window, which is the logger used to log internal events from the logging system (to prevent recursion or loss of information when errors occur while logging).</p>
+<p>The page also shows the current active configuration, including currently active logging command line args, listed appenders and which appender is applied to what category, at what level. It’s a very handy at-a-glance view of how the logging is configured. It also includes a “Log Log” window, which the logger uses to log internal events from the logging system (to prevent recursion or loss of information when errors occur while logging).</p>
 
 <a name="system-debug-and-trace" class="elem-anchor"></a>
-<h3>System debug and trace<a href="#system-debug-and-trace" class="anchor-link"><span></span></a></h3>
+<h2>System debug and trace<a href="#system-debug-and-trace" class="anchor-link"><span></span></a></h2>
 
-<p>The ReSharper Platform will add a <code class="code highlight language-text">TraceListener</code> to route .net generated events through ReSharper’s logging system.</p>
+<p>The ReSharper Platform will add a <code class="code highlight language-text">TraceListener</code> to route .net generated events through ReSharper’s logging system, so it will be possible to capture log events generated by <code class="code highlight language-text">System.Diagnostics.Debug</code> and <code class="code highlight language-text">System.Diagnostics.Trace</code>.</p>
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 12 August 2015
                     </div>
                 </article>
 

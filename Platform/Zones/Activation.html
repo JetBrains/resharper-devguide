@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Platform/Zones/Activation">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -107,7 +121,7 @@
 
 <p>There is usually little or no logic in the implementation of <code class="code highlight language-text">ActivatorEnabled</code>. Generally speaking, if a product is installed, it should be activated. Activation is separate to licensing, trial versions and user disabling of a product or feature - this is handled separately by the ReSharper Platform. Unlicensed, expired, or disabled zones are removed from the list of activated zones before components are filtered into the container.</p>
 
-<p>However, it is perfectly reasonable to implement some logic in this method, for example, the <code class="code highlight language-text">InternalModeProductZoneActivator</code> class will activate the <code class="code highlight language-text">IInternalVisibilityZone</code> (for <a href="../../Intro/InternalMode.html"><span>Internal Mode</span></a>) only if the <code class="code highlight language-text">/Internal</code> command line argument is supplied.</p>
+<p>However, it is perfectly reasonable to implement some logic in this method, for example, the <code class="code highlight language-text">InternalModeProductZoneActivator</code> class will activate the <code class="code highlight language-text">IInternalVisibilityZone</code> (for <a href="/resharper/devguide/Extensions/InternalMode.html"><span>Internal Mode</span></a>) only if the <code class="code highlight language-text">/Internal</code> command line argument is supplied.</p>
 
 <a name="explicit-implementation" class="elem-anchor"></a>
 <h3>Explicit implementation<a href="#explicit-implementation" class="anchor-link"><span></span></a></h3>
@@ -133,7 +147,7 @@
 <a name="activator-class-as-component" class="elem-anchor"></a>
 <h3>Activator class as component<a href="#activator-class-as-component" class="anchor-link"><span></span></a></h3>
 
-<p>Similarly, zone activator classes are components (<code class="code highlight language-text">ZoneActivatorAttribute</code> derives from <code class="code highlight language-text">EnvironmentComponentAttribute</code>, so they are components that get created very early in the application lifecycle), which means they can accept dependencies in the constructor. For example, a Feature that is intended for use only in <a href="../../Intro/InternalMode.html"><span>Internal Mode</span></a> can do something like:</p>
+<p>Similarly, zone activator classes are components (<code class="code highlight language-text">ZoneActivatorAttribute</code> derives from <code class="code highlight language-text">EnvironmentComponentAttribute</code>, so they are components that get created very early in the application lifecycle), which means they can accept dependencies in the constructor. For example, a Feature that is intended for use only in <a href="/resharper/devguide/Extensions/InternalMode.html"><span>Internal Mode</span></a> can do something like:</p>
 
 <pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="na">[ZoneActivator]</span>
 <span class="k">public</span> <span class="k">class</span> <span class="nc">MyInternalModeFeatureZonesActivator</span> <span class="p">:</span> <span class="n">IActivate</span><span class="p">&lt;</span><span class="n">IMyInternalModeFeatureZone</span><span class="p">&gt;</span>
@@ -278,7 +292,7 @@
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 12 August 2015
                     </div>
                 </article>
 

@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Extensions/Packaging">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -78,7 +92,7 @@
 
 <p>This has an impact on dependencies - any dependent assemblies included in the extension package will be copied to the main installation directory, too, so it is easy to see how clashes can occur. Dependencies should either be ILMerge’d into the main extension, or ideally, added as NuGet package dependencies. However, the installer cannot handle dependencies which have more than one copy of the same assembly - for example, if adding <code class="code highlight language-text">xunit.dll</code> using the <code class="code highlight language-text">xunit</code> NuGet package, the installer does not know which copy to take, the one in <code class="code highlight language-text">lib\net45</code>, <code class="code highlight language-text">lib\portable</code>, etc. JetBrains currently uses private dependency packages that only contain a single copy of the assembly to work around this limitation.</p>
 
-<p>The package must also add a dependency to the package called “Wave”. This is the package that represents the core version of the ReSharper Platform. For ReSharper 9.0, this is Wave 1.0, so the dependency should be added as <code class="code highlight language-text">Wave [1.0]</code>. Without this dependency, when the package will not be added to the correct feed on the extensions gallery, and won’t be visible in the Extension Manager.</p>
+<p>The package must also add a dependency to the package called “Wave”. This is the package that represents the core version of the ReSharper Platform. For ReSharper 9.0, this is Wave 1.0, so the dependency should be added as <code class="code highlight language-text">Wave [1.0]</code>. ReSharper 9.1 is <code class="code highlight language-text">Wave [2.0]</code>. Without this dependency, when the package will not be added to the correct feed on the extensions gallery, and won’t be visible in the Extension Manager.</p>
 
 <aside class="note">
   <p> Package dependencies are case sensitive, and the installer will (silently!) refuse to install a package that does not have the correct dependency on “Wave”.</p>
@@ -88,12 +102,16 @@
   <p> The extension package needs to have a name that includes a “.” separator, or the installer will refuse to install it. This is used by the installer to produce “Company name” metadata. The package should be in the format “Company.Package”, e.g. “JetBrains.Plugins” or “CitizenMatt.Xunit”.</p>
 </aside>
 
+<aside class="note">
+  <p> The package should not have a dependency on other NuGet packages, such as <code class="code highlight language-text">JetBrains.ReSharper.SDK</code>. The extension NuGet package is intended to be consumed by ReSharper at runtime, rather than being referenced by a project at compile time.</p>
+</aside>
+
 <p>Extensions can include settings and annotations files, by including the files in a folder in the format <code class="code highlight language-text">DotFiles\Extensions\{packageId}\annotations\</code> or <code class="code highlight language-text">DotFiles\Extensions\{packageId}\settings\</code>, where <code class="code highlight language-text">{packageId}</code> is the full ID of the package, e.g. <code class="code highlight language-text">DotFiles\Extensions\CitizenMatt.Xunit\annotations\xunit.xml</code> or <code class="code highlight language-text">DotFiles\Extensions\CitizenMatt.Xunit\settings\template.dotSettings</code>. These files are copied directly, with the same folder structure into the main installation directory. This folder structure is intended to prevent name clashes. If the folder name under <code class="code highlight language-text">DotFiles\Extensions</code> does not match the package ID directly (case insensitive), then the files will not be loaded.</p>
 
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 22 June 2015
                     </div>
                 </article>
 

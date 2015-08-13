@@ -1,0 +1,190 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/KnownIssues">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="known-issues" class="elem-anchor"></a>
+<h1>Known Issues<a href="#known-issues" class="anchor-link"><span></span></a></h1>
+
+<aside class="warning">
+  <p> This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.</p>
+</aside>
+
+<p>This page lists known issues when building plugins.</p>
+
+<ul id="markdown-toc">
+  <li><a href="#plugin-keyboard-shortcuts-dont-work" id="markdown-toc-plugin-keyboard-shortcuts-dont-work"><span>Plugin keyboard shortcuts don’t work<a href="#plugin-keyboard-shortcuts-dont-work" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#xml-files-are-not-processed-as-part-of-swea" id="markdown-toc-xml-files-are-not-processed-as-part-of-swea"><span>XML files are not processed as part of SWEA<a href="#xml-files-are-not-processed-as-part-of-swea" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#xml-files-are-not-passed-to-icache-implementations" id="markdown-toc-xml-files-are-not-passed-to-icache-implementations"><span>XML files are not passed to ICache implementations<a href="#xml-files-are-not-passed-to-icache-implementations" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests" id="markdown-toc-browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests"><span>“Browser not found by alias ‘C’” message when parsing web files in tests<a href="#browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#project-files-are-not-handled-by-daemon-stages" id="markdown-toc-project-files-are-not-handled-by-daemon-stages"><span>Project files are not handled by daemon stages<a href="#project-files-are-not-handled-by-daemon-stages" class="anchor-link"><span></span></a></span></a></li>
+  <li><a href="#cannot-compile-project-that-includes-a-license" id="markdown-toc-cannot-compile-project-that-includes-a-license"><span>Cannot compile project that includes a license<a href="#cannot-compile-project-that-includes-a-license" class="anchor-link"><span></span></a></span></a></li>
+</ul>
+
+<a name="plugin-keyboard-shortcuts-dont-work" class="elem-anchor"></a>
+<h2>Plugin keyboard shortcuts don’t work<a href="#plugin-keyboard-shortcuts-dont-work" class="anchor-link"><span></span></a></h2>
+
+<p><strong>Problem:</strong> If a plugin defines actions that include keyboard shortcuts, the shortcut is only valid the first time Visual Studio is loaded. The next time Visual Studio restarts, the shortcut is gone. Any customisation of the keyboard shortcut in Visual Studio’s options dialog is also lost on restart.</p>
+
+<p><strong>Solution:</strong> There is no workaround for this issue. It will be addressed in ReSharper 9.0.</p>
+
+<p><strong>YouTrack:</strong> <a href="http://youtrack.jetbrains.com/issue/RSRP-246461" data-bypass="yes"><span>RSRP-246461</span></a>, <a href="http://youtrack.jetbrains.com/issue/RSRP-337038" data-bypass="yes"><span>RSRP-337038</span></a></p>
+
+<p><strong>Details:</strong> ReSharper’s built in actions are statically registered as Visual Studio commands at install time, while plugin actions are registered as dynamic commands, every time Visual Studio starts.</p>
+
+<p>When applying key bindings to the Visual Studio commands, either on initial load, or when re-applying a shortcut scheme from the options dialog, ReSharper loops over all known actions, applies any key bindings and sets a flag for that action ID in a settings file. On next load ReSharper verifies that all actions have had their key bindings applied by consulting this list of flags. Any that are missing a flag are new actions, presumably from a plugin, and the shortcut is applied and the flag is set and saved to the settings file.</p>
+
+<p>However, because plugin actions are dynamic, the Visual Studio command is removed when Visual Studio closes. This means any shortcut customisation is lost. On next restart, the flags for these dynamic actions are already set, so the default shortcut isn’t applied again.</p>
+
+<p>ReSharper 9.0 plans on addressing this issue by registering all actions statically. The shortcut will only need to be set once, and customisations aren’t lost between Visual Studio restarts.</p>
+
+<p>(The location of the settings file with the list of flags is <code class="code highlight language-text">%LOCALAPPDATA%\JetBrains\ReSharper\vAny\vs12.0\vsActionManager.dotSettings</code> where <code class="code highlight language-text">vs12.0</code> is the particular version and custom hive of the Visual Studio instance.)</p>
+
+<a name="xml-files-are-not-processed-as-part-of-swea" class="elem-anchor"></a>
+<h2>XML files are not processed as part of SWEA<a href="#xml-files-are-not-processed-as-part-of-swea" class="anchor-link"><span></span></a></h2>
+
+<p><strong>Problem:</strong> XML files are not processed as part of Solution Wide Error Analysis, so any custom problem analysers for will not show up in SWEA. Build scripts and DTD files are also affected. Resx, web.config and XAML files are processed by SWEA.</p>
+
+<p><strong>Solution:</strong> There is no workaround for this issue. It will be addressed in ReSharper 9.0.</p>
+
+<p><strong>YouTrack:</strong> <a href="http://youtrack.jetbrains.com/issue/RSRP-415304" data-bypass="yes"><span>RSRP-415304</span></a></p>
+
+<p><strong>Details:</strong> The implementation of <code class="code highlight language-text">XmlDaemonBehavior</code> returns false for <code class="code highlight language-text">RunInSolutionAnalysis</code> (as do the implementations of <code class="code highlight language-text">ILanguageSpecificDaemonBehavior</code> for build scripts and DTD files). The reasoning behind this was that XML files are more likely to be very large, and cause performance issues when processed during SWEA. However, there is a now a mechanism in place to prevent processing overly large files, using <code class="code highlight language-text">PerformanceThresholds</code> and <code class="code highlight language-text">DoNotBuildPsiForHugeFiles</code>.</p>
+
+<a name="xml-files-are-not-passed-to-icache-implementations" class="elem-anchor"></a>
+<h2>XML files are not passed to ICache implementations<a href="#xml-files-are-not-passed-to-icache-implementations" class="anchor-link"><span></span></a></h2>
+
+<p><strong>Problem:</strong> Any XML or XML derived file is not passed to <code class="code highlight language-text">ICache</code> implementations, meaning XML files cannot participate in background processing.</p>
+
+<p><strong>Solution:</strong> This will be addressed in ReSharper 9.0. However, there is a workaround, described in the Details section below.</p>
+
+<p><strong>YouTrack:</strong> <a href="http://youtrack.jetbrains.com/issue/RSRP-416533" data-bypass="yes"><span>RSRP-416533</span></a></p>
+
+<p><strong>Details:</strong> When passing files to implementations of <code class="code highlight language-text">ICache</code>, ReSharper checks certain properties on the <code class="code highlight language-text">IPsiSourceFileProperties</code> instance exposed by <code class="code highlight language-text">IPsiSourceFile.Properties</code>. It ensures that <code class="code highlight language-text">ShouldBuildPsi</code>, <code class="code highlight language-text">ProvidesCodeModel</code> and <code class="code highlight language-text">IsICacheParticipant</code> are all <code class="code highlight language-text">true</code>. If not, the file is not processed.</p>
+
+<p>XML files return <code class="code highlight language-text">false</code> to <code class="code highlight language-text">ProvidesCodeModel</code>. This flag will be changed for ReSharper 9.0.</p>
+
+<p>It might seem more intuitive to simply check <code class="code highlight language-text">IsICachePartipant</code> rather than checking three properties. The requirements for participating in <code class="code highlight language-text">ICache</code> is the ability to parse a file and that the file contributes to the code model. The <code class="code highlight language-text">IsICacheParticipant</code> property is actually an <em>opt out</em> mechanism, allowing files that satisfy the base requirements to opt out of <code class="code highlight language-text">ICache</code>. It is required for C++ support.</p>
+
+<p>The workaround is to implement <code class="code highlight language-text">IPsiSourceFilePropertiesProvider</code>. The implementation should have an arbitrarily high value for <code class="code highlight language-text">Order</code>, so that it executes after the default implementation which provides a standard implementation of <code class="code highlight language-text">IPsiSourceFileProperties</code>. In its implementation of <code class="code highlight language-text">GetPsiProperties</code>, it should check to see if the file is appropriate - that is, it’s an XML file (<code class="code highlight language-text">psiSourceFile.LanguageType.Is&lt;Xml&gt;()</code>) and if necessary, that the project is also appropriate (for example, if you’re adding caching just for web projects, check the project is a web project before continuing). The method should then return an instance of <code class="code highlight language-text">IPsiSourceFileProperties</code> that returns <code class="code highlight language-text">true</code> for <code class="code highlight language-text">ProvidesCodeModel</code>, and defers everything to the original <code class="code highlight language-text">IPsiSourceFileProperties</code> passed in. If its not a file that you’re interested in, simply return the original properties untouched.</p>
+
+<a name="browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests" class="elem-anchor"></a>
+<h2>“Browser not found by alias ‘C’” message when parsing web files in tests<a href="#browser-not-found-by-alias-c-message-when-parsing-web-files-in-tests" class="anchor-link"><span></span></a></h2>
+
+<p><strong>Problem:</strong> When trying to run a test that needs to parse a web file, such as <code class="code highlight language-text">.css</code>, <code class="code highlight language-text">.html</code> or <code class="code highlight language-text">.aspx</code>, the test fails with a message like “Browser not found by alias ‘C’”. The CSS inspection configuration data is missing, and this causes the CSS daemon to throw exceptions, failing the test.</p>
+
+<p><strong>Solution:</strong> Copy the <code class="code highlight language-text">CSS</code> folder from the ReSharper install directory to the <code class="code highlight language-text">bin\Debug</code> folder of your tests. It will be properly addressed in ReSharper 9.0</p>
+
+<p><strong>YouTrack:</strong> <a href="http://youtrack.jetbrains.com/issue/RSRP-416928" data-bypass="yes"><span>RSRP-416928</span></a></p>
+
+<p><strong>Details:</strong> The <code class="code highlight language-text">CSS</code> folder in the product installation folder contains various configuration files defining supported browsers, and CSS properties. The CSS daemon requires these files in order to properly inspect CSS files. If they’re missing, the daemon throws an exception, causing the tests to fail. Ensure the CSS folder is copied from the ReSharper install directory to the <code class="code highlight language-text">bin\Debug</code> folder of your tests and the CSS daemon will start working properly again. A pre- or post-build step can accomplish this</p>
+
+<a name="project-files-are-not-handled-by-daemon-stages" class="elem-anchor"></a>
+<h2>Project files are not handled by daemon stages<a href="#project-files-are-not-handled-by-daemon-stages" class="anchor-link"><span></span></a></h2>
+
+<p><strong>Problem:</strong> It is not possible to process <code class="code highlight language-text">.csproj</code> or <code class="code highlight language-text">.vbproj</code> project files in an instance of <code class="code highlight language-text">IDaemonStageProcess</code>. They are not processed by the visible document daemon process (because they’re not visible documents!) and are explicitly excluded from Solution Wide Error Analysis.</p>
+
+<p><strong>Solution:</strong> There is no workaround at present</p>
+
+<p><strong>YouTrack:</strong> <a href="http://youtrack.jetbrains.com/issue/RSRP-418226" data-bypass="yes"><span>RSRP-418226</span></a></p>
+
+<a name="cannot-compile-project-that-includes-a-license" class="elem-anchor"></a>
+<h2>Cannot compile project that includes a license<a href="#cannot-compile-project-that-includes-a-license" class="anchor-link"><span></span></a></h2>
+
+<p><em>This issue concerns plugin developers who use a license file (licenses.licx) in their plugin project.</em> Since the license compiler (<code class="code highlight language-text">LC.EXE</code>) takes as parameters the full path of each assembly reference, you may run into an exception if the sum total of all reference paths exceeds 32000 characters. Possible workarounds for this issue are:
+    * Install the ReSharper SDK into a path that is as short as possible; or
+    * Create your own <code class="code highlight language-text">.Target</code> files, removing some of the entries that your plugin does not require.</p>
+
+
+
+                    <div class="last-modified">
+                        Last modified: 12 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

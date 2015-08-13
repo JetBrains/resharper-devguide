@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="PSI/PerLanguageComponents">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -70,7 +84,7 @@
 
 <p>Furthermore, languages are hierarchical, allowing for more specific or perhaps fallback implementations of services. For example, XAML inherits from the XML language, so could provide its own specific code formatter, or fall back to the XML formatter.</p>
 
-<p>The PSI needs a mechanism that will return a single implementation of an interface or base class for a given language type. It handles this with a <a href="../Platform/ComponentModel/ContainersPartsCatalogues.html"><span>custom component container</span></a>.</p>
+<p>The PSI needs a mechanism that will return a single implementation of an interface or base class for a given language type. It handles this with a <a href="/resharper/devguide/Platform/ComponentModel/ContainersPartsCatalogues.html"><span>custom component container</span></a>.</p>
 
 <p>The PSI defines the <code class="code highlight language-text">[Language]</code> attribute that derives from <code class="code highlight language-text">PartAttribute</code>, in the same way that <code class="code highlight language-text">ShellComponentAttribute</code> and <code class="code highlight language-text">SolutionComponentAttribute</code> do. Since it derives directly from <code class="code highlight language-text">PartAttribute</code>, it doesn’t get included in either the shell or solution component container. Instead, the <code class="code highlight language-text">ILanguageManager</code> component maintains a custom container (strictly speaking, it does this through inheritance, so it <em>is</em> a custom container) that filters parts in the product catalogue sets by the <code class="code highlight language-text">LanguageAttribute</code>.</p>
 
@@ -129,7 +143,7 @@
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 25 June 2015
                     </div>
                 </article>
 

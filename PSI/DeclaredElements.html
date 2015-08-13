@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="PSI/DeclaredElements">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -68,7 +82,7 @@
 
 <p>At its simplest level, a declared element is “something that has declarations”. This can be a CLR class declaration, or a method declaration, or something not even related to code - HTML elements, CSS classes and even colours and file system paths.</p>
 
-<p>All declared elements implement interfaces that derive from the language agnostic <code class="code highlight language-text">IDeclaredElement</code> interface. For example, CLR types are represented with the <code class="code highlight language-text">ITypeElement</code> interface, which provides methods and properties for getting at the declared elements for the target type’s methods, properties, constructors and so on. Since a type’s members are also represented as declared elements, it is (almost) possible to use declared elements to model an entire codebase. There are however, some scenarios that declared elements can’t model, and these are documented in <a href="TypeSystems.html"><span>Type Systems</span></a> section.</p>
+<p>All declared elements implement interfaces that derive from the language agnostic <code class="code highlight language-text">IDeclaredElement</code> interface. For example, CLR types are represented with the <code class="code highlight language-text">ITypeElement</code> interface, which provides methods and properties for getting at the declared elements for the target type’s methods, properties, constructors and so on. Since a type’s members are also represented as declared elements, it is (almost) possible to use declared elements to model an entire codebase. There are however, some scenarios that declared elements can’t model, and these are documented in the <a href="TypeSystem.html"><span>Type System</span></a> section.</p>
 
 <p>The <code class="code highlight language-text">IDeclaredElement</code> interface provides the <code class="code highlight language-text">GetDeclarations</code> method that returns one or more <code class="code highlight language-text">IDeclaration</code> instances. The <code class="code highlight language-text">IDeclaration</code> interface derives from <code class="code highlight language-text">ITreeNode</code> and is defined by the PSI for multiple languages to use for the declarations found in source code. For example, C#’s <code class="code highlight language-text">IClassDeclaration</code> tree node inherits from <code class="code highlight language-text">IDeclaration</code>, allowing a language agnostic way of working with tree nodes that are also declarations. This links a declared element to its declaration in source, allowing code that has a method declaration to walk the AST of that declaration to look at the method body.</p>
 
@@ -77,7 +91,7 @@
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 3 August 2015
                     </div>
                 </article>
 

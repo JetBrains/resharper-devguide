@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Features/QuickDoc/ExistingProviders">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -147,12 +161,12 @@
   <li>Implement <code class="code highlight language-text">ILanguageReferenceSelector</code> and mark your class with <code class="code highlight language-text">[Language(typeof(NewLanguage))]</code>. This class will take in an <code class="code highlight language-text">IReference</code> and use it to find any relevant declared elements from which to find documentation. For example, the C# implementation looks for object creation expressions and returns candidates for the constructor and the type being used. This interface is used by the <code class="code highlight language-text">QuickDocCandidatesProvider</code>.</li>
 </ol>
 
-<p>Of course, if your requirements don’t fit any of these scenarios, you can <a href="Implementing.html"><span>implement <code class="code highlight language-text">IQuickDocProvider</code> and <code class="code highlight language-text">IQuickDocPresenter</code> directly</span></a>. You should use the helper methods in <code class="code highlight language-text">XmlDocHtmlUtil</code> and <code class="code highlight language-text">XmlDocHtmlPresenter</code> to build the HTML.</p>
+<p>Of course, if your requirements don’t fit any of these scenarios, you can <a href="ImplementingProvider.html"><span>implement <code class="code highlight language-text">IQuickDocProvider</code></span></a> and <a href="ImplementingPresenter.html"><span><code class="code highlight language-text">IQuickDocPresenter</code> directly</span></a>. You should use the helper methods in <code class="code highlight language-text">XmlDocHtmlUtil</code> and <code class="code highlight language-text">XmlDocHtmlPresenter</code> to build the HTML.</p>
 
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 3 August 2015
                     </div>
                 </article>
 

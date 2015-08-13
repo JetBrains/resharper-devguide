@@ -1,0 +1,139 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/Troubleshooting">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="troubleshooting-a-plugin-install" class="elem-anchor"></a>
+<h1>Troubleshooting a Plugin Install<a href="#troubleshooting-a-plugin-install" class="anchor-link"><span></span></a></h1>
+
+<p>If the extension does not load, or you cannot debug your plugin, there are several things to check:</p>
+
+<ol>
+  <li>Ensure the <a href="/resharper/devguide/Extensions/Packaging.html"><span>package is in the correct format</span></a>.
+    <ol>
+      <li>Ensure the package has a “.” in the name, or it won’t install correctly.</li>
+      <li>Ensure the package <a href="#wave-dependency"><span>includes a dependency on “Wave”</span></a>.</li>
+      <li>Do not include dependencies on compile time NuGet packages, e.g. <code class="code highlight language-text">JetBrains.ReSharper.SDK</code>. ReSharper extension packages and NuGet library reference packages are not the same, and cannot be used interchangeably - one is used at runtime, the other at compile time.</li>
+    </ol>
+  </li>
+  <li>Check the <a href="#installer-logs"><span>installer logs</span></a> to ensure the package installed correctly. The extension may have installed, and be listed in the Extension Manager as installed, but if the files are copied to an incorrect location, the extension isn’t correctly installed. The easiest thing to do is search for your extension package or assembly name.</li>
+  <li>Ensure the plugin has a <a href="/resharper/devguide/Platform/Zones/HowTo.html"><span>Zone marker</span></a> defined in the project’s root namespace (e.g. if the project has code in the <code class="code highlight language-text">Foo.Bar</code> and <code class="code highlight language-text">Foo.Bar.Quux</code> namespaces, the zone marker should live in the <code class="code highlight language-text">Foo.Bar.ZoneMarker</code> class).</li>
+  <li>Enable <a href="/resharper/devguide/Platform/Logging.html"><span>logging</span></a> via the Logging options dialog page available in <a href="/resharper/devguide/Extensions/InternalMode.html"><span>Internal Mode</span></a>, and check the logs for errors, especially related to Zones.</li>
+  <li>Run in <a href="/resharper/devguide/Extensions/InternalMode.html"><span>Internal Mode</span></a>, and look for reported exceptions (exceptions are suppressed when not in internal mode). Even better, use a <a href="/resharper/devguide/Extensions/Tools.html"><span>checked build</span></a>.</li>
+  <li>Ensure the debugger has loaded the extension (look in the Debug » Windows » Modules tool window for the name of the plugin assembly). If it hasn’t loaded, check the <a href="#installer-logs"><span>installer logs</span></a>.</li>
+  <li>Ensure the debugger has loaded symbols for the extension (again, look in the Debug » Windows » Modules tool window for the name of the plugin, this row will include details for symbols). If the symbols are not loaded, you will not be able to set breakpoints for the plugin.
+    <ol>
+      <li>Copy the <code class="code highlight language-text">.pdb</code> files for the plugin to the installation folder (<code class="code highlight language-text">%LOCALAPPDATA%\JetBrains\Installations\{HostFullIdentifier}</code>).</li>
+      <li>Add the symbol location to the Tools » Options » Debugging » Symbols page in Visual Studio.</li>
+    </ol>
+  </li>
+</ol>
+
+<aside class="note">
+  <p> The <code class="code highlight language-text">{HostFullIdentifier}</code> is the name of the install folder for the current host, such as <code class="code highlight language-text">ReSharperPlatformVs12</code> for Visual Studio 2013. More details can be found in the <a href="Deployment/InstallProcess/HostIdentifiers.html"><span>Host Identifiers</span></a> section.</p>
+</aside>
+
+<a name="wave-dependency" class="elem-anchor"></a>
+<h2>Wave Dependency<a href="#wave-dependency" class="anchor-link"><span></span></a></h2>
+
+<p>The extension package needs to include a dependency on a package called “Wave”. This indicates that the extension package can be installed in that version of the ReSharper Platform (shipping the collection of products that make up the Platform is known informally as a “wave”). The “Wave” package is a “virtual” package. It doesn’t exist, and cannot be added to the compile time project via nuget.org. Instead, it is created dynamically by the Extension Manager, and only package extensions that depend on the correct version of the package can be installed. Furthermore, if a package doesn’t depend on the correct version of “Wave”, it is not shown in the list of available packages.</p>
+
+<p>The dependency should be set to <code class="code highlight language-text">[2.0]</code> for ReSharper 9.1, and <code class="code highlight language-text">[1.0]</code> for ReSharper 9.0. It should not be set to a range (as plugins are not compatible between wave versions). The name of the dependency is case sensitive, and should be set to “Wave”. A simple gotcha here is that the Extension Manager is case <em>insensitive</em>, and will display an extension package that depends on “wave” or even “WAVE”. While it looks like the extension package is installed, the package is actually rejected by the installer. This is reflected in the <a href="#installer-logs"><span>logs</span></a>.</p>
+
+<a name="installer-logs" class="elem-anchor"></a>
+<h2>Installer Logs<a href="#installer-logs" class="anchor-link"><span></span></a></h2>
+
+<p>The installer creates logs when it runs. These can be found in <code class="code highlight language-text">%LOCALAPPDATA%\JetBrains\Shared\v02\InstallerLogXXX</code>, where the <code class="code highlight language-text">XXX</code> is a number to allow for multiple logs (the version number in the path is the version number of the wave, currently <code class="code highlight language-text">02</code> for the ReSharper 9.1 release, <code class="code highlight language-text">v01</code> is for ReSharper 9.0).</p>
+
+
+                    <div class="last-modified">
+                        Last modified: 12 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

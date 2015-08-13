@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Platform/Zones/Usage">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -98,7 +112,7 @@
 
 <p>Zone markers are used to declare that a component belongs to one or more zones. This means that the component can only be instantiated if all of those zones (and transitively, all dependent zones) are active in the product.</p>
 
-<p>A zone marker is typically implemented by creating a type called <code class="code highlight language-text">ZoneMarker</code>, or with a name ending in <code class="code highlight language-text">_ZoneMarker</code>, and decorating it with the <code class="code highlight language-text">[ZoneMarker]</code> attribute. All dependencies are listed either by implementing the <code class="code highlight language-text">IRequire&lt;TZone&gt;</code> interface, or by passing the zone definitions to the <code class="code highlight language-text">ZoneMarkerAttribute</code> constructor. There is no difference in the approach.</p>
+<p>A zone marker is a class that has been decorated with the <code class="code highlight language-text">[ZoneMarker]</code> attribute, and <strong>must</strong> be named <code class="code highlight language-text">ZoneMarker</code>, or have a name that ends <code class="code highlight language-text">_ZoneMarker</code>. All dependencies are listed either by implementing the <code class="code highlight language-text">IRequire&lt;TZone&gt;</code> interface, or by passing the zone definitions to the <code class="code highlight language-text">ZoneMarkerAttribute</code> constructor. There is no difference in the approach.</p>
 
 <pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">namespace</span> <span class="nn">Foo.Bar</span>
 <span class="p">{</span>
@@ -200,7 +214,7 @@
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 22 June 2015
                     </div>
                 </article>
 

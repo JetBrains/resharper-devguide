@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Intro/ReSharperPlatform">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -72,7 +86,7 @@
 
 <p>The ReSharper Platform is a common, shared, binary platform. Previous versions of the JetBrains .net tools shared the platform as source code, and each product would be deployed with its own private, binary copy. The aim of this was to allow standalone installs, where any combination of products could be installed, and independent release schedules, where products did not depend on the release schedule of other products. However, each product having its own copy of the platform caused increased resource usage (as each copy of the platform built and cached the same data) and due to dotCover and dotTrace integrating with ReSharper’s test runner, release schedules were already synchronised.</p>
 
-<p>By making the ReSharper Platform a common, shared, binary platform, these issues are resolved - the ReSharper, dotTrace and dotCover products are installed into the Platform, and share resources. Also, products can extend each other - if a product such as dotTrace wants to integrate with ReSharper’s test runner, it can install a component that will be enabled when the test runner component is installed. If the test runner component isn’t installed, then dotTrace’s test runner extension doesn’t get loaded. Release cycles have always be tied across products - this is now explicitly acknowledged. Furthermore, a single binary platform has benefits in deployment, such as single unified installer, and easier license management (e.g. subscription based licensing).</p>
+<p>By making the ReSharper Platform a common, shared, binary platform, these issues are resolved - the ReSharper, dotTrace and dotCover products are installed into the Platform, and share resources. Also, products can extend each other - if a product such as dotTrace wants to integrate with ReSharper’s test runner, it can install a component that will be enabled when the test runner component is installed. If the test runner component isn’t installed, then dotTrace’s test runner extension doesn’t get loaded. Release cycles have always been tied across products - this is now explicitly acknowledged. Furthermore, a single binary platform has benefits in deployment, such as single unified installer, and easier license management (e.g. subscription based licensing).</p>
 
 <p>The ReSharper Platform is designed to be extensible, as are the products that plug into it. The whole API, both of the Platform and the products, is public, and is written with the <a href="http://en.wikipedia.org/wiki/Open/closed_principle" data-bypass="yes"><span>Open/Closed Principle</span></a> very much in mind. The products can be extended, such as extending ReSharper with new analyses, warnings and fixes, support for new unit test frameworks or even supporting new languages. Or the Platform itself can be extended, to use the Visual Studio integration, project model abstractions and syntactic and semantic models to provide new products and new end user features.</p>
 
@@ -81,7 +95,7 @@
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 22 June 2015
                     </div>
                 </article>
 

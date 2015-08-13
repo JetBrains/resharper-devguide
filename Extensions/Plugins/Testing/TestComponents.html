@@ -1,0 +1,128 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/Plugins/Testing/TestComponents">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="test-components" class="elem-anchor"></a>
+<h1>Test Components<a href="#test-components" class="anchor-link"><span></span></a></h1>
+
+<aside class="warning">
+  <p> This topic assumes familiarity with the concept and usage of both the <a href="/resharper/devguide/Platform/ComponentModel.html"><span>Component Model</span></a> and <a href="/resharper/devguide/Platform/Zones.html"><span>Zones</span></a> topics.</p>
+</aside>
+
+<p>When starting the <a href="TestEnvironment.html"><span>test environment</span></a>, the <a href="/resharper/devguide/Platform/ComponentModel.html"><span>Component Model</span></a> will scan all of the assemblies in the output folder, including the ReSharper platform and product assemblies, as well as the plugin and its test assemblies. It will use the currently activated <a href="Zones.html"><span>Zones</span></a> to filter the components, and instantiate only those that are in active zones.</p>
+
+<p>For the majority of components, this will be very similar to the normal ReSharper startup process. The test environment will likely be started with a zone definition that activates the standard testing zone definition <code class="code highlight language-text">PsiFeaturesTestZone</code>, which in turn activates most of the zone definitions necessary for normal ReSharper functionality (e.g. C# and JS support, daemon, navigation, unit testing, etc.).</p>
+
+<p>This process will also load any components that are defined in the plugin. Normal component zone usage applies, so a plugin’s components will only be created if those components live in a namespace that has a <a href="/resharper/devguide/Platform/Zones/Usage.html#zone-markers"><span>Zone Marker</span></a> that in turn requires zones that are currently active. For example, the plugin could define components that live in a zone that requires the <code class="code highlight language-text">IUnitTestingZone</code>. As long as the <code class="code highlight language-text">IUnitTestingZone</code> is active, the plugin’s components will also be active.</p>
+
+<p>Since the test assembly is also scanned for components, it is possible to create components that are only loaded while testing. This can be very useful to provide services to tests, or to augment or override existing components in the main product. For example, it might be useful to replace an existing component that would hit the disk, or a database or web service in order to return a default, well known response. Existing components can be replaced, either by inheriting from that component, or by implementing the <code class="code highlight language-text">IHideImplementation&lt;TComponent&gt;</code> interface. See the guide section on <a href="/resharper/devguide/Platform/ComponentModel/ContainersPartsCatalogues.html#overriding-and-replacing-components"><span>overriding and replacing components</span></a> for more details. If the component is one of many implementations of the same interface, and that type of component supports priority between components, it might be possible to override undesired behaviour by also implementing the interface and returning a higher priority.</p>
+
+<p>In order for test components to be active, they need to live in a namespace (or below a namespace) that is marked with a <a href="/resharper/devguide/Platform/Zones/Usage.html#zone-markers"><span>Zone Marker</span></a> that requires an active zone definition. For example:</p>
+
+<pre><code class="code-block__wrapper code-block _highlighted lang_csharp"><span class="k">namespace</span> <span class="nn">MyPlugin</span>
+<span class="p">{</span>
+<span class="na">  [ZoneMarker]</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">ZoneMarker</span> <span class="p">:</span> <span class="n">IRequire</span><span class="p">&lt;</span><span class="n">IMyTestsZone</span><span class="p">&gt;</span>
+  <span class="p">{</span>
+  <span class="p">}</span>
+
+<span class="na">  [ShellComponent]</span>
+  <span class="k">public</span> <span class="k">class</span> <span class="nc">MyTestComponent</span>
+  <span class="p">{</span>
+    <span class="c1">// ...</span>
+  <span class="p">}</span>
+<span class="p">}</span></code></pre>
+
+
+                    <div class="last-modified">
+                        Last modified: 12 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

@@ -1,0 +1,108 @@
+
+
+
+<!doctype html>
+<html lang="en-US">
+<head>
+    <meta charset="UTF-8">
+    <title> / ReSharper  DevGuide</title>
+    <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
+<link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
+<body data-id="Extensions/Deployment/InstallProcess/HostIdentifiers">
+<div class="wrapper">
+    <section class="panel _nav">
+        <header class="panel__header">
+            <div class="container">
+                <form class="search-box">
+                    <label for="search-box__input" class="search-box__label">
+                        <input type="text" class="search-box__input" id="search-box__input" placeholder="Search ReSharper  DevGuide">
+                    </label>
+                    <div class="search-box__clear" title="Clear"></div>
+                </form>
+            </div>
+        </header>
+        <nav class="panel__content">
+            <div class="container _nav">
+                <menu class="nav-tree"></menu>
+            </div>
+            <div class="container _footer panel__footer">
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
+                <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
+                    All rights reserved.</p>
+            </div>
+        </nav>
+    </section>
+
+    <main class="panel _main" role="main">
+        <header class="panel__header">
+            <div class="container">
+                <h3>ReSharper DevGuide</h3>
+                
+        <div class="shortcuts-switcher"><label for="switch-shortcuts">Keymap:</label><select id="switch-shortcuts" class="select _shortcuts" height="1">
+            <option data-group="primary" value="default" selected>Default</option>
+            <option data-group="primary" value="default_for_gnome">GNOME</option>
+            <option data-group="primary" value="default_for_kde">KDE</option>
+            <option data-group="primary" value="default_for_xwin">XWindow</option>
+            <option data-group="primary" value="emacs">Emacs</option>
+            <option data-group="primary" value="jbuilder">JBuilder</option>
+            <option data-group="primary" value="visual_studio">Visual Studio</option>
+            <option data-group="primary" value="netbeans_6.5">NetBeans 6.5</option>
+            <option data-group="primary" value="eclipse">Eclipse</option>
+            <option data-group="secondary" value="mac_os_x_10.5_">OS X 10.5+</option>
+            <option data-group="secondary" value="mac_os_x">OS X</option>
+            <option data-group="secondary" value="eclipse_mac_os_x">OS X Eclipse</option></select>
+        </div>
+    
+                <div class="panel-trigger"></div>
+            </div>
+        </header>
+        <section class="panel__content">
+            <div class="container">
+                <article class="article" data-shortcut-switcher="false">
+
+                    
+                    <a name="host-identifiers" class="elem-anchor"></a>
+<h1>Host Identifiers<a href="#host-identifiers" class="anchor-link"><span></span></a></h1>
+
+<p>When the ReSharper Platform is installed, files are copied to several installation folders, one for each host. The installation folders are in the <code class="code highlight language-text">%LOCALAPPDATA%\JetBrains\Installations</code> folder, and each host is named with a Host Identifier.</p>
+
+<p>The host identifier is a combination of the name and version of the host. For standalone hosts, the name is something like <code class="code highlight language-text">dotPeek02</code>, while for the ReSharper Platform, the identifier comes from the host name, the Visual Studio version and optionally, an <a href="/resharper/devguide/Extensions/Deployment/LocalInstallation/ExperimentalInstance.html"><span>experimental instance</span></a> name. For example, <code class="code highlight language-text">ReSharperPlatformVs12</code> is the ReSharper Platform hosted in Visual Studio 2013, and <code class="code highlight language-text">ReSharperPlatformVs14Plugins</code> is the ReSharper Platform hosted in Visual Studio 2015, and using the <code class="code highlight language-text">Plugins</code> experimental instance.</p>
+
+<p>A host identifier is used by the SDK to find the installation folder for that host. The SDK includes a <a href="/resharper/devguide/Extensions/Deployment/LocalInstallation/CopyOnBuild.html"><span>custom MSBuild task</span></a> that can return an installation folder when given a host identifier.</p>
+
+<p>It is strongly recommended to use the custom MSBuild task rather than to try and build the installation location by hand. This is because the installation folder may not be directly named after the host identifier. When installing or updating an extension, the installer needs to update files that might be in use (because the installer has been invoked from a running instance of ReSharper). To avoid issues, the installer creates a new installation folder, based on the host identifier, but adding a <code class="code highlight language-text">_000</code> or <code class="code highlight language-text">_001</code> suffix to make sure it’s unique. After the installation completes and the host restarts, the old installation folder is removed and the new folder is renamed to remove the suffix. However, due to file locks, this does not always happen immediately, meaning multiple folders can exist for the same host identifier. The MSBuild task handles the logic of finding out which folder is the correct one.</p>
+
+
+                    <div class="last-modified">
+                        Last modified: 3 August 2015
+                    </div>
+                </article>
+
+                <section class="disqus">
+                    <div id="disqus_thread"></div>
+                </section>
+            </div>
+        </section>
+    </main>
+</div>
+
+
+<script data-main="/resharper/devguide/app/js/main.build" data-baseurl="/resharper/devguide/" src="/resharper/devguide/app/js/vendor/requirejs/require.js"></script>
+
+</body>
+</html>
+

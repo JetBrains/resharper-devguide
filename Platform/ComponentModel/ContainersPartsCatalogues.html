@@ -7,6 +7,20 @@
     <meta charset="UTF-8">
     <title> / ReSharper  DevGuide</title>
     <link rel="stylesheet" href="/resharper/devguide/app/css/styles.min.css">
+
+    <!-- non-retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-72x72.png" sizes="72x72">
+
+    <!-- retina iPhone pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-114x114.png" sizes="114x114">
+
+    <!-- retina iPad pre iOS 7 -->
+    <link rel="apple-touch-icon" href="/resharper/devguide/apple-touch-icon-144x144.png" sizes="144x144">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/resharper/devguide/apple-touch-icon-precomposed.png">
+
+    <!-- normal favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="/resharper/devguide/favicon.ico">
+    <link rel="icon" type="image/png" href="/resharper/devguide/favicon.png">
 <link  rel="stylesheet" href="/resharper/devguide/styles/styles.css"></head>
 <body data-id="Platform/ComponentModel/ContainersPartsCatalogues">
 <div class="wrapper">
@@ -26,7 +40,7 @@
                 <menu class="nav-tree"></menu>
             </div>
             <div class="container _footer panel__footer">
-                <p><a href="mailto:feedback@jetbrains.com">Send feedback</a></p>
+                <p><a href="https://youtrack.jetbrains.com/issues/IJSDK">Send feedback</a></p>
                 <p>&copy; 2000&ndash;2015 <a href="//www.jetbrains.com">JetBrains</a> s.r.o.<br>
                     All rights reserved.</p>
             </div>
@@ -282,7 +296,7 @@
 
 <p>At application startup, the <code class="code highlight language-text">JetEnvironment</code> class is responsible for setting up the catalogue sets. It creates an instance of <code class="code highlight language-text">FullProductCatalogueSet</code>, passing in a list of all of the assemblies that make up the product. The catalogue set is initially created with a single catalogue made up of all of these assemblies, and containing a list of types that are decorated with <code class="code highlight language-text">[Part]</code> derived attributes. This catalogue set is an unfiltered collection of all parts that are available to the application. Note that no component instances have been created yet.</p>
 
-<p>It also exposes an <code class="code highlight language-text">EnvironmentPartCatalogSet</code>, which is an instance of <code class="code highlight language-text">PartsCatalogueSet</code>. This is a filtered view of the <code class="code highlight language-text">FullProductCatalogSet</code> that strips out any parts that are not part of a <a href="Zones.html"><span>Zone</span></a>. This catalogue set is used to populate the component containers.</p>
+<p>It also exposes an <code class="code highlight language-text">EnvironmentPartCatalogSet</code>, which is an instance of <code class="code highlight language-text">PartsCatalogueSet</code>. This is a filtered view of the <code class="code highlight language-text">FullProductCatalogSet</code> that strips out any parts that are not part of a <a href="/resharper/devguide/Platform/Zones.html"><span>Zone</span></a>. This catalogue set is used to populate the component containers.</p>
 
 <a name="catalogues" class="elem-anchor"></a>
 <h2>Catalogues<a href="#catalogues" class="anchor-link"><span></span></a></h2>
@@ -295,7 +309,7 @@
 
 
                     <div class="last-modified">
-                        Last modified: 8 May 2015
+                        Last modified: 3 August 2015
                     </div>
                 </article>
 
