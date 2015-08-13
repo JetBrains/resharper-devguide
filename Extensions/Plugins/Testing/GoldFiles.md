@@ -17,8 +17,7 @@ Depending on the type of the file, it can be handled in different ways. It can b
 
 ## Special tokens
 
-
-
+> **TODO** Document the default special tokens
 
 ## Creating gold files
 
@@ -79,5 +78,4 @@ For example, to use [SourceGear DiffMerge](https://sourcegear.com/diffmerge/) as
 |----------------------|-----------------------------------------------|
 | `DIFF`               | `sgdm`                                        |
 | `DIFF_PARAMETERS`    | `/t1="$plabel1" /t2="$clabel" $parent $child` |
-
 
