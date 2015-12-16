@@ -33,9 +33,9 @@ Let's go through the tools one by one, since all of them are critical in putting
 
 * `CsLex.Targets` contains a set of targets that need to be included in the `.csproj` file using an `<Import>` directive:
 
-    ```xml
-    <Import Project="$(ReSharperSdkTools)\CsLex\CsLex.Targets" />
-    ```
+```xml
+<Import Project="$(ReSharperSdkTools)\CsLex\CsLex.Targets" />
+```
 
 * `CsLex.Tasks` contains the definition for a `CsLex` build task. It is automatically included by `CsLex.Targets`
 * `lex.exe` is the executable that generates the lexical definitions. `lex.xml` is the XML documentation for the tool. You do not need to interact directly with these two files, as the build task takes care of that for you.
@@ -59,9 +59,9 @@ One of the building blocks of the lexer is the unicode definition file `Unicode.
 
 * `ParserGen.Targets` and `ParserGen.Tasks` contain the MSBuild targets and build task respectively. Plugin writers need to add the following to the `.csproj` file:
 
-    ```xml
-    <Import Project="$(ReSharperSdkTools)\parserGen\ParserGen.Targets" />
-    ```
+```xml
+<Import Project="$(ReSharperSdkTools)\parserGen\ParserGen.Targets" />
+```
 
 * `ParserGenTask.dll` provides a .NET shim for using a Java-based `ParserGen` build task.
 * `Unicode.lex` is a file that actually relates to lexer construction. (See above.)

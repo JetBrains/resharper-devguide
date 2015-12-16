@@ -296,9 +296,12 @@
 
 ## Part VIII - Custom languages
 * [Overview](CustomLanguages/Overview.md)
-* Registering a Custom Language
-    * Project Model
-    * PSI
+* [Registering a Custom Language](CustomLanguages/Registration.md)
+    * [Project File Type](CustomLanguages/Registration/ProjectFileType.md)
+    * [PSI Language Definition](CustomLanguages/Registration/PsiLanguageDefinition.md)
+    * [Per-language Components](CustomLanguages/Registration/PerLanguageComponents.md)
+    * [Project File Language Service](CustomLanguages/Registration/ProjectFileLanguageService.md)
+    * [PSI Language Service](CustomLanguages/Registration/PsiLanguageService.md)
 * Secondary PSI
 * [Injected PSI](CustomLanguages/InjectedPsi.md)
 * Building the PSI tree
