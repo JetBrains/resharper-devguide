@@ -29,7 +29,7 @@ Let's go through the tools one by one, since all of them are critical in putting
 
 ## CsLex
 
-`CsLex` is a [freely available|http://www.cybercom.net/~zbrad/DotNet/Lex/] lexical analyzer generator that comes packaged in the SDK. CsLex can be found in the `Tools/CsLex` folder, which includes the following files:
+`CsLex` is a [freely available](http://www.cybercom.net/~zbrad/DotNet/Lex/) lexical analyzer generator that comes packaged in the SDK. CsLex can be found in the `Tools/CsLex` folder, which includes the following files:
 
 * `CsLex.Targets` contains a set of targets that need to be included in the `.csproj` file using an `<Import>` directive:
 

@@ -304,7 +304,7 @@
     * [PSI Language Service](CustomLanguages/Registration/PsiLanguageService.md)
 * Secondary PSI
 * [Injected PSI](CustomLanguages/InjectedPsi.md)
-* Building the PSI tree
+* [Building the PSI tree](CustomLanguages/BuildingPsiTree.md)
     * Lexing
     * Parsing
         * PsiGen and .psi Files
