@@ -9,7 +9,7 @@ One of the main responsibilities of a custom language implementation is to build
 
 ReSharper follows the traditional method of building a parse tree, namely, [lexical analysis ("lexing")](https://en.wikipedia.org/wiki/Lexical_analysis) and [parsing](https://en.wikipedia.org/wiki/Parsing). Lexing is the process of converting an input text buffer into a stream of tokens, such as keyword, identifier, whitespace, operator and so on. Parsing then analyses this stream of tokens, looking for known sequences, such as class declaration, assignment operation, method invocation, etc.
 
-The result of parsing is to build a tree structure, where the leaf nodes represent the tokens from lexing (the [terminal symbols](https://en.wikipedia.org/wiki/Terminal_and_nonterminal_symbols)), and the interior or branch nodes are semantic constructs, that represent the class declaration, etc ([non-terminals](https://en.wikipedia.org/wiki/Terminal_and_nonterminal_symbols)). It is now possible to walk the tree to find out what makes up a file, what statements and expressions are in a method declaration, and what identifiers and operators are in an expression.
+The result of parsing is to build a tree structure, where the leaf nodes represent the tokens from lexing (the [terminal symbols](https://en.wikipedia.org/wiki/Terminal_and_nonterminal_symbols)), and the interior or branch nodes are semantic constructs, that represent the class declaration, etc. ([non-terminals](https://en.wikipedia.org/wiki/Terminal_and_nonterminal_symbols)). It is now possible to walk the tree to find out what makes up a file, what statements and expressions are in a method declaration, and what identifiers and operators are in an expression.
 
 # PSI tree structure
 
@@ -29,7 +29,7 @@ ReSharper also provides support for incremental lexing, which will reuse existin
 
 The parser uses an `ILexer` to advance through the file, analysing the token types it discovers along the way. It first creates an instance of `IFile`, and then adds children which represent the top level constructs in the file (e.g. a C# file would have `using` statements, namespace declarations or class declarations). Each child would then have further children (e.g. a namespace declaration would have the `namespace` keyword, whitespace, the name identifier of the namespace as well as the namespace body), and so on (class declarations, type members, expressions, statements, etc.).
 
-The parser uses methods on `TreeElementFactory` to create nodes in the tree (ReSharper also, and perhaps confusingly, uses the term "element" when describing nodes instances in the tree. That is, implementations of `ITreeNode` are referred to as elements, while the interfaces use "node").
+The parser uses methods on `TreeElementFactory` to create nodes in the tree (ReSharper also, and perhaps confusingly, uses the term "element" when describing node instances in the tree. That is, implementations of `ITreeNode` are referred to as elements, while the interfaces use "node").
 
 When creating an interior node, the parser passes the node type (a singleton instance derived from `CompositeNodeType`) in a call to `CreateCompositeElement`. This in turn calls `CompositeNodeType.Create`, and the derived instance of `CompositeNodeType` creates the `ITreeNode` instance and returns it, ready to be added to the tree. 
 
@@ -39,6 +39,6 @@ If there is a syntax error in the file, the parser adds a special `ITreeNode` in
 
 The parser implements the `IParser` interface, and is usually generated from a `.psi` file, which is a proprietary file format the describes the grammar of the language being parsed. The ReSharper SDK ships with a tool to convert the `.psi` file to a generated class that implements these rules. Alternatively, a parser can be hand written, although it is still useful to use a `.psi` file to generate the tree node classes and interfaces.
 
-Typically, a parser should be generated from a `.psi` file. A hand written parser is useful if the language is extremely simple, or if the language is too complex to be represented in a `.psi` file easily. Another reason for using a hand written parser is if the language is a superset of another language. For example, TypeScript files are a superset of JavaScript files, so can reuse parts of the parser, for statements, method definitions, etc. A hand rolled parser makes it easier to call into parts of another parser.
+A hand written parser is useful if the language is extremely simple, or if the language is too complex to be represented in a `.psi` file easily. Another reason for using a hand written parser is if the language is a superset of another language. For example, TypeScript files are a superset of JavaScript files, so can reuse parts of the parser, for statements, method definitions, etc. A hand rolled parser makes it easier to call into parts of another parser.
 
 ReSharper supports incremental reparsing, whereby only the affected sub-tree is replaced, rather than having to reparse the whole file. This requires special block nodes that know how to reparse their own content.

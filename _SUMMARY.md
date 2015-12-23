@@ -305,6 +305,10 @@
 * Secondary PSI
 * [Injected PSI](CustomLanguages/InjectedPsi.md)
 * [Building the PSI tree](CustomLanguages/BuildingPsiTree.md)
+    * [Node Types](CustomLanguages/Parsing/NodeTypes.md)
+        * [Token Node Types](CustomLanguages/Parsing/NodeTypes/TokenNodeTypes.md)
+        * [Composite Node Types](CustomLanguages/Parsing/NodeTypes/CompositeNodeTypes.md)
+        * [Creating Node Types](CustomLanguages/Parsing/NodeTypes/CreatingNodeTypes.md)
     * Lexing
     * Parsing
         * PsiGen and .psi Files
