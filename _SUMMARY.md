@@ -302,6 +302,7 @@
     * [Per-language Components](CustomLanguages/Registration/PerLanguageComponents.md)
     * [Project File Language Service](CustomLanguages/Registration/ProjectFileLanguageService.md)
     * [PSI Language Service](CustomLanguages/Registration/PsiLanguageService.md)
+    * [Testing](CustomLanguages/Registration/Testing.md)
 * Secondary PSI
 * [Injected PSI](CustomLanguages/InjectedPsi.md)
 * [Building the PSI tree](CustomLanguages/BuildingPsiTree.md)
