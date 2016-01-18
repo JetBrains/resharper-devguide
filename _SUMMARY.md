@@ -310,7 +310,15 @@
         * [Token Node Types](CustomLanguages/Parsing/NodeTypes/TokenNodeTypes.md)
         * [Composite Node Types](CustomLanguages/Parsing/NodeTypes/CompositeNodeTypes.md)
         * [Creating Node Types](CustomLanguages/Parsing/NodeTypes/CreatingNodeTypes.md)
-    * Lexing
+    * [Lexing](CustomLanguages/Parsing/Lexing.md)
+        * [Lexer Factories](CustomLanguages/Parsing/Lexing/LexerFactories.md)
+        * [Text Buffers](CustomLanguages/Parsing/Lexing/TextBuffers.md)
+        * [Implementing a Lexer](CustomLanguages/Parsing/Lexing/ImplementingLexers.md)
+        * [Using CsLex](CustomLanguages/Parsing/Lexing/CsLex.md)
+        * [Lexer Utility Methods](CustomLanguages/Parsing/Lexing/LexerUtil.md)
+        * [Filtering Lexers](CustomLanguages/Parsing/Lexing/FilteringLexers.md)
+        * [Caching Lexers](CustomLanguages/Parsing/Lexing/CachingLexers.md)
+        * [Testing](CustomLanguages/Parsing/Lexing/Testing.md)
     * Parsing
         * PsiGen and .psi Files
         * TreeBuilder
