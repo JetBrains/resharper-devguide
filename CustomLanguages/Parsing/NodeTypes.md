@@ -3,7 +3,7 @@
 
 # Node Types
 
-Each node in a given PSI tree implements `ITreeNode`, which has a property called `NodeType` that identifies the type of the type of the node. The value is a singleton instance that derives from the abstract base class `NodeType`. Leaf elements in the tree have a node type that further derives from the `TokenNodeType` abstract base class, while interior tree elements derive from `CompositeNodeType`.
+Each node in a given PSI tree implements `ITreeNode`, which has a property called `NodeType` that identifies the type of the node. The value is a singleton instance that derives from the abstract base class `NodeType`. Leaf elements in the tree have a node type that further derives from the `TokenNodeType` abstract base class, while interior tree elements derive from `CompositeNodeType`.
 
 The `NodeType` class is the abstract base class for all node types:
 
