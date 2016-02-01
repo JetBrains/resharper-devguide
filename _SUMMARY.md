@@ -316,6 +316,7 @@
         * [Implementing a Lexer](CustomLanguages/Parsing/Lexing/ImplementingLexers.md)
         * [Using CsLex](CustomLanguages/Parsing/Lexing/CsLex.md)
         * [Lexer Utility Methods](CustomLanguages/Parsing/Lexing/LexerUtil.md)
+        * [Lexer Utility Classes](CustomLanguages/Parsing/Lexing/UtilityClasses.md)
         * [Filtering Lexers](CustomLanguages/Parsing/Lexing/FilteringLexers.md)
         * [Caching Lexers](CustomLanguages/Parsing/Lexing/CachingLexers.md)
         * [Testing](CustomLanguages/Parsing/Lexing/Testing.md)

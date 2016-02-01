@@ -50,13 +50,13 @@ public abstract class TokenNodeType : NodeType, ITokenNodeType
 
 Each language must provide at least one class that derives from `TokenNodeType`. Typically, this will provide default values for the simple abstract properties. These values can be constants that are overridden in further derived classes (that represent whitespace, comments, etc.) or can be implemented directly by comparing `this` to known singleton values for comments, whitespace, etc.
 
-Like `NodeType`, the constructor takes in a string identifier and a unique index for the node type, and passes them to the base class. The identifier is only used internally, for diagnostics and testing, and should be simple enough to identify the node type, e.g. `NEW_LINE`, `COMMENT`, `IDENTIFIER`, etc.
+Like `NodeType`, the constructor takes in a string identifier and a unique index for the node type, and passes them to the base class. The identifier is only used internally, for diagnostics and testing, and should be simple enough to identify the node type, e.g. `"NEW_LINE"`, `"COMMENT"`, `"IDENTIFIER"`, etc.
 
-The `TokenRepresentation` property is a value that is usually passed into the constructor of a derived class, and provides a more human readable representation of the token than the identifier value passed to the constructor of `TokenNodeType`. For example, the identifier might be `ANDAND`, while the representation would be `&&`, or `RETURN_KEYWORD` and `return`. This is used by the `GetSampleText` and `GetDescription` methods.
+The `TokenRepresentation` property is a value that is usually passed into the constructor of a derived class, and provides a more human readable representation of the token than the identifier value passed to the constructor of `TokenNodeType`. For example, the identifier might be `"ANDAND"`, while the representation would be `"&&"`, or `"RETURN_KEYWORD"` and `"return"`. This is used by the `GetSampleText` and `GetDescription` methods.
 
 The `GetSampleText` method is called by a language's formatter implementation, to see if two token types require whitespace to separate them (by building a string with the two pieces of sample text and attempting to lex it. If it succeeds, no whitespace is necessary). By default, this is the `TokenRepresentation`.
 
-The `GetDescription` method returns a human readable description of the token for use in parse errors. Typically, this is the `TokenRepresentation` abstract method, but if this is `null` or empty, it returns the string identifier passed to the constructor (e.g. `IDENTIFIER`, `NEW_LINE`).
+The `GetDescription` method returns a human readable description of the token for use in parse errors. Typically, this is the `TokenRepresentation` abstract method, but if this is `null` or empty, it returns the string identifier passed to the constructor (e.g. `"IDENTIFIER"`, `"NEW_LINE"`).
 
 The class also provides two `Create` methods. One which takes a string, and another that takes a string buffer and a start and end offset. These methods are used by the parser to create leaf elements for the tree - `LeafElementBase` provides an abstract implementation of various parts of `ITreeNode`.
 
