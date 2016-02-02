@@ -311,6 +311,7 @@
         * [Composite Node Types](CustomLanguages/Parsing/NodeTypes/CompositeNodeTypes.md)
         * [Creating Node Types](CustomLanguages/Parsing/NodeTypes/CreatingNodeTypes.md)
     * [Lexing](CustomLanguages/Parsing/Lexing.md)
+        * [The Tao of Writing a Lexer](CustomLanguages/Parsing/Lexing/Tao.md)
         * [Lexer Factories](CustomLanguages/Parsing/Lexing/LexerFactories.md)
         * [Text Buffers](CustomLanguages/Parsing/Lexing/TextBuffers.md)
         * [Implementing a Lexer](CustomLanguages/Parsing/Lexing/ImplementingLexers.md)
