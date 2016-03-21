@@ -49,7 +49,7 @@ Lexing is the process of reading a text buffer and producing a stream of tokens,
 
 ## Parsing
 
-The parses uses the lexer's stream of tokens to produce a concrete syntax tree, or parse tree (aka PSI tree), that represents the structure of the file.
+The parser uses the lexer's stream of tokens to produce a concrete syntax tree, or parse tree (aka PSI tree), that represents the structure of the file.
 
 * **`CreateParser`** (abstract) - create an instance of `IParser`, given an `ILexer`, an `IPsiSourceFile` and an `IPsiModule`. The language service should return an `IParser` that can parse the custom language.
 * **`ParseFile`** - uses `CreateParser` to parse a file and create an `IFile` instance that represents the root of the PSI tree.

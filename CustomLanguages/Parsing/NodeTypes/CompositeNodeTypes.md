@@ -12,9 +12,9 @@ public interface ICompositeNodeType
 }
 ```
 
-As with `TokenNodeType.Create`, `ICompositeNodeType.Create` returns an implementation of `ITreeNode` that uses ReSharper's own base classes. The `Create` method is only used by the parser (via `TreeElementFactory.CreateCompositeElement`) to create an `ITreeNode` from a known node type.
+As with `TokenNodeType.Create`, `ICompositeNodeType.Create` returns an implementation of `ITreeNode` that uses ReSharper's own base classes. The `Create` method is only used by the parser (via the `TreeElementFactory.CreateCompositeElement` static method) to create an `ITreeNode` from a known node type.
 
-> **NOTE** ReSharper has a couple of implementation details that require a custom language to use ReSharper's base classes to implement `ITreeNode`, specifically downcasting the root `IFile` node to `FileElementBase` after it's been created.
+> **NOTE** ReSharper has a couple of implementation details that require a custom language uses ReSharper's base classes to implement `ITreeNode`, specifically downcasting the root `IFile` node to `FileElementBase` after it's been created. Simiarly, `ICompositeNodeType.Create` returns a `CompositeElement` derived class.
 
 If a custom language is using ReSharper's base `ITreeNode` classes, it should also use `CompositeNodeType` as the base class for all interior tree node types. This base class has no additional functionality over `NodeType`, and simply provides an abstract method to create the `CompositeElement` base tree node instance.
 
@@ -32,7 +32,7 @@ public abstract class CssCompositeNodeType : CompositeNodeType
 }
 ```
 
-The base class simply takes in a string identifier, such as `ID_SELECTOR`, used only for diagnostics and testing, and an index to uniquely identify the node type within the language. This index must not clash with any existing indexes used for that language - token or composite node types.
+The base class simply takes in a string identifier, such as `"ID_SELECTOR"`, used only for diagnostics and testing, and an index to uniquely identify the node type within the language. This index must not clash with any existing indexes used for that language - token or composite node types.
 
 All composite node types of the custom language should be created as derived classes of this language-specific composite node type. The only extra functionality required in these derived classes is to provide an implementation for the `Create` method, by creating an `ITreeNode` that represents that tree node. For example:
 

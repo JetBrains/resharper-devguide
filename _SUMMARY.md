@@ -321,9 +321,10 @@
         * [Filtering Lexers](CustomLanguages/Parsing/Lexing/FilteringLexers.md)
         * [Caching Lexers](CustomLanguages/Parsing/Lexing/CachingLexers.md)
         * [Testing](CustomLanguages/Parsing/Lexing/Testing.md)
-    * Parsing
+    * [Parsing](CustomLanguages/Parsing/Parsing.md)
         * PsiGen and .psi Files
         * TreeBuilder
+        * [Testing](CustomLanguages/Parsing/Parsing/Testing.md)
     * Extending Existing Languages
     * Incremental Parsing
 * Creating Declared Elements
