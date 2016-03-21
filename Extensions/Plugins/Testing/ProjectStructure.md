@@ -52,7 +52,7 @@ The `test\data` folder also needs to contain a `nuget.config` file. When ReSharp
 
     <!-- Add the JetBrains test package gallery first.
          Then include nuget.org to download non-test packages to include in test projects -->
-    <add key="jb-gallery" value="http://jb-gallery.azurewebsites.net/api/v2/curated-feeds/TestNuggets/" />
+    <add key="jb-gallery" value="http://jb-gallery.azurewebsites.net/api/v2/" />
     <add key="nuget.org" value="http://www.nuget.org/api/v2/" />
   </packageSources>
   <disabledPackageSources>
