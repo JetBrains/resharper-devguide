@@ -30,7 +30,7 @@ Let's take a look at these steps in turn.
 
 ## Actions.xml
 
-`Actions.xml` is an embedded resource you can keep in your project. ReSharper is able to locate the resource due to the ActionsXml attribute with which the assembly is decorated. For example:
+`Actions.xml` is an embedded resource you can keep in your project. ReSharper is able to locate the resource due to the `ActionsXml` attribute with which the assembly is decorated. For example:
 
 ```csharp
 [assembly: ActionsXml("JetBrains.ReSharper.PowerToys.MenuItem.Actions.xml")]
