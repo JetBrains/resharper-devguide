@@ -11,7 +11,7 @@ In order to build the site locally, you will need Ruby installed (the site is ba
 5. Download dependencies (gems) - `rake bootstrap`
 6. Build and preview the site with `rake preview`
 
-This starts Jekyll running the site at `http://localhost:4001/help/devguide/`
+This starts Jekyll running the site at `http://localhost:4001/help/resharper/sdk/`
 
 ## Notes on style
 

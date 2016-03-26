@@ -5,4 +5,4 @@ product_type: DevGuide
 
 # Specify the base url of the site. This is the path to the root of the site once
 # it's been deployed. MUST have a trailing slash. Root should be '/'
-baseurl: /help/devguide/
+baseurl: /help/resharper/sdk/
