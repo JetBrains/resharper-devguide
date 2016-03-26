@@ -7,7 +7,7 @@ ReSharper provides several ways to consume icons, from WPF controls to display t
 
 The main entry point to the API is the `IThemedIconManager` interface, which can be imported as a constructor parameter on a `[ShellComponent]` or `[SolutionComponent]`. It provides the following members:
 
-```
+```csharp
 public interface IThemedIconManager
 {
   IProperty<IconTheme> CurrentIconTheme { get; }
