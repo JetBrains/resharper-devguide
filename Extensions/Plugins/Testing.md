@@ -38,24 +38,24 @@ public class MyTestEnvironmentAssembly : ReSharperTestEnvironmentAssembly
     yield return Assembly.GetExecutingAssembly();
 
     // Plugin code - TypeUnderTest is implemented in the plugin assembly
-    yield return typeof(typeof(TypeUnderTest)).Assembly;
+    yield return typeof(TypeUnderTest).Assembly;
   }
 
   public override void SetUp()
   {
     base.SetUp();
-    ReentrancyGuard.Current.Execute("LoadAssemblies", () => 
+    ReentrancyGuard.Current.Execute("LoadAssemblies", () =>
     {
-      Shell.Instance.GetComponent<AssemblyManager>().LoadAssemblies(GetType().Name, GetAssembliesToLoad()));
-    }
+      Shell.Instance.GetComponent<AssemblyManager>().LoadAssemblies(GetType().Name, GetAssembliesToLoad());
+    });
   }
 
   public override void TearDown()
   {
     ReentrancyGuard.Current.Execute("UnloadAssemblies", () => 
     {
-      Shell.Instance.GetComponent<AssemblyManager>().LoadAssemblies(GetType().Name, GetAssembliesToLoad()));
-    }
+      Shell.Instance.GetComponent<AssemblyManager>().UnloadAssemblies(GetType().Name, GetAssembliesToLoad());
+    });
     base.TearDown();
   }
 }
