@@ -5,7 +5,7 @@ redirect_from:
 
 # ReSharper DevGuide
 
-Welcome to the developer guide for the [ReSharper Platform](Intro/ReSharperPlatform.md). This is the primary source of documentation for developing extensions for the ReSharper Platform that ships as part of ReSharper 9.1.
+Welcome to the developer guide for the [ReSharper Platform](Intro/ReSharperPlatform.md). This is the primary source of documentation for developing extensions for the ReSharper Platform that ships as part of ReSharper.
 
 To view the guide, please visit: [https://www.jetbrains.com/help/resharper/sdk/](https://www.jetbrains.com/help/resharper/sdk/)
 
@@ -24,6 +24,4 @@ The guide is very much a work in progress (the ReSharper Platform has a very lar
 
 ## Previous versions
 
-This guide is aimed at the latest version of the ReSharper Platform, which is currently shipping with ReSharper 9.1. [Previous versions of the developer guide](https://confluence.jetbrains.com/display/NETCOM/ReSharper+Plugin+Development) are also available, if you wish to build extensions for ReSharper 8.x and earlier.
-
-This guide is aimed at ReSharper 9.1, but many of the features and ideas also apply to ReSharper 8.x and earlier.
+This guide intends to target the current version of ReSharper, and does not maintain documentation for working with previous versions of the ReSharper Platform. However, large parts of the architecture and implementation are very stable, and the documentation may also apply to previous versions.
