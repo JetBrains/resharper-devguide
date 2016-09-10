@@ -52,7 +52,7 @@ It is possible to change the output of the highlight text by overriding the `Cre
 
 ## Using the base class
 
-In order to use the base class, simply derive from `HighlightingTestBase`, or one of the more language specific derived class (see below for more details on these derived classes), and call `DoTestSolution`, `DoNamedTest` or `DoNamedTest2` in the test method. As ever, the `RelativeTestDataPath` should be overridden to describe where the test data files are located. Most of the language specific base classes set up a value of `Daemon\<Langauge>`.
+In order to use the base class, simply derive from `HighlightingTestBase`, or one of the more language specific derived class (see below for more details on these derived classes), and call `DoTestSolution`, `DoNamedTest` or `DoNamedTest2` in the test method. As ever, the `RelativeTestDataPath` should be overridden to describe where the test data files are located. Most of the language specific base classes set up a value of `Daemon\<Language>`.
 
 ```csharp
 [Test]

@@ -45,7 +45,7 @@ Of all the interfaces that implement `IType`, the one we’re most interested in
 
 The `IDeclaredType` is the interface type you’ll be seeing most when working with types. Essentially, an `IDeclaredType` is an interface for a type that might have a declaration (i.e., it might correspond to some `ITypeElement`). Examples of declared types might be `int` or `Foo`, provided you have a declaration of `Foo`, of course.
 
-The interface’s most important member is `GetTypeElement()`, which may returns a corresponding `ITypeElement` or `null` if one isn’t available. Other members include:
+The interface’s most important member is `GetTypeElement()`, which may return a corresponding `ITypeElement` or `null` if one isn’t available. Other members include:
 
 * `GetClrName()` - return a CLR name (`IClrTypeName`) of the type. This interface can then be used to get the short and full names of the type, to acquire lists of namespace names for this type, and so on.
 * `GetSubstitution()` - returns the substition that is made for this type. Substitutions are mechanisms for replacing type parameters (i.e., generic paramers) with concrete types.
@@ -68,7 +68,7 @@ Let us attempt a top-down overview of the `IDeclaredElement` interface and its i
 * `ShortName` returns a ‘friendly name’ of a declared element.
 * `GetElementType` returns the type of the declared element. This value is typically language-related, i.e., for a C# element we’d get, for example, a `CSharpDeclaredElementType`.
 * `PresentationLanguage` affects the language that is used to create this type.
-* `GetSourceFiles()` returns a collection of ``IPsiSourceFile` s that contain this type’s definition. (Remember that thanks to `partial`` types, a type definition may span multiple files.)
+* `GetSourceFiles()` returns a collection of `IPsiSourceFile`\` s that contain this type’s definition. (Remember that thanks to `partial` types, a type definition may span multiple files.)
 * `HasDeclarationsIn()` lets you check whether or not any of the declared element’s declarations appear in a particular file.
 
 Let’s drill down one level in the inheritance hierarchy and discuss the various declared element types.
