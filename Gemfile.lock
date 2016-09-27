@@ -50,11 +50,11 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jekyll (~> 3.0)
+  jekyll (~> 3.1.2)
   jekyll-git_metadata!
   jekyll-redirect-from
   rake
   rouge!
 
 BUNDLED WITH
-   1.11.2
+   1.12.3
