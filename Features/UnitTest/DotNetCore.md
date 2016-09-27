@@ -55,9 +55,13 @@ public bool IsSupported(IHostProvider hostProvider, IProject project)
   }
   return supported;
 }
-```
 
-> **TODO** Show IsReferencingAssembly
+private bool IsReferencingAssembly(IProject project, AssemblyNameInfo assembly, TargetFrameworkId targetFrameworkId)
+{
+  AssemblyNameInfo info;
+  return ReferencedAssembliesService.IsProjectReferencingAssemblyByName(project, targetFrameworkId, assembly, out info);
+}
+```
 
 Here, the provider is doing several things:
 
