@@ -278,6 +278,7 @@
 * [Unit Test](Features/UnitTest.md)
     * Test discovery
     * Test execution
+    * [.NET Core tests](Features/UnitTest/DotNetCore.md)
     * Non-CLR tests
 * Diagramming
     * Architecture diagrams
