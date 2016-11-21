@@ -194,11 +194,11 @@
     * XML Doc
 
 ## Part VI - Features
-* Analysis
+* [Analysis](Features/Analysis.md)
     * Highlights
     * Custom Highlights
-    * Suppressing Highlights
     * [Daemons](Features/Analysis/Daemons.md)
+    * [Suppressing Highlights](Features/Analysis/SuppressHighlights.md)
     * Element problem analysers
     * Xml and Html analysers
     * Solution Wide Analysis
