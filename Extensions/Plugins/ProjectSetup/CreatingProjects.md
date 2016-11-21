@@ -3,13 +3,13 @@
 
 # Creating the project
 
-Simply create a .net class library assembly. The project should be a .net 4.0 assembly, which allows the plugin to run on Visual Studio 2010, which is the oldest version of Visual Studio supported by the ReSharper Platform. Note that you **should not** target .net 4.5 or later, as this will mean the extension won't work in earlier versions of Visual Studio.
+Simply create a .net class library assembly. Starting with ReSharper 2016.3, the project should be a class library that targets .NET Framework 4.5. The SDK NuGet packages require a minimum of .NET 4.5.
 
-> **NOTE** The only exception to this is when creating support for unit test frameworks. A unit test framework plugin includes a runner assembly that is hosted in an external process, and actually runs the tests. This needs to be a .net 3.5 assembly, so that test assemblies targeting .net 2.0 and .net 3.5 will run (obviously, if the test framework is .net 4.0 and above, the runner assembly can also be .net 4.0 and above).
+> **NOTE** Previous versions of ReSharper targeted .NET 4.0, in order to support Visual Studio 2010. However, .NET 4.0 is no longer supported by Microsoft, and .NET 4.5 is a recommended, in place update. This means ReSharper still supports Visual Studio 2010, but also requires .NET 4.5.
 
 ## Test assemblies
 
-It is strongly recommended to create a test assembly. This should also be a .net 4.0 class library project, and should include a project reference to the main plugin assembly.
+It is strongly recommended to create a test assembly. This should also be a .net 4.5 class library project, and should include a project reference to the main plugin assembly.
 
 ## Dependencies
 
