@@ -24,6 +24,8 @@ With the move to the shared binary distribution of the ReSharper Platform, maint
 |   10.0            | Wave 04      |
 | 2016.1            | Wave 05      |
 | 2016.2            | Wave 06      |
+| 2016.3            | Wave 07      |
+| 2017.1            | Wave 08      |
 
 Previous versions of the .net tools were intended to be built and distributed on their own timescales. Each product shared common code via source, and could be installed separately, and updated at any time. In practice, however, because dotCover and dotTrace need to integrate with ReSharper's test runner, a new version of ReSharper would require a simultaneous release of other .net tools, removing a large reason for the independence of the tools.
 
