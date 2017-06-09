@@ -51,6 +51,7 @@ The curator will also try to add dependencies into the feed. However, to keep th
 > **NOTE** Since a package dependency can be satisfied by a range of versions of a package, the curator has to add all compatible versions of the dependency to the feed. If transitive dependencies were handled, the curator would also have to add all versions of all packages that satisfied the dependencies of all versions of the packages that were required by the original extension, and so on. Rather than process this potentially huge number of packages (and deal with invalid dependency cycles and conflicting version numbers), for simplicity, the curator only processes direct dependencies.
 
 The recommendation is:
+
 * An extension should specify all transitive dependencies in its own `.nuspec` folder.
 * All dependencies should be pushed to the gallery before the extension package.
 * If there are any problems, either [raise an issue](https://youtrack.jetbrains.com/newIssue?project=RSRP&clearDraft=true&c=) or post to the [Google group](https://groups.google.com/forum/#!forum/resharper-plugins).
