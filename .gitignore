@@ -6,3 +6,4 @@ _gh_pages/
 .idea/
 
 .jekyll-metadata
+.git-metadata/
