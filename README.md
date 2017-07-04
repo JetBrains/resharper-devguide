@@ -1,4 +1,4 @@
----
+arzog
 redirect_from:
   - /index.html
 ---
