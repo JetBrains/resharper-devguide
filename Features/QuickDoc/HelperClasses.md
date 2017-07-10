@@ -1,7 +1,6 @@
 ---
+title: Presenter helper classes
 ---
-
-# Presenter helper classes
 
 ReSharper provides a couple of classes to help build the HTML - **`XmlDocHtmlUtil`** and **`XmlDocHtmlPresenter`**. Typically, the presenter will generate the HTML by calling `XmlDocHtmlPresenter.Run` which in turn calls methods on `XmlDocHtmlUtil`, such as `XmlDocHtmlUtil.BuildHtml`, although the presenter is free to call `XmlDocHtmlUtil` directly, or create the HTML itself. It is, however, recommended to use the helper classes).
 

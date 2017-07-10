@@ -1,7 +1,6 @@
 ---
+title: Composite Node Types
 ---
-
-# Composite Node Types
 
 The interior nodes of the tree have a node type that typically derives from `CompositeNodeType`. ReSharper doesn't have any strict requirements for the node type of an interior tree node, unless the custom language implements tree node caching, in which case, the node type must implement the `ICompositeNodeType` interface:
 

@@ -1,7 +1,6 @@
 ---
+title: About this guide
 ---
-
-# About this guide
 
 The guide is split into several parts:
 

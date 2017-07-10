@@ -1,7 +1,6 @@
 ---
+title: Install From a Local Custom Source
 ---
-
-# Install From a Local Custom Source
 
 Once the extension has been initially packaged up, and a `.nupkg` file has been created, it must be installed locally into the ReSharper Platform. In order to do so:
 

@@ -1,7 +1,6 @@
 ---
+title: Type System
 ---
-
-# Type System
 
 * Table of contents
 {:toc}

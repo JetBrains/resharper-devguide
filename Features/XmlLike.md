@@ -1,7 +1,6 @@
 ---
+title: Working with XML-like files
 ---
-
-# Working with XML-like files
 
 ReSharper comes with support for XML and XML-specific notations such as HTML, XAML and Web.config editing. Consequently, you can use the ReSharper API in order to manipulate XML documents.
 

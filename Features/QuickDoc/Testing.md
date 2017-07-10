@@ -1,7 +1,6 @@
 ---
+title: Testing QuickDoc providers
 ---
-
-# Testing QuickDoc providers
 
 You can test your QuickDoc providers by creating a test class that derives from `QuickDocTestBase`. This class derives from `BaseTestWithTextControl`, and will open a text file into an in-memory text control and place the text caret at the location indicated by the `{caret}` placeholder. It then uses the `QuickDocManager` class to ensure that at least one provider can generate documentation, and then generates the HTML and compares it to the expected value in the gold file for the test.
 

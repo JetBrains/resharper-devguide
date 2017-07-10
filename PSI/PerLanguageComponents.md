@@ -1,7 +1,6 @@
 ---
+title: Per-language Components
 ---
-
-# Per-language Components
 
 The PSI is designed to work with multiple languages. It supports many features, from parsing and code rewriting, to formatting and navigation. The PSI provides cross language infrastructure to support these features, but each feature requires language specific implementations, for example, the `LanguageService` abstract base class provides the interface to create lexers and parsers for a particular file type, but the implementation of the class must be specific to each language.
 

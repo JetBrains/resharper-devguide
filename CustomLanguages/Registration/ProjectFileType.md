@@ -1,7 +1,6 @@
 ---
+title: Registering a Project File Type
 ---
-
-# Registering a Project File Type
 
 If a custom language is to be the primary language of a certain file, it should register a file type with the Project Model.
 

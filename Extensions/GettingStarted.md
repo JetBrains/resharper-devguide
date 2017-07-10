@@ -1,9 +1,8 @@
 ---
+title: Getting Started
 redirect_from:
   - /Intro/GettingStarted.html
 ---
-
-# Getting Started
 
 There are two main ways to extend the ReSharper Platform:
 

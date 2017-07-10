@@ -1,9 +1,8 @@
 ---
+title: Platform Versioning
 redirect_from:
   - /Intro/PlatformVersioning.html
 ---
-
-# Platform Versioning
 
 ReSharper does **not** maintain backwards binary compatibility between major **or** minor releases. For example, plugins written for ReSharper 9.1 do not work with ReSharper 9.0, and vice versa. The same is true for ReSharper 10.x or 2016.x, etc. Plugins need to be re-compiled between major and minor versions. However, maintenance releases **are** binary compatible - maintenance releases, such as 10.0.1 or 10.0.2, are intended to fix critical bugs, and do not usually introduce new features that would change APIs.
 

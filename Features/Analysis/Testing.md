@@ -1,7 +1,6 @@
 ---
+title: Testing Daemon Stages and Highlights
 ---
-
-# Testing Daemon Stages and Highlights
 
 The `HighlightingTestBase` base class provides infrastructure for testing daemons, element problem analysers and highlightings. It creates an in-memory project, adds a file and analyses it. The resulting highlights are then written to a `.tmp` file and compared against the `.gold` file. If the files differ, the test fails.
 

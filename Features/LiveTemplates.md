@@ -1,9 +1,8 @@
 ---
+title: Live Templates
 redirect_from:
   - /Features/LiveTemplates/Overview.html
 ---
-
-# Live Templates
 
 ReSharper's Live Templates provide dynamic text expansion. While in the text editor, if you type a Live Template shortcut, or select it from a Code Completion list, the template will be expanded to a code snippet, with editable and linked "hotspots".
 

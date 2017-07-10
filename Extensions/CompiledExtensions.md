@@ -1,9 +1,8 @@
 ---
+title: Compiled Extensions (Plugins)
 redirect_from:
   - /Intro/CompiledExtensions.html
 ---
-
-# Compiled Extensions (Plugins)
 
 ReSharper supports two types of extensions - compiled and [declarative](DeclarativeExtensions.md). A declarative extension is an extension that contains External Annotations, or features that can be stored in settings files, such as Live Templates or Structural Search and Replace patterns.
 

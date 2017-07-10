@@ -1,7 +1,6 @@
 ---
+title: What is the ReSharper Platform?
 ---
-
-# What is the ReSharper Platform?
 
 The ReSharper Platform is a Open API for building smart IDE features and developer tools. The platform has a deep understanding of your solution. By parsing the files in your projects, ReSharper can build and cache a syntactic and semantic model of your code, which can be used to perform analysis, showing highlights inline in the IDE as you type. The syntax trees can be manipulated in memory to provide safe refactoring, and a powerful cross-language reference system allows for very rich navigation, search and usage analysis.
 

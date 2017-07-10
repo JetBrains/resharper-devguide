@@ -1,7 +1,6 @@
 ---
+title: Manually Navigating a Syntax Tree
 ---
-
-# Manually Navigating a Syntax Tree
 
 Manually walking a syntax tree is the lowest level means of navigation, and involves walking the nodes using the properties defined on `ITreeNode`.
 

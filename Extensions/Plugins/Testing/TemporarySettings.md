@@ -1,9 +1,8 @@
 ---
+title: Temporary Settings in Tests
 redirect_from:
   - /Plugins/TemporarySettings.html
 ---
-
-# Temporary Settings in Tests
 
 The ReSharper test environment will use default values for settings. If your test needs particular values in the settings, you need to set them yourself in the test, and they should be reset at the end of the test. This is important because ReSharper will try to reuse the current project and solution for future tests.
 

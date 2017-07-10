@@ -1,7 +1,6 @@
 ---
+title: Token node types
 ---
-
-# Token node types
 
 Each leaf element in a PSI tree has a node type that is a singleton instance of a class that derives from the `TokenNodeType` base class, and implements the `ITokenNodeType` interface. This singleton instance is the token produced by the lexer.
 

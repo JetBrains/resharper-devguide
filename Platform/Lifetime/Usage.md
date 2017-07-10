@@ -1,7 +1,6 @@
 ---
+title: Usage
 ---
-
-# Usage
 
 The `Lifetime` class looks like this:
 

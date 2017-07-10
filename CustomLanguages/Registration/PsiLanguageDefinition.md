@@ -1,7 +1,6 @@
 ---
+title: Registering a PSI Language
 ---
-
-# Registering a PSI Language
 
 Once a custom language's [file type has been registered with the Project Model](ProjectFileType.md), the language definition needs to be registered with the PSI. If it's not registered with the PSI, ReSharper will not be able to build a PSI tree, and in fact will not consider it registered with the Project Model, either.
 

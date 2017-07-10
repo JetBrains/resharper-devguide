@@ -1,7 +1,6 @@
 ---
+title: References
 ---
-
-# References
 
 * Table of contents
 {:toc}

@@ -1,7 +1,6 @@
 ---
+title: Testing Parsers
 ---
-
-# Testing Parsers
 
 The `ParserTestBase<TLanguage>` can be used to create tests for a parser of a specific language. It derives from `BaseTestWithTextControl`, which means it will create an in-memory ReSharper instance, with a solution and a project loaded. The test will load a specific text file into an in-memory text control, parse it, retrieve any `IFile` instances that match `TLanguage`, and compare the results against a `.gold` file.
 

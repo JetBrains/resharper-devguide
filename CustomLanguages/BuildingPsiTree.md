@@ -1,7 +1,6 @@
 ---
+title: Building the PSI Tree
 ---
-
-# Building the PSI Tree
 
 One of the main responsibilities of a custom language implementation is to build a PSI tree which represents the syntactic structure of the file, from class declarations, to keywords, to whitespace and comments. This tree is required for just about all other functionality in ReSharper - refactoring, inspections, formatting, etc. all require manipulating or walking a PSI tree.
 

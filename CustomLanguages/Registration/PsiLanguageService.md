@@ -1,7 +1,6 @@
 ---
+title: PSI Language Service
 ---
-
-# PSI Language Service
 
 Each custom language must register a PSI language service. This is a [per-language component](PerLanguageComponents.md#psi-language-specific-components) that derives from the `LanguageService` abstract class. It provides the entry points for lexing, parsing and building the PSI tree of a custom language.
 

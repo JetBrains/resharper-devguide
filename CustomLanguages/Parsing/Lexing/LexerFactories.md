@@ -1,7 +1,6 @@
 ---
+title: Lexer Factories
 ---
-
-# Lexer Factories
 
 ReSharper requires a custom language to implement `ILexerFactory`, which is exposed via `IProjectFileLanguageService.GetMixedLexerFactory` and the `LanguageService.GetPrimaryLexerFactory` abstract method.
 

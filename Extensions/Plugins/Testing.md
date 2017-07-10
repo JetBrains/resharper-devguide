@@ -1,9 +1,8 @@
 ---
+title: Testing
 redirect_from:
   - /Plugins/Testing.html
 ---
-
-# Testing
 
 > **WARNING** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
 

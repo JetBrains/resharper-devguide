@@ -1,9 +1,8 @@
 ---
+title: Declarative Extensions
 redirect_from:
   - /Intro/DeclarativeExtensions.html
 ---
-
-# Declarative Extensions
 
 The ReSharper Platform supports two types of extensions - [compiled extensions (aka plugins)](CompiledExtensions.md), and declarative extensions. Plugins are code based, .dll assemblies that are loaded into the process and have full access to the API.
 

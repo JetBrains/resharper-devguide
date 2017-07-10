@@ -1,7 +1,6 @@
 ---
+title: Suppressing Highlights
 ---
-
-# Suppressing Highlights
 
 ReSharper allows suppressing configurable highlights with specially formatted comments, such as:
 

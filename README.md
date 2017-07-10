@@ -1,9 +1,8 @@
 ---
+title: ReSharper DevGuide
 redirect_from:
   - /index.html
 ---
-
-# ReSharper DevGuide
 
 Welcome to the developer guide for the [ReSharper Platform](Intro/ReSharperPlatform.md). This is the primary source of documentation for developing extensions for the ReSharper Platform that ships as part of ReSharper.
 

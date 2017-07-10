@@ -1,7 +1,6 @@
 ---
+title: Logging
 ---
-
-# Logging
 
 The ReSharper Platform provides a comprehensive set of logging features, such as logging levels and different log listeners. It can also be configured with different levels and listeners based on a log category, such as "JetBrains.DataFlow" for capturing log events from the DataFlow subsystem.
 

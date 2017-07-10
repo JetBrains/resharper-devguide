@@ -1,7 +1,6 @@
 ---
+title: Gold Files
 ---
-
-# Gold Files
 
 ReSharper's test framework typically takes an input file, adds it as source file to an in-memory project, runs a process on it, such as inspections or code completion, and records the output in a temporary text file. This `.tmp` file is then compared to a `.gold` file, which contains the expected output. If they match, the test passes. If they don't, the test fails.
 

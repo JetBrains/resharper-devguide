@@ -1,7 +1,6 @@
 ---
+title: Project File Language Service
 ---
-
-# Project File Language Service
 
 If a custom language defines a `ProjectFileType`, it must also associate that file type with a PSI language type, which ReSharper can use to build a PSI tree of the file's contents. The `IProjectFileLanguageService` interface provides this functionality, and can be considered as a bridge between the Project Model and the PSI.
 

@@ -1,7 +1,6 @@
 ---
+title: Live Template macros
 ---
-
-# Live Template macros
 
 Of course, plugins can provide macros to extend the list already included with ReSharper (and ReSharper extensions can include Live Templates that refer to these templates, either by bundling the macro plugin into the same extension, or taking a dependency on another extension that contains a macro plugin. See the Packaging page for more details).
 

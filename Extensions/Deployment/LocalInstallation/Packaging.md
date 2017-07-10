@@ -1,7 +1,6 @@
 ---
+title: Package the Extension
 ---
-
-# Package the Extension
 
 In order to test the extension against a custom instance (or even the main instance), it needs to be installed, and needs to be packaged up in a custom `.nupkg` file. This is detailed in the [Packaging](/Extensions/Packaging.md) guide.
 

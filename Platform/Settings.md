@@ -1,7 +1,6 @@
 ---
+title: Settings
 ---
-
-# Settings
 
 Plugin writers can use a wide variety of mechanisms in order to store and retrieve program settings. However, ReSharper provides its own infrastructure for keeping options. The advantages of this approach are that
 

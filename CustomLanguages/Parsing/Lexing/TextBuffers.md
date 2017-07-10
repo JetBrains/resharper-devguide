@@ -1,7 +1,6 @@
 ---
+title: Text Buffers
 ---
-
-# Text Buffers
 
 Lexers process a block of text to produce a sequence of tokens. ReSharper provides the `IBuffer` interface to abstract accessing this text block:
 

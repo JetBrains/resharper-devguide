@@ -1,7 +1,6 @@
 ---
+title: Case Study
 ---
-
-# Case Study
 
 > **NOTE** This topic refers to the implementation of the Extension Manager for ReSharper 8. This implementation has changed for ReSharper 9 and no longer matches this description. However, the described behaviour is still a very valid usage of the `Lifetime` classes.
 

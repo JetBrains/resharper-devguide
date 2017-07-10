@@ -1,7 +1,6 @@
 ---
+title: NuGet references
 ---
-
-# NuGet references
 
 Your plugin project needs to add a NuGet reference to [the `JetBrains.ReSharper.SDK` package](http://www.nuget.org/packages/JetBrains.ReSharper.SDK/). This package will include all dependencies required to build plugins that extend ReSharper - both the core ReSharper Platform (e.g. language support, reference providers, etc) and the ReSharper product (e.g. navigation, unit testing support, etc.).
 

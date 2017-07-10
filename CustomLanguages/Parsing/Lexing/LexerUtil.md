@@ -1,7 +1,6 @@
 ---
+title: Lexer Utility Methods
 ---
-
-# Lexer Utility Methods
 
 The `LexerUtil` class provides a number of utility and extension functions for lexing and parsing. Of particular interest are the `LookaheadToken` methods, `GetTokenLength` and `GetCurrTokenText`:
 

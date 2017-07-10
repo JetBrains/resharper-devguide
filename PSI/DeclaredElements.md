@@ -1,7 +1,6 @@
 ---
+title: Declared Elements
 ---
-
-# Declared Elements
 
 Declared elements are the backbone of ReSharper's semantic model, and provide a language-agnostic entry point into the semantic model of the codebase. While an AST provides a high-fidelity model of a code file, it is a representation only of the syntax - the typed text. It does little to help with the semantic view of the underlying code. For example, a definition of a C# class may be split across multiple files by using the `partial` keyword. Retrieving all type members from the AST now requires processing multiple ASTs, and the existing AST gives no indication of the location of the other part of the file. Similarly, if a C# class derives from the class `Foo`, the AST gives no indication which class `Foo` - what namespace does it belong to? A semantic model provides all of this information, for example, applying the type resolution rules to the `using` statements at the top of the file.
 

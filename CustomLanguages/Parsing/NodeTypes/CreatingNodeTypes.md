@@ -1,7 +1,6 @@
 ---
+title: Creating Node Types
 ---
-
-# Creating Node Types
 
 A custom language requires many `NodeType` classes and instances to be created. After all, every distinct type of node in a PSI tree needs a distinct `NodeType` instance. While it is possible to create these classes and instances by hand, it is more manageable to use tooling to generate the code.
 

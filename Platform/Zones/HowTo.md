@@ -1,7 +1,6 @@
 ---
+title: How to Define a Zone Marker
 ---
-
-# How to Define a Zone Marker
 
 When creating an extension, it is important to get the right dependencies for a `ZoneMarker`. Zones are used to be able to correctly load a product in the correct host. If the zone marker is incorrect, either the components in that namespace are not loaded and the extension is not available, or the extension is loaded when it shouldn't be, and can cause errors in hosts as expected dependencies are not available.
 

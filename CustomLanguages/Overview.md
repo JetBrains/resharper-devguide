@@ -1,7 +1,6 @@
 ---
+title: Custom Languages
 ---
-
-# Custom Languages
 
 In this part of the guide we'll look at developing ReSharper support for a new language. We shall take a look at the following:
 

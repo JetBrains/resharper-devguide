@@ -1,7 +1,6 @@
 ---
+title: InspectCode Plugins
 ---
-
-# InspectCode Plugins
 
 This page contains documentation on developing plugins for [InspectCode](http://confluence.jetbrains.com/display/NETCOM/Introducing+InspectCode), part of [ReSharper Command Line Tools](http://confluence.jetbrains.com/display/NETCOM/Introducing+ReSharper+Command+Line+Tools).
 

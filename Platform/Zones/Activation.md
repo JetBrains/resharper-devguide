@@ -1,7 +1,6 @@
 ---
+title: Activation
 ---
-
-# Activation
 
 Components are only included into the Component Model if the zones they belong to are "active". Zones are not activated by default, and must be activated by an activator class, which is a component decorated by the `[ZoneActivator]` attribute, and implementing `IActivate<TZone>` for each zone it activates.
 

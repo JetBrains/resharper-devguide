@@ -1,7 +1,6 @@
 ---
+title: Packaging and Distribution
 ---
-
-# Packaging and Distribution
 
 Packaging for the ReSharper Platform is very similar to the way extensions were packaged for [ReSharper 8](Packaging8.md) - it is recommended you familiarise yourself with that guide before continuing. An extension is distributed as a NuGet package, and hosted on a [NuGet gallery](https://resharper-plugins.jetbrains.com). However, because ReSharper extensions are runtime code, rather than compile time dependencies, the use case for ReSharper extension packages is very different to standard NuGet packages. Because of this, they have a different file layout internally.
 

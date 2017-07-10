@@ -1,9 +1,9 @@
 ---
+title: What's New in ReSharper 9.0?
 redirect_from:
   - /Intro/WhatsNew.html
 ---
 
-# What's New in ReSharper 9.0?
 
 This document lists the major changes between ReSharper 8 and ReSharper 9, for extension authors. It is not an exhaustive list, but lists the major breaking changes. Other minor changes may exist. If you wish to update this page, please [edit it](https://github.com/JetBrains/resharper-devguide/edit/master/Intro/WhatsNew.md), or [submit an issue](https://github.com/JetBrains/resharper-devguide/issues).
 

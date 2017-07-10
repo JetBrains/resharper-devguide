@@ -1,9 +1,8 @@
 ---
+title: Combinatorial Testing
 redirect_from:
   - /Plugins/Testing/OptionsIterator.html
 ---
-
-# Combinatorial Testing
 
 The test framework supports running a test multiple times using different product settings. The settings can be specified in a text file, via an attribute or via a parameter embedded in the test input file. The base class for the test must support this explicitly - it is not available to all tests by default.
 

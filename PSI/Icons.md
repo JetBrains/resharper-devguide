@@ -1,7 +1,6 @@
 ---
+title: PSI Icons
 ---
-
-# PSI Icons
 
 The PSI needs to be able to display icons to help identify code elements in completion, navigation or find usage result lists. The PSI can display different icons to distinguish between classes, constructors, methods, parameters, etc. It can also show specific icons for CSS class IDs, HTML elements and unit test elements.
 

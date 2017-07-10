@@ -1,7 +1,6 @@
 ---
+title: Caching Lexers
 ---
-
-# Caching Lexers
 
 The root node in the PSI parse tree is `IFile`, but the implementation of this interface should also implement `IFileImpl`. This exposes properties and methods that are important for the implementation of `IFile`, one of which is `TokenBuffer`.
 

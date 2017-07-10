@@ -1,7 +1,6 @@
 ---
+title: .NET Core Tests
 ---
-
-# .NET Core Tests
 
 > **NOTE** This topic discusses functionality added in ReSharper 2016.3
 

@@ -1,7 +1,6 @@
 ---
+title: Containers, Parts and Catalogues
 ---
-
-# Containers, Parts and Catalogues
 
 > **NOTE** This is an advanced, deep dive into the implementation of the Component Model. It is not necessary to understand this in order to use the Component Model, or solution or shell components.
 

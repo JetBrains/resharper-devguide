@@ -1,7 +1,6 @@
 ---
+title: Type systems
 ---
-
-# Type systems
 
 The `IDeclaredElement` interfaces provide a semantic view of something that has a declaration, but that doesn't necessarily allow for modelling *usages* of the element. Specifically, if we take a look at CLR types, a declared element is a declaration of a type, such as a class, but it can't represent all usages of the type, such as in an array, pointer or closed generic type. The `ITypeElement` interface can provide a semantic view of the declaration of `Foo` or `Bar<T>`, but it can't represent `Foo[]` or `Bar<string>`.
 

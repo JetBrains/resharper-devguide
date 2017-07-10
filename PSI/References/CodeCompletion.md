@@ -1,7 +1,6 @@
 ---
+title: Code Completion
 ---
-
-# Code Completion
 
 Code completion is handled by ReSharper, as long as the reference also implements the `ICompleteableReference` interface. This interface inherits from `IReference` and defines just one method:
 

@@ -1,7 +1,6 @@
 ---
+title: Troubleshooting a Plugin Install
 ---
-
-# Troubleshooting a Plugin Install
 
 If the extension does not load, or you cannot debug your plugin, there are several things to check:
 

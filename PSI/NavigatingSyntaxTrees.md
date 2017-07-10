@@ -1,7 +1,6 @@
 ---
+title: Navigating syntax trees
 ---
-
-# Navigating syntax trees
 
 Every node in the syntax tree implements `ITreeNode`, as well as interfaces that better reflect the node's type and purpose, such as `IComment` or `IMethodDeclaration`. The `ITreeNode` interface includes members pertinent to navigating and processing the tree. These members are shown below (other members removed for brevity):
 

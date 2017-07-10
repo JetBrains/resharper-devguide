@@ -1,9 +1,8 @@
 ---
+title: Required Tools
 redirect_from:
   - /Intro/Tools.html
 ---
-
-# Required Tools
 
 You need the following tools in order to build ReSharper extensions:
 

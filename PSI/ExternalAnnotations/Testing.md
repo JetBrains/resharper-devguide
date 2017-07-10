@@ -1,7 +1,6 @@
 ---
+title: Testing External Annotations
 ---
-
-# Testing External Annotations
 
 There are two approaches to testing External Annotations. The first is to use the `CodeAnnotationsCache` class to assert that annotations are applied to specific code elements in the compiled assemblies. The second is to assert the highlights and warnings that are affected by annotations. For example, an element marked with the `[NotNull]` attribute will cause ReSharper to highlight a null check as unnecessary.
 

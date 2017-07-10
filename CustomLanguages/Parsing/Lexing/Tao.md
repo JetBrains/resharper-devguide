@@ -1,7 +1,6 @@
 ---
+title: The Tao of Writing a Lexer
 ---
-
-# The Tao of Writing a Lexer
 
 Writing a lexer for a ReSharper custom language is as easy and as hard as writing any other kind of lexer, but the requirements of writing a lexer for IDE support are slightly different to the requirements for building a compiler or other batch processor. The other pages in this section give technical details on how to implement a lexer. This page is intended to provide insight into what needs to be implemented, and describe what is needed for IDE support.
 

@@ -1,7 +1,6 @@
 ---
+title: Copy Plugin on Build
 ---
-
-# Copy Plugin on Build
 
 When developing a plugin, it must [first be installed](/Extensions/Plugins/ProjectSetup/InitialInstallation.md) in order to manually test and debug it. While it is possible to repackage and update through the extension manager on each compile, this is an overhead that is not necessary for day-to-day development. Instead, the files in the installation folder can be overwritten, and ReSharper will use the new version when the host (e.g. Visual Studio) is restarted.
 

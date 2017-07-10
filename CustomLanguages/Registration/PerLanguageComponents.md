@@ -1,7 +1,6 @@
 ---
+title: Per-Language Components
 ---
-
-# Per-Language Components
 
 ReSharper is designed to work with multiple languages and file types. It provides features that are cross language, but that require language specific implementations. For example, formatting is a feature that works across all languages, but each language must provide its own formatting rules.
 

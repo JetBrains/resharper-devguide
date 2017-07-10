@@ -1,7 +1,6 @@
 ---
+title: Lifetime Management
 ---
-
-# Lifetime Management
 
 A lifetime is made up of two parts, the `Lifetime` instance, which is passed around and used to register callbacks, and a `LifetimeDefinition` which is used to manage the lifetime.
 

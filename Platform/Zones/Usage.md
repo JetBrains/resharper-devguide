@@ -1,7 +1,6 @@
 ---
+title: Usage
 ---
-
-# Usage
 
 Each component must be marked as belonging to one or more zones before it will be added to the Component Model. Zones are declared with zone definition types, and zone markers are used to associate components with zone definitions.
 

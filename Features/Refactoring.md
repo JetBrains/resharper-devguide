@@ -1,7 +1,6 @@
 ---
+title: Refactoring
 ---
-
-# Refactoring
 
 Refactorings are one of the most powerful features of ReSharper, but also the most complicated. A refactoring can be triggered from a variety of events (e.g., from a simple edit or deliberate invocation) and can result in all sorts of operations, some involving just local code, others involving the project (e.g., renaming a file) or changing multiple files in many projects.
 

@@ -1,7 +1,6 @@
 ---
+title: Generating Comments
 ---
-
-# Generating Comments
 
 Comments occupy a curious place within the ReSharper ecosystem. On the one hand, a comment may be a simple string encapsulated in a node of a physical tree. On the other hand, a comment preceding a method consist of valid XML that is subsequently represented as a proper data structure.
 

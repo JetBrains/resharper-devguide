@@ -1,7 +1,6 @@
 ---
+title: Generating Code
 ---
-
-# Generating Code
 
 If you plan to write plug-ins that generate code, it's important to understand how to use ReSharper to create new code elements and insert them into existing types.
 

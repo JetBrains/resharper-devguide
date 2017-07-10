@@ -1,7 +1,6 @@
 ---
+title: Existing QuickDoc providers
 ---
-
-# Existing QuickDoc providers
 
 * Table of contents
 {:toc}

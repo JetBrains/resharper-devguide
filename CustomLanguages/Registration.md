@@ -1,7 +1,6 @@
 ---
+title: Registering a Custom Language
 ---
-
-# Registering a Custom Language
 
 Before a custom language can be recognised and parsed by ReSharper, it must first be registered. There are several classes that need to be registered:
 

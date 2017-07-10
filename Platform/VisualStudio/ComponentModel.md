@@ -1,7 +1,6 @@
 ---
+title: Component Model and Visual Studio interfaces
 ---
-
-# Component Model and Visual Studio interfaces
 
 > **WARNING** This topic relates to ReSharper 8, and has not been updated to ReSharper 9 or the ReSharper Platform.
 

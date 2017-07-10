@@ -1,7 +1,6 @@
 ---
+title: Strongly Typed Navigation
 ---
-
-# Strongly Typed Navigation
 
 While it's possible to navigate a syntax tree using just the parent, sibling and child nodes, it's a rather low level approach to the problem. If your current node is a class declaration, it's a lot of leg work to get at all of the method declarations. Similarly, from a method declaration, it's not convenient to walk the `Parent` nodes looking for the class declaration.
 

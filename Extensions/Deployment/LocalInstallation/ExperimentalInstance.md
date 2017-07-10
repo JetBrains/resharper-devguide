@@ -1,7 +1,6 @@
 ---
+title: Install to an Experimental Instance
 ---
-
-# Install to an Experimental Instance
 
 This first step is optional, but strongly recommended for working with extensions for ReSharper. This allows running the plugin in a separate instance to the one used to build it. Doing this prevents the main instance from locking the plugin in memory, which would require restarting both the test Visual Studio and the editing Visual Studio. This is not strictly required for declarative extensions as ReSharper will not keep a lock on .dotSettings or .xml files, however, it may be useful for testing purposes. Similarly, this is not required for plugins for standalone products, such as dotPeek.
 

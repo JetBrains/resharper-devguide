@@ -1,7 +1,6 @@
 ---
+title: Utility Classes
 ---
-
-# Utility Classes
 
 ReSharper includes a couple of classes that are useful when writing a lexer, namely `NodeTypeSet` and `LexerDictionary<T>`. The `NodeTypeSet` class the lexer can use to test if a `NodeType` instance is part of a particular set of nodes, such as keywords, symbols and so on. The `LexerDictionary` class is a dictionary of strings to `NodeType`, optimised for use in a lexer.
 

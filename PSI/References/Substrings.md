@@ -1,7 +1,6 @@
 ---
+title: References within elements - substrings
 ---
-
-# References within elements - substrings
 
 A reference doesn't need to be applied to the complete range of an element - it doesn't have to be the whole string in a string literal. Multiple references can be applied to different parts of a single element.
 

@@ -1,7 +1,6 @@
 ---
+title: Testing
 ---
-
-# Testing
 
 Testing language registration is fairly quick and easy. It's mostly checking that the Component Model has loaded the types correctly. This means the tests need to derive from `BaseTest`, so that the environment and Component Model has been initialised, but a solution hasn't been created.
 

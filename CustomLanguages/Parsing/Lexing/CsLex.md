@@ -1,7 +1,6 @@
 ---
+title: Using CsLex
 ---
-
-# Using CsLex
 
 The SDK ships with a tool called **CsLex**, which is a C# utility for building lexers. It takes in a specially formatted file and generates a C# class that is then compiled into the project. The generated lexer is very efficient, implemented as a set of lookup decision tables that implement the regular expression rules that describe how to match a token.
 

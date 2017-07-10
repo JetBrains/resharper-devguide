@@ -1,7 +1,6 @@
 ---
+title: Test Environment
 ---
-
-# Test Environment
 
 ReSharper tests are functional tests, testing a complete end to end slice of ReSharper functionality, rather than a smaller unit such as a class. This is because it is impractical to try and mock an abstract syntax tree and a semantic model - it is simpler to build a real syntax tree and semantic model and exercise real functionality with the actual data model.
 

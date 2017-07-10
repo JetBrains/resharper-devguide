@@ -1,7 +1,6 @@
 ---
+title: Scopes
 ---
-
-# Scopes
 
 ReSharper's Live Templates can declare the _scope_ in which they are available. That is, instead of allowing all templates to be inserted at any location in any file, a template can be constrained to certain file types, and even to certain locations within those files. For example, a template can be constrained not just to C# files, but to any location where a namespace declaration, type definition, or an expression is valid.
 

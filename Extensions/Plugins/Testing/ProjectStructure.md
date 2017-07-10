@@ -1,7 +1,6 @@
 ---
+title: Test Project Structure
 ---
-
-# Test Project Structure
 
 A test project is an [NUnit](http://nunit.org) based Class Library project, that targets .Net 4.0 and includes a reference to the main plugin project (ReSharper is a .net 4.0 application in order to support Visual Studio 2010 and above).
 

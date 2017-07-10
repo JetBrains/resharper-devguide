@@ -1,7 +1,6 @@
 ---
+title: Testing Lexers
 ---
-
-# Testing Lexers
 
 The `LexerTestBase` class can be used to create tests for lexers. It derives from `BaseTestWithSingleProject`, so it creates an in-memory ReSharper instance with a solution loaded that contains a single project. The project will consist of the file or files named in the test methods.
 

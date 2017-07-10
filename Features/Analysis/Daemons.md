@@ -1,7 +1,6 @@
 ---
+title: Daemons
 ---
-
-# Daemons
 
 As you may have noticed, ReSharper features background analysis of your code. In fact, at any one time there are several different analyzers running at different _stages_, all combining to provide the most complete assessment of your code.
 

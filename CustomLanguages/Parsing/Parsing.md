@@ -1,7 +1,6 @@
 ---
+title: Parsing
 ---
-
-# Parsing
 
 Parsing or ["syntactic analysis"](https://en.wikipedia.org/wiki/Parsing) is the process of taking an input stream of tokens and producing a [parse tree](https://en.wikipedia.org/wiki/Parse_tree). This parse tree is used by ReSharper to build a semantic model, with rich information about types, and also used to navigate, analyse and manipulate the code. For example, the unit testing functionality is implemented by walking the parse tree of a file and looking for certain constructs, such as class and method decorations with specific attributes. Similarly, refactoring is the act of rewriting the parse tree, which has the effect of rewriting the underlying text file.
 

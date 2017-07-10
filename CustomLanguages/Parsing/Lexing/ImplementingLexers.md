@@ -1,7 +1,6 @@
 ---
+title: Implementing a lexer
 ---
-
-# Implementing a lexer
 
 ReSharper requires a custom language to create a lexer that implements (at least) the `ILexer` interface:
 

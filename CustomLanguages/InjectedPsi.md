@@ -1,7 +1,6 @@
 ---
+title: Injected PSI
 ---
-
-# Injected PSI
 
 ReSharper 7 introduces a new lightweight mechanism for ‘slicing’ a single physical code file into multiple PSI files corresponding to the languages that are used within that file. This mechanism is called _Injected PSI_. An example of an injected PSI file is a JSON file in a property of an HTML control in a JavaScript Metro app. Since the injected PSI mechanism is still being introduced, other pertinent areas (e.g., JS and CSS in HTML) currently do not use this mechanism.
 

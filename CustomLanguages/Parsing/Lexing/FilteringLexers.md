@@ -1,7 +1,6 @@
 ---
+title: Filtering Lexers
 ---
-
-# Filtering Lexers
 
 Parsers are designed to recognise specific sequences of tokens, and if that sequence contains lots of whitespace or comments, or other syntactically and semantically insignificant tokens, then it makes recognising patterns much harder.
 

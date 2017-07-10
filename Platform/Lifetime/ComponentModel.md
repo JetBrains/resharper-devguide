@@ -1,7 +1,6 @@
 ---
+title: Component Lifetime
 ---
-
-# Component Lifetime
 
 The simplest way to get a `Lifetime` instance is to let the Component Model inject it into your constructor:
 

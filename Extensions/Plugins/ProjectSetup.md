@@ -1,9 +1,8 @@
 ---
+title: Project Setup
 redirect_from:
   - /Plugins/ProjectSetup.html
 ---
-
-# Project Setup
 
 Plugins for the ReSharper Platform are just .net assemblies. In order to create a plugin project, you need to:
 

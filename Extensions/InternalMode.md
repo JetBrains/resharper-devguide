@@ -1,9 +1,8 @@
 ---
+title: Internal Mode
 redirect_from:
   - /Intro/InternalMode.html
 ---
-
-# Internal Mode
 
 ReSharper supports an "internal mode" that enables a number of extra features that are normally hidden from end users. These are diagnostic and testing features used by the dev team, and most users will never need to use, however, they can be very useful for extension authors.
 

@@ -1,7 +1,6 @@
 ---
+title: Implementing IQuickDocProvider
 ---
-
-# Implementing IQuickDocProvider
 
 The `IQuickDocProvider` interface provides two methods:
 

@@ -1,7 +1,6 @@
 ---
+title: Initial Installation
 ---
-
-# Initial Installation
 
 When creating an extension, it must be installed for the first time before it can be tested or debugged. This does introduce a little bit of a chicken and egg scenario - it usually means that the extension must be packaged up and installed before any real development takes place!
 

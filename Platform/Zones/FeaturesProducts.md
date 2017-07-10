@@ -1,7 +1,6 @@
 ---
+title: Features and Products
 ---
-
-# Features and Products
 
 ## Features
 

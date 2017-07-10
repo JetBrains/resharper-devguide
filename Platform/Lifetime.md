@@ -1,7 +1,6 @@
 ---
+title: Lifetime
 ---
-
-# Lifetime
 
 The `JetBrains.DataFlow.Lifetime` class is used for cleanup code and resource management. `Lifetime` is similar to, but different from `IDisposable`. In fact, you can consider `Lifetime` to be the "dual" of `IDisposable`.
 

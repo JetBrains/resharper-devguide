@@ -1,7 +1,6 @@
 ---
+title: Navigation
 ---
-
-# Navigation
 
 ReSharper navigation consists of two main parts:
 

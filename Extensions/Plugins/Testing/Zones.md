@@ -1,7 +1,6 @@
 ---
+title: Zones
 ---
-
-# Zones
 
 > **WARNING** This topic assumes familiarity with the concept and usage of both the [Component Model](/Platform/ComponentModel.md) and [Zones](/Platform/Zones.md) topics.
 

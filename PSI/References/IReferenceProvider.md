@@ -1,7 +1,6 @@
 ---
+title: Managing reference providers
 ---
-
-# Managing reference providers
 
 To build a reference provider, you implement `IReferenceProviderFactory`, `IReferenceFactory` and `IReference`. It is very easy to get these mixed up with the `ReferenceProviderFactory` class and the `IReferenceProvider` interface, however, they serve different purposes. `ReferenceProviderFactory` and `IReferenceProvider` are facades that manage the responsibility of delegating and aggregating the creation of custom references to multiple custom reference providers.
 

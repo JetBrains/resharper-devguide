@@ -1,7 +1,6 @@
 ---
+title: Component Model
 ---
-
-# Component Model
 
 * Table of contents
 {:toc}

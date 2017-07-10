@@ -1,7 +1,6 @@
 ---
+title: Generate Menu
 ---
-
-# Generate Menu
 
 So you’ve seen those fancy menu items in the _Generate_ menu (Alt+Insert) and you want to write your own? Okay, we’ll tell you how. But first, you have to realize that, really, those generator items are not specific to the _Generate_ menu _per se_. For example, the _Generate Missing Members_ item is mirrored as a Quick Fix. Still, we’ll be talking about generator items here.
 

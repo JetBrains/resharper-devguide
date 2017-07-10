@@ -1,7 +1,6 @@
 ---
+title: Creating the project
 ---
-
-# Creating the project
 
 Simply create a .net class library assembly. Starting with ReSharper 2016.3, the project should be a class library that targets .NET Framework 4.5. The SDK NuGet packages require a minimum of .NET 4.5.
 

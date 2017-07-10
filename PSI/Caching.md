@@ -1,7 +1,6 @@
 ---
+title: Caches
 ---
-
-# Caches
 
 ReSharper makes heavy use of caching in order to store all of the information required to provide a semantic view of a codebase. The caches are calculated on solution load, stored to disk, and reloaded when the solution is subsequently loaded. Any time a file changes, the cache is notified, and can rescan the file and update its details.
 

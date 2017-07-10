@@ -1,7 +1,6 @@
 ---
+title: Getting Help
 ---
-
-# Getting Help
 
 ## Problems with the guide
 

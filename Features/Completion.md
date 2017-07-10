@@ -1,7 +1,6 @@
 ---
+title: Code Completion
 ---
-
-# Code Completion
 
 Just like Visual Studio, ReSharper implements its own form of _code completion_ (which Visual Studio calls IntelliSense) that is used to provide various helpers when typing code. Unlike Visual Studio, however, ReSharper implements three different varieties of code completion that plugin developers need to be aware of. These are:
 
