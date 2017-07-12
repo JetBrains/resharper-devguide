@@ -1,7 +1,7 @@
 ---
+title: Work with Color Themes
 ---
 
-# Work with Color Themes
 **What you should know beforehand:**
 * [Lifetime](/HowTo/WorkWithLifetime.md)
 * [IProperty](/HowTo/WorkWithIProperty.md)

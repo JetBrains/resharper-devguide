@@ -1,7 +1,6 @@
 ---
+title: Get a Tree Node by Full CLR Name
 ---
-
-# Get a Tree Node by Full CLR Name
 
 **What you should know beforehand:**
 * [Project model](/HowTo/NavigateCode/NavigateCode.md#project-model-basics)

@@ -1,7 +1,7 @@
 ---
+title: Integrate with ReSharper
 ---
 
-# Integrate with ReSharper
 ReSharper uses loosely coupled principle. To develop a ReSharper plugin means to declare and implement a particular integration point. ReSharper will care of the rest: the extension will be injected into ReSharper.
  
 How does this actually look like? Typically, you: 

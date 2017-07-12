@@ -1,7 +1,7 @@
 ---
+title: Run Actions from Code
 ---
 
-# Run Actions from Code
 **What you should know beforehand:**
 * [Component model](/HowTo/ObtainComponentsInRuntime.md)
 * [Lifetime](/HowTo/WorkWithLifetime.md)

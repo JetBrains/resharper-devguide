@@ -1,7 +1,6 @@
 ---
+title: Track Solution Loading Status
 ---
-
-# Track Solution Loading Status
 
 **What you should know beforehand:**
 * [Component model](/HowTo/ObtainComponentsInRuntime.md)

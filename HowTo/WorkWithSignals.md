@@ -1,7 +1,6 @@
 ---
+title: Work with Signals
 ---
-
-# Work with Signals
 
 **What you should know beforehand:**
 * [Lifetime](/HowTo/WorkWithLifetime.md)

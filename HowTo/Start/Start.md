@@ -1,7 +1,7 @@
 ---
+title: Start
 ---
 
-# Start
 ReSharper can be extended in two ways:
 * **Declarative extension**: extensions that are distributed via settings files, e.g. live templates or structural search and replace patterns. They do not require any programming and are not the subject of this **How To**. 
 * **Compiled extensions or plugins**: compiled assemblies that are loaded into the ReSharper process and have almost full access to the ReSharper API. Plugins are able to do the same things as ReSharper does - quick-fixes, context actions, refactoring, code injections, and others.

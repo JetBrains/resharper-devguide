@@ -1,7 +1,6 @@
 ---
+title: Work with Lifetime
 ---
-
-# Work with Lifetime
 
 **What you should know beforehand:**
 * [Component model](/HowTo/ObtainComponentsInRuntime.md)

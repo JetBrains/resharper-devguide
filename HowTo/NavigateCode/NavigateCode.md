@@ -1,7 +1,7 @@
 ---
+title: Navigate Code
 --- 
 
-# Navigate Code
 ReSharper provides two types of navigation:
 * **Context-dependent**: navigation target is somehow related to the element under the caret (**Navigate to Declaration**, etc).
 See:

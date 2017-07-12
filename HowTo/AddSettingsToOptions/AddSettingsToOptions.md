@@ -1,7 +1,6 @@
 ---
+title: Add Settings to ReShaper Options
 ---
-
-# Add Settings to ReShaper Options
 
 **What you should know beforehand:**
 * [Lifetime](/HowTo/WorkWithLifetime.md)

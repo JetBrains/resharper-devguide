@@ -1,7 +1,7 @@
 ---
+title: 1. Create a Project
 ---
 
-# 1. Create a Project
 To create a plugin project:
 1. In Visual Studio, create a new project of the **Class Library** (Visual C#) type.
 2. Reference ReSharper SDK. It is distributed via NuGet, so, you can reference the SDK via the package manager:

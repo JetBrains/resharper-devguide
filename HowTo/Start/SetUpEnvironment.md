@@ -1,7 +1,7 @@
 ---
+title: 3. Set Up the Environment
 ---
 
-# 3. Set Up the Environment
 The next step is to set up the environment so you can debug your plugin. We recommend that you have two different Visual Studio hives: one for plugin development and the second for debugging purposes.
 
 To set up the environment for debugging the plugin:

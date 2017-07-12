@@ -1,7 +1,6 @@
 ---
+title: Create Menu Items Using Actions
 ---
-
-# Create Menu Items Using Actions
 
 **Examples ([?](HowTo.md#sample-solution)):**
 * [SampleAction.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/Actions/SampleAction.cs) 

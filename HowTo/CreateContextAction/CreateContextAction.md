@@ -1,7 +1,6 @@
 ---
+title: Create a Context Action
 ---
-
-# Create a Context Action
 
 **What you should know beforehand:**
 * [PSI](/HowTo/NavigateCode/NavigateCode.md#psi-basics)

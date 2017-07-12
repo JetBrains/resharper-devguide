@@ -1,7 +1,6 @@
 ---
+title: Create a Quick-Fix
 ---
-
-# Create a Quick-Fix
 
 **What you should know beforehand:**
 * [PSI](/HowTo/NavigateCode/NavigateCode.md#psi-basics)

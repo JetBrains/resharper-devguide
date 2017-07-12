@@ -1,7 +1,6 @@
 ---
+title: Navigate to a Particular Tree Node
 ---
-
-# Navigate to a Particular Tree Node
 
 **What you should know beforehand:**
 * [PSI](/HowTo/NavigateCode/NavigateCode.md#psi-basics)

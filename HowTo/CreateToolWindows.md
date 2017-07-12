@@ -1,7 +1,6 @@
 ---
+title: Create Tool Windows
 ---
-
-# Create Tool Windows
 
 **What you should know beforehand:**
 * [Component model](/HowTo/ObtainComponentsInRuntime.md)

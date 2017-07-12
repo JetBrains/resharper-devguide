@@ -1,7 +1,7 @@
 ---
+title: 2. Create a NuGet Package for the Plugin
 ---
 
-# 2. Create a NuGet Package for the Plugin
 To create a distributable NuGet package for a plugin:
 1. Download and install [NuGet](https://dist.nuget.org/index.html), e.g., to *c:\NuGet*.
 2. Create a blank NuGet specification file (e.g., *myplugin.nuspec*) and place it to the plugin's project folder.

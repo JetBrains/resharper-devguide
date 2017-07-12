@@ -1,7 +1,6 @@
 ---
+title: Add a Navigation Action to the 'Navigate to' Menu
 ---
-
-# Add a Navigation Action to the 'Navigate to' Menu
 
 **What you should know beforehand:**
 * [PSI](/HowTo/NavigateCode/NavigateCode.md#psi-basics)

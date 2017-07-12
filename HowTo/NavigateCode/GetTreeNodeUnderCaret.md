@@ -1,7 +1,6 @@
 ---
+title: Get a Tree Node Under Caret
 ---
-
-# Get a Tree Node Under Caret
 
 **What you should know beforehand:**
 * [Component model](/HowTo/ObtainComponentsInRuntime.md)

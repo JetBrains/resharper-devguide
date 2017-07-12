@@ -1,7 +1,6 @@
 ---
+title: Get a Tree Node by Reference
 ---
-
-# Get a Tree Node by Reference
 
 **What you should know beforehand:**
 * [PSI](/HowTo/NavigateCode/NavigateCode.md#psi-basics)

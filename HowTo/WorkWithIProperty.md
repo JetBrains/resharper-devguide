@@ -1,7 +1,7 @@
 ---
+title: Work with IProperty
 ---
 
-# Work with IProperty
 **What you should know beforehand:**
 * [Lifetime](/HowTo/WorkWithLifetime.md)
 * [Signals](/HowTo/WorkWithSignals.md)

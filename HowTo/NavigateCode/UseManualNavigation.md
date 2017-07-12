@@ -1,7 +1,6 @@
 ---
+title: Use Manual Navigation
 ---
-
-# Use Manual Navigation
 
 **What you should know beforehand:**
 * [PSI](/HowTo/NavigateCode/NavigateCode.md#psi-basics)

@@ -1,7 +1,7 @@
 ---
+title: Obtain Components in Runtime
 ---
 
-# Obtain Components in Runtime
 **Examples:**
 * [SampleSolutionComponent.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/SolutionComponent/SampleSolutionComponent.cs)
 * [SolutionStateTracker.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/SolutionStateTracker/SolutionStateTracker.cs)

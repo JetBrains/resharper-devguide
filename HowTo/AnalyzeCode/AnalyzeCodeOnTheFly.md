@@ -1,7 +1,6 @@
 ---
+title: Analyze Code on the Fly
 ---
-
-# Analyze Code on the Fly
 
 **What you should know beforehand:**
 * [Component model](/HowTo/ObtainComponentsInRuntime.md)
