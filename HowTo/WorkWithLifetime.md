@@ -13,7 +13,8 @@ Let's see how it works in details.
 
 ## Obtaining a Lifetime
 Typically, you should obtain the lifetime for your component from the ReSharper component model. As usual in the ReSharper API, you can get an instance of the `Lifetime` type using the constructor injection. 
-```
+
+```csharp
 [SolutionComponent]
 public class MyClass
 {
@@ -30,26 +31,33 @@ How this works? In the example above, we subscribe on the `AfterSolutionOpened` 
 
 ## Running Your Own Cleanup Code
 Nevertheless, you always have an opportunity to run your own cleanup code. To do this, you should register the cleanup callback using the `AddAction` method of the `Lifetime` type.
-```
+
+```csharp
 lifetime.AddAction(() => myObject = null);
 ```
+
 Or, you can even use the `AddBracket` method that accepts two callbacks - one is run immediately and one after the lifetime is terminated. For example, adding and removing a UI element in a tool window can be bound to a particular lifetime:
-```
+
+```csharp
 lifetime.AddBracket(
     () => _containerControl.Controls.Add(_viewControl),
     () => _containerControl.Controls.Remove(_viewControl));
 ```
-                        
+
 ## Custom Lifetime
 Normally, you should let the component model to create a lifetime for your component. But, sometimes, it may be necessary to create your own short-lived lifetime. In this case, to define the lifetime, you should use the `Lifetimes.Define` method:
-```
+
+```csharp
 var myShortLifetimeDefinition = Lifetimes.Define(lifetime);
 var myShortLifetime = myShortLifetimeDefinition.Lifetime;
 ```
+
 To terminate your lifetime:
-```
+
+```csharp
 myShortLifetimeDefinition.Terminate();
 ```
+
 ### Notes
 * `lifetime` is the parent lifetime. Once it is terminated, `myShortLifetime` is also terminated.
 * `Lifetimes.Define` creates an instance of the `LifetimeDefinition` class which in turn allows you to manage the lifetime, e.g. terminate it.

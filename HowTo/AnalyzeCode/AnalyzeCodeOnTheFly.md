@@ -20,7 +20,8 @@ As an example, let's create a code analyzer that checks all variable declaration
 ![analyze-code](analyze-code.png)
 
 ## Problem Analyzer
-```   
+
+```csharp
 [ElementProblemAnalyzer(typeof(IVariableDeclaration), HighlightingTypes =
     new[] {typeof(BadWordNamingWarning)})]
 public class BadWordNamingAnalyzer : ElementProblemAnalyzer<IVariableDeclaration>
@@ -51,7 +52,7 @@ public class BadWordNamingAnalyzer : ElementProblemAnalyzer<IVariableDeclaration
 
 ## Highlighting
 
-```
+```csharp
 [StaticSeverityHighlighting(Severity.WARNING, HighlightingGroupIds.GutterMarksGroup)]
 public class BadWordNamingWarning : IHighlighting
 {

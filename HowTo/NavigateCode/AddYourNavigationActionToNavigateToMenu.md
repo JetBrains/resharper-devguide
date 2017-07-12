@@ -14,7 +14,7 @@ If you want your navigation to appear in ReSharper's **Navigate To** menu ([cont
 
 For example, let's create a context-dependent navigation that navigates to a class constructor. The initial caret position can be anywhere inside that class.
 
-```
+```csharp
 [ContextNavigationProvider]
 public class NavigateToCtorProvider : INavigateFromHereProvider
 {

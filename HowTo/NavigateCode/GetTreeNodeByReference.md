@@ -16,7 +16,7 @@ So, the task is to obtain the [reference](NavigateCode.md#psi-basics) you need. 
 
 Let's make this as an extension method for `ITreeNode`:
 
-```
+```csharp
 [CanBeNull]
 public static IEnumerable<IDeclaredElement> GetReferencedElements(this ITreeNode node)
 {
@@ -39,11 +39,11 @@ public static IEnumerable<IDeclaredElement> GetReferencedElements(this ITreeNode
 
 Now, it can be used to navigate to the first referenced element of the tree node under the caret (it would be always a declaration):
 
-```
+```csharp
 private IShellLocks _shellLocks;
 private NodeUnderCaretNavigator _navigator;
  
-...
+// ...
  
 public void NavigateToFirstReferencedElement()
 {

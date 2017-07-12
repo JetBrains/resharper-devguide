@@ -12,7 +12,7 @@ ReSharper can be extended in two ways:
 * Plugins are installed into Visual Studio using **ReSharper &#124; Extension Manager...**
 * If you want to make your plugin available to all ReSharper users, you should upload it to the [ReSharper repository](https://resharper-plugins.jetbrains.com).
 * Plugins are dependent on a ReSharper version. Thus, if a new *major* ReSharper version is released and you want your plugin to support it, you must rebuild the plugin for this specific version. Also, you should take into account that each ReSharper release may introduce some breaking changes. So, there's a possibility your plugin won't work with a new release out of the box.
-    
+
 To start developing a plugin, you should:
 1. [Create a plugin project](/HowTo/Start/CreateProject.md).
 2. [Create a NuGet package for the plugin](/HowTo/Start/CreateNuGetPackageForPlugin.md).

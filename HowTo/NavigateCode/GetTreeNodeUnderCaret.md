@@ -15,16 +15,18 @@ title: Get a Tree Node Under Caret
 
 Getting a tree node under the current caret position is a very typical task when implementing a navigation or any other tree-node-dependent feature. Actually, there are many ways of obtaining the tree node depending on the context. For example, when implementing [context navigation](/HowTo/NavigateCode/NavigateCode.md), you can use the `GetSelectedTreeNode` method of the `IDataContext` object. E.g.:
 
-``` 
-...
+```csharp
+// ...
 
 public IEnumerable<ContextNavigation> CreateWorkflow(IDataContext dataContext)
 {
     var node = dataContext.GetSelectedTreeNode<ITreeNode>();
-    ...
+    // ...
 ```
+
 Nevertheless, if you need a more generic (context-independent) get-node-under-caret function implementation, see the example below:
-```
+
+```csharp
 [SolutionComponent]
 public class NodeUnderCaretDetector
 {
@@ -56,13 +58,11 @@ public class NodeUnderCaretDetector
             () => _textControlManager.Legacy.CaretMoved -= caretMoved);
     }
  
- 
     public void Refresh()
     {
         var node = GetTreeNodeUnderCaret();
         NodeUnderCaret.Value = node;
     }
- 
  
     [CanBeNull]
     public ITreeNode GetTreeNodeUnderCaret()

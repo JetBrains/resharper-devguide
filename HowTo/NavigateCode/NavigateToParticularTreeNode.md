@@ -10,14 +10,14 @@ title: Navigate to a Particular Tree Node
 
 In case you have already obtained your navigation target, e.g., an `ITreeNode` instance, you can use its `NavigateToTreeNode()` method to navigate to it:
 
-```
+```csharp
 ITreeNode node = ... ;
 node.NavigateToTreeNode(true);
 ```
 
 Other PSI syntax tree classes may also provide methods for navigation, e.g. `IDeclaredElement`:
 
-```
+```csharp
 IDeclaredElement element = ... ;
 element.Navigate(true);
 ```

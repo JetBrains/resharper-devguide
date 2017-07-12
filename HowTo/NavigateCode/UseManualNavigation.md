@@ -18,7 +18,7 @@ In some cases it might be useful to manually navigate the syntax tree (relativel
 
 For example, let's create an `ITreeNode` extension method that walks up the syntax tree and finds (if there are any) a parent tree node of a particular type:
 
-```
+```csharp
 [CanBeNull]
 public static T GetParentOfType<T>(this ITreeNode node) where T : class, ITreeNode
 {
@@ -36,7 +36,7 @@ public static T GetParentOfType<T>(this ITreeNode node) where T : class, ITreeNo
 
 For example, we can use it to navigate to the method declaration while standing anywhere inside a method:
 
-```
+```csharp
 private IShellLocks _shellLocks;
 private NodeUnderCaretNavigator _navigator;
   

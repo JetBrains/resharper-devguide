@@ -14,7 +14,7 @@ The purpose of context actions is to quickly introduce a minor change to the cod
 
 For example, let's create a very simple context action that will be applicable to variable declarations. If a variable name contains any character in uppercase, the context action will suggest to convert the name to lowercase (of course, from the point of functionality, such action is absolutely useless).
 
-```
+```csharp
 [ContextAction(Name = "ToLowerCase", Description = "Convert the text to lowercase", Group = "C#", Disabled = false,
     Priority = 1)]
 public class ToLowerCaseContextAction : ContextActionBase

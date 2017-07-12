@@ -22,7 +22,8 @@ ReSharper settings are key-value based. Settings are like onions - they have lay
 
 ## Adding a setting
 To create a simple setting, you should derive your class from `SimpleOptionsPage` and mark it with the `OptionsPage` attribute:
-```
+
+```csharp
 [OptionsPage(Pid, "Sample R# Plugin", typeof(FeaturesEnvironmentOptionsThemedIcons.CodeInspections), ParentId = ToolsPage.PID)]
 public class OptionsPage : SimpleOptionsPage
 {
@@ -69,7 +70,8 @@ public class MySettingsKey
 
 ## Reading a setting value 
 To access the setting value, you can use the `ISettingStore` component:
-```
+
+```csharp
 public class OptionsPageViewModel: AAutomation    
 {
     public IProperty<string> Text { get; set; }        
@@ -89,5 +91,6 @@ public class OptionsPageViewModel: AAutomation
     }
 }
 ```
+
 ### Notes
 * `BindToContextLive` sets the context for reading and writing values: in our example it's `ApplicationWide`. If `ContextRange.Smart` is specified, the context will depend on user's settings editing mode (see settings layers in the top of this section). 

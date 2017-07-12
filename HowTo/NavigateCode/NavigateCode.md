@@ -54,10 +54,12 @@ The main PSI elements are:
 The ITreeNode interface provides the GetAllReferences method that returns all node references.
 * `IDeclaredElement`: element of the semantic model. It is a meaningful code element that can be referenced by other code elements: a class declaration, a property, etc.
 Note that there’s a difference between `IDeclaration` and `IDeclaredElement`. `IDeclaredElement` is an entity you can refer to, while `IDeclaration` is just a place in code where the declaration happens. For example, you have a partial class `Foo` that is implemented in two different parts:
+
+    ```csharp
+    public partial class Foo { /* ... */ }
+    public partial class Foo { /* ... */ }
     ```
-    public partial class Foo {// some code}
-    public partial class Foo {// some other code}
-    ```
+
     Both top tree nodes of these declarations implement `IDeclaration -> IClassDeclaration`. But there's only one `IDeclaredElement` the declarations refer to via the `DeclaredElement` property - the class `Foo` declared in the global namespace. 
 * Other PSI types: there are a lot of specific helper types for particular elements of the syntax tree. E.g., `IVariableDeclaration` and `ILocalVariableDeclaration` (for variable declarations), `IExpressionStatement` (for representing statements), and many more. Moreover, there are a lot of types that are specific to a particular language and, therefore, provide specific methods relevant only in the context of this language. E.g., `ICSharpDeclaration` or `IJavaScriptDynamicProperty`.
 

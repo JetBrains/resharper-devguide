@@ -15,7 +15,7 @@ The main difference between a context action and a quick-fix is that the latter 
 
 For example, let's create a simple quick-fix that reacts to the warning provided by the analyzer from [Analyze Code on the Fly](/HowTo/AnalyzeCode/AnalyzeCodeOnTheFly.md) and suggests to replace the "Crap" word occurrence with "BadWord".
 
-```
+```csharp
 [QuickFix]
 public class CorrectBadWordQuickFix : QuickFixBase
 {

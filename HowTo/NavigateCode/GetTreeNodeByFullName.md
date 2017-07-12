@@ -15,7 +15,8 @@ Typically, finding a node by a full CLR name is not a typical type of task for a
 Let's imagine, you know a full CLR name of a class and want to navigate to it. See the example below.
 
 1. First of all, we need to obtain an `IProject` instance for a particular project (by project's name). Here we work on the ReSharper's [project model](NavigateCode.md#project-model-basics) level. Let's make it an extension method of `ISolution`:
-    ```        
+
+    ```csharp
     [CanBeNull]
     public static IProject GetProjectByName(this ISolution solution, string projectName)
     {
@@ -23,10 +24,11 @@ Let's imagine, you know a full CLR name of a class and want to navigate to it. S
         return projects.FirstOrDefault(project => project.Name == projectName);
     }
     ```
+
     Here `GetTopLevelProjects()` returns a collection of projects in the solution.
 1. Knowing the project, we can obtain a particular C# file from it (we're still on the project model level).
-    
-    ```
+
+    ```csharp
     [CanBeNull]
     public static ICSharpFile GetCSharpFile(this IProject project, string filename)
     {
@@ -34,13 +36,13 @@ Let's imagine, you know a full CLR name of a class and want to navigate to it. S
         return file?.GetPsiFiles<CSharpLanguage>().SafeOfType<ICSharpFile>().SingleOrDefault();
     }
     ```
-    
+
     Here:
     * `GetPsiSourcFileInProject` returns the `IPsiSourceFile` by file name.
     * `GetPsiFiles` returns the collection of `IFile` (the main PSI element) that is then casted to `ICSharpFile` (`SafeOfType` is a safer sibling of `Enumerable.OfType<>()`). 
  1. On this step we work only with the PSI syntax tree (so, now, we're on the [PSI model](NavigateCode.md#psi-basics) level). Here we obtain an instance of `ICSharpFile` and find the required `ITreeNode` in it.
 
-    ```
+    ```csharp
     [CanBeNull]
     public static ITreeNode GetTypeTreeNodeByFqn(this ICSharpFile file, string typeName)
     {
@@ -62,13 +64,11 @@ Let's imagine, you know a full CLR name of a class and want to navigate to it. S
         return resultList.FirstOrDefault();
     }
      
-         
     private static string GetShortNameFromFqn(string fqn)
     {
         var pos = fqn.LastIndexOf(".", StringComparison.Ordinal) + 1;
         return pos > 0 ? fqn.Substring(pos) : fqn;
     }
-     
      
     private static string GetLongNameFromFqn(string fqn)
     {
@@ -83,7 +83,8 @@ Let's imagine, you know a full CLR name of a class and want to navigate to it. S
     * `TypeDeclarationsEnumerable` returns all type declarations made within a namespace.
     * `ICSharpTypeDeclaration` provides the `DeclaredName` property that returns type's short name.
 1. Finally, we can use our `GetTypeTreeNodeByFqn` function to navigate to the type declaration by knowing type's fully qualified name:
-    ```
+
+    ```csharp
     public static void NavigateToTypeNodeByFqn(this ISolution solution, string projectName, string fileName, string typeName)
     {
         solution.Locks.TryExecuteWithReadLock(() =>
