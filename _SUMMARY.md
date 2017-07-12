@@ -6,6 +6,45 @@
 * [Key Topics](Intro/KeyTopics.md)
 * [Getting Help](Intro/GettingHelp.md)
 
+## How To
+* [How To](HowTo/HowTo.md)
+    * [Start](HowTo/Start/Start.md)
+        * [1. Create a Project](HowTo/Start/CreateProject.md)
+        * [2. Create a NuGet Package for the Plugin](HowTo/Start/CreateNuGetPackageForPlugin.md)
+        * [3. Set Up the Environment](HowTo/Start/SetUpEnvironment.md)
+    * [Integrate with ReSharper](HowTo/IntegrateWithReSharper/IntegrateWithReSharper.md)
+    * [Obtain Components in Runtime](HowTo/ObtainComponentsInRuntime.md)
+    * [Work with Lifetime](HowTo/WorkWithLifetime.md)
+    * [Work with Signals](HowTo/WorkWithSignals.md)
+    * [Work with IProperty](HowTo/WorkWithIProperty.md)
+    * Work with Shell Locks    
+    * Work with Threading
+    * Work with Zoning
+    * [Navigate Code](HowTo/NavigateCode/NavigateCode.md)
+        * [Get a Tree Node under Caret](HowTo/NavigateCode/GetTreeNodeUnderCaret.md)
+        * [Get a Tree Node by Full CLR Name](HowTo/NavigateCode/GetTreeNodeByFullName.md)
+        * [Get a Tree Node by Reference](HowTo/NavigateCode/GetTreeNodeByReference.md)
+        * Find Code Elements Using AsyncFinder
+        * [Use Manual Navigation](HowTo/NavigateCode/UseManualNavigation.md)
+        * [Navigate to a Particular Tree Node](HowTo/NavigateCode/NavigateToParticularTreeNode.md) 
+        * [Add a Navigation Action to the 'Navigate To' Menu](HowTo/NavigateCode/AddYourNavigationActionToNavigateToMenu.md)
+    * Create, Replace, and Update the Code
+        * Select a Block of Code
+        * Delete a Block of Code
+        * Add Code in the Editor
+        * Replace Code in the Editor
+        * Add a Code-Generation Action to the Generate Menu    
+    * [Create Menu Items Using Actions](HowTo/CreateMenuItemsUsingActions.md)
+    * [Run Actions from Code](HowTo/RunActionsFromCode.md)   
+    * [Create a Context Action](HowTo/CreateContextAction/CreateContextAction.md)
+    * [Create a Quick Fix](HowTo/CreateQuickFix/CreateQuickFix.md)
+    * [Analyze Code on the Fly](HowTo/AnalyzeCode/AnalyzeCodeOnTheFly.md)        
+    * [Track Solution Loading Status](HowTo/TrackSolutionLoadingStatus.md)
+    * [Create Tool Windows](HowTo/CreateToolWindows.md)    
+    * [Add Settings to ReSharper Options](HowTo/AddSettingsToOptions/AddSettingsToOptions.md)
+    * [Work with Color Themes](HowTo/WorkWithColorThemes.md)
+    * Cover a Plugin with Tests
+    
 ## Part I - Extending the ReSharper Platform
 * [Getting Started](Extensions/GettingStarted.md)
     * [Tools](Extensions/Tools.md)
