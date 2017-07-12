@@ -6,7 +6,7 @@ title: Create a Quick-Fix
 * [PSI](/HowTo/NavigateCode/NavigateCode.md#psi-basics)
 * [Code analyzer](/HowTo/AnalyzeCode/AnalyzeCodeOnTheFly.md)
 
-**Examples ([?](HowTo.md#sample-solution)):**
+**Examples ([?](/HowTo/HowTo.md#sample-solution)):**
 * [CorrectBadWordQuickFix.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/QuickFix/CorrectBadWordQuickFix.cs)
 
 The main difference between a context action and a quick-fix is that the latter appears only in response to a highlighting. Thus, quick-fixes are used to fix a problem that was found and highlighted by a particular code analyzer. 

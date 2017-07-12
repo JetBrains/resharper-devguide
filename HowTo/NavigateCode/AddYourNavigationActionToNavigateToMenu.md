@@ -5,7 +5,7 @@ title: Add a Navigation Action to the 'Navigate to' Menu
 **What you should know beforehand:**
 * [PSI](/HowTo/NavigateCode/NavigateCode.md#psi-basics)
 
-**Examples ([?](HowTo.md#sample-solution)):**
+**Examples ([?](/HowTo/HowTo.md#sample-solution)):**
 * [NavigateToCtorProvider.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/PsiNavigation/NavigateToCtorProvider.cs)
 
 If you want your navigation to appear in ReSharper's **Navigate To** menu ([context navigation](NavigateCode.md)), you should create an action that implements the `INavigateFromeHereProvider` interface.

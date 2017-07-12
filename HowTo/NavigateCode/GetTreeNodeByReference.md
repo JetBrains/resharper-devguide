@@ -6,7 +6,7 @@ title: Get a Tree Node by Reference
 * [PSI](/HowTo/NavigateCode/NavigateCode.md#psi-basics)
 * ShellLocks
 
-**Examples ([?](HowTo.md#sample-solution)):**
+**Examples ([?](/HowTo/HowTo.md#sample-solution)):**
 * [PsiExtensionMethods.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/PsiNavigation/PsiExtensionMethods.cs)
 * [NodeUnderCaretDetector.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/PsiNavigation/NodeUnderCaretDetector.cs)
 

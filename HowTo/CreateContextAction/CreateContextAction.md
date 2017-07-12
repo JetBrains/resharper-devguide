@@ -5,7 +5,7 @@ title: Create a Context Action
 **What you should know beforehand:**
 * [PSI](/HowTo/NavigateCode/NavigateCode.md#psi-basics)
 
-**Examples ([?](HowTo.md#sample-solution)):**
+**Examples ([?](/HowTo/HowTo.md#sample-solution)):**
 * [ToLowerCaseContextAction.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/ContextAction/ToLowerCaseContextAction.cs)
 
 The purpose of context actions is to quickly introduce a minor change to the code, like changing access modifiers, convert `foreach` to `for`, and so on. When a context action is available for the current caret position, ReSharper displays the "hummer" ![hummer](hummer.png) action indicator. The list of possible context actions is displayed after a user presses <kbd>Alt</kbd>+<kbd>Enter</kbd>.

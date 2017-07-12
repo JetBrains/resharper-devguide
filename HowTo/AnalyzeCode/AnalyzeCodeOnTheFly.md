@@ -5,7 +5,7 @@ title: Analyze Code on the Fly
 **What you should know beforehand:**
 * [Component model](/HowTo/ObtainComponentsInRuntime.md)
 
-**Examples ([?](HowTo.md#sample-solution)):**
+**Examples ([?](/HowTo/HowTo.md#sample-solution)):**
 * [BadWordNamingAnalyzer.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/ElementProblemAnalyzer/BadWordNamingAnalyzer.cs)
 * [BadWordNamingWarning.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/ElementProblemAnalyzer/BadWordNamingWarning.cs)
 

@@ -7,7 +7,7 @@ title: Get a Tree Node by Full CLR Name
 * [PSI](/HowTo/NavigateCode/NavigateCode.md#psi-basics)
 * ShellLocks
 
-**Examples ([?](HowTo.md#sample-solution)):**
+**Examples ([?](/HowTo/HowTo.md#sample-solution)):**
 * [PsiExtensionMethods.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/PsiNavigation/PsiExtensionMethods.cs)
 
 Typically, finding a node by a full CLR name is not a typical type of task for a plugin developer. This example is given mostly to help you better understand ReSharper's project model and PSI principles.

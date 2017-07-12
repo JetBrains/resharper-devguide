@@ -10,7 +10,7 @@ title: Get a Tree Node Under Caret
 * [IProperty](/HowTo/WorkWithIProperty.md)
 * ShellLocks
 
-**Examples ([?](HowTo.md#sample-solution)):**
+**Examples ([?](/HowTo/HowTo.md#sample-solution)):**
 * [NodeUnderCaretDetector.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/PsiNavigation/NodeUnderCaretDetector.cs)
 
 Getting a tree node under the current caret position is a very typical task when implementing a navigation or any other tree-node-dependent feature. Actually, there are many ways of obtaining the tree node depending on the context. For example, when implementing [context navigation](/HowTo/NavigateCode/NavigateCode.md), you can use the `GetSelectedTreeNode` method of the `IDataContext` object. E.g.:
