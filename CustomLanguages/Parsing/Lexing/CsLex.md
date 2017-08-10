@@ -14,7 +14,7 @@ CsLex expects an input file that describes how to match tokens. This file includ
 
 The ReSharper SDK automatically includes a `.targets` file that will set up a project to use CsLex.
 
-The input file should be named after the language being analysed, with a `.lex` suffix, e.g. `css.lex`. This file should be added to a C# project, and have its [Build Action](https://msdn.microsoft.com/library/0c6xyb66(v=vs.100).aspx#Anchor_1) set to `CsLex`.  
+The input file should be named after the language being analysed, with a `.lex` suffix, e.g. `css.lex`. This file should be added to a C# project, and have its [Build Action](https://msdn.microsoft.com/library/0c6xyb66(v=vs.100).aspx#Anchor_1) set to `CsLex`.
 
 > **NOTE** Only C# projects are supported, as CsLex generates C# code.
 
@@ -108,7 +108,7 @@ The final section is a set of rules, which are defined by three things, a _state
 <YYINITIAL> {WHITE_SPACE}  { return CssTokenType.WHITE_SPACE; }
 ```
 
-* `<YYINITIAL>` is the state in which the rule can be matched. If the lexer does not define any custom states, this will always be `<YYINITIAL>`.
+* `<YYINITIAL>` is the state in which the rule can be matched. If the lexer does not define any custom states, this will always be `<YYINITIAL>`. Note that in the original CsLex, the state is optional, and the rule is matched in all states. This is not true for the version that ships with the SDK - the state is required.
 * `{WHITE_SPACE}` is the regular expression that should be matched. A number inside braces, as shown here, is a macro expansion.
 * The rest of the line is the action that will be invoked when the rule matches. It should be wrapped in braces, and is copied verbatim into the generated lexer C# class.
 
