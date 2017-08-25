@@ -370,3 +370,9 @@
 * Creating Declared Elements
 * Language Specific Features
     * Disabling Intellisense
+* [HTML-Like Languages](CustomLanguages/HtmlLike.md)
+    * Registering HTML-Like Languages
+    * HTML Token Node Types
+    * [Lexing HTML-Like Languages](CustomLanguages/HtmlLike/Lexing.md)
+    * Parsing HTML-Like Languages
+    * [Extending standard HTML](CustomLanguages/HtmlLike/ExtendingHtml.md)
