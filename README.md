@@ -4,6 +4,8 @@ redirect_from:
   - /index.html
 ---
 
+[![official project](http://jb.gg/badges/official-flat-square.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
+
 Welcome to the developer guide for the [ReSharper Platform](Intro/ReSharperPlatform.md). This is the primary source of documentation for developing extensions for the ReSharper Platform that ships as part of ReSharper.
 
 To view the guide, please visit: [https://www.jetbrains.com/help/resharper/sdk/](https://www.jetbrains.com/help/resharper/sdk/)
