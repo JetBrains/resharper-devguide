@@ -5,6 +5,7 @@
 * [About This Guide](Intro/About.md)
 * [Key Topics](Intro/KeyTopics.md)
 * [Getting Help](Intro/GettingHelp.md)
+* [Recently Updated](recently_updated.md)
 
 ## How To
 * [How To](HowTo/HowTo.md)
