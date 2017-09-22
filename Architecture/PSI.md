@@ -2,7 +2,7 @@
 title: PSI
 ---
 
-The PSI is the Program Structure Index. It builds on the Platform and Project Model layers to create a complete syntactic and semantic view of a codebase. It provides a language agnostic framework for generating abstract syntax trees and semantic models. It also provides an implementation for approximately 20 languages, including C#, VB, XML, HTML, CSS, JavaScript and even regular expressions.
+The PSI is the Program Structure Interface. It builds on the Platform and Project Model layers to create a complete syntactic and semantic view of a codebase. It provides a language agnostic framework for generating abstract syntax trees and semantic models. It also provides an implementation for approximately 20 languages, including C#, VB, XML, HTML, CSS, JavaScript and even regular expressions.
 
 The building blocks of the PSI are:
 
