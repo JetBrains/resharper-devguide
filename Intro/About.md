@@ -10,7 +10,7 @@ The guide is split into several parts:
 
 * [**Part II - Architectural Overview**](/Architecture/Overview.md)
 
-    Provides an introduction to and overview of the architecture of the ReSharper Platform, looking at how it is split into several layers - Base Platform, Project Model, Features, custom Products and support for custom Languages. It also introduces the Program Structure Index (PSI) which provides ReSharper with syntactic and semantic models of many different languages.
+    Provides an introduction to and overview of the architecture of the ReSharper Platform, looking at how it is split into several layers - Base Platform, Project Model, Features, custom Products and support for custom Languages. It also introduces the Program Structure Interface (PSI) which provides ReSharper with syntactic and semantic models of many different languages.
 
 * **Part III - Platform**
 
@@ -20,7 +20,7 @@ The guide is split into several parts:
 
     Documents the Project Model, which represents the solution and products currently open, abstracting away the differences between target types (console, class library, website, etc.) and also language (C#, VB, JavaScript, etc.)
 
-* [**Part V - Program Structure Index (PSI)**](/Architecture/PSI.md)
+* [**Part V - Program Structure Interface (PSI)**](/Architecture/PSI.md)
 
     Describes and provides reference for consuming and manipulating the parsers, abstract syntax trees and semantic views of the file formats that ReSharper understands, such as C#, HTML, CSS, Razor, XML, etc. Documents the powerful reference system which allows for cross-language navigation and refactoring. Also looks at code generation, caching, and control flow.
 

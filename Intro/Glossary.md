@@ -14,4 +14,4 @@ Abstract syntax tree
 
 ### PSI
 
-Program Structure Index
+Program Structure Interface

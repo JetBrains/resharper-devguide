@@ -16,7 +16,7 @@ Also, there is a [migration guide](/Extensions/WhatsNew.md) for existing extensi
 
 ## The code model
 
-ReSharper's code model is called the PSI - the Program Structure Index. The key topics here are:
+ReSharper's code model is called the PSI - the Program Structure Interface. The key topics here are:
 
 * [Overview](/Architecture/PSI.md)
 * [Abstract syntax trees](/PSI/SyntaxTrees.md) - files are parsed and abstract syntax trees are generated, as you type.
