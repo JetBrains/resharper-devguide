@@ -331,6 +331,7 @@
 * [Working with XML-like files](Features/XmlLike.md)
 
 ## Part VII - Products
+* [Rider](Products/Rider.md)
 * dotPeek
 * [InspectCode](Products/InspectCode.md)
 * Custom products
