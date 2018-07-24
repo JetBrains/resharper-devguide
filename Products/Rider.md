@@ -66,7 +66,7 @@ Among [other declarations](http://www.jetbrains.org/intellij/sdk/docs/basics/plu
 
 For simple plugins that don't contain code that is specific to Rider, we might choose to manually pack the archive. However, this requires us to also manually update the `idea-version`tag according to the *About JetBrains Rider* dialog. Also note that archives created using .NET capabilities (like `System.IO.Compression` or PowerShell's `Compress-Archive`) [might not work](https://youtrack.jetbrains.com/issue/IDEA-180829).
 
-For more complex plugins as well as for better testability, it is recommended to have a dedicated [gradle build](plugin-project-jvm). This will also automatically take care of updating the `idea-version` tag.
+For more complex plugins as well as for better testability, it is recommended to have a dedicated [gradle build](#plugin-project-jvm). This will also automatically take care of updating the `idea-version` tag.
 
 ## Plugin project (JVM)
 
