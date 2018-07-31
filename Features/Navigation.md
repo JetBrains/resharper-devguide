@@ -174,26 +174,26 @@ _Global nagivation_ relates to functionality used in various global searches suc
 
 ## Occurrence Navigation Provider
 
-In order to provide items for a particular global navigation mechanic, we need to implement an occurrence navigation provider - a class that implements the `IOccurenceNavigationProvider` interface. The following image illustrates the hierarchy of this interface:
+In order to provide items for a particular global navigation mechanic, we need to implement an occurrence navigation provider - a class that implements the `IOccurrenceNavigationProvider` interface. The following image illustrates the hierarchy of this interface:
 
-![IOccurenceNavigationProvider hierarchy](navigation.png)
+![IOccurrenceNavigationProvider hierarchy](navigation.png)
 
 As you can see, the four interface members are self-descriptive, and are further implemented by concrete classes based on language. For example, `IGotoSymbolProvider` has concrete implementations for the CLR, CSS, HTML and JavaScript. This interface is also implemented by the `ClrGotoTypeMemberProvider`, which illustrates a kind of inheritance mechanic - this makes sense because Go To Symbol actually includes information from Go To Type.
 
 The interface is fairly simple, and has only three members:
 
 ```csharp
-public interface IOccurenceNavigationProvider : IApplicableGotoProvider
+public interface IOccurrenceNavigationProvider : IApplicableGotoProvider
 {
   IEnumerable<MatchingInfo> FindMatchingInfos(IdentifierMatcher matcher, INavigationScope scope,
                                               CheckForInterrupt checkCancelled, GotoContext gotoContext);
-  IEnumerable<IOccurence> GetOccurencesByMatchingInfo(MatchingInfo navigationInfo, INavigationScope scope, GotoContext gotoContext);
+  IEnumerable<IOccurrence> GetOccurrencesByMatchingInfo(MatchingInfo navigationInfo, INavigationScope scope, GotoContext gotoContext);
 }
 ```
 
 The first method, `FindMatchingInfos()`, find matched items and returns a corresponding list of `MatchingInfo` objects. A `MatchingInfo` is simply a data class that describes the necessary info used to store a matching item - its identifier, a set of `IdentifierMatch` objects (corresponding to the matches, as there can be many) and some other service information.
 
-The second method, `GetOccurencesByMatchingInfo`, returns a set of occurrences given the matching information. An _occurence_ is essentially a pointer to the location where something was found. Since the definition of ‘something’ is quite vague, an occurrence can be practically anything - a range in a text editor, a project reference, a while project or a file. For example, a project file is represented by a `ProjectItemOccurence`, which in turn references an `IProjectItem` it points to.
+The second method, `GetOccurrencesByMatchingInfo`, returns a set of occurrences given the matching information. An _occurrence_ is essentially a pointer to the location where something was found. Since the definition of ‘something’ is quite vague, an occurrence can be practically anything - a range in a text editor, a project reference, a while project or a file. For example, a project file is represented by a `ProjectItemOccurrence`, which in turn references an `IProjectItem` it points to.
 
 In addition, you are required to implement an interface member inherited from `IApplicableGotoProvider`:
 
@@ -226,40 +226,40 @@ class GoToYouTrackIssueProvider : IGotoEverythingProvider
 
 ## Occurrence Presenter
 
-Having a set of occurrences is great, but they’re useless until presented on-screen. And this is where occurrence presenters come in. An occurrence presenter is, basically, a class that knows how to present a particular occurrence as a menu item. In addition to being decorated by an `OccurencePresenter` attribute, it is embodied by the `IOccurencePresenter` interface defined below:
+Having a set of occurrences is great, but they’re useless until presented on-screen. And this is where occurrence presenters come in. An occurrence presenter is, basically, a class that knows how to present a particular occurrence as a menu item. In addition to being decorated by an `OccurrencePresenter` attribute, it is embodied by the `IOccurrencePresenter` interface defined below:
 
 ```csharp
-public interface IOccurencePresenter
+public interface IOccurrencePresenter
 {
-  bool Present(IMenuItemDescriptor descriptor, IOccurence occurence,
-    OccurencePresentationOptions occurencePresentationOptions);
-  bool IsApplicable(IOccurence occurence);
+  bool Present(IMenuItemDescriptor descriptor, IOccurrence occurrence,
+    OccurrencePresentationOptions occurrencePresentationOptions);
+  bool IsApplicable(IOccurrence occurrence);
 }
 ```
 
 First, there’s the `IsApplicable()` method. This method determines whether this occurrence presenter is applicable for the particular type of occurrence. These typically go hand-in-hand, for example:
 
 ```csharp
-[OccurencePresenter(Priority=0.0)]
-public class RangeOccurencePresenter : IOccurencePresenter
+[OccurrencePresenter(Priority=0.0)]
+public class RangeOccurrencePresenter : IOccurrencePresenter
 {
-  public virtual bool IsApplicable(IOccurence occurence)
+  public virtual bool IsApplicable(IOccurrence occurrence)
   {
-    return occurence is RangeOccurence;
+    return occurrence is RangeOccurrence;
   }
   // other members omitted
 }
 ```
 
-Then there’s the `Present()` method, which is called when the `IOccurence` needs to be presented. The goal of this method is to make assignments to the `descriptor` parameter. The `IMenuItemDescriptor` interface is quite large, but the only property we need to concern ourselves with here is `Text` - this is a `RichText` definition that will be displayed as a menu item for this occurrence.
+Then there’s the `Present()` method, which is called when the `IOccurrence` needs to be presented. The goal of this method is to make assignments to the `descriptor` parameter. The `IMenuItemDescriptor` interface is quite large, but the only property we need to concern ourselves with here is `Text` - this is a `RichText` definition that will be displayed as a menu item for this occurrence.
 
 Here's a sample implementation. Note that `descriptor.Style` _must_ be defined - otherwise, the item will be disabled.
 
 ```csharp
-public bool Present(IMenuItemDescriptor descriptor, IOccurence occurence,
-  OccurencePresentationOptions occurencePresentationOptions)
+public bool Present(IMenuItemDescriptor descriptor, IOccurrence occurrence,
+  OccurrencePresentationOptions occurrencePresentationOptions)
 {
-  var o = ((YouTrackIssueOccurence) occurence);
+  var o = ((YouTrackIssueOccurrence) occurrence);
   descriptor.Text = o.IssueId;
   descriptor.Text.Append(" - ");
   descriptor.Text.Append(o.IssueDescription);
@@ -272,51 +272,51 @@ public bool Present(IMenuItemDescriptor descriptor, IOccurence occurence,
 
 When you open up, say, Find Usages, you’ll find that you have an ability to filter information. Some examples are read usages, write usages, attribute references, and so on. Each has its own special icon and an ability to filter it out if necessary.
 
-The types of elements just mentioned are called _occurence kinds_. Many kinds of occurrences can be found as static members of the `OccurenceKind` class, and new ones can be created. An occurrence kind is simply an enum-like class, keeping only two bits of information: its name and whether it is primary or not. If the occurrence kind is set as primary, the Find Results window will always display this kind of occurrence regardless of what filter is set. Other occurrences are non-primary, i.e. they are only displayed when there are occurrences of this occurrence kind (e.g., unit tests).
+The types of elements just mentioned are called _occurrence kinds_. Many kinds of occurrences can be found as static members of the `OccurrenceKind` class, and new ones can be created. An occurrence kind is simply an enum-like class, keeping only two bits of information: its name and whether it is primary or not. If the occurrence kind is set as primary, the Find Results window will always display this kind of occurrence regardless of what filter is set. Other occurrences are non-primary, i.e. they are only displayed when there are occurrences of this occurrence kind (e.g., unit tests).
 
-Now, we can talk about occurrence type providers. These are typically solution components (i.e., decorated with the `SolutionComponent` attributes) that also implement the `IOccurenceKindProvider` interface. This interface is defined as follows:
+Now, we can talk about occurrence type providers. These are typically solution components (i.e., decorated with the `SolutionComponent` attributes) that also implement the `IOccurrenceKindProvider` interface. This interface is defined as follows:
 
 ```csharp
-public interface IOccurenceKindProvider
+public interface IOccurrenceKindProvider
 {
-  ICollection<OccurenceKind> GetOccurenceKinds(IOccurence occurence);
-  IEnumerable<OccurenceKind> GetAllPossibleOccurenceKinds();
+  ICollection<OccurrenceKind> GetOccurrenceKinds(IOccurrence occurrence);
+  IEnumerable<OccurrenceKind> GetAllPossibleOccurrenceKinds();
 }
 ```
 
-The `GetAllPossibleOccurenceKinds()` method returns a list of all possible occurrences that this provider can give in theory. For example, in C# we can yield interface qualifications, base method calls and invocations, whereas in VB we also have the `Handles` clause.
+The `GetAllPossibleOccurrenceKinds()` method returns a list of all possible occurrences that this provider can give in theory. For example, in C# we can yield interface qualifications, base method calls and invocations, whereas in VB we also have the `Handles` clause.
 
-The `GetOccurenceKinds()` method returns a collection of occurrence kinds (or you can return an `EmptyList<OccurenceKind>.InstanceList` if there aren’t any) that are applicable for a given occurrence. Naturally, this typically assumes that you would try to cast the `IOccurence` to a concrete type (e.g., `ReferenceOccurence`) to investigate its contents and yield the occurrence kinds accordingly.
+The `GetOccurrenceKinds()` method returns a collection of occurrence kinds (or you can return an `EmptyList<OccurrenceKind>.InstanceList` if there aren’t any) that are applicable for a given occurrence. Naturally, this typically assumes that you would try to cast the `IOccurrence` to a concrete type (e.g., `ReferenceOccurrence`) to investigate its contents and yield the occurrence kinds accordingly.
 
 ## Occurrence Section Provider
 
-When search results are presented in a dialogue window, they are typically split into sections via horizontal lines. The component that provides information about the different types of section is a `FeaturePart` that implements the `IOccurenceSectionProvider` interface. The interface is defined as follows:
+When search results are presented in a dialogue window, they are typically split into sections via horizontal lines. The component that provides information about the different types of section is a `FeaturePart` that implements the `IOccurrenceSectionProvider` interface. The interface is defined as follows:
 
 ```csharp
-public interface IOccurenceSectionProvider
+public interface IOccurrenceSectionProvider
 {
-  bool IsApplicable(OccurenceBrowserDescriptor descriptor);
-  ICollection<TreeSection> GetTreeSections(OccurenceBrowserDescriptor descriptor);
-  ICollection<GroupingSectionId> GetGroupSectionId(IOccurence occurence, OccurenceBrowserDescriptor descriptor);
+  bool IsApplicable(OccurrenceBrowserDescriptor descriptor);
+  ICollection<TreeSection> GetTreeSections(OccurrenceBrowserDescriptor descriptor);
+  ICollection<GroupingSectionId> GetGroupSectionId(IOccurrence occurrence, OccurrenceBrowserDescriptor descriptor);
 }
 ```
 
 Let’s go through the methods. Firstly, `IsApplicable()` checks whether this section provider is applicable given the type of the occurrence browser we are working with. This is typically a simple `is` call, e.g.:
 
 ```csharp
-public override bool IsApplicable(OccurenceBrowserDescriptor descriptor)
+public override bool IsApplicable(OccurrenceBrowserDescriptor descriptor)
 {
   return descriptor is GotoDeclaredElementsBrowserDescriptor;
 }
 ```
 
-The second method is `GetTreeSections()`, and it is this method that returns a set of `TreeSection` objects specific to this section provider. We’ll discuss the `TreeSection` structure in a moment, but let’s briefly discuss the third method first. `GetGroupSectionId` basically lets us determine the groups (there can be more than one) in which a particular `IOccurence` needs to appear. The default implementation as defined in the `OccurenceSectionProvider` class (you should inherit from this, rather than implementing the interface by hand) is to use a special method `GetSectionId()` to pick a known section given the type of the occurrence:
+The second method is `GetTreeSections()`, and it is this method that returns a set of `TreeSection` objects specific to this section provider. We’ll discuss the `TreeSection` structure in a moment, but let’s briefly discuss the third method first. `GetGroupSectionId` basically lets us determine the groups (there can be more than one) in which a particular `IOccurrence` needs to appear. The default implementation as defined in the `OccurrenceSectionProvider` class (you should inherit from this, rather than implementing the interface by hand) is to use a special method `GetSectionId()` to pick a known section given the type of the occurrence:
 
 ```csharp
-// in OccurenceSectionProvider
-public virtual ICollection<GroupingSectionId> GetGroupSectionId(IOccurence occurence, OccurenceBrowserDescriptor descriptor)
+// in OccurrenceSectionProvider
+public virtual ICollection<GroupingSectionId> GetGroupSectionId(IOccurrence occurrence, OccurrenceBrowserDescriptor descriptor)
 {
-  return new[] {occurence.OccurenceType.GetSectionId()};
+  return new[] {occurrence.OccurrenceType.GetSectionId()};
 }
 ```
 
@@ -332,21 +332,21 @@ It helps to remember that both `TreeModel` and `TreeModelNode` are abstract clas
 
 ## Occurrence
 
-The menu items themselves are simply items which implement the `IOccurence` interface. This interface defines a rather large number of elements:
+The menu items themselves are simply items which implement the `IOccurrence` interface. This interface defines a rather large number of elements:
 
 ```csharp
-public interface IOccurence
+public interface IOccurrence
 {
   TextRange TextRange { get; }
   ProjectModelElementEnvoy ProjectModelElementEnvoy { get; }
   DeclaredElementEnvoy<ITypeMember> TypeMember { get; }
   DeclaredElementEnvoy<ITypeElement> TypeElement { get; }
   DeclaredElementEnvoy<INamespace> Namespace { get; }
-  OccurenceType OccurenceType { get; }
+  OccurrenceType OccurrenceType { get; }
   bool IsValid { get; }
   object MergeKey { get; }
-  IList<IOccurence> MergedItems { get; }
-  OccurencePresentationOptions PresentationOptions { get; set; }
+  IList<IOccurrence> MergedItems { get; }
+  OccurrencePresentationOptions PresentationOptions { get; set; }
   bool Navigate(ISolution solution, PopupWindowContextSource windowContext, bool transferFocus, TabOptions tabOptions = TabOptions.Default);
   string DumpToString();
 }
@@ -358,9 +358,9 @@ This interface is very feature-complete in terms of supporting, e.g., constructs
 * `TextRange` - just return a `new TextRange()`. You might want to consider making a single instance to return for each query.
 * `MergeKey` - this yields a key which indicates whether or not several items should be merged. Thus, it makes sense to have this property yield a unique value for each item you don't intend to merge.
 * `ProjectElementEnvoy`, `TypeMember`, `TypeElement`, `Namespace`, `MergedItems` - simply return `null`.
-* `OccurenceType` - `OccurenceType.Occurence`.
+* `OccurrenceType` - `OccurrenceType.Occurrence`.
 * `IsValid` - `true`.
 * `PresentationOption` - define it as a `get/set` property.
 
-For examples of leveraging the various `IOccurence` members, take a look at some of the its built-in ReSharper implementors.
+For examples of leveraging the various `IOccurrence` members, take a look at some of the its built-in ReSharper implementors.
 
