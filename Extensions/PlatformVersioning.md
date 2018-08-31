@@ -30,8 +30,6 @@ With the move to the shared binary distribution of the ReSharper Platform, maint
 | 2018.1            | Wave 12      |
 | 2018.2            | Wave 182     |
 
-> **NOTE** There is no Wave 10 for ReSharper. Wave 10 was used internally for a Rider release that merged and synchronised the ReSharper and Rider release processes and branches.
-
 Previous versions of the .net tools were intended to be built and distributed on their own timescales. Each product shared common code via source, and could be installed separately, and updated at any time. In practice, however, because dotCover and dotTrace need to integrate with ReSharper's test runner, a new version of ReSharper would require a simultaneous release of other .net tools, removing a large reason for the independence of the tools.
 
 The ReSharper Platform is a shared binary platform for all of the .net tools, so it is an explicit dependency. When the Platform updates, all Products must also be updated. Nothing has changed for the end user here. It is now a more explicit and manageable dependency. Since all Products must be updated at the same time, the combination of the versions is known as a "Wave". The desire is to provide new "Wave" releases on a predictable schedule.
@@ -43,3 +41,5 @@ Products and extensions need to take a dependency on a particular version of a W
 > This format was also applied to ReSharper, partly for consistency with IntelliJ, but also to make version numbers match up for [Rider](https://www.jetbrains.com/rider/), a .NET IDE based on both the ReSharper Platform and the IntelliJ Platform.
 >
 > More details can be found in [this blog post](https://blog.jetbrains.com/blog/2016/03/09/jetbrains-toolbox-release-and-versioning-changes/).
+
+> **NOTE** In the table above, there is no Wave 10 for ReSharper. Wave 10 was used internally for a Rider release that merged and synchronised the ReSharper and Rider release processes and branches. Starting with the 2018.2 release of both Rider and ReSharper, the wave number uses the same convention as IDEA, and reflects the branch name, which is based on the forthcoming product release. E.g. `182` for 2018.2, `183` for 2018.3, etc. Because Rider is based on both ReSharper and the IntelliJ platform, synchronising the branch numbers simplifies internal development and release processes.
