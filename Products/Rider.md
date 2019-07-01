@@ -19,7 +19,7 @@ The standard approach of migrating an existing ReSharper plugin to also work for
 > **NOTE:** It is strongly recommended to use [SDK-based project files](https://docs.microsoft.com/en-us/visualstudio/msbuild/how-to-use-project-sdk) to decrease friction.
 
 
-We could name these two project files `MyPlugin.RS.csproj` and `MyPlugin.RD.csproj`, which is great for code sharing. Unfortunately, this won't play well when executing MSBuild on them, because both projects would share the same `project.assets.json` file. A simple solution to fix this is to put a custom `Directory.Builds.props` file besides the two project files:
+We could name these two project files `MyPlugin.RS.csproj` and `MyPlugin.RD.csproj`, which is great for code sharing. Unfortunately, this won't play well when executing MSBuild on them, because both projects would share the same `project.assets.json` file. A simple solution to fix this is to put a custom `Directory.Build.props` file besides the two project files:
 
 ```xml
 <Project>
