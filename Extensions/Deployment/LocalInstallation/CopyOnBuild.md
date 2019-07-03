@@ -42,7 +42,7 @@ For example:
 > <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
 >   ...
 >   <ItemGroup>
->     <ReferencePath Inlude="@(Reference->HasMetadata('HintPath')->'$(MSBuildProjectDirectory)\%(HintPath)')" />
+>     <ReferencePath Include="@(Reference->HasMetadata('HintPath')->'$(MSBuildProjectDirectory)\%(HintPath)')" />
 >   </ItemGroup>
 >   ...
 >   <!-- As above -->
