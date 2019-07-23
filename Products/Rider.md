@@ -127,8 +127,8 @@ Rider has an extensible protocol to allow communication between IntelliJ fronten
 package model.rider
 
 import com.jetbrains.rider.model.nova.ide.SolutionModel
-import com.jetbrains.rider.generator.nova.*
-import com.jetbrains.rider.generator.nova.PredefinedType.*
+import com.jetbrains.rd.generator.nova.*
+import com.jetbrains.rd.generator.nova.PredefinedType.*
 
 @Suppress("unused")
 object MyUnityModel : Ext(SolutionModel.Solution) {
