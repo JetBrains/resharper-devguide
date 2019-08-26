@@ -86,6 +86,6 @@ Typically, a language's lexer and parser don't check for interrupts themselves. 
 
 When the parser builds a PSI tree, the resulting tree needs to cover the entire contents of the text buffer. Using a filtering lexer means that any tokens that are filtered out are not added to the PSI tree, and it contains holes.
 
-After parsing with a filtering lexer, a *missing token inserter* must be run to reinsert these missing tokens. The `MissingTokenInsertBase` abstract base class provides a base implementation, by walking the PSI tree and calling the `ProcessLeafElement` abstract method for each leaf element.
+After parsing with a filtering lexer, a *missing token inserter* must be run to reinsert these missing tokens. The `MissingTokenInserterBase` abstract base class provides a base implementation, by walking the PSI tree and calling the `ProcessLeafElement` abstract method for each leaf element.
 
 More details can be found in the Parsers section.
