@@ -11,7 +11,7 @@ When writing a plugin, you will most likely be implementing your own daemon stag
 The interface is fairly simple, and has two members:
 
 * The `CreateProcess()` method is where one or more daemon stage processes are created. A daemon stage process is created on a per-document basis to analyze files and provide information about them. Note that `IDaemonStageProcess` can yield several different processes that can correspond to different injected PSI documents. 
-* The `NeedsErrorStripe()` method is used to determine whether or not analysese from this daemon stage contribute to the markers on the right-hand stripe, as well as to the list of document errors. There are only three possible values from the `ErrorStripeRequest` enumeration that can be returned here.
+* The `NeedsErrorStripe()` method is used to determine whether or not analyses from this daemon stage contribute to the markers on the right-hand stripe, as well as to the list of document errors. There are only three possible values from the `ErrorStripeRequest` enumeration that can be returned here.
 
 ReSharper also comes with concrete base classes that implement `IDaemonStage` (e.g., `CSharpDaemonStageBase`) - these reduce the `CreateProcess()` method to creating a single `IDaemonStageProcess` corresponding to a single PSI file.
 
