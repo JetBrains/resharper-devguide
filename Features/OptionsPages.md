@@ -20,7 +20,7 @@ The `OptionsPage` attribute requires the plugin author to provide the following 
 
 In addition, you may specify the following optional parameters:
 
-* `ParentId` lets you define the ID of the section or element which serves as this page's parent. If you want the parent to be one of the known ReSharper items, look inside the `JetBrains.UI.Options.OptionsPages` namespace for the corresponding pages, and then use their `Pid` as this parameter. For example, for an options page to appear in the Environment section, you specify the `ParentId` of `EnvironmentPage.Pid`.
+* `ParentId` lets you define the ID of the section or element which serves as this page's parent. If you want the parent to be one of the known ReSharper items, look inside the `JetBrains.Application.UI.Options.OptionPages` namespace for the corresponding pages, and then use their `Pid` as this parameter. For example, for an options page to appear in the Environment section, you specify the `ParentId` of `EnvironmentPage.Pid`.
 * `Sequence` lets you define the location of the item you are inserting in relation to the other items. Items are placed in order, so the higher this value, the further this page will be in the list of items. Of course, to accurately position the item, you need to know the `Sequence` value of its siblings. Luckily, this information is available in the metadata.
 
 Having specified the attributes, your class will appear as follows:
