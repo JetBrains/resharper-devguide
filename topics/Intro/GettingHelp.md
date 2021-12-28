@@ -12,7 +12,6 @@ Please don't use GitHub issues for support requests. Instead, please use one of 
 
 For problems related to code, rather than the content of the guide, you have several options:
 
-* **Google Groups** - post a message to the [resharper-plugins Google Group](https://groups.google.com/d/forum/resharper-plugins). This is monitored and moderated by JetBrains, and allows for community involvement and spreading knowledge. You can also subscribe to the group to get (low traffic) emails when the group is active.
 * **Email support** - you can also email JetBrains directly, either at `support@jetbrains.com` or `resharper-plugins@jetbrains.com`, although we would prefer to use the Google Group, if possible, as the answers can be shared with the community.
 * **StackOverflow** - we monitor the [`resharper`](http://stackoverflow.com/questions/tagged/resharper), [`resharper-plugins`](http://stackoverflow.com/questions/tagged/resharper-plugins) and [`resharper-sdk`](http://stackoverflow.com/questions/tagged/resharper-sdk) tags on [StackOverflow](http://stackoverflow.com), so you can ask questions about extending the ReSharper Platform on StackOverflow. Make sure to tag the question, or it won't get seen!
 
