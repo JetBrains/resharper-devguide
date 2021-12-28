@@ -13,7 +13,7 @@
 
 For example, the `SomeIntProperty` parameter of the `PropertyProvider` class is important for the work of `PropertyTester`. Once the parameter is updated, `PropertyTester` is notified about the new value:
 
-```
+```csharp
 public class PropertyProvider
 {
     public IProperty<int> SomeIntProperty;
@@ -68,7 +68,7 @@ public class PropertyTester
 
 One more obvious example of how `IProperty` can be used is global options: once a user changes an option on the **Options** page, the plugin gets instantly notified about the change.
 
-```
+```charp
 Text = new Property<string>(lifetime, "OptionsExampleViewModel.Text");
  
 var checkMeOption =
@@ -96,7 +96,7 @@ checkMeOption.Change.Advise_HasNew(lifetime, v =>
 
 `IProperty` implements `INotifyPropertyChanged` out of the box, so, it is able to participate in WPF data binding. For example, we can show the current value of an `IProperty` on a WPF control. Let's take a look at how to do this based on the example from the previous section. Say, we want to display the value of the `CheckMe` setting (located in **ReSharper &#124; Options...**). This is how the view model looks like:
 
-```
+```csharp
 public class OptionsPageViewModel: AAutomation    
 {
     public IProperty<string> Text { get; set; }        
@@ -116,8 +116,10 @@ public class OptionsPageViewModel: AAutomation
     }
 }
 ```
+
 The code behind the view looks like follows:
-```
+
+```csharp
 [View]
 public partial class OptionsPageView : IView<OptionsPageViewModel>
 {
@@ -129,8 +131,10 @@ public partial class OptionsPageView : IView<OptionsPageViewModel>
     }
 }
 ```
+
 The XAML for the view:
-```
+
+```xml
 <UserControl x:Class="SampleReSharperPlugin.OptionsPageView"
             ...
              xmlns:viewModels="clr-namespace:SampleReSharperPlugin"
@@ -151,7 +155,8 @@ The XAML for the view:
 ```
 
 When creating a view and viewmodel, don't forget to specify data context:
-```
+
+```csharp
 var propViewModel = new PropertyViewModel(lifetime);
 var propView = new PropertyView { DataContext = propViewModel };
 ```
@@ -169,7 +174,8 @@ var propView = new PropertyView { DataContext = propViewModel };
 * [PropertyFlow.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/IProperty/PropertyFlow.cs)
 
 You can organize the data flow between two properties. The properties can be of the same type or of different types. In the latter case, you should write a type converter. For example, we have two string properties: the first one provides some string; the second one takes this string and applies to it Title Capitalization:
-```
+
+```csharp
 public class PropertyFlow
 {
     public IProperty<string> SourceProperty { get; set; }

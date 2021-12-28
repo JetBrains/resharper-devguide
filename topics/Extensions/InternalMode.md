@@ -8,13 +8,13 @@ Another useful feature is that internal mode also enables exception reporting. I
 
 Internal mode can be enabled using the "Internal" command line switch. When used with standalone tools such as dotPeek, this means starting the application with `/Internal` in the command line. Since ReSharper is a hosted application, the command line switch needs a prefix to prevent clashes with other Visual Studio command line switches - `/ReSharper.Internal`. For example, to start dotPeek with internal mode enabled:
 
-```
+```text
 dotPeek.exe /Internal
 ```
 
 And for ReSharper:
 
-```
+```text
 devenv.exe /ReSharper.Internal
 ```
 

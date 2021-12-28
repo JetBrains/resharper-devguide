@@ -116,7 +116,7 @@ public static class XmlAttributeExtensions
 
 <!-- End XmlAttributeExtensions -->
 
-Convenience method. Will remove the given attribute from it's parent tag via `IXmlTag.RemoveAttribute()`, or directly removes it from the tree if it's not a child of a tag.
+Convenience method. Will remove the given attribute from its parent tag via `IXmlTag.RemoveAttribute()`, or directly removes it from the tree if it's not a child of a tag.
 
 ### XmlAttributeUtil
 
@@ -136,7 +136,7 @@ public static class XmlAttributeUtil
 
 <!-- End XmlAttributeUtil -->
 
-Helper methods for working with XML attributes. `SetValue` replaces an attributes value by creating a new instance of `IXmlAttributeValue` and modifying the tree (it takes the write lock, so the caller doesn't have to). The other methods return the range of the unquoted value of the attribute, relative to the tree, and relative to the document. These may be different if the XML `IFile` is not the primary PSI tree in the file.
+Helper methods for working with XML attributes. `SetValue` replaces an attributes value by creating a new instance of `IXmlAttributeValue` and modifying the tree (it takes the write-lock, so the caller doesn't have to). The other methods return the range of the unquoted value of the attribute, relative to the tree, and relative to the document. These may be different if the XML `IFile` is not the primary PSI tree in the file.
 
 ### XmlElementFactoryExtensions
 
@@ -218,8 +218,8 @@ public static class XmlTagUtil
 Helper methods for working with `IXmlTag`.
 
 * `CanBeEmptyTag` returns `true` if the given tag doesn't have any significant children (e.g. anything other than whitespace), and checks that the current XML language supports converting this tag to be empty, by calling `IXmlLanguageSupport.CanMakeTagEmpty`.
-* `MakeCompound` converts an empty, self-closed tag to an empty tag with a header and footer, (e.g. `<foo></foo>`). Modifies the tree, taking the write lock.
-* `MakeEmpty` removes all inner nodes and the footer, and converts the header into a self-closing tag (e.g. `<foo />`). Modifies the tree, taking the write lock.
+* `MakeCompound` converts an empty, self-closed tag to an empty tag with a header and footer, (e.g. `<foo></foo>`). Modifies the tree, taking the write-lock.
+* `MakeEmpty` removes all inner nodes and the footer, and converts the header into a self-closing tag (e.g. `<foo />`). Modifies the tree, taking the write-lock.
 
 ### XPathUtil
 

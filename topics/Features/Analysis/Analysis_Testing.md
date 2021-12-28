@@ -24,7 +24,7 @@ class C
 
 By default, the gold file will look something like this:
 
-```
+```csharp
 class C
 {
   public void foo (bool cond)

@@ -9,7 +9,8 @@
 * [UiThemeView.xaml](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/UiThemes/Ui/UiThemeView.xaml)
 
 Changing user interface colors depending on the selected theme can be automated by means of the `ColorThemeManager` component. For example, we want to change the background and foreground colors of some UI control:
-```
+
+```csharp
 public class UiThemeViewModel : AAutomation
 {
     public IProperty<SolidColorBrush> BackgroundColor { get; set; }

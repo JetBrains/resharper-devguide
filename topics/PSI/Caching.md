@@ -1,6 +1,6 @@
 [//]: # (title: Caches)
 
-ReSharper makes heavy use of caching in order to store all of the information required to provide a semantic view of a codebase. The caches are calculated on solution load, stored to disk, and reloaded when the solution is subsequently loaded. Any time a file changes, the cache is notified, and can rescan the file and update its details.
+ReSharper makes heavy use of caching in order to store all the information required to provide a semantic view of a codebase. The caches are calculated on solution load, stored to disk, and reloaded when the solution is subsequently loaded. Any time a file changes, the cache is notified, and can rescan the file and update its details.
 
 The PSI implements the infrastructure for building and maintaining a cache, and provides a number of different caches, such as `ISymbolCache` - a symbol cache for looking up CLR `ITypeElement` declared elements, and `IWordIndex`, which is an index of words and the files they are used in (one use of this is reverse lookup of references).
 

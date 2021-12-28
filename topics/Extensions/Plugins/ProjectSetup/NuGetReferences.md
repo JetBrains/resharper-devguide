@@ -14,7 +14,7 @@ The `JetBrains.ReSharper.SDK` package is used to target the current version of R
 
 In order to target an older version of the SDK, you can add a NuGet reference to a specific version of the SDK, e.g. by using the following command in the "Package Manager Console":
 
-```
+```text
 Install-Package JetBrains.ReSharper.SDK -Version 9.0.20141204.190166
 ```
 
@@ -67,7 +67,7 @@ The SDK packages are intended to work with continuous integration (CI), and prov
 
 If you see the following error message, or something similar, you will need to restart Visual Studio and try again. It might also help to temporarily suspend ReSharper:
 
-```
+```text
 Install failed. Rolling back...
 The result "" of evaluating the value "$(BuildTaskAssembly)" of the "AssemblyName" attribute in element <UsingTask> is not valid.  C:\Windows\Microsoft.NET\Framework\v4.0.30319\Microsoft.WinFX.targets
 ```

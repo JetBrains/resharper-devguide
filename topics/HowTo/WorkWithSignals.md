@@ -10,7 +10,7 @@
 
 Signal is a way for a class to provide notifications. Signals are very similar to C# events, nevertheless, there are differences that make them more suitable for use within ReSharper data flow infrastructure.
 
-```
+```csharp
 public class SignalEmitter
 {
     public ISignal<bool> SomethingHappened { get; }

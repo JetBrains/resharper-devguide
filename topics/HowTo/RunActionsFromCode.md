@@ -9,16 +9,21 @@
 * [RunActionCommand.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/Actions/RunActionCommand.cs)
  
 Running an action is done via the `ActionManager component`. Synchronously:
-``` 
+
+```csharp
 var actionManager = Shell.Instance.GetComponent<IActionManager>();
 actionManager.ExecuteAction<ActionShowMessageBox>();
-``` 
+```
+
 Or asynchronously. In this case, you have to pass a lifetime as well (if the lifetime is terminated before the action is executed, the action is removed from the queue):
-``` 
+
+```csharp 
 actionManager.ExecuteActionAsync<ActionShowMessageBox>(_lifetime);
 ```
+
 To have more options on how to execute the action (synchronously or asynchronously with various types of locks), you may decide to wrap a synchronous `ExecuteAction` call with one of the `ShellLocks` methods:
-```
+
+```csharp
 var shellLocks = Shell.Instance.GetComponent<IShellLocks>();
 shellLocks.ExecuteOrQueue(_lifetime, "ExecuteSampleAction", () =>
     {

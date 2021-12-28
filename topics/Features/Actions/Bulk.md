@@ -8,7 +8,7 @@ A Bulk Action is a Quick-Fix or a Context Action that can be applied to an eleme
 
 ![Alt+Enter menu showing fix in scope context action](fix_in_scope.png)
 
-This mechanic is available for both quick-fix actions as well as context actions that are part of Code Cleanup.
+This mechanic is available for both quick-fix actions and context actions that are part of Code Cleanup.
 
 In the case of a context action (such as ReSharper’s `VarToTypeAction`, which converts the C# `var` keyword to an explicit type), the implementation of additional items happens in the `CreateBulbItems()` method. A context action can, of course, create all the required bulb items directly, but it can also use elements from the `JetBrains.ReSharper.Intentions.Bulk` namespace to simplify the process.
 

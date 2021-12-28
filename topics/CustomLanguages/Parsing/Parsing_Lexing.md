@@ -2,7 +2,7 @@
 
 [Lexical analysis](https://en.wikipedia.org/wiki/Lexical_analysis) (or "lexing") is the process of converting a text buffer into a sequence of tokens which uniquely identify the building blocks of a custom language. For example, a lexer can convert the C# expression `age = 42;` into the following stream of tokens:
 
-```
+```text
 IDENTIFIER
 WHITESPACE
 EQUALS

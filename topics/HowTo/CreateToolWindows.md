@@ -19,7 +19,8 @@ So, here is what you need to create a simple tool window (the minimal set):
 
 ## Tool Window Descriptor
 As the name suggests it describes your future window: type, ID, caption, icon, and other parameters. Note that it does not provide the window content, i.e. UI controls.
-```
+
+```csharp
 [ToolWindowDescriptor(
         ProductNeutralId = "MyToolWindow",
         Text = "My Plugin",
@@ -39,7 +40,8 @@ public class MyToolWindowDescriptor : ToolWindowDescriptor
 
 ## Tool Window Registrar
 This is a component that registers tool window in the tool window manager.
-```
+
+```csharp
 public class MyToolWindow
 {
     private readonly TabbedToolWindowClass _toolWindowClass;
@@ -79,7 +81,8 @@ public class MyToolWindow
 * Note that if you want to run some routines on window close, you can make it by using  the `ToolWindowClass.QueryCloseInstances` signal. Don't forget to set the tool window instance's `QueryClose` property to true.
 * A delegate passed to the `RegisterInstance` method must return an instance of the `EitherControl` type. This is the place where you create tool window UI.
 * To show the window, you must obtain all the required components, e.g., if you use an action:
-```
+
+```csharp
 [Action("ActionOpenMyToolWindow", "Open a sample tool window", Id = 543211)]
 public class ActionOpenMyToolWindow : SampleAction, IInsertLast<MainMenuFeaturesGroup>
 {

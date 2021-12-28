@@ -8,7 +8,7 @@ The guide is split into several parts:
 
 * [**Part II - Architectural Overview**](Architecture_Overview.md)
 
-    Provides an introduction to and overview of the architecture of the ReSharper Platform, looking at how it is split into several layers - Base Platform, Project Model, Features, custom Products and support for custom Languages. It also introduces the Program Structure Interface (PSI) which provides ReSharper with syntactic and semantic models of many different languages.
+    Provides an introduction to and overview of the architecture of the ReSharper Platform, looking at how it is split into several layers - Base Platform, Project Model, Features, custom Products and support for custom Languages. It also introduces the Program Structure Interface (PSI) which provides ReSharper with syntactic and semantic models of many languages.
 
 * **Part III - Platform**
 
@@ -32,4 +32,4 @@ The guide is split into several parts:
 
 * [**Part VIII - Custom Languages**](CustomLanguages_Overview.md)
 
-    This section documents how to add support for a language that the ReSharper Platform doesn't know about, creating parsers, abstract syntax trees, semantic views and all of the features built on top.
+    This section documents how to add support for a language that the ReSharper Platform doesn't know about, creating parsers, abstract syntax trees, semantic views and all the features built on top.

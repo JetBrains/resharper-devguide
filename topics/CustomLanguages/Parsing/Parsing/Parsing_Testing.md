@@ -16,7 +16,7 @@ body
 
 Then the `test01.css.gold` file would be something like:
 
-```
+```text
 ICssFile
   CssComment(type:COMMENT, text:/* {caret} */)
   CssNewLineToken(type:NEW_LINE, text:\n) spaces:"\n"

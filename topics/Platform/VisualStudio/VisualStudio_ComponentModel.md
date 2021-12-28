@@ -4,7 +4,7 @@
  >
  {type="warning"}
 
-The Component Model also allows access to interfaces implemented by Visual Studio. However, it is recommended that you try and avoid the use of Visual Studio interfaces, as this usually ties your plugin to a particular version of Visual Studio, and requires the plugin to run in the Visual Studio hosted version of ReSharper. Your plugin won't run in the Command Line Tools version of ReSharper. You are strongly encouraged to use ReSharper interfaces and services whenever possible.
+The Component Model also allows access to any interface implemented by Visual Studio. However, it is recommended that you try and avoid the use of Visual Studio interfaces, as this usually ties your plugin to a particular version of Visual Studio, and requires the plugin to run in the Visual Studio hosted version of ReSharper. Your plugin won't run in the Command Line Tools version of ReSharper. You are strongly encouraged to use ReSharper interfaces and services whenever possible.
 
 If you still need to get an interface implemented by Visual Studio, or by a Visual Studio extension, you can do this in several ways. The easiest is to simply inject the interface as a constructor parameter to your plugin component, or retrieve it from the Shell’s container. For example, to get to VS's Output Window interface `IVsOutputWindow`, you can acquire it with the following:
 

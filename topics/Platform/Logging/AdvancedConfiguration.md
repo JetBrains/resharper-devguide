@@ -2,7 +2,7 @@
 
 While logging can be enabled on the command line), specifying a configuration file allows for much more flexibility in what gets logged. The file is an XML file called `LogConfiguration.xml`, and should be created in `%\LOCALAPPDATA%\JetBrains\{HostFullIdentifier}\v{WaveVersion}`.
 
- >  The `{HostFullIdentifier}` is the name of the install folder for the current host, such as `ReSharperPlatformVs12` for Visual Studio 2013. More details can be found in the section on [Host Identifiers](HostIdentifiers.md). Similarly, the `{WaveVersion}` is the version of the [ReSharper Platform Wave](PlatformVersioning.md), e.g. `v05` for ReSharper 10.0 or `v04` for ReSharper 9.2.
+ >  The `{HostFullIdentifier}` is the name of the installation folder for the current host, such as `ReSharperPlatformVs12` for Visual Studio 2013. More details can be found in the section on [Host Identifiers](HostIdentifiers.md). Similarly, the `{WaveVersion}` is the version of the [ReSharper Platform Wave](PlatformVersioning.md), e.g. `v05` for ReSharper 10.0 or `v04` for ReSharper 9.2.
  >
  {type="note"}
 

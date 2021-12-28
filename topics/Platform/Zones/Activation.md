@@ -6,7 +6,7 @@ If a zone is not activated, any components that require that zone will not be av
 
  >  Components that only consume other zones do not need to handle activation. As long as the zones it requires are activated, the component will be created by the Component Model. It is the responsibility of the required zones to handle their own activation.
 >
-> For example, a third party extension typically does not need an activator - as long as all of the zones it depends on are active, the extension is also active. However, if the extension defines a zone (perhaps to declare a [Feature or Product](FeaturesProducts.md)), then that zone must be activated, or none of the components that require this zone will be activated.
+> For example, a third party extension typically does not need an activator - as long as all the zones it depends on are active, the extension is also active. However, if the extension defines a zone (perhaps to declare a [Feature or Product](FeaturesProducts.md)), then that zone must be activated, or none of the components that require this zone will be activated.
  >
  {type="note"}
 
@@ -99,7 +99,7 @@ This is perhaps a contrived example - an internal only Feature would be better r
 
 Since the activator class is a standard component, it naturally follows normal Component Model creation rules. This means that an activator class must itself belong to a zone that is already active!
 
-In other words, the zone activator is only available if it has a zone marker. The zone marker can be an [empty zone marker](Zones_Usage.md#empty-zone-marker), in which case the activator is always active, and always created. Or it can require one or more of the default active zones (see below), in which case the activator component will only be active if all of the required zones are active.
+In other words, the zone activator is only available if it has a zone marker. The zone marker can be an [empty zone marker](Zones_Usage.md#empty-zone-marker), in which case the activator is always active, and always created. Or it can require one or more of the default active zones (see below), in which case the activator component will only be active if all the required zones are active.
 
 For example, the `ReSharperZonesActivator` class, which lives in the `JetBrains.ReSharper.Product.Application.Product` namespace, has the following zone marker:
 
@@ -118,7 +118,7 @@ namespace JetBrains.ReSharper.Product.Application
 
 Note the namespace of the marker is above the namespace of the activator. This means that the activator class belongs to the zone definitions declared in the marker's dependencies, namely `IVisualStudioZone`. So, the ReSharper product zone activator is only active when the `IVisualStudioZone` zone is itself active. This zone is an environmental zone, and is created and activated before the environment container is composed.
 
- >  If the activator class itself doesn't have belong to an active zone, it will not be created, and therefore not activate its zones. An activator class must have a [zone marker](Zones_Usage.md#zone-markers). This can be an [empty zone marker](Zones_Usage.md#empty-zone-marker), in which case it will be always created, or a zone marker that requires one of the default active zones (described below), in which case it will only be active if those required zones are active.
+ >  If the activator class itself doesn't belong to an active zone, it will not be created, and therefore not activate its zones. An activator class must have a [zone marker](Zones_Usage.md#zone-markers). This can be an [empty zone marker](Zones_Usage.md#empty-zone-marker), in which case it will always be created, or a zone marker that requires one of the default active zones (described below), in which case it will only be active if those required zones are active.
  >
  {type="warning"}
 
@@ -132,7 +132,7 @@ This happens naturally if an activator's zone marker's dependencies aren't satis
 
 The main reason for wanting to disable a zone activator is so that supporting zones are not activated unnecessarily. A common pattern is for a zone activator to require a dependency on the main zone it is trying to activate. If that zone has been disabled, for whatever reason, the activator is also disabled, and supporting zones are not activated.
 
-For example, the ReSharper C++ activator requires the C++ product zone, but also activates code editing, daemon and navigation zones. If the C++ product zone feature is disabled, the C++ activator would still activate code editing, daemon and navigation. If no other Features or Products used those zones, they are unnecessarily activated (and probably unlicensed). By requiring the C++ product zone, the ReSharper Platform will disabled the C++ activator if the C++ product zone is disabled. And now, the code editing, daemon and navigation zones are only activated if another activator needs them.
+For example, the ReSharper C++ activator requires the C++ product zone, but also activates code editing, daemon and navigation zones. If the C++ product zone feature is disabled, the C++ activator would still activate code editing, daemon and navigation. If no other Features or Products used those zones, they are unnecessarily activated (and probably unlicensed). By requiring the C++ product zone, the ReSharper Platform will disable the C++ activator if the C++ product zone is disabled. And now, the code editing, daemon and navigation zones are only activated if another activator needs them.
 
 ```csharp
 [ZoneActivator]
@@ -203,7 +203,7 @@ This has the same effect as a simple implementation of `IActivate<TZone>.Activat
 
 &nbsp;
 
- >  Currently (as of Wave01), auto-enabled zone definitions cannot be used for creating [Products or Features](FeaturesProducts.md). The options page to control enabling/disabling Products and Features does not take auto-enabled zones into account, and requires a zone to be activated by an explicit activator class. If it doesn't find an activator for a Product or Feature, the checkbox is greyed out and the Product or Feature cannot be disabled.
+ >  Currently, (as of Wave01), auto-enabled zone definitions cannot be used for creating [Products or Features](FeaturesProducts.md). The options-page to control enabling/disabling Products and Features does not take auto-enabled zones into account, and requires a zone to be activated by an explicit activator class. If it doesn't find an activator for a Product or Feature, the checkbox is greyed out and the Product or Feature cannot be disabled.
 >
 > (The code is checking the hierarchical nature of the Product and Feature zone definitions so that when a Feature is disabled, any dependent Features are also disabled. It is using the active zones from the activators to get this information. Because none of the activators activate the auto-enabled zone, it appears to be a deactivated zone, and so the dialog marks the checkbox as disabled, even though the Feature is still enabled.)
 >

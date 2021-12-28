@@ -13,7 +13,7 @@ ReSharper settings are key-value based. Settings are like onions - they have lay
 1. **Computer-level settings**: settings stored in files in user's `Localappdata`. All instances of ReSharper have access to this level.
 1. **Solution-level**: settings stored in files next to the solution:
     * *.sln.dotSettings*: team-shared settings. This file is expected to be stored in VCS.
-    * *.sln.dotSettings.user*: private user settings. Here you can store e.g., the last unit tests session, position of some dialog on the screen, and so on. So, these are settings that are specific to this particular solution, otherwise, they go to the computer level.
+    * *.sln.dotSettings.user*: private user settings. Here you can store e.g., the last unit test session, position of some dialog on the screen, and so on. So, these are settings that are specific to this particular solution, otherwise, they go to the computer level.
 1. **Project-level**: settings stored in files next to the project. These settings may include, e.g. specific naming rules.
     * *.csproj.dotSettings*: team-shared settings. 
     * *.csproj.dotSettings.user*: private user settings.

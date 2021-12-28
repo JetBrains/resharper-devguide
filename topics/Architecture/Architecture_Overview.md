@@ -1,6 +1,6 @@
 [//]: # (title: Architectural Overview)
 
-In any given ReSharper plugin, you are likely to be interacting with many different subsystems of the ReSharper product. In this part of the guide, we are going to take a look at a bird's eye view of ReSharper.
+In any given ReSharper plugin, you are likely to be interacting with many subsystems of the ReSharper product. In this part of the guide, we are going to take a look at a bird's eye view of ReSharper.
 
 At the top level, we can isolate the following aspects of ReSharper:
 
@@ -8,7 +8,7 @@ At the top level, we can isolate the following aspects of ReSharper:
 
 ## Platform
 
-The Platform part of ReSharper typically relates to features which interact directly with Visual Studio. As a result, plugin developers are unlikely to work with Platform components directly. However, it's important to have a general idea of some of the platform components in order to be able to understand and investigate, if necessary, the ways in which interactions happen. Here are a few Platform elements that are worth knowing about:
+The Platform part of ReSharper typically relates to features that interact directly with Visual Studio. As a result, plugin developers are unlikely to work with Platform components directly. However, it's important to have a general idea of _some_ platform components in order to be able to understand and investigate, if necessary, the ways in which interactions happen. Here are a few Platform elements that are worth knowing about:
 
 * *ActionManagement* - this assembly concerns itself with managing actions, i.e., executable pieces of code that appear in Visual Studio's Command system. See [Actions and Menu Items](Actions.md) for more information on creating actions.
 * *Annotations* - relates to the Annotations subsystem. The idea of annotations is being able to use attributes to give ReSharper hints as to how the code behaves. Frequently encountered attributes such as `[NotNull]` are examples of annotations.
@@ -46,7 +46,7 @@ Please note that feature services do not contain features themselves. Quite ofte
 
 ### Daemon
 
-The Daemon assemblies are the background-running tasks that analyze source and binary code, react to changes in the solution or the environment, and allow the possibility of highlighting code based on said analyses.
+The Daemon assemblies are the background-running tasks that analyze source and binary code, react to changes in the solution or the environment, and allow the possibility of highlighting code based on said analyzes.
 
 If you require any sort of background analysis on existing code, it's likely you need a daemon. To learn how to write one, see [Daemons and Daemon Stages](Daemons.md).
 

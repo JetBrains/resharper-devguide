@@ -39,7 +39,7 @@ Let's take a look at these steps in turn.
  >
  {type="note"}
 
-The XML file itself is fairly simple. At the root level, it uses the `actions` element. Within it, there are several different types of content.
+The XML file itself is fairly simple. At the root level, it uses the `actions` element. Within it, there are several types of content.
 
 One mandatory type of content is action elements, which indicate the ID of the action concerned, the text that gets displayed, and (optionally) an image. The image can be, e.g., a 16x16 pixel GIF stored as an embedded resource.
 

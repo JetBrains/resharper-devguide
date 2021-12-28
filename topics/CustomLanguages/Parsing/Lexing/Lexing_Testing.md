@@ -14,7 +14,7 @@ h1 { color: red }
 
 Then the `test01.css.gold` file would be:
 
-```
+```text
 IDENTIFIER
 WHITE_SPACE
 LBRACE

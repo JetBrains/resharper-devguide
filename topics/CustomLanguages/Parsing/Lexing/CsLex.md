@@ -88,7 +88,7 @@ The directives shown above are typical of the values required for a ReSharper le
 
 Custom languages can also add other directives, as per the [CsLex documentation](http://www.cybercom.net/~zbrad/DotNet/Lex/Lex.htm), and of course will define macros to use in the regular expression rules, and the states in which those rules are valid.
 
-```
+```text
 WHITE_SPACE_CHAR=({UNICODE_ZS}|(\u0009)|(\u000B)|(\u000C))
 WHITE_SPACE=({WHITE_SPACE_CHAR}+)
 
@@ -267,7 +267,7 @@ The CsLex utility ships with a file called `Unicode.lex`, which can be included 
  >
  {type="note"}
 
-```
+```text
 UNICODE_CN=[\u0370-\u0373...]
 UNICODE_LU=[\u0041-\u005A...]
 UNICODE_LL=[\u0061-\u007A...]

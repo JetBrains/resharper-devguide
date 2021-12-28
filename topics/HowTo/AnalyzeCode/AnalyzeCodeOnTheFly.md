@@ -13,7 +13,7 @@ The analysis could be divided into two steps:
 1. Actually, the analysis of code: performed by `ElementProblemAnalyzer<T>`, where `T` is the class of code elements you want to analyze.
 1. Problematic code highlighting: performed by a class that implements the `IHighlighting` interface.
 
-As an example, let's create a code analyzer that checks all variable declarations on whether they contain the word "Crap" (in [Create a Quick-Fix](CreateQuickFix.md), we implement a quick-fix that suggests to replace the "Crap" occurrence with "BadWord").
+As an example, let's create a code analyzer that checks all variable declarations on whether they contain the word "Crap" (in [Create a Quick-Fix](CreateQuickFix.md), we implement a quick-fix that suggests replacing the "Crap" occurrence with "BadWord").
 
 ![analyze-code](analyze-code.png)
 

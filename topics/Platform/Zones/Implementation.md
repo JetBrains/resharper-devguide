@@ -10,7 +10,7 @@ Similarly, zones can be licensed, so a zone may be installed, but unavailable du
 
 Furthermore, zones are hierarchical, and can have dependencies. For example, the "ILanguageCSharpZone" depends on the "IClrPsiLanguageZone" and all of its dependencies:
 
-```
+```csharp
 ILanguageCSharpZone
 - IClrPsiLanguageZone
   - IPsiAssemblyFileLoaderImplZone

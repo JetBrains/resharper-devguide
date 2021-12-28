@@ -16,7 +16,7 @@ Once the install is complete, a separate instance of ReSharper has been installe
 
 To run Visual Studio in an experimental instance called "Plugins", run:
 
-```
+```text
 devenv.exe /rootSuffix Plugins
 ```
 

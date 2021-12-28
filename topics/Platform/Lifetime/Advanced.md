@@ -16,7 +16,7 @@ This is useful as a companion to `Lifetimes.Define`, which creates a `LifetimeDe
 
 ## Synchronising Multiple Lifetimes
 
-`Lifetimes.Synchronize` takes a collection of `LifetimeDefinition` and terminates them all when any one terminates.
+`Lifetimes.Synchronize` takes a collection of `LifetimeDefinition` and terminates them all when any one of them terminates.
 
 ## Sequential Lifetimes
 

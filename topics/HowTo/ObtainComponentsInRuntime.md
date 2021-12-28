@@ -17,30 +17,34 @@ The easiest way is to use a constructor injection. All you need is to specify th
 
 For example, you have a solution component `MyClass` that should run some action upon creation. To make this happen, it must obtain an `ActionManager` instance.
 
-```
-    [SolutionComponent]
-    public class MyClass
+```csharp
+[SolutionComponent]
+public class MyClass
+{
+    public MyClass(Lifetime lifetime, IActionManager actionManager)
     {
-        public MyClass(Lifetime lifetime, IActionManager actionManager)
-        {
-            actionManager.ExecuteAction<SomeAction>());
-        }
+        actionManager.ExecuteAction<SomeAction>());
     }
+}
 ```
+
 Here `SomeAction` is action's name.
 
 ## Current context
 Sometimes, you can get components from the `IDataContext` objects. This is true, for example, for [actions](CreateMenuItemsUsingActions.md):
-```
+
+```csharp
 protected override void RunAction(IDataContext context, DelegateExecute nextExecute)
 {
     var actionManager = context.GetComponent<IActionManger>();
     ...
  }
 ```
+
 ## Shell and solution component
 Another way is to get shell components via the `Shell` component - the root API point. This can be helpful, for example, if you want to have some "global" settings and access them from anywhere inside your plugin. To obtain the `Shell` instance, you must use its `Instance` property.
-```
+
+```csharp
 [ShellComponent]
 public class MySettings
 {
@@ -57,12 +61,16 @@ public class MySettings
     }
 }
 ```
+
 Thus, you can simply access them from any point of your plugin:
-```
+
+```csharp
 if (MySettings.Instance.AutoRefresh) ...
-``` 
-Same is true for solution components. The main difference is that you should have an object that implements the `ISolution` interface (the one that refers to the solution currently opened in Visual Studio):
 ```
+
+Same is true for solution components. The main difference is that you should have an object that implements the `ISolution` interface (the one that refers to the solution currently opened in Visual Studio):
+
+```csharp
 public void ObtainSomeSolutionComponent(ISolution solution)
 {
     var component = solution.GetComponent<SomeSolutionComponent>();

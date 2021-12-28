@@ -1,6 +1,6 @@
 [//]: # (title: Analysis)
 
-ReSharper analyses your code on-the-fly, as you type. It has several different modes of analysis, but the output is always the same - a list of "highlights". ReSharper supports several types of highlights - some of them change the colour of existing text, while others draw new content onto the editor, such as wavy underlines.
+ReSharper analyses your code on-the-fly, as you type. It has several modes of analysis, but the output is always the same - a list of "highlights". ReSharper supports several types of highlights - some of them change the colour of existing text, while others draw new content onto the editor, such as wavy underlines.
 
 ReSharper supports:
 
