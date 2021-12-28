@@ -1,4 +1,4 @@
-[//]: # (title: IntelliJ Platform SDK)
+[//]: # (title: ReSharper Platform SDK)
 
 <!-- Copyright 2000-2021 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
 
@@ -7,12 +7,9 @@
 [![Follow ReSharper on Twitter](https://img.shields.io/twitter/follow/resharper?style=flat-square&logo=twitter&label=Follow%20@resharper)](https://twitter.com/resharper/)
 [![Follow JetBrains Rider on Twitter](https://img.shields.io/twitter/follow/jetbrainsrider?style=flat-square&logo=twitter&label=Follow%20@JetBrainsRider)](https://twitter.com/JetBrainsRider/)
 
-Welcome to the IntelliJ Platform SDK - the primary source of documentation for extending the IntelliJ Platform by creating plugins, custom language support, or building a custom IDE.
+Welcome to the ReSharper Platform SDK - the primary source of documentation for extending .NET related products including ReSharper and JetBrains Rider.
 
-> We're looking for a [Software Developer](https://www.jetbrains.com/careers/jobs/software-developer-intellij-sdk-advocacy-680/) to work on Plugin Verifier tooling.
->
-{type="note"}
-
+<!--
 ## Getting Started
 
 <table>
@@ -50,8 +47,9 @@ More webinars are available [here](useful_links.md#webinars).
 </td>
 </tr>
 </table>
+-->
 
-Please see [Getting Help](getting_help.md) if you encounter bugs in this guide or require help with missing content.
+Please see [Getting Help](GettingHelp.md) if you encounter bugs in this guide or require help with missing content.
 
 ## Updates
 
@@ -70,4 +68,4 @@ Verify your plugin follows guidelines from [Dynamic Plugins](dynamic_plugins.md)
 ## Contribute
 
 This guide is Open Source and licensed under Apache 2.0.
-[Contributions](intellij-sdk-docs-original_CONTRIBUTING.md) are very welcome.
+[Contributions](resharper-devguide_CONTRIBUTING.md) are very welcome.
