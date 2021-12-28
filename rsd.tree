@@ -23,92 +23,65 @@
                      accepts-web-file-names="Intro/GettingHelp.html"/>
         <toc-element toc-title="Recently Updated"/>
     </toc-element>
-    <toc-element toc-title="How To">
-        <toc-element id="HowTo_HowTo.md" toc-title="How To">
-            <toc-element id="Start.md"
-                         toc-title="Start"
-                         accepts-web-file-names="HowTo/Start/Start.html">
-                <toc-element id="CreateProject.md"
-                             toc-title="1. Create a Project"
-                             accepts-web-file-names="HowTo/Start/CreateProject.html"/>
-                <toc-element id="CreateNuGetPackageForPlugin.md"
-                             toc-title="2. Create a NuGet Package for the Plugin"
-                             accepts-web-file-names="HowTo/Start/CreateNuGetPackageForPlugin.html"/>
-                <toc-element id="SetUpEnvironment.md"
-                             toc-title="3. Set Up the Environment"
-                             accepts-web-file-names="HowTo/Start/SetUpEnvironment.html"/>
-            </toc-element>
-            <toc-element id="IntegrateWithReSharper.md"
-                         toc-title="Integrate with ReSharper"
-                         accepts-web-file-names="HowTo/IntegrateWithReSharper/IntegrateWithReSharper.html"/>
-            <toc-element id="ObtainComponentsInRuntime.md"
-                         toc-title="Obtain Components in Runtime"
-                         accepts-web-file-names="HowTo/ObtainComponentsInRuntime.html"/>
-            <toc-element id="WorkWithLifetime.md"
-                         toc-title="Work with Lifetime"
-                         accepts-web-file-names="HowTo/WorkWithLifetime.html"/>
-            <toc-element id="WorkWithSignals.md"
-                         toc-title="Work with Signals"
-                         accepts-web-file-names="HowTo/WorkWithSignals.html"/>
-            <toc-element id="WorkWithIProperty.md"
-                         toc-title="Work with IProperty"
-                         accepts-web-file-names="HowTo/WorkWithIProperty.html"/>
-            <toc-element toc-title="Work with Shell Locks"/>
-            <toc-element toc-title="Work with Threading"/>
-            <toc-element toc-title="Work with Zoning"/>
-            <toc-element id="NavigateCode.md"
-                         toc-title="Navigate Code"
-                         accepts-web-file-names="HowTo/NavigateCode/NavigateCode.html">
-                <toc-element id="GetTreeNodeUnderCaret.md"
-                             toc-title="Get a Tree Node under Caret"
-                             accepts-web-file-names="HowTo/NavigateCode/GetTreeNodeUnderCaret.html"/>
-                <toc-element id="GetTreeNodeByFullName.md"
-                             toc-title="Get a Tree Node by Full CLR Name"
-                             accepts-web-file-names="HowTo/NavigateCode/GetTreeNodeByFullName.html"/>
-                <toc-element id="GetTreeNodeByReference.md"
-                             toc-title="Get a Tree Node by Reference"
-                             accepts-web-file-names="HowTo/NavigateCode/GetTreeNodeByReference.html"/>
-                <toc-element toc-title="Find Code Elements Using AsyncFinder"/>
-                <toc-element id="UseManualNavigation.md"
-                             toc-title="Use Manual Navigation"
-                             accepts-web-file-names="HowTo/NavigateCode/UseManualNavigation.html"/>
-                <toc-element id="NavigateToParticularTreeNode.md"
-                             toc-title="Navigate to a Particular Tree Node"
-                             accepts-web-file-names="HowTo/NavigateCode/NavigateToParticularTreeNode.html"/>
-                <toc-element id="AddYourNavigationActionToNavigateToMenu.md"
-                             toc-title="Add a Navigation Action to the 'Navigate To' Menu"
-                             accepts-web-file-names="HowTo/NavigateCode/AddYourNavigationActionToNavigateToMenu.html"/>
-            </toc-element>
-            <toc-element toc-title="Create, Replace, and Update the Code"/>
-            <toc-element id="CreateMenuItemsUsingActions.md"
-                         toc-title="Create Menu Items Using Actions"
-                         accepts-web-file-names="HowTo/CreateMenuItemsUsingActions.html"/>
-            <toc-element id="RunActionsFromCode.md"
-                         toc-title="Run Actions from Code"
-                         accepts-web-file-names="HowTo/RunActionsFromCode.html"/>
-            <toc-element id="CreateContextAction.md"
-                         toc-title="Create a Context Action"
-                         accepts-web-file-names="HowTo/CreateContextAction/CreateContextAction.html"/>
-            <toc-element id="CreateQuickFix.md"
-                         toc-title="Create a Quick Fix"
-                         accepts-web-file-names="HowTo/CreateQuickFix/CreateQuickFix.html"/>
-            <toc-element id="AnalyzeCodeOnTheFly.md"
-                         toc-title="Analyze Code on the Fly"
-                         accepts-web-file-names="HowTo/AnalyzeCode/AnalyzeCodeOnTheFly.html"/>
-            <toc-element id="TrackSolutionLoadingStatus.md"
-                         toc-title="Track Solution Loading Status"
-                         accepts-web-file-names="HowTo/TrackSolutionLoadingStatus.html"/>
-            <toc-element id="CreateToolWindows.md"
-                         toc-title="Create Tool Windows"
-                         accepts-web-file-names="HowTo/CreateToolWindows.html"/>
-            <toc-element id="AddSettingsToOptions.md"
-                         toc-title="Add Settings to ReSharper Options"
-                         accepts-web-file-names="HowTo/AddSettingsToOptions/AddSettingsToOptions.html"/>
-            <toc-element id="WorkWithColorThemes.md"
-                         toc-title="Work with Color Themes"
-                         accepts-web-file-names="HowTo/WorkWithColorThemes.html"/>
-            <toc-element toc-title="Cover a Plugin with Tests"/>
+    <toc-element id="HowTo_HowTo.md" toc-title="How To">
+        <toc-element accepts-web-file-names="HowTo/Start/Start.html" id="Start.md" toc-title="Start">
+            <toc-element accepts-web-file-names="HowTo/Start/CreateProject.html" id="CreateProject.md"
+                         toc-title="1. Create a Project"/>
+            <toc-element accepts-web-file-names="HowTo/Start/CreateNuGetPackageForPlugin.html"
+                         id="CreateNuGetPackageForPlugin.md" toc-title="2. Create a NuGet Package for the Plugin"/>
+            <toc-element accepts-web-file-names="HowTo/Start/SetUpEnvironment.html" id="SetUpEnvironment.md"
+                         toc-title="3. Set Up the Environment"/>
         </toc-element>
+        <toc-element accepts-web-file-names="HowTo/IntegrateWithReSharper/IntegrateWithReSharper.html"
+                     id="IntegrateWithReSharper.md" toc-title="Integrate with ReSharper"/>
+        <toc-element accepts-web-file-names="HowTo/ObtainComponentsInRuntime.html" id="ObtainComponentsInRuntime.md"
+                     toc-title="Obtain Components in Runtime"/>
+        <toc-element accepts-web-file-names="HowTo/WorkWithLifetime.html" id="WorkWithLifetime.md"
+                     toc-title="Work with Lifetime"/>
+        <toc-element accepts-web-file-names="HowTo/WorkWithSignals.html" id="WorkWithSignals.md"
+                     toc-title="Work with Signals"/>
+        <toc-element accepts-web-file-names="HowTo/WorkWithIProperty.html" id="WorkWithIProperty.md"
+                     toc-title="Work with IProperty"/>
+        <toc-element toc-title="Work with Shell Locks"/>
+        <toc-element toc-title="Work with Threading"/>
+        <toc-element toc-title="Work with Zoning"/>
+        <toc-element accepts-web-file-names="HowTo/NavigateCode/NavigateCode.html" id="NavigateCode.md"
+                     toc-title="Navigate Code">
+            <toc-element accepts-web-file-names="HowTo/NavigateCode/GetTreeNodeUnderCaret.html"
+                         id="GetTreeNodeUnderCaret.md" toc-title="Get a Tree Node under Caret"/>
+            <toc-element accepts-web-file-names="HowTo/NavigateCode/GetTreeNodeByFullName.html"
+                         id="GetTreeNodeByFullName.md" toc-title="Get a Tree Node by Full CLR Name"/>
+            <toc-element accepts-web-file-names="HowTo/NavigateCode/GetTreeNodeByReference.html"
+                         id="GetTreeNodeByReference.md" toc-title="Get a Tree Node by Reference"/>
+            <toc-element toc-title="Find Code Elements Using AsyncFinder"/>
+            <toc-element accepts-web-file-names="HowTo/NavigateCode/UseManualNavigation.html"
+                         id="UseManualNavigation.md" toc-title="Use Manual Navigation"/>
+            <toc-element accepts-web-file-names="HowTo/NavigateCode/NavigateToParticularTreeNode.html"
+                         id="NavigateToParticularTreeNode.md" toc-title="Navigate to a Particular Tree Node"/>
+            <toc-element accepts-web-file-names="HowTo/NavigateCode/AddYourNavigationActionToNavigateToMenu.html"
+                         id="AddYourNavigationActionToNavigateToMenu.md"
+                         toc-title="Add a Navigation Action to the 'Navigate To' Menu"/>
+        </toc-element>
+        <toc-element toc-title="Create, Replace, and Update the Code"/>
+        <toc-element accepts-web-file-names="HowTo/CreateMenuItemsUsingActions.html" id="CreateMenuItemsUsingActions.md"
+                     toc-title="Create Menu Items Using Actions"/>
+        <toc-element accepts-web-file-names="HowTo/RunActionsFromCode.html" id="RunActionsFromCode.md"
+                     toc-title="Run Actions from Code"/>
+        <toc-element accepts-web-file-names="HowTo/CreateContextAction/CreateContextAction.html"
+                     id="CreateContextAction.md" toc-title="Create a Context Action"/>
+        <toc-element accepts-web-file-names="HowTo/CreateQuickFix/CreateQuickFix.html" id="CreateQuickFix.md"
+                     toc-title="Create a Quick Fix"/>
+        <toc-element accepts-web-file-names="HowTo/AnalyzeCode/AnalyzeCodeOnTheFly.html" id="AnalyzeCodeOnTheFly.md"
+                     toc-title="Analyze Code on the Fly"/>
+        <toc-element accepts-web-file-names="HowTo/TrackSolutionLoadingStatus.html" id="TrackSolutionLoadingStatus.md"
+                     toc-title="Track Solution Loading Status"/>
+        <toc-element accepts-web-file-names="HowTo/CreateToolWindows.html" id="CreateToolWindows.md"
+                     toc-title="Create Tool Windows"/>
+        <toc-element accepts-web-file-names="HowTo/AddSettingsToOptions/AddSettingsToOptions.html"
+                     id="AddSettingsToOptions.md" toc-title="Add Settings to ReSharper Options"/>
+        <toc-element accepts-web-file-names="HowTo/WorkWithColorThemes.html" id="WorkWithColorThemes.md"
+                     toc-title="Work with Color Themes"/>
+        <toc-element toc-title="Cover a Plugin with Tests"/>
     </toc-element>
     <toc-element toc-title="Part I - Extending the ReSharper Platform">
         <toc-element id="GettingStarted.md"
