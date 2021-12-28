@@ -1,6 +1,0 @@
----
----
-
-# Licensing
-
-> **TODO** TBD

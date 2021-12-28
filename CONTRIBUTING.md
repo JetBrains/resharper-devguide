@@ -1,5 +1,3 @@
----
----
 # Contributing
 
 In order to build the site locally, you will need Ruby installed (the site is based on [Jekyll](http://jekyllrb.com)). The steps to get the site built are:

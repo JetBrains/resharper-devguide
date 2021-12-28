@@ -1,0 +1,669 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE product-profile
+        SYSTEM "https://resources.jetbrains.com/stardust/product-profile.dtd">
+
+<product-profile id="rsd"
+                 name="ReSharper Devguide"
+                 start-page="About.md"
+                 status="eap">
+    <toc-element toc-title="Summary">
+        <toc-element id="resharper-devguide_README.md"
+                     toc-title="Introduction"/>
+        <toc-element id="ReSharperPlatform.md"
+                     toc-title="The ReSharper Platform"
+                     accepts-web-file-names="Intro/ReSharperPlatform.html"/>
+        <toc-element id="About.md"
+                     toc-title="About This Guide"
+                     accepts-web-file-names="Intro/About.html"/>
+        <toc-element id="KeyTopics.md"
+                     toc-title="Key Topics"
+                     accepts-web-file-names="Intro/KeyTopics.html"/>
+        <toc-element id="GettingHelp.md"
+                     toc-title="Getting Help"
+                     accepts-web-file-names="Intro/GettingHelp.html"/>
+        <toc-element toc-title="Recently Updated"/>
+    </toc-element>
+    <toc-element toc-title="How To">
+        <toc-element id="HowTo_HowTo.md" toc-title="How To">
+            <toc-element id="Start.md"
+                         toc-title="Start"
+                         accepts-web-file-names="HowTo/Start/Start.html">
+                <toc-element id="CreateProject.md"
+                             toc-title="1. Create a Project"
+                             accepts-web-file-names="HowTo/Start/CreateProject.html"/>
+                <toc-element id="CreateNuGetPackageForPlugin.md"
+                             toc-title="2. Create a NuGet Package for the Plugin"
+                             accepts-web-file-names="HowTo/Start/CreateNuGetPackageForPlugin.html"/>
+                <toc-element id="SetUpEnvironment.md"
+                             toc-title="3. Set Up the Environment"
+                             accepts-web-file-names="HowTo/Start/SetUpEnvironment.html"/>
+            </toc-element>
+            <toc-element id="IntegrateWithReSharper.md"
+                         toc-title="Integrate with ReSharper"
+                         accepts-web-file-names="HowTo/IntegrateWithReSharper/IntegrateWithReSharper.html"/>
+            <toc-element id="ObtainComponentsInRuntime.md"
+                         toc-title="Obtain Components in Runtime"
+                         accepts-web-file-names="HowTo/ObtainComponentsInRuntime.html"/>
+            <toc-element id="WorkWithLifetime.md"
+                         toc-title="Work with Lifetime"
+                         accepts-web-file-names="HowTo/WorkWithLifetime.html"/>
+            <toc-element id="WorkWithSignals.md"
+                         toc-title="Work with Signals"
+                         accepts-web-file-names="HowTo/WorkWithSignals.html"/>
+            <toc-element id="WorkWithIProperty.md"
+                         toc-title="Work with IProperty"
+                         accepts-web-file-names="HowTo/WorkWithIProperty.html"/>
+            <toc-element toc-title="Work with Shell Locks"/>
+            <toc-element toc-title="Work with Threading"/>
+            <toc-element toc-title="Work with Zoning"/>
+            <toc-element id="NavigateCode.md"
+                         toc-title="Navigate Code"
+                         accepts-web-file-names="HowTo/NavigateCode/NavigateCode.html">
+                <toc-element id="GetTreeNodeUnderCaret.md"
+                             toc-title="Get a Tree Node under Caret"
+                             accepts-web-file-names="HowTo/NavigateCode/GetTreeNodeUnderCaret.html"/>
+                <toc-element id="GetTreeNodeByFullName.md"
+                             toc-title="Get a Tree Node by Full CLR Name"
+                             accepts-web-file-names="HowTo/NavigateCode/GetTreeNodeByFullName.html"/>
+                <toc-element id="GetTreeNodeByReference.md"
+                             toc-title="Get a Tree Node by Reference"
+                             accepts-web-file-names="HowTo/NavigateCode/GetTreeNodeByReference.html"/>
+                <toc-element toc-title="Find Code Elements Using AsyncFinder"/>
+                <toc-element id="UseManualNavigation.md"
+                             toc-title="Use Manual Navigation"
+                             accepts-web-file-names="HowTo/NavigateCode/UseManualNavigation.html"/>
+                <toc-element id="NavigateToParticularTreeNode.md"
+                             toc-title="Navigate to a Particular Tree Node"
+                             accepts-web-file-names="HowTo/NavigateCode/NavigateToParticularTreeNode.html"/>
+                <toc-element id="AddYourNavigationActionToNavigateToMenu.md"
+                             toc-title="Add a Navigation Action to the 'Navigate To' Menu"
+                             accepts-web-file-names="HowTo/NavigateCode/AddYourNavigationActionToNavigateToMenu.html"/>
+            </toc-element>
+            <toc-element toc-title="Create, Replace, and Update the Code"/>
+            <toc-element id="CreateMenuItemsUsingActions.md"
+                         toc-title="Create Menu Items Using Actions"
+                         accepts-web-file-names="HowTo/CreateMenuItemsUsingActions.html"/>
+            <toc-element id="RunActionsFromCode.md"
+                         toc-title="Run Actions from Code"
+                         accepts-web-file-names="HowTo/RunActionsFromCode.html"/>
+            <toc-element id="CreateContextAction.md"
+                         toc-title="Create a Context Action"
+                         accepts-web-file-names="HowTo/CreateContextAction/CreateContextAction.html"/>
+            <toc-element id="CreateQuickFix.md"
+                         toc-title="Create a Quick Fix"
+                         accepts-web-file-names="HowTo/CreateQuickFix/CreateQuickFix.html"/>
+            <toc-element id="AnalyzeCodeOnTheFly.md"
+                         toc-title="Analyze Code on the Fly"
+                         accepts-web-file-names="HowTo/AnalyzeCode/AnalyzeCodeOnTheFly.html"/>
+            <toc-element id="TrackSolutionLoadingStatus.md"
+                         toc-title="Track Solution Loading Status"
+                         accepts-web-file-names="HowTo/TrackSolutionLoadingStatus.html"/>
+            <toc-element id="CreateToolWindows.md"
+                         toc-title="Create Tool Windows"
+                         accepts-web-file-names="HowTo/CreateToolWindows.html"/>
+            <toc-element id="AddSettingsToOptions.md"
+                         toc-title="Add Settings to ReSharper Options"
+                         accepts-web-file-names="HowTo/AddSettingsToOptions/AddSettingsToOptions.html"/>
+            <toc-element id="WorkWithColorThemes.md"
+                         toc-title="Work with Color Themes"
+                         accepts-web-file-names="HowTo/WorkWithColorThemes.html"/>
+            <toc-element toc-title="Cover a Plugin with Tests"/>
+        </toc-element>
+    </toc-element>
+    <toc-element toc-title="Part I - Extending the ReSharper Platform">
+        <toc-element id="GettingStarted.md"
+                     accepts-web-file-names="Extensions/GettingStarted.html,Intro/GettingStarted.html"
+                     toc-title="Getting Started">
+            <toc-element id="Tools.md"
+                         accepts-web-file-names="Extensions/Tools.html,Intro/Tools.html"
+                         toc-title="Tools"/>
+            <toc-element id="InternalMode.md"
+                         accepts-web-file-names="Extensions/InternalMode.html,Intro/InternalMode.html"
+                         toc-title="Internal mode"/>
+            <toc-element id="PlatformVersioning.md"
+                         accepts-web-file-names="Extensions/PlatformVersioning.html,Intro/PlatformVersioning.html"
+                         toc-title="Platform Versioning"/>
+        </toc-element>
+        <toc-element id="WhatsNew.md"
+                     accepts-web-file-names="Extensions/WhatsNew.html,Intro/WhatsNew.html"
+                     toc-title="What's New?"/>
+        <toc-element id="DeclarativeExtensions.md"
+                     accepts-web-file-names="Extensions/DeclarativeExtensions.html,Intro/DeclarativeExtensions.html"
+                     toc-title="Declarative Extensions">
+            <toc-element toc-title="Live Templates"/>
+            <toc-element toc-title="Structural Search and Replace Patterns"/>
+            <toc-element toc-title="External Annotations"/>
+        </toc-element>
+        <toc-element id="CompiledExtensions.md"
+                     accepts-web-file-names="Extensions/CompiledExtensions.html,Intro/CompiledExtensions.html"
+                     toc-title="Compiled Extensions (Plugins)">
+            <toc-element id="ProjectSetup.md"
+                         accepts-web-file-names="Extensions/Plugins/ProjectSetup.html,Plugins/ProjectSetup.html"
+                         toc-title="Project Setup">
+                <toc-element id="CreatingProjects.md"
+                             toc-title="Creating Projects"
+                             accepts-web-file-names="Extensions/Plugins/ProjectSetup/CreatingProjects.html"/>
+                <toc-element id="NuGetReferences.md"
+                             toc-title="NuGet References"
+                             accepts-web-file-names="Extensions/Plugins/ProjectSetup/NuGetReferences.html"/>
+                <toc-element id="InitialInstallation.md"
+                             toc-title="Initial Installation"
+                             accepts-web-file-names="Extensions/Plugins/ProjectSetup/InitialInstallation.html"/>
+                <toc-element id="ProjectSetup_CopyOnBuild.md"
+                             toc-title="Copy Plugin on Build"
+                />
+            </toc-element>
+            <toc-element id="Debugging.md"
+                         accepts-web-file-names="Extensions/Plugins/Debugging.html,Plugins/Debugging.html"
+                         toc-title="Debugging"/>
+            <toc-element id="Plugins_Testing.md"
+
+                         toc-title="Plugin Testing">
+                <toc-element id="ProjectStructure.md"
+                             toc-title="Project Structure"
+                             accepts-web-file-names="Extensions/Plugins/Testing/ProjectStructure.html"/>
+                <toc-element id="TestEnvironment.md"
+                             toc-title="Test Environment"
+                             accepts-web-file-names="Extensions/Plugins/Testing/TestEnvironment.html"/>
+                <toc-element id="Testing_Zones.md" toc-title="Zones"/>
+                <toc-element id="TestComponents.md"
+                             toc-title="Test Components"
+                             accepts-web-file-names="Extensions/Plugins/Testing/TestComponents.html"/>
+                <toc-element id="GoldFiles.md"
+                             toc-title="Gold Files"
+                             accepts-web-file-names="Extensions/Plugins/Testing/GoldFiles.html"/>
+                <toc-element toc-title="Base Classes"/>
+                <toc-element toc-title="Attributes"/>
+                <toc-element toc-title="Project References"/>
+                <toc-element id="TemporarySettings.md"
+                             accepts-web-file-names="Extensions/Plugins/Testing/TemporarySettings.html,Plugins/TemporarySettings.html"
+                             toc-title="Temporary Settings"/>
+                <toc-element id="OptionsIterator.md"
+                             accepts-web-file-names="Extensions/Plugins/Testing/OptionsIterator.html,Plugins/Testing/OptionsIterator.html"
+                             toc-title="Combinatorial Settings"/>
+                <toc-element toc-title="Utility Classes"/>
+                <toc-element toc-title="Reference"/>
+            </toc-element>
+            <toc-element id="KnownIssues.md"
+                         accepts-web-file-names="Extensions/KnownIssues.html,Intro/KnownIssues.html"
+                         toc-title="Known Issues"/>
+        </toc-element>
+        <toc-element id="Extensions_Packaging.md"
+                     toc-title="Deployment"
+        >
+            <toc-element toc-title="Installing the ReSharper Platform"/>
+            <toc-element toc-title="Packaging Details"/>
+            <toc-element toc-title="Localisation"/>
+            <toc-element id="LocalInstallation.md"
+                         toc-title="Installing Locally"
+                         accepts-web-file-names="Extensions/Deployment/LocalInstallation.html">
+                <toc-element id="ExperimentalInstance.md"
+                             toc-title="Experimental Instances"
+                             accepts-web-file-names="Extensions/Deployment/LocalInstallation/ExperimentalInstance.html"/>
+                <toc-element id="LocalInstallation_Packaging.md"
+                             toc-title="Package the Extension"
+                />
+                <toc-element id="InstallCustomSource.md"
+                             toc-title="Install Local Copy"
+                             accepts-web-file-names="Extensions/Deployment/LocalInstallation/InstallCustomSource.html"/>
+                <toc-element id="LocalInstallation_CopyOnBuild.md"
+                             toc-title="Copy Plugin on Build"
+                />
+            </toc-element>
+            <toc-element id="Packaging8.md"
+                         toc-title="Supporting ReSharper 8"
+                         accepts-web-file-names="Extensions/Packaging8.html"/>
+        </toc-element>
+        <toc-element id="Extensions_Troubleshooting.md"
+                     toc-title="Troubleshooting"
+        />
+        <toc-element toc-title="Hints and Tips"/>
+        <toc-element toc-title="Best Practices"/>
+    </toc-element>
+    <toc-element toc-title="Part II - Architectural Overview">
+        <toc-element id="Architecture_Overview.md"
+                     toc-title="Overview"
+        />
+        <toc-element toc-title="Platform"/>
+        <toc-element toc-title="Project Model"/>
+        <toc-element toc-title="Features"/>
+        <toc-element toc-title="Products"/>
+    </toc-element>
+    <toc-element toc-title="Part III - Platform">
+        <toc-element id="Logging.md"
+                     toc-title="Logging"
+                     accepts-web-file-names="Platform/Logging.html">
+            <toc-element id="AdvancedConfiguration.md"
+                         toc-title="Advanced Configuration"
+                         accepts-web-file-names="Platform/Logging/AdvancedConfiguration.html"/>
+            <toc-element toc-title="Usage"/>
+            <toc-element toc-title="Category Reference"/>
+        </toc-element>
+        <toc-element id="Lifetime.md"
+                     toc-title="Lifetime"
+                     accepts-web-file-names="Platform/Lifetime.html">
+            <toc-element id="Lifetime_Usage.md" toc-title="Usage"/>
+            <toc-element id="LifetimeDefinition.md"
+                         toc-title="Lifetime Management"
+                         accepts-web-file-names="Platform/Lifetime/LifetimeDefinition.html"/>
+            <toc-element id="Advanced.md"
+                         toc-title="Advanced Lifetime Management"
+                         accepts-web-file-names="Platform/Lifetime/Advanced.html"/>
+            <toc-element id="Lifetime_ComponentModel.md"
+                         toc-title="Component Lifetime"
+            />
+            <toc-element id="CaseStudy.md"
+                         toc-title="Case Study"
+                         accepts-web-file-names="Platform/Lifetime/CaseStudy.html"/>
+        </toc-element>
+        <toc-element toc-title="DataFlow"/>
+        <toc-element id="Platform_ComponentModel.md"
+                     toc-title="Component Model"
+        >
+            <toc-element id="ContainersPartsCatalogues.md"
+                         toc-title="Containers, Parts and Catalogues"
+                         accepts-web-file-names="Platform/ComponentModel/ContainersPartsCatalogues.html"/>
+            <toc-element id="VisualStudio_ComponentModel.md"
+                         toc-title="Visual Studio interfaces"
+            />
+        </toc-element>
+        <toc-element id="Platform_Zones.md" toc-title="Zones">
+            <toc-element id="Implementation.md"
+                         toc-title="Implementation"
+                         accepts-web-file-names="Platform/Zones/Implementation.html"/>
+            <toc-element id="Zones_Usage.md" toc-title="Usage"/>
+            <toc-element id="FeaturesProducts.md"
+                         toc-title="Features and Products"
+                         accepts-web-file-names="Platform/Zones/FeaturesProducts.html"/>
+            <toc-element id="Activation.md"
+                         toc-title="Activation"
+                         accepts-web-file-names="Platform/Zones/Activation.html"/>
+            <toc-element toc-title="Licensing"/>
+            <toc-element toc-title="Troubleshooting"/>
+            <toc-element id="Zones_HowTo.md"
+                         toc-title="How to Define a Zone Marker"
+            />
+            <toc-element toc-title="Reference"/>
+        </toc-element>
+        <toc-element toc-title="DataContext"/>
+        <toc-element id="TextControl.md"
+                     toc-title="TextControl"
+                     accepts-web-file-names="Platform/TextControl.html"/>
+        <toc-element toc-title="Documents"/>
+        <toc-element toc-title="Threading"/>
+        <toc-element toc-title="Locks"/>
+        <toc-element toc-title="Transactions"/>
+        <toc-element toc-title="IL Metadata"/>
+        <toc-element toc-title="Shell"/>
+        <toc-element id="Settings.md"
+                     toc-title="Settings"
+                     accepts-web-file-names="Platform/Settings.html">
+            <toc-element toc-title="Reading and writing"/>
+            <toc-element toc-title="Defaults"/>
+            <toc-element toc-title="Layers"/>
+            <toc-element toc-title="File format"/>
+            <toc-element toc-title="Util"/>
+        </toc-element>
+    </toc-element>
+    <toc-element toc-title="Part IV - Project Model">
+        <toc-element toc-title="Overview"/>
+        <toc-element toc-title="Change Manager"/>
+        <toc-element toc-title="MSBuild Integration"/>
+        <toc-element toc-title="Project Files"/>
+    </toc-element>
+    <toc-element toc-title="Part V - PSI">
+        <toc-element id="PSI.md" toc-title="Overview"/>
+        <toc-element toc-title="PSI Languages"/>
+        <toc-element toc-title="Files and Modules"/>
+        <toc-element id="SyntaxTrees.md"
+                     toc-title="Syntax Trees"
+                     accepts-web-file-names="PSI/SyntaxTrees.html"/>
+        <toc-element id="NavigatingSyntaxTrees.md"
+                     toc-title="Navigating Syntax Trees"
+                     accepts-web-file-names="PSI/NavigatingSyntaxTrees.html">
+            <toc-element id="ManualNavigation.md"
+                         toc-title="Manual Navigation"
+                         accepts-web-file-names="PSI/SyntaxTrees/ManualNavigation.html"/>
+            <toc-element toc-title="Helper methods"/>
+            <toc-element id="StronglyTypedNavigation.md"
+                         toc-title="Strongly Typed Navigation"
+                         accepts-web-file-names="PSI/SyntaxTrees/StronglyTypedNavigation.html"/>
+            <toc-element toc-title="Recursive navigation"/>
+            <toc-element toc-title="Finding nodes"/>
+        </toc-element>
+        <toc-element toc-title="Manipulating syntax trees"/>
+        <toc-element id="Code.md"
+                     toc-title="Generating code"
+                     accepts-web-file-names="PSI/Generating/Code.html">
+            <toc-element id="Comments.md"
+                         toc-title="Generating comments"
+                         accepts-web-file-names="PSI/Generating/Comments.html"/>
+        </toc-element>
+        <toc-element id="DeclaredElements.md"
+                     toc-title="Declared Elements"
+                     accepts-web-file-names="PSI/DeclaredElements.html">
+            <toc-element toc-title="Declared Element Types"/>
+            <toc-element toc-title="Declared Element Envoys"/>
+        </toc-element>
+        <toc-element id="References.md"
+                     toc-title="References"
+                     accepts-web-file-names="PSI/References.html">
+            <toc-element toc-title="Resolving references"/>
+            <toc-element id="ReferenceProviders.md"
+                         toc-title="Reference providers"
+                         accepts-web-file-names="PSI/References/ReferenceProviders.html"/>
+            <toc-element id="CodeCompletion.md"
+                         toc-title="Code Completion"
+                         accepts-web-file-names="PSI/References/CodeCompletion.html"/>
+            <toc-element id="Substrings.md"
+                         toc-title="References within elements"
+                         accepts-web-file-names="PSI/References/Substrings.html"/>
+            <toc-element id="IReferenceProvider.md"
+                         toc-title="Managing reference providers"
+                         accepts-web-file-names="PSI/References/IReferenceProvider.html"/>
+            <toc-element id="PathReferences.md"
+                         toc-title="Path references"
+                         accepts-web-file-names="PSI/References/PathReferences.html"/>
+            <toc-element toc-title="Colour references"/>
+        </toc-element>
+        <toc-element id="TypeSystem.md"
+                     toc-title="Type Systems"
+                     accepts-web-file-names="PSI/TypeSystem.html">
+            <toc-element id="TypeSystems2.md"
+                         toc-title="Overview"
+                         accepts-web-file-names="PSI/TypeSystems2.html"/>
+        </toc-element>
+        <toc-element toc-title="Symbols and Symbol Tables"/>
+        <toc-element toc-title="Constant Evaluation"/>
+        <toc-element toc-title="Control Flow Graphs"/>
+        <toc-element id="Caching.md"
+                     toc-title="Caching"
+                     accepts-web-file-names="PSI/Caching.html">
+            <toc-element toc-title="Persistent Caches"/>
+            <toc-element toc-title="Persistent Indexes"/>
+            <toc-element toc-title="Transient Caches"/>
+        </toc-element>
+        <toc-element toc-title="Searching"/>
+        <toc-element toc-title="Pointers"/>
+        <toc-element toc-title="External Annotations"/>
+        <toc-element id="PSI_Icons.md" toc-title="PSI Icons"/>
+        <toc-element toc-title="PSI Implementations Reference"/>
+    </toc-element>
+    <toc-element toc-title="Part VI - Features">
+        <toc-element id="Analysis.md"
+                     toc-title="Analysis"
+                     accepts-web-file-names="Features/Analysis.html">
+            <toc-element toc-title="Highlights"/>
+            <toc-element toc-title="Custom Highlights"/>
+            <toc-element id="Daemons.md"
+                         toc-title="Daemons"
+                         accepts-web-file-names="Features/Analysis/Daemons.html"/>
+            <toc-element id="SuppressHighlights.md"
+                         toc-title="Suppressing Highlights"
+                         accepts-web-file-names="Features/Analysis/SuppressHighlights.html"/>
+            <toc-element toc-title="Element problem analysers"/>
+            <toc-element toc-title="Xml and Html analysers"/>
+            <toc-element toc-title="Solution Wide Analysis"/>
+            <toc-element toc-title="Error Stripe"/>
+            <toc-element toc-title="Gutter Marks"/>
+            <toc-element toc-title="Syntax Highlighting"/>
+            <toc-element toc-title="Caches again"/>
+            <toc-element toc-title="Value Analysis"/>
+            <toc-element toc-title="Call Hierarchy"/>
+            <toc-element id="Analysis_Testing.md"
+                         toc-title="Testing"
+            />
+        </toc-element>
+        <toc-element id="Actions.md"
+                     toc-title="Actions"
+                     accepts-web-file-names="Features/Actions.html">
+            <toc-element toc-title="Menu items"/>
+            <toc-element id="QuickFixes.md"
+                         toc-title="Quick fixes"
+                         accepts-web-file-names="Features/Actions/QuickFixes.html"/>
+            <toc-element toc-title="Context actions"/>
+            <toc-element id="Bulk.md"
+                         toc-title="Bulk actions"
+                         accepts-web-file-names="Features/Actions/Bulk.html"/>
+            <toc-element toc-title="Overriding"/>
+            <toc-element toc-title="Temporary editor actions"/>
+            <toc-element toc-title="Action ID reference"/>
+        </toc-element>
+        <toc-element id="Completion.md"
+                     toc-title="Code Completion"
+                     accepts-web-file-names="Features/Completion.html">
+            <toc-element toc-title="Basic, smart and import"/>
+            <toc-element toc-title="Dynamic completion"/>
+            <toc-element toc-title="Double completion"/>
+            <toc-element toc-title="Lookup items"/>
+        </toc-element>
+        <toc-element toc-title="Contextual highlighting"/>
+        <toc-element toc-title="Popup docs"/>
+        <toc-element id="Refactoring.md"
+                     toc-title="Refactoring"
+                     accepts-web-file-names="Features/Refactoring.html">
+            <toc-element toc-title="Workflow"/>
+            <toc-element toc-title="Integrating"/>
+            <toc-element toc-title="Renaming"/>
+            <toc-element toc-title="Unused references"/>
+        </toc-element>
+        <toc-element id="GenerateMenu.md"
+                     toc-title="Generate Menu"
+                     accepts-web-file-names="Features/GenerateMenu.html"/>
+        <toc-element id="Navigation.md"
+                     toc-title="Navigation"
+                     accepts-web-file-names="Features/Navigation.html">
+            <toc-element toc-title="Go to everything"/>
+            <toc-element toc-title="Go to related"/>
+            <toc-element toc-title="Go to next/prev"/>
+            <toc-element toc-title="Contextual - find exits"/>
+            <toc-element toc-title="Navigate from here"/>
+            <toc-element toc-title="Occurrences"/>
+        </toc-element>
+        <toc-element id="OptionsPages.md"
+                     toc-title="Options Pages"
+                     accepts-web-file-names="Features/OptionsPages.html">
+            <toc-element toc-title="Search in Options Pages"/>
+        </toc-element>
+        <toc-element toc-title="Tools"/>
+        <toc-element toc-title="Naming"/>
+        <toc-element toc-title="Editing"/>
+        <toc-element toc-title="Structural Search and Replace"/>
+        <toc-element id="LiveTemplates.md"
+                     accepts-web-file-names="Features/LiveTemplates.html"
+                     toc-title="Live Templates">
+            <toc-element id="Macros.md"
+                         toc-title="Macros"
+                         accepts-web-file-names="Features/LiveTemplates/Macros.html"/>
+            <toc-element id="Scopes.md"
+                         toc-title="Scopes"
+                         accepts-web-file-names="Features/LiveTemplates/Scopes.html"/>
+            <toc-element toc-title="Categories"/>
+            <toc-element toc-title="Quick lists"/>
+            <toc-element toc-title="Hotspots"/>
+            <toc-element toc-title="Programmatic usage"/>
+        </toc-element>
+        <toc-element id="UnitTest.md"
+                     toc-title="Unit Test"
+                     accepts-web-file-names="Features/UnitTest.html">
+            <toc-element toc-title="Test discovery"/>
+            <toc-element toc-title="Test execution"/>
+            <toc-element id="DotNetCore.md"
+                         toc-title=".NET Core tests"
+                         accepts-web-file-names="Features/UnitTest/DotNetCore.html"/>
+            <toc-element toc-title="Non-CLR tests"/>
+        </toc-element>
+        <toc-element toc-title="Diagramming"/>
+        <toc-element toc-title="External sources"/>
+        <toc-element toc-title="Asp.net MVC"/>
+        <toc-element toc-title="Internationalisation"/>
+        <toc-element id="XmlLike.md"
+                     toc-title="Working with XML-like files"
+                     accepts-web-file-names="Features/XmlLike.html"/>
+    </toc-element>
+    <toc-element toc-title="Part VII - Products">
+        <toc-element id="Rider.md"
+                     toc-title="Rider"
+                     accepts-web-file-names="Products/Rider.html"/>
+        <toc-element toc-title="dotPeek"/>
+        <toc-element id="InspectCode.md"
+                     toc-title="InspectCode"
+                     accepts-web-file-names="Products/InspectCode.html"/>
+        <toc-element toc-title="Custom products"/>
+    </toc-element>
+    <toc-element toc-title="Part VIII - Custom languages">
+        <toc-element id="CustomLanguages_Overview.md"
+                     toc-title="Overview"
+        />
+        <toc-element id="Registration.md"
+                     toc-title="Registering a Custom Language"
+                     accepts-web-file-names="CustomLanguages/Registration.html">
+            <toc-element id="ProjectFileType.md"
+                         toc-title="Project File Type"
+                         accepts-web-file-names="CustomLanguages/Registration/ProjectFileType.html"/>
+            <toc-element id="PsiLanguageDefinition.md"
+                         toc-title="PSI Language Definition"
+                         accepts-web-file-names="CustomLanguages/Registration/PsiLanguageDefinition.html"/>
+            <toc-element id="Registration_PerLanguageComponents.md"
+                         toc-title="Per-language Components"
+            />
+            <toc-element id="ProjectFileLanguageService.md"
+                         toc-title="Project File Language Service"
+                         accepts-web-file-names="CustomLanguages/Registration/ProjectFileLanguageService.html"/>
+            <toc-element id="PsiLanguageService.md"
+                         toc-title="PSI Language Service"
+                         accepts-web-file-names="CustomLanguages/Registration/PsiLanguageService.html"/>
+            <toc-element id="Registration_Testing.md"
+                         toc-title="Testing"
+            />
+        </toc-element>
+        <toc-element toc-title="Secondary PSI"/>
+        <toc-element id="InjectedPsi.md"
+                     toc-title="Injected PSI"
+                     accepts-web-file-names="CustomLanguages/InjectedPsi.html"/>
+        <toc-element id="BuildingPsiTree.md"
+                     toc-title="Building the PSI tree"
+                     accepts-web-file-names="CustomLanguages/BuildingPsiTree.html">
+            <toc-element id="NodeTypes.md"
+                         toc-title="Node Types"
+                         accepts-web-file-names="CustomLanguages/Parsing/NodeTypes.html">
+                <toc-element id="TokenNodeTypes.md"
+                             toc-title="Token Node Types"
+                             accepts-web-file-names="CustomLanguages/Parsing/NodeTypes/TokenNodeTypes.html"/>
+                <toc-element id="CompositeNodeTypes.md"
+                             toc-title="Composite Node Types"
+                             accepts-web-file-names="CustomLanguages/Parsing/NodeTypes/CompositeNodeTypes.html"/>
+                <toc-element id="CreatingNodeTypes.md"
+                             toc-title="Creating Node Types"
+                             accepts-web-file-names="CustomLanguages/Parsing/NodeTypes/CreatingNodeTypes.html"/>
+            </toc-element>
+            <toc-element id="Parsing_Lexing.md" toc-title="Lexing">
+                <toc-element id="Tao.md"
+                             toc-title="The Tao of Writing a Lexer"
+                             accepts-web-file-names="CustomLanguages/Parsing/Lexing/Tao.html"/>
+                <toc-element id="LexerFactories.md"
+                             toc-title="Lexer Factories"
+                             accepts-web-file-names="CustomLanguages/Parsing/Lexing/LexerFactories.html"/>
+                <toc-element id="TextBuffers.md"
+                             toc-title="Text Buffers"
+                             accepts-web-file-names="CustomLanguages/Parsing/Lexing/TextBuffers.html"/>
+                <toc-element id="ImplementingLexers.md"
+                             toc-title="Implementing a Lexer"
+                             accepts-web-file-names="CustomLanguages/Parsing/Lexing/ImplementingLexers.html"/>
+                <toc-element id="CsLex.md"
+                             toc-title="Using CsLex"
+                             accepts-web-file-names="CustomLanguages/Parsing/Lexing/CsLex.html"/>
+                <toc-element id="LexerUtil.md"
+                             toc-title="Lexer Utility Methods"
+                             accepts-web-file-names="CustomLanguages/Parsing/Lexing/LexerUtil.html"/>
+                <toc-element id="UtilityClasses.md"
+                             toc-title="Lexer Utility Classes"
+                             accepts-web-file-names="CustomLanguages/Parsing/Lexing/UtilityClasses.html"/>
+                <toc-element id="FilteringLexers.md"
+                             toc-title="Filtering Lexers"
+                             accepts-web-file-names="CustomLanguages/Parsing/Lexing/FilteringLexers.html"/>
+                <toc-element id="CachingLexers.md"
+                             toc-title="Caching Lexers"
+                             accepts-web-file-names="CustomLanguages/Parsing/Lexing/CachingLexers.html"/>
+                <toc-element id="Lexing_Testing.md"
+                             toc-title="Testing"
+                />
+            </toc-element>
+            <toc-element id="Parsing.md"
+                         toc-title="Parsing"
+                         accepts-web-file-names="CustomLanguages/Parsing/Parsing.html">
+                <toc-element toc-title="PsiGen and .psi Files"/>
+                <toc-element toc-title="TreeBuilder"/>
+                <toc-element id="Parsing_Testing.md"
+                             toc-title="Testing"
+                />
+            </toc-element>
+            <toc-element toc-title="Extending Existing Languages"/>
+            <toc-element toc-title="Incremental Parsing"/>
+        </toc-element>
+        <toc-element toc-title="Creating Declared Elements"/>
+        <toc-element toc-title="Language Specific Features"/>
+        <toc-element id="HtmlLike.md"
+                     toc-title="HTML-Like Languages"
+                     accepts-web-file-names="CustomLanguages/HtmlLike.html">
+            <toc-element toc-title="Registering HTML-Like Languages"/>
+            <toc-element toc-title="HTML Token Node Types"/>
+            <toc-element id="HtmlLike_Lexing.md"
+                         toc-title="Lexing HTML-Like Languages"
+            />
+            <toc-element toc-title="Parsing HTML-Like Languages"/>
+            <toc-element id="ExtendingHtml.md"
+                         toc-title="Extending standard HTML"
+                         accepts-web-file-names="CustomLanguages/HtmlLike/ExtendingHtml.html"/>
+        </toc-element>
+    </toc-element>
+    <toc-element toc-title="Misc Topics">
+        <toc-element id="IconTypes.md"
+                     accepts-web-file-names="Platform/Shell/Icons/IconTypes.html"/>
+        <toc-element id="Theming_Icons.md"/>
+        <toc-element id="QuickDoc_Testing.md"/>
+        <toc-element id="ConsumingIcons.md"
+                     accepts-web-file-names="Platform/Shell/Icons/ConsumingIcons.html"/>
+        <toc-element id="TreeNodes.md"
+                     accepts-web-file-names="PSI/Reference/Xml/TreeNodes.html"/>
+        <toc-element id="CreatingCompiledIcons.md"
+                     accepts-web-file-names="Platform/Shell/Icons/CreatingCompiledIcons.html"/>
+        <toc-element id="ElementFactories.md"
+                     accepts-web-file-names="PSI/Reference/Xml/ElementFactories.html"/>
+        <toc-element id="Zones_Troubleshooting.md"/>
+        <toc-element id="Utils.md" accepts-web-file-names="PSI/Reference/Xml/Utils.html"/>
+        <toc-element id="ImplementingPresenter.md"
+                     accepts-web-file-names="Features/QuickDoc/ImplementingPresenter.html"/>
+        <toc-element id="HelperClasses.md"
+                     accepts-web-file-names="Features/QuickDoc/HelperClasses.html"/>
+        <toc-element id="ExternalAnnotations_Testing.md"/>
+        <toc-element id="ToolWindows.md"
+                     accepts-web-file-names="Platform/Shell/ToolWindows.html"/>
+        <toc-element id="PSI_PerLanguageComponents.md"/>
+        <toc-element id="QuickDoc_Overview.md"/>
+        <toc-element id="HostIdentifiers.md"
+                     accepts-web-file-names="Extensions/Deployment/InstallProcess/HostIdentifiers.html"/>
+        <toc-element id="ExistingProviders.md"
+                     accepts-web-file-names="Features/QuickDoc/ExistingProviders.html"/>
+        <toc-element id="Xml_Overview.md"/>
+        <toc-element id="Manipulation.md"
+                     accepts-web-file-names="PSI/Reference/Xml/Manipulation.html"/>
+        <toc-element id="Shell_Icons.md"/>
+        <toc-element id="Licensing.md"
+                     accepts-web-file-names="Platform/Zones/Licensing.html"/>
+        <toc-element id="Dependencies.md"
+                     accepts-web-file-names="Extensions/Deployment/InstallProcess/Dependencies.html"/>
+        <toc-element id="CustomIconTypes.md"
+                     accepts-web-file-names="Platform/Shell/Icons/CustomIconTypes.html"/>
+        <toc-element id="CustomHives.md"
+                     accepts-web-file-names="Platform/VisualStudio/CustomHives.html"/>
+        <toc-element id="ImplementingProvider.md"
+                     accepts-web-file-names="Features/QuickDoc/ImplementingProvider.html"/>
+        <toc-element id="TreeNodesDTD.md"
+                     accepts-web-file-names="PSI/Reference/Xml/TreeNodesDTD.html"/>
+        <toc-element id="CodeCleanup.md"
+                     accepts-web-file-names="Features/Tools/CodeCleanup.html"/>
+        <toc-element id="Navigators.md"
+                     accepts-web-file-names="PSI/Reference/Xml/Navigators.html"/>
+    </toc-element>
+</product-profile>

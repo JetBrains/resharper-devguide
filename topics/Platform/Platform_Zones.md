@@ -1,0 +1,17 @@
+[//]: # (title: Zones)
+
+Zones provide logical dependency management for features. Code can declare what Zones it requires and exports, enabling tooling to ensure correct layering, packaging and deployment. Features, implemented as Zones, can be independently licensed and disabled. Products can be created by combining Features, and multiple Products can be efficiently installed by sharing overlapping Features.
+
+## Background
+
+Zones were introduced with ReSharper 9.0 to enable a shared binary distribution of products built on the ReSharper platform.
+
+Previously, ReSharper, dotCover, dotTrace, etc. shared a common codebase as source code. This allowed for standalone installations of the products, even allowing for different versions of the common codebase to be installed together. However, this approach causes increased resource usage when multiple products are installed in Visual Studio. The de-coupling also doesn't solve the problem of co-ordinated release schedules for integration points (e.g. dotCover needs to be updated to integrate with a new version of ReSharper's test runner).
+
+Clearly, a better strategy is to share a binary implementation of the common codebase. However, this introduces complexity when installing multiple products. Each product requires a different feature set, and it is the intersection of all features from all products that should be installed.
+
+One approach would be to install the superset of all referenced assemblies, but this can force assembly packaging decisions based on product usage, rather than for architectural reasons. For example, dotCover might require NUnit test discovery, but not the analysis and highlights for test attribute usage. Or the NUnit feature supports both C# and Visual Basic, but the user has only purchased support for C# in ReSharper. These scenarios might force the NUnit support to ship in three (or more!) separate assemblies. Trying to split assemblies based on product feature intersection would produce a combinatorial explosion of smaller assemblies, increasing maintenance costs and runtime overhead.
+
+Zones are an abstraction designed to manage this complexity by providing logical packaging based on feature sets. A component, such as Code Coverage for Unit Tests depends on the Unit Test Runner Zone being available. As long as the Unit Test Runner Zone is active, the Code Coverage for Unit Tests feature is active, and the unit test runner can now display code coverage. If the Unit Test Runner Zone isn't installed, the Code Coverage for Unit Tests feature isn't activated, and doesn't get loaded. Furthermore, if the Unit Test Runner Zone is installed, but not activated (perhaps it's not licensed), the Code Coverage for Unit Tests feature isn't activated. This is very powerful - the Unit Test Runner Zone can be available on disk, but not available to use (because the owning product isn't installed, or the feature isn't licensed). This provides the logical separation of feature sets from assembly packaging.
+
+This is implemented on top of the Component Model. Only components that are parts of installed, licensed and active Zones are enabled. Any component that isn't part of a Zone that is installed, licensed and active is not available to the application. This decouples the product from the physical packaging of components into assemblies, and allows decisions on shipping and packaging to be made for architectural and layering reasons, rather than trying to satisfy combinations of product boundaries.

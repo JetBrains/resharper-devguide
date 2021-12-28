@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE root
+        SYSTEM "https://resources.jetbrains.com/stardust/build-script.dtd">
+<root>
+    <builds>
+        <product id="rsd" master="project.ihp" family="dotnet">
+            <artifact type="web2" name="${artifact.name}" platform="primary" local-update="true"/>
+        </product>
+    </builds>
+</root>

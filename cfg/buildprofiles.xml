@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<buildprofiles>
+    <variables>
+        <generate-only-default-anchors>true</generate-only-default-anchors>
+        <web-root>https://www.jetbrains.com/help</web-root>
+        <download-page/>
+        <config-disqus-id>jetbrains</config-disqus-id>
+        <config-disqus-show>true</config-disqus-show>
+        <config-feedback-enabled>true</config-feedback-enabled>
+        <config-feedback-widget>true</config-feedback-widget>
+        <config-feedback-support>true</config-feedback-support>
+        <config-feedback-url>https://forms-service.jetbrains.com/feedback</config-feedback-url>
+        <config-webmaster>webmaster@jetbrains.com</config-webmaster>
+        <config-sideblocks>true</config-sideblocks>
+        <config-search-scopes-provider>https://www.jetbrains.com/search/json/</config-search-scopes-provider>
+    </variables>
+    <build-profile product="rsd"/>
+</buildprofiles>
