@@ -11,14 +11,6 @@ Content contributions to the ReSharper Platform SDK are welcome.
 
 Please download or clone the open-source SDK project from [GitHub](https://github.com/JetBrains/resharper-devguide), make additions or changes, and submit a pull request.
 
-Before creating or altering content, please consult these guides:
-
-* [SDK Documentation Style Guide](sdk_style.md).
-  This guide describes documentation conventions in terms of Markdown syntax.
-* [SDK Code Sample Guidelines](sdk_code_guidelines.md).
-  Conventions for code sample organization, project settings, and naming conventions are described in this document.
-  Always test code changes by building and testing the SDK code sample.
-
 > Currently, building the site locally is not possible.
 >
 {type="note"}
