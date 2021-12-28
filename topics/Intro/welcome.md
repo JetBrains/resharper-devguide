@@ -2,7 +2,10 @@
 
 <!-- Copyright 2000-2021 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
 
-[![official JetBrains project](https://jb.gg/badges/official-flat-square.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub) [![Twitter Follow](https://img.shields.io/twitter/follow/JBPlatform?style=flat-square&logo=twitter)](https://twitter.com/JBPlatform/) [![Slack](https://img.shields.io/badge/Slack-%23intellij--platform-blue?style=flat-square&logo=slack)](https://plugins.jetbrains.com/slack)
+[![Official JetBrains Project](https://jb.gg/badges/official-flat-square.svg)](https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub)
+[![Join #resharper-platform on Slack](https://img.shields.io/badge/Slack-%23resharper--platform-blue?style=flat-square&logo=slack)](https://plugins.jetbrains.com/slack)
+[![Follow ReSharper on Twitter](https://img.shields.io/twitter/follow/resharper?style=flat-square&logo=twitter&label=Follow%20@resharper)](https://twitter.com/resharper/)
+[![Follow JetBrains Rider on Twitter](https://img.shields.io/twitter/follow/jetbrainsrider?style=flat-square&logo=twitter&label=Follow%20@JetBrainsRider)](https://twitter.com/JetBrainsRider/)
 
 Welcome to the IntelliJ Platform SDK - the primary source of documentation for extending the IntelliJ Platform by creating plugins, custom language support, or building a custom IDE.
 
