@@ -51,20 +51,6 @@ More webinars are available [here](useful_links.md#webinars).
 
 Please see [Getting Help](GettingHelp.md) if you encounter bugs in this guide or require help with missing content.
 
-## Updates
-
-> Gradle IntelliJ Plugin 1.x is now available, please update your build scripts [![GitHub Release](https://img.shields.io/github/release/jetbrains/gradle-intellij-plugin.svg?style=flat-square)](https://github.com/jetbrains/gradle-intellij-plugin/releases)
->
-> [What's New & Upgrade Instructions](https://lp.jetbrains.com/gradle-intellij-plugin)
->
-{type="note"}
-
-See [Content Updates](content_updates.md) for the latest changes.
-Follow [JBPlatform](https://twitter.com/JBPlatform/) on Twitter and visit [JetBrains Platform Blog](https://blog.jetbrains.com/platform/) for the latest announcements.
-
-Upgrading your plugin to the latest platform release? Make sure to check [Incompatible Changes](api_changes_list.md) as well as [Notable Changes and Features](api_notable.md).
-Verify your plugin follows guidelines from [Dynamic Plugins](dynamic_plugins.md) to allow installing/updating without IDE restarts.
-
 ## Contribute
 
 This guide is Open Source and licensed under Apache 2.0.
