@@ -54,4 +54,4 @@ Please see [Getting Help](getting-help.md) if you encounter bugs in this guide o
 ## Contribute
 
 This guide is Open Source and licensed under Apache 2.0.
-[Contributions](resharper-devguide_CONTRIBUTING.md) are very welcome.
+[Contributions](_CONTRIBUTING.md) are very welcome.

@@ -17,12 +17,12 @@
         <toc-element id="KeyTopics.md"
                      toc-title="Key Topics"
                      accepts-web-file-names="Intro/KeyTopics.html"/>
-        <toc-element id="resharper-devguide_CONTRIBUTING.md"
+        <toc-element id="_CONTRIBUTING.md"
                      toc-title="Contributing to the SDK"/>
         <toc-element id="getting-help.md"
                      toc-title="Getting Help"
                      accepts-web-file-names="Intro/GettingHelp.html"/>
-        <toc-element id="resharper-devguide_CODE_OF_CONDUCT.md"/>
+        <toc-element id="_CODE_OF_CONDUCT.md"/>
         <toc-element toc-title="Recently Updated"/>
     </toc-element>
     <toc-element id="HowTo_HowTo.md" toc-title="How To">
