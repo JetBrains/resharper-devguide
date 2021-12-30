@@ -9,7 +9,7 @@ To view the guide, please visit: [https://www.jetbrains.com/help/resharper/sdk/]
 * [**The ReSharper Platform**](Intro/ReSharperPlatform.md)
 * [**About this Guide**](Intro/About.md)
 * [**Key Topics**](Intro/KeyTopics.md)
-* [**Getting Help**](Intro/GettingHelp.md)
+* [**Getting Help**](Intro/getting-help.md)
 
 ## Open Source
 

@@ -11,7 +11,7 @@ To view the guide, please visit: [https://www.jetbrains.com/help/resharper/sdk/]
 * [**The ReSharper Platform**](ReSharperPlatform.md)
 * [**About this Guide**](About.md)
 * [**Key Topics**](KeyTopics.md)
-* [**Getting Help**](GettingHelp.md)
+* [**Getting Help**](getting-help.md)
 
 ## Open Source
 

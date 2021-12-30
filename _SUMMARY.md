@@ -4,7 +4,7 @@
 * [The ReSharper Platform](Intro/ReSharperPlatform.md)
 * [About This Guide](Intro/About.md)
 * [Key Topics](Intro/KeyTopics.md)
-* [Getting Help](Intro/GettingHelp.md)
+* [Getting Help](Intro/getting-help.md)
 * [Recently Updated](recently_updated.md)
 
 ## How To

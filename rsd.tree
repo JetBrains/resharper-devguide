@@ -19,7 +19,7 @@
                      accepts-web-file-names="Intro/KeyTopics.html"/>
         <toc-element id="resharper-devguide_CONTRIBUTING.md"
                      toc-title="Contributing to the SDK"/>
-        <toc-element id="GettingHelp.md"
+        <toc-element id="getting-help.md"
                      toc-title="Getting Help"
                      accepts-web-file-names="Intro/GettingHelp.html"/>
         <toc-element id="resharper-devguide_CODE_OF_CONDUCT.md"/>
