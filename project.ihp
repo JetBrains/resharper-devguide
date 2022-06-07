@@ -6,5 +6,5 @@
     <module name="rs-dev"/>
     <images dir="images" web-path="https://resources.jetbrains.com/help/img/rs-sdk/"/>
     <vars src="v.list"/>
-    <product id="resharper/sdk" src="rsd.tree" web-path="/help/rs-sdk/"/>
+    <product id="resharper/sdk" src="rsd.tree" web-path="/rs-sdk/"/>
 </ihp>
