@@ -10,7 +10,7 @@ If you need a functionality that is specific to your project domain, conventions
 Before you start to develop a plugin, define your requirements and verify if they can be covered with any of the alternatives described below.
 Consider implementing an actual plugin only when the described solutions are insufficient in your case and there is a significant number of developers who can benefit from it.
 
-## Structural Search and Replace
+## Structural Search and Replace (SSR)
 
 > As of now, Rider only reads existing SSR patterns but does not provide a UI to add or change existing patterns. Feel free to subscribe to the [tracking issue](https://youtrack.jetbrains.com/issue/RIDER-11489).
 >
@@ -27,27 +27,28 @@ Once SSR inspections are created and configured, they can be shared with other t
 SSR inspections can be created only for languages providing SSR support.
 To verify if a given language supports SSR, invoke the <menupath>ReSharper | Find | Search with Pattern...</menupath> action, and check if it is present in the <control>Language</control> select list.
 
+## Code-Based SSR Patterns
+
+As an alternative to SSR patterns stored in [settings files](https://www.jetbrains.com/help/resharper/Sharing_Configuration_Options.html), you can define search and replace patterns right in your codebase using [`CodeTemplateAttribute`](https://www.jetbrains.com/help/rider/Reference__Code_Annotation_Attributes.html#CodeTemplateAttribute) from [`JetBrains.Annotations`](https://www.nuget.org/packages/JetBrains.Annotations/) NuGet package. 
+
+The main use case for `[CodeTemplate]` is not notify API users about changes in the API. As the API author, you can mark an obsolete type or member with the `[CodeTemplate]` attribute, where you can specify a search pattern to match the old API and a replacement pattern for it. The attribute will act as a custom code inspection with the corresponding quick-fix.
+
+```csharp
+// For example, 'IsTrue()' ia a deprecated API, its usages look like: 'MyAssert.IsTrue(args.Length > 0);'
+// The new API usages look like: 'MyAssert.That(args.Length > 0, Is.True);'
+// The annotation below will highlight old API usages and suggest replacing them with the new API
+[CodeTemplate(
+  searchTemplate: "$member$($expr$)",
+  Message = "The API is deprecated, use 'MyAssert.That' instead",
+  ReplaceTemplate = "MyAssert.That($expr$, Is.True)",
+  ReplaceMessage = "Convert to 'MyAssert.That'")]
+public static void IsTrue(bool condition)
+{
+  if (!condition)
+    throw new Exception("Assertion failed");
+}
+```
+
 ## Source Templates
 
 [Source Templates](https://www.jetbrains.com/help/resharper/Source_Templates.html) are an alternative to configuring [Live Templates](https://www.jetbrains.com/help/resharper/Creating_a_Live_Template.html) or implementing [Postfix Templates](https://www.jetbrains.com/help/resharper/Postfix_Templates.html). Using the [`JetBrains.Annotations`](https://www.nuget.org/packages/JetBrains.Annotations/) NuGet package, they can be defined right inside your solution with the `SourceTemplateAttribute`. Furthermore, there is a `MacroAttribute` that can reference built-in macros (exposed through the Live Template editor). In contrast to Postfix Templates, Source Templates are less powerful, as there are no semantics that can be considered.
-
-## Code Templates
-
-As an alternative to SSR patterns stored in [settings files](https://www.jetbrains.com/help/resharper/Sharing_Configuration_Options.html), you can also define Code Templates right in your codebase using the [`JetBrains.Annotations`](https://www.nuget.org/packages/JetBrains.Annotations/) NuGet package. In contrast to SSR patterns, Code Templates are defined as pure strings and therefore, there is no UI guidance when writing them. Though, once the `JetBrains.Annotations` package is referenced, you can take a look at the comprehensive XML documentation for the `CodeTemplateAttribute`.
-
-```csharp
-namespace MyNamespace
-{
-    class Customer
-    {
-        public List<string> Orders => null;
-
-        [CodeTemplate(
-            searchTemplate: "$customer{Expression,'MyNamespace.Customer'}$.GetOrders()",
-            Message = "Use property instead of the method call",
-            ReplaceMessage = "Replace with property",
-            ReplaceTemplate = "$customer$.Orders")]
-        public List<string> GetOrders() => Orders;
-    }
-}
-```
