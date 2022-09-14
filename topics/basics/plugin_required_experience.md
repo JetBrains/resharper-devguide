@@ -12,8 +12,8 @@ Developing a plugin for the ReSharper Platform requires knowledge and experience
 Please keep in mind that the ReSharper Platform is a large project, and while we are doing our best to cover as many topics as possible, it is not possible to include every feature and use-case in the documentation.
 Developing a plugin will sometimes require digging into [sample projects](https://github.com/JetBrains/resharper-rider-plugin/tree/master/samples), analyzing [other open-source plugins](https://jb.gg/ipe), or [getting help](../Intro/getting-help.md) on our tracked platforms.
 
-It's highly recommended to get familiar with the [](explore_api.md) section before you start the plugin implementation.
-
+[//]: # (TODO)
+[//]: # (It's highly recommended to get familiar with the []&#40;explore_api.md&#41; section before you start the plugin implementation.)
 
 > In some cases, implementing an actual ReSharper Platform plugin might not be necessary, as [alternative solutions](plugin_alternatives.md) exist.
 >
