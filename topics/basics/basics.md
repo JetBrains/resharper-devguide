@@ -1,0 +1,10 @@
+[//]: # (title: Quick Start Guide)
+
+<!-- Copyright 2000-2022 JetBrains s.r.o. and contributors. Use of this source code is governed by the Apache 2.0 license. -->
+
+This section covers the basics of working with the ReSharper Platform.
+It will familiarize you with the working environment, project structure, and frequently used API components.
+
+* [](plugin_alternatives.md)
+* [](plugin_required_experience.md)
+* [](types_of_plugins.md)
