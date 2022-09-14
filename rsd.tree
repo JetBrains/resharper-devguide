@@ -107,9 +107,6 @@
                          accepts-web-file-names="Extensions/PlatformVersioning.html,Intro/PlatformVersioning.html"
                          toc-title="Platform Versioning"/>
         </toc-element>
-        <toc-element id="WhatsNew.md"
-                     accepts-web-file-names="Extensions/WhatsNew.html,Intro/WhatsNew.html"
-                     toc-title="What's New?"/>
         <toc-element id="DeclarativeExtensions.md"
                      accepts-web-file-names="Extensions/DeclarativeExtensions.html,Intro/DeclarativeExtensions.html"
                      toc-title="Declarative Extensions">

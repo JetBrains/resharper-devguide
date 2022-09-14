@@ -37,7 +37,7 @@ The specific version number can be found by looking at the package history on th
  >
  {type="note"}
 
-An existing plugin project can be updated to the latest SDK by simply updating the `JetBrains.ReSharper.SDK` package. Changes to the API are to be expected (see the guide on [Platform Versioning](PlatformVersioning.md) for more details), and significant changes are called out in the [What's New?](WhatsNew.md) guide.
+An existing plugin project can be updated to the latest SDK by simply updating the `JetBrains.ReSharper.SDK` package.
 
 If an existing plugin project is required to stay at a particular version, rather than be upgraded to a new version, you can specify the required version in the `packages.config` file, by setting the `allowedVersions` attribute to the required version:
 

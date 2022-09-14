@@ -10,8 +10,6 @@ The ReSharper Platform is very large, and very capable, and its size can initial
 * [Component Model](Platform_ComponentModel.md) - ReSharper is very much a component based application. All services and components are exported and must be imported in order to be consumed. This allows for a very loose coupled architecture, and is instrumental to making ReSharper very extensible. To get the most out of it requires some understanding of how the component model works, and how it relates to lifetime management.
 * [Zones](Platform_Zones.md) - the ReSharper Platform's shared binary distribution raises issues about shipping mechanisms (i.e. how to ship a component that is used by one product configuration but not another). Zones manage this by partitioning components into logical feature sets. Extension providers **must** understand how this works in order to correctly import and export components.
 
-Also, there is a [migration guide](WhatsNew.md) for existing extension authors.
-
 ## The code model
 
 ReSharper's code model is called the PSI - the Program Structure Interface. The key topics here are:

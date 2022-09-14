@@ -51,7 +51,6 @@
     * [Tools](Extensions/Tools.md)
     * [Internal mode](Extensions/InternalMode.md)
     * [Platform Versioning](Extensions/PlatformVersioning.md)
-* [What's New?](Extensions/WhatsNew.md)
 * [Declarative Extensions](Extensions/DeclarativeExtensions.md)
     * Live Templates
     * Structural Search and Replace Patterns
