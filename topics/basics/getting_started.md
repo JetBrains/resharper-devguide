@@ -2,15 +2,15 @@
 
 <!-- Copyright 2000-2022 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
 
-This documentation section will help you get started with developing ReSharper and Rider plugins.
+This documentation section will help you get started with developing ReSharper Platform plugins.
 You can use either [JetBrains Rider](https://www.jetbrains.com/rider/download) or [Microsoft Visual Studio](https://visualstudio.microsoft.com/downloads/) (with or without [ReSharper](https://www.jetbrains.com/resharper/download/)) as your IDE (it is highly recommended to use the latest available version).
 Please refer to the [Rider Web Help](https://www.jetbrains.com/help/rider) or [ReSharper Web Help](https://www.jetbrains.com/help/resharper) to become more familiar with the products.
 
-> In some cases, implementing an actual ReSharper or Rider plugin might not be necessary, as [alternative solutions](plugin_alternatives.md) exist.
+> In some cases, implementing an actual ReSharper Platform plugin might not be necessary, as [alternative solutions](plugin_alternatives.md) exist.
 >
 {type="tip"}
 
-## Creating ReSharper and Rider Plugins
+## Creating Plugins From Template
 
 Creating new ReSharper and Rider plugin projects is performed using the dedicated `dotnet new` template.
 The generator creates all the necessary project files based on a few template inputs.
@@ -106,24 +106,31 @@ MyPlugin
 * The [Run/debug configurations](https://www.jetbrains.com/help/rider/Run_Debug_Configuration.html) for Rider/IntelliJ IDEA (<path>.run</path> directory) and the <path>runVisualStudio.ps1</path> for PowerShell (`--resharper-only` template extraction) to launch the plugin in an experimental instance of Rider or Visual Studio with ReSharper.
 * The <path>src/dotnet</path> directory with basic project files for ReSharper and Rider including a test project. The <path>Directory.Build.props</path> defines all common NuGet references for both.
 * The <path>README.md</path> and <path>CHANGELOG.md</path> files for documentation about the plugin. The first section of the <path>CHANGELOG.md</path> is automatically included in the plugin metadata. The <path>README.md</path> has predefined [Shields.IO](https://shields.io/) badges with `RIDER_PLUGIN_ID` and `RESHARPER_PLUGIN_ID` as placeholders that can be updated after the first deployment.
+* The <path>.github/workflow</path> directory (requires `--github-actions` during template extraction) with predefined workflows for a continuous build (including `Build` and `Test`) and a deployment build.
 
-## Running ReSharper and Rider Plugins
+## Running Plugins
 
 A plugin generated from the template can be run through one of the [Run/debug configurations](https://www.jetbrains.com/help/rider/Run_Debug_Configuration.html) or from the command-line on Windows, macOS, and Linux systems.
 
 ### Running from the Command-Line
 
-On Windows systems, you can run the plugin in Rider or Visual Studio with ReSharper.
+#### Windows
+
+On Windows, you can run the plugin in Rider by calling:
 
 ```bash
-// Rider
-.\gradlew.bat 
+.\gradlew.bat
+```
 
-// ReSharper
+To launch the ReSharper plugin inside Visual Studio, call:
+
+```powershell
 .\runVisualStudio.ps1
 ```
 
-For macOS/Linux, you can run the plugin in Rider:
+#### macOS & Linux
+
+On macOS & Linux systems, you can run the plugin in Rider:
 
 ```bash
 ./gradlew :runIde
@@ -139,9 +146,9 @@ The included [run configurations](https://www.jetbrains.com/help/rider/Run_Debug
 
 ![Plugin Run Configurations](run-configurations.png)
 
-If your plugin has a frontend part, you will see a unified `Rider` configuration in IntelliJ IDEA that works cross-platform.
+If your plugin has a frontend part, you will see a `Rider` configuration in IntelliJ IDEA as well that works cross-platform.
 
-## Publishing ReSharper and Rider Plugins
+## Publishing Plugins
 
 - Commands
   - `./publishPlugin.ps1 -Version <Version> -ApiKey <ApiKey> [-Configuration <Debug|Release>]`
