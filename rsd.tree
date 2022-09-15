@@ -117,32 +117,6 @@
             <toc-element toc-title="Structural Search and Replace Patterns"/>
             <toc-element toc-title="External Annotations"/>
         </toc-element>
-        <toc-element id="CompiledExtensions.md"
-                     accepts-web-file-names="Extensions/CompiledExtensions.html,Intro/CompiledExtensions.html"
-                     toc-title="Compiled Extensions (Plugins)">
-            <toc-element id="ProjectSetup.md"
-                         accepts-web-file-names="Extensions/Plugins/ProjectSetup.html,Plugins/ProjectSetup.html"
-                         toc-title="Project Setup">
-                <toc-element id="CreatingProjects.md"
-                             toc-title="Creating Projects"
-                             accepts-web-file-names="Extensions/Plugins/ProjectSetup/CreatingProjects.html"/>
-                <toc-element id="NuGetReferences.md"
-                             toc-title="NuGet References"
-                             accepts-web-file-names="Extensions/Plugins/ProjectSetup/NuGetReferences.html"/>
-                <toc-element id="InitialInstallation.md"
-                             toc-title="Initial Installation"
-                             accepts-web-file-names="Extensions/Plugins/ProjectSetup/InitialInstallation.html"/>
-                <toc-element id="ProjectSetup_CopyOnBuild.md"
-                             toc-title="Copy Plugin on Build"
-                />
-            </toc-element>
-            <toc-element id="Debugging.md"
-                         accepts-web-file-names="Extensions/Plugins/Debugging.html,Plugins/Debugging.html"
-                         toc-title="Debugging"/>
-            <toc-element id="KnownIssues.md"
-                         accepts-web-file-names="Extensions/KnownIssues.html,Intro/KnownIssues.html"
-                         toc-title="Known Issues"/>
-        </toc-element>
     </toc-element>
     <toc-element toc-title="Part II - Architectural Overview">
         <toc-element id="Architecture_Overview.md"
