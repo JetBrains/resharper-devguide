@@ -97,25 +97,6 @@
         </toc-element>
         <toc-element id="internal_mode.md" toc-title="Internal mode" accepts-web-file-names="Extensions/InternalMode.html,Intro/InternalMode.html"/>
     </toc-element>
-    <toc-element toc-title="Part I - Extending the ReSharper Platform">
-        <toc-element id="GettingStarted.md"
-                     accepts-web-file-names="Extensions/GettingStarted.html,Intro/GettingStarted.html"
-                     toc-title="Getting Started">
-            <toc-element id="Tools.md"
-                         accepts-web-file-names="Extensions/Tools.html,Intro/Tools.html"
-                         toc-title="Tools"/>
-            <toc-element id="PlatformVersioning.md"
-                         accepts-web-file-names="Extensions/PlatformVersioning.html,Intro/PlatformVersioning.html"
-                         toc-title="Platform Versioning"/>
-        </toc-element>
-        <toc-element id="DeclarativeExtensions.md"
-                     accepts-web-file-names="Extensions/DeclarativeExtensions.html,Intro/DeclarativeExtensions.html"
-                     toc-title="Declarative Extensions">
-            <toc-element toc-title="Live Templates"/>
-            <toc-element toc-title="Structural Search and Replace Patterns"/>
-            <toc-element toc-title="External Annotations"/>
-        </toc-element>
-    </toc-element>
     <toc-element toc-title="Part II - Architectural Overview">
         <toc-element id="Architecture_Overview.md"
                      toc-title="Overview"
