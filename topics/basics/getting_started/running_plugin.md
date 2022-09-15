@@ -24,13 +24,13 @@ From the root directory, you can run your plugin inside ReSharper and Rider from
 
 <tab title="Rider (Gradle)" group-key="gradle">
 
-To launch Rider on Windows, you can start the `gradlew.bat` script:
+To launch Rider on Windows, you can run the `gradlew.bat` script as follows:
 
 ```bash
 .\gradlew.bat :runIde
 ```
 
-To launch Rider on macOS or Linux, you can start the `gradlew` script:
+To launch Rider on macOS or Linux, you can run the `gradlew` script as follows:
 
 ```bash
 ./gradlew :runIde
@@ -40,7 +40,7 @@ To launch Rider on macOS or Linux, you can start the `gradlew` script:
 
 <tab title="ReSharper (PowerShell)" group-key="powershell">
 
-To launch ReSharper in an experimental Visual Studio instance, you can start the `runVisualStudio.ps1` script:
+To launch ReSharper in an experimental Visual Studio instance, you can run the `runVisualStudio.ps1` script:
 
 ```powershell
 .\runVisualStudio.ps1
