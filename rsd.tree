@@ -106,7 +106,7 @@
         <toc-element toc-title="Features"/>
         <toc-element toc-title="Products"/>
     </toc-element>
-    <toc-element toc-title="Part III - Platform">
+    <toc-element toc-title="Part II - Platform">
         <toc-element id="Logging.md"
                      toc-title="Logging"
                      accepts-web-file-names="Platform/Logging.html">
@@ -182,13 +182,13 @@
             <toc-element toc-title="Util"/>
         </toc-element>
     </toc-element>
-    <toc-element toc-title="Part IV - Project Model">
+    <toc-element toc-title="Part III - Project Model">
         <toc-element toc-title="Overview"/>
         <toc-element toc-title="Change Manager"/>
         <toc-element toc-title="MSBuild Integration"/>
         <toc-element toc-title="Project Files"/>
     </toc-element>
-    <toc-element toc-title="Part V - PSI">
+    <toc-element toc-title="Part IV - PSI">
         <toc-element id="PSI.md" toc-title="Overview"/>
         <toc-element toc-title="PSI Languages"/>
         <toc-element toc-title="Files and Modules"/>
@@ -266,7 +266,7 @@
         <toc-element id="PSI_Icons.md" toc-title="PSI Icons"/>
         <toc-element toc-title="PSI Implementations Reference"/>
     </toc-element>
-    <toc-element toc-title="Part VI - Features">
+    <toc-element toc-title="Part V - Features">
         <toc-element id="Analysis.md"
                      toc-title="Analysis"
                      accepts-web-file-names="Features/Analysis.html">
@@ -378,7 +378,7 @@
                      toc-title="Working with XML-like files"
                      accepts-web-file-names="Features/XmlLike.html"/>
     </toc-element>
-    <toc-element id="Plugins_Testing.md" toc-title="Part VI - Testing">
+    <toc-element toc-title="Part VI - Testing" id="Plugins_Testing.md">
         <toc-element id="ProjectStructure.md"
                      toc-title="Project Structure"
                      accepts-web-file-names="Extensions/Plugins/Testing/ProjectStructure.html"/>
@@ -404,17 +404,7 @@
         <toc-element toc-title="Utility Classes"/>
         <toc-element toc-title="Reference"/>
     </toc-element>
-    <toc-element toc-title="Part VII - Products">
-        <toc-element id="Rider.md"
-                     toc-title="Rider"
-                     accepts-web-file-names="Products/Rider.html"/>
-        <toc-element toc-title="dotPeek"/>
-        <toc-element id="InspectCode.md"
-                     toc-title="InspectCode"
-                     accepts-web-file-names="Products/InspectCode.html"/>
-        <toc-element toc-title="Custom products"/>
-    </toc-element>
-    <toc-element toc-title="Part VIII - Custom languages">
+    <toc-element toc-title="Part VII - Custom languages">
         <toc-element id="CustomLanguages_Overview.md"
                      toc-title="Overview"
         />
@@ -519,6 +509,16 @@
                          toc-title="Extending standard HTML"
                          accepts-web-file-names="CustomLanguages/HtmlLike/ExtendingHtml.html"/>
         </toc-element>
+    </toc-element>
+    <toc-element toc-title="Part VIII - Product Specific">
+        <toc-element id="Rider.md"
+                     toc-title="Rider"
+                     accepts-web-file-names="Products/Rider.html"/>
+        <toc-element toc-title="dotPeek"/>
+        <toc-element id="InspectCode.md"
+                     toc-title="InspectCode"
+                     accepts-web-file-names="Products/InspectCode.html"/>
+        <toc-element toc-title="Custom products"/>
     </toc-element>
     <toc-element toc-title="Misc Topics">
         <toc-element id="IconTypes.md"
