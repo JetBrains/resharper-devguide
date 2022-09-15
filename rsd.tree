@@ -23,7 +23,7 @@
                      toc-title="Getting Help"
                      accepts-web-file-names="Intro/GettingHelp.html"/>
         <toc-element id="_CODE_OF_CONDUCT.md"/>
-        <toc-element toc-title="Recently Updated"/>
+        <toc-element id="content_updates.md"/>
     </toc-element>
     <toc-element id="HowTo_HowTo.md" toc-title="How To">
         <toc-element accepts-web-file-names="HowTo/Start/Start.html" id="Start.md" toc-title="Start">
