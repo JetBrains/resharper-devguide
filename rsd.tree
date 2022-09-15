@@ -95,6 +95,7 @@
           <toc-element id="plugin_template.md" toc-title="Using .NET Template"/>
           <toc-element id="running_plugin.md"/>
         </toc-element>
+        <toc-element id="internal_mode.md" toc-title="Internal mode" accepts-web-file-names="Extensions/InternalMode.html,Intro/InternalMode.html"/>
     </toc-element>
     <toc-element toc-title="Part I - Extending the ReSharper Platform">
         <toc-element id="GettingStarted.md"
@@ -103,9 +104,6 @@
             <toc-element id="Tools.md"
                          accepts-web-file-names="Extensions/Tools.html,Intro/Tools.html"
                          toc-title="Tools"/>
-            <toc-element id="InternalMode.md"
-                         accepts-web-file-names="Extensions/InternalMode.html,Intro/InternalMode.html"
-                         toc-title="Internal mode"/>
             <toc-element id="PlatformVersioning.md"
                          accepts-web-file-names="Extensions/PlatformVersioning.html,Intro/PlatformVersioning.html"
                          toc-title="Platform Versioning"/>

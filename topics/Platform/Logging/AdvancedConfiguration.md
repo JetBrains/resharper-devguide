@@ -12,7 +12,7 @@ When running the ReSharper Platform in an [experimental instance of Visual Studi
  >
  {type="tip"}
 
-The best way to set up a log file is via the [Logging Options Page](Logging.md#logging-options-page) which is only visible when in [Internal Mode](InternalMode.md).
+The best way to set up a log file is via the [Logging Options Page](Logging.md#logging-options-page) which is only visible when in [Internal Mode](internal_mode.md).
 
 The file format is fairly straightforward:
 

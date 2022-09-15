@@ -2,7 +2,7 @@
 
 The ReSharper Platform provides a comprehensive set of logging features, such as logging levels and different log listeners. It can also be configured with different levels and listeners based on a log category, such as "JetBrains.DataFlow" for capturing log events from the DataFlow subsystem.
 
-There are two ways to enable logging, via the command line and via a config file. The command line options are much simpler, and can only control logging level and enable logging to a file. The config file provides much more power and can configure multiple listeners, as well as different configuration options per category. ReSharper even provides an Options page to configure logging, once [Internal Mode](InternalMode.md) is enabled.
+There are two ways to enable logging, via the command line and via a config file. The command line options are much simpler, and can only control logging level and enable logging to a file. The config file provides much more power and can configure multiple listeners, as well as different configuration options per category. ReSharper even provides an Options page to configure logging, once [Internal Mode](internal_mode.md) is enabled.
 
 ## Command line
 
@@ -45,7 +45,7 @@ By specifying a logging level, you will get all log events at that level and bel
 
 ## Logging options page
 
-The simplest way to create a file is to use the Logging options page when running in [Internal Mode](InternalMode.md). This page shows the current configuration of logging, based on the command line args, the currently created and active log files, and what appenders/listeners and loggers are active.
+The simplest way to create a file is to use the Logging options page when running in [Internal Mode](internal_mode.md). This page shows the current configuration of logging, based on the command line args, the currently created and active log files, and what appenders/listeners and loggers are active.
 
 <!-- TODO: Add screenshot -->
 
