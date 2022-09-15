@@ -171,34 +171,6 @@
                          accepts-web-file-names="Extensions/KnownIssues.html,Intro/KnownIssues.html"
                          toc-title="Known Issues"/>
         </toc-element>
-        <toc-element id="Extensions_Packaging.md"
-                     toc-title="Deployment"
-        >
-            <toc-element toc-title="Installing the ReSharper Platform"/>
-            <toc-element toc-title="Packaging Details"/>
-            <toc-element toc-title="Localisation"/>
-            <toc-element id="LocalInstallation.md"
-                         toc-title="Installing Locally"
-                         accepts-web-file-names="Extensions/Deployment/LocalInstallation.html">
-                <toc-element id="ExperimentalInstance.md"
-                             toc-title="Experimental Instances"
-                             accepts-web-file-names="Extensions/Deployment/LocalInstallation/ExperimentalInstance.html"/>
-                <toc-element id="LocalInstallation_Packaging.md"
-                             toc-title="Package the Extension"
-                />
-                <toc-element id="InstallCustomSource.md"
-                             toc-title="Install Local Copy"
-                             accepts-web-file-names="Extensions/Deployment/LocalInstallation/InstallCustomSource.html"/>
-                <toc-element id="LocalInstallation_CopyOnBuild.md"
-                             toc-title="Copy Plugin on Build"
-                />
-            </toc-element>
-            <toc-element id="Packaging8.md"
-                         toc-title="Supporting ReSharper 8"
-                         accepts-web-file-names="Extensions/Packaging8.html"/>
-        </toc-element>
-        <toc-element toc-title="Hints and Tips"/>
-        <toc-element toc-title="Best Practices"/>
     </toc-element>
     <toc-element toc-title="Part II - Architectural Overview">
         <toc-element id="Architecture_Overview.md"
@@ -621,8 +593,6 @@
                      accepts-web-file-names="Platform/Shell/ToolWindows.html"/>
         <toc-element id="PSI_PerLanguageComponents.md"/>
         <toc-element id="QuickDoc_Overview.md"/>
-        <toc-element id="HostIdentifiers.md"
-                     accepts-web-file-names="Extensions/Deployment/InstallProcess/HostIdentifiers.html"/>
         <toc-element id="ExistingProviders.md"
                      accepts-web-file-names="Features/QuickDoc/ExistingProviders.html"/>
         <toc-element id="Xml_Overview.md"/>
@@ -631,8 +601,6 @@
         <toc-element id="Shell_Icons.md"/>
         <toc-element id="Licensing.md"
                      accepts-web-file-names="Platform/Zones/Licensing.html"/>
-        <toc-element id="Dependencies.md"
-                     accepts-web-file-names="Extensions/Deployment/InstallProcess/Dependencies.html"/>
         <toc-element id="CustomIconTypes.md"
                      accepts-web-file-names="Platform/Shell/Icons/CustomIconTypes.html"/>
         <toc-element id="CustomHives.md"

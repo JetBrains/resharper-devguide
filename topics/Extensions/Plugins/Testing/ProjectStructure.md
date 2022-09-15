@@ -4,7 +4,7 @@ A test project is an [NUnit](http://nunit.org) based Class Library project, that
 
 The test project should also include a reference to the `JetBrains.ReSharper.SDK.Tests` NuGet package. This package takes a dependency on the `JetBrains.ReSharper.SDK` package, as well as the `NUnit` package. The `SDK.Tests` package will ensure that all files required to run the plugin are copied to the output directory. This includes reference assemblies, but also content files, such as external annotations and CSS definition files.
 
- >  The normal SDK package does not copy these files, as the plugin cannot be run outside of the context of ReSharper, as installed in Visual Studio. For manual testing, the plugin should be [initially installed](InitialInstallation.md) and then [copied to the installation folder on each build](ProjectSetup_CopyOnBuild.md).
+ >  The normal SDK package does not copy these files, as the plugin cannot be run outside of the context of ReSharper, as installed in Visual Studio. For manual testing, refer to [](running_plugin.md).
  >
  {type="note"}
 

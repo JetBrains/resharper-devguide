@@ -2,11 +2,11 @@
 
 While logging can be enabled on the command line), specifying a configuration file allows for much more flexibility in what gets logged. The file is an XML file called `LogConfiguration.xml`, and should be created in `%\LOCALAPPDATA%\JetBrains\{HostFullIdentifier}\v{WaveVersion}`.
 
- >  The `{HostFullIdentifier}` is the name of the installation folder for the current host, such as `ReSharperPlatformVs12` for Visual Studio 2013. More details can be found in the section on [Host Identifiers](HostIdentifiers.md). Similarly, the `{WaveVersion}` is the version of the [ReSharper Platform Wave](PlatformVersioning.md), e.g. `v05` for ReSharper 10.0 or `v04` for ReSharper 9.2.
- >
- {type="note"}
+[//]: # ( >  The `{HostFullIdentifier}` is the name of the installation folder for the current host, such as `ReSharperPlatformVs12` for Visual Studio 2013. More details can be found in the section on [Host Identifiers]&#40;HostIdentifiers.md&#41;. Similarly, the `{WaveVersion}` is the version of the [ReSharper Platform Wave]&#40;PlatformVersioning.md&#41;, e.g. `v05` for ReSharper 10.0 or `v04` for ReSharper 9.2.)
+[//]: # ( >)
+[//]: # ( {type="note"})
 
-When running the ReSharper Platform in an [experimental instance of Visual Studio](ExperimentalInstance.md), the logging subsystem will also look for a file called `LogConfiguration.Debug.xml`, allowing for a separate configuration for debugging extensions in experimental instances. This file is looked for first, and if it doesn't exist, the `LogConfiguration.xml` file is used instead.
+When running the ReSharper Platform in an [experimental instance of Visual Studio](running_plugin.md), the logging subsystem will also look for a file called `LogConfiguration.Debug.xml`, allowing for a separate configuration for debugging extensions in experimental instances. This file is looked for first, and if it doesn't exist, the `LogConfiguration.xml` file is used instead.
 
  >  A separate log file can be used for tests, too. The test host use "Tests" as the host identifier, and "Test" as the sub-configuration suffix in the filename, which means tests will look for a file called `LogConfiguration.Test.xml` in the `%\LOCALAPPDATA%\JetBrains\Tests\v{WaveVersion}` folder. If this file doesn't exist, it will then look for `LogConfiguration.xml` in the same folder.
  >

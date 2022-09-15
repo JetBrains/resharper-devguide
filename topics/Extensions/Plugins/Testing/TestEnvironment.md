@@ -28,7 +28,7 @@ namespace Foo.Tests
 }
 ```
 
-This is all that is necessary to create a ReSharper test environment based on the files in the output folder. The ReSharper test environment will scan all of the files in the output folder looking for components to load via the [Component Model](Platform_ComponentModel.md), which means that the plugin does not need to be installed into this in-memory ReSharper instance (it still needs to be [installed into an interactive instance](InitialInstallation.md) for manual testing).
+This is all that is necessary to create a ReSharper test environment based on the files in the output folder. The ReSharper test environment will scan all of the files in the output folder looking for components to load via the [Component Model](Platform_ComponentModel.md), which means that the plugin does not need to be installed into this in-memory ReSharper instance.
 
 ## Zones
 

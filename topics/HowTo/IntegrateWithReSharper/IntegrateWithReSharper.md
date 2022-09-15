@@ -98,7 +98,7 @@ Examples in this **How To**:
 
 ReSharper allows you to apply formatting and other code style preferences in a bulk mode to instantly eliminate code style violations in one or more files, in a project or in the entire solution.
  
-Creating a new code formatting rule or editing an existing one doesn't require creating a compiled ReSharper plugin (see [declarative extension](Start.md)). That's why code cleanup is out of the scope of this **How To**. Learn how to work with code cleanup in [ReSharper documentation](https://www.jetbrains.com/help/resharper/Code_Cleanup__Index.html).
+Creating a new code formatting rule or editing an existing one doesn't require creating a compiled ReSharper plugin. That's why code cleanup is out of the scope of this **How To**. Learn how to work with code cleanup in [ReSharper documentation](https://www.jetbrains.com/help/resharper/Code_Cleanup__Index.html).
  
 ## Live templates
 
@@ -106,4 +106,4 @@ Creating a new code formatting rule or editing an existing one doesn't require c
 
 Live templates are code fragments that can be quickly inserted into code. The code of the template can be a short expression, a complete construct, or even an entire class or method. For example, an `if...else` block, `foreach` block, `class` declaration, and so on.
 
-A new live template can be created using the editor built in ReSharper (see [declarative extension](Start.md)) and, therefore, doesn't require developing a compiled ReSharper plugin. That's why live templates are out of the scope of this **How To**. Learn how to create them in [Live Templates](LiveTemplates.md).
+A new live template can be created using the editor built in ReSharper and, therefore, doesn't require developing a compiled ReSharper plugin. That's why live templates are out of the scope of this **How To**. Learn how to create them in [Live Templates](LiveTemplates.md).
