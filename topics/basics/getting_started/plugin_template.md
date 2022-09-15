@@ -21,6 +21,10 @@ dotnet new resharper-rider-plugin --name MyPlugin
 >
 {type="note"}
 
+> If you plan to use GitHub Actions as your continuous integration/deployment (CI/CD) environment, you can pass the `--github-actions` switch.
+>
+{type="note"}
+
 </procedure>
 
 ### Components of the Template-Generated Plugin
