@@ -27,7 +27,7 @@ Webinar
 * [What is the IntelliJ Platform?](intellij_platform.md)
 * [About this Guide](about.md)
     * [Key Topics](key_topics.md)
-    * [Getting Help](getting-help.md)
+    * [Getting Help](getting_help.md)
 * [Creating Your First Plugin](getting_started.md)
 * [Useful Links](useful_links.md)
 * [Marketing](marketing.md)
@@ -49,7 +49,7 @@ More webinars are available [here](useful_links.md#webinars).
 </table>
 -->
 
-Please see [Getting Help](getting-help.md) if you encounter bugs in this guide or require help with missing content.
+Please see [Getting Help](getting_help.md) if you encounter bugs in this guide or require help with missing content.
 
 ## Contribute
 

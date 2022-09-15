@@ -2,9 +2,9 @@
 
 * [Introduction](README.md)
 * [The ReSharper Platform](Intro/ReSharperPlatform.md)
-* [About This Guide](Intro/About.md)
-* [Key Topics](Intro/KeyTopics.md)
-* [Getting Help](Intro/getting-help.md)
+* [About This Guide](Intro/about.md)
+* [Key Topics](Intro/key_topics.md)
+* [Getting Help](Intro/getting_help.md)
 * [Recently Updated](recently_updated.md)
 
 ## How To
