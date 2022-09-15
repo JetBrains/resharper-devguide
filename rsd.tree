@@ -139,34 +139,6 @@
             <toc-element id="Debugging.md"
                          accepts-web-file-names="Extensions/Plugins/Debugging.html,Plugins/Debugging.html"
                          toc-title="Debugging"/>
-            <toc-element id="Plugins_Testing.md"
-
-                         toc-title="Plugin Testing">
-                <toc-element id="ProjectStructure.md"
-                             toc-title="Project Structure"
-                             accepts-web-file-names="Extensions/Plugins/Testing/ProjectStructure.html"/>
-                <toc-element id="TestEnvironment.md"
-                             toc-title="Test Environment"
-                             accepts-web-file-names="Extensions/Plugins/Testing/TestEnvironment.html"/>
-                <toc-element id="Testing_Zones.md" toc-title="Zones"/>
-                <toc-element id="TestComponents.md"
-                             toc-title="Test Components"
-                             accepts-web-file-names="Extensions/Plugins/Testing/TestComponents.html"/>
-                <toc-element id="GoldFiles.md"
-                             toc-title="Gold Files"
-                             accepts-web-file-names="Extensions/Plugins/Testing/GoldFiles.html"/>
-                <toc-element toc-title="Base Classes"/>
-                <toc-element toc-title="Attributes"/>
-                <toc-element toc-title="Project References"/>
-                <toc-element id="TemporarySettings.md"
-                             accepts-web-file-names="Extensions/Plugins/Testing/TemporarySettings.html,Plugins/TemporarySettings.html"
-                             toc-title="Temporary Settings"/>
-                <toc-element id="OptionsIterator.md"
-                             accepts-web-file-names="Extensions/Plugins/Testing/OptionsIterator.html,Plugins/Testing/OptionsIterator.html"
-                             toc-title="Combinatorial Settings"/>
-                <toc-element toc-title="Utility Classes"/>
-                <toc-element toc-title="Reference"/>
-            </toc-element>
             <toc-element id="KnownIssues.md"
                          accepts-web-file-names="Extensions/KnownIssues.html,Intro/KnownIssues.html"
                          toc-title="Known Issues"/>
@@ -452,6 +424,32 @@
         <toc-element id="XmlLike.md"
                      toc-title="Working with XML-like files"
                      accepts-web-file-names="Features/XmlLike.html"/>
+    </toc-element>
+    <toc-element id="Plugins_Testing.md" toc-title="Part VI - Testing">
+        <toc-element id="ProjectStructure.md"
+                     toc-title="Project Structure"
+                     accepts-web-file-names="Extensions/Plugins/Testing/ProjectStructure.html"/>
+        <toc-element id="TestEnvironment.md"
+                     toc-title="Test Environment"
+                     accepts-web-file-names="Extensions/Plugins/Testing/TestEnvironment.html"/>
+        <toc-element id="Testing_Zones.md" toc-title="Zones"/>
+        <toc-element id="TestComponents.md"
+                     toc-title="Test Components"
+                     accepts-web-file-names="Extensions/Plugins/Testing/TestComponents.html"/>
+        <toc-element id="GoldFiles.md"
+                     toc-title="Gold Files"
+                     accepts-web-file-names="Extensions/Plugins/Testing/GoldFiles.html"/>
+        <toc-element toc-title="Base Classes"/>
+        <toc-element toc-title="Attributes"/>
+        <toc-element toc-title="Project References"/>
+        <toc-element id="TemporarySettings.md"
+                     accepts-web-file-names="Extensions/Plugins/Testing/TemporarySettings.html,Plugins/TemporarySettings.html"
+                     toc-title="Temporary Settings"/>
+        <toc-element id="OptionsIterator.md"
+                     accepts-web-file-names="Extensions/Plugins/Testing/OptionsIterator.html,Plugins/Testing/OptionsIterator.html"
+                     toc-title="Combinatorial Settings"/>
+        <toc-element toc-title="Utility Classes"/>
+        <toc-element toc-title="Reference"/>
     </toc-element>
     <toc-element toc-title="Part VII - Products">
         <toc-element id="Rider.md"
