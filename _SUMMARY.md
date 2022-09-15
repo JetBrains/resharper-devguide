@@ -90,7 +90,6 @@
         * [Install Local Copy](Extensions/Deployment/LocalInstallation/InstallCustomSource.md)
         * [Copy Plugin on Build](Extensions/Deployment/LocalInstallation/CopyOnBuild.md)
     * [Supporting ReSharper 8](Extensions/Packaging8.md)
-* [Troubleshooting](Extensions/Troubleshooting.md)
 * Hints and Tips
 * Best Practices
 

@@ -197,9 +197,6 @@
                          toc-title="Supporting ReSharper 8"
                          accepts-web-file-names="Extensions/Packaging8.html"/>
         </toc-element>
-        <toc-element id="Extensions_Troubleshooting.md"
-                     toc-title="Troubleshooting"
-        />
         <toc-element toc-title="Hints and Tips"/>
         <toc-element toc-title="Best Practices"/>
     </toc-element>
