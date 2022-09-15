@@ -16,21 +16,6 @@ The most common types of plugins include:
 >
 {type="tip"}
 
-## Custom Language Support
-
-Custom language support provides basic functionality for working with a particular programming language, that includes:
-
-* File type recognition
-* Lexical analysis
-* Syntax highlighting
-* Formatting
-* Code completion
-* Code inspections and quick-fixes
-* Context Actions
-* Navigation
-
-Plugins can also augment existing (bundled) custom languages, e.g., by providing additional inspections, quick-fixes, or any other features.
-
 ## Library Support
 
 Library support provides improved code insights, which usually cannot be expressed through the compiler and its type-system, that includes:
@@ -46,3 +31,18 @@ Tool integration makes it possible to manipulate third-party tools and component
 * Implementation of additional actions
 * Related UI components
 * Access to external resources
+
+## Custom Language Support
+
+Custom language support provides basic functionality for working with a particular programming language, that includes:
+
+* File type recognition
+* Lexical analysis
+* Syntax highlighting
+* Formatting
+* Code completion
+* Code inspections and quick-fixes
+* Context Actions
+* Navigation
+
+Plugins can also augment existing (bundled) custom languages, e.g., by providing additional inspections, quick-fixes, or any other features.
