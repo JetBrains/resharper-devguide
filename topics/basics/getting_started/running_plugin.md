@@ -18,24 +18,34 @@ If your plugin has a frontend part, you will see a `Rider` configuration in Inte
 
 ## From Command-Line
 
-### Windows
+From the root directory, you can run your plugin inside ReSharper and Rider from the command-line:
 
-On Windows, you can run the plugin in Rider by calling:
+<tabs group="build">
+
+<tab title="Rider (Gradle)" group-key="gradle">
+
+To launch Rider on Windows, you can start the `gradlew.bat` script:
 
 ```bash
-.\gradlew.bat
+.\gradlew.bat :runIde
 ```
 
-To launch the ReSharper plugin inside Visual Studio, call:
+To launch Rider on macOS or Linux, you can start the `gradlew` script:
+
+```bash
+./gradlew :runIde
+```
+
+</tab>
+
+<tab title="ReSharper (PowerShell)" group-key="powershell">
+
+To launch ReSharper in an experimental Visual Studio instance, you can start the `runVisualStudio.ps1` script:
 
 ```powershell
 .\runVisualStudio.ps1
 ```
 
-### macOS & Linux
+</tab>
 
-On macOS & Linux, you can run the plugin in Rider:
-
-```bash
-./gradlew :runIde
-```
+</tabs>
