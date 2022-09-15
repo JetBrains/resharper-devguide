@@ -26,14 +26,6 @@
         <toc-element id="content_updates.md"/>
     </toc-element>
     <toc-element id="HowTo_HowTo.md" toc-title="How To">
-        <toc-element accepts-web-file-names="HowTo/Start/Start.html" id="Start.md" toc-title="Start">
-            <toc-element accepts-web-file-names="HowTo/Start/CreateProject.html" id="CreateProject.md"
-                         toc-title="1. Create a Project"/>
-            <toc-element accepts-web-file-names="HowTo/Start/CreateNuGetPackageForPlugin.html"
-                         id="CreateNuGetPackageForPlugin.md" toc-title="2. Create a NuGet Package for the Plugin"/>
-            <toc-element accepts-web-file-names="HowTo/Start/SetUpEnvironment.html" id="SetUpEnvironment.md"
-                         toc-title="3. Set Up the Environment"/>
-        </toc-element>
         <toc-element accepts-web-file-names="HowTo/IntegrateWithReSharper/IntegrateWithReSharper.html"
                      id="IntegrateWithReSharper.md" toc-title="Integrate with ReSharper"/>
         <toc-element accepts-web-file-names="HowTo/ObtainComponentsInRuntime.html" id="ObtainComponentsInRuntime.md"
