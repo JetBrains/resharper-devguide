@@ -4,6 +4,10 @@
 
 A plugin generated from the template can be run through one of the [Run/debug configurations](https://www.jetbrains.com/help/rider/Run_Debug_Configuration.html) or from the command-line on Windows, macOS, and Linux.
 
+> The included Gradle and PowerShell scripts take care of installing all necessary dependencies, including Gradle Wrappers, Amazon Corretto OpenJDK, and installers for experimental instances of ReSharper and Rider.
+>
+{type="tip"}
+
 ## From Run Configurations
 
 The included [run configurations](https://www.jetbrains.com/help/rider/Run_Debug_Configuration.html) are shortcuts for the aforementioned command-line invocations. Choose one of the following configurations in Rider and click <control>Run</control> or <control>Debug</control>:
