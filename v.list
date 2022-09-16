@@ -2,5 +2,9 @@
 <!DOCTYPE vars
         SYSTEM "https://resources.jetbrains.com/stardust/vars.dtd">
 <vars>
-    <var name="testVariable" value="VALUE" type="string"/>
+    <var name="sdk-version" value="2022.2.1"/>
+    <var name="guide-repo" value="https://github.com/JetBrains/resharper-devguide"/>
+    <var name="plugin-repo" value="https://github.com/JetBrains/resharper-rider-plugin"/>
+    <var name="plugin-repo-blob" value="%plugin-repo%/blob/master"/>
+    <var name="plugin-repo-tree" value="%plugin-repo%/tree/master"/>
 </vars>
