@@ -11,18 +11,15 @@
         <toc-element id="ReSharperPlatform.md"
                      toc-title="The ReSharper Platform"
                      accepts-web-file-names="Intro/ReSharperPlatform.html"/>
-        <toc-element id="about.md"
-                     toc-title="About This Guide"
-                     accepts-web-file-names="Intro/About.html"/>
-        <toc-element id="key_topics.md"
-                     toc-title="Key Topics"
-                     accepts-web-file-names="Intro/KeyTopics.html"/>
-        <toc-element id="_CONTRIBUTING.md"
-                     toc-title="Contributing to the SDK"/>
+        <toc-element id="about.md" toc-title="The ReSharper Platform SDK" accepts-web-file-names="Intro/About.html">
+            <toc-element id="key_topics.md"/>
+            <toc-element id="_CONTRIBUTING.md"
+                         toc-title="Contributing to the SDK"/>
+            <toc-element id="_CODE_OF_CONDUCT.md"/>
+        </toc-element>
         <toc-element id="getting_help.md"
                      toc-title="Getting Help"
                      accepts-web-file-names="Intro/GettingHelp.html"/>
-        <toc-element id="_CODE_OF_CONDUCT.md"/>
         <toc-element id="content_updates.md"/>
     </toc-element>
     <toc-element id="HowTo_HowTo.md" toc-title="How To">
