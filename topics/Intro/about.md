@@ -1,35 +1,61 @@
-[//]: # (title: About this guide)
+[//]: # (title: About This Guide)
 
-The guide is split into several parts:
+<!-- Copyright 2000-2022 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
 
-* [**Part I - Extending the ReSharper Platform**](GettingStarted.md)
+<excerpt>Introduction and summary overview of contents.</excerpt>
 
-    An overview of the ways in which the ReSharper Platform can be extended, both declaratively, with Live Templates, annotations and patterns and programmatically, via plugins. It explains how to get started with extensions, setting up the SDK and so on. It also includes a migration guide to help migrate plugins and extensions from previous versions of ReSharper.
+This guide is split into several parts, similar to a textbook.
+Each one builds on the content of the previous section, but it is not necessary to read the guide in order.
+The [Key Topics](key_topics.md) page aims to link to the pages that are necessary to be able to understand the architecture and get started building plugins.
 
-* [**Part II - Architectural Overview**](Architecture_Overview.md)
+All source links and reference lists target ReSharper Platform %sdk-version%.
 
-    Provides an introduction to and overview of the architecture of the ReSharper Platform, looking at how it is split into several layers - Base Platform, Project Model, Features, custom Products and support for custom Languages. It also introduces the Program Structure Interface (PSI) which provides ReSharper with syntactic and semantic models of many languages.
+> While browsing this guide, you will notice that there are topics that are greyed out.
+> Unfortunately, the guide is not complete and contains placeholders for specific topics.
+> We are working on increasing the coverage, but if you get stuck due to missing content, please see the [](getting_help.md) section for details on how to get moving again.
+>
+> The guide is also [Open Source on GitHub](%guide-repo%), and Pull Requests for new content, corrections or updates are always gratefully received.
+> Please see the [Contributing](_CONTRIBUTING.md) page for details.
+>
+{type="note"}
 
-* **Part III - Platform**
+[//]: # (> See also [Glossary]&#40;&#41; for a handy reference of common terms.)
+[//]: # (>)
+[//]: # ({type="tip"})
 
-    Describes the base Platform layer of the architecture, that provides many utilities and abstractions, including UI, Visual Studio integration, settings and application composition with the Component Model.
+#### Part I — Plugins
 
-* **Part IV - Project Model**
+Describes how to create a plugin that can extend the ReSharper Platform.
+Includes details on how to set up the project, update to new versions of the ReSharper Platform, and how to package, deploy, and test your plugins.
 
-    Documents the Project Model, which represents the solution and products currently open, abstracting away the differences between target types (console, class library, website, etc.) and also language (C#, VB, JavaScript, etc.)
+#### Part II — Platform
 
-* [**Part V - Program Structure Interface (PSI)**](PSI.md)
+Describes the foundational layer of the architecture, which provides many features and utilities, such as the component model, the user interface, documents and editors, settings, threading, zoning, and background tasks.
+The Platform layer mainly comprises the functionality of the ReSharper Platform that does not target language features or parsing.
 
-    Describes and provides reference for consuming and manipulating the parsers, abstract syntax trees and semantic views of the file formats that ReSharper understands, such as C#, HTML, CSS, Razor, XML, etc. Documents the powerful reference system which allows for cross-language navigation and refactoring. Also looks at code generation, caching, and control flow.
+#### Part III — Project Model
 
-* **Part VI - Features**
+Documents the Project Model, which represents the files and configuration of the currently loaded solution, as well as the build system used to build the project.
 
-    This section documents the integration points for features built on top of the PSI, from analysis and quick-fixes, to navigation, code completion refactoring and more. Extensions can implement many of these integration points to add new analyses and quick fixes and much more.
+#### Part IV — PSI
 
-* **Part VII - Products**
+The Program Structure Interface (PSI) builds the syntactic and semantic models for lots of different file types.
+This section describes how to work with the PSI, navigating and manipulating the syntax trees, and also looks at the powerful reference system, which allows a syntax tree node to reference an item in the semantic model.
 
-    The ReSharper Platform hosts multiple products, from ReSharper to dotPeek, dotTrace and dotCover. This section looks at how to create a custom product that lives in the ReSharper Platform. It also takes a look at integration points in the other .net JetBrains products.
+#### Part V — Features
 
-* [**Part VIII - Custom Languages**](CustomLanguages_Overview.md)
+Describes how to extend and interact with various features that use the PSI layer, such as code completion, navigation, <shortcut>Alt+Enter</shortcut> items, context actions, refactorings, and more.
+See also the section on Custom Languages below for language-specific features that are only applicable when adding support for a new language.
 
-    This section documents how to add support for a language that the ReSharper Platform doesn't know about, creating parsers, abstract syntax trees, semantic views and all the features built on top.
+#### Part VI — Testing
+
+Describes the available infrastructure for writing automated tests covering the functionality of plugins.
+
+#### Part VII — Custom Languages
+
+This section describes how to add support to the ReSharper Platform for a new language that isn't supported by default, creating parsers, syntactic and semantic models, and all the features that build on top.
+
+#### Part VIII — Product Specific
+
+A lot of the functionalities in the ReSharper Platform are product agnostic.
+This section describes product-specific features, such as specific project model differences and how to target them in a plugin.
