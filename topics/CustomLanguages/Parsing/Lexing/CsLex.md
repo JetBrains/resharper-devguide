@@ -50,7 +50,7 @@ using JetBrains.ReSharper.Psi.ExtensionsAPI.Tree;
 
 The CsLex directives should be similar to the following:
 
-```
+```text
 %unicode
 
 %init{
@@ -104,7 +104,7 @@ Note the use of the `UNICODE_ZS` macro from the `Unicode.lex` file (see below), 
 
 The final section is a set of rules, which are defined by three things, a _state_, a _regular expression_ and an _action_. An example is:
 
-```
+```text
 <YYINITIAL> {WHITE_SPACE}  { return CssTokenType.WHITE_SPACE; }
 ```
 
@@ -118,7 +118,7 @@ Some actions might want to change the lexer state, which they can do with the `y
 
 The built-in ReSharper lexers tend to follow a slightly different pattern for the actions:
 
-```
+```text
 <YYINITIAL> {WHITE_SPACE}  { myCurrentTokenType = makeToken(CssTokenType.WHITE_SPACE); return myCurrentTokenType; }
 ```
 

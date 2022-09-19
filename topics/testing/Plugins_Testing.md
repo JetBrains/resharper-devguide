@@ -67,7 +67,7 @@ Input and output files involve special symbols and commands for indicating the s
 
 ReSharper adopts a convention-based approach to locating your tests. The convention suggests the following structure for the projects and the associated tests:
 
-```
+```text
 \src
   \your_project.sln
   \your_project_files

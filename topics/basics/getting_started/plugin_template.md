@@ -10,11 +10,11 @@ The generator creates all the necessary project files based on a few template in
 Launch the <control>New Project</control> wizard via the <menupath>File | New | Project...</menupath> action and provide the following information:
 1. Download the [plugin template]() from the GitHub Release section.
 2. Install the plugin template by calling:
-```
+```powershell
 dotnet new --install JetBrains.ReSharper.SamplePlugin.*.nupkg
 ```
 3. Unpack the template with your preferred plugin name:
-```
+```powershell
 dotnet new resharper-rider-plugin --name MyPlugin
 ```
 > If your plugin should only target ReSharper, you can pass the `--resharper-only` switch.
