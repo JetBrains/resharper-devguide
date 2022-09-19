@@ -12,7 +12,7 @@ Sometimes, it is necessary for the plugin to begin its work only after the solut
  
 This example also demonstrates how the [ReSharper component model](ObtainComponentsInRuntime.md) can be used. Here the task is solved using one shell component and one solution component. For details, see the notes below.
 
-```
+```csharp
 [ShellComponent]
     public class SolutionStateTracker : ISolutionStateTracker
     {
@@ -75,21 +75,21 @@ This example also demonstrates how the [ReSharper component model](ObtainCompone
 * `SolutionStateNotifier` tracks solution status using the `ISolutionLoadTasksScheduler` object demanded via the constructor argument.
 * Once the solution is loaded, `SolutionStateNotifier` calls the particular method of the injected `SolutionStateTracker`, which, in turn, fires a signal.
 * `SolutionStateNotfier` also tracks solution closing:
-    ```
+    ```csharp
     lifetime.AddAction(solutionStateTracker.HandleSolutionClosed);
     ```
 * The `Lifetime.AddAction` method schedules an activity upon lifetime termination. As the lifetime for the `SolutionStateNotifier` is the same as the solution lifetime, the signal is called once the solution is going to close.
 * To use `SolutionStateTracker`, you should simply subscribe to a corresponding signal using the `Advise` method:
-    ```
+    ```csharp
     solutionStateTracker.AfterSolutionOpened.Advise(lifetime, () => {do somehting...});
     ```
     To obtain a `SolutionStateTracker` instance, you can, for example, get it from the current context (e.g., if you use it in an action):
-    ```
+    ```csharp
     var solutionStateTracker = context.GetComponent<SolutionStateTracker>();
 	solutionStateTracker.AfterSolutionOpened.Advise(lifetime, () => {do somehting...});
 	```
 	or demand it via the constructor argument of your component:
-    ```
+    ```csharp
     [SolutionComponent]
     public class MyClass
     {

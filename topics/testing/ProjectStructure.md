@@ -14,7 +14,7 @@ The test project should also include a reference to the `JetBrains.ReSharper.SDK
 
 The standard project layout for a ReSharper project with tests is as follows:
 
-```
+```text
 +-- src\
 |   +-- {plugin}.sln
 |   +-- plugin\

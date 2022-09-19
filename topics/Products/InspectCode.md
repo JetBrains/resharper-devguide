@@ -41,6 +41,6 @@ Currently, the only extension point for InspectCode that isn't part of ReSharper
 
 * Start InspectCode with following parameters
 
-  ```
+  ```powershell
   inspectcode ... /Plugin=path-to-custom-logger-dll
   ```

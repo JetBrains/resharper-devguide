@@ -36,7 +36,7 @@ This will provide MSBuild with an individual OBJ and BIN folder both the ReSharp
 
 Rider plugins are simple ZIP archives containing metadata about the plugin, ReSharper extensions (DLL) and/or IntelliJ extensions (JAR). The content is structured like this:
 
-```
+```text
 + plugin-root-folder
     + META-INF
         - plugin.xml

@@ -68,7 +68,7 @@ public partial class MyLexer
 
 And then in the [CsLex](CsLex.md) rules:
 
-```
+```text
 <YYINITIAL> {IDENTIFIER}   { return makeToken(FindKeywordByCurrentToken() ?? CSharpTokenType.IDENTIFIER); }
 ```
 
