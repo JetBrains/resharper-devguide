@@ -1,4 +1,4 @@
-[//]: # (title: ReSharper Platform Plugin Template)
+[//]: # (title: Creating A Plugin)
 
 <!-- Copyright 2000-2022 JetBrains s.r.o. and other contributors. Use of this source code is governed by the Apache 2.0 license that can be found in the LICENSE file. -->
 
@@ -8,7 +8,7 @@ The generator creates all the necessary project files based on a few template in
 <procedure title="Create ReSharper &amp; Rider Plugins" id="create-ide-plugin">
 
 Launch the <control>New Project</control> wizard via the <menupath>File | New | Project...</menupath> action and provide the following information:
-1. Download the [plugin template]() from the GitHub Release section.
+1. Download the plugin template from the [GitHub Release page](https://github.com/JetBrains/resharper-rider-plugin/releases).
 2. Install the plugin template by calling:
 ```
 dotnet new --install JetBrains.ReSharper.SamplePlugin.*.nupkg
@@ -27,9 +27,9 @@ dotnet new resharper-rider-plugin --name MyPlugin
 
 </procedure>
 
-### Components of the Template-Generated Plugin
+### Template-Generated Files
 
-When extracting the template using `MyPlugin` as a name, it will create the following directory content:
+When extracting the template, for instance with `--name MyPlugin`, it will create the following directory content:
 
 ```text
 MyPlugin

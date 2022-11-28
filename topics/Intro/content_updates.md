@@ -14,7 +14,7 @@ See [GitHub Changelog](https://github.com/JetBrains/resharper-devguide/commits/m
 
 Additions
 :
-- Add [](plugin_template.md) section.
+- Add [](creating_plugin.md) section.
 - Add [](running_plugin.md) section.
 - Add [](types_of_plugins.md) section.
 - Add [](plugin_required_experience.md) section.
