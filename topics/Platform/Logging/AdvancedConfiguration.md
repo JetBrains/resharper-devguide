@@ -1,4 +1,4 @@
-[//]: # (title: Advanced Configuration
+[//]: # (title: Advanced Configuration)
 
 While logging can be enabled on the command line), specifying a configuration file allows for much more flexibility in what gets logged. The file is an XML file called `LogConfiguration.xml`, and should be created in `%\LOCALAPPDATA%\JetBrains\{HostFullIdentifier}\v{WaveVersion}`.
 
