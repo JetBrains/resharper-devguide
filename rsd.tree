@@ -83,6 +83,7 @@
         <toc-element id="getting_started.md">
           <toc-element id="creating_plugin.md"/>
           <toc-element id="running_plugin.md"/>
+          <toc-element id="debugging_plugin.md"/>
         </toc-element>
         <toc-element id="internal_mode.md" toc-title="Internal mode" accepts-web-file-names="Extensions/InternalMode.html,Intro/InternalMode.html"/>
     </toc-element>
