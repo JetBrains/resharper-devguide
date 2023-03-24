@@ -14,7 +14,7 @@ The ReSharper Platform is very large, and very capable, and its size can initial
 
 ReSharper's code model is called the PSI - the Program Structure Interface. The key topics here are:
 
-* [Overview](PSI.md)
+* [Overview](PSI_Overview.md)
 * [Abstract syntax trees](SyntaxTrees.md) - files are parsed and abstract syntax trees are generated, as you type.
 * [Declared elements](DeclaredElements.md) - declared elements are the root interfaces for ReSharper's semantic view of the code.
 * [References](References.md) - a very powerful mechanism to allow abstract syntax trees to have an outgoing references to a declared element, that is, to link syntax nodes, such as type names, to the semantic item they refer to.

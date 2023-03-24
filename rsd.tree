@@ -178,8 +178,7 @@
         <toc-element toc-title="MSBuild Integration"/>
         <toc-element toc-title="Project Files"/>
     </toc-element>
-    <toc-element toc-title="Part IV - PSI">
-        <toc-element id="PSI.md" toc-title="Overview"/>
+    <toc-element id="PSI_Overview.md" toc-title="Part IV - PSI">
         <toc-element toc-title="PSI Languages"/>
         <toc-element toc-title="Files and Modules"/>
         <toc-element id="SyntaxTrees.md"
