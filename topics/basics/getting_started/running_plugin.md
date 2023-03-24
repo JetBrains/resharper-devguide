@@ -46,7 +46,7 @@ To launch Rider on macOS or Linux, you can run the `gradlew` script as follows:
 
 To launch ReSharper in an experimental Visual Studio instance, you can run the `runVisualStudio.ps1` script:
 
-```powershell
+```bash
 .\runVisualStudio.ps1
 ```
 

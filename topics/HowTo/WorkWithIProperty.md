@@ -68,7 +68,7 @@ public class PropertyTester
 
 One more obvious example of how `IProperty` can be used is global options: once a user changes an option on the **Options** page, the plugin gets instantly notified about the change.
 
-```charp
+```csharp
 Text = new Property<string>(lifetime, "OptionsExampleViewModel.Text");
  
 var checkMeOption =

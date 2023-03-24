@@ -45,7 +45,7 @@ When a test fails, ReSharper's test framework adds extra information into the [`
 
 When a test fails, the `ComparisonFile` field is added to the failing test's exception's `Data` dictionary. This field contains a clickable `file://` url that will execute a `.bat` file that's been saved in the `%\TEMP%` folder. This batch file is as follows:
 
-```dosbatch
+```text
 setlocal
 if not defined DIFF SET DIFF=kdiff3
 if not defined DIFF_PARAMETERS SET DIFF_PARAMETERS= --L1 '$plabel1' --L2 '$clabel' $parent $child

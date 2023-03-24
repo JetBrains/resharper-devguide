@@ -56,7 +56,7 @@ Combinations of options are specified with a JavaScript-like DSL. A JavaScript e
 
 At the simplest, an object literal is used as a collection of name/value pairs to set options and their values.
 
-```js
+```javascript
 {
   TagAttributesFormat: OnSingleLine,
   MaxSingleLineTagLength: 10
@@ -67,7 +67,7 @@ Values in the object literal can be string literals, numerals, or unquoted value
 
 In order to support combinations of options, the value of the property can be an array literal. The array lists all of the values that should be applied to that property.
 
-```js
+```javascript
 {
   TagAttributesFormat: [OnSingleLine, OnDifferentLines],
   MaxSingleLineTagLength: 10
@@ -98,7 +98,7 @@ public class CodeFormatterWithExplicitSettingsTestBase // : ...
 
 The `HtmlCodeFormatterTests` can now use properties from `HtmlFormatterSettingsKey` and `CommonFormatterSettingsKey` in the object literals of the DSL. It can use each property name unqualified, or disambiguate by using the friendly name of the settings key as a qualifier:
 
-```js
+```javascript
 {
   TagAttributesFormat: OnSingleLine, // Sets HtmlCodeFormatterTests.TagAttributesFormat
   CommonFormatting$ALIGNMENT_TAB_FILL_STYLE: USE_SPACES // Sets CommonFormatterSettingsKey.ALIGNMENT_TAB_FILL_STYLE
@@ -114,7 +114,7 @@ The `TestOptionsIterator` recognises a couple of special property names for sett
 
 Both of these values are language specific, so require a language prefix:
 
-```js
+```javascript
 {
   HTML$USE_TABS: all
 }
@@ -170,7 +170,7 @@ If the value is a scalar, it can be a string literal, numeral, boolean or unquot
 
 To represent a collection of items, the value can be either an array literal or a nested object literal. An array literal creates a combination of all of the simple (quoted/unquoted) string values in the array. An object literal is used to create string name/value pairs to be used for an indexed setting.
 
-```js
+```javascript
 {
   FileExtensions: [ "*.html", "*.cshtml" ],
   TemplateMimeTypes: {
@@ -184,7 +184,7 @@ This will create a combination of tests for the two values in `FileExtensions`, 
 
 If a property's value is an array literal, it can further contain either an object literal, or even another array literal. This allows for creating a combination of indexed settings. 
 
-```js
+```javascript
 {
   FileExtensions: [ [ "*.html", "*.cshtml" ], [ "*.html", "*.vbhtml" ] ],
   TemplateMimeTypes: [
@@ -207,7 +207,7 @@ When used inside an object literal, the behaviour is as described above.
 
 Otherwise, array literals are used to create a sequential combination of its contents. That is, each item in the array literal is evaluated and the test is run. The item in the array literal must either be another array literal (which creates a new combination grouping), or an object literal, which describes the settings to apply, as above.
 
-```js
+```javascript
 [
   { Reformat: [ True, False ] },
   { HTML$USE_TABS: [ True, False] }
@@ -220,7 +220,7 @@ This runs the test four times, firstly with both boolean values for `Reformat` a
 
 Binary expressions are used to combine combinations:
 
-```js
+```javascript
 { Reformat: all } * { HTML$USE_TABS: all }
 ```
 
@@ -257,7 +257,7 @@ The `TestOptionsIterator` will automatically load combinations specified in a `.
 
 The file should contain a set of combinations as a single object literal:
 
-```js
+```javascript
 {
   TagAttributesFormat: OnSingleLine,
   MaxSingleLineTagLength: 10
@@ -270,7 +270,7 @@ If the `TestOptionsIterator` sees a `.dotSettings` file (e.g. `test01.js.dotSett
 
 Combinations can also be embedded directly in the input file, using the `SettingsIterator` variable:
 
-```js
+```javascript
 ${SettingsIterator: { TagAttributeFormat: all } }
 function foo() {}
 ```
@@ -289,7 +289,7 @@ public abstract class JavaScriptCodeFormatterTestBase : CodeFormatterWithExplici
 
 The file is a `.jcnf` file as described above, however the format is slightly different. Instead of describing a single JavaScript-like object literal, the common `.jcnf` files contain JavaScript-like variable declarations that refer to array literals that describe a combination:
 
-```js
+```javascript
 var Align = [
   "Align",
   { ALIGN_MULTILINE_PARAMETER : all },
@@ -313,7 +313,7 @@ public void Test001()
 
 Or it can be combined into a binary expression:
 
-```js
+```javascript
 ( Align * { SPACE_AROUND_BINARY_OPERATOR: all } )
 ```
 
