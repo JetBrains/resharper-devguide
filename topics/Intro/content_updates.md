@@ -8,6 +8,14 @@ See [GitHub Changelog](https://github.com/JetBrains/resharper-devguide/commits/m
 >
 {type="tip"}
 
+## 2023
+
+### January 2023
+
+Additions
+:
+- Add [](Features__Code_Inspections.md) section.
+
 ## 2022
 
 ### September 2022

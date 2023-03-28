@@ -256,6 +256,7 @@
         <toc-element toc-title="PSI Implementations Reference"/>
     </toc-element>
     <toc-element toc-title="Part V - Features">
+        <toc-element id="Features__Code_Inspections.md"/>
         <toc-element id="Analysis.md"
                      toc-title="Analysis"
                      accepts-web-file-names="Features/Analysis.html">
