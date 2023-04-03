@@ -2,7 +2,7 @@
 
 The PSI needs to be able to display icons to help identify code elements in completion, navigation or find usage result lists. The PSI can display different icons to distinguish between classes, constructors, methods, parameters, etc. It can also show specific icons for CSS class IDs, HTML elements and unit test elements.
 
-While the [Shell provides the `ThemedIconManager` class](Shell_Icons.md) in order to load and create icons, it is a low level API. It provides no means for getting the icon for a class, other than explicitly loading `PsiSymbolsThemedIcons.Class.Id`. The PSI provides the `PsiIconManager` to retrieve icons for a specific declared element.
+While the Shell provides the `ThemedIconManager` class in order to load and create icons, it is a low level API. It provides no means for getting the icon for a class, other than explicitly loading `PsiSymbolsThemedIcons.Class.Id`. The PSI provides the `PsiIconManager` to retrieve icons for a specific declared element.
 
 The `PsiIconManager` provides the following methods and properties:
 
@@ -55,9 +55,3 @@ Furthermore, ReSharper ships with a colour icon provider, which recognises type 
 The collection can be extended by creating a class that implements `IDeclaredElementIconProvider` and is decorated with the `[DeclaredElementIconProvider]` attribute. This scopes the class to PSI-shared component lifetime (that is, the same lifetime as a `ShellComponent`). Should the class need to have a narrower lifetime, such as `[SolutionComponent]`, it is possible to call `PsiIconManager.AddExtension` in the provider's constructor, passing in it's own `Lifetime` for cleanup. The unit test icon provider does this, as it depends on components that have solution lifetime scope.
 
 The `IDeclaredElementIconExtensionProvider` can be implemented to extend the process for deciding what modifiers should be applied to the icon (private, public, etc.). The class should be decorated with the `[DeclaredElementIconExtensionProvider]` attribute, or can also be registered by calling `PsiIconManager.AddExtension` if the component has different lifetime requirements. This provider is currently implemented for CLR and C++ elements.
-
-## Loading icons manually
-
-It is not recommended to load icons directly, but they are available in the [`ThemedIconManager`](ConsumingIcons.md). Simply use the icon IDs defined in the `PsiSymbolsThemedIcons` class, and use [`CompositeIconId.Compose`](IconTypes.md#composite-icons) method to apply modifiers. There are language specific icons in other classes, such `PsiCssThemedIcons` or `PsiBuildScriptsThemedIcons`.
-
-The `PsiIconManager` provides a more flexible and extensible way of getting the correct icon.

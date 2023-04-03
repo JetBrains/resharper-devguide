@@ -512,16 +512,9 @@
         <toc-element toc-title="Custom products"/>
     </toc-element>
     <toc-element toc-title="Misc Topics">
-        <toc-element id="IconTypes.md"
-                     accepts-web-file-names="Platform/Shell/Icons/IconTypes.html"/>
-        <toc-element id="Theming_Icons.md"/>
         <toc-element id="QuickDoc_Testing.md"/>
-        <toc-element id="ConsumingIcons.md"
-                     accepts-web-file-names="Platform/Shell/Icons/ConsumingIcons.html"/>
         <toc-element id="TreeNodes.md"
                      accepts-web-file-names="PSI/Reference/Xml/TreeNodes.html"/>
-        <toc-element id="CreatingCompiledIcons.md"
-                     accepts-web-file-names="Platform/Shell/Icons/CreatingCompiledIcons.html"/>
         <toc-element id="ElementFactories.md"
                      accepts-web-file-names="PSI/Reference/Xml/ElementFactories.html"/>
         <toc-element id="Zones_Troubleshooting.md"/>
@@ -540,11 +533,8 @@
         <toc-element id="Xml_Overview.md"/>
         <toc-element id="Manipulation.md"
                      accepts-web-file-names="PSI/Reference/Xml/Manipulation.html"/>
-        <toc-element id="Shell_Icons.md"/>
         <toc-element id="Licensing.md"
                      accepts-web-file-names="Platform/Zones/Licensing.html"/>
-        <toc-element id="CustomIconTypes.md"
-                     accepts-web-file-names="Platform/Shell/Icons/CustomIconTypes.html"/>
         <toc-element id="CustomHives.md"
                      accepts-web-file-names="Platform/VisualStudio/CustomHives.html"/>
         <toc-element id="ImplementingProvider.md"

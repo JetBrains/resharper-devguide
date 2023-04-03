@@ -16,7 +16,7 @@ The `OptionsPage` attribute requires the plugin author to provide the following 
 
 * The page ID. This ID can be specified as a constant field inside the class. The page ID is a string which uniquely identifies this particular options page.
 * The name of the page. This is the text that will appear in the left-hand tree on the Options page as well as in the title and navigation elements.
-* The image. This refers to the glyph that appears next to the item in the tree and is specified as a type (e.g., `typeof(OptionsPageThemedIcons.SamplePage)`). See [Icons](Shell_Icons.md) for more information.
+* The image. This refers to the glyph that appears next to the item in the tree and is specified as a type (e.g., `typeof(OptionsPageThemedIcons.SamplePage)`). See [Icons](Platform__Icons.md) for more information.
 
 In addition, you may specify the following optional parameters:
 

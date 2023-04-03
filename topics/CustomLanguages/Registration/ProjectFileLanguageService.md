@@ -21,7 +21,7 @@ public interface IProjectFileLanguageService
 The members are as follows:
 
 * **`LanguageType`** - confusingly called `LanguageType`, this is the singleton instance of the derived `ProjectFileType` class that represents the [Project Model file type](ProjectFileType.md) of this language.
-* **`Icon`** - the `IconId` of the icon used to represent this file. This is used whenever ReSharper needs to display the icon for a file of this type, such as in the Find Results tool window. See the section on [icons](Shell_Icons.md) for more details on icons.
+* **`Icon`** - the `IconId` of the icon used to represent this file. This is used whenever ReSharper needs to display the icon for a file of this type, such as in the Find Results tool window. See the section on [icons](Platform__Icons.md) for more details on icons.
 * **`GetPreprocessorDefines`** - retrieves a list of preprocessor symbols that are defined for the current project, as this affects the parsing of the PSI tree. This is typically only required for compiled languages in a project where the project itself has a specific language, e.g. a C# project.
 
 ## The GetPsiLanguageType method
