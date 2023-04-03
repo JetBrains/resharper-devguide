@@ -13,7 +13,7 @@ If you just want to share feedback on the guide, again, [raise an issue](https:/
 >
 {type="note"}
 
-## Problems with Code - Support Issues
+## Problems with Code
 
 For problems related to code, rather than the content of the guide, you have several options:
 
