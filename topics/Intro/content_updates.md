@@ -10,11 +10,12 @@ See [GitHub Changelog](https://github.com/JetBrains/resharper-devguide/commits/m
 
 ## 2023
 
-### January 2023
+### March 2023
 
 Additions
 :
 - Add [](Features__Code_Inspections.md) section.
+- Add [](Platform__Icons.md) section.
 
 ## 2022
 

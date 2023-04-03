@@ -162,6 +162,7 @@
         <toc-element toc-title="Transactions"/>
         <toc-element toc-title="IL Metadata"/>
         <toc-element toc-title="Shell"/>
+        <toc-element id="Platform__Icons.md"/>
         <toc-element id="Settings.md"
                      toc-title="Settings"
                      accepts-web-file-names="Platform/Settings.html">
