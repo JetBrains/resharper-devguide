@@ -12,8 +12,8 @@ Sometimes, it is necessary for the plugin to begin its work only after the solut
  
 This example also demonstrates how the [ReSharper component model](ObtainComponentsInRuntime.md) can be used. Here the task is solved using one shell component and one solution component. For details, see the notes below.
 
-```
-[ShellComponent]
+```csharp
+    [ShellComponent]
     public class SolutionStateTracker : ISolutionStateTracker
     {
         public ISolution Solution { get; private set; }        
