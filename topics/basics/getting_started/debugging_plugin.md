@@ -4,11 +4,6 @@
 
 Depending on your environment (Windows or Unix) and product of choice (ReSharper or Rider), you can debug your plugin through different approaches.
 
-| Product   | Process to Debug    |
-|-----------|---------------------|
-| Rider     | `Rider.Backend.exe` |
-| ReSharper | `devenv.exe`        |
-
 <table header-style="top">
     <tr>
         <td>Product</td>
@@ -22,4 +17,4 @@ Depending on your environment (Windows or Unix) and product of choice (ReSharper
         <td>ReSharper</td>
         <td><code>devenv.exe</code></td>
     </tr>
-</table>
+</tabl
