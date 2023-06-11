@@ -6,7 +6,7 @@
 **Examples ([?](HowTo_HowTo.md#sample-solution)):**
 * [NavigateToCtorProvider.cs](https://github.com/JetBrains/sample-resharper-plugin/blob/master/SampleReSharperPlugin/src/PsiNavigation/NavigateToCtorProvider.cs)
 
-If you want your navigation to appear in ReSharper's **Navigate To** menu ([context navigation](NavigateCode.md)), you should create an action that implements the `INavigateFromeHereProvider` interface.
+If you want your navigation to appear in ReSharper's **Navigate To** menu ([context navigation](NavigateCode.md)), you should create an action that implements the `INavigateFromHereProvider` interface.
 
 ![add-navigate-to-action](add-navigate-to-action.png)
 
