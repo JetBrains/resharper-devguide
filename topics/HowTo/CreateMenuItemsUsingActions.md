@@ -6,7 +6,7 @@
 If you want to expose your feature in a menu or a toolbar, you should use actions. Action is a unit of work (implemented as a special class) that is associated with a particular menu or toolbar item. Note that you can assign a Visual Studio shortcut to an action. [Learn more about actions](Actions.md).
  
 Let's create a simple action that shows a message box being triggered.
-``` 
+```csharp
     public abstract class SampleAction : IExecutableAction
     {
         public bool Update(IDataContext context, ActionPresentation presentation, DelegateUpdate nextUpdate)
