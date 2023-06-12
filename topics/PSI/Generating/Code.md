@@ -48,7 +48,7 @@ IDeclaredType propertyChangedInterface =
   TypeFactory.CreateTypeByCLRName("System.ComponentModel.INotifyPropertyChanged", provider.PsiModule);
 ```
 
-Creating a generic type is a little bit more complicated. You first use the `TypeElementUtil` helper class to get the type element for the generic type. The 'backquote notation' is used for this, so that `Lazy<T>` effectively becomes `Lazy`1`. After you have received the type element, you call the `TypeFactory` method to create the type, providing first the type element you created, and then an array of types that specify the generic arguments:
+Creating a generic type is a little bit more complicated. You first use the `TypeElementUtil` helper class to get the type element for the generic type. The 'backquote notation' is used for this, so that `Lazy<T>` effectively becomes ```Lazy`1```. After you have received the type element, you call the `TypeFactory` method to create the type, providing first the type element you created, and then an array of types that specify the generic arguments:
 
 ```csharp
 var lazyTypeElem = TypeElementUtil.GetTypeElementByClrName(new ClrTypeName("System.Lazy`1"), psiModule);
