@@ -40,7 +40,7 @@ Fortunately, we can use a `Lifetime` when enqueuing the add action to the UI thr
 
 Removing the settings files is also complicated by the thread affinity issue.
 
-`Lifetime` instances are not multi-threaded. That is, their callbacks are executed on the same thread that terminated the `Lifetime`. If there are nested `Lifetime` instances, then all callbacks of both the parent and the children are are executed on the same thread.
+`Lifetime` instances are not multi-threaded. That is, their callbacks are executed on the same thread that terminated the `Lifetime`. If there are nested `Lifetime` instances, then all callbacks of both the parent and the children are executed on the same thread.
 
 So, we can't add the settings files with a `Lifetime` that is a child of either the extension's own `Lifetime`, or the `SequentialLifetimes` class; if either of these terminate, then the callback is executed on the same thread that terminated it. This means the Settings subsystem will try to remove the settings on the same thread that either uninstalled or disabled the extension, and this is not necessarily the UI thread.
 
