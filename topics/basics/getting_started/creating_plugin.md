@@ -53,7 +53,7 @@ MyPlugin
 │       └── gradle-wrapper.properties
 ├── protocol
 │   ├── src/main/kotlin/model/rider
-│   └── build.gradle
+│   └── build.gradle.kts
 ├── src
 │   ├── dotnet
 │   │   ├── ReSharperPlugin.MyPlugin
@@ -81,19 +81,19 @@ MyPlugin
 ├── CHANGELOG.md
 ├── README.md
 ├── ReSharperPlugin.MyPlugin.sln
-├── build.gradle
+├── build.gradle.kts
 ├── buildPlugin.ps1
 ├── gradle.properties
 ├── gradlew
 ├── gradlew.bat
 ├── publishPlugin.ps1
 ├── runVisualStudio.ps1
-├── settings.gradle
+├── settings.gradle.kts
 └── settings.ps1
 ```
 
 * The <path>gradlew</path> and <path>gradlew.bat</path> files to bootstrap running Gradle on Windows, macOS, and Linux. These will also automatically install the required [Amazon Corretto 11 SDK](https://docs.aws.amazon.com/corretto/latest/corretto-11-ug/downloads-list.html) into the <path>build/gradle-jvm</path> directory.
-* The <path>build.gradle</path> file to build and deploy the plugin for ReSharper and Rider.
+* The <path>build.gradle.kts</path> file to build and deploy the plugin for ReSharper and Rider.
 > See the IntelliJ SDK help for more information about [Gradle-Related Plugin Components](https://plugins.jetbrains.com/docs/intellij/gradle-prerequisites.html#components-of-a-wizard-generated-gradle-intellij-platform-plugin).
 * The <path>buildPlugin.ps1</path> and <path>publishPlugin.ps1</path> files to build and deploy only the ReSharper plugin.
 * The <path>gradle.properties</path>, <path>settings.ps1</path>, <path>plugin.xml</path>, and <path>Plugin.props</path> files, containing information about plugin metadata (id, description, authors), dependency versions (ReSharper/ Rider SDK), and paths to solution and project files.
