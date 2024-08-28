@@ -17,7 +17,7 @@ Consider implementing an actual plugin only when the described solutions are ins
 {type="note"}
 
 The [Structural Search and Replace (SSR)](https://www.jetbrains.com/help/resharper/Navigation_and_Search__Structural_Search_and_Replace.html) functionality allows defining search patterns which are based not only on textual information but also on the structure of the searched code fragments, no matter how it is formatted or commented.
-The SSR templates can be used for [creating custom inspections](https://www.jetbrains.com/help/resharper/Code_Inspection__Creating_Custom_Inspections_and_QuickFixes.html), which can be an alternative for [programmatic code inspections](#).
+The SSR templates can be used for [creating custom inspections](https://www.jetbrains.com/help/resharper/Code_Inspection__Creating_Custom_Inspections_and_QuickFixes.html), which can be an alternative for programmatic code inspections.
 Depending on requirements, an inspection can report an issue for a code fragment matching a given template, but also provide a quick fix replacing the reported fragment with the configured replacement template.
 All inspection metadata like name, problem tooltip, and description are configurable.
 A single inspection can use multiple search and replacement templates.
