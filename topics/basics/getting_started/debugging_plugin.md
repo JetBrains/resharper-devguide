@@ -8,18 +8,3 @@ Depending on your environment (Windows or Unix) and product of choice (ReSharper
 |-----------|---------------------|
 | Rider     | `Rider.Backend.exe` |
 | ReSharper | `devenv.exe`        |
-
-<table header-style="top">
-    <tr>
-        <td>Product</td>
-        <td>Process to Debug</td>
-    </tr>
-    <tr>
-        <td>Rider</td>
-        <td><code>Rider.Backend.exe</code></td>
-    </tr>
-    <tr>
-        <td>ReSharper</td>
-        <td><code>devenv.exe</code></td>
-    </tr>
-</table>
