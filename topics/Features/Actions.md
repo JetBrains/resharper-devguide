@@ -91,17 +91,16 @@ The second method is called `Execute()`. This is the method where the action is 
 
 ## Redefining Action Handlers
 
-If you wish to override existing actions, you can create a custom shell component that finds an existing action and adds a different handler for it. For example, here is a custom action handler override for the `TypeHierarchy.ClassHierarchy` action:
+If you wish to override existing actions, you can create a custom shell component that finds an existing action and adds a different handler for it. For example, here is a custom action handler override for `ReplacedAction`:
 
 ```csharp
 [ShellComponent]
 public class CustomActionHandlerManager
 {
-  public CustomActionHandlerManager(Lifetime lifetime, IActionManager actionManager)
-  {
-    var classHierarchy = actionManager.GetUpdatableAction("TypeHierarchy.ClassHierarchy");
-    if (classHierarchy != null)
-      classHierarchy.AddHandler(lifetime, new WholeMembersHierarchyActions());
-  }
+    public CustomActionHandlerManager(IActionManager actionManager)
+    {
+        var action = actionManager.Defs.GetActionDef<ReplacedAction>();
+        actionManager.Handlers.AddHandler(action, new ReplacingAction());
+    }
 }
 ```
