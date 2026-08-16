@@ -250,7 +250,19 @@
             <toc-element toc-title="Persistent Indexes"/>
             <toc-element toc-title="Transient Caches"/>
         </toc-element>
-        <toc-element toc-title="Searching"/>
+        <toc-element id="Searching.md"
+                     toc-title="Searching"
+                     accepts-web-file-names="PSI/Searching.html">
+            <toc-element id="ReferenceSearch.md"
+                         toc-title="Reference search"
+                         accepts-web-file-names="PSI/Searching/ReferenceSearch.html"/>
+            <toc-element id="SearchDomain.md"
+                         toc-title="Search domain"
+                         accepts-web-file-names="PSI/Searching/SearchDomain.html"/>
+            <toc-element id="WordIndex.md"
+                         toc-title="Word index"
+                         accepts-web-file-names="PSI/Searching/WordIndex.html"/>
+        </toc-element>
         <toc-element toc-title="Pointers"/>
         <toc-element toc-title="External Annotations"/>
         <toc-element id="PSI_Icons.md" toc-title="PSI Icons"/>
